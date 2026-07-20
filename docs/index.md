@@ -4,9 +4,19 @@ hide:
   - toc
 ---
 
-# Engineered Lighting · Engineering Notebook
+<div class="el-hero" markdown>
 
-We're building the robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head (smart CAN servo motors, absolute encoders, no homing dance) carrying a high-CRI 3-up LED spot, living alongside the fixture's tunable-white ambient zones, exposed to Home Assistant as ordinary entities *and* aimed autonomously by a camera-driven perception stack — following people, lighting task surfaces and books, pointing at art when idle, never sweeping across eyes. This seven-document series takes it from research through a working bench prototype to the system architecture, with everything adversarially reviewed and every purchase specified.
+<p class="el-hero__kicker">Engineered Lighting · Engineering notebook</p>
+
+# Building the robotic spotlight
+
+We're building the robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head (smart CAN servo motors, absolute encoders, no homing dance) carrying a high-CRI 3-up LED spot, living alongside the fixture's tunable-white ambient zones, exposed to Home Assistant as ordinary entities *and* aimed autonomously by a camera-driven perception stack — following people, lighting task surfaces and books, pointing at art when idle, never sweeping across eyes.
+
+This seven-document series takes it from research through a working bench prototype to the system architecture, with everything adversarially reviewed and every purchase specified.
+
+<p class="el-hero__meta"><span>7 documents</span><span>$475–850 end to end</span><span>Current phase · parts ordering</span></p>
+
+</div>
 
 ## What we're building toward
 
