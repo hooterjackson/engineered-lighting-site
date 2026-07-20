@@ -4,6 +4,7 @@
 /*
 !/.gitignore
 !/README.md
+!/DESIGN.md
 !/mkdocs.yml
 !/requirements-site.txt
 !/.github/

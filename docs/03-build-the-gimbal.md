@@ -64,6 +64,7 @@ Every sketch in this doc reaches the board the same way — learn it once here:
 ## Stage 3 — Wire the CAN line
 
 ![Gimbal CAN wiring diagram](assets/wiring-gimbal-can.svg)
+
 *Color diagram (covers stages 3–6; stage 3 wires Motor A only — Motor B is the dashed box). Keep this SVG in the same folder as this doc. Plain-text version below for quick bench reference:*
 
 ```

@@ -15,6 +15,7 @@ One ESP32-C6 controlling all three fixture subsystems on the bench: **21 channel
 ## The whole bench, one picture
 
 ![Full bench overview diagram](assets/wiring-full-bench-overview.svg)
+
 *One C6, three subsystems, three kinds of "dimmer" (constant-voltage switches for tape, a constant-current driver for the star, smart servos for aim). Detailed wiring diagrams appear at stages 1 and 2. Keep the `wiring-*.svg` files in the same folder as this doc.*
 
 ## Bill of Materials — LED side, ~$170–240 (+ Doc 3's gimbal BoM)
@@ -96,6 +97,7 @@ Cut one radial zone (2 tape segments = 4.92") at the printed cut lines; solder f
 Wire the chain (power off):
 
 ![Zone 1 first-light wiring diagram](assets/wiring-zone1-first-light.svg)
+
 *The full chain with pin numbers and the 3.3 V trap called out. ASCII version below:*
 
 ```

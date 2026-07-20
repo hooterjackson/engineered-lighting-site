@@ -4,17 +4,18 @@ site_url: https://engineering.engineered.lighting/
 
 theme:
   name: material
+  logo: assets/el-logo.svg
+  favicon: assets/el-favicon.svg
+  # One hosted family (IBM Plex Sans 400/600, imported in extra.css);
+  # code uses the system mono stack. font:false stops Material loading Roboto.
+  font: false
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    # Dark is the only screen scheme — light lives in the print stylesheet.
+    # Built on slate so Material's derived colors stay sane; every visible
+    # color is overridden in stylesheets/extra.css (tokens at the top).
+    - scheme: slate
+      primary: custom
+      accent: custom
   features:
     - navigation.footer
     - navigation.top
@@ -22,6 +23,9 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search

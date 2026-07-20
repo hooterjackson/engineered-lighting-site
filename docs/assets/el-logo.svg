@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="Engineered Lighting">
+  <defs>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2EEE6" stop-opacity="0.75"></stop>
+      <stop offset="0.5" stop-color="#ECB872" stop-opacity="0.26"></stop>
+      <stop offset="1" stop-color="#ECB872" stop-opacity="0.08"></stop>
+    </linearGradient>
+  </defs>
+  <circle cx="12" cy="3.1" r="1.8" fill="#F2EEE6"></circle>
+  <path d="M11.1 4.9 L5.3 18.4 H18.7 L12.9 4.9 Z" fill="url(#beam)"></path>
+  <ellipse cx="12" cy="18.5" rx="6.7" ry="1.6" fill="#ECB872" opacity="0.92"></ellipse>
+</svg>
