@@ -10,6 +10,11 @@ on:
 permissions:
   contents: write
 
+# Overlapping runs would race force-pushes to gh-pages; newest push wins.
+concurrency:
+  group: publish-site
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

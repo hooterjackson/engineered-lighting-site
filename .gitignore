@@ -3,6 +3,7 @@
 # Everything is ignored unless explicitly re-included below.
 /*
 !/.gitignore
+!/README.md
 !/mkdocs.yml
 !/requirements-site.txt
 !/.github/
