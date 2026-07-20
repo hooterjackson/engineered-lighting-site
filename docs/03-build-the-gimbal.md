@@ -81,6 +81,7 @@ Bench supply GND ───────────────────┘
 ```
 
 Annotations:
+
 - **Why GPIO6/7:** many online examples use GPIO4/5, which are *strapping pins* on the C6 (read by the chip at boot). They usually work; avoiding them removes a category of weird boot behavior for free.
 - **Termination check:** with everything unpowered, measure resistance CANH↔CANL. ~120 Ω = one resistor present somewhere; ~60 Ω = two (correct); open = none. Add external 120 Ω resistors until the bus reads ~60 Ω.
 - **Motor power never touches the breadboard** (rails are ~1 A). Motor + and − go directly to the supply terminals; only thin signal wires (CAN pair, signal ground) touch the breadboard.
@@ -164,6 +165,7 @@ Motors ship with the same address, so: connect motor B **alone**, change its ID 
 ## Stage 7 — Print the frame, balance the head
 
 Three printed parts (design against the L-4005 STEP files from myactuator.com; PETG, 4+ perimeters):
+
 1. **Pan base** — clamps to a shelf so the assembly hangs downward; pan motor body bolts to it (the motor's output flange *is* the pan bearing).
 2. **Yoke** — U-bracket on the pan flange; one arm carries the tilt motor, the other a bearing pin. **Include hard stops** (see stage 4 fine print).
 3. **Head shell** — flashlight/LED on the tilt flange, with a **counterweight slot** (slide coins/a bolt).

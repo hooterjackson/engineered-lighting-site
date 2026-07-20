@@ -99,6 +99,7 @@ Your V-JEPA model answers *what is happening* (reading, cooking, movie). This do
 ```
 
 Annotations on each block:
+
 - **Target resolver:** static targets (art, table) are *label lookups* in the room model — zero runtime perception. Dynamic targets come from tracks, led by velocity. Book = wrist offset from the person anchor.
 - **Assignment** (which fixture takes which target): bipartite matching (Hungarian) with costs = incidence-angle badness (light the task from beside/behind the person, not their face) + travel + a hysteresis bonus for the incumbent. Run assignment at 1–5 Hz (sticky), aiming at 15–30 Hz — per-frame reassignment invites beam flapping. Handoffs cross-fade. Honest status: no published algorithm exists for lights; this is greenfield.
 - **Safety layer (runs last, overrides all):** predictive no-go cones around heads (extrapolate by angular velocity — static per-frame checks demonstrably fail on fast motion), soft-edge dimming at cone borders, UGR ≤ 19 as a computable glare budget, and the interlock: tracking-confidence loss → park/dim within a deadline.

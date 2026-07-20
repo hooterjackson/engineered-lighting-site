@@ -1,6 +1,6 @@
 site_name: Engineered Lighting · Engineering Notebook
 site_description: Prototype series for the Engineered Lighting robotic spotlight — research, bench builds, perception stack, and software.
-site_url: https://engineering.engineered.lighting/
+site_url: https://hooterjackson.github.io/engineered-lighting-site/
 
 theme:
   name: material
@@ -28,6 +28,7 @@ plugins:
   - awesome-pages
 
 markdown_extensions:
+  - sane_lists
   - toc:
       permalink: true
   - attr_list

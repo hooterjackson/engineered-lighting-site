@@ -226,6 +226,7 @@ Footnotes: the slider midpoint won't be *exactly* 3500 K (HA works in mireds —
 | 7 (bottom ring) | hub2 : 3, 4, 5 | chip4 : 1, 2, 3 | 18, 17, 16 |
 
 Every chip's pin 9 goes to the ground star; pin 10 stays unconnected; every zone's +24 V lead goes to the WAGO bus.
+
 4. Duplicate the stage-3 block per zone (`z2_`…`z7_`). Verbose but transparent — compress with ESPHome "packages" later, not now.
 5. After flashing, watch Logs for `Component ... took a long time` — the single-core C6 telling you it's straining. This design computes only on changes, so you shouldn't see it; this is the honest untested territory (nobody has benchmarked 24 PWM + CAN + WiFi on a C6).
 
@@ -315,6 +316,7 @@ Footnotes: replies may arrive on 0x141/0x142 or 0x240+ID depending on protocol v
 Build an HA dashboard (7 zones, Spotlight, pan/tilt) and two scenes: **Movie** (radials 2000 K @ 15%, ring off, spot off) and **Reading** (radials 2700 K @ 40%, spot 3000 K @ 60%, aimed at the chair — jog the Spot Pan/Tilt sliders until the beam sits on the chair, then save those numbers into the scene). Toggle while watching logs and the tape.
 
 Checklist:
+
 - [ ] All zones sweep CT smoothly; equal settings look equal (mismatch = ground star problem, not software)
 - [ ] Flicker: pencil-wave test + phone slow-mo (PCA9685's ~1.2–1.5 kHz is prototype-grade; the production PCB's driver ICs run ~10× higher — don't over-optimize here)
 - [ ] Gimbal moves while all 24 channels are lit — no resets, no CAN errors
