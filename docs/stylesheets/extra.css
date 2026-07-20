@@ -314,7 +314,7 @@ html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) tra
   color: var(--el-ink-2);
 }
 
-.md-typeset mark { color: var(--el-ink); }
+.md-content .md-typeset mark { color: var(--el-ink); } /* scoped: search-result hit marks keep Material's accent */
 
 .md-typeset kbd {
   border: 1px solid var(--el-line-2);
@@ -632,6 +632,10 @@ html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) tra
 }
 .md-typeset input.bom-box:focus-visible { outline: 2px solid var(--el-ice); outline-offset: 2px; }
 
+/* Chapter task lists (docs 3/4 verdict checklists) — same check language as the BoM */
+.md-typeset .task-list-indicator::before { background-color: var(--el-ink-3); }
+.md-typeset [type="checkbox"]:checked + .task-list-indicator::before { background-color: var(--el-amber); }
+
 .md-typeset .bom-optional {
   font-family: var(--el-mono);
   font-size: 0.48rem;
@@ -680,6 +684,11 @@ html .md-footer-meta.md-typeset a:is(:focus, :hover) { color: var(--el-amber); }
   inset: -2.4rem -14% 0;
   pointer-events: none;
   background: radial-gradient(58% 46% at 50% 0%, rgba(236, 184, 114, 0.15) 0%, rgba(236, 184, 114, 0.05) 46%, transparent 72%);
+}
+@media (max-width: 44.9375em) {
+  /* the -14% side bleed widens the page into horizontal scroll on phones;
+     the gradient fades by 72%, so losing the bleed is invisible */
+  .el-hero::before { inset: -2.4rem 0 0; }
 }
 .el-hero::after {
   /* the source: a pinpoint at the cone's apex */

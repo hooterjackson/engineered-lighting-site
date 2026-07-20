@@ -4,8 +4,10 @@
   var KEY = "el-bom-v1";
 
   function load() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
-    catch (e) { return {}; }
+    try {
+      var s = JSON.parse(localStorage.getItem(KEY));
+      return (s && typeof s === "object" && !Array.isArray(s)) ? s : {};
+    } catch (e) { return {}; }
   }
   function save(state) {
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
@@ -58,10 +60,12 @@
   }
 
   function copyText(text, btn) {
-    function done() {
-      var old = btn.textContent;
-      btn.textContent = "Copied ✓";
-      setTimeout(function () { btn.textContent = old; }, 1500);
+    if (btn.dataset.busy) return; // ignore clicks while feedback is showing
+    var label = btn.dataset.label || (btn.dataset.label = btn.textContent);
+    function feedback(message) {
+      btn.dataset.busy = "1";
+      btn.textContent = message;
+      setTimeout(function () { btn.textContent = label; delete btn.dataset.busy; }, 1500);
     }
     function fallback() {
       var ta = document.createElement("textarea");
@@ -70,11 +74,13 @@
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); done(); } catch (e) {}
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
       document.body.removeChild(ta);
+      feedback(ok ? "Copied ✓" : "Copy failed");
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, fallback);
+      navigator.clipboard.writeText(text).then(function () { feedback("Copied ✓"); }, fallback);
     } else fallback();
   }
 

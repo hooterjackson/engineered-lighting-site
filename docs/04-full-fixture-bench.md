@@ -1,22 +1,24 @@
 ---
 title: 4 · Build the Full Fixture Bench
+description: "One ESP32-C6 running the whole fixture: 21 tunable-white channels, the constant-current spotlight, and the gimbal in ESPHome."
 ---
 
 # Doc 4 · Build the Full Fixture Bench — One ESP32, Everything
 
 **Engineered Lighting prototype series · July 2026**
-One ESP32-C6 controlling all three fixture subsystems on the bench: **21 channels of Valent X tunable-white tape + the 3-channel Cree spotlight + the CAN gimbal.** Beginner-annotated throughout. Prereq: Doc 3 stages 1–6 (motors answering on CAN) — that work slots in at **stage 6**; stage 7's demo scene additionally uses the printed frame from Doc 3 stage 7.
+One ESP32-C6 controlling all three fixture subsystems on the bench: **21 channels of Valent X tunable-white tape + the 3-channel Cree spotlight + the CAN gimbal.** Beginner-annotated throughout. Prereq: [Doc 3](03-build-the-gimbal.md) stages 1–6 (motors answering on CAN) — that work slots in at **stage 6**; stage 7's demo scene additionally uses the printed frame from [Doc 3](03-build-the-gimbal.md) stage 7.
 
 > **Before you start — three prerequisites this doc quietly depends on:**
+>
 > 1. **Home Assistant that can run Add-ons** (Home Assistant OS or Supervised). Running HA in a plain Docker container or Core? The Add-on store won't exist — use the standalone CLI instead (`pip install esphome`; it mirrors everything the Device Builder does, and the AI-partner section below is built around it anyway).
-> 2. **An MQTT broker** — install the official **Mosquitto broker** add-on in HA now (Settings → Add-ons). Doc 3 stage 9, this doc's stage 6 look-ahead, and all of Doc 5 publish through it.
+> 2. **An MQTT broker** — install the official **Mosquitto broker** add-on in HA now (Settings → Add-ons). [Doc 3](03-build-the-gimbal.md) stage 9, this doc's stage 6 look-ahead, and all of [Doc 5](05-teach-it-to-aim.md) publish through it.
 > 3. **Basic soldering** — a $25–40 iron kit (in the BoM) and three easy jobs: wires onto the tape's big copper pads, one solder-blob jumper on PCA9685 #2, and optionally the PicoBuck current jumper. The tape pads are a forgiving place to learn; tin the pad, tin the wire, touch them together with the iron.
 
 ## The whole bench, one picture
 
 ![Full bench overview diagram](assets/wiring-full-bench-overview.svg)
 
-*One C6, three subsystems, three kinds of "dimmer" (constant-voltage switches for tape, a constant-current driver for the star, smart servos for aim). Detailed wiring diagrams appear at stages 1 and 2. Keep the `wiring-*.svg` files in the same folder as this doc.*
+*One C6, three subsystems, three kinds of "dimmer" (constant-voltage switches for tape, a constant-current driver for the star, smart servos for aim). Detailed wiring diagrams appear at stages 1 and 2.*
 
 ## Bill of Materials — LED side, ~$170–240 (+ Doc 3's gimbal BoM)
 
@@ -54,7 +56,7 @@ There's no "upload button + code file" here like Arduino; ESPHome *generates* th
 4. **First install — over USB:** click **Install → "Plug into this computer."** Connect the C6 by USB-C data cable to the machine your *browser* is running on (Chrome/Edge required — flashing uses the browser's serial access), pick the port when prompted, and watch it compile (a few minutes first time) and flash.
 5. **Every install after that — wireless:** Install → **"Wirelessly."** The board updates itself over WiFi in ~30 s. You'll never touch the USB cable again unless you brick the WiFi config.
 6. **Reading the board's output:** click **Logs** on the device card — a live stream over the network (no cable) of everything the firmware is doing: I2C devices found, light state changes, CAN frames, and the all-important `Component ... took a long time` performance warnings. This is your Serial-Monitor equivalent, and it works from anywhere in the house.
-7. **VS Code + the official ESPHome extension** is the nicer editor once the YAML grows (validation + autocomplete as you type); the Device Builder's built-in editor is fine to start. **Arduino IDE 2.x** stays for Doc 3's interactive motor console only.
+7. **VS Code + the official ESPHome extension** is the nicer editor once the YAML grows (validation + autocomplete as you type); the Device Builder's built-in editor is fine to start. **Arduino IDE 2.x** stays for [Doc 3](03-build-the-gimbal.md)'s interactive motor console only.
 
 Config header every stage assumes:
 
@@ -73,7 +75,7 @@ ESPHome is unusually AI-friendly because the entire toolchain is drivable from a
 - **Paste-level help (zero setup):** ESPHome's validation errors are verbose and precise — paste the full error plus your YAML into Claude and the fix is usually one round trip. Same for the Logs stream when a light misbehaves.
 - **Agentic loop (Claude Code + the ESPHome CLI):** `pip install esphome` gives a command-line twin of the Device Builder. `esphome run fixture-bench.yaml` validates, compiles, uploads (USB or OTA), and streams logs in one command; `esphome logs fixture-bench.yaml` attaches to a running board over the network — **no cable, from any machine on the LAN**. That means a coding agent can own the whole iterate loop: edit YAML → `esphome run` → read the validation or runtime output → fix → repeat. Keep the YAML in git so its edits are reviewable. Example ask: *"Add zones 2–7 following the zone-1 pattern, flash it OTA, then watch the logs for two minutes and report any 'took a long time' warnings."*
 - **Telemetry watching:** once MQTT is flowing, `mosquitto_sub -t '#' -v` gives an agent the live state of every light and the gimbal — useful for soak tests ("watch for an hour, summarize anything anomalous") that no human wants to babysit.
-- **The rule from Doc 3 stands:** agents read and flash freely; anything that *moves the gimbal* runs only while you're watching, hand near the supply.
+- **The rule from [Doc 3](03-build-the-gimbal.md) stands:** agents read and flash freely; anything that *moves the gimbal* runs only while you're watching, hand near the supply.
 
 ---
 
@@ -272,7 +274,7 @@ light:
 
 ## Stage 6 — Gimbal joins the same chip
 
-Prereq: Doc 3 stages 1–6 done (interactive console is the right place to *learn* motors; this stage ports them into ESPHome). ESPHome's `canbus` officially supports the C6 at 1 Mbps. Wiring: identical to Doc 3 (transceiver on GPIO6/7).
+Prereq: [Doc 3](03-build-the-gimbal.md) stages 1–6 done (interactive console is the right place to *learn* motors; this stage ports them into ESPHome). ESPHome's `canbus` officially supports the C6 at 1 Mbps. Wiring: identical to [Doc 3](03-build-the-gimbal.md) (transceiver on GPIO6/7).
 
 ```yaml
 canbus:
@@ -309,7 +311,7 @@ number:
 
 Footnotes: replies may arrive on 0x141/0x142 or 0x240+ID depending on protocol version — if logs stay silent while motors obey, add blocks for 0x241/0x242 (check your shipped PDF). Never transmit onto a bus with **no powered motor** — endless retries can watchdog-reboot the node.
 
-**Looking ahead (Doc 5):** HA sliders are the *bench* interface. The follow-me loop will instead publish aim targets ~5–15×/second — subscribe the ESP32 to a raw MQTT topic (**`spotlight/target`** — the same name Doc 3 stage 9 and Doc 5 Phase 0 use; ESPHome's `mqtt:` component with an `on_message` trigger; it runs happily alongside the HA `api:`, and the AI-partner workflow above is the right way to scaffold the JSON-to-CAN lambda) and lean on 0xA4's speed-limit field: the motor interpolates between waypoints onboard, so modest update rates still produce continuous motion (this is exactly what dissolves the "steppy PTZ" problem). The full graduation path — an `Auto/Hold/Manual` mode select gating the stream, brightness flowing only through the light entity, `discovery: false` to avoid duplicate entities, and eventually replacing the MQTT lane with a typed native-API action (`api: actions: fixture_aim`) that the GPU box calls directly via aioesphomeapi — is specced in **Doc 6** (§1 for the transport, "Living inside Home Assistant" for the entity model). One production gotcha to bank now: once CAN telemetry flows, set `logger: level: INFO` — per-frame DEBUG logging is the documented crash cause on busy ESPHome CAN nodes.
+**Looking ahead ([Doc 5](05-teach-it-to-aim.md)):** HA sliders are the *bench* interface. The follow-me loop will instead publish aim targets ~5–15×/second — subscribe the ESP32 to a raw MQTT topic (**`spotlight/target`** — the same name [Doc 3](03-build-the-gimbal.md) stage 9 and [Doc 5](05-teach-it-to-aim.md) Phase 0 use; ESPHome's `mqtt:` component with an `on_message` trigger; it runs happily alongside the HA `api:`, and the AI-partner workflow above is the right way to scaffold the JSON-to-CAN lambda) and lean on 0xA4's speed-limit field: the motor interpolates between waypoints onboard, so modest update rates still produce continuous motion (this is exactly what dissolves the "steppy PTZ" problem). The full graduation path — an `Auto/Hold/Manual` mode select gating the stream, brightness flowing only through the light entity, `discovery: false` to avoid duplicate entities, and eventually replacing the MQTT lane with a typed native-API action (`api: actions: fixture_aim`) that the GPU box calls directly via aioesphomeapi — is specced in **[Doc 6](06-message-contract.md)** (§1 for the transport, "Living inside Home Assistant" for the entity model). One production gotcha to bank now: once CAN telemetry flows, set `logger: level: INFO` — per-frame DEBUG logging is the documented crash cause on busy ESPHome CAN nodes.
 
 **Done when:** dragging Spot Pan/Tilt sliders in HA moves the physical beam.
 
@@ -334,7 +336,7 @@ Checklist:
 2. **The tri-white blend is yours** — no published component exists; stage 3's lambda is the supported pattern, not a library.
 3. **Valent X 4-wire layout:** verify printed pad labels before soldering 28 wires.
 4. **PicoBuck tops out at 660 mA/ch** — right for the bench; XP-L at 1–3 A is a different driver + heatsink, decided after seeing 330/660 mA in a real room.
-5. **Motor protocol drift** (Doc 3): trust the PDF in the box.
+5. **Motor protocol drift** ([Doc 3](03-build-the-gimbal.md)): trust the PDF in the box.
 
 ## Further reading
 
