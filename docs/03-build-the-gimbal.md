@@ -1,5 +1,6 @@
 ---
 title: 3 · Build the Gimbal
+description: "The 10-stage gimbal bench build: motors answering on CAN by stage 4, a balanced aimed head by stage 8, full BoM and wiring."
 ---
 
 # Doc 3 · Build the Gimbal — Bench Plan, Step by Step
@@ -13,7 +14,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 
 | # | Part | Qty | Est. | Where | Notes / traps |
 |---|---|---|---|---|---|
-| 1 | **MyActuator RMD-L-4005-100-C** (CAN version) | 2 | $60–120 | Amazon, RobotShop, dingsmotionusa.com | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 65 g puck; Doc 2 is the full story. Select the **-C (CAN)** variant specifically ("-25T" is the same motor's deprecated old name). Ask the seller to include the mating cable for the 4-pin port (VCC/GND/CANL/CANH), and keep the protocol PDF that ships in the box — it's the authority on byte layouts for your unit's firmware |
+| 1 | **MyActuator RMD-L-4005-100-C** (CAN version) | 2 | $60–120 | Amazon, RobotShop, dingsmotionusa.com | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 65 g puck; [Doc 2](02-choosing-the-motors.md) is the full story. Select the **-C (CAN)** variant specifically ("-25T" is the same motor's deprecated old name). Ask the seller to include the mating cable for the 4-pin port (VCC/GND/CANL/CANH), and keep the protocol PDF that ships in the box — it's the authority on byte layouts for your unit's firmware |
 | 2 | ESP32-C6 dev board (ESP32-C6-DevKitC-1) | 1 | $9–15 | Amazon, Adafruit, DigiKey | Same chip as the fixture — everything learned transfers |
 | 3 | SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board") | 2 (1+spare) | $8 | Amazon | The ESP32 has the CAN *brain* on-chip but not the line driver — this little board is the voice, converting chip signals to the differential CAN wire pair. 3.3 V logic, breadboard-friendly. Bus termination gets measured and set in stage 3 |
 | 4 | 120 Ω resistors, ¼ W | few | $1 | any resistor kit | CAN bus termination |
@@ -25,7 +26,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 10 | USB-to-CAN adapter ("CANable" or clone) — *optional but recommended* | 1 | $20–25 | Amazon | Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence |
 | 11 | PETG filament + access to any FDM 3D printer & slicer; 6804 or 608 bearings | — | $20 | Amazon / local makerspace | For stage 7's three frame parts. No printer at home? A library, makerspace, or online print service works — the parts are small |
 | 12 | C-clamp or small bench vise | 1 | $10 | hardware store | Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig |
-| 13 | Payload stand-in: small flashlight or ~100 g weight | 1 | — | — | Real LED head comes from Doc 4 |
+| 13 | Payload stand-in: small flashlight or ~100 g weight | 1 | — | — | Real LED head comes from [Doc 4](04-full-fixture-bench.md) |
 
 ## Concepts in six terms
 
@@ -65,7 +66,7 @@ Every sketch in this doc reaches the board the same way — learn it once here:
 
 ![Gimbal CAN wiring diagram](assets/wiring-gimbal-can.svg)
 
-*Color diagram (covers stages 3–6; stage 3 wires Motor A only — Motor B is the dashed box). Keep this SVG in the same folder as this doc. Plain-text version below for quick bench reference:*
+*Color diagram (covers stages 3–6; stage 3 wires Motor A only — Motor B is the dashed box). Plain-text version below for quick bench reference:*
 
 ```
 ESP32-C6                SN65HVD230 board          RMD-L-4005 motor
@@ -148,7 +149,7 @@ The session: type `r` — **any reply is the win** (proves wiring, transceiver, 
 
 ## Stage 5 — Characterize (the measurements everything depends on)
 
-- **Noise** (phone dB app — pick one and stick with it so stage-10 numbers compare, e.g. NIOSH SLM on iOS or Sound Meter on Android; 30 cm distance): at hold, and during moves at **10 / 30 / 60 / 90 °/s**. Quiet room ≈ 30–40 dB. Two verdicts ride on this: whine *at hold* (the sealed loop can't be retuned — this is the RMD bet's one risk), and the speed where motion becomes audible — **follow-me needs 54–80°/s on close passes** (Doc 5), so the fast rows decide whether tracking stays silent or gets speed-capped.
+- **Noise** (phone dB app — pick one and stick with it so stage-10 numbers compare, e.g. NIOSH SLM on iOS or Sound Meter on Android; 30 cm distance): at hold, and during moves at **10 / 30 / 60 / 90 °/s**. Quiet room ≈ 30–40 dB. Two verdicts ride on this: whine *at hold* (the sealed loop can't be retuned — this is the RMD bet's one risk), and the speed where motion becomes audible — **follow-me needs 54–80°/s on close passes** ([Doc 5](05-teach-it-to-aim.md)), so the fast rows decide whether tracking stays silent or gets speed-capped.
 - **Hold current** (supply ammeter): unloaded, then with ~100 g hung 4 cm off-axis — previews why the balanced head matters.
 - **Warmth** after 30 min holding: warm fine; too-hot-to-touch is thermal-budget data.
 - **Resolution feel:** step `a10.00 → a10.50 → a10.05` with a flashlight taped on; watch the wall (0.05° ≈ 2 mm at 2.4 m).
@@ -187,7 +188,7 @@ Clamp the rig at height *h* above the desk. Pick an origin (a desk corner), meas
 
 ## Stage 9 — Hand the keys to the network
 
-Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Sketch → Include Library → Manage Libraries, search by name). The broker is the **Mosquitto add-on in Home Assistant** (Doc 4's prerequisites box) — point the sketch at your HA machine's IP. Behavior: subscribe to **`spotlight/target`**, parse `{"v":1,"ts":1784150000000,"pan":32.5,"tilt":-14,"rate":10}` (`v`/`ts` are the contract's mandatory envelope fields — Doc 6) → two CAN frames; publish read-back angles every few seconds. Note: this MQTT lane is the *bench* interface — production replaces it with a direct native-API action (Doc 6 §1). (Another one-prompt AI-partner job: "add WiFi+MQTT to this sketch per this paragraph.") Test from MQTT Explorer or a Home Assistant automation.
+Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Sketch → Include Library → Manage Libraries, search by name). The broker is the **Mosquitto add-on in Home Assistant** ([Doc 4](04-full-fixture-bench.md)'s prerequisites box) — point the sketch at your HA machine's IP. Behavior: subscribe to **`spotlight/target`**, parse `{"v":1,"ts":1784150000000,"pan":32.5,"tilt":-14,"rate":10}` (`v`/`ts` are the contract's mandatory envelope fields — [Doc 6](06-message-contract.md)) → two CAN frames; publish read-back angles every few seconds. Note: this MQTT lane is the *bench* interface — production replaces it with a direct native-API action ([Doc 6](06-message-contract.md) §1). (Another one-prompt AI-partner job: "add WiFi+MQTT to this sketch per this paragraph.") Test from MQTT Explorer or a Home Assistant automation.
 
 **Done when:** an MQTT publish from your laptop aims the beam, no USB attached.
 
@@ -201,7 +202,7 @@ Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Ske
 - [ ] 50 full-travel sweeps: service loops intact
 - [ ] Total power draw at 24 V — record it for the fixture power budget (external design doc: the fixture brief's ~60 W mode-based table)
 
-**Pass** → the architecture graduates to the fixture's lower-module PCB (C6 TWAI + $2 transceiver, actuators as-is). **Whine or heat at hold** → try the other supply voltage (24 V vs 12 V), re-balance harder, then fall back to the DIY FOC path (Doc 2, "The DIY path and its documented pain") where you own the loop.
+**Pass** → the architecture graduates to the fixture's lower-module PCB (C6 TWAI + $2 transceiver, actuators as-is). **Whine or heat at hold** → try the other supply voltage (24 V vs 12 V), re-balance harder, then fall back to the DIY FOC path ([Doc 2](02-choosing-the-motors.md), "The DIY path and its documented pain") where you own the loop.
 
 ## AI as your lab partner
 

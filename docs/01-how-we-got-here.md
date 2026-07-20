@@ -1,5 +1,6 @@
 ---
 title: 1 · How We Got Here
+description: "Round-1 research digest: the physics, vocabulary, and five lessons under every later decision."
 ---
 
 # Doc 1 · How We Got Here — Gimbal Research, Round 1 (Archive)
@@ -22,11 +23,11 @@ We're building the robotic spotlight for the Engineered Lighting fixture: a sile
 | 6 | **The Message Contract** (`system-message-contract.md`) | The one page every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture (HA entities + autonomy without fights). *When docs disagree, Doc 6 wins* | nothing |
 | 7 | **Building the Software** (`software-build-plan.md`) | The code: pinned stack, repo layout, hardware-free testing (replay cameras, simulated fixtures), deployment, firmware growth path, licensing gates | nothing |
 
-**Reading paths:** *Building this weekend?* → Doc 3, then 4 (skim their concepts sections; Docs 1–2 optional background). *Understanding the choices?* → 1 → 2, then skim 5. *Writing the software?* → 6 → 7, with 5 as the spec. *Total prototype budget, all hardware:* roughly **$475–850** for one room end-to-end.
+**Reading paths:** *Building this weekend?* → [Doc 3](03-build-the-gimbal.md), then 4 (skim their concepts sections; Docs 1–[2](02-choosing-the-motors.md) optional background). *Understanding the choices?* → 1 → 2, then skim 5. *Writing the software?* → 6 → 7, with 5 as the spec. *Total prototype budget, all hardware:* roughly **$475–850** for one room end-to-end.
 
 ## Shopping list for this document: nothing
 
-This is background reading — all purchases live in Docs 3–5. What this doc carries is the *understanding*: the physics, the vocabulary, and five lessons every later decision rests on.
+This is background reading — all purchases live in Docs [3](03-build-the-gimbal.md)–[5](05-teach-it-to-aim.md). What this doc carries is the *understanding*: the physics, the vocabulary, and five lessons every later decision rests on.
 
 ---
 
@@ -60,7 +61,7 @@ Can the fixture's fixed spotlight become robotic — a motorized pan/tilt head t
 
 ## What this round got wrong (and round 2 fixed)
 
-Round 1's recommendation — NEMA-11 stepper motors + belt reduction + silent driver chips — was reasonable but built everything by hand: motor mounts, belts, tensioners, encoder mounting, motor-control firmware. Round 2 found the same outcome available as a **sealed smart actuator** (motor + encoder + tuned controller in one purchasable part, commanded digitally) — fewer parts, fewer failure modes, and it deleted most of round 1's engineering. Read Doc 2 for that decision.
+Round 1's recommendation — NEMA-11 stepper motors + belt reduction + silent driver chips — was reasonable but built everything by hand: motor mounts, belts, tensioners, encoder mounting, motor-control firmware. Round 2 found the same outcome available as a **sealed smart actuator** (motor + encoder + tuned controller in one purchasable part, commanded digitally) — fewer parts, fewer failure modes, and it deleted most of round 1's engineering. Read [Doc 2](02-choosing-the-motors.md) for that decision.
 
 ## Further reading (the round-1 sources worth opening)
 

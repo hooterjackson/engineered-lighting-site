@@ -1,5 +1,6 @@
 ---
 title: 7 · Building the Software
+description: "The software: pinned stack, repo layout, hardware-free testing, deployment, and the firmware growth path."
 ---
 
 # Doc 7 · Building the Software — Stack, Repos, Testing, Deployment
@@ -86,14 +87,14 @@ engineered-lighting/
     clips/            # short mp4s for RTSP replay
 ```
 
-`libs/roommodel` is where Doc 6 stops being prose: every schema becomes a pydantic model, and both publisher and subscriber import the same class — the contract enforced by the type checker instead of by discipline.
+`libs/roommodel` is where [Doc 6](06-message-contract.md) stops being prose: every schema becomes a pydantic model, and both publisher and subscriber import the same class — the contract enforced by the type checker instead of by discipline.
 
 ## 3. Testing without a living room (the part that makes AI-partner development fly)
 
 - **Replay cameras:** mediamtx loops an mp4 as a real RTSP source (`runOnInit: ffmpeg -re -stream_loop -1 …`, or its native `alwaysAvailableFile:`); go2rtc's `exec:` source does the same. Record 2 minutes of walking through the room once; the tracker develops against it forever.
 - **Golden tracks:** capture `(ts, id, x, y, vx, vy)` jsonl from a session; replay at wall-clock pace into the resolver in CI; assert pan/tilt outputs within tolerance. Geometry (homography, aim inverse, cone checks) gets plain `pytest` + `numpy.testing.assert_allclose`.
 - **Simulated fixture — the big one:** an `esphome` config with `host:` + `api:` + template outputs compiles to a native binary exposing the *real* API server. The resolver's integration test spins it up as a subprocess, connects with real `aioesphomeapi`, calls `fixture_aim`, and asserts state — the identical pattern ESPHome's own `tests/integration/` uses in its CI. End-to-end resolver→firmware-logic testing, zero hardware, runs in GitHub Actions. (Host caveats: no MQTT component, no real GPIO — template stand-ins only, which is exactly what you want.)
-- **Why this matters doubly:** every one of these loops is text-in/text-out, which means Claude Code can run the full suite, read failures, and iterate — the Docs 3/4 lab-partner workflow extended to the whole system.
+- **Why this matters doubly:** every one of these loops is text-in/text-out, which means Claude Code can run the full suite, read failures, and iterate — the Docs [3](03-build-the-gimbal.md)/[4](04-full-fixture-bench.md) lab-partner workflow extended to the whole system.
 
 ## 4. Firmware engineering (bench → fleet → product)
 
@@ -110,29 +111,29 @@ firmware/
   .github/workflows/             # esphome config validate + esphome/build-action@v8 matrix
 ```
 
-- **When lambdas graduate:** the Doc 4 lambdas are right for the bench. The moment the CAN logic grows (telemetry parsing, two-stage failsafe, calibration hooks), it becomes `components/fixture_control/` — the official skeleton is ~3 files (`__init__.py` schema + `.h/.cpp`), and `mrk-its/esphome-canopen` is the structural reference for a component that rides the built-in `canbus:`. **Verified negative: no RMD/CyberGear/ODrive ESPHome component exists anywhere — ours is greenfield**, and a candidate for open-sourcing (community moat, exactly the Made-for-ESPHome ethos).
+- **When lambdas graduate:** the [Doc 4](04-full-fixture-bench.md) lambdas are right for the bench. The moment the CAN logic grows (telemetry parsing, two-stage failsafe, calibration hooks), it becomes `components/fixture_control/` — the official skeleton is ~3 files (`__init__.py` schema + `.h/.cpp`), and `mrk-its/esphome-canopen` is the structural reference for a component that rides the built-in `canbus:`. **Verified negative: no RMD/CyberGear/ODrive ESPHome component exists anywhere — ours is greenfield**, and a candidate for open-sourcing (community moat, exactly the Made-for-ESPHome ethos).
 - **Fleet pattern:** one base package + thin per-device files that set only substitutions (the jesserockz/ESPHome-maintainer pattern); Jinja expressions in substitutions (2025.7+) derive per-fixture CAN IDs and offsets. Fleet updates: `esphome update-all`, Device Builder's bulk actions (2026.6+), or HA `update.*` entities.
 - **Performance discipline on the single core (all source-verified):** the loop-block warning threshold is now **50 ms** (raised from the oft-cited 30 ms in mid-2025); CAN RX drains its whole queue inline per tick — fine at our tens of frames/sec, **but keep `logger:` at INFO once telemetry flows** (per-frame DEBUG logging is the documented crash cause on busy CAN nodes); structure the CAN component event-style (`disable_loop()` when idle) rather than polling.
 - **The product licensing decision (flag for counsel, not resolvable here):** ESPHome's C++ core is **GPLv3** — a commercial fixture shipping ESPHome-based firmware ships a GPLv3 combined work: source availability plus the anti-lock-down clause (users must be able to install modified firmware) — in direct tension with signed OTA. Real precedents exist for embracing it (Apollo Automation and Athom ship ESPHome commercially; the free "Made for ESPHome" program formalizes it) — but every confirmed precedent is open-hardware prosumer gear, not a mass-market appliance. The alternatives: keep ESPHome for prototypes/dev-kits and write ESP-IDF firmware for the sealed product (the aim/CAN/failsafe logic ports cleanly — it's the smallest part of what ESPHome provides), or lean into openness as strategy (it *is* on-brand for the HA-first launch audience). Decide before the commercial firmware effort starts, not after.
 
 ## 5. Deployment (one GPU box, boring on purpose)
 
-Single `docker-compose.yaml`: restreamer, tracker-per-room, context-bridge, resolver, Frigate — GPU services declare `deploy.resources.reservations.devices` (NVIDIA runtime via `nvidia-ctk runtime configure`). One systemd unit runs `docker compose up -d` at boot; compose owns restarts. Mosquitto and HA stay where they are (the HA box); everything meets on the LAN per Doc 5's VLAN plan.
+Single `docker-compose.yaml`: restreamer, tracker-per-room, context-bridge, resolver, Frigate — GPU services declare `deploy.resources.reservations.devices` (NVIDIA runtime via `nvidia-ctk runtime configure`). One systemd unit runs `docker compose up -d` at boot; compose owns restarts. Mosquitto and HA stay where they are (the HA box); everything meets on the LAN per [Doc 5](05-teach-it-to-aim.md)'s VLAN plan.
 
 ## 6. Build order (the first two weeks of software)
 
-1. Repo bootstrap: uv workspace, `libs/roommodel` encoding Doc 6's schemas, empty service skeletons, compose file. *(An afternoon, mostly Claude Code.)*
+1. Repo bootstrap: uv workspace, `libs/roommodel` encoding [Doc 6](06-message-contract.md)'s schemas, empty service skeletons, compose file. *(An afternoon, mostly Claude Code.)*
 2. Replay rig before real cameras: mediamtx looping a recorded clip → tracker MVP against it → tracks on MQTT. **Done when** `mosquitto_sub` shows sane 15 Hz tracks from a looped clip.
 3. Resolver MVP: consume tracks, aim math from `config/rooms/`, publish bench targets. **Done when** golden-track replay produces expected angles in pytest.
 4. Simulated fixture: host-platform config + `fixture_aim` action; resolver integration test green in CI. **Done when** the whole loop passes with no hardware attached.
-5. Point it at reality: swap the looped clip for the real camera, the simulated fixture for the bench rig — this is Doc 5 Phase 0, arrived at with every component already tested. The remaining unknowns are physics, not code.
+5. Point it at reality: swap the looped clip for the real camera, the simulated fixture for the bench rig — this is [Doc 5](05-teach-it-to-aim.md) Phase 0, arrived at with every component already tested. The remaining unknowns are physics, not code.
 6. Graduate the CAN lambdas into `fixture_control` when they exceed a screen; wire `hass-client` override detection when the coordinator starts making choices worth overriding.
 
 ## Risk register
 
 - **`hass-client` is maintained by one adjacent project** (Music Assistant) — solid today; the fallback is ~200 lines of raw websocket client, so the exposure is bounded.
 - **YOLO26/Ultralytics licensing is AGPL** for the library — fine for personal/prototype use; a commercial product needs an Ultralytics license or a differently-licensed detector. Same decision-gate timing as the ESPHome GPL question; bundle them for counsel.
-- **No public benchmark exists** for this exact GPU on these exact loads (unchanged from Doc 5) — step 2's replay rig is also the benchmark harness.
+- **No public benchmark exists** for this exact GPU on these exact loads (unchanged from [Doc 5](05-teach-it-to-aim.md)) — step 2's replay rig is also the benchmark harness.
 - **Version drift:** everything above was verified July 2026; re-verify pins at build time (the pre-purchase-recheck rule from the hardware BoMs, applied to software).
 
 ## Further reading

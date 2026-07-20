@@ -1,5 +1,6 @@
 ---
 title: 2 · Choosing the Motors
+description: "The decision journey to the RMD-L-4005 smart CAN actuators — what was evaluated and why integrated actuators won."
 ---
 
 # Doc 2 · Choosing the Motors — Why Smart CAN Actuators Won
@@ -8,7 +9,7 @@ title: 2 · Choosing the Motors
 
 ## The purchase this decision produces
 
-The full build shopping list (wiring, supply, tools) lives in **Doc 3's BoM**. This doc's outcome is the part at the heart of it:
+The full build shopping list (wiring, supply, tools) lives in **[Doc 3](03-build-the-gimbal.md)'s BoM**. This doc's outcome is the part at the heart of it:
 
 | Part | Qty | Est. | What it is and why it's the pick |
 |---|---|---|---|
@@ -52,7 +53,7 @@ Everything else evaluated — bare motors + DIY control stacks, hobby servos, dr
 
 **Why the RMD-L-4005 wins, in product terms:** each axis becomes a *part* instead of a project. The fixture always knows where the beam points (absolute encoder → no homing dance, survives power loss). Torque headroom (25 N·cm peak vs 8.83 worst-case unbalanced) makes head balancing good-practice rather than mandatory. And the electronics shrink: the ESP32-C6 already has CAN on-chip, so the whole motion subsystem needs one $2 transceiver chip — no motion co-processor, no driver boards, no encoder wiring.
 
-**The trade-offs, honestly:** the control loop is a black box (if it whines at hold, you can't retune it — that's the first bench measurement in Doc 3); it's ~5 mm fatter than the smallest bare motors; it's a Chinese vendor with a US distributor; and at production volume you'd cost-down to your own driver on the fixture PCB — the RMD-L is the prototype accelerant and the behavioral reference for that later design.
+**The trade-offs, honestly:** the control loop is a black box (if it whines at hold, you can't retune it — that's the first bench measurement in [Doc 3](03-build-the-gimbal.md)); it's ~5 mm fatter than the smallest bare motors; it's a Chinese vendor with a US distributor; and at production volume you'd cost-down to your own driver on the fixture PCB — the RMD-L is the prototype accelerant and the behavioral reference for that later design.
 
 **5. Reality checks from adjacent worlds.** FPV drone gimbals (Caddx GM2: 30 g, $70, PWM/UART, even natively supported by ArduPilot autopilots) prove the control patterns but are motored for 5–20 g cameras — a payload class too small for our head. And architectural lighting already has a patented motorized recessed spotlight line (**Forma MOTOLUX**, ±40° dual-axis, DMX/Casambi — patent US 11215345): the category exists commercially, validating the concept and requiring a freedom-to-operate review before our commercial fixture.
 
@@ -60,10 +61,10 @@ Everything else evaluated — bare motors + DIY control stacks, hobby servos, dr
 
 ## Risks carried forward
 
-- **Hold-state whine** is the one unknown that matters: a statically held BLDC can whine at some operating points, and the RMD's sealed loop can't be retuned. Doc 3, stage 5 measures it before anything else depends on it.
-- **Speed vs. silence:** follow-me needs 54–80°/s pan on close passes (Doc 5's math); noise at those speeds is unmeasured — same stage-5 bench item.
+- **Hold-state whine** is the one unknown that matters: a statically held BLDC can whine at some operating points, and the RMD's sealed loop can't be retuned. [Doc 3](03-build-the-gimbal.md), stage 5 measures it before anything else depends on it.
+- **Speed vs. silence:** follow-me needs 54–80°/s pan on close passes ([Doc 5](05-teach-it-to-aim.md)'s math); noise at those speeds is unmeasured — same stage-5 bench item.
 - **Protocol drift:** older stock has shipped with older protocol docs — trust the PDF in the box over any byte layout written here.
-- **Patents:** Forma (motorized recessed fixtures) and Position Imaging US 12,190,542 (beam self-calibration, see Doc 5) — counsel review before commercialization.
+- **Patents:** Forma (motorized recessed fixtures) and Position Imaging US 12,190,542 (beam self-calibration, see [Doc 5](05-teach-it-to-aim.md)) — counsel review before commercialization.
 
 ## Further reading
 

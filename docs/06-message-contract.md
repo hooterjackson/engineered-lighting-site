@@ -1,11 +1,12 @@
 ---
 title: 6 · The Message Contract
+description: "The message contract every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture."
 ---
 
 # Doc 6 · The Message Contract — How Every Part of the System Talks
 
 **Engineered Lighting prototype series · July 2026**
-The single page that the tracker (Doc 5), the context model (your V-JEPA pipeline), the fixture firmware (Docs 3–4), and the coordinator all agree on. Written *before* three codebases exist, because retrofitting a contract after they do is how systems rot. When any doc and this page disagree, **this page wins** — update the code, then the doc.
+The single page that the tracker ([Doc 5](05-teach-it-to-aim.md)), the context model (your V-JEPA pipeline), the fixture firmware (Docs [3](03-build-the-gimbal.md)–[4](04-full-fixture-bench.md)), and the coordinator all agree on. Written *before* three codebases exist, because retrofitting a contract after they do is how systems rot. When any doc and this page disagree, **this page wins** — update the code, then the doc.
 
 ## Quick reference (the one-screen version)
 
@@ -24,14 +25,14 @@ The single page that the tracker (Doc 5), the context model (your V-JEPA pipelin
 
 ## Nothing to buy
 
-The transport already exists: the **Mosquitto MQTT broker** (Home Assistant add-on, Doc 4's prerequisites box). Lights are the one exception — they ride ESPHome's native HA API as normal light entities and never touch MQTT directly; the coordinator drives them through HA scenes/services.
+The transport already exists: the **Mosquitto MQTT broker** (Home Assistant add-on, [Doc 4](04-full-fixture-bench.md)'s prerequisites box). Lights are the one exception — they ride ESPHome's native HA API as normal light entities and never touch MQTT directly; the coordinator drives them through HA scenes/services.
 
 ## Conventions (read once)
 
 - **Payloads are JSON**, snake_case keys. Every message carries `"ts"` (unix milliseconds) and `"v": 1` (contract version — bump it when a schema changes shape).
 - **Units, always:** angles in **degrees**, positions in **meters**, rates in **deg/s** or **m/s**, confidence **0–1**, dim levels **0–1**. Never radians, never centimeters, never percent.
-- **Frames:** positions are in the **room frame** (right-handed, z-up, origin and axes fixed by the room scan — Doc 5 Phase 1). Fixture pan/tilt angles are in the **fixture's own frame**: tilt 0° = straight down, positive toward horizontal; pan 0° = wherever stage-8 zeroing put it, recorded in that fixture's calibration file. Only the GPU box converts between frames — fixtures never do geometry.
-- **Topic scheme:** `el/<room>/<subsystem>/<message>` (e.g., `el/living/beam/target`). The single-room bench uses the alias **`spotlight/target`** (as printed in Docs 3–5); it is the same schema — rename when a second room exists. (The topic scheme governs the MQTT lane only; the production aim lane is a named native-API action, not a topic — §1.)
+- **Frames:** positions are in the **room frame** (right-handed, z-up, origin and axes fixed by the room scan — [Doc 5](05-teach-it-to-aim.md) Phase 1). Fixture pan/tilt angles are in the **fixture's own frame**: tilt 0° = straight down, positive toward horizontal; pan 0° = wherever stage-8 zeroing put it, recorded in that fixture's calibration file. Only the GPU box converts between frames — fixtures never do geometry.
+- **Topic scheme:** `el/<room>/<subsystem>/<message>` (e.g., `el/living/beam/target`). The single-room bench uses the alias **`spotlight/target`** (as printed in Docs [3](03-build-the-gimbal.md)–[5](05-teach-it-to-aim.md)); it is the same schema — rename when a second room exists. (The topic scheme governs the MQTT lane only; the production aim lane is a named native-API action, not a topic — §1.)
 - **Retained vs. not:** slow-changing *state* topics are published retained (a late subscriber immediately learns the current state); high-rate *stream* topics are not retained, QoS 0 (a lost frame doesn't matter; the next one arrives in ≤100 ms).
 
 ## The topics
@@ -46,7 +47,7 @@ The transport already exists: the **Mosquitto MQTT broker** (Home Assistant add-
 
 **Two transports for this one message, split by build phase:**
 
-- **Bench / v0: the MQTT topic above.** Trivially debuggable (`mosquitto_sub`), zero resolver code beyond a publish call. This is what Docs 3–5 wire up.
+- **Bench / v0: the MQTT topic above.** Trivially debuggable (`mosquitto_sub`), zero resolver code beyond a publish call. This is what Docs [3](03-build-the-gimbal.md)–[5](05-teach-it-to-aim.md) wire up.
 - **Production loop: an ESPHome native-API action, called directly.** The fixture declares `api: actions: → action: fixture_aim` with typed `float pan, float tilt` variables; the resolver calls it via **aioesphomeapi** — the same Python client HA itself uses — connected *directly* to the fixture alongside HA's connection (ESP32-family nodes accept 5 concurrent API clients by default; HA uses one, the resolver one). One network hop instead of two, typed floats instead of JSON parsing, fire-and-forget (`supports_response: none`), and reconnection is solved for free (aioesphomeapi's `ReconnectLogic`: exponential backoff + instant mDNS-triggered reconnect). Note: as of ESPHome 2026.1.0, **API encryption is mandatory** — the resolver holds the same `api: encryption: key:` HA does, via a shared secrets file.
 - Either way, **the Auto-mode gate lives inside the firmware action/handler** — the fixture is the only place that can authoritatively arbitrate if two callers ever collide. MQTT stays configured regardless (`discovery: false`) as the observability tap. (It is *not* an automatic failover — if the native-API session dies, the resolver's ReconnectLogic restores it; re-pointing at MQTT is a manual/ops decision, not firmware behavior.)
 
@@ -119,7 +120,7 @@ Housekeeping: ESPHome's **sub-devices** feature (2025.7.0+) lets this one physic
 **The rules that make it work:**
 
 1. **Photometrics: HA's light entity is the *only* brightness/CCT write path — for humans and machines alike.** The spotlight joins the room's HA light group, so scenes and absolute group commands include it for free. **One researched gotcha on knobs:** HA converts a *relative* step (`brightness_step_pct`) on a group into one **absolute** value (the members' average) before fanning out — repeated knob steps collapse all members toward the same level, destroying deliberate differences (e.g., zones at 40%, spotlight at 60% → both drift to 50%). Verified in HA core source and a worked Hue issue. Fixes, pick one: have the knob automation step **each member individually** (the community-blueprint consensus), use the `relative-brightness-light-group` community integration, or accept convergence as the desired "dim everything together" semantic. Decide per room; the architecture is agnostic.
-2. **Aiming: the target lane (§1 — MQTT on the bench, direct native-API action in production) is the only pan/tilt path in Auto**; HA's automation pipeline never carries the 5–15 Hz stream (too slow, per Doc 5). Mode changes, presets, and manual jogs ride HA; the stream does not.
+2. **Aiming: the target lane (§1 — MQTT on the bench, direct native-API action in production) is the only pan/tilt path in Auto**; HA's automation pipeline never carries the 5–15 Hz stream (too slow, per [Doc 5](05-teach-it-to-aim.md)). Mode changes, presets, and manual jogs ride HA; the stream does not.
 3. **Human-override detection is layered — context first, but never context alone** (the deep finding from Adaptive Lighting's source and HA maintainers). The mechanism, adopted from proven practice:
     - *Detector 1, always on:* the coordinator mints a recognizable `Context` for every service call it makes and listens to service-call events on its entities across all three domains — `light.turn_on`, `select.select_option`, `number.set_value` — any call whose context isn't the coordinator's own = manual override, unconditionally. No thresholds on explicit commands.
     - *Detector 2, optional:* poll actual state vs. last-commanded with **significance thresholds** (~10% brightness, ~3% CCT — Adaptive Lighting's tuned values) to catch changes that never produce an HA event (vendor apps, device-local behavior). Threshold the polling path only, never the command path.

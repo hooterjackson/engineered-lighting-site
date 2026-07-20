@@ -1,5 +1,6 @@
 ---
 title: Home
+description: "The Engineered Lighting prototype series — a silent robotic spotlight taken from research through bench build to perception and software."
 hide:
   - toc
 ---
