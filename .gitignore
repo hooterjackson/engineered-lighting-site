@@ -1,0 +1,16 @@
+# Allowlist: this folder also contains an unrelated project (src/, scripts/,
+# pyproject.toml, .env, feeds.json) that must never be committed to this repo.
+# Everything is ignored unless explicitly re-included below.
+/*
+!/.gitignore
+!/mkdocs.yml
+!/requirements-site.txt
+!/.github/
+!/docs/
+
+# Belt and braces (also excluded by /* above)
+site/
+.venv/
+.env
+__pycache__/
+.DS_Store
