@@ -1,7 +1,10 @@
 """Serve the built site/ directory for the e2e suite.
 
 Run `mkdocs build` before pytest — CI does this explicitly.
+PLAYWRIGHT_CHROMIUM_EXECUTABLE overrides the browser binary (local dev
+convenience when the cached build doesn't match the driver; unset in CI).
 """
+import os
 import pathlib
 import socket
 import subprocess
@@ -35,3 +38,11 @@ def site_server():
 @pytest.fixture(scope="session")
 def base_url():
     return f"http://127.0.0.1:{PORT}"
+
+
+@pytest.fixture(scope="session")
+def browser_type_launch_args(browser_type_launch_args):
+    exe = os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE")
+    if exe and pathlib.Path(exe).exists():
+        return {**browser_type_launch_args, "executable_path": exe}
+    return browser_type_launch_args
