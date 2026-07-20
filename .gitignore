@@ -9,9 +9,12 @@
 !/requirements-site.txt
 !/.github/
 !/docs/
+!/tests/
+!/requirements-test.txt
 
 # Belt and braces (also excluded by /* above)
 site/
+test-artifacts/
 .venv/
 .env
 __pycache__/

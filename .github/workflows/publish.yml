@@ -16,7 +16,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements-site.txt
+            requirements-test.txt
+      - run: pip install -r requirements-site.txt -r requirements-test.txt
+      - name: Add-a-doc acceptance test
+        run: |
+          printf '# Doc 99 · Test chapter\n\nAuto-nav check.\n' > docs/99-test.md
+          mkdocs build -q
+          grep -q "99-test" site/index.html
+          rm docs/99-test.md
+      - run: mkdocs build --strict
+      - run: playwright install --with-deps chromium
+      - run: pytest tests/e2e -q
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-screenshots
+          path: test-artifacts/screens/
+          if-no-files-found: ignore
+
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

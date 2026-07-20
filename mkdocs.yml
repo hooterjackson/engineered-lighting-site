@@ -27,6 +27,10 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+# The PNG fallbacks stay in the repo but out of the built site (SVGs are used).
+exclude_docs: |
+  assets/wiring-*.png
+
 plugins:
   - search
   - awesome-pages
