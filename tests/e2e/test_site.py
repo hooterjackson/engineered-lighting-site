@@ -51,6 +51,17 @@ def test_global_progress_math(page):
     assert page.locator(".bom-progress").first.text_content() == "1/13 · ~$90 checked"
 
 
+def test_chapter_done_when_persists(page):
+    page.goto("/03-build-the-gimbal/")
+    first = page.locator(".task-list-item [type=checkbox]").first
+    first.check(force=True)  # input is visually replaced by the indicator
+    assert page.locator(".el-done-progress").first.text_content() == "1/7 done"
+    page.reload()
+    assert page.locator(".task-list-item [type=checkbox]").first.is_checked()
+    stored = page.evaluate("JSON.parse(localStorage.getItem('el-done-v1'))")
+    assert stored == {"03-build-the-gimbal:0": 1}
+
+
 def test_screenshots(page):
     SCREENS.mkdir(parents=True, exist_ok=True)
     pages = (("landing", "/"), ("doc3", "/03-build-the-gimbal/"),

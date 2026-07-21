@@ -1,7 +1,11 @@
 /* BoM checklist: localStorage persistence, progress math, copy/reset.
-   State key: el-bom-v1  →  {"d3-motors":1, ...} (checked ids only). */
+   State key: el-bom-v1  →  {"d3-motors":1, ...} (checked ids only).
+   Chapter "Done when" verdict lists share the pattern under el-done-v1,
+   keyed by page slug + checkbox position (reordering a doc's checklist
+   items shifts saved state — accepted trade-off, documented in README). */
 (function () {
   var KEY = "el-bom-v1";
+  var DONE_KEY = "el-done-v1";
 
   function load() {
     try {
@@ -114,7 +118,52 @@
     render(sections);
   }
 
+  function initDone() {
+    var boxes = Array.prototype.slice.call(
+      document.querySelectorAll(".md-content .task-list-item > .task-list-control > [type=checkbox]"));
+    if (!boxes.length || boxes[0].dataset.doneInit) return;
+    boxes[0].dataset.doneInit = "1";
+
+    var slug = location.pathname.replace(/\/+$/, "").split("/").pop() || "index";
+    var state;
+    try {
+      var s = JSON.parse(localStorage.getItem(DONE_KEY));
+      state = (s && typeof s === "object" && !Array.isArray(s)) ? s : {};
+    } catch (e) { state = {}; }
+
+    var lists = [];
+    boxes.forEach(function (b, i) {
+      b.disabled = false;
+      b.checked = !!state[slug + ":" + i];
+      b.addEventListener("change", function () {
+        if (b.checked) state[slug + ":" + i] = 1;
+        else delete state[slug + ":" + i];
+        try { localStorage.setItem(DONE_KEY, JSON.stringify(state)); } catch (e) {}
+        renderDone();
+      });
+      var ul = b.closest("ul");
+      if (ul && lists.indexOf(ul) < 0) lists.push(ul);
+    });
+
+    function renderDone() {
+      lists.forEach(function (ul) {
+        var bs = Array.prototype.slice.call(ul.querySelectorAll("[type=checkbox]"));
+        var n = bs.filter(function (b) { return b.checked; }).length;
+        var chip = ul.nextElementSibling;
+        if (!chip || !chip.classList || !chip.classList.contains("el-done-progress")) {
+          chip = document.createElement("p");
+          chip.className = "el-done-progress";
+          ul.parentNode.insertBefore(chip, ul.nextSibling);
+        }
+        chip.textContent = n + "/" + bs.length + " done";
+      });
+    }
+    renderDone();
+  }
+
+  function initAll() { init(); initDone(); }
+
   // Works with or without Material's instant navigation.
-  if (typeof document$ !== "undefined") document$.subscribe(init);
-  else document.addEventListener("DOMContentLoaded", init);
+  if (typeof document$ !== "undefined") document$.subscribe(initAll);
+  else document.addEventListener("DOMContentLoaded", initAll);
 })();

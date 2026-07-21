@@ -19,3 +19,7 @@ Every push to `main` builds with `--strict` and deploys to GitHub Pages via
 Adding a chapter: drop `08-whatever.md` (numeric prefix, H1 title, optional
 `title:` front matter for the sidebar) into `docs/` — the nav picks it up
 automatically; no config edits needed.
+
+Chapter `- [ ]` checklists are interactive on the site (state in the
+reader's browser, keyed by page slug + item position) — reordering or
+inserting checklist items in a doc shifts readers' saved checkmarks.

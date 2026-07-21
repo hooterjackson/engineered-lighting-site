@@ -632,9 +632,23 @@ html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) tra
 }
 .md-typeset input.bom-box:focus-visible { outline: 2px solid var(--el-ice); outline-offset: 2px; }
 
-/* Chapter task lists (docs 3/4 verdict checklists) — same check language as the BoM */
+/* Chapter task lists (docs 3/4 verdict checklists) — same check language as the BoM.
+   checklist.js enables these inputs and persists them under el-done-v1. */
 .md-typeset .task-list-indicator::before { background-color: var(--el-ink-3); }
 .md-typeset [type="checkbox"]:checked + .task-list-indicator::before { background-color: var(--el-amber); }
+.md-typeset .task-list-control { cursor: pointer; }
+.md-typeset .task-list-control [type="checkbox"]:focus-visible + .task-list-indicator {
+  outline: 2px solid var(--el-ice);
+  outline-offset: 2px;
+}
+.md-typeset .el-done-progress {
+  font-family: var(--el-mono);
+  font-size: 0.55rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  color: var(--el-amber);
+  margin: 0.4em 0 1.6em;
+}
 
 .md-typeset .bom-optional {
   font-family: var(--el-mono);
