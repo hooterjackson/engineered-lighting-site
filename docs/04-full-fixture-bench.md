@@ -9,6 +9,7 @@ description: "One ESP32-C6 running the whole fixture: 21 tunable-white channels,
 One ESP32-C6 controlling all three fixture subsystems on the bench: **21 channels of Valent X tunable-white tape + the 3-channel Cree spotlight + the CAN gimbal.** Beginner-annotated throughout. Prereq: [Doc 3](03-build-the-gimbal.md) stages 1–6 (motors answering on CAN) — that work slots in at **stage 6**; stage 7's demo scene additionally uses the printed frame from [Doc 3](03-build-the-gimbal.md) stage 7.
 
 > **Before you start — three prerequisites this doc quietly depends on:**
+> { #prerequisites }
 >
 > 1. **Home Assistant that can run Add-ons** (Home Assistant OS or Supervised). Running HA in a plain Docker container or Core? The Add-on store won't exist — use the standalone CLI instead (`pip install esphome`; it mirrors everything the Device Builder does, and the AI-partner section below is built around it anyway).
 > 2. **An MQTT broker** — install the official **Mosquitto broker** add-on in HA now (Settings → Add-ons). [Doc 3](03-build-the-gimbal.md) stage 9, this doc's stage 6 look-ahead, and all of [Doc 5](05-teach-it-to-aim.md) publish through it.
@@ -24,23 +25,23 @@ One ESP32-C6 controlling all three fixture subsystems on the bench: **21 channel
 
 | # | Part | Qty | Est. | Where | Notes / traps |
 |---|---|---|---|---|---|
-| 1 | PCA9685 16-ch PWM breakout (Adafruit #815 or clone) | 2 | $30 / ~$10 clones | Adafruit, Amazon | The PWM expanders: each turns 2 I2C wires into 16 independent dimmer signals (we use 21 of the 32). Bridge the A0 jumper on board #2 so it answers at address 0x41 |
-| 2 | ULN2803A driver IC, 18-pin DIP (+ sockets) | 4 (+1 spare) | $10 | Adafruit #970, Amazon | The muscle between logic and tape: each chip is 8 low-side switches that let 3.3 V dimmer signals switch the 24 V tape channels. Four chips = two zones per chip with spare inputs, so wiring stays zone-aligned (stage 4's table). Plugs straight into a breadboard |
+| 1 | PCA9685 16-ch PWM breakout (Adafruit #815 or clone) | 2 | $30 / ~$10 clones | [Adafruit](https://www.adafruit.com/product/815), Amazon | The PWM expanders: each turns 2 I2C wires into 16 independent dimmer signals (we use 21 of the 32). Bridge the A0 jumper on board #2 so it answers at address 0x41 |
+| 2 | ULN2803A driver IC, 18-pin DIP (+ sockets) | 4 (+1 spare) | $10 | [Adafruit #970](https://www.adafruit.com/product/970), Amazon | The muscle between logic and tape: each chip is 8 low-side switches that let 3.3 V dimmer signals switch the 24 V tape channels. Four chips = two zones per chip with spare inputs, so wiring stays zone-aligned (stage 4's table). Plugs straight into a breadboard |
 | 2b | Soldering iron kit (iron, solder, flux, helping hands) | 1 | $25–40 | Amazon | For the tape-pad wires and PCA9685 #2's address jumper — see the prerequisites box above |
-| 3 | SparkFun **PicoBuck** (PRT-13705) | 1 | $17.50 | sparkfun.com | The spotlight's driver: 3 constant-current channels in one screw-terminal module (330 mA/ch; solder jumper → 660 mA), each PWM-dimmable from a 3.3 V pin. Purpose-built for the exact job here — feeding one bare ~3 V LED per channel from a higher-voltage rail |
-| 4 | Diode LED **Valent X Tunable White** spool (DI-24V-VLX-TW1865-016, 16.4 ft) | 1 | dealer quote | diodeled.com dealers | 7 short zones ≈ 3.3 ft used; one spool covers everything with spare |
-| 5 | Cree 3-up star (XP-G2/XP-L, warm/neutral/cool) + Carclo **10507** narrow-spot optic (~16° beam, clear, 84–89% efficient) | 1 | $15–25 (optics $3 ea) | LEDSupply | The spotlight payload for the gimbal head. 10507 is the tightest 3-up optic made — ~0.4 m spot at 1.5 m, ~0.85 m at 3 m. Also grab a 10508 (medium ~26°) and 10509 (wide ~43°): they snap-swap in seconds, which *is* the beam-width experiment. Brightness headroom is huge: even at the PicoBuck's default 330 mA with 90 CRI dies, expect ~500–1900 lux on target across 1.5–3 m — reading/food-prep practice calls for only 300–800 |
+| 3 | SparkFun **PicoBuck** (PRT-13705) | 1 | $17.50 | [sparkfun.com](https://www.sparkfun.com/products/13705) | The spotlight's driver: 3 constant-current channels in one screw-terminal module (330 mA/ch; solder jumper → 660 mA), each PWM-dimmable from a 3.3 V pin. Purpose-built for the exact job here — feeding one bare ~3 V LED per channel from a higher-voltage rail |
+| 4 | Diode LED **Valent X Tunable White** spool (DI-24V-VLX-TW1865-016, 16.4 ft) | 1 | $486 | [BuyRite Electric](https://buyriteelectric.com/products/diode-led-di-24v-vlx-tw1865-016-16-4ft-4-6w-ft-valent-x-tunable-white-led-tape-light-color-temperature-1800k-3500k-6500k-voltage-24v), [LBC Lighting](https://www.lbclightingpro.com/products/diode-led-valent-x-tunable-white-24v-4-6w-ft-16-4-ft-led-tape-light) | 7 short zones ≈ 3.3 ft used; one spool covers everything with spare. Budget bench substitute if the spool price stings: [BTF-Lighting 24 V CCT FCOB](https://www.amazon.com/dp/B08Q3RKCZH) (~$30, UL, CRI 90+, bare strip) — 2-channel warm+cool, 3000–6000 K, so it wires as 2 of the 3 zone channels and skips the 1800 K deep-warm; fine for exercising the control chain, not the photometric target |
+| 5 | Cree 3-up star (XP-G2/XP-L, warm/neutral/cool) + Carclo **10507** narrow-spot optic (~16° beam, clear, 84–89% efficient) | 1 | $15–25 (optics $3 ea) | [LEDSupply](https://www.ledsupply.com) | The spotlight payload for the gimbal head. 10507 is the tightest 3-up optic made — ~0.4 m spot at 1.5 m, ~0.85 m at 3 m. Also grab a 10508 (medium ~26°) and 10509 (wide ~43°): they snap-swap in seconds, which *is* the beam-width experiment. Brightness headroom is huge: even at the PicoBuck's default 330 mA with 90 CRI dies, expect ~500–1900 lux on target across 1.5–3 m — reading/food-prep practice calls for only 300–800 |
 | 6 | Heatsink ≥2"×2" + thermal adhesive | 1 | $8 | Amazon | The star cooks itself bare in under a minute — never run unmounted |
 | 7 | WAGO 221 lever-nut assortment | 1 pack | $15 | Amazon, Home Depot | 24 V power distribution — high current stays OFF the breadboard |
 | 8 | Inline fuse holder + 3 A slow-blow fuses | 1 | $7 | Amazon | Cheap insurance on the 24 V rail |
-| 9 | Pololu **D24V22F5** buck (24 V→5 V, 2.5 A) | 1 | $7.95 | pololu.com/product/2858 | Fixed 5 V, nothing to mis-adjust. (Budget LM2596 works but ships set to a random voltage — verify before connecting) |
+| 9 | Pololu **D24V22F5** buck (24 V→5 V, 2.5 A) | 1 | $7.95 | [pololu.com/product/2858](https://www.pololu.com/product/2858) | Fixed 5 V, nothing to mis-adjust. (Budget LM2596 works but ships set to a random voltage — verify before connecting) |
 | 10 | 10 kΩ resistors, 22–24 AWG signal wire, 18–20 AWG for 24 V runs, extra breadboard | — | $20 | Amazon | Signal wiring lives on the breadboard; the heavier 18–20 AWG carries the 24 V runs between WAGOs |
 
 ## Concepts (plain English — read once, everything refers back)
 
 - **PWM / duty cycle:** dimming by blinking faster than the eye sees. 60% brightness = on 60% of each cycle. The **frequency** is cycles/second — high enough and even cameras can't catch flicker.
 - **CV vs CC (the two kinds of LED):** LED *tape* is **constant-voltage** — feed it 24 V, it limits its own current; dim it by switching the 24 V rapidly (a $1 switch chip suffices). Bare high-power LEDs (the Cree star) are **constant-current** — they must be fed an exact current or they burn out, which takes a real driver module. Two different dimmers for two different physics.
-- **Why a PWM expander:** the C6 has only **6** built-in PWM channels; we need 24. The PCA9685 chip makes 16 each and takes orders over I2C. Your fixture brief anticipated exactly this ("dedicated multi-channel LED-driver ICs").
+- **Why a PWM expander:** the C6 has only **6** built-in PWM channels; we need 24. The PCA9685 chip makes 16 each and takes orders over I2C. Your fixture brief (external design doc, not on this site) anticipated exactly this ("dedicated multi-channel LED-driver ICs").
 - **I2C:** a 2-wire party line (SDA data, SCL clock); each chip has an address (0x40, 0x41 = house numbers).
 - **Low-side switching & common anode:** the tape's +24 V is always connected (the shared "anode"); each color channel dims by switching its *negative* wire to ground. Our switch is the ULN2803A (8 per chip). Its one cost: it "eats" ~1 V, so tape sees ~23 V — a uniform ~4% dimming, invisible in practice. (The production-faithful upgrade is MOSFETs, ~0.02 V drop.)
 - **CCT blending:** the tape has three fixed whites (1800/3500/6500 K). Intermediate color temperatures are *mixes* — cool half of the dial blends 6500↔3500, warm half blends 3500↔1800. That blend is the one real piece of code in this build (stage 3, ~20 lines, provided).
@@ -171,6 +172,9 @@ Wire the chain (power off):
 
 *The full chain with pin numbers and the 3.3 V trap called out. ASCII version below:*
 
+<details markdown="1">
+<summary>Plain-text wiring (quick bench reference)</summary>
+
 ```
 ESP32-C6              PCA9685 #1 (0x40)            ULN2803A #1
 --------              -----------------            -----------
@@ -184,6 +188,8 @@ GPIO3 (SCL) ─────────  SCL
 24V bus ── +24 V ─────────────────────────────────── tape +24V (common anode)
 ground star ──────────────────────────────────────── ULN GND (pin 9)
 ```
+
+</details>
 
 > **The classic trap, pre-solved:** PCA9685 **VCC gets 3.3 V, not 5 V.** At 5 V the chip's logic threshold rises above what the ESP32 outputs *and* the I2C bus gets pulled past the C6's rated maximum — a silent, maddening failure. 3.3 V makes it correct by construction. V+ (servo power pin) stays unconnected. ULN inputs need no resistors (built in); leave ULN pin 10 (COM) unconnected for LEDs.
 
@@ -517,7 +523,7 @@ number:
 
 Footnotes: replies may arrive on 0x141/0x142 or 0x240+ID depending on protocol version — if logs stay silent while motors obey, add blocks for 0x241/0x242 (check your shipped PDF). Never transmit onto a bus with **no powered motor** — endless retries can watchdog-reboot the node.
 
-**Looking ahead ([Doc 5](05-teach-it-to-aim.md)):** HA sliders are the *bench* interface. The follow-me loop will instead publish aim targets ~5–15×/second — subscribe the ESP32 to a raw MQTT topic (**`spotlight/target`** — the same name [Doc 3](03-build-the-gimbal.md) stage 9 and [Doc 5](05-teach-it-to-aim.md) Phase 0 use; ESPHome's `mqtt:` component with an `on_message` trigger; it runs happily alongside the HA `api:`, and the AI-partner workflow above is the right way to scaffold the JSON-to-CAN lambda) and lean on 0xA4's speed-limit field: the motor interpolates between waypoints onboard, so modest update rates still produce continuous motion (this is exactly what dissolves the "steppy PTZ" problem). The full graduation path — an `Auto/Hold/Manual` mode select gating the stream, brightness flowing only through the light entity, `discovery: false` to avoid duplicate entities, and eventually replacing the MQTT lane with a typed native-API action (`api: actions: fixture_aim`) that the GPU box calls directly via aioesphomeapi — is specced in **[Doc 6](06-message-contract.md)** (§1 for the transport, "Living inside Home Assistant" for the entity model). One production gotcha to bank now: once CAN telemetry flows, set `logger: level: INFO` — per-frame DEBUG logging is the documented crash cause on busy ESPHome CAN nodes.
+**Looking ahead ([Doc 5](05-teach-it-to-aim.md)):** HA sliders are the *bench* interface. The follow-me loop will instead publish aim targets ~5–15×/second — subscribe the ESP32 to a raw MQTT topic (**`spotlight/target`** — the same name [Doc 3](03-build-the-gimbal.md) stage 9 and [Doc 5 Phase 0](05-teach-it-to-aim.md#phase-0-the-lamp-follows-me-a-weekend-needs-only-the-doc-34-rig-any-rtsp-camera) use; ESPHome's `mqtt:` component with an `on_message` trigger; it runs happily alongside the HA `api:`, and the AI-partner workflow above is the right way to scaffold the JSON-to-CAN lambda) and lean on 0xA4's speed-limit field: the motor interpolates between waypoints onboard, so modest update rates still produce continuous motion (this is exactly what dissolves the "steppy PTZ" problem). The full graduation path — an `Auto/Hold/Manual` mode select gating the stream, brightness flowing only through the light entity, `discovery: false` to avoid duplicate entities, and eventually replacing the MQTT lane with a typed native-API action (`api: actions: fixture_aim`) that the GPU box calls directly via aioesphomeapi — is specced in **[Doc 6](06-message-contract.md)** ([§1](06-message-contract.md#1-spotlighttarget-aim-commands-gpu-box-fixture-stream-15-hz) for the transport, "Living inside Home Assistant" for the entity model). One production gotcha to bank now: once CAN telemetry flows, set `logger: level: INFO` — per-frame DEBUG logging is the documented crash cause on busy ESPHome CAN nodes.
 
 **Done when:** dragging Spot Pan/Tilt sliders in HA moves the physical beam.
 
