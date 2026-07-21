@@ -14,12 +14,12 @@ Your V-JEPA model answers *what is happening* (reading, cooking, movie). This do
 
 | # | Part | Qty | Est. | Where | Notes |
 |---|---|---|---|---|---|
-| 1 | **PoE camera** — standard rooms: Amcrest IP5M-T1179EW-AI-V3 (5 MP, 133° lens) | 1/room | $80 | amcrest.com | The room's eyes: a wide fixed lens covering the whole room from a corner, streaming standard RTSP video the GPU box ingests directly. PoE = one cable carries power and data, and wired video is what keeps a many-camera home stable and lets the camera network run fully internet-isolated |
-| 1b | — priority rooms: Loryta/Dahua IPC-T549M-ALED-S3 (full-color night vision) | opt. | $185 | empiretech01.com | Night matters: IR cameras output grayscale, which degrades RGB-trained models |
-| 2 | PoE switch (8–16 port) + Cat6 runs | 1/home | $150–400 | Amazon | Put cameras on their own VLAN with **no internet route** — privacy by construction |
-| 3 | ChArUco calibration board (print + mount on rigid backing) | 1 | ~$10 | print it (calib.io generator) | For registering each camera to the room scan. Rigid and flat matters |
-| 4 | iPhone/iPad Pro with LiDAR (borrow one) + Polycam or Scaniverse app | 1 | free–$ | App Store | One-time room scan, ~1–3 cm accuracy. Use **Space Mode (LiDAR)**, not the auto-floorplan mode |
-| 5 | *Optional, later:* one stereo depth camera — Orbbec Gemini 335L ($359) or Luxonis OAK-D Pro PoE ($579) | 0–1 | — | store.orbbec.com, shop.luxonis.com | True per-pixel 3D for the specific rooms where ground-plane geometry runs out (reclined people, heavy clutter) — buy after Tier-0 tracking measurably misses, not before (see "the depth question") |
+| 1 | **PoE camera** — standard rooms: Amcrest IP5M-T1179EW-AI-V3 (5 MP, 133° lens) | 1/room | $80 | [amcrest.com](https://www.amcrest.com) | **Phase 0.** The room's eyes: a wide fixed lens covering the whole room from a corner, streaming standard RTSP video the GPU box ingests directly. PoE = one cable carries power and data, and wired video is what keeps a many-camera home stable and lets the camera network run fully internet-isolated |
+| 1b | — priority rooms: Loryta/Dahua IPC-T549M-ALED-S3 (full-color night vision) | opt. | $185 | [empiretech01.com](https://empiretech01.com) | **Phase 1+, optional.** Night matters: IR cameras output grayscale, which degrades RGB-trained models |
+| 2 | PoE switch (8–16 port) + Cat6 runs | 1/home | $150–400 | Amazon | **Phase 1+** (Phase 0's single camera can run off any PoE injector). Put cameras on their own VLAN with **no internet route** — privacy by construction |
+| 3 | ChArUco calibration board (print + mount on rigid backing) | 1 | ~$10 | print it ([calib.io](https://calib.io) generator) | **Phase 1.** For registering each camera to the room scan. Rigid and flat matters |
+| 4 | iPhone/iPad Pro with LiDAR (borrow one) + Polycam or Scaniverse app | 1 | free–$ | App Store | **Phase 1.** One-time room scan, ~1–3 cm accuracy. Use **Space Mode (LiDAR)**, not the auto-floorplan mode |
+| 5 | *Optional, later:* one stereo depth camera — Orbbec Gemini 335L ($359) or Luxonis OAK-D Pro PoE ($579) | 0–1 | $359 / $579 | [store.orbbec.com](https://store.orbbec.com), [shop.luxonis.com](https://shop.luxonis.com) | **Tier 2, later.** True per-pixel 3D for the specific rooms where ground-plane geometry runs out (reclined people, heavy clutter) — buy after Tier-0 tracking measurably misses, not before (see "the depth question") |
 | — | Already owned | — | — | — | RTX 6000 Blackwell box (runs all perception), the Doc [3](03-build-the-gimbal.md)/[4](04-full-fixture-bench.md) bench rig (the actuator being aimed), Home Assistant + MQTT (the message plumbing) |
 
 ## Concepts (plain English)
@@ -226,6 +226,8 @@ Annotations on each block:
 
 ### Phase 2 — Self-calibration (the crown jewel)
 
+*Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.*
+
 1. Sweep each fixture through a coarse pan/tilt grid **spanning its full range** but constrained to camera-visible landings (spots outside the FoV or occluded teach nothing; if the visible region is small, densify there or add a second camera pose).
 2. At each grid point: beam on/off, frame-difference, centroid of the spot; ray-cast that pixel onto the scan mesh for the 3D landing point. **Lock exposure; run at dimmed ambient** — the system controls the room's other lights, so calibrate at night automatically for maximum contrast.
 3. Fit fixture pose + encoder zero-offsets + axis non-orthogonality by least squares (Levenberg–Marquardt; the telescope-pointing term structure). Error budget: scan ~2 cm + registration ~2 cm + centroid ~2 cm → RSS ≈ 3.5 cm ≈ **0.67° at 3 m** — inside the ~1° budget, not by miles; *measure* residuals rather than assuming them.
@@ -235,6 +237,8 @@ Annotations on each block:
 
 ### Phase 3 — Book & gestures v1
 
+*Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.*
+
 1. Book: person anchor + wrist keypoint offset → aim; open-vocab confirm ("book" via YOLOE/SAM-3-class model on a wrist-region crop) to *arm* the behavior.
 2. Gestures: arm-scale only (raise/wave/hold-out from body keypoints), armed by context state; coarse point-to-zone (ray from shoulder→wrist, snapped to the nearest labeled surface).
 
@@ -242,9 +246,13 @@ Annotations on each block:
 
 ### Phase 4 — Coordination & safety hardening
 
+*Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.*
+
 Two fixtures, two people: Hungarian assignment @ 1–5 Hz with hysteresis; cross-fade handoffs; predictive no-go cones + soft-edge dimming + tracking-loss interlock; motion styling (anticipation micro-move, context speed caps). **Done when:** two people walk crossing paths and the beams hand off without flapping or ever crossing a face.
 
 ### Phase 5 — Precision & identity
+
+*Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.*
 
 Trained pointing model (<2°) only if coarse pointing earns it; geometric/trajectory re-ID → per-person preferences (feeds the roadmap's identity layer).
 
@@ -270,10 +278,10 @@ Fisheye note: a 180°+ lens covers big rooms from one corner but needs a fisheye
 - **No public benchmarks for this GPU** on Frigate/DeepStream/V-JEPA — benchmark early; margins on adjacent hardware suggest ample headroom.
 - **Edge-migration debt (strategic):** the prototype is deliberately central-GPU, but the commercial product runs on a home-hub NPU. Cheap to migrate: YOLO-class detection, tracking, all the ground-plane/calibration/aiming math (it's just algebra). Expensive to migrate: SAM-3-class open-vocab segmentation, DeepStream-specific pipelines (NVIDIA-locked), full-size V-JEPA. Prefer the portable primitive wherever two options tie; treat every DeepStream convenience as prototype-only.
 - **Product-kit camera transport must be reconciled:** if the commercial kit's per-room cameras stream continuous WiFi video, a 5–10 room home lands exactly in the documented WiFi-collapse regime. The edge hierarchy in the Engineered Lighting strategy roadmap (an internal doc outside this series) is the answer — tier-1 vision on-device, ship metadata/clips, not video — the prototype's stream-everything pattern is a lab convenience the product must not inherit. Wired/PoE is the alternative at installation-friction cost.
-- **Camera brand watch item:** FCC Covered-List expansion (July 2026) targets Dahua/Hikvision procurement — residential unaffected, but firmware/inventory longevity is worth watching for Dahua-lineage brands.
+- **Camera brand watch item (checked July 2026 — re-check before any camera purchase):** the FCC Covered-List expansion targets Dahua/Hikvision procurement — residential unaffected, but firmware/inventory longevity is worth watching for Dahua-lineage brands.
 - **Patents for counsel:** US 12,190,542 (beam self-calibration), US 11,956,873 (multi-fixture follow-spot control), Forma (motorized recessed fixtures).
 - **Trust is the real adoption risk:** the same research validating demand documents the "being watched" objection — suppression states, legible motion, and a visible perception-off affordance are requirements, not polish.
 
 ## Further reading (most load-bearing)
 
-Ground-plane localization accuracy — arxiv.org/abs/2606.13509 · DeepStream 9.1 MV3DT + AutoMagicCalib — developer.nvidia.com/blog (July 2026) + DS_Performance docs · One Euro filter — CHI 2012, direction.bordeaux.inria.fr/~roussel · REACH (hands at room range) — arxiv.org/abs/2605.22231 · SAM 3 — ai.meta.com/blog/segment-anything-model-3 · YOLO26 — docs.ultralytics.com · Beam self-cal patent — patents.google.com/patent/US12190542B2 · Beamatron (steerable-projector math, MSR UIST 2012) — hbenko.com · Pan-tilt kinematic calibration — arxiv.org/pdf/1812.00232 · TPOINT pointing models — bisque.com · OpenCV solvePnP/ChArUco — docs.opencv.org · hloc indoor-failure admission — github.com/cvg/Hierarchical-Localization/issues/325 · Polycam — learn.poly.cam · zactrack/BlackTrax/Follow-Me (manual-calibration prior art) — vendor sites · LuminAR (MIT robotic lamp precedent) — spectrum.ieee.org · Frigate autotracking + smoothing lessons — docs.frigate.video, github issue #20903 · PointingNet — arxiv.org/abs/2307.02949 · Animation principles for robots (HRI 2011) — leilatakayama.org · ADB glare masking — NHTSA DOT HS 812 174 · ILDA audience-scanning safety — ilda.com · go2rtc — github.com/AlexxIT/go2rtc · WiFi multi-camera collapse — ipcamtalk thread 77100 · ESPHome batch_delay — esphome.io/components/api · V-JEPA 2 — github.com/facebookresearch/vjepa2
+Ground-plane localization accuracy — [arxiv.org/abs/2606.13509](https://arxiv.org/abs/2606.13509) · DeepStream 9.1 MV3DT + AutoMagicCalib — [developer.nvidia.com/blog](https://developer.nvidia.com/blog) (July 2026) + DS_Performance docs · One Euro filter — CHI 2012, [direction.bordeaux.inria.fr/~roussel](https://direction.bordeaux.inria.fr/~roussel) · REACH (hands at room range) — [arxiv.org/abs/2605.22231](https://arxiv.org/abs/2605.22231) · SAM 3 — [ai.meta.com/blog/segment-anything-model-3](https://ai.meta.com/blog/segment-anything-model-3) · YOLO26 — [docs.ultralytics.com](https://docs.ultralytics.com) · Beam self-cal patent — [patents.google.com/patent/US12190542B2](https://patents.google.com/patent/US12190542B2) · Beamatron (steerable-projector math, MSR UIST 2012) — [hbenko.com](https://hbenko.com) · Pan-tilt kinematic calibration — [arxiv.org/pdf/1812.00232](https://arxiv.org/pdf/1812.00232) · TPOINT pointing models — [bisque.com](https://bisque.com) · OpenCV solvePnP/ChArUco — [docs.opencv.org](https://docs.opencv.org) · hloc indoor-failure admission — [github.com/cvg/Hierarchical-Localization/issues/325](https://github.com/cvg/Hierarchical-Localization/issues/325) · Polycam — [learn.poly.cam](https://learn.poly.cam) · zactrack/BlackTrax/Follow-Me (manual-calibration prior art) — vendor sites · LuminAR (MIT robotic lamp precedent) — [spectrum.ieee.org](https://spectrum.ieee.org) · Frigate autotracking + smoothing lessons — [docs.frigate.video](https://docs.frigate.video), github issue #20903 · PointingNet — [arxiv.org/abs/2307.02949](https://arxiv.org/abs/2307.02949) · Animation principles for robots (HRI 2011) — [leilatakayama.org](https://leilatakayama.org) · ADB glare masking — NHTSA DOT HS 812 174 · ILDA audience-scanning safety — [ilda.com](https://ilda.com) · go2rtc — [github.com/AlexxIT/go2rtc](https://github.com/AlexxIT/go2rtc) · WiFi multi-camera collapse — ipcamtalk thread 77100 · ESPHome batch_delay — [esphome.io/components/api](https://esphome.io/components/api) · V-JEPA 2 — [github.com/facebookresearch/vjepa2](https://github.com/facebookresearch/vjepa2)

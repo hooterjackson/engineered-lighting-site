@@ -15,7 +15,9 @@ We're building the robotic spotlight for the Engineered Lighting fixture: a sile
 
 This seven-document series takes it from research through a working bench prototype to the system architecture, with everything adversarially reviewed and every purchase specified.
 
-<p class="el-hero__meta"><span>7 documents</span><span>$475–850 end to end</span><span>Current phase · parts ordering</span></p>
+*This is our internal engineering notebook, published openly — hardware assumptions (a CUDA GPU box for Docs [5](05-teach-it-to-aim.md)–[7](07-building-the-software.md), an existing Home Assistant install) are ours.*
+
+<p class="el-hero__meta"><span>July 2026</span><span>7 documents</span><span>$475–850 end to end</span><span>Current phase · parts ordering</span></p>
 
 </div>
 
@@ -66,6 +68,8 @@ Everything the series tells you to buy, in one interactive list — check items 
 | 5 | [Teach It to Aim](05-teach-it-to-aim.md) | The perception stack: cameras, ground-plane tracking, beam self-calibration, coordination, safety, user stories, phased roadmap (Phase 0 = a weekend) | ~$120–320 per room |
 | 6 | [The Message Contract](06-message-contract.md) | The one page every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture (HA entities + autonomy without fights). *When docs disagree, Doc 6 wins* | nothing |
 | 7 | [Building the Software](07-building-the-software.md) | The code: pinned stack, repo layout, hardware-free testing (replay cameras, simulated fixtures), deployment, firmware growth path, licensing gates | nothing |
+
+**Reading paths:** *Building this weekend?* → [Doc 3](03-build-the-gimbal.md), then [4](04-full-fixture-bench.md) (skim their concepts sections; Docs [1](01-how-we-got-here.md)–[2](02-choosing-the-motors.md) optional background). *Understanding the choices?* → [1](01-how-we-got-here.md) → [2](02-choosing-the-motors.md), then skim [5](05-teach-it-to-aim.md). *Writing the software?* → [6](06-message-contract.md) → [7](07-building-the-software.md), with [5](05-teach-it-to-aim.md) as the spec.
 
 ---
 

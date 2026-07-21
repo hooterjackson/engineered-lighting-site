@@ -14,7 +14,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 
 | # | Part | Qty | Est. | Where | Notes / traps |
 |---|---|---|---|---|---|
-| 1 | **MyActuator RMD-L-4005-100-C** (CAN version) | 2 | $60–120 | Amazon, RobotShop, dingsmotionusa.com | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 65 g puck; [Doc 2](02-choosing-the-motors.md) is the full story. Select the **-C (CAN)** variant specifically ("-25T" is the same motor's deprecated old name). Ask the seller to include the mating cable for the 4-pin port (VCC/GND/CANL/CANH), and keep the protocol PDF that ships in the box — it's the authority on byte layouts for your unit's firmware |
+| 1 | **MyActuator RMD-L-4005-100-C** (CAN version) | 2 | $60–120 | Amazon, [RobotShop](https://www.robotshop.com), [dingsmotionusa.com](https://dingsmotionusa.com) | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 65 g puck; [Doc 2](02-choosing-the-motors.md) is the full story. Select the **-C (CAN)** variant specifically ("-25T" is the same motor's deprecated old name). Ask the seller to include the mating cable for the 4-pin port (VCC/GND/CANL/CANH), and keep the protocol PDF that ships in the box — it's the authority on byte layouts for your unit's firmware |
 | 2 | ESP32-C6 dev board (ESP32-C6-DevKitC-1) | 1 | $9–15 | Amazon, Adafruit, DigiKey | Same chip as the fixture — everything learned transfers |
 | 3 | SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board") | 2 (1+spare) | $8 | Amazon | The ESP32 has the CAN *brain* on-chip but not the line driver — this little board is the voice, converting chip signals to the differential CAN wire pair. 3.3 V logic, breadboard-friendly. Bus termination gets measured and set in stage 3 |
 | 4 | 120 Ω resistors, ¼ W | few | $1 | any resistor kit | CAN bus termination |
@@ -22,7 +22,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 6 | Multimeter | 1 | $20 | Amazon | Non-negotiable — polarity check before every first power-up |
 | 7 | Breadboard + jumper wires | 1 kit | $10 | Amazon | Signals only — power never routes through it |
 | 8 | USB-C data cable | 1 | — | you own one | Charge-only cables are a classic trap |
-| 9 | M2.5 + M3 screw assortment | 1 box | $10 | Amazon | Confirm sizes against the motor drawing (myactuator.com downloads) |
+| 9 | M2.5 + M3 screw assortment | 1 box | $10 | Amazon | Confirm sizes against the motor drawing ([myactuator.com](https://www.myactuator.com) downloads) |
 | 10 | USB-to-CAN adapter ("CANable" or clone) — *optional but recommended* | 1 | $20–25 | Amazon | Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence |
 | 11 | PETG filament + access to any FDM 3D printer & slicer; 6804 or 608 bearings | — | $20 | Amazon / local makerspace | For stage 7's three frame parts. No printer at home? A library, makerspace, or online print service works — the parts are small |
 | 12 | C-clamp or small bench vise | 1 | $10 | hardware store | Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig |
@@ -93,6 +93,9 @@ Every sketch in this doc reaches the board the same way — learn it once here:
 
 *Color diagram (covers stages 3–6; stage 3 wires Motor A only — Motor B is the dashed box). Plain-text version below for quick bench reference:*
 
+<details markdown="1">
+<summary>Plain-text wiring (quick bench reference)</summary>
+
 ```
 ESP32-C6                SN65HVD230 board          RMD-L-4005 motor
 --------                ----------------          ----------------
@@ -106,6 +109,8 @@ GPIO7 (RX) ────────────  CRX        │
 Bench supply +12V ──────────────────┼───────────  VCC (power plus)
 Bench supply GND ───────────────────┘
 ```
+
+</details>
 
 Annotations:
 
@@ -283,13 +288,13 @@ Motors ship with the same address, so: connect motor B **alone**, change its ID 
 
 *Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
 
-Three printed parts (design against the L-4005 STEP files from myactuator.com; PETG, 4+ perimeters):
+Three printed parts (design against the L-4005 STEP files from [myactuator.com](https://www.myactuator.com); PETG, 4+ perimeters):
 
 1. **Pan base** — clamps to a shelf so the assembly hangs downward; pan motor body bolts to it (the motor's output flange *is* the pan bearing).
 2. **Yoke** — U-bracket on the pan flange; one arm carries the tilt motor, the other a bearing pin. **Include hard stops** (see stage 4 fine print).
 3. **Head shell** — flashlight/LED on the tilt flange, with a **counterweight slot** (slide coins/a bolt).
 
-**Never designed a part before?** This is a genuinely good first CAD project (three simple brackets), and it's also prime AI-partner territory: **OpenSCAD** is CAD written as code, which means Claude can draft all three parts for you — give it the motor's flange dimensions from the L-4005 drawing (bolt-circle diameter, hole size, body diameter) and this stage's descriptions, print, measure what's off, iterate. Two or three print cycles is normal; the parts are 20-minute prints. Geometry references if you want to see how others shaped a yoke: isaac879's Pan-Tilt-Mount and the Visaging ESP32-Gimbal (both on GitHub, both printable designs).
+**Never designed a part before?** This is a genuinely good first CAD project (three simple brackets), and it's also prime AI-partner territory: **OpenSCAD** is CAD written as code, which means Claude can draft all three parts for you — give it the motor's flange dimensions from the L-4005 drawing (bolt-circle diameter, hole size, body diameter) and this stage's descriptions, print, measure what's off, iterate. Two or three print cycles is normal; the parts are 20-minute prints. Geometry references if you want to see how others shaped a yoke: [isaac879's Pan-Tilt-Mount](https://github.com/isaac879/Pan-Tilt-Mount) and the [Visaging ESP32-Gimbal](https://github.com/Visaging/ESP32-Gimbal) (both printable designs).
 
 Wire routing: motor pigtails (power + CAN) cross each joint as a loose **service loop** — droopy, never taut across full travel.
 
@@ -363,7 +368,7 @@ Clamp the rig at height *h* above the desk. Pick an origin (a desk corner), meas
 
     *[How to run this prompt →](00b-ai-native-workflow.md)*
 
-Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Sketch → Include Library → Manage Libraries, search by name). The broker is the **Mosquitto add-on in Home Assistant** ([Doc 4](04-full-fixture-bench.md)'s prerequisites box) — point the sketch at your HA machine's IP. Behavior: subscribe to **`spotlight/target`**, parse `{"v":1,"ts":1784150000000,"pan":32.5,"tilt":-14,"rate":10}` (`v`/`ts` are the contract's mandatory envelope fields — [Doc 6](06-message-contract.md)) → two CAN frames; publish read-back angles every few seconds. Note: this MQTT lane is the *bench* interface — production replaces it with a direct native-API action ([Doc 6](06-message-contract.md) §1). (Another one-prompt AI-partner job: "add WiFi+MQTT to this sketch per this paragraph.") Test from MQTT Explorer or a Home Assistant automation.
+Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Sketch → Include Library → Manage Libraries, search by name). The broker is the **Mosquitto add-on in Home Assistant** ([Doc 4's prerequisites box](04-full-fixture-bench.md#prerequisites)) — point the sketch at your HA machine's IP. Behavior: subscribe to **`spotlight/target`**, parse `{"v":1,"ts":1784150000000,"pan":32.5,"tilt":-14,"rate":10}` (`v`/`ts` are the contract's mandatory envelope fields — [Doc 6](06-message-contract.md)) → two CAN frames; publish read-back angles every few seconds. Note: this MQTT lane is the *bench* interface — production replaces it with a direct native-API action ([Doc 6 §1](06-message-contract.md#1-spotlighttarget-aim-commands-gpu-box-fixture-stream-15-hz)). (Another one-prompt AI-partner job: "add WiFi+MQTT to this sketch per this paragraph.") Test from MQTT Explorer or a Home Assistant automation.
 
 **Done when:** an MQTT publish from your laptop aims the beam, no USB attached.
 
@@ -411,3 +416,16 @@ Run Claude Code in the folder holding your sketch (keep it in git so edits are r
 | Pins | TX=GPIO6→CTX, RX=GPIO7←CRX (GPIO4/5 avoided: strapping pins) |
 | Supply | 12 V bring-up @ 2.0 A limit (→~3 A two-motor); 24 V test in stage 10; motor power direct to PSU, never via breadboard |
 | Golden rules | multimeter first · wire cold · one ground · twist CANH/CANL · balanced head = silent head |
+
+## Risk register
+
+- **Hold whine.** A balanced head should hold silently; audible whine at hold means current is fighting gravity — rebalance (stage 7's counterweight slot) before blaming the motor. Stage 5's hold-noise row is the baseline; stage 10 re-checks it at several angles.
+- **Protocol drift.** Byte layouts vary across RMD firmware revisions — the protocol PDF that ships in the box is the authority for *your* unit, over anything online (including this doc's frame examples). When replies don't decode, diff against the PDF first.
+- **Single-turn absolute encoder.** The motor knows its angle within one revolution but can't count full turns made while powered off — the frame's hard stops (stage 7) are what make power-loss recovery unambiguous. Don't delete them to save print time.
+- **Speed vs. silence.** The 54–80 °/s band that follow-me needs (stage 5) may not be silent on your unit. If it isn't, the perception layer speed-caps close passes — losing some tracking snappiness — rather than accepting audible sweeps. Decide with stage-10 data, not hope.
+
+## Further reading
+
+- [MyActuator RMD-L-4005 downloads](https://www.myactuator.com) — the STEP files (stage 7 frame design) and the protocol PDF that is the authority on your unit's byte layouts.
+- [isaac879's Pan-Tilt-Mount](https://github.com/isaac879/Pan-Tilt-Mount) — printable pan/tilt geometry worth studying before designing the yoke.
+- [Visaging ESP32-Gimbal](https://github.com/Visaging/ESP32-Gimbal) — an ESP32-class gimbal build; different goals (stabilization), same mechanical vocabulary.
