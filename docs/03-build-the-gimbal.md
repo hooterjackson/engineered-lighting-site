@@ -8,13 +8,13 @@ description: "The 10-stage gimbal bench build: motors answering on CAN by stage 
 **Engineered Lighting prototype series · July 2026**
 For a first-time gimbal builder with limited electronics experience. Ten stages; each is one bench session with a "you're done when" checkpoint. Motors move on command by stage 4 — no mechanical work needed until stage 7.
 
-## Bill of Materials — buy this, ~$185–290 total
+## Bill of Materials — buy this, ~$340–385 total
 
 *"Est." = total price for the quantity shown in that row.*
 
 | # | Part | Qty | Est. | Where | Notes / traps |
 |---|---|---|---|---|---|
-| 1 | **MyActuator RMD-L-4005-100-C** (CAN version) | 2 | $60–120 | Amazon, [RobotShop](https://www.robotshop.com), [dingsmotionusa.com](https://dingsmotionusa.com) | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 65 g puck; [Doc 2](02-choosing-the-motors.md) is the full story. Select the **-C (CAN)** variant specifically ("-25T" is the same motor's deprecated old name). Ask the seller to include the mating cable for the 4-pin port (VCC/GND/CANL/CANH), and keep the protocol PDF that ships in the box — it's the authority on byte layouts for your unit's firmware |
+| 1 | **MyActuator RMD-L-5005-100-C** (CAN variant; the -R twin is RS485) | 2 (+1 spare recommended — see note) | $215 for 2 / $322.50 for 3 | [Dings Motion USA](https://www.dingsmotionusa.com/rmd-l-5005), $107.50 ea | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 92 g, Ø49 mm puck; [Doc 2](02-choosing-the-motors.md) is the full story, and its availability addendum covers this exact part swap. Order the **-C (CAN)** variant explicitly. Ask the seller to include mating cables for the 4-pin port (VCC/GND/CANL/CANH) — one per motor plus a spare — and keep the protocol PDF that ships in the box: it's the authority on byte layouts for your unit's firmware. Why 3: this motor family sells out episodically; the third unit is the permanent bench-dev unit and feeds the future second fixture |
 | 2 | ESP32-C6 dev board (ESP32-C6-DevKitC-1) | 1 | $9–15 | Amazon, Adafruit, DigiKey | Same chip as the fixture — everything learned transfers |
 | 3 | SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board") | 2 (1+spare) | $8 | Amazon | The ESP32 has the CAN *brain* on-chip but not the line driver — this little board is the voice, converting chip signals to the differential CAN wire pair. 3.3 V logic, breadboard-friendly. Bus termination gets measured and set in stage 3 |
 | 4 | 120 Ω resistors, ¼ W | few | $1 | any resistor kit | CAN bus termination |
@@ -27,6 +27,8 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 11 | PETG filament + access to any FDM 3D printer & slicer; 6804 or 608 bearings | — | $20 | Amazon / local makerspace | For stage 7's three frame parts. No printer at home? A library, makerspace, or online print service works — the parts are small |
 | 12 | C-clamp or small bench vise | 1 | $10 | hardware store | Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig |
 | 13 | Payload stand-in: small flashlight or ~100 g weight | 1 | — | — | Real LED head comes from [Doc 4](04-full-fixture-bench.md) |
+
+*Family sold out again? [CubeMars GL40 II](https://www.digikey.com/en/products/detail/cubemars/GL-40/16705289) ($134, DigiKey, direct-drive, CAN) is the buy-today alternative at the cost of a protocol port; [M5Stack RollerCAN](https://shop.m5stack.com/products/rollercan-unit-with-bldc-motor-stm32) ($44) is the dev bridge while waiting.*
 
 ## Concepts in six terms
 
@@ -97,7 +99,7 @@ Every sketch in this doc reaches the board the same way — learn it once here:
 <summary>Plain-text wiring (quick bench reference)</summary>
 
 ```
-ESP32-C6                SN65HVD230 board          RMD-L-4005 motor
+ESP32-C6                SN65HVD230 board          RMD-L-5005 motor
 --------                ----------------          ----------------
 3V3  ──────────────────  3V3
 GND  ──────────────────  GND ───────┬───────────  GND (power minus)
@@ -128,7 +130,7 @@ Annotations:
     You're my bench agent for the Engineered Lighting gimbal build
     (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 4).
     The stage-3 wiring is live on the bench: ESP32-C6 and SN65HVD230 on the
-    breadboard, one RMD-L-4005 motor clamped to the bench, supply at 12.0 V
+    breadboard, one RMD-L-5005 motor clamped to the bench, supply at 12.0 V
     with the 2.0 A current limit set. Start by proposing a plan and wait for
     my approval before executing anything. Then: compile and upload the
     stage-4 sketch in the chapter (FQBN esp32:esp32:esp32c6, TX=GPIO6,
@@ -288,13 +290,13 @@ Motors ship with the same address, so: connect motor B **alone**, change its ID 
 
 *Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
 
-Three printed parts (design against the L-4005 STEP files from [myactuator.com](https://www.myactuator.com); PETG, 4+ perimeters):
+Three printed parts (design against the L-5005 STEP files from [myactuator.com](https://www.myactuator.com); PETG, 4+ perimeters):
 
 1. **Pan base** — clamps to a shelf so the assembly hangs downward; pan motor body bolts to it (the motor's output flange *is* the pan bearing).
 2. **Yoke** — U-bracket on the pan flange; one arm carries the tilt motor, the other a bearing pin. **Include hard stops** (see stage 4 fine print).
 3. **Head shell** — flashlight/LED on the tilt flange, with a **counterweight slot** (slide coins/a bolt).
 
-**Never designed a part before?** This is a genuinely good first CAD project (three simple brackets), and it's also prime AI-partner territory: **OpenSCAD** is CAD written as code, which means Claude can draft all three parts for you — give it the motor's flange dimensions from the L-4005 drawing (bolt-circle diameter, hole size, body diameter) and this stage's descriptions, print, measure what's off, iterate. Two or three print cycles is normal; the parts are 20-minute prints. Geometry references if you want to see how others shaped a yoke: [isaac879's Pan-Tilt-Mount](https://github.com/isaac879/Pan-Tilt-Mount) and the [Visaging ESP32-Gimbal](https://github.com/Visaging/ESP32-Gimbal) (both printable designs).
+**Never designed a part before?** This is a genuinely good first CAD project (three simple brackets), and it's also prime AI-partner territory: **OpenSCAD** is CAD written as code, which means Claude can draft all three parts for you — give it the motor's flange dimensions from the L-5005 drawing (bolt-circle diameter, hole size, body diameter) and this stage's descriptions, print, measure what's off, iterate. Two or three print cycles is normal; the parts are 20-minute prints. Geometry references if you want to see how others shaped a yoke: [isaac879's Pan-Tilt-Mount](https://github.com/isaac879/Pan-Tilt-Mount) and the [Visaging ESP32-Gimbal](https://github.com/Visaging/ESP32-Gimbal) (both printable designs).
 
 Wire routing: motor pigtails (power + CAN) cross each joint as a loose **service loop** — droopy, never taut across full travel.
 
@@ -422,10 +424,11 @@ Run Claude Code in the folder holding your sketch (keep it in git so edits are r
 - **Hold whine.** A balanced head should hold silently; audible whine at hold means current is fighting gravity — rebalance (stage 7's counterweight slot) before blaming the motor. Stage 5's hold-noise row is the baseline; stage 10 re-checks it at several angles.
 - **Protocol drift.** Byte layouts vary across RMD firmware revisions — the protocol PDF that ships in the box is the authority for *your* unit, over anything online (including this doc's frame examples). When replies don't decode, diff against the PDF first.
 - **Single-turn absolute encoder.** The motor knows its angle within one revolution but can't count full turns made while powered off — the frame's hard stops (stage 7) are what make power-loss recovery unambiguous. Don't delete them to save print time.
+- **Supply volatility.** This motor family sells out episodically at retail (the 4005 did exactly that in July 2026 — see Doc 2's addendum). The third-unit spare in the BoM is the insurance; the alternates line under the BoM is the fallback path.
 - **Speed vs. silence.** The 54–80 °/s band that follow-me needs (stage 5) may not be silent on your unit. If it isn't, the perception layer speed-caps close passes — losing some tracking snappiness — rather than accepting audible sweeps. Decide with stage-10 data, not hope.
 
 ## Further reading
 
-- [MyActuator RMD-L-4005 downloads](https://www.myactuator.com) — the STEP files (stage 7 frame design) and the protocol PDF that is the authority on your unit's byte layouts.
+- [MyActuator RMD-L-5005 downloads](https://www.myactuator.com) — the STEP files (stage 7 frame design) and the protocol PDF that is the authority on your unit's byte layouts.
 - [isaac879's Pan-Tilt-Mount](https://github.com/isaac879/Pan-Tilt-Mount) — printable pan/tilt geometry worth studying before designing the yoke.
 - [Visaging ESP32-Gimbal](https://github.com/Visaging/ESP32-Gimbal) — an ESP32-class gimbal build; different goals (stabilization), same mechanical vocabulary.

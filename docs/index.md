@@ -17,7 +17,7 @@ This seven-document series takes it from research through a working bench protot
 
 *This is our internal engineering notebook, published openly — hardware assumptions (a CUDA GPU box for Docs [5](05-teach-it-to-aim.md)–[7](07-building-the-software.md), an existing Home Assistant install) are ours.*
 
-<p class="el-hero__meta"><span>July 2026</span><span>7 documents</span><span>$475–850 end to end</span><span>Current phase · parts ordering</span></p>
+<p class="el-hero__meta"><span>July 2026</span><span>7 documents</span><span>$630–945 end to end</span><span>Current phase · parts ordering</span></p>
 
 </div>
 
@@ -63,7 +63,7 @@ Everything the series tells you to buy, in one interactive list — check items 
 |---|---|---|---|
 | 1 | [How We Got Here](01-how-we-got-here.md) | Round-1 research digest: the physics, vocabulary, and five lessons under every later decision. Archive — read for understanding | nothing |
 | 2 | [Choosing the Motors](02-choosing-the-motors.md) | The decision journey to the RMD-L-4005 smart CAN actuators — what was evaluated, why integrated actuators won | (decision feeds Doc 3) |
-| 3 | [Build the Gimbal](03-build-the-gimbal.md) | 10-stage bench build: motors answering on CAN by stage 4, a balanced aimed head by stage 8. Full BoM, wiring, code, AI-partner workflow | ~$185–290 |
+| 3 | [Build the Gimbal](03-build-the-gimbal.md) | 10-stage bench build: motors answering on CAN by stage 4, a balanced aimed head by stage 8. Full BoM, wiring, code, AI-partner workflow | ~$340–385 |
 | 4 | [Build the Full Fixture Bench](04-full-fixture-bench.md) | One ESP32-C6 running the whole fixture: 21 tunable-white channels + CC spotlight + gimbal, in ESPHome/Home Assistant | ~$170–240 |
 | 5 | [Teach It to Aim](05-teach-it-to-aim.md) | The perception stack: cameras, ground-plane tracking, beam self-calibration, coordination, safety, user stories, phased roadmap (Phase 0 = a weekend) | ~$120–320 per room |
 | 6 | [The Message Contract](06-message-contract.md) | The one page every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture (HA entities + autonomy without fights). *When docs disagree, Doc 6 wins* | nothing |
@@ -73,4 +73,4 @@ Everything the series tells you to buy, in one interactive list — check items 
 
 ---
 
-**Total prototype budget, all hardware:** roughly **$475–850** for one room end-to-end · **Current phase:** parts ordering / bench build
+**Total prototype budget, all hardware:** roughly **$630–945** for one room end-to-end · **Current phase:** parts ordering / bench build

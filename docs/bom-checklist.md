@@ -18,12 +18,12 @@ Every purchase in the series, in one list. Check items off as you order — stat
 </div>
 
 <details open class="bom-section" data-section="d3" markdown="0">
-<summary><strong><a href="../03-build-the-gimbal/">Doc 3 · Gimbal (~$185–290)</a></strong> <span class="bom-progress"></span></summary>
+<summary><strong><a href="../03-build-the-gimbal/">Doc 3 · Gimbal (~$340–385)</a></strong> <span class="bom-progress"></span></summary>
 <div class="bom-scroll">
 <table>
 <thead><tr><th></th><th>Part</th><th>Qty</th><th>Est.</th><th>Where</th><th>Why</th></tr></thead>
 <tbody>
-<tr><td><input type="checkbox" class="bom-box" id="d3-motors" data-lo="60" data-hi="120" aria-label='MyActuator RMD-L-4005-100-C (CAN version)'></td><td><label for="d3-motors">MyActuator RMD-L-4005-100-C (CAN version)</label></td><td>2</td><td>$60–120</td><td>Amazon, <a href="https://www.robotshop.com">RobotShop</a>, <a href="https://dingsmotionusa.com">dingsmotionusa.com</a></td><td>The smart pan/tilt actuators — select the <strong>-C (CAN)</strong> variant, ask for the mating cable</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d3-motors" data-lo="215" data-hi="322.5" aria-label='MyActuator RMD-L-5005-100-C (CAN variant)'></td><td><label for="d3-motors">MyActuator RMD-L-5005-100-C (CAN variant)</label></td><td>2 (+1 spare rec.)</td><td>$215 / $322.50 for 3</td><td><a href="https://www.dingsmotionusa.com/rmd-l-5005">Dings Motion USA</a>, $107.50 ea</td><td>The smart pan/tilt actuators — order the <strong>-C (CAN)</strong> variant, ask for mating cables; third unit = permanent bench spare</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-esp32" data-lo="9" data-hi="15" aria-label='ESP32-C6 dev board (ESP32-C6-DevKitC-1)'></td><td><label for="d3-esp32">ESP32-C6 dev board (ESP32-C6-DevKitC-1)</label></td><td>1</td><td>$9–15</td><td>Amazon, Adafruit, DigiKey</td><td>Same chip as the fixture — everything learned transfers</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-can-xcvr" data-lo="8" data-hi="8" aria-label='SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board")'></td><td><label for="d3-can-xcvr">SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board")</label></td><td>2 (1+spare)</td><td>$8</td><td>Amazon</td><td>The CAN line driver — turns chip signals into the differential wire pair</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-resistors" data-lo="1" data-hi="1" aria-label='120 Ω resistors, ¼ W'></td><td><label for="d3-resistors">120 Ω resistors, ¼ W</label></td><td>few</td><td>$1</td><td>any resistor kit</td><td>CAN bus termination</td></tr>

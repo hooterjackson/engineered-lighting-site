@@ -13,8 +13,36 @@ The full build shopping list (wiring, supply, tools) lives in **[Doc 3](03-build
 
 | Part | Qty | Est. | What it is and why it's the pick |
 |---|---|---|---|
-| **MyActuator RMD-L-4005-100-C** | 2 | $60–120 | A "smart servo": brushless gimbal motor, 18-bit absolute encoder, and a factory-tuned FOC controller sealed into one Ø39.6 × 23 mm, 65 g puck. Direct drive — no gears to whine or wear. Runs natively on the fixture's 12–24 V bus and is commanded over CAN in single 8-byte messages ("go to 32.5° at 10°/s"); all motion control happens inside the part. One becomes the pan axis, one the tilt. Ordering note: select the **-C (CAN)** variant — the same listings carry an RS485 "-R" twin, and "-25T" is this motor's deprecated old name. US sources: Amazon, RobotShop, Dings Motion USA |
+| **MyActuator RMD-L-4005-100-C** | 2 | $107.50/axis ([Dings](https://www.dingsmotionusa.com/rmd-l-5005), July 2026) | A "smart servo": brushless gimbal motor, 18-bit absolute encoder, and a factory-tuned FOC controller sealed into one Ø39.6 × 23 mm, 65 g puck. Direct drive — no gears to whine or wear. Runs natively on the fixture's 12–24 V bus and is commanded over CAN in single 8-byte messages ("go to 32.5° at 10°/s"); all motion control happens inside the part. One becomes the pan axis, one the tilt. Ordering note: select the **-C (CAN)** variant — the same listings carry an RS485 "-R" twin, and "-25T" is this motor's deprecated old name. US sources: Amazon, RobotShop, Dings Motion USA |
 | Caddx GM2 bare 2-axis gimbal *(optional)* | 1 | $70 | A working 30 g UART-commanded FPV gimbal — a great study article for control feel and micro-scale mechanical packaging (its motors are sized for 5–20 g cameras, so it's a reference, not the actuator) |
+
+
+!!! note "Availability addendum (July 2026)"
+
+    The RMD-L-4005 sold out at every retail channel in July 2026 — temporarily; it's an
+    active product line, not discontinued. The build moved to its in-stock sibling, the
+    **RMD-L-5005** ($107.50, [Dings Motion USA](https://www.dingsmotionusa.com/rmd-l-5005)),
+    a zero-code swap: same 18-bit absolute encoder, 12–24 V, CAN at 1 Mbps, Motion
+    Protocol V4.2, direct drive, and command set. The decision journey below is the
+    historical record and still reads "4005" — the reasoning is unchanged.
+
+    | | L-4005 | L-4010 | L-4015 | L-5005 |
+    |---|---|---|---|---|
+    | Diameter | 39.6 mm | 39.6 mm | 39.6 mm | ~49 mm |
+    | Body length | 23 mm | ~28 mm* | ~33 mm* | ~24 mm |
+    | Mass | 65 g | ~85 g* | ~105 g* | 92 g |
+    | Peak torque | 25 N·cm | 33 N·cm | ~45–50 N·cm* | 42 N·cm |
+    | Everything else | identical — same encoder, voltage, CAN/RS485, V4.2 protocol, direct drive | | | |
+
+    *Estimates — the 4015's spec sheet is published only as an image; confirm exact
+    figures with Dings.*
+
+    The family name decodes as L-DDSS: diameter class plus stator stack height. Torque
+    doesn't differentiate the siblings — every one clears the 8.83 N·cm unbalanced worst
+    case by ≥2.8× — so geometry decides: the 5005 keeps the slim ~24 mm pancake profile
+    and pays 9 mm of diameter, which the fixture bay absorbs, while the 4010/4015 grow in
+    body length, the dimension the yoke and fixture depth care about. Preference order:
+    **5005 ≥ 4010 > 4015**.
 
 Everything else evaluated — bare motors + DIY control stacks, hobby servos, drone motors, the other integrated actuators — is covered in the decision journey below, so the reasoning stays legible without cluttering the shopping list.
 
@@ -45,7 +73,7 @@ Everything else evaluated — bare motors + DIY control stacks, hobby servos, dr
 
 | Actuator | Size | Torque (nom/peak) | Bus | Volts | Price/axis | Verdict |
 |---|---|---|---|---|---|---|
-| **MyActuator RMD-L-4005** | **Ø39.6×23 mm, 65 g** | 7 / 25 N·cm | CAN + RS485 | **12–24 V** | ~$30–60/axis | **Winner** — direct drive, 18-bit absolute encoder, native on our 24 V bus, US distributor + Amazon |
+| **MyActuator RMD-L-4005** | **Ø39.6×23 mm, 65 g** | 7 / 25 N·cm | CAN + RS485 | **12–24 V** | $107.50/axis (Dings, July 2026) | **Winner** — direct drive, 18-bit absolute encoder, native on our 24 V bus, US distributor + Amazon |
 | M5Stack RollerCAN | 40 mm cube, 83 g | 6.5 N·cm @16 V | CAN/RS485 | 6–16 V | $37–44 | Cheapest; not 24 V; torque marginal |
 | SteadyWin GIM3505 (driver SKU) | Ø43×30 mm | — | CAN/RS485 | 12–48 V | $76–120 | Fine; China-only shipping; SKU confusion (encoder-only vs driver versions) |
 | CubeMars GL40 II | Ø46×33.5 mm, 125 g | 25 / 68 N·cm | CAN | 16 V | $134 | The premium "quiet gimbal actuator" if RMD disappoints |
