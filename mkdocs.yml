@@ -34,6 +34,14 @@ exclude_docs: |
 plugins:
   - search
   - awesome-pages
+  # Social cards need system Cairo; generated in CI only (CI=true on Actions),
+  # so local builds stay dependency-light and fast.
+  - social:
+      enabled: !ENV [CI, false]
+      cards_layout_options:
+        background_color: "#000000"
+        color: "#F2EEE6"
+        font_family: IBM Plex Sans
 
 markdown_extensions:
   - sane_lists
