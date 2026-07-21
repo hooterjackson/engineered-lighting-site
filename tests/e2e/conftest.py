@@ -19,6 +19,12 @@ PORT = 4173
 @pytest.fixture(scope="session", autouse=True)
 def site_server():
     assert SITE.is_dir(), "site/ not found — run `mkdocs build` first"
+    try:
+        with socket.create_connection(("127.0.0.1", PORT), timeout=0.2):
+            pytest.fail(f"port {PORT} already in use — kill the stale server "
+                        "or tests would silently run against old content")
+    except OSError:
+        pass
     proc = subprocess.Popen(
         ["python3", "-m", "http.server", str(PORT), "--bind", "127.0.0.1",
          "--directory", str(SITE)],

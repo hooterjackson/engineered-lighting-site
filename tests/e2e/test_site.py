@@ -76,6 +76,15 @@ def test_checklist_uses_wide_viewports(page):
         "page-level horizontal scroll on mobile"
 
 
+def test_agent_prompt_copy_button(page, context):
+    context.grant_permissions(["clipboard-read", "clipboard-write"])
+    page.goto("/03-build-the-gimbal/")
+    page.locator(".admonition.agent-prompt .md-code__button").first.click()
+    text = page.evaluate("navigator.clipboard.readText()")
+    assert text.startswith("You're my bench agent"), text[:80]
+    assert "wait for my approval" in text
+
+
 def test_screenshots(page):
     SCREENS.mkdir(parents=True, exist_ok=True)
     pages = (("landing", "/"), ("doc3", "/03-build-the-gimbal/"),
