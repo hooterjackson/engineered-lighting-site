@@ -112,6 +112,55 @@ Annotations on each block:
 ### Phase 0 — "The lamp follows me" (a weekend; needs only the Doc 3/4 rig + any RTSP camera)
 
 1. Mount the camera high in a corner and get its stream working — budget an hour if you've never set up an IP camera: on first boot it forces an admin password (via its app or web page at the camera's IP); **enable RTSP/ONVIF in its settings** (often off by default); then confirm the stream plays in VLC (Media → Open Network Stream). Amcrest/Dahua URL pattern: `rtsp://user:pass@CAMERA_IP:554/cam/realmonitor?channel=1&subtype=0` — the camera's web UI or manual confirms the exact path. While in settings, set **fixed exposure** (the beam-in-view rule from §3).
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting perception stack
+    (chapter: engineering.engineered.lighting/05-teach-it-to-aim/, Phase 0
+    steps 2-6). The corner camera is mounted and streaming RTSP with fixed
+    exposure, and the Doc 3/4 gimbal rig is on the bench with its ESPHome
+    node subscribed to the spotlight/target MQTT topic, forwarding to CAN.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: build the follow-me tracker on the GPU box, in a git repo, and
+    iterate on it while I watch the beam. (a) pip install ultralytics and
+    run YOLO26 person detection on the stream with ByteTrack IDs via
+    model.track(); read frames through OpenCV with buffering disabled —
+    grab-and-discard so we always process the newest frame. (b) Floor
+    calibration: I tape 4 marks in a big rectangle and tape-measure their
+    true room-frame positions; take my clicked pixel positions from one
+    saved frame and compute the pixel-to-floor homography with
+    cv2.getPerspectiveTransform. (c) For each tracked person, map the
+    bottom-center of the box (the feet) through the homography to (x, y)
+    on the floor; smooth with a One Euro filter, estimate velocity, and
+    compute the led aim point (position + velocity × measured loop
+    latency). (d) Fixture pose: I tape-measure the gimbal's (x, y, z);
+    compute pan = atan2 and tilt = atan toward a chest-height point above
+    the aim point. (e) Publish {"v":1, "ts":..., "pan":..., "tilt":...,
+    "rate":60} — the Doc 6 envelope fields — to the spotlight/target
+    topic at ~10-15 Hz, and use mosquitto_sub on that topic to verify
+    what the fixture is actually being told; the 0xA4 speed field keeps
+    motion continuous between updates.
+
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current
+    limit stays as set. Announce each motion command before sending it
+    and wait for my explicit go.
+
+    Done when: the beam follows you smoothly across the room and you have
+    latency + noise numbers.
+
+    Report back: end-to-end latency (wave-to-beam from slow-mo video),
+    beam lag at walking speed, tracking noise while standing still, a
+    mosquitto_sub capture of spotlight/target, and the diff of every
+    script added to the repo.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 2. On the GPU box: `pip install ultralytics` + run YOLO26 person detection on the stream; add ByteTrack IDs (built into Ultralytics' `model.track()`); read frames via OpenCV with buffering disabled (grab-and-discard so you always process the *newest* frame — the classic seconds-of-lag trap). This script — and every GPU-box script in this doc — is ideal Claude Code territory: run it in a git repo on the box and have it scaffold, run, and iterate on the tracker while you watch the beam; it can also `mosquitto_sub` the output topic to verify what the fixture is actually being told.
 3. **Floor calibration (15 min):** tape 4 marks on the floor in a big rectangle; measure their true positions with a tape measure (room frame = one corner of the room, x/y along walls); click their pixel positions in one saved frame; `cv2.getPerspectiveTransform` gives the pixel→floor homography.
 4. For each tracked person: bottom-center of the box (≈ feet) → homography → (x, y) on the floor. Smooth with a One Euro filter; estimate velocity; compute the *led* aim point (position + velocity × measured loop latency).
@@ -122,6 +171,50 @@ Annotations on each block:
 **Done when:** the beam follows you smoothly across the room and you have latency + noise numbers. *This single demo validates the entire stack's riskiest loop.*
 
 ### Phase 1 — Surfaces & suppression (the room model arrives)
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting perception stack
+    (chapter: engineering.engineered.lighting/05-teach-it-to-aim/, Phase 1
+    — surfaces & suppression). The follow-me loop from Phase 0 works off
+    a 4-point floor homography, and I have a LiDAR room scan (Polycam
+    Space Mode, rescaled against one tape-measured distance) exported as
+    a mesh/point cloud.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: be my calibration helper for registering the camera to the room
+    scan and wiring in the room model. (a) Help me label ~10-20 surfaces
+    from the scan into named JSON entries {name, centroid, normal,
+    extent} — I do the lasso clicking in CloudCompare or SuperSplat, you
+    build and validate the JSON. (b) Register the camera to the scan: I
+    photograph the ChArUco board at a spot picked from the scan; you run
+    solvePnP and invert for the camera pose, with sanity checks —
+    reprojection under 1 px plus a few clicked non-coplanar points.
+    (c) Replace the Phase 0 4-point floor homography with the registered
+    camera + the scan's floor (better everywhere in the room). (d) Wire
+    activity context in: subscribe the states the existing model
+    publishes over MQTT and map them in the resolver — reading@couch to
+    wall-art idle, cooking to the cutting-board target, movie to
+    suppression (no spontaneous motion).
+
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current
+    limit stays as set. Announce each motion command before sending it
+    and wait for my explicit go.
+
+    Done when: "light the table," "point at the art," and movie-stillness
+    all work from label lookups.
+
+    Report back: the solvePnP reprojection error and non-coplanar check
+    results, before/after floor-position accuracy at a few tape-measured
+    spots, the labeled-surfaces JSON, a mosquitto_sub capture showing a
+    context state switching the target, and the diff.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 1. Scan the room (Polycam **Space Mode**, LiDAR); tape-measure one known distance; rescale if off. Export mesh/point cloud.
 2. Label ~10–20 surfaces once, manually (CloudCompare or SuperSplat lasso → named JSON `{name, centroid, normal, extent}`). Fifteen minutes of clicking beats a research project — auto-labeling (open-vocab 3D) is still unreliable on loose language like "cutting board."

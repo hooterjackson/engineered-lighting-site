@@ -122,11 +122,221 @@ Single `docker-compose.yaml`: restreamer, tracker-per-room, context-bridge, reso
 
 ## 6. Build order (the first two weeks of software)
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting software build
+    (chapter: engineering.engineered.lighting/07-building-the-software/,
+    build-order step 1 — repo bootstrap). Everything in this step is
+    hardware-free and runs on the GPU box; no camera, no fixture.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: bootstrap the monorepo exactly per the chapter's repo layout: a
+    uv workspace with services/tracker, services/resolver, and
+    services/context_bridge (a pyproject each, one shared lockfile);
+    libs/roommodel encoding the Doc 6 message schemas as pydantic 2.x
+    models so publisher and subscriber import the same class;
+    config/rooms/ with per-room YAML loaded via yaml.safe_load +
+    model_validate; deploy/docker-compose.yaml; the firmware/ tree
+    skeleton; and tests/golden_tracks + tests/clips directories. Pin the
+    chapter's stack exactly — ultralytics >=8.4.63, aiomqtt ==2.5.1,
+    aioesphomeapi >=45.6.0, hass-client ==1.2.3, uvloop, pydantic 2.x —
+    but re-verify every pin at build time per the chapter's version-drift
+    rule and flag anything that moved.
+
+    Done when: uv sync succeeds across the whole workspace and the
+    service skeletons, roommodel schemas, and compose file are committed.
+
+    Report back: the repo tree, the uv sync output, any pin that drifted
+    from the chapter's table, and the diff.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 1. Repo bootstrap: uv workspace, `libs/roommodel` encoding [Doc 6](06-message-contract.md)'s schemas, empty service skeletons, compose file. *(An afternoon, mostly Claude Code.)*
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting software build
+    (chapter: engineering.engineered.lighting/07-building-the-software/,
+    build-order step 2 — replay rig before real cameras). The repo from
+    step 1 exists; a 2-minute recorded clip of someone walking the room
+    stands in for a live camera, so this step touches no hardware.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: build the replay rig and the tracker MVP against it. Configure
+    mediamtx to loop the mp4 as a real local RTSP source (runOnInit with
+    ffmpeg -re -stream_loop -1, or its native alwaysAvailableFile). Then
+    the tracker (one process per room): ultralytics track with
+    stream=True, persist=True, tracker=bytetrack; feet to ground-plane
+    position; One-Euro smoothing plus prediction; publish
+    el/<room>/tracks at 15 Hz (MQTT QoS 0) plus perception/status. Obey
+    the chapter's three ingest rules: always read through the local
+    restream; set OPENCV_FFMPEG_CAPTURE_OPTIONS to
+    "rtsp_transport;tcp|fflags;nobuffer|flags;low_delay" before opening;
+    and rely on stream=True keeping only the newest frame. Use the
+    chapter's pinned versions, re-verifying pins at build time per the
+    version-drift rule.
+
+    Done when: mosquitto_sub shows sane 15 Hz tracks from a looped clip.
+
+    Report back: a mosquitto_sub capture of el/<room>/tracks with the
+    measured publish rate, per-frame processing latency on the GPU box,
+    and the diff.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 2. Replay rig before real cameras: mediamtx looping a recorded clip → tracker MVP against it → tracks on MQTT. **Done when** `mosquitto_sub` shows sane 15 Hz tracks from a looped clip.
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting software build
+    (chapter: engineering.engineered.lighting/07-building-the-software/,
+    build-order step 3 — resolver MVP). The step-2 tracker is publishing
+    el/<room>/tracks at 15 Hz from the looped clip; still no hardware
+    anywhere.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: build the resolver as one asyncio process on uvloop: subscribe
+    tracks and context with aiomqtt (==2.5.1); compute per-fixture
+    pan/tilt with the aim math driven by the fixture poses and
+    calibration in config/rooms/; include the safety-cone checks and
+    assignment; publish bench targets on spotlight/target using the Doc 6
+    envelope fields. Testing: capture a golden-track session as (ts, id,
+    x, y, vx, vy) jsonl into tests/golden_tracks/, replay it at
+    wall-clock pace into the resolver in CI, and assert the pan/tilt
+    outputs within tolerance; cover the pure geometry (homography, aim
+    inverse, cone checks) with plain pytest +
+    numpy.testing.assert_allclose. Follow the chapter's pins,
+    re-verifying at build time per the version-drift rule.
+
+    Done when: golden-track replay produces expected angles in pytest.
+
+    Report back: the pytest output including the golden-track tolerances,
+    a sample of the published spotlight/target messages, and the diff.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 3. Resolver MVP: consume tracks, aim math from `config/rooms/`, publish bench targets. **Done when** golden-track replay produces expected angles in pytest.
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting software build
+    (chapter: engineering.engineered.lighting/07-building-the-software/,
+    build-order step 4 — the simulated fixture). The step-3 resolver
+    passes its golden-track tests; this step stays entirely hardware-free
+    — the fixture is a compiled host-platform binary.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: create an esphome config in firmware/tests/host/ using the host
+    platform with an api server and template outputs standing in for
+    hardware, exposing the fixture_aim action. Then the integration test:
+    spin the compiled binary up as a subprocess, connect with real
+    aioesphomeapi (>=45.6.0, ReconnectLogic, noise encryption — mandatory
+    since 2026.1), call fixture_aim with typed floats, and assert the
+    resulting state — the same pattern ESPHome's own tests/integration/
+    uses in its CI. Remember the host caveats: no MQTT component, no real
+    GPIO — template stand-ins only, which is exactly what we want. Wire
+    it into GitHub Actions alongside esphome config validate.
+
+    Done when: the whole loop passes with no hardware attached.
+
+    Report back: the integration-test pytest output, the CI run result,
+    and the diff.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 4. Simulated fixture: host-platform config + `fixture_aim` action; resolver integration test green in CI. **Done when** the whole loop passes with no hardware attached.
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting software build
+    (chapter: engineering.engineered.lighting/07-building-the-software/,
+    build-order step 5 — point it at reality). Steps 1-4 proved every
+    component against the replay rig and the simulated fixture; this step
+    prepares the swap to the real camera and the Doc 4 bench rig but
+    stays hardware-free itself — anything that actually moves the fixture
+    belongs to the Doc 5 Phase 0 session and its own prompt.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: make the swap a pure configuration change. Point the restreamer
+    at the real camera's RTSP URL (still reading only through the local
+    restream, per the ingest rules), update config/rooms/ with the real
+    camera pose and fixture pose, and switch the resolver's output to the
+    bench lane — spotlight/target over MQTT, which the Doc 4 ESPHome node
+    forwards to CAN. Verify the perception side only: the tracker
+    consuming the live stream, sane 15 Hz tracks on el/<room>/tracks, the
+    resolver publishing plausible angles — with the fixture's supply left
+    off. Do not command or enable any fixture motion in this session.
+
+    Done when: the tracker runs against the live camera and the resolver
+    publishes plausible bench targets, with every component already
+    tested before hardware enters — the remaining unknowns are physics,
+    not code.
+
+    Report back: a mosquitto_sub capture of el/<room>/tracks and of
+    spotlight/target from the live stream, the measured track rate, and
+    the config diff.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 5. Point it at reality: swap the looped clip for the real camera, the simulated fixture for the bench rig — this is [Doc 5](05-teach-it-to-aim.md) Phase 0, arrived at with every component already tested. The remaining unknowns are physics, not code.
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting software build
+    (chapter: engineering.engineered.lighting/07-building-the-software/,
+    build-order step 6 — graduating the firmware and override detection).
+    The full loop from steps 1-5 runs; the Doc 4 CAN lambdas have
+    outgrown a screen. This step is code and host-platform tests only —
+    no flashing, no hardware.
+
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+
+    Task: graduate the CAN lambdas into the external component
+    firmware/components/fixture_control/ (starts as type: local) — the
+    official ~3-file skeleton (__init__.py schema plus .h/.cpp), riding
+    the built-in canbus, with mrk-its/esphome-canopen as the structural
+    reference; ours is greenfield, since no RMD ESPHome component exists
+    anywhere. Respect the chapter's single-core discipline: event-style
+    structure with disable_loop() when idle, logger at INFO once
+    telemetry flows, and the 50 ms loop-block threshold. Separately, wire
+    hass-client (==1.2.3) into the resolver to subscribe state_changed
+    with context data — the override detector's food — so the coordinator
+    notices manual overrides. Validate with esphome config validate and
+    the step-4 host-platform integration tests.
+
+    Done when: the fixture_control component compiles, config validate
+    and the host-platform integration tests pass, and a replayed
+    state_changed event with context data is logged as a detected manual
+    override.
+
+    Report back: the esphome config validate output, the host-platform
+    test results, the override-detection log line, and the diff.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 6. Graduate the CAN lambdas into `fixture_control` when they exceed a screen; wire `hass-client` override detection when the coordinator starts making choices worth overriding.
 
 ## Risk register

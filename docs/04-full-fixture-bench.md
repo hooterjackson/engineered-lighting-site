@@ -48,7 +48,40 @@ One ESP32-C6 controlling all three fixture subsystems on the bench: **21 channel
 
 ## Your toolchain, explicitly — and exactly how YAML gets onto the board
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting full-fixture bench
+    (chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+    toolchain section). On the bench: an ESP32-C6 that will run the whole
+    fixture from a single ESPHome YAML file — flashed over USB once,
+    wirelessly ever after.
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+    Task: stand up the ESPHome command-line toolchain. Install the esphome
+    CLI with pip and verify it by running "esphome version". Then create
+    fixture-bench.yaml in this repo: a starter config for board
+    esp32-c6-devkitc-1 using the chapter's config header (variant esp32c6,
+    framework type esp-idf — the C6 requires ESP-IDF; ESPHome's Arduino
+    framework does not support it), plus esphome, wifi, api, and ota
+    sections. Ask me for the WiFi credentials instead of inventing them.
+    Prove the toolchain end to end by compiling without flashing
+    ("esphome compile fixture-bench.yaml"). Keep the file in git so every
+    later edit is reviewable, and remember the one-file rule: this entire
+    chapter grows this single YAML file — later stages append under
+    existing top-level keys, never duplicate them.
+    Done when: "esphome version" prints a version and "esphome compile
+    fixture-bench.yaml" finishes with a successful build.
+    Report back: the esphome version string, the tail of the compile
+    output showing success, and the full fixture-bench.yaml you created.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 There's no "upload button + code file" here like Arduino; ESPHome *generates* the firmware from your YAML and installs it. The full loop:
+
+<details markdown="1">
+<summary>Do it by hand — understand what the agent did</summary>
 
 1. **Install ESPHome Device Builder** (current name of the "ESPHome Dashboard"): Home Assistant → Settings → Add-ons → Add-on Store → search "ESPHome Device Builder" → Install → Start → Open Web UI.
 2. **Create the device:** New Device → name it `fixture-bench` → pick **ESP32-C6** → it generates a starter config with your WiFi credentials. Skip the install prompt for now.
@@ -57,6 +90,8 @@ There's no "upload button + code file" here like Arduino; ESPHome *generates* th
 5. **Every install after that — wireless:** Install → **"Wirelessly."** The board updates itself over WiFi in ~30 s. You'll never touch the USB cable again unless you brick the WiFi config.
 6. **Reading the board's output:** click **Logs** on the device card — a live stream over the network (no cable) of everything the firmware is doing: I2C devices found, light state changes, CAN frames, and the all-important `Component ... took a long time` performance warnings. This is your Serial-Monitor equivalent, and it works from anywhere in the house.
 7. **VS Code + the official ESPHome extension** is the nicer editor once the YAML grows (validation + autocomplete as you type); the Device Builder's built-in editor is fine to start. **Arduino IDE 2.x** stays for [Doc 3](03-build-the-gimbal.md)'s interactive motor console only.
+
+</details>
 
 Config header every stage assumes:
 
@@ -81,6 +116,8 @@ ESPHome is unusually AI-friendly because the entire toolchain is drivable from a
 
 ## Stage 1 — Power backbone
 
+*Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
+
 ![Power backbone wiring diagram](assets/wiring-power-backbone.svg)
 
 This build runs at **24 V** (tape-native; motors accept it too — one rail, like the fixture).
@@ -93,6 +130,38 @@ This build runs at **24 V** (tape-native; motors accept it too — one rail, lik
 **Done when:** one fused 24 V bus, one star ground, 5 V logic rail.
 
 ## Stage 2 — First light: one zone, three sliders
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting full-fixture bench
+    (chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+    stage 2). On the bench: one soldered zone of Valent X tunable-white
+    tape — three white channels (1800 K, 3500 K, 6500 K) — wired through
+    PCA9685 #1 at address 0x40 and a ULN2803A to the ESP32-C6, with +24 V
+    on the common anode.
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+    Task: append the stage-2 YAML in the chapter to fixture-bench.yaml —
+    i2c on GPIO2/GPIO3 at 400kHz, the pca9685 hub at address 0x40 at
+    1220 Hz with phase_balancer none, three pca9685 outputs on channels
+    0-2, and the three monochromatic lights (Zone 1 Warm/Neutral/Cool).
+    One-file rule: add the entries under my existing top-level keys, never
+    a second copy of a key. Before flashing, have me confirm the classic
+    wiring trap: PCA9685 VCC is on 3.3 V, not 5 V, and V+ stays
+    unconnected. Validate the config with the esphome CLI, flash over USB
+    (this first install is wired; every later one is OTA), then watch the
+    device logs for the I2C scan finding the chip at 0x40. No motor
+    motion is involved in this stage.
+    Done when: three HA sliders each drive the correct white,
+    flicker-free. Wrong color on a slider = swapped wires — fix the
+    wires, keep labels truthful.
+    Report back: the validation and flash output, the log lines showing
+    the PCA9685 found at 0x40, and the three light entities as they
+    appear in HA.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 Cut one radial zone (2 tape segments = 4.92") at the printed cut lines; solder four wires: +24 V and the three channel negatives — **label them from the tape's printed pad markings** (this is also where you verify the common-anode wiring the spec sheet implies).
 
@@ -161,6 +230,38 @@ light:
 
 ## Stage 3 — Make it tunable: the tri-white blend
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting full-fixture bench
+    (chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+    stage 3). On the bench: zone 1 lit from stage 2 as three separate
+    sliders; this stage turns it into one tunable-white light using the
+    tri-white blend — ESPHome has no built-in 3-white light, so the
+    supported pattern is a cwww light routed through template outputs
+    whose lambda does the 3-channel math.
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+    Task: implement the stage-3 YAML in the chapter in fixture-bench.yaml:
+    the z1_cw/z1_ww globals, the z1_apply script whose lambda blends the
+    cool half of the dial between 6500 and 3500 K and the warm half
+    between 3500 and 1800 K, the two template float outputs (z1_cw_in,
+    z1_ww_in) that store state and run the script, and the cwww light
+    "Zone 1" with constant_brightness true. Remove stage-2's three
+    monochromatic lights as the stage directs, keeping the three pca9685
+    outputs. One-file rule: append under my existing output:/light:/
+    globals:/script: keys — pasting a duplicate top-level key fails
+    validation with a cryptic duplicate-key error. Validate with the
+    esphome CLI, flash over the air, then watch the logs while I sweep
+    the slider. No motor motion is involved in this stage.
+    Done when: "Zone 1" is one light whose CT slider sweeps
+    candlelight→daylight smoothly.
+    Report back: the validation output, the YAML diff, and a short log
+    excerpt from the flash and the first slider sweep.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 Honest part: **ESPHome has no built-in 3-white light** (its `cwww` blends two; the old "custom component" escape hatch was removed in 2025 — ignore tutorials using it). The supported pattern: a `cwww` light for the UI (brightness + color-temperature slider), routed through **template outputs** whose lambda (C++ snippet in YAML) does the 3-channel math.
 
 > **One-file YAML rule (the classic beginner trap):** this whole doc grows a *single* config file. When a snippet shows a top-level key you already have (`output:`, `light:`, `globals:`, `script:`), append the new entries under your existing key — never paste a second copy of the key itself, or validation fails with a cryptic duplicate-key error. Unsure your file's shape is right? Paste the whole thing into Claude and ask it to check the structure.
@@ -215,6 +316,42 @@ Footnotes: the slider midpoint won't be *exactly* 3500 K (HA works in mireds —
 
 ## Stage 4 — Scale to 7 zones (21 channels)
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting full-fixture bench
+    (chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+    stage 4). On the bench: all 7 zones soldered and labeled (28 wires),
+    PCA9685 #2 bridged to address 0x41, ULN chips 2-4 seated — 21 tape
+    channels total.
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+    Task: scale zone 1 to all 7 zones. Generate zones 2-7 from the
+    zone/channel table in the stage — do not hand-copy. Each table row
+    gives one zone's PCA9685 hub and channels (hub1 = 0x40, hub2 = 0x41)
+    and its ULN chip and IN/OUT pins, three channels per zone in
+    warm/neutral/cool order. Derive the config from that table (a small
+    generator script or a systematic expansion), producing z2_ through
+    z7_ globals, scripts, template outputs, pca9685 outputs, and cwww
+    lights that mirror the stage-3 zone-1 pattern exactly — the stage-4
+    YAML in the chapter is precisely this expansion, verbose but
+    transparent. Add the second pca9685 hub block at address 0x41, and
+    confirm with me that the A0 solder jumper on board #2 is bridged
+    before flashing. One-file rule: extend my existing top-level keys,
+    never duplicate them. Validate with the esphome CLI, flash over the
+    air, then watch the logs for "Component ... took a long time"
+    warnings — the single-core C6 telling us it is straining. No motor
+    motion is involved in this stage.
+    Done when: 7 independent tunable lights; an HA scene "all zones
+    2200 K @ 20%" runs smoothly. That's movie mode on a breadboard.
+    Report back: the generated YAML diff, the validation and flash
+    output, the seven light entities as they appear in HA, and a log
+    excerpt from several minutes of runtime noting any
+    took-a-long-time warnings.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 1. Solder the remaining zones (5 radials + the 4-segment bottom ring as one zone). **Label every wire at both ends** — 28 wires now exist.
 2. Bridge PCA9685 #2's A0 jumper (→ 0x41); same I2C wires, same 3.3 V. Add ULN chips 2–4.
 3. Wire to this table (print it, tape it above the bench). ULN pin geometry: input IN*n* is pin *n*; its output is directly across the chip (OUT*n* = pin 19−*n*). Each row is one zone's three channels in W/N/C order:
@@ -237,6 +374,38 @@ Every chip's pin 9 goes to the ground star; pin 10 stays unconnected; every zone
 **Done when:** 7 independent tunable lights; an HA scene "all zones 2200 K @ 20%" runs smoothly. That's movie mode on a breadboard.
 
 ## Stage 5 — The spotlight (constant-current)
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting full-fixture bench
+    (chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+    stage 5). On the bench: the Cree 3-up star mounted on its heatsink,
+    fed by the PicoBuck's three constant-current channels, with the dim
+    signals coming from native ESP32-C6 pins.
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+    Task: append the stage-5 YAML in the chapter to fixture-bench.yaml:
+    three ledc outputs on GPIO10, GPIO11, and GPIO18 at 500 Hz — native
+    pins, not the PCA9685, because each PCA9685 runs one frequency for
+    all 16 channels and the tape needs ~1.2 kHz+ while CC-driver dim
+    inputs typically want 1 kHz or less — plus the two template outputs
+    spot_cw_in/spot_ww_in exactly like stage 3's, and the "Spotlight"
+    cwww light (5700 K cold, 3000 K warm, constant_brightness true).
+    One-file rule: extend my existing top-level keys, never duplicate
+    them. Before power-on, have me confirm the star is on its heatsink
+    and aimed at the wall — it cooks itself bare in under a minute and
+    is painfully bright. Validate with the esphome CLI and flash over
+    the air. No motor motion is involved in this stage.
+    Done when: the Spotlight entity dims 0→100% on all three dies. CC
+    drivers can get twitchy below ~5% duty — note the floor; the
+    coordinator respects it in software.
+    Report back: the validation and flash output, the YAML diff, the
+    Spotlight entity as it appears in HA, and the lowest duty that still
+    dims cleanly once we test it together.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 **Mount the star to its heatsink first** (it dissipates ~3 W in a coin-sized PCB), and aim it at the wall — these are painfully bright point sources.
 
@@ -273,6 +442,43 @@ light:
 **Done when:** the Spotlight entity dims 0→100% on all three dies. CC drivers can get twitchy below ~5% duty — note the floor; the coordinator respects it in software.
 
 ## Stage 6 — Gimbal joins the same chip
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting full-fixture bench
+    (chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+    stage 6). On the bench: the gimbal from the previous chapter — motors
+    already answering on CAN — joining the same ESP32-C6, with the CAN
+    transceiver on GPIO6/GPIO7 and motors at IDs 0x141/0x142.
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+    Task: append the stage-6 YAML in the chapter to fixture-bench.yaml:
+    the esp32_can canbus block (tx GPIO6, rx GPIO7, our node's can_id
+    0x7F0, bit_rate 1000KBPS) with the on_frame logger for 0x141, the
+    "Spot Pan" template number (-170 to 170, step 0.5) whose set_action
+    sends the 0xA4 position frame at 30 deg/s, and its "Spot Tilt"
+    duplicate on can_id 0x142 with min -90 / max 90. One-file rule:
+    extend my existing top-level keys, never duplicate them. Traps from
+    the stage: never transmit onto a bus with no powered motor — endless
+    retries can watchdog-reboot the node — so confirm with me that the
+    gimbal is powered before flashing; and replies may arrive on
+    0x241/0x242 depending on protocol version, so if the logs stay
+    silent while the motors obey, add those on_frame blocks per my
+    shipped protocol PDF. Validate with the esphome CLI, then flash over
+    the air.
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current
+    limit stays as set. Announce each motion command before sending it
+    and wait for my explicit go.
+    Done when: dragging Spot Pan/Tilt sliders in HA moves the physical
+    beam.
+    Report back: the validation and flash output, the YAML diff, and a
+    log excerpt showing frames received from the motors during the
+    supervised pan/tilt test.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 Prereq: [Doc 3](03-build-the-gimbal.md) stages 1–6 done (interactive console is the right place to *learn* motors; this stage ports them into ESPHome). ESPHome's `canbus` officially supports the C6 at 1 Mbps. Wiring: identical to [Doc 3](03-build-the-gimbal.md) (transceiver on GPIO6/7).
 
@@ -316,6 +522,44 @@ Footnotes: replies may arrive on 0x141/0x142 or 0x240+ID depending on protocol v
 **Done when:** dragging Spot Pan/Tilt sliders in HA moves the physical beam.
 
 ## Stage 7 — Integration day + verdict
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting full-fixture bench
+    (chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+    stage 7). On the bench: the finished system — 7 tunable zones, the
+    spotlight, and the gimbal on one ESP32-C6 — ready for scenes, the
+    checklist, and the verdict.
+    Start by proposing a plan and wait for my approval before executing
+    anything.
+    Task: first help me build the HA dashboard (7 zones, Spotlight,
+    pan/tilt) and the two scenes from the stage: Movie (radials 2000 K
+    @ 15%, ring off, spot off) and Reading (radials 2700 K @ 40%, spot
+    3000 K @ 60%, aimed at the chair — I jog the Spot Pan/Tilt sliders
+    until the beam sits on the chair, then we save those numbers into
+    the scene). Then work through the stage-7 checklist in the chapter
+    item by item with me: CT sweeps and equal-settings matching
+    (mismatch = ground star problem, not software), the pencil-wave and
+    slow-mo flicker tests, gimbal motion with all 24 channels lit,
+    scene-switch speed, the soak, and the worst-case current reading.
+    For the 30-minute "everything on" soak, watch the device logs the
+    whole time and summarize warnings, resets, and any "took a long
+    time" lines; I handle the touch tests and record the worst-case
+    24 V current with the meter.
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current
+    limit stays as set. Announce each motion command before sending it
+    and wait for my explicit go.
+    Done when: every item of the stage-7 checklist in the chapter
+    passes.
+    Report back: the checklist with pass/fail and evidence per item, the
+    30-minute soak-log summary (warnings, resets, took-a-long-time
+    counts), and the recorded worst-case 24 V current for the fixture
+    power budget.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 Build an HA dashboard (7 zones, Spotlight, pan/tilt) and two scenes: **Movie** (radials 2000 K @ 15%, ring off, spot off) and **Reading** (radials 2700 K @ 40%, spot 3000 K @ 60%, aimed at the chair — jog the Spot Pan/Tilt sliders until the beam sits on the chair, then save those numbers into the scene). Toggle while watching logs and the tape.
 

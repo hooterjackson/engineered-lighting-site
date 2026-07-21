@@ -49,7 +49,28 @@ The rules that prevent 90% of beginner damage: **(1)** multimeter checks polarit
 
 ## Stage 2 — Hello, ESP32 (and exactly how code gets onto the board)
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting gimbal build
+    (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 2).
+    An ESP32-C6-DevKitC-1 is plugged into this computer by USB-C. Start by
+    proposing a plan and wait for my approval before executing anything.
+    Then: install arduino-cli if missing, install the esp32 core (>=3.x),
+    detect the board's port, compile and upload the stock Blink example
+    (FQBN esp32:esp32:esp32c6), then open a serial monitor at 115200 and
+    show me 10 seconds of output. Done when: the LED blinks and you've shown
+    me serial output. If upload fails at "Connecting…", tell me to hold the
+    BOOT button and retry rather than guessing. Report back: the exact
+    commands you ran and the captured output.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 Every sketch in this doc reaches the board the same way — learn it once here:
+
+<details markdown="1">
+<summary>Do it by hand — understand what the agent did</summary>
 
 1. Download **Arduino IDE 2.x** from arduino.cc and install.
 2. Open **Boards Manager** (second icon in the left sidebar) → search "esp32" → install **"esp32 by Espressif Systems," version 3.x or newer** (this teaches the IDE about the C6). Takes a few minutes.
@@ -59,10 +80,14 @@ Every sketch in this doc reaches the board the same way — learn it once here:
 6. To *see* what the board says: open **Serial Monitor** (magnifying-glass icon, top right), set the dropdown to **115200 baud**, and set the line-ending dropdown beside it to **"New Line"** (the sketches read commands terminated by a newline — with the wrong setting, typed commands sit there doing nothing). This window is your conversation with the microcontroller — every stage-4+ command gets typed here, every reply appears here.
 7. From now on: **File → New Sketch → paste the code from this doc → Upload → open Serial Monitor.** That's the whole workflow.
 
+</details>
+
 **Done when:** LED blinks and text appears in Serial Monitor.
 **If stuck:** port never appears = charge-only cable (swap it). Upload dies at `Connecting…` = hold the board's **BOOT** button until writing starts. Gibberish in the monitor = baud isn't 115200.
 
 ## Stage 3 — Wire the CAN line
+
+*Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
 
 ![Gimbal CAN wiring diagram](assets/wiring-gimbal-can.svg)
 
@@ -91,6 +116,37 @@ Annotations:
 **Done when:** wired, powered, nothing warm.
 
 ## Stage 4 — First contact: read, then move
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting gimbal build
+    (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 4).
+    The stage-3 wiring is live on the bench: ESP32-C6 and SN65HVD230 on the
+    breadboard, one RMD-L-4005 motor clamped to the bench, supply at 12.0 V
+    with the 2.0 A current limit set. Start by proposing a plan and wait for
+    my approval before executing anything. Then: compile and upload the
+    stage-4 sketch in the chapter (FQBN esp32:esp32:esp32c6, TX=GPIO6,
+    RX=GPIO7, CAN at 1 Mbit/s), open serial at 115200 with newline line
+    endings, and send r to read the angle (command 0x92) BEFORE any motion —
+    any reply at all is the win. Only after I confirm the read: one small
+    watched move, a10 (command 0xA4 at 30 deg/s). Traps: CAN frames are
+    always 8 data bytes — short frames are silently ignored; the first
+    absolute move can sweep up to a half-turn because factory zero is
+    arbitrary; if upload dies at "Connecting…", tell me to hold the BOOT
+    button and retry rather than guessing; if there is no CAN reply, print
+    the twai_get_status_info error counters after a send — climbing counters
+    mean wiring, not code.
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current limit
+    stays as set. Announce each motion command before sending it and wait
+    for my explicit go.
+    Done when: commanded angles work and the power-cycle trick passes.
+    Report back: the exact commands you ran and the captured serial output,
+    including the raw 0x92 reply frames.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 **Clamp the motor to the bench first** — a commanded motor twists its own body as hard as its shaft; unclamped motors jump.
 
@@ -149,6 +205,35 @@ The session: type `r` — **any reply is the win** (proves wiring, transceiver, 
 
 ## Stage 5 — Characterize (the measurements everything depends on)
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting gimbal build
+    (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 5).
+    The stage-4 rig is live: one clamped motor answering 0x92/0xA4 over CAN,
+    and I'm standing by with a phone dB app and the supply ammeter — I call
+    out every meter reading, you log it. Start by proposing a plan and wait
+    for my approval before executing anything. Then drive the stage's
+    measurement sweeps using the stage-4 sketch in the chapter: noise at
+    hold and during moves at 10 / 30 / 60 / 90 deg/s (phone at 30 cm, same
+    app throughout so stage-10 numbers compare); hold current unloaded and
+    then with ~100 g hung 4 cm off-axis; warmth after 30 minutes holding;
+    and the resolution steps a10.00, a10.50, a10.05 with a flashlight taped
+    on while I watch the wall. Pause after each condition, prompt me for the
+    reading, and build the noise/current table as we go. The fast rows
+    matter most: follow-me needs 54–80 deg/s on close passes, so they decide
+    whether tracking stays silent or gets speed-capped.
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current limit
+    stays as set. Announce each motion command before sending it and wait
+    for my explicit go.
+    Done when: the numbers are written down.
+    Report back: the completed noise/current table and the serial log of
+    every command you sent.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 - **Noise** (phone dB app — pick one and stick with it so stage-10 numbers compare, e.g. NIOSH SLM on iOS or Sound Meter on Android; 30 cm distance): at hold, and during moves at **10 / 30 / 60 / 90 °/s**. Quiet room ≈ 30–40 dB. Two verdicts ride on this: whine *at hold* (the sealed loop can't be retuned — this is the RMD bet's one risk), and the speed where motion becomes audible — **follow-me needs 54–80°/s on close passes** ([Doc 5](05-teach-it-to-aim.md)), so the fast rows decide whether tracking stays silent or gets speed-capped.
 - **Hold current** (supply ammeter): unloaded, then with ~100 g hung 4 cm off-axis — previews why the balanced head matters.
 - **Warmth** after 30 min holding: warm fine; too-hot-to-touch is thermal-budget data.
@@ -158,6 +243,36 @@ The session: type `r` — **any reply is the win** (proves wiring, transceiver, 
 
 ## Stage 6 — Second motor, one bus
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting gimbal build
+    (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 6).
+    Motor B is on the bench at the factory address, connected ALONE on the
+    CAN pair; motor A is disconnected for the re-address step. Start by
+    proposing a plan and wait for my approval before executing anything.
+    Then: change motor B's ID to 2 with command 0x79 per the manual's "CAN
+    ID setting" section — send that write exactly once, never in a loop
+    (it's a persistent flash write, so wear is real, and it only takes
+    effect after a reboot), have me power-cycle the motor, and verify it
+    now answers at 0x142. Next I'll daisy-chain both motors on one
+    CANH/CANL pair and raise the supply current limit toward 3 A; then
+    extend the stage-4 sketch in the chapter with a b<deg> command for
+    motor 0x142 and a combined p<deg> t<deg> command that sends the two
+    0xA4 frames back-to-back (~0.1 ms apart — simultaneous for a
+    spotlight).
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current limit
+    stays as set. Announce each motion command before sending it and wait
+    for my explicit go.
+    Done when: combined pan+tilt commands move both motors; each still
+    answers alone.
+    Report back: the sketch diff and serial captures showing replies from
+    both 0x141 and 0x142.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 Motors ship with the same address, so: connect motor B **alone**, change its ID to 2 (command 0x79 per the manual's "CAN ID setting" section, or MyActuator's PC tool), power-cycle, verify it answers at 0x142. Then daisy-chain both on one CANH/CANL pair, raise the current limit toward 3 A, extend the sketch with `b<deg>` and a combined command (two frames back-to-back ≈ 0.1 ms apart — simultaneous for a spotlight).
 
 > From here on, some stages describe *what* to add rather than printing every line — deliberately: this is where the **AI-as-lab-partner workflow (below)** takes over. "Extend the stage-4 sketch with a `b<deg>` command for motor 0x142 and a combined `p<deg> t<deg>` command" is a one-prompt job.
@@ -165,6 +280,8 @@ Motors ship with the same address, so: connect motor B **alone**, change its ID 
 **Done when:** combined pan+tilt commands move both motors; each still answers alone.
 
 ## Stage 7 — Print the frame, balance the head
+
+*Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
 
 Three printed parts (design against the L-4005 STEP files from myactuator.com; PETG, 4+ perimeters):
 
@@ -182,11 +299,69 @@ Wire routing: motor pigtails (power + CAN) cross each joint as a loose **service
 
 ## Stage 8 — Aim at the room
 
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting gimbal build
+    (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 8).
+    The balanced rig from stage 7 is clamped at a measured height h above
+    the desk, with a desk-corner origin and taped target marks measured in
+    meters. Start by proposing a plan and wait for my approval before
+    executing anything. Then: extend the stage-6 sketch in the chapter with
+    a goto x y serial command implementing the stage's math — pan =
+    atan2(y_t - y_f, x_t - x_f), tilt = atan(horizontal_distance / h) —
+    using the h and fixture position (x_f, y_f) I give you. Upload, then
+    walk the beam between the taped marks one goto at a time, logging
+    commanded target vs. where the beam actually lands so we can see the
+    systematic error (mount lean, zero offsets) — in the product that
+    becomes a one-time install calibration.
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current limit
+    stays as set. Announce each motion command before sending it and wait
+    for my explicit go.
+    Done when: goto 0.5 0.3 lands within a few cm, repeatably.
+    Report back: the sketch diff, the goto commands you sent, and the
+    logged table of commanded vs. actual landings with the systematic
+    offset noted.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
+
 Clamp the rig at height *h* above the desk. Pick an origin (a desk corner), measure in meters. For a target at (x_t, y_t) with the fixture at (x_f, y_f): `pan = atan2(y_t − y_f, x_t − x_f)`, `tilt = atan(horizontal_distance / h)`. Add a `goto x y` serial command implementing that; walk the beam between taped marks; note the systematic error (mount lean, zero offsets) — in the product this becomes a one-time install calibration.
 
 **Done when:** `goto 0.5 0.3` lands within a few cm, repeatably.
 
 ## Stage 9 — Hand the keys to the network
+
+!!! agent-prompt "🤖 Give this to your agent"
+
+    ```text
+    You're my bench agent for the Engineered Lighting gimbal build
+    (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 9).
+    The aimed rig from stage 8 is on the bench, and a Home Assistant
+    machine running the Mosquitto broker add-on is on the LAN — I'll give
+    you its IP and the WiFi details. Start by proposing a plan and wait for
+    my approval before executing anything. Then: add WiFi + MQTT to the
+    stage-8 sketch in the chapter using the PubSubClient and ArduinoJson
+    libraries. Subscribe to spotlight/target and parse the Doc 6 envelope
+    {"v":1,"ts":1784150000000,"pan":32.5,"tilt":-14,"rate":10} — v and ts
+    are the contract's mandatory envelope fields — into the two CAN frames,
+    and publish read-back angles every few seconds. Then test end to end:
+    publish a target from this laptop (mosquitto_pub or MQTT Explorer),
+    watch the read-back topic confirm the move, and do the final check with
+    the USB cable unplugged.
+    SAFETY — non-negotiable: never command motor motion unless I confirm
+    I'm watching with a hand near the supply switch. The bench current limit
+    stays as set. Announce each motion command before sending it and wait
+    for my explicit go.
+    Done when: an MQTT publish from your laptop aims the beam, no USB
+    attached.
+    Report back: the sketch diff and a mosquitto_sub -t 'spotlight/#' -v
+    capture showing the published target and the read-back angles that
+    followed.
+    ```
+
+    *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Sketch → Include Library → Manage Libraries, search by name). The broker is the **Mosquitto add-on in Home Assistant** ([Doc 4](04-full-fixture-bench.md)'s prerequisites box) — point the sketch at your HA machine's IP. Behavior: subscribe to **`spotlight/target`**, parse `{"v":1,"ts":1784150000000,"pan":32.5,"tilt":-14,"rate":10}` (`v`/`ts` are the contract's mandatory envelope fields — [Doc 6](06-message-contract.md)) → two CAN frames; publish read-back angles every few seconds. Note: this MQTT lane is the *bench* interface — production replaces it with a direct native-API action ([Doc 6](06-message-contract.md) §1). (Another one-prompt AI-partner job: "add WiFi+MQTT to this sketch per this paragraph.") Test from MQTT Explorer or a Home Assistant automation.
 
