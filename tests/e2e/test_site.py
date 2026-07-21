@@ -48,7 +48,7 @@ def test_global_progress_math(page):
     assert page.locator("#bom-global-text").text_content() == "0/30 items"
     page.check("#d3-motors")
     assert page.locator("#bom-global-text").text_content() == "1/30 items"
-    assert page.locator(".bom-progress").first.text_content() == "1/13 · ~$90 checked"
+    assert page.locator(".bom-progress").first.text_content() == "1/13 · ~$269 checked"
 
 
 def test_chapter_done_when_persists(page):
@@ -74,6 +74,14 @@ def test_checklist_uses_wide_viewports(page):
     assert page.evaluate(
         "document.documentElement.scrollWidth <= window.innerWidth + 1"), \
         "page-level horizontal scroll on mobile"
+
+
+def test_motor_state_survives_part_rename(page):
+    # the 4005→5005 swap must not orphan saved state: id d3-motors is stable
+    page.goto("/bom-checklist/")
+    page.evaluate("localStorage.setItem('el-bom-v1', JSON.stringify({'d3-motors': 1}))")
+    page.reload()
+    assert page.locator("#d3-motors").is_checked(), "pre-rename state lost"
 
 
 def test_agent_prompt_copy_button(page, context):
