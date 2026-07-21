@@ -1,6 +1,8 @@
 ---
 title: BoM Checklist
 description: "Every purchase in the series in one interactive checklist — check items off as you order; progress persists in your browser."
+hide:
+  - toc
 ---
 
 # Bill of Materials — interactive checklist
@@ -90,7 +92,14 @@ Every purchase in the series, in one list. Check items off as you order — stat
 .bom-section summary { cursor: pointer; padding: .55rem 0; }
 .bom-progress { font-size: .8em; color: var(--md-default-fg-color--light); margin-left: .4rem; }
 .bom-scroll { overflow-x: auto; }
-.bom-scroll table { min-width: 46rem; }
+/* display:table overrides Material's inline-block for class-less tables —
+   the whitespace text node before an inline-block table indents it and
+   forces a phantom horizontal scroll */
+.md-typeset .bom-scroll table { display: table; min-width: 46rem; width: 100%; }
+/* Material's JS wraps tables in scrollwrap with -0.8rem bleed margins;
+   inside .bom-scroll that just fakes 13px of overflow — neutralize it */
+.md-typeset .bom-scroll .md-typeset__scrollwrap { margin: 0; overflow: visible; }
+.md-typeset .bom-scroll .md-typeset__table { display: block; padding: 0; width: 100%; }
 .bom-box { width: 1.15rem; height: 1.15rem; accent-color: var(--md-accent-fg-color); }
 .bom-optional { font-size: .68em; border: .05rem solid var(--md-default-fg-color--lighter); border-radius: .6rem; padding: 0 .45em; vertical-align: middle; color: var(--md-default-fg-color--light); white-space: nowrap; }
 .bom-owned td { color: var(--md-default-fg-color--light); }

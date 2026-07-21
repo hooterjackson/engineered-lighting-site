@@ -533,6 +533,11 @@ html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) tra
    §13 · BoM CHECKLIST — panels, luminous progress, square amber checks
    (selectors carry .md-typeset/.md-content to outrank the page's inline CSS)
    -------------------------------------------------------------------------- */
+/* The checklist page earns a wider grid: its table is the content, and the
+   default 61rem grid forced internal scrolling on wide screens. Prose on the
+   page stays capped at --el-measure; only the panels widen. */
+.md-grid:has(.bom-section) { max-width: 76rem; }
+
 .md-content #bom-global {
   display: flex;
   align-items: center;

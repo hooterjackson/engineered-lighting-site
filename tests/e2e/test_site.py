@@ -62,6 +62,20 @@ def test_chapter_done_when_persists(page):
     assert stored == {"03-build-the-gimbal:0": 1}
 
 
+def test_checklist_uses_wide_viewports(page):
+    page.set_viewport_size({"width": 1800, "height": 900})
+    page.goto("/bom-checklist/")
+    overflows = page.evaluate(
+        "Array.from(document.querySelectorAll('.bom-scroll'))"
+        ".map(s => s.scrollWidth - s.clientWidth)")
+    assert all(o <= 1 for o in overflows), f"table crops on wide screens: {overflows}"
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.goto("/bom-checklist/")
+    assert page.evaluate(
+        "document.documentElement.scrollWidth <= window.innerWidth + 1"), \
+        "page-level horizontal scroll on mobile"
+
+
 def test_screenshots(page):
     SCREENS.mkdir(parents=True, exist_ok=True)
     pages = (("landing", "/"), ("doc3", "/03-build-the-gimbal/"),
