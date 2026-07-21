@@ -447,6 +447,24 @@ html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) tra
   mask-image: var(--md-admonition-icon--rules);
 }
 
+/* Agent-prompt — the AI-native lane: copy-paste blocks that lead each
+   software stage. Amber (interactive), robot glyph, printable. */
+:root {
+  --md-admonition-icon--agent-prompt: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cg fill="none" stroke="%23000" stroke-width="1.6"%3E%3Crect x="4.5" y="8" width="15" height="10.5" rx="1"/%3E%3Cpath stroke-linecap="round" d="M12 8V5"/%3E%3Ccircle cx="12" cy="4" r="1.1"/%3E%3Cpath stroke-linecap="round" d="M9 12.5v2M15 12.5v2"/%3E%3C/g%3E%3C/svg%3E');
+}
+.md-typeset :is(.admonition, details):is(.agent-prompt) {
+  border-color: rgba(226, 162, 76, 0.45);
+}
+.md-typeset :is(.agent-prompt) > :is(.admonition-title, summary) {
+  background: rgba(226, 162, 76, 0.1);
+  color: var(--el-amber);
+}
+.md-typeset :is(.agent-prompt) > :is(.admonition-title, summary)::before {
+  background-color: var(--el-amber);
+  -webkit-mask-image: var(--md-admonition-icon--agent-prompt);
+  mask-image: var(--md-admonition-icon--agent-prompt);
+}
+
 /* --------------------------------------------------------------------------
    §10 · BUTTONS — quiet technical controls
    -------------------------------------------------------------------------- */
