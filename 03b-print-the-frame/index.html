@@ -1,0 +1,931 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The gimbal's three printed parts, a parametric OpenSCAD scaffold with a five-minute fit coupon, and X1C print settings.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/03b-print-the-frame/">
+      
+      
+        <link rel="prev" href="../03-build-the-gimbal/">
+      
+      
+        <link rel="next" href="../04-full-fixture-bench/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3b · Print the Frame - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="3b · Print the Frame - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The gimbal's three printed parts, a parametric OpenSCAD scaffold with a five-minute fit coupon, and X1C print settings." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/03b-print-the-frame.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/03b-print-the-frame/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="3b · Print the Frame - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The gimbal's three printed parts, a parametric OpenSCAD scaffold with a five-minute fit coupon, and X1C print settings." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/03b-print-the-frame.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-3b-print-the-frame-three-parts-one-coupon" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3b · Print the Frame
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-parts-specified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three parts, specified
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-parametric-scaffold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The parametric scaffold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x1c-print-settings-per-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X1C print settings, per part
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bom-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BoM delta
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-parts-specified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three parts, specified
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-parametric-scaffold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The parametric scaffold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x1c-print-settings-per-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X1C print settings, per part
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bom-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BoM delta
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-3b-print-the-frame-three-parts-one-coupon">Doc 3b · Print the Frame — Three Parts, One Coupon<a class="headerlink" href="#doc-3b-print-the-frame-three-parts-one-coupon" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong>
+The frame chapter <a href="../03-build-the-gimbal/">Doc 3</a> stage 7 points at. Context, fixed: motors are the <strong>RMD-L-5005</strong> (Ø49 × ~24 mm, 92 g, output flange per MyActuator's L-series 2D drawing), the printer is a <strong>Bambu Lab X1C</strong>, and the material is <strong>PETG Basic</strong> (PETG-CF for the yoke if it's on hand). Iteration is the plan, not a failure mode: 2–3 reprints is the normal path, and every part is a ~20-minute print.</p>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal frame
+(chapter: engineering.engineered.lighting/03b-print-the-frame/). The
+RMD-L-5005 motors and my calipers are on the bench, a Bambu Lab X1C is
+on the network, and cad/frame.scad from this chapter is in my repo.
+Start by proposing a plan and wait for my approval before executing
+anything. Here are my caliper measurements: [paste the MEASURE-ME list
+with your numbers]. Update the parameters block in frame.scad, render
+all four parts to STL with the openscad CLI, and tell me which part to
+print first — it should be the fit coupon. After each test fit I will
+report what is tight or loose; adjust the parameters and re-render
+until the coupon seats flush and the bolts thread. Done when: every
+MEASURE-ME value is replaced by a measured one and the printed coupon
+fits the flange. Report back: the parameter diff after each round and
+the exact openscad commands you ran.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p><em>Printing stalled — bad first layers, fit that won't converge, no printer time? A hand-drilled aluminum bar or plywood yoke made from a 1:1 printed drawing is a legitimate v0; the geometry is three brackets, not art.</em></p>
+<h2 id="the-three-parts-specified">The three parts, specified<a class="headerlink" href="#the-three-parts-specified" title="Permanent link">&para;</a></h2>
+<p><strong>Pan base.</strong> A plate the pan motor body bolts to, with a <strong>clamp ear</strong> sized for the BoM's C-clamp so the assembly hangs from a shelf edge, and a <strong>pan hard-stop post</strong>. The hard stop exists because the encoder is single-turn: the frame, not software, guarantees the motor can never wind past one revolution (<a href="../03-build-the-gimbal/">Doc 3</a>'s absolute-encoder concept).</p>
+<p><strong>Yoke.</strong> A U-bracket bolted to the pan output flange. One arm carries the <strong>tilt motor body</strong>; the other holds a <strong>683/608 bearing pocket</strong> so the head is supported on both sides. <strong>Tilt hard-stop tabs</strong> (same single-turn reason), plus <strong>zip-tie points</strong> on the arms — Doc 3's wiring rule: pigtails cross each joint as a droopy service loop, never taut, and the loop needs somewhere to anchor.</p>
+<p><strong>Head shell.</strong> A bore that grips the flashlight (later the LED head from <a href="../04-full-fixture-bench/">Doc 4</a>) on the tilt flange, with a <strong>counterweight slot</strong> sized for an M5 bolt and stacked nuts. The slot exists because balance <em>is</em> the silence mechanism: center of mass on the tilt axis means near-zero hold current, which means a cool, silent motor.</p>
+<h2 id="the-parametric-scaffold">The parametric scaffold<a class="headerlink" href="#the-parametric-scaffold" title="Permanent link">&para;</a></h2>
+<p>The whole frame is one OpenSCAD file — <a href="../cad/frame.scad"><code>cad/frame.scad</code></a> — with every motor-interface dimension in a parameters block at the top. Placeholders are marked <strong>MEASURE-ME</strong>; the drawing-readable values carry their own <em>verify with calipers on arrival</em> comments (the center thru-bore, notably, ships in two variants: 8.1 mm "S" and 12.7 mm "L"). The fourth module is the cheapest insurance in the whole build: <code>fit_coupon()</code>, a 3 mm ring matching the flange bolt pattern and center bore. It prints in about five minutes and bolts onto the real motor <strong>before</strong> any real part spends filament.</p>
+<div class="highlight"><pre><span></span><code>/* [Motor interface — MEASURE-ME] */
+flange_bolt_circle_d = 30;   // MEASURE-ME — output-flange bolt-circle diameter
+flange_bolt_d        = 3.2;  // MEASURE-ME — bolt clearance hole (M3 assumed)
+flange_bolt_n        = 4;    // MEASURE-ME — bolt count per the drawing
+flange_center_bore_d = 8.1;  // drawing: 8.1 mm thru-bore on the &quot;S&quot; variant
+                             // (12.7 mm on the &quot;L&quot;) — verify with calipers on arrival
+body_d               = 49;   // drawing: Ø49 body — verify with calipers on arrival
+body_len             = 24;   // drawing: ~24 mm body — verify with calipers on arrival
+connector_clearance  = 12;   // MEASURE-ME — depth behind the 4-pin connector + cable bend
+
+/* [Payload + frame] */
+flashlight_d = 25;   // MEASURE-ME — flashlight/LED head barrel diameter
+arm_offset   = 8;    // daylight between yoke arm and motor body
+</code></pre></div>
+<p>One module per part — <code>fit_coupon()</code>, <code>pan_base()</code>, <code>yoke()</code>, <code>head_shell()</code> — behind a <code>part</code> selector, <code>$fn = 64</code>. Render any part from the CLI:</p>
+<div class="highlight"><pre><span></span><code>openscad<span class="w"> </span>-o<span class="w"> </span>coupon.stl<span class="w"> </span>-D<span class="w"> </span><span class="s1">&#39;part=&quot;coupon&quot;&#39;</span><span class="w"> </span>cad/frame.scad
+</code></pre></div>
+<h2 id="x1c-print-settings-per-part">X1C print settings, per part<a class="headerlink" href="#x1c-print-settings-per-part" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Material</th>
+<th>Walls / infill / layer</th>
+<th>Orientation</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fit coupon</td>
+<td>PETG Basic</td>
+<td>4 / 40% gyroid / 0.2 mm</td>
+<td>flat</td>
+<td>~5 min; print first, always</td>
+</tr>
+<tr>
+<td>Pan base</td>
+<td>PETG Basic</td>
+<td>4 / 40% gyroid / 0.2 mm</td>
+<td>flat on the plate</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Yoke</td>
+<td>PETG-CF if on hand, else PETG Basic</td>
+<td>4 / 40% gyroid / 0.2 mm</td>
+<td><strong>arms up</strong>, brim on</td>
+<td>no supports needed — the arm roots are designed as ≤45° transitions</td>
+</tr>
+<tr>
+<td>Head shell</td>
+<td>PETG Basic</td>
+<td>4 / 40% gyroid / 0.2 mm</td>
+<td>bore vertical</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>The yoke's orientation is the one that matters: printed arms-up, layer lines run <em>along</em> each arm, so gravity and motor torque load the plastic across continuous perimeters instead of shearing the layer bonds at the arm roots.</p>
+<h2 id="build-order">Build order<a class="headerlink" href="#build-order" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Print the fit coupon</strong> → <em>done when the flange bolts thread through it and the ring seats flush on the real motor.</em> Anything off, fix the parameters now — five-minute reprints beat twenty-minute ones.</li>
+<li><strong>Pan base</strong> → <em>done when the motor body bolts to it and the C-clamp holds the assembly rigid on a shelf edge.</em></li>
+<li><strong>Yoke</strong> on the pan flange → <em>done when it bolts down square and clears the motor body through full pan travel.</em></li>
+<li><strong>Tilt motor into its arm</strong> → <em>done when the head-side stub spins free by hand at the bearing end.</em></li>
+<li><strong>Head shell</strong> → <em>done when the flashlight seats snug and the counterweight bolt slides in its slot.</em></li>
+<li><strong>Balance</strong> — back to <a href="../03-build-the-gimbal/#stage-7-print-the-frame-balance-the-head">Doc 3 stage 7</a>: <em>done when the powered-off head stays posed anywhere you leave it.</em></li>
+</ol>
+<h2 id="bom-delta">BoM delta<a class="headerlink" href="#bom-delta" title="Permanent link">&para;</a></h2>
+<p>One addition to <a href="../03-build-the-gimbal/#bill-of-materials-buy-this-350405-total">Doc 3's BoM</a>: <strong>digital calipers ($10–20)</strong> — the whole chapter runs on measurements. An X1C owner needs nothing else new; filament and bearings are already in the list.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../03-build-the-gimbal/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3 · Build the Gimbal">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3 · Build the Gimbal
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../04-full-fixture-bench/" class="md-footer__link md-footer__link--next" aria-label="Next: 4 · Build the Full Fixture Bench">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4 · Build the Full Fixture Bench
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>

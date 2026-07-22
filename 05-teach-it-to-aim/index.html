@@ -1,0 +1,1547 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The perception stack: cameras, ground-plane tracking, beam self-calibration, coordination, safety, and the phased roadmap.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/05-teach-it-to-aim/">
+      
+      
+        <link rel="prev" href="../04-full-fixture-bench/">
+      
+      
+        <link rel="next" href="../06-message-contract/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>5 · Teach It to Aim - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="5 · Teach It to Aim - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The perception stack: cameras, ground-plane tracking, beam self-calibration, coordination, safety, and the phased roadmap." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/05-teach-it-to-aim.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/05-teach-it-to-aim/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="5 · Teach It to Aim - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The perception stack: cameras, ground-plane tracking, beam self-calibration, coordination, safety, and the phased roadmap." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/05-teach-it-to-aim.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-5-teach-it-to-aim-spatial-intelligence-for-coordinated-spotlights" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5 · Teach It to Aim
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-per-room-one-time-120320room" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — per room + one-time, ~$120–320/room
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-were-building-the-six-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What we're building (the six findings)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-user-stories-the-problem-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. User stories (the problem space)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-architecture-in-one-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The architecture in one picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-by-step-execution-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Step-by-step execution plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Step-by-step execution plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-the-lamp-follows-me-a-weekend-needs-only-the-doc-34-rig-any-rtsp-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — "The lamp follows me" (a weekend; needs only the Doc 3/4 rig + any RTSP camera)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-surfaces-suppression-the-room-model-arrives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Surfaces &amp; suppression (the room model arrives)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-self-calibration-the-crown-jewel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Self-calibration (the crown jewel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-book-gestures-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Book &amp; gestures v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-coordination-safety-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Coordination &amp; safety hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-precision-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5 — Precision &amp; identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-depth-question-answered-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The depth question, answered directly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-risk-register-honest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Risk register (honest)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading-most-load-bearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading (most load-bearing)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-per-room-one-time-120320room" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — per room + one-time, ~$120–320/room
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-were-building-the-six-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What we're building (the six findings)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-user-stories-the-problem-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. User stories (the problem space)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-architecture-in-one-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The architecture in one picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-by-step-execution-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Step-by-step execution plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Step-by-step execution plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-the-lamp-follows-me-a-weekend-needs-only-the-doc-34-rig-any-rtsp-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — "The lamp follows me" (a weekend; needs only the Doc 3/4 rig + any RTSP camera)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-surfaces-suppression-the-room-model-arrives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Surfaces &amp; suppression (the room model arrives)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-self-calibration-the-crown-jewel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Self-calibration (the crown jewel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-book-gestures-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Book &amp; gestures v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-coordination-safety-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Coordination &amp; safety hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-precision-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5 — Precision &amp; identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-depth-question-answered-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The depth question, answered directly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-risk-register-honest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Risk register (honest)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading-most-load-bearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading (most load-bearing)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-5-teach-it-to-aim-spatial-intelligence-for-coordinated-spotlights">Doc 5 · Teach It to Aim — Spatial Intelligence for Coordinated Spotlights<a class="headerlink" href="#doc-5-teach-it-to-aim-spatial-intelligence-for-coordinated-spotlights" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong>
+Your V-JEPA model answers <em>what is happening</em> (reading, cooking, movie). This document answers <em>where it's happening and what pan/tilt angles put light there</em> — for multiple fixtures, coordinating. Constraints held: all video local; central RTX 6000 box runs perception; one camera per room; assisted room scan OK; HA/MQTT ecosystem; fixture form factor deprioritized (floor lamps fine).</p>
+<blockquote>
+<p><strong>Hardware assumption, stated plainly:</strong> the phases here run on the already-owned RTX 6000 Blackwell workstation. That card matters for the <em>full</em> vision (many rooms + V-JEPA); Phase 0's single-camera tracking runs fine on any recent CUDA GPU with ~12 GB+, so the first demo doesn't wait on big hardware.</p>
+</blockquote>
+<h2 id="bill-of-materials-per-room-one-time-120320room">Bill of Materials — per room + one-time, ~$120–320/room<a class="headerlink" href="#bill-of-materials-per-room-one-time-120320room" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Part</th>
+<th>Qty</th>
+<th>Est.</th>
+<th>Where</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>PoE camera</strong> — standard rooms: Amcrest IP5M-T1179EW-AI-V3 (5 MP, 133° lens)</td>
+<td>1/room</td>
+<td>$80</td>
+<td><a href="https://www.amcrest.com">amcrest.com</a></td>
+<td><strong>Phase 0.</strong> The room's eyes: a wide fixed lens covering the whole room from a corner, streaming standard RTSP video the GPU box ingests directly. PoE = one cable carries power and data, and wired video is what keeps a many-camera home stable and lets the camera network run fully internet-isolated</td>
+</tr>
+<tr>
+<td>1b</td>
+<td>— priority rooms: Loryta/Dahua IPC-T549M-ALED-S3 (full-color night vision)</td>
+<td>opt.</td>
+<td>$185</td>
+<td><a href="https://empiretech01.com">empiretech01.com</a></td>
+<td><strong>Phase 1+, optional.</strong> Night matters: IR cameras output grayscale, which degrades RGB-trained models</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PoE switch (8–16 port) + Cat6 runs</td>
+<td>1/home</td>
+<td>$150–400</td>
+<td>Amazon</td>
+<td><strong>Phase 1+</strong> (Phase 0's single camera can run off any PoE injector). Put cameras on their own VLAN with <strong>no internet route</strong> — privacy by construction</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ChArUco calibration board (print + mount on rigid backing)</td>
+<td>1</td>
+<td>~$10</td>
+<td>print it (<a href="https://calib.io">calib.io</a> generator)</td>
+<td><strong>Phase 1.</strong> For registering each camera to the room scan. Rigid and flat matters</td>
+</tr>
+<tr>
+<td>4</td>
+<td>iPhone/iPad Pro with LiDAR (borrow one) + Polycam or Scaniverse app</td>
+<td>1</td>
+<td>free–$</td>
+<td>App Store</td>
+<td><strong>Phase 1.</strong> One-time room scan, ~1–3 cm accuracy. Use <strong>Space Mode (LiDAR)</strong>, not the auto-floorplan mode</td>
+</tr>
+<tr>
+<td>5</td>
+<td><em>Optional, later:</em> one stereo depth camera — Orbbec Gemini 335L ($359) or Luxonis OAK-D Pro PoE ($579)</td>
+<td>0–1</td>
+<td>$359 / $579</td>
+<td><a href="https://store.orbbec.com">store.orbbec.com</a>, <a href="https://shop.luxonis.com">shop.luxonis.com</a></td>
+<td><strong>Tier 2, later.</strong> True per-pixel 3D for the specific rooms where ground-plane geometry runs out (reclined people, heavy clutter) — buy after Tier-0 tracking measurably misses, not before (see "the depth question")</td>
+</tr>
+<tr>
+<td>—</td>
+<td>Already owned</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>RTX 6000 Blackwell box (runs all perception), the Doc <a href="../03-build-the-gimbal/">3</a>/<a href="../04-full-fixture-bench/">4</a> bench rig (the actuator being aimed), Home Assistant + MQTT (the message plumbing)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="concepts-plain-english">Concepts (plain English)<a class="headerlink" href="#concepts-plain-english" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Frames &amp; transforms:</strong> every position lives in some coordinate system ("frame") — the room, a camera, a fixture. A <em>transform</em> converts between them. The whole aiming stack is: target in room frame → transform to fixture frame → two angles.</li>
+<li><strong>Intrinsics / extrinsics:</strong> a camera's <em>intrinsics</em> describe its lens (how pixels map to directions); <em>extrinsics</em> are where it sits in the room. Calibrate both once, then every pixel becomes a 3D ray.</li>
+<li><strong>Ground-plane trick (homography):</strong> a person's feet touch the floor, and we know where the floor is. So one ordinary camera gives their 3D position: pixel → ray → intersect floor. This is the finding that deletes depth sensors from the plan.</li>
+<li><strong>Keypoints / pose:</strong> models that find body joints (ankles, wrists, head) in an image. Body-scale keypoints work across a room; <em>finger</em>-scale does not (hands are 20–40 pixels at 4–8 m — too small, verified 2026 research).</li>
+<li><strong>Tracking ID:</strong> detection says "a person is here <em>this frame</em>"; tracking says "it's the <em>same</em> person as last frame." Needed so beams follow individuals, not flicker between people.</li>
+<li><strong>Open-vocabulary detection:</strong> models you query with words ("book") instead of fixed class lists. Used to <em>confirm</em> a book is present, not to measure it precisely.</li>
+<li><strong>Latency vs. update rate:</strong> latency = how stale each measurement is; update rate = how often they arrive. Smooth following needs ~15–30 updates/second <em>and</em> prediction to cover the staleness (below).</li>
+<li><strong>One Euro filter:</strong> the standard smoothing trick for noisy tracking — heavy smoothing when still (kills jitter), light smoothing when moving (kills lag). Cheap, three lines of code.</li>
+<li><strong>Fast path / slow path:</strong> two loops sharing the cameras. Fast: person tracking at 15–30 Hz → aim. Slow: video clips → V-JEPA → "they're reading" (arrives seconds later, changes <em>policy</em>, not coordinates). The fast path never waits for the slow one.</li>
+<li><strong>No-go cone:</strong> a computed exclusion zone around each tracked head that beams must never enter — borrowed from automotive adaptive headlights, which mask glare zones around oncoming drivers in exactly this way.</li>
+<li><strong>Named tools, one line each:</strong> <em>YOLO26</em> — the current fast, standard "find the people in this frame" model. <em>ByteTrack</em> — the standard "it's the same person as last frame" ID-keeper. <em>Frigate</em> — an open-source camera recorder/reviewer that runs on the GPU box (used for recording and clips, never in the aiming loop). <em>DeepStream</em> — NVIDIA's toolkit for running vision models over many camera streams at once (an optional productized shortcut). <em>go2rtc</em> — a small program that re-serves camera streams with minimal delay.</li>
+</ul>
+<hr />
+<h2 id="1-what-were-building-the-six-findings">1. What we're building (the six findings)<a class="headerlink" href="#1-what-were-building-the-six-findings" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>No stereo needed to start.</strong> Ground-plane localization delivers <strong>4–19 cm</strong> accuracy in room-scale tests (4–13 cm standing, 16–19 cm walking) — comfortably inside the real beam, which the optics research pinned down: the tightest off-the-shelf 3-up optic (Carclo 10507, ~16°) throws a <strong>0.42 m spot at 1.5 m, growing to ~0.85 m at 3 m</strong>. NVIDIA productized this pattern (DeepStream SV3DT/MV3DT, auto-calibration, 645–1,225 FPS aggregate on this GPU class). Seated people (feet unusable): the room model supplies the couch height, torso keypoints supply the rest. Stereo is a targeted later upgrade.</li>
+<li><strong>Beam self-calibration is the differentiator.</strong> No commercial system — including $30k zactrack/BlackTrax — auto-calibrates fixtures; all use a manual jog onto known points. But the recipe exists (a 2025 patent describes it; telescope pointing models supply the math with ~170× margin over our 1° need): sweep the beam, let the camera watch where it lands, fit the model. A fixture that calibrates itself in ~2 minutes beats the industry's shipped state of the art. (Patent flag: US 12,190,542.)</li>
+<li><strong>The follow-me loop is real but unforgiving.</strong> 100–300 ms end-to-end is achievable only on a bespoke path (camera → own tracker → fixture → CAN; the fixture link is MQTT on the bench, graduating to a direct ESPHome native-API action called via aioesphomeapi in production — one hop, typed floats, spec in <a href="../06-message-contract/">Doc 6</a> §1). Convenience shortcuts cost <em>seconds</em> (Frigate events: 6–10 s; HA automations: documented 4–20 s traps). And <strong>prediction is structural, not polish</strong>: at 300 ms latency a walker moves 42 cm — comparable to the beam's half-width — so the aim point must <em>lead</em> the track by the measured latency. Geometry helps too, and for free: the fixed 10507 optic naturally widens with throw (~0.85 m at 3 m), so the beam is at its most forgiving exactly where tracking error and lag are largest; the tight-spot regime only exists at short throw, where tracking is at its best. (No variable-beam hardware needed — if beam-width experimentation matters later, the Carclo optics snap-swap in seconds, and a motorized-zoom path exists: Khatod's 45 mm slide-zoom, 11–45°, at the cost of redesigning to a single-die emitter.)</li>
+<li><strong>Fixture speed requirement (computed):</strong> a person passing 1–1.5 m from a fixture's plumb line needs <strong>54–80°/s</strong> pan. <a href="../03-build-the-gimbal/">Doc 3</a>'s stage 5 measures whether the motors stay silent at those speeds; if not, the coordinator caps indoor slew and lets the beam lag through close passes.</li>
+<li><strong>Hands don't work at range — design around them.</strong> The book story: anchor the person from feet/torso, offset to the wrist (body keypoints work at range), confirm "book" with open-vocabulary detection. Same evidence reshapes gestures: <strong>v1 gestures are arm-scale</strong> (raise, wave, hold-out — from body keypoints); finger gestures (pinch, palm shapes) are not feasible from a corner camera. Naive pointing rays err ~28° — fine for "which zone," not for precision (a trained pointing model reaches &lt;2° if ever needed).</li>
+<li><strong>The failure modes are about feelings:</strong> never sweep eyes (predictive no-go cones + soft-edged dimming + a hard interlock — tracking loss parks the beam within a deadline); move <em>legibly</em> (a small anticipatory "glance" before the main move reads as intentional — HRI-validated); and <strong>suppress motion during movie/settled-reading</strong> — lights that move when people are trying to be still is the documented trust-killer.</li>
+</ol>
+<h2 id="2-user-stories-the-problem-space">2. User stories (the problem space)<a class="headerlink" href="#2-user-stories-the-problem-space" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Story</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A — Follow &amp; task</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>A1</td>
+<td>Follow me across the room</td>
+<td>The canonical hard story: tracking + smoothing + handoff</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Light the surface I'm using (table/board/desk)</td>
+<td>Validated demand — $600 task lamps that don't even move</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Spotlight the book in my hands</td>
+<td>White space: every current solution is worn on the body</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Cooking-step lighting (board → stove as activity shifts)</td>
+<td>Context-driven; bridges to the DLP recipe story later</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>Light my face on video calls</td>
+<td>Adjacent shipped demand (ring lights, Apple Edge Light)</td>
+</tr>
+<tr>
+<td><strong>B — Ambient &amp; idle</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B1</td>
+<td>Point at wall art when idle</td>
+<td>Static target — trivial once calibrated</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>Plant/decor accents on schedule</td>
+<td>Zero live perception needed</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>Gallery rotation with dwell times</td>
+<td>Motion styling matters most here</td>
+</tr>
+<tr>
+<td><strong>C — Media &amp; social</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C1</td>
+<td>Movie mode = <em>stillness</em></td>
+<td>Suppression is a feature; movement here is the trust-killer</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Light the board-game table when we gather</td>
+<td>Group context from the activity model</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Party sweeps</td>
+<td>The one home for stage-light behavior</td>
+</tr>
+<tr>
+<td><strong>D — Utility</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D1</td>
+<td>3am path light</td>
+<td>Ankle-height, dim, never near eyes</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Find-my-keys by pointing light at them</td>
+<td>No shipped product does this — needs object memory</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Closet/pantry assist</td>
+<td>Beam into the space you just opened</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Pet play/follow</td>
+<td>$20 auto laser toys validate the appetite</td>
+</tr>
+<tr>
+<td><strong>E — Interaction</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E1</td>
+<td>Arm-scale gestures (raise/wave/hold-out), context-armed</td>
+<td>Gating evidence: 5.5× fewer false positives; V-JEPA-gated version is novel</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>Point at a spot to send light there</td>
+<td>Coarse zone-selection in v1; precision needs a trained model</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>Summon / banish the beam</td>
+<td>Beckon it over; wave it away</td>
+</tr>
+<tr>
+<td><strong>F — Multi-person &amp; multi-fixture</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>F1</td>
+<td>Each person gets their own beam</td>
+<td>Research favors this "spatial multiplexing" over preference arbitration</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>Seamless fixture handoffs while walking</td>
+<td>Hysteresis so beams don't ping-pong</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>Second fixture covers occlusions</td>
+<td>Redundancy when line-of-sight breaks</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>My preferences follow me</td>
+<td>Identity via trajectory re-ID; feeds the roadmap's identity layer</td>
+</tr>
+<tr>
+<td><strong>G — Trust (gates everything)</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>G1</td>
+<td>Never sweep a beam across eyes</td>
+<td>Hard constraint: predictive no-go cones</td>
+</tr>
+<tr>
+<td>G2</td>
+<td>Fail calm</td>
+<td>Tracking loss → park/dim, never hunt</td>
+</tr>
+<tr>
+<td>G3</td>
+<td>Legible motion</td>
+<td>Anticipation micro-moves, context speed caps</td>
+</tr>
+<tr>
+<td>G4</td>
+<td>Visible "perception off" state</td>
+<td>The being-watched objection is the adoption risk</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-the-architecture-in-one-picture">3. The architecture in one picture<a class="headerlink" href="#3-the-architecture-in-one-picture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code> PoE cams ──► RTX 6000 box:  go2rtc (low-latency restream)
+                              ├─ FAST 15–30 Hz: detect (YOLO26) → track IDs →
+                              │   ground-plane 3D → keypoints → One-Euro+prediction
+                              │   → TARGET RESOLVER → ASSIGNMENT → SAFETY LAYER
+                              └─ SLOW (event clips, 2–8 fps): V-JEPA → activity state
+             Frigate: recording/review only — NOT in the control path
+                              │ direct MQTT {fixture, pan, tilt, rate, dim}
+             ESPHome C6 nodes (batch_delay: 0) ──► CAN ──► RMD actuators
+             Home Assistant: observes, overrides — never in the loop
+</code></pre></div>
+<p>Annotations on each block:</p>
+<ul>
+<li><strong>Target resolver:</strong> static targets (art, table) are <em>label lookups</em> in the room model — zero runtime perception. Dynamic targets come from tracks, led by velocity. Book = wrist offset from the person anchor.</li>
+<li><strong>Assignment</strong> (which fixture takes which target): bipartite matching (Hungarian) with costs = incidence-angle badness (light the task from beside/behind the person, not their face) + travel + a hysteresis bonus for the incumbent. Run assignment at 1–5 Hz (sticky), aiming at 15–30 Hz — per-frame reassignment invites beam flapping. Handoffs cross-fade. Honest status: no published algorithm exists for lights; this is greenfield.</li>
+<li><strong>Safety layer (runs last, overrides all):</strong> predictive no-go cones around heads (extrapolate by angular velocity — static per-frame checks demonstrably fail on fast motion), soft-edge dimming at cone borders, UGR ≤ 19 as a computable glare budget, and the interlock: tracking-confidence loss → park/dim within a deadline.</li>
+<li><strong>The camera sees the beam — design for it:</strong> a bright moving spot shifts auto-exposure and casts moving shadows. Lock camera exposure, test the tracker with beams active, mask the commanded spot region if needed. (The same fact becomes an asset in calibration.)</li>
+<li><strong>Aiming math:</strong> closed-form angles per fixture from the calibrated model, with the dual-solution constraint (every target has a mirrored pan+180° twin — pick one and don't flip).</li>
+</ul>
+<h2 id="4-step-by-step-execution-plan">4. Step-by-step execution plan<a class="headerlink" href="#4-step-by-step-execution-plan" title="Permanent link">&para;</a></h2>
+<h3 id="phase-0-the-lamp-follows-me-a-weekend-needs-only-the-doc-34-rig-any-rtsp-camera">Phase 0 — "The lamp follows me" (a weekend; needs only the Doc 3/4 rig + any RTSP camera)<a class="headerlink" href="#phase-0-the-lamp-follows-me-a-weekend-needs-only-the-doc-34-rig-any-rtsp-camera" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Mount the camera high in a corner and get its stream working — budget an hour if you've never set up an IP camera: on first boot it forces an admin password (via its app or web page at the camera's IP); <strong>enable RTSP/ONVIF in its settings</strong> (often off by default); then confirm the stream plays in VLC (Media → Open Network Stream). Amcrest/Dahua URL pattern: <code>rtsp://user:pass@CAMERA_IP:554/cam/realmonitor?channel=1&amp;subtype=0</code> — the camera's web UI or manual confirms the exact path. While in settings, set <strong>fixed exposure</strong> (the beam-in-view rule from §3).</li>
+</ol>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting perception stack
+(chapter: engineering.engineered.lighting/05-teach-it-to-aim/, Phase 0
+steps 2-6). The corner camera is mounted and streaming RTSP with fixed
+exposure, and the Doc 3/4 gimbal rig is on the bench with its ESPHome
+node subscribed to the spotlight/target MQTT topic, forwarding to CAN.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: build the follow-me tracker on the GPU box, in a git repo, and
+iterate on it while I watch the beam. (a) pip install ultralytics and
+run YOLO26 person detection on the stream with ByteTrack IDs via
+model.track(); read frames through OpenCV with buffering disabled —
+grab-and-discard so we always process the newest frame. (b) Floor
+calibration: I tape 4 marks in a big rectangle and tape-measure their
+true room-frame positions; take my clicked pixel positions from one
+saved frame and compute the pixel-to-floor homography with
+cv2.getPerspectiveTransform. (c) For each tracked person, map the
+bottom-center of the box (the feet) through the homography to (x, y)
+on the floor; smooth with a One Euro filter, estimate velocity, and
+compute the led aim point (position + velocity × measured loop
+latency). (d) Fixture pose: I tape-measure the gimbal&#39;s (x, y, z);
+compute pan = atan2 and tilt = atan toward a chest-height point above
+the aim point. (e) Publish {&quot;v&quot;:1, &quot;ts&quot;:..., &quot;pan&quot;:..., &quot;tilt&quot;:...,
+&quot;rate&quot;:60} — the Doc 6 envelope fields — to the spotlight/target
+topic at ~10-15 Hz, and use mosquitto_sub on that topic to verify
+what the fixture is actually being told; the 0xA4 speed field keeps
+motion continuous between updates.
+
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current
+limit stays as set. Announce each motion command before sending it
+and wait for my explicit go.
+
+Done when: the beam follows you smoothly across the room and you have
+latency + noise numbers.
+
+Report back: end-to-end latency (wave-to-beam from slow-mo video),
+beam lag at walking speed, tracking noise while standing still, a
+mosquitto_sub capture of spotlight/target, and the diff of every
+script added to the repo.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol start="2">
+<li>On the GPU box: <code>pip install ultralytics</code> + run YOLO26 person detection on the stream; add ByteTrack IDs (built into Ultralytics' <code>model.track()</code>); read frames via OpenCV with buffering disabled (grab-and-discard so you always process the <em>newest</em> frame — the classic seconds-of-lag trap). This script — and every GPU-box script in this doc — is ideal Claude Code territory: run it in a git repo on the box and have it scaffold, run, and iterate on the tracker while you watch the beam; it can also <code>mosquitto_sub</code> the output topic to verify what the fixture is actually being told.</li>
+<li><strong>Floor calibration (15 min):</strong> tape 4 marks on the floor in a big rectangle; measure their true positions with a tape measure (room frame = one corner of the room, x/y along walls); click their pixel positions in one saved frame; <code>cv2.getPerspectiveTransform</code> gives the pixel→floor homography.</li>
+<li>For each tracked person: bottom-center of the box (≈ feet) → homography → (x, y) on the floor. Smooth with a One Euro filter; estimate velocity; compute the <em>led</em> aim point (position + velocity × measured loop latency).</li>
+<li>Fixture pose: measure the gimbal's (x, y, z) with a tape measure; <code>pan = atan2</code>, <code>tilt = atan</code> toward a chest-height point above the aim point.</li>
+<li>Publish <code>{"v":1, "ts":…, "pan":…, "tilt":…, "rate":60}</code> (envelope fields per <a href="../06-message-contract/">Doc 6</a>) to the MQTT topic <strong><code>spotlight/target</code></strong> at ~10–15 Hz (the name <a href="../03-build-the-gimbal/">Doc 3</a> stage 9 and <a href="../04-full-fixture-bench/">Doc 4</a>'s stage-6 look-ahead both use); the <a href="../04-full-fixture-bench/">Doc 4</a> ESPHome node subscribed to that topic forwards to CAN. The 0xA4 speed field makes motion continuous between updates.</li>
+<li>Walk the room. Measure: end-to-end latency (wave-to-beam on slow-mo video), beam lag at walking speed, noise during tracking.</li>
+</ol>
+<p><strong>Done when:</strong> the beam follows you smoothly across the room and you have latency + noise numbers. <em>This single demo validates the entire stack's riskiest loop.</em></p>
+<h3 id="phase-1-surfaces-suppression-the-room-model-arrives">Phase 1 — Surfaces &amp; suppression (the room model arrives)<a class="headerlink" href="#phase-1-surfaces-suppression-the-room-model-arrives" title="Permanent link">&para;</a></h3>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting perception stack
+(chapter: engineering.engineered.lighting/05-teach-it-to-aim/, Phase 1
+— surfaces &amp; suppression). The follow-me loop from Phase 0 works off
+a 4-point floor homography, and I have a LiDAR room scan (Polycam
+Space Mode, rescaled against one tape-measured distance) exported as
+a mesh/point cloud.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: be my calibration helper for registering the camera to the room
+scan and wiring in the room model. (a) Help me label ~10-20 surfaces
+from the scan into named JSON entries {name, centroid, normal,
+extent} — I do the lasso clicking in CloudCompare or SuperSplat, you
+build and validate the JSON. (b) Register the camera to the scan: I
+photograph the ChArUco board at a spot picked from the scan; you run
+solvePnP and invert for the camera pose, with sanity checks —
+reprojection under 1 px plus a few clicked non-coplanar points.
+(c) Replace the Phase 0 4-point floor homography with the registered
+camera + the scan&#39;s floor (better everywhere in the room). (d) Wire
+activity context in: subscribe the states the existing model
+publishes over MQTT and map them in the resolver — reading@couch to
+wall-art idle, cooking to the cutting-board target, movie to
+suppression (no spontaneous motion).
+
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current
+limit stays as set. Announce each motion command before sending it
+and wait for my explicit go.
+
+Done when: &quot;light the table,&quot; &quot;point at the art,&quot; and movie-stillness
+all work from label lookups.
+
+Report back: the solvePnP reprojection error and non-coplanar check
+results, before/after floor-position accuracy at a few tape-measured
+spots, the labeled-surfaces JSON, a mosquitto_sub capture showing a
+context state switching the target, and the diff.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol>
+<li>Scan the room (Polycam <strong>Space Mode</strong>, LiDAR); tape-measure one known distance; rescale if off. Export mesh/point cloud.</li>
+<li>Label ~10–20 surfaces once, manually (CloudCompare or SuperSplat lasso → named JSON <code>{name, centroid, normal, extent}</code>). Fifteen minutes of clicking beats a research project — auto-labeling (open-vocab 3D) is still unreliable on loose language like "cutting board."</li>
+<li>Register the camera to the scan: ChArUco board at a spot picked <em>from the scan</em> → one photo → <code>solvePnP</code> → camera pose (invert!). Sanity: reprojection &lt;1 px, plus a few clicked non-coplanar points. (Marker-based beats automatic matching indoors — the leading auto tool's own maintainers report &gt;80% indoor failure.)</li>
+<li>Replace Phase 0's 4-point floor homography with the registered camera + scan floor (better everywhere in the room).</li>
+<li>Wire activity context in: your existing model publishes states over MQTT; the resolver maps <code>reading@couch</code> → wall-art idle vs. <code>cooking</code> → cutting-board target; <code>movie</code> → <strong>suppression</strong> (no spontaneous motion).</li>
+</ol>
+<p><strong>Done when:</strong> "light the table," "point at the art," and movie-stillness all work from label lookups.</p>
+<h3 id="phase-2-self-calibration-the-crown-jewel">Phase 2 — Self-calibration (the crown jewel)<a class="headerlink" href="#phase-2-self-calibration-the-crown-jewel" title="Permanent link">&para;</a></h3>
+<p><em>Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.</em></p>
+<ol>
+<li>Sweep each fixture through a coarse pan/tilt grid <strong>spanning its full range</strong> but constrained to camera-visible landings (spots outside the FoV or occluded teach nothing; if the visible region is small, densify there or add a second camera pose).</li>
+<li>At each grid point: beam on/off, frame-difference, centroid of the spot; ray-cast that pixel onto the scan mesh for the 3D landing point. <strong>Lock exposure; run at dimmed ambient</strong> — the system controls the room's other lights, so calibrate at night automatically for maximum contrast.</li>
+<li>Fit fixture pose + encoder zero-offsets + axis non-orthogonality by least squares (Levenberg–Marquardt; the telescope-pointing term structure). Error budget: scan ~2 cm + registration ~2 cm + centroid ~2 cm → RSS ≈ 3.5 cm ≈ <strong>0.67° at 3 m</strong> — inside the ~1° budget, not by miles; <em>measure</em> residuals rather than assuming them.</li>
+<li>Verify: command the beam to 10 labeled targets, measure landing error with the camera. Keep the manual 4-point jog as bootstrap/fallback. Re-fit automatically if drift is detected (the camera checks every landing forever — the system notices its own miscalibration).</li>
+</ol>
+<p><strong>Done when:</strong> a fixture placed anywhere self-calibrates in ~2 minutes and lands within ~1° on demand. This is also when fixture #2 arrives.</p>
+<h3 id="phase-3-book-gestures-v1">Phase 3 — Book &amp; gestures v1<a class="headerlink" href="#phase-3-book-gestures-v1" title="Permanent link">&para;</a></h3>
+<p><em>Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.</em></p>
+<ol>
+<li>Book: person anchor + wrist keypoint offset → aim; open-vocab confirm ("book" via YOLOE/SAM-3-class model on a wrist-region crop) to <em>arm</em> the behavior.</li>
+<li>Gestures: arm-scale only (raise/wave/hold-out from body keypoints), armed by context state; coarse point-to-zone (ray from shoulder→wrist, snapped to the nearest labeled surface).</li>
+</ol>
+<p><strong>Done when:</strong> the beam lands on a held book within one beam-width; a raised-arm gesture reliably toggles it; and a normal evening passes with zero false gesture triggers.</p>
+<h3 id="phase-4-coordination-safety-hardening">Phase 4 — Coordination &amp; safety hardening<a class="headerlink" href="#phase-4-coordination-safety-hardening" title="Permanent link">&para;</a></h3>
+<p><em>Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.</em></p>
+<p>Two fixtures, two people: Hungarian assignment @ 1–5 Hz with hysteresis; cross-fade handoffs; predictive no-go cones + soft-edge dimming + tracking-loss interlock; motion styling (anticipation micro-move, context speed caps). <strong>Done when:</strong> two people walk crossing paths and the beams hand off without flapping or ever crossing a face.</p>
+<h3 id="phase-5-precision-identity">Phase 5 — Precision &amp; identity<a class="headerlink" href="#phase-5-precision-identity" title="Permanent link">&para;</a></h3>
+<p><em>Greenfield — no agent prompt yet: no proven recipe to encode. Work this phase with your agent from the text below.</em></p>
+<p>Trained pointing model (&lt;2°) only if coarse pointing earns it; geometric/trajectory re-ID → per-person preferences (feeds the roadmap's identity layer).</p>
+<p><strong>Done when:</strong> a pointed arm selects the intended zone ≥9 times in 10, and two household members each get their saved warmth/brightness without asking.</p>
+<h2 id="5-the-depth-question-answered-directly">5. The depth question, answered directly<a class="headerlink" href="#5-the-depth-question-answered-directly" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Hardware</th>
+<th>Covers</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0 — ground plane + room model</strong></td>
+<td>none new</td>
+<td>follow-me, all static targets, couch-seated (model priors), book (wrist offset), heads for safety</td>
+<td><strong>Start here</strong></td>
+</tr>
+<tr>
+<td>1 — better software</td>
+<td>none</td>
+<td>multi-camera fusion (halves jitter), occlusion-robust tracking, object memory</td>
+<td>as stories demand</td>
+</tr>
+<tr>
+<td>2 — one stereo camera in a hard room</td>
+<td>$359–579</td>
+<td>true 3D for reclined/floor-sitting, heavy clutter, tight multi-person; sharper self-cal</td>
+<td>only when Tier 0 measurably misses</td>
+</tr>
+<tr>
+<td>✗ monocular depth networks</td>
+<td>GPU only</td>
+<td>—</td>
+<td>skip — jittery, 18–40 cm @ 4 m, worse than free geometry</td>
+</tr>
+</tbody>
+</table>
+<p>Fisheye note: a 180°+ lens covers big rooms from one corner but needs a fisheye calibration model + dewarp before any of the geometry above — prefer two normal cameras when a room demands more coverage.</p>
+<h2 id="6-risk-register-honest">6. Risk register (honest)<a class="headerlink" href="#6-risk-register-honest" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Novel, no precedent:</strong> the V-JEPA + real-time-tracker dual path and world-model-gated gestures are unpublished combinations — analogs de-risk the pattern; the integration is ours to prove.</li>
+<li><strong>Coordination policy is greenfield</strong> — expect tuning cycles on costs/hysteresis; no literature will save us.</li>
+<li><strong>Slow-path latency is seconds-to-tens-of-seconds</strong> (clips → V-JEPA): context-driven target switches lag activity changes; stories must tolerate it, and anything sub-second belongs on the fast path by design.</li>
+<li><strong>Hands at range stay unsolved (2026)</strong> — stories are designed to wrist-level precision, which the beam width forgives.</li>
+<li><strong>No public benchmarks for this GPU</strong> on Frigate/DeepStream/V-JEPA — benchmark early; margins on adjacent hardware suggest ample headroom.</li>
+<li><strong>Edge-migration debt (strategic):</strong> the prototype is deliberately central-GPU, but the commercial product runs on a home-hub NPU. Cheap to migrate: YOLO-class detection, tracking, all the ground-plane/calibration/aiming math (it's just algebra). Expensive to migrate: SAM-3-class open-vocab segmentation, DeepStream-specific pipelines (NVIDIA-locked), full-size V-JEPA. Prefer the portable primitive wherever two options tie; treat every DeepStream convenience as prototype-only.</li>
+<li><strong>Product-kit camera transport must be reconciled:</strong> if the commercial kit's per-room cameras stream continuous WiFi video, a 5–10 room home lands exactly in the documented WiFi-collapse regime. The edge hierarchy in the Engineered Lighting strategy roadmap (an internal doc outside this series) is the answer — tier-1 vision on-device, ship metadata/clips, not video — the prototype's stream-everything pattern is a lab convenience the product must not inherit. Wired/PoE is the alternative at installation-friction cost.</li>
+<li><strong>Camera brand watch item (checked July 2026 — re-check before any camera purchase):</strong> the FCC Covered-List expansion targets Dahua/Hikvision procurement — residential unaffected, but firmware/inventory longevity is worth watching for Dahua-lineage brands.</li>
+<li><strong>Patents for counsel:</strong> US 12,190,542 (beam self-calibration), US 11,956,873 (multi-fixture follow-spot control), Forma (motorized recessed fixtures).</li>
+<li><strong>Trust is the real adoption risk:</strong> the same research validating demand documents the "being watched" objection — suppression states, legible motion, and a visible perception-off affordance are requirements, not polish.</li>
+</ul>
+<h2 id="further-reading-most-load-bearing">Further reading (most load-bearing)<a class="headerlink" href="#further-reading-most-load-bearing" title="Permanent link">&para;</a></h2>
+<p>Ground-plane localization accuracy — <a href="https://arxiv.org/abs/2606.13509">arxiv.org/abs/2606.13509</a> · DeepStream 9.1 MV3DT + AutoMagicCalib — <a href="https://developer.nvidia.com/blog">developer.nvidia.com/blog</a> (July 2026) + DS_Performance docs · One Euro filter — CHI 2012, <a href="https://direction.bordeaux.inria.fr/~roussel">direction.bordeaux.inria.fr/~roussel</a> · REACH (hands at room range) — <a href="https://arxiv.org/abs/2605.22231">arxiv.org/abs/2605.22231</a> · SAM 3 — <a href="https://ai.meta.com/blog/segment-anything-model-3">ai.meta.com/blog/segment-anything-model-3</a> · YOLO26 — <a href="https://docs.ultralytics.com">docs.ultralytics.com</a> · Beam self-cal patent — <a href="https://patents.google.com/patent/US12190542B2">patents.google.com/patent/US12190542B2</a> · Beamatron (steerable-projector math, MSR UIST 2012) — <a href="https://hbenko.com">hbenko.com</a> · Pan-tilt kinematic calibration — <a href="https://arxiv.org/pdf/1812.00232">arxiv.org/pdf/1812.00232</a> · TPOINT pointing models — <a href="https://bisque.com">bisque.com</a> · OpenCV solvePnP/ChArUco — <a href="https://docs.opencv.org">docs.opencv.org</a> · hloc indoor-failure admission — <a href="https://github.com/cvg/Hierarchical-Localization/issues/325">github.com/cvg/Hierarchical-Localization/issues/325</a> · Polycam — <a href="https://learn.poly.cam">learn.poly.cam</a> · zactrack/BlackTrax/Follow-Me (manual-calibration prior art) — vendor sites · LuminAR (MIT robotic lamp precedent) — <a href="https://spectrum.ieee.org">spectrum.ieee.org</a> · Frigate autotracking + smoothing lessons — <a href="https://docs.frigate.video">docs.frigate.video</a>, github issue #20903 · PointingNet — <a href="https://arxiv.org/abs/2307.02949">arxiv.org/abs/2307.02949</a> · Animation principles for robots (HRI 2011) — <a href="https://leilatakayama.org">leilatakayama.org</a> · ADB glare masking — NHTSA DOT HS 812 174 · ILDA audience-scanning safety — <a href="https://ilda.com">ilda.com</a> · go2rtc — <a href="https://github.com/AlexxIT/go2rtc">github.com/AlexxIT/go2rtc</a> · WiFi multi-camera collapse — ipcamtalk thread 77100 · ESPHome batch_delay — <a href="https://esphome.io/components/api">esphome.io/components/api</a> · V-JEPA 2 — <a href="https://github.com/facebookresearch/vjepa2">github.com/facebookresearch/vjepa2</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../04-full-fixture-bench/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4 · Build the Full Fixture Bench">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                4 · Build the Full Fixture Bench
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../06-message-contract/" class="md-footer__link md-footer__link--next" aria-label="Next: 6 · The Message Contract">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                6 · The Message Contract
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>

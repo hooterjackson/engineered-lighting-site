@@ -1,0 +1,1016 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The decision journey to the RMD-L-4005 smart CAN actuators — what was evaluated and why integrated actuators won.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/02-choosing-the-motors/">
+      
+      
+        <link rel="prev" href="../01-how-we-got-here/">
+      
+      
+        <link rel="next" href="../03-build-the-gimbal/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2 · Choosing the Motors - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="2 · Choosing the Motors - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The decision journey to the RMD-L-4005 smart CAN actuators — what was evaluated and why integrated actuators won." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/02-choosing-the-motors.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/02-choosing-the-motors/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="2 · Choosing the Motors - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The decision journey to the RMD-L-4005 smart CAN actuators — what was evaluated and why integrated actuators won." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/02-choosing-the-motors.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-2-choosing-the-motors-why-smart-can-actuators-won" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2 · Choosing the Motors
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-purchase-this-decision-produces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The purchase this decision produces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-decision-journey-what-we-searched-in-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The decision journey (what we searched, in order)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-carried-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risks carried forward
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-purchase-this-decision-produces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The purchase this decision produces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-decision-journey-what-we-searched-in-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The decision journey (what we searched, in order)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-carried-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risks carried forward
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-2-choosing-the-motors-why-smart-can-actuators-won">Doc 2 · Choosing the Motors — Why Smart CAN Actuators Won<a class="headerlink" href="#doc-2-choosing-the-motors-why-smart-can-actuators-won" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong></p>
+<h2 id="the-purchase-this-decision-produces">The purchase this decision produces<a class="headerlink" href="#the-purchase-this-decision-produces" title="Permanent link">&para;</a></h2>
+<p>The full build shopping list (wiring, supply, tools) lives in <strong><a href="../03-build-the-gimbal/">Doc 3</a>'s BoM</strong>. This doc's outcome is the part at the heart of it:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Qty</th>
+<th>Est.</th>
+<th>What it is and why it's the pick</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MyActuator RMD-L-4005-100-C</strong></td>
+<td>2</td>
+<td>$107.50/axis (<a href="https://www.dingsmotionusa.com/rmd-l-5005">Dings</a>, July 2026)</td>
+<td>A "smart servo": brushless gimbal motor, 18-bit absolute encoder, and a factory-tuned FOC controller sealed into one Ø39.6 × 23 mm, 65 g puck. Direct drive — no gears to whine or wear. Runs natively on the fixture's 12–24 V bus and is commanded over CAN in single 8-byte messages ("go to 32.5° at 10°/s"); all motion control happens inside the part. One becomes the pan axis, one the tilt. Ordering note: select the <strong>-C (CAN)</strong> variant — the same listings carry an RS485 "-R" twin, and "-25T" is this motor's deprecated old name. US sources: Amazon, RobotShop, Dings Motion USA</td>
+</tr>
+<tr>
+<td>Caddx GM2 bare 2-axis gimbal <em>(optional)</em></td>
+<td>1</td>
+<td>$70</td>
+<td>A working 30 g UART-commanded FPV gimbal — a great study article for control feel and micro-scale mechanical packaging (its motors are sized for 5–20 g cameras, so it's a reference, not the actuator)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Availability addendum (July 2026)</p>
+<p>The RMD-L-4005 sold out at every retail channel in July 2026 — temporarily; it's an
+active product line, not discontinued. The build moved to its in-stock sibling, the
+<strong>RMD-L-5005</strong> ($107.50, <a href="https://www.dingsmotionusa.com/rmd-l-5005">Dings Motion USA</a>),
+a zero-code swap: same 18-bit absolute encoder, 12–24 V, CAN at 1 Mbps, Motion
+Protocol V4.2, direct drive, and command set. The decision journey below is the
+historical record and still reads "4005" — the reasoning is unchanged.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>L-4005</th>
+<th>L-4010</th>
+<th>L-4015</th>
+<th>L-5005</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diameter</td>
+<td>39.6 mm</td>
+<td>39.6 mm</td>
+<td>39.6 mm</td>
+<td>~49 mm</td>
+</tr>
+<tr>
+<td>Body length</td>
+<td>23 mm</td>
+<td>~28 mm*</td>
+<td>~33 mm*</td>
+<td>~24 mm</td>
+</tr>
+<tr>
+<td>Mass</td>
+<td>65 g</td>
+<td>~85 g*</td>
+<td>~105 g*</td>
+<td>92 g</td>
+</tr>
+<tr>
+<td>Peak torque</td>
+<td>25 N·cm</td>
+<td>33 N·cm</td>
+<td>~45–50 N·cm*</td>
+<td>42 N·cm</td>
+</tr>
+<tr>
+<td>Everything else</td>
+<td>identical — same encoder, voltage, CAN/RS485, V4.2 protocol, direct drive</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><em>Estimates — the 4015's spec sheet is published only as an image; confirm exact
+figures with Dings.</em></p>
+<p>The family name decodes as L-DDSS: diameter class plus stator stack height. Torque
+doesn't differentiate the siblings — every one clears the 8.83 N·cm unbalanced worst
+case by ≥2.8× — so geometry decides: the 5005 keeps the slim ~24 mm pancake profile
+and pays 9 mm of diameter, which the fixture bay absorbs, while the 4010/4015 grow in
+body length, the dimension the yoke and fixture depth care about. Preference order:
+<strong>5005 ≥ 4010 &gt; 4015</strong>.</p>
+</div>
+<p>Everything else evaluated — bare motors + DIY control stacks, hobby servos, drone motors, the other integrated actuators — is covered in the decision journey below, so the reasoning stays legible without cluttering the shopping list.</p>
+<hr />
+<h2 id="concepts-plain-english">Concepts (plain English)<a class="headerlink" href="#concepts-plain-english" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>BLDC (brushless motor):</strong> three coils of wire pushing a ring of magnets. No contacts to wear, no gears — silent by construction. But it's "dumb": something must energize the right coils at the right moments.</li>
+<li><strong>FOC (field-oriented control):</strong> the math that drives a BLDC smoothly — steering the magnetic field continuously instead of in steps. FOC done well = silky, silent motion; FOC done badly = buzzing and vibration. Tuning FOC yourself is the hard part of DIY.</li>
+<li><strong>Absolute encoder:</strong> a magnetic angle sensor on the shaft that knows the position instantly at power-on. The RMD-L's is 18-bit ≈ 0.001° resolution — about 170× finer than we need. One honest limit: it's <strong>single-turn</strong> — it knows the angle <em>within</em> one revolution but can't count full turns made while unpowered (irrelevant if the frame has hard stops, which ours will).</li>
+<li><strong>Integrated smart actuator:</strong> motor + encoder + FOC controller + firmware sealed in one unit, commanded over a digital bus. You skip motor drivers, encoder mounting, and control-loop tuning entirely. This category is why round 1's plan died.</li>
+<li><strong>CAN bus:</strong> a rugged two-wire network from the automotive world. Every device has an address; messages are 8-byte packets; wiring is one twisted pair shared by all devices. Our ESP32-C6 has a CAN controller on-chip (Espressif calls it TWAI).</li>
+<li><strong>KV rating:</strong> motor speed per volt. High-KV motors (drone racing) are wound to spin fast; gimbal motors are low-KV, wound for smooth torque at near-zero speed. Same size, opposite personalities — why cheap tiny drone motors can't do this job.</li>
+<li><strong>Cogging:</strong> the magnetic "clickiness" you feel turning a motor by hand — magnets snapping between preferred positions. Visible as tiny stutter at very low speeds; good gimbal motors and good FOC minimize it.</li>
+<li><strong>Direct drive:</strong> load bolted straight to the motor, no gearbox. Zero backlash, zero gear noise. The whole camera-gimbal industry is direct drive — and so are we.</li>
+</ul>
+<hr />
+<h2 id="the-decision-journey-what-we-searched-in-order">The decision journey (what we searched, in order)<a class="headerlink" href="#the-decision-journey-what-we-searched-in-order" title="Permanent link">&para;</a></h2>
+<p><strong>1. "Use what DJI uses" — a wall.</strong> The Osmo-Pocket-scale motors (~Ø12–15 mm) are proprietary: no published dimensions, no purchasable parts, no pinouts. Teardowns show what's inside (a standard driver chip, MP6536, plus Hall sensors and flex cables — no slip rings), but the connectors are undocumented and the newer devices speak private digital buses. Even controlling a DJI phone gimbal over Bluetooth is a dead end — the best reverse-engineering effort gets telemetry but the device <em>silently ignores</em> motor commands. <strong>Verdict: don't build on DJI hardware.</strong></p>
+<p><strong>2. The buyable floor.</strong> The smallest true gimbal motor money can buy is the CopterLab PM1105 — Ø12×16 mm bare, 12 g, ~1 N·cm, $21.71. Genuinely Osmo-scale, but right at our torque floor (needs a very strictly balanced head). The workhorse class is one size up: <strong>2804-class</strong> (Ø35 mm, ~50 g, 2.5–3.4 N·cm), sold with factory-mounted encoders. Nothing between ~Ø18 mm and Ø35 mm ships with an encoder — a real market gap, confirmed by the builder community.</p>
+<p><strong>3. The DIY path and its documented pain.</strong> Bare gimbal motor + encoder + open-source FOC (SimpleFOC) works — there are lovely precedents (a "practically noiseless" pan/tilt camera turret; a fully open-source smartphone gimbal with CAD and PCBs). But the forums also document the failure modes honestly: encoder mounting quality is the #1 killer, low-speed cogging resists tuning, and open-loop shortcuts are <em>never</em> quiet. Budget: weeks. And the convenient two-axis driver board we'd have used (MKS Dual FOC) turned out to have a community reliability record bad enough to withdraw it.</p>
+<p><strong>4. The category that ends the debate: integrated smart actuators.</strong> Robotics vendors now sell exactly what we were about to hand-build, factory-tuned and sealed:</p>
+<table>
+<thead>
+<tr>
+<th>Actuator</th>
+<th>Size</th>
+<th>Torque (nom/peak)</th>
+<th>Bus</th>
+<th>Volts</th>
+<th>Price/axis</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MyActuator RMD-L-4005</strong></td>
+<td><strong>Ø39.6×23 mm, 65 g</strong></td>
+<td>7 / 25 N·cm</td>
+<td>CAN + RS485</td>
+<td><strong>12–24 V</strong></td>
+<td>$107.50/axis (Dings, July 2026)</td>
+<td><strong>Winner</strong> — direct drive, 18-bit absolute encoder, native on our 24 V bus, US distributor + Amazon</td>
+</tr>
+<tr>
+<td>M5Stack RollerCAN</td>
+<td>40 mm cube, 83 g</td>
+<td>6.5 N·cm @16 V</td>
+<td>CAN/RS485</td>
+<td>6–16 V</td>
+<td>$37–44</td>
+<td>Cheapest; not 24 V; torque marginal</td>
+</tr>
+<tr>
+<td>SteadyWin GIM3505 (driver SKU)</td>
+<td>Ø43×30 mm</td>
+<td>—</td>
+<td>CAN/RS485</td>
+<td>12–48 V</td>
+<td>$76–120</td>
+<td>Fine; China-only shipping; SKU confusion (encoder-only vs driver versions)</td>
+</tr>
+<tr>
+<td>CubeMars GL40 II</td>
+<td>Ø46×33.5 mm, 125 g</td>
+<td>25 / 68 N·cm</td>
+<td>CAN</td>
+<td>16 V</td>
+<td>$134</td>
+<td>The premium "quiet gimbal actuator" if RMD disappoints</td>
+</tr>
+<tr>
+<td>DYNAMIXEL XL330</td>
+<td>20×34×26 mm, 18 g</td>
+<td>10 N·cm</td>
+<td>TTL serial</td>
+<td>5 V</td>
+<td>$27</td>
+<td>Tiny and charming — but <strong>geared</strong> (plastic gears = noise) and 5 V. Wrong physics for silence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why the RMD-L-4005 wins, in product terms:</strong> each axis becomes a <em>part</em> instead of a project. The fixture always knows where the beam points (absolute encoder → no homing dance, survives power loss). Torque headroom (25 N·cm peak vs 8.83 worst-case unbalanced) makes head balancing good-practice rather than mandatory. And the electronics shrink: the ESP32-C6 already has CAN on-chip, so the whole motion subsystem needs one $2 transceiver chip — no motion co-processor, no driver boards, no encoder wiring.</p>
+<p><strong>The trade-offs, honestly:</strong> the control loop is a black box (if it whines at hold, you can't retune it — that's the first bench measurement in <a href="../03-build-the-gimbal/">Doc 3</a>); it's ~5 mm fatter than the smallest bare motors; it's a Chinese vendor with a US distributor; and at production volume you'd cost-down to your own driver on the fixture PCB — the RMD-L is the prototype accelerant and the behavioral reference for that later design.</p>
+<p><strong>5. Reality checks from adjacent worlds.</strong> FPV drone gimbals (Caddx GM2: 30 g, $70, PWM/UART, even natively supported by ArduPilot autopilots) prove the control patterns but are motored for 5–20 g cameras — a payload class too small for our head. And architectural lighting already has a patented motorized recessed spotlight line (<strong>Forma MOTOLUX</strong>, ±40° dual-axis, DMX/Casambi — patent US 11215345): the category exists commercially, validating the concept and requiring a freedom-to-operate review before our commercial fixture.</p>
+<hr />
+<h2 id="risks-carried-forward">Risks carried forward<a class="headerlink" href="#risks-carried-forward" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Hold-state whine</strong> is the one unknown that matters: a statically held BLDC can whine at some operating points, and the RMD's sealed loop can't be retuned. <a href="../03-build-the-gimbal/">Doc 3</a>, stage 5 measures it before anything else depends on it.</li>
+<li><strong>Speed vs. silence:</strong> follow-me needs 54–80°/s pan on close passes (<a href="../05-teach-it-to-aim/">Doc 5</a>'s math); noise at those speeds is unmeasured — same stage-5 bench item.</li>
+<li><strong>Protocol drift:</strong> older stock has shipped with older protocol docs — trust the PDF in the box over any byte layout written here.</li>
+<li><strong>Patents:</strong> Forma (motorized recessed fixtures) and Position Imaging US 12,190,542 (beam self-calibration, see <a href="../05-teach-it-to-aim/">Doc 5</a>) — counsel review before commercialization.</li>
+</ul>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<p>RMD-L-4005 — <a href="https://myactuator.com/l-4005-details">myactuator.com/l-4005-details</a> · <a href="https://dingsmotionusa.com/rmd-l-4005">dingsmotionusa.com/rmd-l-4005</a> · Protocol manual — search "RMD Motor Motion Protocol V4.01 PDF" · Osmo Mobile 8 teardown — <a href="https://chargerlab.com">chargerlab.com</a> · SimpleFOC community (the DIY evidence base) — <a href="https://community.simplefoc.com">community.simplefoc.com</a> · GoodDog silent gimbal head — gooddog.ai/bumble/gimbal-electronics · SaraKIT quiet pan/tilt — <a href="https://hackaday.io/project/193511">hackaday.io/project/193511</a> · Caddx GM series + ArduPilot — <a href="https://ardupilot.org/copter/docs/common-caddx-gimbal.html">ardupilot.org/copter/docs/common-caddx-gimbal.html</a> · Forma MOTOLUX — <a href="https://formalighting.com">formalighting.com</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../01-how-we-got-here/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1 · How We Got Here">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1 · How We Got Here
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03-build-the-gimbal/" class="md-footer__link md-footer__link--next" aria-label="Next: 3 · Build the Gimbal">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3 · Build the Gimbal
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>

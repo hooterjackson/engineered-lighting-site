@@ -1,0 +1,1697 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="One ESP32-C6 running the whole fixture: 21 tunable-white channels, the constant-current spotlight, and the gimbal in ESPHome.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/04-full-fixture-bench/">
+      
+      
+        <link rel="prev" href="../03b-print-the-frame/">
+      
+      
+        <link rel="next" href="../05-teach-it-to-aim/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4 · Build the Full Fixture Bench - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="4 · Build the Full Fixture Bench - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="One ESP32-C6 running the whole fixture: 21 tunable-white channels, the constant-current spotlight, and the gimbal in ESPHome." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/04-full-fixture-bench.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/04-full-fixture-bench/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="4 · Build the Full Fixture Bench - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="One ESP32-C6 running the whole fixture: 21 tunable-white channels, the constant-current spotlight, and the gimbal in ESPHome." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/04-full-fixture-bench.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-4-build-the-full-fixture-bench-one-esp32-everything" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4 · Build the Full Fixture Bench
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-whole-bench-one-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The whole bench, one picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-led-side-170240-doc-3s-gimbal-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — LED side, ~$170–240 (+ Doc 3's gimbal BoM)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english-read-once-everything-refers-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English — read once, everything refers back)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-toolchain-explicitly-and-exactly-how-yaml-gets-onto-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your toolchain, explicitly — and exactly how YAML gets onto the board
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your toolchain, explicitly — and exactly how YAML gets onto the board">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-as-your-lab-partner-esphome-edition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI as your lab partner (ESPHome edition)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-power-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1 — Power backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-first-light-one-zone-three-sliders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 — First light: one zone, three sliders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-3-make-it-tunable-the-tri-white-blend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3 — Make it tunable: the tri-white blend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-4-scale-to-7-zones-21-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4 — Scale to 7 zones (21 channels)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-5-the-spotlight-constant-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 5 — The spotlight (constant-current)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-6-gimbal-joins-the-same-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 6 — Gimbal joins the same chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-7-integration-day-verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 7 — Integration day + verdict
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-whole-bench-one-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The whole bench, one picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-led-side-170240-doc-3s-gimbal-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — LED side, ~$170–240 (+ Doc 3's gimbal BoM)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english-read-once-everything-refers-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English — read once, everything refers back)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-toolchain-explicitly-and-exactly-how-yaml-gets-onto-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your toolchain, explicitly — and exactly how YAML gets onto the board
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your toolchain, explicitly — and exactly how YAML gets onto the board">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-as-your-lab-partner-esphome-edition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI as your lab partner (ESPHome edition)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-power-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1 — Power backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-first-light-one-zone-three-sliders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 — First light: one zone, three sliders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-3-make-it-tunable-the-tri-white-blend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3 — Make it tunable: the tri-white blend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-4-scale-to-7-zones-21-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4 — Scale to 7 zones (21 channels)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-5-the-spotlight-constant-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 5 — The spotlight (constant-current)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-6-gimbal-joins-the-same-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 6 — Gimbal joins the same chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-7-integration-day-verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 7 — Integration day + verdict
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-4-build-the-full-fixture-bench-one-esp32-everything">Doc 4 · Build the Full Fixture Bench — One ESP32, Everything<a class="headerlink" href="#doc-4-build-the-full-fixture-bench-one-esp32-everything" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong>
+One ESP32-C6 controlling all three fixture subsystems on the bench: <strong>21 channels of Valent X tunable-white tape + the 3-channel Cree spotlight + the CAN gimbal.</strong> Beginner-annotated throughout. Prereq: <a href="../03-build-the-gimbal/">Doc 3</a> stages 1–6 (motors answering on CAN) — that work slots in at <strong>stage 6</strong>; stage 7's demo scene additionally uses the printed frame from <a href="../03-build-the-gimbal/">Doc 3</a> stage 7.</p>
+<blockquote>
+<p id="prerequisites"><strong>Before you start — three prerequisites this doc quietly depends on:</strong></p>
+<ol>
+<li><strong>Home Assistant that can run Add-ons</strong> (Home Assistant OS or Supervised). Running HA in a plain Docker container or Core? The Add-on store won't exist — use the standalone CLI instead (<code>pip install esphome</code>; it mirrors everything the Device Builder does, and the AI-partner section below is built around it anyway).</li>
+<li><strong>An MQTT broker</strong> — install the official <strong>Mosquitto broker</strong> add-on in HA now (Settings → Add-ons). <a href="../03-build-the-gimbal/">Doc 3</a> stage 9, this doc's stage 6 look-ahead, and all of <a href="../05-teach-it-to-aim/">Doc 5</a> publish through it.</li>
+<li><strong>Basic soldering</strong> — a $25–40 iron kit (in the BoM) and three easy jobs: wires onto the tape's big copper pads, one solder-blob jumper on PCA9685 #2, and optionally the PicoBuck current jumper. The tape pads are a forgiving place to learn; tin the pad, tin the wire, touch them together with the iron.</li>
+</ol>
+</blockquote>
+<h2 id="the-whole-bench-one-picture">The whole bench, one picture<a class="headerlink" href="#the-whole-bench-one-picture" title="Permanent link">&para;</a></h2>
+<p><img alt="Full bench overview diagram" src="../assets/wiring-full-bench-overview.svg" /></p>
+<p><em>One C6, three subsystems, three kinds of "dimmer" (constant-voltage switches for tape, a constant-current driver for the star, smart servos for aim). Detailed wiring diagrams appear at stages 1 and 2.</em></p>
+<h2 id="bill-of-materials-led-side-170240-doc-3s-gimbal-bom">Bill of Materials — LED side, ~$170–240 (+ Doc 3's gimbal BoM)<a class="headerlink" href="#bill-of-materials-led-side-170240-doc-3s-gimbal-bom" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Part</th>
+<th>Qty</th>
+<th>Est.</th>
+<th>Where</th>
+<th>Notes / traps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>PCA9685 16-ch PWM breakout (Adafruit #815 or clone)</td>
+<td>2</td>
+<td>$30 / ~$10 clones</td>
+<td><a href="https://www.adafruit.com/product/815">Adafruit</a>, Amazon</td>
+<td>The PWM expanders: each turns 2 I2C wires into 16 independent dimmer signals (we use 21 of the 32). Bridge the A0 jumper on board #2 so it answers at address 0x41</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ULN2803A driver IC, 18-pin DIP (+ sockets)</td>
+<td>4 (+1 spare)</td>
+<td>$10</td>
+<td><a href="https://www.adafruit.com/product/970">Adafruit #970</a>, Amazon</td>
+<td>The muscle between logic and tape: each chip is 8 low-side switches that let 3.3 V dimmer signals switch the 24 V tape channels. Four chips = two zones per chip with spare inputs, so wiring stays zone-aligned (stage 4's table). Plugs straight into a breadboard</td>
+</tr>
+<tr>
+<td>2b</td>
+<td>Soldering iron kit (iron, solder, flux, helping hands)</td>
+<td>1</td>
+<td>$25–40</td>
+<td>Amazon</td>
+<td>For the tape-pad wires and PCA9685 #2's address jumper — see the prerequisites box above</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SparkFun <strong>PicoBuck</strong> (PRT-13705)</td>
+<td>1</td>
+<td>$17.50</td>
+<td><a href="https://www.sparkfun.com/products/13705">sparkfun.com</a></td>
+<td>The spotlight's driver: 3 constant-current channels in one screw-terminal module (330 mA/ch; solder jumper → 660 mA), each PWM-dimmable from a 3.3 V pin. Purpose-built for the exact job here — feeding one bare ~3 V LED per channel from a higher-voltage rail</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Diode LED <strong>Valent X Tunable White</strong> spool (DI-24V-VLX-TW1865-016, 16.4 ft)</td>
+<td>1</td>
+<td>$486</td>
+<td><a href="https://buyriteelectric.com/products/diode-led-di-24v-vlx-tw1865-016-16-4ft-4-6w-ft-valent-x-tunable-white-led-tape-light-color-temperature-1800k-3500k-6500k-voltage-24v">BuyRite Electric</a>, <a href="https://www.lbclightingpro.com/products/diode-led-valent-x-tunable-white-24v-4-6w-ft-16-4-ft-led-tape-light">LBC Lighting</a></td>
+<td>7 short zones ≈ 3.3 ft used; one spool covers everything with spare. Budget bench substitute if the spool price stings: <a href="https://www.amazon.com/dp/B08Q3RKCZH">BTF-Lighting 24 V CCT FCOB</a> (~$30, UL, CRI 90+, bare strip) — 2-channel warm+cool, 3000–6000 K, so it wires as 2 of the 3 zone channels and skips the 1800 K deep-warm; fine for exercising the control chain, not the photometric target</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Cree 3-up star (XP-G2/XP-L, warm/neutral/cool) + Carclo <strong>10507</strong> narrow-spot optic (~16° beam, clear, 84–89% efficient)</td>
+<td>1</td>
+<td>$15–25 (optics $3 ea)</td>
+<td><a href="https://www.ledsupply.com">LEDSupply</a></td>
+<td>The spotlight payload for the gimbal head. 10507 is the tightest 3-up optic made — ~0.4 m spot at 1.5 m, ~0.85 m at 3 m. Also grab a 10508 (medium ~26°) and 10509 (wide ~43°): they snap-swap in seconds, which <em>is</em> the beam-width experiment. Brightness headroom is huge: even at the PicoBuck's default 330 mA with 90 CRI dies, expect ~500–1900 lux on target across 1.5–3 m — reading/food-prep practice calls for only 300–800</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Heatsink ≥2"×2" + thermal adhesive</td>
+<td>1</td>
+<td>$8</td>
+<td>Amazon</td>
+<td>The star cooks itself bare in under a minute — never run unmounted</td>
+</tr>
+<tr>
+<td>7</td>
+<td>WAGO 221 lever-nut assortment</td>
+<td>1 pack</td>
+<td>$15</td>
+<td>Amazon, Home Depot</td>
+<td>24 V power distribution — high current stays OFF the breadboard</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Inline fuse holder + 3 A slow-blow fuses</td>
+<td>1</td>
+<td>$7</td>
+<td>Amazon</td>
+<td>Cheap insurance on the 24 V rail</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Pololu <strong>D24V22F5</strong> buck (24 V→5 V, 2.5 A)</td>
+<td>1</td>
+<td>$7.95</td>
+<td><a href="https://www.pololu.com/product/2858">pololu.com/product/2858</a></td>
+<td>Fixed 5 V, nothing to mis-adjust. (Budget LM2596 works but ships set to a random voltage — verify before connecting)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10 kΩ resistors, 22–24 AWG signal wire, 18–20 AWG for 24 V runs, extra breadboard</td>
+<td>—</td>
+<td>$20</td>
+<td>Amazon</td>
+<td>Signal wiring lives on the breadboard; the heavier 18–20 AWG carries the 24 V runs between WAGOs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="concepts-plain-english-read-once-everything-refers-back">Concepts (plain English — read once, everything refers back)<a class="headerlink" href="#concepts-plain-english-read-once-everything-refers-back" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>PWM / duty cycle:</strong> dimming by blinking faster than the eye sees. 60% brightness = on 60% of each cycle. The <strong>frequency</strong> is cycles/second — high enough and even cameras can't catch flicker.</li>
+<li><strong>CV vs CC (the two kinds of LED):</strong> LED <em>tape</em> is <strong>constant-voltage</strong> — feed it 24 V, it limits its own current; dim it by switching the 24 V rapidly (a $1 switch chip suffices). Bare high-power LEDs (the Cree star) are <strong>constant-current</strong> — they must be fed an exact current or they burn out, which takes a real driver module. Two different dimmers for two different physics.</li>
+<li><strong>Why a PWM expander:</strong> the C6 has only <strong>6</strong> built-in PWM channels; we need 24. The PCA9685 chip makes 16 each and takes orders over I2C. Your fixture brief (external design doc, not on this site) anticipated exactly this ("dedicated multi-channel LED-driver ICs").</li>
+<li><strong>I2C:</strong> a 2-wire party line (SDA data, SCL clock); each chip has an address (0x40, 0x41 = house numbers).</li>
+<li><strong>Low-side switching &amp; common anode:</strong> the tape's +24 V is always connected (the shared "anode"); each color channel dims by switching its <em>negative</em> wire to ground. Our switch is the ULN2803A (8 per chip). Its one cost: it "eats" ~1 V, so tape sees ~23 V — a uniform ~4% dimming, invisible in practice. (The production-faithful upgrade is MOSFETs, ~0.02 V drop.)</li>
+<li><strong>CCT blending:</strong> the tape has three fixed whites (1800/3500/6500 K). Intermediate color temperatures are <em>mixes</em> — cool half of the dial blends 6500↔3500, warm half blends 3500↔1800. That blend is the one real piece of code in this build (stage 3, ~20 lines, provided).</li>
+<li><strong>ESPHome:</strong> firmware you <em>configure</em> (YAML text) instead of program. Declare the hardware; it generates firmware, joins Home Assistant, creates dashboard entities. Since you already run HA, ~90% of this build is configuration. <strong>C6 requires ESPHome's ESP-IDF framework</strong> (its Arduino framework doesn't support C6).</li>
+</ul>
+<h2 id="your-toolchain-explicitly-and-exactly-how-yaml-gets-onto-the-board">Your toolchain, explicitly — and exactly how YAML gets onto the board<a class="headerlink" href="#your-toolchain-explicitly-and-exactly-how-yaml-gets-onto-the-board" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting full-fixture bench
+(chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+toolchain section). On the bench: an ESP32-C6 that will run the whole
+fixture from a single ESPHome YAML file — flashed over USB once,
+wirelessly ever after.
+Start by proposing a plan and wait for my approval before executing
+anything.
+Task: stand up the ESPHome command-line toolchain. Install the esphome
+CLI with pip and verify it by running &quot;esphome version&quot;. Then create
+fixture-bench.yaml in this repo: a starter config for board
+esp32-c6-devkitc-1 using the chapter&#39;s config header (variant esp32c6,
+framework type esp-idf — the C6 requires ESP-IDF; ESPHome&#39;s Arduino
+framework does not support it), plus esphome, wifi, api, and ota
+sections. Ask me for the WiFi credentials instead of inventing them.
+Prove the toolchain end to end by compiling without flashing
+(&quot;esphome compile fixture-bench.yaml&quot;). Keep the file in git so every
+later edit is reviewable, and remember the one-file rule: this entire
+chapter grows this single YAML file — later stages append under
+existing top-level keys, never duplicate them.
+Done when: &quot;esphome version&quot; prints a version and &quot;esphome compile
+fixture-bench.yaml&quot; finishes with a successful build.
+Report back: the esphome version string, the tail of the compile
+output showing success, and the full fixture-bench.yaml you created.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>There's no "upload button + code file" here like Arduino; ESPHome <em>generates</em> the firmware from your YAML and installs it. The full loop:</p>
+<details>
+<summary>Do it by hand — understand what the agent did</summary>
+<ol>
+<li><strong>Install ESPHome Device Builder</strong> (current name of the "ESPHome Dashboard"): Home Assistant → Settings → Add-ons → Add-on Store → search "ESPHome Device Builder" → Install → Start → Open Web UI.</li>
+<li><strong>Create the device:</strong> New Device → name it <code>fixture-bench</code> → pick <strong>ESP32-C6</strong> → it generates a starter config with your WiFi credentials. Skip the install prompt for now.</li>
+<li><strong>Edit the YAML:</strong> click <strong>Edit</strong> on the device's card. Everything in this doc's <code>yaml</code> blocks gets pasted <em>into this one file</em>, beneath the generated header (keep the generated <code>esphome:</code>, <code>wifi:</code>, <code>api:</code>, <code>ota:</code> sections; add ours after them). Save.</li>
+<li><strong>First install — over USB:</strong> click <strong>Install → "Plug into this computer."</strong> Connect the C6 by USB-C data cable to the machine your <em>browser</em> is running on (Chrome/Edge required — flashing uses the browser's serial access), pick the port when prompted, and watch it compile (a few minutes first time) and flash.</li>
+<li><strong>Every install after that — wireless:</strong> Install → <strong>"Wirelessly."</strong> The board updates itself over WiFi in ~30 s. You'll never touch the USB cable again unless you brick the WiFi config.</li>
+<li><strong>Reading the board's output:</strong> click <strong>Logs</strong> on the device card — a live stream over the network (no cable) of everything the firmware is doing: I2C devices found, light state changes, CAN frames, and the all-important <code>Component ... took a long time</code> performance warnings. This is your Serial-Monitor equivalent, and it works from anywhere in the house.</li>
+<li><strong>VS Code + the official ESPHome extension</strong> is the nicer editor once the YAML grows (validation + autocomplete as you type); the Device Builder's built-in editor is fine to start. <strong>Arduino IDE 2.x</strong> stays for <a href="../03-build-the-gimbal/">Doc 3</a>'s interactive motor console only.</li>
+</ol>
+</details>
+<p>Config header every stage assumes:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">esp32</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">board</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esp32-c6-devkitc-1</span>
+<span class="w">  </span><span class="nt">variant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esp32c6</span>
+<span class="w">  </span><span class="nt">framework</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esp-idf</span>
+</code></pre></div>
+<h3 id="ai-as-your-lab-partner-esphome-edition">AI as your lab partner (ESPHome edition)<a class="headerlink" href="#ai-as-your-lab-partner-esphome-edition" title="Permanent link">&para;</a></h3>
+<p>ESPHome is unusually AI-friendly because the entire toolchain is drivable from a command line, and all the board's output is network-streamed text:</p>
+<ul>
+<li><strong>Paste-level help (zero setup):</strong> ESPHome's validation errors are verbose and precise — paste the full error plus your YAML into Claude and the fix is usually one round trip. Same for the Logs stream when a light misbehaves.</li>
+<li><strong>Agentic loop (Claude Code + the ESPHome CLI):</strong> <code>pip install esphome</code> gives a command-line twin of the Device Builder. <code>esphome run fixture-bench.yaml</code> validates, compiles, uploads (USB or OTA), and streams logs in one command; <code>esphome logs fixture-bench.yaml</code> attaches to a running board over the network — <strong>no cable, from any machine on the LAN</strong>. That means a coding agent can own the whole iterate loop: edit YAML → <code>esphome run</code> → read the validation or runtime output → fix → repeat. Keep the YAML in git so its edits are reviewable. Example ask: <em>"Add zones 2–7 following the zone-1 pattern, flash it OTA, then watch the logs for two minutes and report any 'took a long time' warnings."</em></li>
+<li><strong>Telemetry watching:</strong> once MQTT is flowing, <code>mosquitto_sub -t '#' -v</code> gives an agent the live state of every light and the gimbal — useful for soak tests ("watch for an hour, summarize anything anomalous") that no human wants to babysit.</li>
+<li><strong>The rule from <a href="../03-build-the-gimbal/">Doc 3</a> stands:</strong> agents read and flash freely; anything that <em>moves the gimbal</em> runs only while you're watching, hand near the supply.</li>
+</ul>
+<hr />
+<h2 id="stage-1-power-backbone">Stage 1 — Power backbone<a class="headerlink" href="#stage-1-power-backbone" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="Power backbone wiring diagram" src="../assets/wiring-power-backbone.svg" /></p>
+<p>This build runs at <strong>24 V</strong> (tape-native; motors accept it too — one rail, like the fixture).</p>
+<ol>
+<li>Supply + → <strong>3 A slow-blow fuse</strong> → WAGO = the <strong>+24 V bus</strong>. Supply − → WAGO = the <strong>ground star point</strong> (every subsystem grounds <em>directly</em> here — daisy-chained grounds cause zone-to-zone brightness mismatch).</li>
+<li>24 V → Pololu buck → 5 V → ESP32's 5 V pin (or keep USB power during dev — either way, tie grounds).</li>
+<li><strong>Breadboard carries signals only</strong> (I2C, PWM, dim lines — milliamps). All real current (24 V feeds, tape, spotlight, motors) lives on WAGOs and 18–20 AWG wire. Rails die ~1 A; respect that and there are no mystery failures.</li>
+<li>Multimeter ritual: 24 V at the bus, 5 V from the buck, 0 Ω between all grounds.</li>
+</ol>
+<p><strong>Done when:</strong> one fused 24 V bus, one star ground, 5 V logic rail.</p>
+<h2 id="stage-2-first-light-one-zone-three-sliders">Stage 2 — First light: one zone, three sliders<a class="headerlink" href="#stage-2-first-light-one-zone-three-sliders" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting full-fixture bench
+(chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+stage 2). On the bench: one soldered zone of Valent X tunable-white
+tape — three white channels (1800 K, 3500 K, 6500 K) — wired through
+PCA9685 #1 at address 0x40 and a ULN2803A to the ESP32-C6, with +24 V
+on the common anode.
+Start by proposing a plan and wait for my approval before executing
+anything.
+Task: append the stage-2 YAML in the chapter to fixture-bench.yaml —
+i2c on GPIO2/GPIO3 at 400kHz, the pca9685 hub at address 0x40 at
+1220 Hz with phase_balancer none, three pca9685 outputs on channels
+0-2, and the three monochromatic lights (Zone 1 Warm/Neutral/Cool).
+One-file rule: add the entries under my existing top-level keys, never
+a second copy of a key. Before flashing, have me confirm the classic
+wiring trap: PCA9685 VCC is on 3.3 V, not 5 V, and V+ stays
+unconnected. Validate the config with the esphome CLI, flash over USB
+(this first install is wired; every later one is OTA), then watch the
+device logs for the I2C scan finding the chip at 0x40. No motor
+motion is involved in this stage.
+Done when: three HA sliders each drive the correct white,
+flicker-free. Wrong color on a slider = swapped wires — fix the
+wires, keep labels truthful.
+Report back: the validation and flash output, the log lines showing
+the PCA9685 found at 0x40, and the three light entities as they
+appear in HA.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Cut one radial zone (2 tape segments = 4.92") at the printed cut lines; solder four wires: +24 V and the three channel negatives — <strong>label them from the tape's printed pad markings</strong> (this is also where you verify the common-anode wiring the spec sheet implies).</p>
+<p>Wire the chain (power off):</p>
+<p><img alt="Zone 1 first-light wiring diagram" src="../assets/wiring-zone1-first-light.svg" /></p>
+<p><em>The full chain with pin numbers and the 3.3 V trap called out. ASCII version below:</em></p>
+<details>
+<summary>Plain-text wiring (quick bench reference)</summary>
+<div class="highlight"><pre><span></span><code>ESP32-C6              PCA9685 #1 (0x40)            ULN2803A #1
+--------              -----------------            -----------
+3V3 ─────────────────  VCC   (NOT V+)
+GND ─────────────────  GND ─────────────────────── GND (pin 9)
+GPIO2 (SDA) ─────────  SDA
+GPIO3 (SCL) ─────────  SCL
+                       LED0 ─────────────────────── IN1 → OUT1 (pin 18) → tape 1800K −
+                       LED1 ─────────────────────── IN2 → OUT2 (pin 17) → tape 3500K −
+                       LED2 ─────────────────────── IN3 → OUT3 (pin 16) → tape 6500K −
+24V bus ── +24 V ─────────────────────────────────── tape +24V (common anode)
+ground star ──────────────────────────────────────── ULN GND (pin 9)
+</code></pre></div>
+</details>
+<blockquote>
+<p><strong>The classic trap, pre-solved:</strong> PCA9685 <strong>VCC gets 3.3 V, not 5 V.</strong> At 5 V the chip's logic threshold rises above what the ESP32 outputs <em>and</em> the I2C bus gets pulled past the C6's rated maximum — a silent, maddening failure. 3.3 V makes it correct by construction. V+ (servo power pin) stays unconnected. ULN inputs need no resistors (built in); leave ULN pin 10 (COM) unconnected for LEDs.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nt">i2c</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sda</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPIO2</span>
+<span class="w">  </span><span class="nt">scl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPIO3</span>
+<span class="w">  </span><span class="nt">frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">400kHz</span>
+
+<span class="nt">pca9685</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pwm1</span>
+<span class="w">    </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x40</span>
+<span class="w">    </span><span class="nt">frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1220 Hz</span><span class="w">        </span><span class="c1"># near the chip&#39;s 1526 Hz max = least visible flicker</span>
+<span class="w">    </span><span class="nt">phase_balancer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w">      </span><span class="c1"># ESPHome&#39;s recommendation for LEDs</span>
+
+<span class="nt">output</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pca9685</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_warm</span><span class="w">              </span><span class="c1"># 1800 K channel</span>
+<span class="w">    </span><span class="nt">pca9685_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pwm1</span>
+<span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pca9685</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_neutral</span><span class="w">           </span><span class="c1"># 3500 K</span>
+<span class="w">    </span><span class="nt">pca9685_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pwm1</span>
+<span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pca9685</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_cool</span><span class="w">              </span><span class="c1"># 6500 K</span>
+<span class="w">    </span><span class="nt">pca9685_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pwm1</span>
+<span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="nt">light</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monochromatic</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Zone</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">Warm</span><span class="nv"> </span><span class="s">1800K&quot;</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_warm</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monochromatic</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Zone</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">Neutral</span><span class="nv"> </span><span class="s">3500K&quot;</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_neutral</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monochromatic</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Zone</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">Cool</span><span class="nv"> </span><span class="s">6500K&quot;</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_cool</span>
+</code></pre></div>
+<p><strong>Done when:</strong> three HA sliders each drive the correct white, flicker-free. Wrong color on a slider = swapped wires — fix the wires, keep labels truthful.
+<strong>If stuck:</strong> ESPHome logs say if the PCA9685 isn't found (SDA/SCL swapped or VCC missing). Light on but not dimming = wrong ULN channel. Dead = check tape +24 V.</p>
+<h2 id="stage-3-make-it-tunable-the-tri-white-blend">Stage 3 — Make it tunable: the tri-white blend<a class="headerlink" href="#stage-3-make-it-tunable-the-tri-white-blend" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting full-fixture bench
+(chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+stage 3). On the bench: zone 1 lit from stage 2 as three separate
+sliders; this stage turns it into one tunable-white light using the
+tri-white blend — ESPHome has no built-in 3-white light, so the
+supported pattern is a cwww light routed through template outputs
+whose lambda does the 3-channel math.
+Start by proposing a plan and wait for my approval before executing
+anything.
+Task: implement the stage-3 YAML in the chapter in fixture-bench.yaml:
+the z1_cw/z1_ww globals, the z1_apply script whose lambda blends the
+cool half of the dial between 6500 and 3500 K and the warm half
+between 3500 and 1800 K, the two template float outputs (z1_cw_in,
+z1_ww_in) that store state and run the script, and the cwww light
+&quot;Zone 1&quot; with constant_brightness true. Remove stage-2&#39;s three
+monochromatic lights as the stage directs, keeping the three pca9685
+outputs. One-file rule: append under my existing output:/light:/
+globals:/script: keys — pasting a duplicate top-level key fails
+validation with a cryptic duplicate-key error. Validate with the
+esphome CLI, flash over the air, then watch the logs while I sweep
+the slider. No motor motion is involved in this stage.
+Done when: &quot;Zone 1&quot; is one light whose CT slider sweeps
+candlelight→daylight smoothly.
+Report back: the validation output, the YAML diff, and a short log
+excerpt from the flash and the first slider sweep.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Honest part: <strong>ESPHome has no built-in 3-white light</strong> (its <code>cwww</code> blends two; the old "custom component" escape hatch was removed in 2025 — ignore tutorials using it). The supported pattern: a <code>cwww</code> light for the UI (brightness + color-temperature slider), routed through <strong>template outputs</strong> whose lambda (C++ snippet in YAML) does the 3-channel math.</p>
+<blockquote>
+<p><strong>One-file YAML rule (the classic beginner trap):</strong> this whole doc grows a <em>single</em> config file. When a snippet shows a top-level key you already have (<code>output:</code>, <code>light:</code>, <code>globals:</code>, <code>script:</code>), append the new entries under your existing key — never paste a second copy of the key itself, or validation fails with a cryptic duplicate-key error. Unsure your file's shape is right? Paste the whole thing into Claude and ask it to check the structure.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nt">globals</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> id</span><span class="p">:</span><span class="w"> </span><span class="nv">z1_cw</span><span class="p p-Indicator">,</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">float</span><span class="p p-Indicator">,</span><span class="nt"> initial_value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0&#39;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># last cold value (0..1)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> id</span><span class="p">:</span><span class="w"> </span><span class="nv">z1_ww</span><span class="p p-Indicator">,</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">float</span><span class="p p-Indicator">,</span><span class="nt"> initial_value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0&#39;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># last warm value</span>
+
+<span class="nt">script</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_apply</span>
+<span class="w">    </span><span class="nt">then</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lambda</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">          </span><span class="no">float cw = id(z1_cw), ww = id(z1_ww);</span>
+<span class="w">          </span><span class="no">float b = cw + ww;                      // total brightness</span>
+<span class="w">          </span><span class="no">float w18, w35, w65;</span>
+<span class="w">          </span><span class="no">if (b &lt;= 0.001f) { w18 = w35 = w65 = 0; }</span>
+<span class="w">          </span><span class="no">else {</span>
+<span class="w">            </span><span class="no">float t = ww / b;                     // warmth: 0=6500K .. 1=1800K</span>
+<span class="w">            </span><span class="no">if (t &lt;= 0.5f) { float u = t*2;       // cool half: 6500 &lt;-&gt; 3500</span>
+<span class="w">              </span><span class="no">w65 = b*(1-u); w35 = b*u; w18 = 0; }</span>
+<span class="w">            </span><span class="no">else { float u = (t-0.5f)*2;          // warm half: 3500 &lt;-&gt; 1800</span>
+<span class="w">              </span><span class="no">w65 = 0; w35 = b*(1-u); w18 = b*u; }</span>
+<span class="w">          </span><span class="no">}</span>
+<span class="w">          </span><span class="no">id(z1_warm).set_level(w18);</span>
+<span class="w">          </span><span class="no">id(z1_neutral).set_level(w35);</span>
+<span class="w">          </span><span class="no">id(z1_cool).set_level(w65);</span>
+
+<span class="nt">output</span><span class="p">:</span><span class="w">   </span><span class="c1"># ADD these; REMOVE stage-2&#39;s three monochromatic lights</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_cw_in</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">write_action</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> lambda</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;id(z1_cw)</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">state;&#39;</span><span class="w"> </span><span class="p p-Indicator">},</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> script.execute</span><span class="p">:</span><span class="w"> </span><span class="nv">z1_apply</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_ww_in</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">write_action</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> lambda</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;id(z1_ww)</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">state;&#39;</span><span class="w"> </span><span class="p p-Indicator">},</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> script.execute</span><span class="p">:</span><span class="w"> </span><span class="nv">z1_apply</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">light</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cwww</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Zone</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">    </span><span class="nt">cold_white</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_cw_in</span>
+<span class="w">    </span><span class="nt">warm_white</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">z1_ww_in</span>
+<span class="w">    </span><span class="nt">cold_white_color_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6500 K</span>
+<span class="w">    </span><span class="nt">warm_white_color_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1800 K</span>
+<span class="w">    </span><span class="nt">constant_brightness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">      </span><span class="c1"># keeps cw+ww ≤ 1 so the math above holds</span>
+</code></pre></div>
+<p>Footnotes: the slider midpoint won't be <em>exactly</em> 3500 K (HA works in mireds — calibration is a fixture-phase task with a light meter), and this linear blend is v1 — perceptual refinements are software-only later.</p>
+<p><strong>Done when:</strong> "Zone 1" is one light whose CT slider sweeps candlelight→daylight smoothly.</p>
+<h2 id="stage-4-scale-to-7-zones-21-channels">Stage 4 — Scale to 7 zones (21 channels)<a class="headerlink" href="#stage-4-scale-to-7-zones-21-channels" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting full-fixture bench
+(chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+stage 4). On the bench: all 7 zones soldered and labeled (28 wires),
+PCA9685 #2 bridged to address 0x41, ULN chips 2-4 seated — 21 tape
+channels total.
+Start by proposing a plan and wait for my approval before executing
+anything.
+Task: scale zone 1 to all 7 zones. Generate zones 2-7 from the
+zone/channel table in the stage — do not hand-copy. Each table row
+gives one zone&#39;s PCA9685 hub and channels (hub1 = 0x40, hub2 = 0x41)
+and its ULN chip and IN/OUT pins, three channels per zone in
+warm/neutral/cool order. Derive the config from that table (a small
+generator script or a systematic expansion), producing z2_ through
+z7_ globals, scripts, template outputs, pca9685 outputs, and cwww
+lights that mirror the stage-3 zone-1 pattern exactly — the stage-4
+YAML in the chapter is precisely this expansion, verbose but
+transparent. Add the second pca9685 hub block at address 0x41, and
+confirm with me that the A0 solder jumper on board #2 is bridged
+before flashing. One-file rule: extend my existing top-level keys,
+never duplicate them. Validate with the esphome CLI, flash over the
+air, then watch the logs for &quot;Component ... took a long time&quot;
+warnings — the single-core C6 telling us it is straining. No motor
+motion is involved in this stage.
+Done when: 7 independent tunable lights; an HA scene &quot;all zones
+2200 K @ 20%&quot; runs smoothly. That&#39;s movie mode on a breadboard.
+Report back: the generated YAML diff, the validation and flash
+output, the seven light entities as they appear in HA, and a log
+excerpt from several minutes of runtime noting any
+took-a-long-time warnings.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol>
+<li>Solder the remaining zones (5 radials + the 4-segment bottom ring as one zone). <strong>Label every wire at both ends</strong> — 28 wires now exist.</li>
+<li>Bridge PCA9685 #2's A0 jumper (→ 0x41); same I2C wires, same 3.3 V. Add ULN chips 2–4.</li>
+<li>Wire to this table (print it, tape it above the bench). ULN pin geometry: input IN<em>n</em> is pin <em>n</em>; its output is directly across the chip (OUT<em>n</em> = pin 19−<em>n</em>). Each row is one zone's three channels in W/N/C order:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>PCA9685 : channels</th>
+<th>ULN chip : IN pins</th>
+<th>ULN OUT pins (to tape −)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 (radial)</td>
+<td>hub1 : 0, 1, 2</td>
+<td>chip1 : 1, 2, 3</td>
+<td>18, 17, 16</td>
+</tr>
+<tr>
+<td>2 (radial)</td>
+<td>hub1 : 3, 4, 5</td>
+<td>chip1 : 4, 5, 6</td>
+<td>15, 14, 13</td>
+</tr>
+<tr>
+<td>3 (radial)</td>
+<td>hub1 : 6, 7, 8</td>
+<td>chip2 : 1, 2, 3</td>
+<td>18, 17, 16</td>
+</tr>
+<tr>
+<td>4 (radial)</td>
+<td>hub1 : 9, 10, 11</td>
+<td>chip2 : 4, 5, 6</td>
+<td>15, 14, 13</td>
+</tr>
+<tr>
+<td>5 (radial)</td>
+<td>hub1 : 12, 13, 14</td>
+<td>chip3 : 1, 2, 3</td>
+<td>18, 17, 16</td>
+</tr>
+<tr>
+<td>6 (radial)</td>
+<td>hub2 : 0, 1, 2</td>
+<td>chip3 : 4, 5, 6</td>
+<td>15, 14, 13</td>
+</tr>
+<tr>
+<td>7 (bottom ring)</td>
+<td>hub2 : 3, 4, 5</td>
+<td>chip4 : 1, 2, 3</td>
+<td>18, 17, 16</td>
+</tr>
+</tbody>
+</table>
+<p>Every chip's pin 9 goes to the ground star; pin 10 stays unconnected; every zone's +24 V lead goes to the WAGO bus.</p>
+<ol start="4">
+<li>Duplicate the stage-3 block per zone (<code>z2_</code>…<code>z7_</code>). Verbose but transparent — compress with ESPHome "packages" later, not now.</li>
+<li>After flashing, watch Logs for <code>Component ... took a long time</code> — the single-core C6 telling you it's straining. This design computes only on changes, so you shouldn't see it; this is the honest untested territory (nobody has benchmarked 24 PWM + CAN + WiFi on a C6).</li>
+</ol>
+<p><strong>Done when:</strong> 7 independent tunable lights; an HA scene "all zones 2200 K @ 20%" runs smoothly. That's movie mode on a breadboard.</p>
+<h2 id="stage-5-the-spotlight-constant-current">Stage 5 — The spotlight (constant-current)<a class="headerlink" href="#stage-5-the-spotlight-constant-current" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting full-fixture bench
+(chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+stage 5). On the bench: the Cree 3-up star mounted on its heatsink,
+fed by the PicoBuck&#39;s three constant-current channels, with the dim
+signals coming from native ESP32-C6 pins.
+Start by proposing a plan and wait for my approval before executing
+anything.
+Task: append the stage-5 YAML in the chapter to fixture-bench.yaml:
+three ledc outputs on GPIO10, GPIO11, and GPIO18 at 500 Hz — native
+pins, not the PCA9685, because each PCA9685 runs one frequency for
+all 16 channels and the tape needs ~1.2 kHz+ while CC-driver dim
+inputs typically want 1 kHz or less — plus the two template outputs
+spot_cw_in/spot_ww_in exactly like stage 3&#39;s, and the &quot;Spotlight&quot;
+cwww light (5700 K cold, 3000 K warm, constant_brightness true).
+One-file rule: extend my existing top-level keys, never duplicate
+them. Before power-on, have me confirm the star is on its heatsink
+and aimed at the wall — it cooks itself bare in under a minute and
+is painfully bright. Validate with the esphome CLI and flash over
+the air. No motor motion is involved in this stage.
+Done when: the Spotlight entity dims 0→100% on all three dies. CC
+drivers can get twitchy below ~5% duty — note the floor; the
+coordinator respects it in software.
+Report back: the validation and flash output, the YAML diff, the
+Spotlight entity as it appears in HA, and the lowest duty that still
+dims cleanly once we test it together.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p><strong>Mount the star to its heatsink first</strong> (it dissipates ~3 W in a coin-sized PCB), and aim it at the wall — these are painfully bright point sources.</p>
+<p>Wiring: PicoBuck VIN from the 24 V bus/star ground; each output pair to one Cree die (check printed polarity). The three dim signals come from <strong>native ESP32 pins</strong> — GPIO10/11/18:</p>
+<blockquote>
+<p><strong>Why native pins, not the PCA9685:</strong> each PCA9685 chip runs ONE frequency for all 16 channels. Tape wants ~1.2 kHz+ (flicker); CC-driver dim inputs typically want ≤1 kHz. Rather than compromise both, the spotlight's 3 signals use the C6's own LEDC channels (6 exist; 3 free after this).</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nt">output</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ledc</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spot_warm_pwm</span>
+<span class="w">    </span><span class="nt">pin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPIO10</span>
+<span class="w">    </span><span class="nt">frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500 Hz</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ledc</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spot_neutral_pwm</span>
+<span class="w">    </span><span class="nt">pin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPIO11</span>
+<span class="w">    </span><span class="nt">frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500 Hz</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ledc</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spot_cool_pwm</span>
+<span class="w">    </span><span class="nt">pin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPIO18</span>
+<span class="w">    </span><span class="nt">frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500 Hz</span>
+<span class="w">  </span><span class="c1"># + two template outputs spot_cw_in / spot_ww_in, exactly like stage 3</span>
+
+<span class="nt">light</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cwww</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spotlight&quot;</span>
+<span class="w">    </span><span class="nt">cold_white</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spot_cw_in</span>
+<span class="w">    </span><span class="nt">warm_white</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spot_ww_in</span>
+<span class="w">    </span><span class="nt">cold_white_color_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5700 K</span><span class="w">   </span><span class="c1"># set to the actual Cree bins</span>
+<span class="w">    </span><span class="nt">warm_white_color_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000 K</span><span class="w">   </span><span class="c1">#   (LEDSupply confirms)</span>
+<span class="w">    </span><span class="nt">constant_brightness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p><strong>Done when:</strong> the Spotlight entity dims 0→100% on all three dies. CC drivers can get twitchy below ~5% duty — note the floor; the coordinator respects it in software.</p>
+<h2 id="stage-6-gimbal-joins-the-same-chip">Stage 6 — Gimbal joins the same chip<a class="headerlink" href="#stage-6-gimbal-joins-the-same-chip" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting full-fixture bench
+(chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+stage 6). On the bench: the gimbal from the previous chapter — motors
+already answering on CAN — joining the same ESP32-C6, with the CAN
+transceiver on GPIO6/GPIO7 and motors at IDs 0x141/0x142.
+Start by proposing a plan and wait for my approval before executing
+anything.
+Task: append the stage-6 YAML in the chapter to fixture-bench.yaml:
+the esp32_can canbus block (tx GPIO6, rx GPIO7, our node&#39;s can_id
+0x7F0, bit_rate 1000KBPS) with the on_frame logger for 0x141, the
+&quot;Spot Pan&quot; template number (-170 to 170, step 0.5) whose set_action
+sends the 0xA4 position frame at 30 deg/s, and its &quot;Spot Tilt&quot;
+duplicate on can_id 0x142 with min -90 / max 90. One-file rule:
+extend my existing top-level keys, never duplicate them. Traps from
+the stage: never transmit onto a bus with no powered motor — endless
+retries can watchdog-reboot the node — so confirm with me that the
+gimbal is powered before flashing; and replies may arrive on
+0x241/0x242 depending on protocol version, so if the logs stay
+silent while the motors obey, add those on_frame blocks per my
+shipped protocol PDF. Validate with the esphome CLI, then flash over
+the air.
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current
+limit stays as set. Announce each motion command before sending it
+and wait for my explicit go.
+Done when: dragging Spot Pan/Tilt sliders in HA moves the physical
+beam.
+Report back: the validation and flash output, the YAML diff, and a
+log excerpt showing frames received from the motors during the
+supervised pan/tilt test.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Prereq: <a href="../03-build-the-gimbal/">Doc 3</a> stages 1–6 done (interactive console is the right place to <em>learn</em> motors; this stage ports them into ESPHome). ESPHome's <code>canbus</code> officially supports the C6 at 1 Mbps. Wiring: identical to <a href="../03-build-the-gimbal/">Doc 3</a> (transceiver on GPIO6/7).</p>
+<div class="highlight"><pre><span></span><code><span class="nt">canbus</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esp32_can</span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gimbal_bus</span>
+<span class="w">    </span><span class="nt">tx_pin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPIO6</span>
+<span class="w">    </span><span class="nt">rx_pin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPIO7</span>
+<span class="w">    </span><span class="nt">can_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x7F0</span><span class="w">              </span><span class="c1"># our node&#39;s own id — required field, unused here</span>
+<span class="w">    </span><span class="nt">bit_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000KBPS</span>
+<span class="w">    </span><span class="nt">on_frame</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">can_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x141</span>
+<span class="w">        </span><span class="nt">then</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> lambda</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;ESP_LOGI(&quot;gimbal&quot;,&quot;pan:</span><span class="nv"> </span><span class="s">%02X</span><span class="nv"> </span><span class="s">%02X</span><span class="nv"> </span><span class="s">%02X</span><span class="nv"> </span><span class="s">%02X</span><span class="nv"> </span><span class="s">%02X</span><span class="nv"> </span><span class="s">%02X</span><span class="nv"> </span><span class="s">%02X</span><span class="nv"> </span><span class="s">%02X&quot;,</span><span class="nv"> </span><span class="s">x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7]);&#39;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">number</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spot</span><span class="nv"> </span><span class="s">Pan&quot;</span>
+<span class="w">    </span><span class="nt">min_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-170</span>
+<span class="w">    </span><span class="nt">max_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">170</span>
+<span class="w">    </span><span class="nt">step</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">    </span><span class="nt">initial_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">optimistic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">set_action</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">canbus.send</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">canbus_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gimbal_bus</span>
+<span class="w">          </span><span class="nt">can_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x141</span>
+<span class="w">          </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!lambda</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">            </span><span class="no">int32_t p = (int32_t)(x * 100.0f);</span>
+<span class="w">            </span><span class="no">uint16_t v = 30;                     // deg/s — slow &amp; silent for bench</span>
+<span class="w">            </span><span class="no">return {0xA4, 0x00, (uint8_t)(v &amp; 0xFF), (uint8_t)(v &gt;&gt; 8),</span>
+<span class="w">                    </span><span class="no">(uint8_t)(p &amp; 0xFF), (uint8_t)((p &gt;&gt; 8) &amp; 0xFF),</span>
+<span class="w">                    </span><span class="no">(uint8_t)((p &gt;&gt; 16) &amp; 0xFF), (uint8_t)((p &gt;&gt; 24) &amp; 0xFF)};</span>
+<span class="w">  </span><span class="c1"># duplicate as &quot;Spot Tilt&quot; with can_id 0x142, min -90 / max 90</span>
+</code></pre></div>
+<p>Footnotes: replies may arrive on 0x141/0x142 or 0x240+ID depending on protocol version — if logs stay silent while motors obey, add blocks for 0x241/0x242 (check your shipped PDF). Never transmit onto a bus with <strong>no powered motor</strong> — endless retries can watchdog-reboot the node.</p>
+<p><strong>Looking ahead (<a href="../05-teach-it-to-aim/">Doc 5</a>):</strong> HA sliders are the <em>bench</em> interface. The follow-me loop will instead publish aim targets ~5–15×/second — subscribe the ESP32 to a raw MQTT topic (<strong><code>spotlight/target</code></strong> — the same name <a href="../03-build-the-gimbal/">Doc 3</a> stage 9 and <a href="../05-teach-it-to-aim/#phase-0-the-lamp-follows-me-a-weekend-needs-only-the-doc-34-rig-any-rtsp-camera">Doc 5 Phase 0</a> use; ESPHome's <code>mqtt:</code> component with an <code>on_message</code> trigger; it runs happily alongside the HA <code>api:</code>, and the AI-partner workflow above is the right way to scaffold the JSON-to-CAN lambda) and lean on 0xA4's speed-limit field: the motor interpolates between waypoints onboard, so modest update rates still produce continuous motion (this is exactly what dissolves the "steppy PTZ" problem). The full graduation path — an <code>Auto/Hold/Manual</code> mode select gating the stream, brightness flowing only through the light entity, <code>discovery: false</code> to avoid duplicate entities, and eventually replacing the MQTT lane with a typed native-API action (<code>api: actions: fixture_aim</code>) that the GPU box calls directly via aioesphomeapi — is specced in <strong><a href="../06-message-contract/">Doc 6</a></strong> (<a href="../06-message-contract/#1-spotlighttarget-aim-commands-gpu-box-fixture-stream-15-hz">§1</a> for the transport, "Living inside Home Assistant" for the entity model). One production gotcha to bank now: once CAN telemetry flows, set <code>logger: level: INFO</code> — per-frame DEBUG logging is the documented crash cause on busy ESPHome CAN nodes.</p>
+<p><strong>Done when:</strong> dragging Spot Pan/Tilt sliders in HA moves the physical beam.</p>
+<h2 id="stage-7-integration-day-verdict">Stage 7 — Integration day + verdict<a class="headerlink" href="#stage-7-integration-day-verdict" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting full-fixture bench
+(chapter: engineering.engineered.lighting/04-full-fixture-bench/,
+stage 7). On the bench: the finished system — 7 tunable zones, the
+spotlight, and the gimbal on one ESP32-C6 — ready for scenes, the
+checklist, and the verdict.
+Start by proposing a plan and wait for my approval before executing
+anything.
+Task: first help me build the HA dashboard (7 zones, Spotlight,
+pan/tilt) and the two scenes from the stage: Movie (radials 2000 K
+@ 15%, ring off, spot off) and Reading (radials 2700 K @ 40%, spot
+3000 K @ 60%, aimed at the chair — I jog the Spot Pan/Tilt sliders
+until the beam sits on the chair, then we save those numbers into
+the scene). Then work through the stage-7 checklist in the chapter
+item by item with me: CT sweeps and equal-settings matching
+(mismatch = ground star problem, not software), the pencil-wave and
+slow-mo flicker tests, gimbal motion with all 24 channels lit,
+scene-switch speed, the soak, and the worst-case current reading.
+For the 30-minute &quot;everything on&quot; soak, watch the device logs the
+whole time and summarize warnings, resets, and any &quot;took a long
+time&quot; lines; I handle the touch tests and record the worst-case
+24 V current with the meter.
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current
+limit stays as set. Announce each motion command before sending it
+and wait for my explicit go.
+Done when: every item of the stage-7 checklist in the chapter
+passes.
+Report back: the checklist with pass/fail and evidence per item, the
+30-minute soak-log summary (warnings, resets, took-a-long-time
+counts), and the recorded worst-case 24 V current for the fixture
+power budget.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Build an HA dashboard (7 zones, Spotlight, pan/tilt) and two scenes: <strong>Movie</strong> (radials 2000 K @ 15%, ring off, spot off) and <strong>Reading</strong> (radials 2700 K @ 40%, spot 3000 K @ 60%, aimed at the chair — jog the Spot Pan/Tilt sliders until the beam sits on the chair, then save those numbers into the scene). Toggle while watching logs and the tape.</p>
+<p>Checklist:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All zones sweep CT smoothly; equal settings look equal (mismatch = ground star problem, not software)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Flicker: pencil-wave test + phone slow-mo (PCA9685's ~1.2–1.5 kHz is prototype-grade; the production PCB's driver ICs run ~10× higher — don't over-optimize here)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Gimbal moves while all 24 channels are lit — no resets, no CAN errors</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Scene switch feels instant (&lt;300 ms perceived)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 30-min soak "everything on": ULNs warm-not-hot, star heatsink warm, no reboots in logs</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Worst-case 24 V current — record it for the fixture power budget (external design doc: the fixture brief's ~60 W mode-based table)</li>
+</ul>
+<p><strong>What graduates to the fixture PCB:</strong> this architecture as-is — C6 + I2C PWM expansion + low-side drive + CC channels + CAN — with ULNs → MOSFETs/driver ICs at higher PWM frequency, PicoBuck → integrated CC stage, WAGOs → copper.</p>
+<h2 id="risk-register">Risk register<a class="headerlink" href="#risk-register" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Single-core C6 under the full load is undocumented territory</strong> — verified piece-by-piece, never benchmarked together. Log-watching in stages 4/7 is the test; worst-case fallback is splitting lighting/gimbal across two C6 nodes (a 20-minute ESPHome change).</li>
+<li><strong>The tri-white blend is yours</strong> — no published component exists; stage 3's lambda is the supported pattern, not a library.</li>
+<li><strong>Valent X 4-wire layout:</strong> verify printed pad labels before soldering 28 wires.</li>
+<li><strong>PicoBuck tops out at 660 mA/ch</strong> — right for the bench; XP-L at 1–3 A is a different driver + heatsink, decided after seeing 330/660 mA in a real room.</li>
+<li><strong>Motor protocol drift</strong> (<a href="../03-build-the-gimbal/">Doc 3</a>): trust the PDF in the box.</li>
+</ol>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<p>ESPHome: esp32 platform &amp; ESP-IDF requirement · pca9685 · ledc (C6 = 6 ch) · canbus/esp32_can · template output · cwww — all at esphome.io · custom-component removal — developers.esphome.io (Feb 19 2025) · PCA9685 datasheet (VIH = 0.7·VDD — the 3.3 V rule) — nxp.com · ULN2803A — Adafruit datasheet · PicoBuck hookup — learn.sparkfun.com · NLDD-H ≥6 V trap — ledsupply.com · Valent X — diodeled.com · D24V22F5 — pololu.com</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../03b-print-the-frame/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3b · Print the Frame">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3b · Print the Frame
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05-teach-it-to-aim/" class="md-footer__link md-footer__link--next" aria-label="Next: 5 · Teach It to Aim">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                5 · Teach It to Aim
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>

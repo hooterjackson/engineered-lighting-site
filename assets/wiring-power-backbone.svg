@@ -1,0 +1,88 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4 · Power backbone (stage 1)</text>
+  <text x="30" y="56" font-size="12" fill="#555">One fused 24 V bus, one star ground. Real current lives on WAGOs and 18–20 AWG wire; the breadboard carries signals only.</text>
+
+  <!-- PSU -->
+  <rect x="40" y="110" width="170" height="150" fill="#fdf1ee" stroke="#a33" stroke-width="1.5" rx="8"/>
+  <text x="125" y="136" font-size="13" font-weight="bold" text-anchor="middle" fill="#622">Bench supply</text>
+  <text x="125" y="153" font-size="11" text-anchor="middle" fill="#844">24.0 V</text>
+  <text x="198" y="186" font-size="13" font-weight="bold" fill="#d62828" text-anchor="end">+</text>
+  <text x="198" y="236" font-size="13" font-weight="bold" fill="#222" text-anchor="end">−</text>
+
+  <!-- Fuse -->
+  <rect x="270" y="166" width="110" height="34" fill="#fff" stroke="#666" rx="17"/>
+  <text x="325" y="187" font-size="11" text-anchor="middle" fill="#333">3 A slow-blow</text>
+  <line x1="210" y1="183" x2="270" y2="183" stroke="#d62828" stroke-width="4"/>
+  <line x1="380" y1="183" x2="440" y2="183" stroke="#d62828" stroke-width="4"/>
+
+  <!-- +24 WAGO bus -->
+  <rect x="440" y="140" width="150" height="86" fill="#ffe9e6" stroke="#d62828" stroke-width="2" rx="8"/>
+  <text x="515" y="168" font-size="13" font-weight="bold" text-anchor="middle" fill="#8a1c1c">WAGO</text>
+  <text x="515" y="186" font-size="12" text-anchor="middle" fill="#8a1c1c">+24 V BUS</text>
+  <text x="515" y="204" font-size="10" text-anchor="middle" fill="#b45">(lever nuts)</text>
+
+  <!-- GND star -->
+  <rect x="440" y="330" width="150" height="86" fill="#ececec" stroke="#222" stroke-width="2" rx="8"/>
+  <text x="515" y="360" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">WAGO</text>
+  <text x="515" y="378" font-size="12" text-anchor="middle" fill="#111">GND STAR</text>
+  <text x="515" y="396" font-size="10" text-anchor="middle" fill="#444">every ground comes HERE</text>
+  <text x="515" y="409" font-size="10" text-anchor="middle" fill="#444">(no daisy-chains)</text>
+  <line x1="210" y1="233" x2="300" y2="233" stroke="#222" stroke-width="4"/>
+  <path d="M 300 233 L 300 373 L 440 373" fill="none" stroke="#222" stroke-width="4"/>
+
+  <!-- +24V branches -->
+  <g stroke="#d62828" stroke-width="3" fill="none">
+    <path d="M 590 156 L 700 156 L 700 96 L 760 96"/>
+    <path d="M 590 176 L 760 176"/>
+    <path d="M 590 196 L 700 196 L 700 256 L 760 256"/>
+    <path d="M 590 212 L 680 212 L 680 316 L 760 316"/>
+  </g>
+  <!-- GND branches -->
+  <g stroke="#222" stroke-width="3" fill="none">
+    <path d="M 590 352 L 660 352 L 660 300"/>
+    <path d="M 590 372 L 740 372 L 740 196 L 760 196"/>
+    <path d="M 590 392 L 740 392 L 740 276 L 760 276"/>
+    <path d="M 590 408 L 700 408 L 700 336 L 760 336"/>
+  </g>
+
+  <!-- ULN ground stub (tape negatives return through the ULN chips, not directly) -->
+  <circle cx="660" cy="300" r="4" fill="#222"/>
+  <text x="660" y="288" font-size="10" text-anchor="middle" fill="#333">ULN p9 grounds ×4</text>
+
+  <!-- Load boxes -->
+  <rect x="760" y="76" width="210" height="56" fill="#fff8ec" stroke="#a8792a" rx="6"/>
+  <text x="865" y="99" font-size="12" font-weight="bold" text-anchor="middle" fill="#6b4c12">Tape zones ×7</text>
+  <text x="865" y="112" font-size="10" text-anchor="middle" fill="#8a6a2f">+24 V common anodes only —</text>
+  <text x="865" y="125" font-size="10" text-anchor="middle" fill="#8a6a2f">negatives return via the ULN chips</text>
+
+  <rect x="760" y="156" width="210" height="56" fill="#eef6ff" stroke="#2a6aa8" rx="6"/>
+  <text x="865" y="179" font-size="12" font-weight="bold" text-anchor="middle" fill="#174a7c">PicoBuck (spotlight)</text>
+  <text x="865" y="195" font-size="10" text-anchor="middle" fill="#3c69a0">VIN+ / VIN− · drives the 3 Cree dies</text>
+
+  <rect x="760" y="236" width="210" height="56" fill="#f4f0fb" stroke="#6b4ca8" rx="6"/>
+  <text x="865" y="259" font-size="12" font-weight="bold" text-anchor="middle" fill="#4a3579">Gimbal motors ×2</text>
+  <text x="865" y="275" font-size="10" text-anchor="middle" fill="#6b57a0">RMD-L VCC/GND (Doc 3 rig, now on 24 V)</text>
+
+  <rect x="760" y="296" width="210" height="66" fill="#eefaf1" stroke="#2a8a4a" rx="6"/>
+  <text x="865" y="319" font-size="12" font-weight="bold" text-anchor="middle" fill="#1c5c33">Pololu buck → 5 V</text>
+  <text x="865" y="335" font-size="10" text-anchor="middle" fill="#3f7c55">D24V22F5 · feeds ESP32's 5 V pin</text>
+  <text x="865" y="350" font-size="10" text-anchor="middle" fill="#3f7c55">(board's own regulator makes 3.3 V)</text>
+
+  <!-- 5V run to ESP32 -->
+  <rect x="760" y="420" width="210" height="60" fill="#eef3fb" stroke="#334" rx="6"/>
+  <text x="865" y="445" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">ESP32-C6</text>
+  <text x="865" y="461" font-size="10" text-anchor="middle" fill="#556">5 V in + GND to star</text>
+  <path d="M 865 362 L 865 420" fill="none" stroke="#e07000" stroke-width="3"/>
+  <text x="874" y="396" font-size="10" fill="#e07000">5 V</text>
+
+  <!-- Verify note -->
+  <rect x="40" y="430" width="360" height="100" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="52" y="452" font-size="11" font-weight="bold" fill="#6b5200">Multimeter ritual (before anything powers up)</text>
+  <g font-size="10" fill="#514000">
+    <text x="52" y="470">· 24.0 V at the bus, correct polarity</text>
+    <text x="52" y="485">· 5.0 V out of the buck (check BEFORE connecting the ESP32)</text>
+    <text x="52" y="500">· 0 Ω between all grounds</text>
+    <text x="52" y="515">· breadboard rails carry signals only (~1 A rating)</text>
+  </g>
+</svg>

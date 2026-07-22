@@ -1,0 +1,1284 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The software: pinned stack, repo layout, hardware-free testing, deployment, and the firmware growth path.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/07-building-the-software/">
+      
+      
+        <link rel="prev" href="../06-message-contract/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>7 · Building the Software - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="7 · Building the Software - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The software: pinned stack, repo layout, hardware-free testing, deployment, and the firmware growth path." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/07-building-the-software.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/07-building-the-software/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="7 · Building the Software - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The software: pinned stack, repo layout, hardware-free testing, deployment, and the firmware growth path." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/07-building-the-software.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-7-building-the-software-stack-repos-testing-deployment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7 · Building the Software
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nothing-to-buy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nothing to buy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-services-on-the-gpu-box-what-runs-in-what-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The services on the GPU box (what runs, in what process)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-repo-layout-one-monorepo-uv-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Repo layout (one monorepo, uv workspace)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-testing-without-a-living-room-the-part-that-makes-ai-partner-development-fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Testing without a living room (the part that makes AI-partner development fly)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-firmware-engineering-bench-fleet-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Firmware engineering (bench → fleet → product)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-deployment-one-gpu-box-boring-on-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Deployment (one GPU box, boring on purpose)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-build-order-the-first-two-weeks-of-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Build order (the first two weeks of software)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nothing-to-buy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nothing to buy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-services-on-the-gpu-box-what-runs-in-what-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The services on the GPU box (what runs, in what process)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-repo-layout-one-monorepo-uv-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Repo layout (one monorepo, uv workspace)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-testing-without-a-living-room-the-part-that-makes-ai-partner-development-fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Testing without a living room (the part that makes AI-partner development fly)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-firmware-engineering-bench-fleet-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Firmware engineering (bench → fleet → product)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-deployment-one-gpu-box-boring-on-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Deployment (one GPU box, boring on purpose)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-build-order-the-first-two-weeks-of-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Build order (the first two weeks of software)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-7-building-the-software-stack-repos-testing-deployment">Doc 7 · Building the Software — Stack, Repos, Testing, Deployment<a class="headerlink" href="#doc-7-building-the-software-stack-repos-testing-deployment" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong>
+How the code actually gets built: the services on the GPU box, the fixture firmware's growth path, and — the part that usually gets skipped — how to test all of it without standing in front of a camera holding a book. Every package and pattern here was verified against official docs/source in July 2026.</p>
+<h2 id="nothing-to-buy">Nothing to buy<a class="headerlink" href="#nothing-to-buy" title="Permanent link">&para;</a></h2>
+<p>Everything here is open source. The costs are attention and discipline.</p>
+<h2 id="concepts-plain-english">Concepts (plain English)<a class="headerlink" href="#concepts-plain-english" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Restreamer:</strong> a small server (go2rtc / mediamtx) that connects to each camera <em>once</em> and re-serves the stream locally to any number of consumers — isolating flaky camera connections from your code, and doubling as the replay rig for testing.</li>
+<li><strong>uv workspace:</strong> one Python repo containing several packages (tracker, resolver, context bridge) sharing a single lockfile — the current standard toolchain (uv won; even OpenAI acquired its maker in 2026 and kept it open source).</li>
+<li><strong>Golden test:</strong> record a real session's tracks once, replay them into the resolver in CI forever — asserting the same inputs still produce the same aim outputs.</li>
+<li><strong>ESPHome <code>host</code> platform:</strong> compiles your fixture config into a <em>native program</em> on your dev machine — real <code>api:</code> server, template outputs standing in for hardware — so the resolver can be integration-tested against a simulated fixture with zero hardware. ESPHome's own CI tests itself exactly this way.</li>
+<li><strong>External component:</strong> the sanctioned way ESPHome lambdas grow up — a small Python+C++ package (<code>components/fixture_control/</code>) that YAML then imports. The old "custom component" hack is dead (removed 2025); this is its successor.</li>
+<li><strong>GPL boundary:</strong> ESPHome's C++ core is GPLv3 (its Python tooling is MIT). Any C++ you compile into the firmware binary joins a GPLv3 combined work — fine for prototypes and open products, a real decision point for the commercial fixture (§6).</li>
+</ul>
+<h2 id="1-the-services-on-the-gpu-box-what-runs-in-what-process">1. The services on the GPU box (what runs, in what process)<a class="headerlink" href="#1-the-services-on-the-gpu-box-what-runs-in-what-process" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>cameras ──► go2rtc/mediamtx restream (one local RTSP per room)
+              │
+              ├─► TRACKER  (one process per room)          ─┐
+              │    ultralytics.track(stream=True,           │ MQTT (QoS 0)
+              │    persist=True, tracker=bytetrack)         │ el/&lt;room&gt;/tracks @15Hz
+              │    feet→ground-plane → One-Euro/prediction ─┘ + perception/status
+              │
+              ├─► CONTEXT BRIDGE (one process, GPU)
+              │    event-triggered clips → V-JEPA → el/&lt;room&gt;/context (retained)
+              │
+              └─► Frigate (recording/review only — off the control path)
+
+RESOLVER (one asyncio process, uvloop)
+  subscribes tracks+context (aiomqtt) · watches HA state_changed w/ contexts (hass-client)
+  computes per-fixture pan/tilt · safety cones · assignment
+  → bench: publishes spotlight/target (MQTT)
+  → production: calls fixture_aim() directly (aioesphomeapi + ReconnectLogic, one client per fixture)
+</code></pre></div>
+<p>Why process-per-camera (Frigate's pattern, not Ultralytics' threading example): isolation — one room's camera flaking can't stall the others, and each tracker restarts independently. The RTX 6000 has orders-of-magnitude more throughput than a home needs, so batching efficiency (DeepStream's win) buys nothing here.</p>
+<p><strong>The stack, pinned (July 2026, all verified):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Package</th>
+<th>Version note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Detection + tracking</td>
+<td><code>ultralytics</code></td>
+<td>≥8.4.63 (YOLO26 + current trackers; ByteTrack = cheapest for static cameras)</td>
+</tr>
+<tr>
+<td>Camera restream + replay</td>
+<td>go2rtc v1.9.14 or mediamtx v1.19.2</td>
+<td>either; go2rtc already ships inside Frigate</td>
+</tr>
+<tr>
+<td>Async MQTT</td>
+<td><code>aiomqtt</code></td>
+<td><strong>==2.5.1</strong> (3.0.0a1 exists — alpha, skip)</td>
+</tr>
+<tr>
+<td>ESPHome native API client</td>
+<td><code>aioesphomeapi</code></td>
+<td>≥45.6.0; use <code>ReconnectLogic</code> (backoff + instant mDNS reconnect)</td>
+</tr>
+<tr>
+<td>HA observation</td>
+<td><code>hass-client</code></td>
+<td>==1.2.3 — asyncio WebSocket client, production-proven by Music Assistant; subscribes <code>state_changed</code> <em>with context data</em> (the override detector's food)</td>
+</tr>
+<tr>
+<td>Event loop</td>
+<td><code>uvloop</code></td>
+<td>latest</td>
+</tr>
+<tr>
+<td>Config models</td>
+<td><code>pydantic</code> 2.x</td>
+<td>per-room YAML loaded with <code>yaml.safe_load</code> + <code>model_validate</code> (pydantic-settings' YAML source can't do nested sections — known open issue — so keep it for process env only)</td>
+</tr>
+<tr>
+<td>Env/build</td>
+<td><code>uv</code></td>
+<td>workspace mode</td>
+</tr>
+<tr>
+<td>GPU containers</td>
+<td><code>nvidia-container-toolkit</code> + compose <code>deploy.resources.reservations.devices</code></td>
+<td>Frigate's own install pattern</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Three ingest rules that prevent the classic seconds-of-lag bug:</strong> always read through the local restream (never direct-to-camera); set <code>OPENCV_FFMPEG_CAPTURE_OPTIONS="rtsp_transport;tcp|fflags;nobuffer|flags;low_delay"</code> before opening; and know that Ultralytics' <code>stream=True</code> loader already keeps only the newest frame internally (verified in its source) — the env var still matters because it opens plain <code>cv2.VideoCapture</code> underneath.</p>
+<p><strong>Calling the fixture (production lane), the whole pattern:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span> <span class="o">=</span> <span class="n">aioesphomeapi</span><span class="o">.</span><span class="n">APIClient</span><span class="p">(</span><span class="s2">&quot;fixture-1.local&quot;</span><span class="p">,</span> <span class="mi">6053</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">noise_psk</span><span class="o">=</span><span class="n">PSK</span><span class="p">)</span>  <span class="c1"># encryption mandatory ≥2026.1</span>
+<span class="n">entities</span><span class="p">,</span> <span class="n">services</span> <span class="o">=</span> <span class="k">await</span> <span class="n">api</span><span class="o">.</span><span class="n">list_entities_services</span><span class="p">()</span>
+<span class="n">aim</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">services</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;fixture_aim&quot;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">api</span><span class="o">.</span><span class="n">execute_service</span><span class="p">(</span><span class="n">aim</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;pan&quot;</span><span class="p">:</span> <span class="mf">32.5</span><span class="p">,</span> <span class="s2">&quot;tilt&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">14.0</span><span class="p">})</span>   <span class="c1"># typed floats, fire-and-forget, ~12 Hz</span>
+</code></pre></div>
+<h2 id="2-repo-layout-one-monorepo-uv-workspace">2. Repo layout (one monorepo, uv workspace)<a class="headerlink" href="#2-repo-layout-one-monorepo-uv-workspace" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>engineered-lighting/
+  services/
+    tracker/          # per-camera process; pyproject each; uv workspace members
+    resolver/
+    context_bridge/
+  libs/roommodel/     # shared pydantic models: tracks, context, targets (Doc 6 schemas as code)
+  firmware/           # the ESPHome tree (see §4)
+  config/rooms/*.yaml # one file per room: camera URL+pose, fixture poses+calibration, labeled surfaces
+  deploy/docker-compose.yaml
+  tests/
+    golden_tracks/    # recorded jsonl track sessions
+    clips/            # short mp4s for RTSP replay
+</code></pre></div>
+<p><code>libs/roommodel</code> is where <a href="../06-message-contract/">Doc 6</a> stops being prose: every schema becomes a pydantic model, and both publisher and subscriber import the same class — the contract enforced by the type checker instead of by discipline.</p>
+<h2 id="3-testing-without-a-living-room-the-part-that-makes-ai-partner-development-fly">3. Testing without a living room (the part that makes AI-partner development fly)<a class="headerlink" href="#3-testing-without-a-living-room-the-part-that-makes-ai-partner-development-fly" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Replay cameras:</strong> mediamtx loops an mp4 as a real RTSP source (<code>runOnInit: ffmpeg -re -stream_loop -1 …</code>, or its native <code>alwaysAvailableFile:</code>); go2rtc's <code>exec:</code> source does the same. Record 2 minutes of walking through the room once; the tracker develops against it forever.</li>
+<li><strong>Golden tracks:</strong> capture <code>(ts, id, x, y, vx, vy)</code> jsonl from a session; replay at wall-clock pace into the resolver in CI; assert pan/tilt outputs within tolerance. Geometry (homography, aim inverse, cone checks) gets plain <code>pytest</code> + <code>numpy.testing.assert_allclose</code>.</li>
+<li><strong>Simulated fixture — the big one:</strong> an <code>esphome</code> config with <code>host:</code> + <code>api:</code> + template outputs compiles to a native binary exposing the <em>real</em> API server. The resolver's integration test spins it up as a subprocess, connects with real <code>aioesphomeapi</code>, calls <code>fixture_aim</code>, and asserts state — the identical pattern ESPHome's own <code>tests/integration/</code> uses in its CI. End-to-end resolver→firmware-logic testing, zero hardware, runs in GitHub Actions. (Host caveats: no MQTT component, no real GPIO — template stand-ins only, which is exactly what you want.)</li>
+<li><strong>Why this matters doubly:</strong> every one of these loops is text-in/text-out, which means Claude Code can run the full suite, read failures, and iterate — the Docs <a href="../03-build-the-gimbal/">3</a>/<a href="../04-full-fixture-bench/">4</a> lab-partner workflow extended to the whole system.</li>
+</ul>
+<h2 id="4-firmware-engineering-bench-fleet-product">4. Firmware engineering (bench → fleet → product)<a class="headerlink" href="#4-firmware-engineering-bench-fleet-product" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>firmware/
+  components/fixture_control/    # the graduated C++ external component (RMD CAN driver,
+                                 #   aim gate, watchdog) — starts as type: local
+  packages/
+    base-fixture.yaml            # PCA9685, canbus, api+actions, ota, logger — shared
+    network.yaml · mqtt.yaml     # mqtt: discovery: false
+  devices/&lt;room&gt;/fixture-NN.yaml # thin per-fixture file: substitutions + package includes
+  secrets.yaml                   # gitignored; remote packages can&#39;t use !secret — pass via substitutions
+  tests/host/                    # the simulated-fixture configs from §3
+  .github/workflows/             # esphome config validate + esphome/build-action@v8 matrix
+</code></pre></div>
+<ul>
+<li><strong>When lambdas graduate:</strong> the <a href="../04-full-fixture-bench/">Doc 4</a> lambdas are right for the bench. The moment the CAN logic grows (telemetry parsing, two-stage failsafe, calibration hooks), it becomes <code>components/fixture_control/</code> — the official skeleton is ~3 files (<code>__init__.py</code> schema + <code>.h/.cpp</code>), and <code>mrk-its/esphome-canopen</code> is the structural reference for a component that rides the built-in <code>canbus:</code>. <strong>Verified negative: no RMD/CyberGear/ODrive ESPHome component exists anywhere — ours is greenfield</strong>, and a candidate for open-sourcing (community moat, exactly the Made-for-ESPHome ethos).</li>
+<li><strong>Fleet pattern:</strong> one base package + thin per-device files that set only substitutions (the jesserockz/ESPHome-maintainer pattern); Jinja expressions in substitutions (2025.7+) derive per-fixture CAN IDs and offsets. Fleet updates: <code>esphome update-all</code>, Device Builder's bulk actions (2026.6+), or HA <code>update.*</code> entities.</li>
+<li><strong>Performance discipline on the single core (all source-verified):</strong> the loop-block warning threshold is now <strong>50 ms</strong> (raised from the oft-cited 30 ms in mid-2025); CAN RX drains its whole queue inline per tick — fine at our tens of frames/sec, <strong>but keep <code>logger:</code> at INFO once telemetry flows</strong> (per-frame DEBUG logging is the documented crash cause on busy CAN nodes); structure the CAN component event-style (<code>disable_loop()</code> when idle) rather than polling.</li>
+<li><strong>The product licensing decision (flag for counsel, not resolvable here):</strong> ESPHome's C++ core is <strong>GPLv3</strong> — a commercial fixture shipping ESPHome-based firmware ships a GPLv3 combined work: source availability plus the anti-lock-down clause (users must be able to install modified firmware) — in direct tension with signed OTA. Real precedents exist for embracing it (Apollo Automation and Athom ship ESPHome commercially; the free "Made for ESPHome" program formalizes it) — but every confirmed precedent is open-hardware prosumer gear, not a mass-market appliance. The alternatives: keep ESPHome for prototypes/dev-kits and write ESP-IDF firmware for the sealed product (the aim/CAN/failsafe logic ports cleanly — it's the smallest part of what ESPHome provides), or lean into openness as strategy (it <em>is</em> on-brand for the HA-first launch audience). Decide before the commercial firmware effort starts, not after.</li>
+</ul>
+<h2 id="5-deployment-one-gpu-box-boring-on-purpose">5. Deployment (one GPU box, boring on purpose)<a class="headerlink" href="#5-deployment-one-gpu-box-boring-on-purpose" title="Permanent link">&para;</a></h2>
+<p>Single <code>docker-compose.yaml</code>: restreamer, tracker-per-room, context-bridge, resolver, Frigate — GPU services declare <code>deploy.resources.reservations.devices</code> (NVIDIA runtime via <code>nvidia-ctk runtime configure</code>). One systemd unit runs <code>docker compose up -d</code> at boot; compose owns restarts. Mosquitto and HA stay where they are (the HA box); everything meets on the LAN per <a href="../05-teach-it-to-aim/">Doc 5</a>'s VLAN plan.</p>
+<h2 id="6-build-order-the-first-two-weeks-of-software">6. Build order (the first two weeks of software)<a class="headerlink" href="#6-build-order-the-first-two-weeks-of-software" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting software build
+(chapter: engineering.engineered.lighting/07-building-the-software/,
+build-order step 1 — repo bootstrap). Everything in this step is
+hardware-free and runs on the GPU box; no camera, no fixture.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: bootstrap the monorepo exactly per the chapter&#39;s repo layout: a
+uv workspace with services/tracker, services/resolver, and
+services/context_bridge (a pyproject each, one shared lockfile);
+libs/roommodel encoding the Doc 6 message schemas as pydantic 2.x
+models so publisher and subscriber import the same class;
+config/rooms/ with per-room YAML loaded via yaml.safe_load +
+model_validate; deploy/docker-compose.yaml; the firmware/ tree
+skeleton; and tests/golden_tracks + tests/clips directories. Pin the
+chapter&#39;s stack exactly — ultralytics &gt;=8.4.63, aiomqtt ==2.5.1,
+aioesphomeapi &gt;=45.6.0, hass-client ==1.2.3, uvloop, pydantic 2.x —
+but re-verify every pin at build time per the chapter&#39;s version-drift
+rule and flag anything that moved.
+
+Done when: uv sync succeeds across the whole workspace and the
+service skeletons, roommodel schemas, and compose file are committed.
+
+Report back: the repo tree, the uv sync output, any pin that drifted
+from the chapter&#39;s table, and the diff.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol>
+<li>Repo bootstrap: uv workspace, <code>libs/roommodel</code> encoding <a href="../06-message-contract/">Doc 6</a>'s schemas, empty service skeletons, compose file. <em>(An afternoon, mostly Claude Code.)</em></li>
+</ol>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting software build
+(chapter: engineering.engineered.lighting/07-building-the-software/,
+build-order step 2 — replay rig before real cameras). The repo from
+step 1 exists; a 2-minute recorded clip of someone walking the room
+stands in for a live camera, so this step touches no hardware.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: build the replay rig and the tracker MVP against it. Configure
+mediamtx to loop the mp4 as a real local RTSP source (runOnInit with
+ffmpeg -re -stream_loop -1, or its native alwaysAvailableFile). Then
+the tracker (one process per room): ultralytics track with
+stream=True, persist=True, tracker=bytetrack; feet to ground-plane
+position; One-Euro smoothing plus prediction; publish
+el/&lt;room&gt;/tracks at 15 Hz (MQTT QoS 0) plus perception/status. Obey
+the chapter&#39;s three ingest rules: always read through the local
+restream; set OPENCV_FFMPEG_CAPTURE_OPTIONS to
+&quot;rtsp_transport;tcp|fflags;nobuffer|flags;low_delay&quot; before opening;
+and rely on stream=True keeping only the newest frame. Use the
+chapter&#39;s pinned versions, re-verifying pins at build time per the
+version-drift rule.
+
+Done when: mosquitto_sub shows sane 15 Hz tracks from a looped clip.
+
+Report back: a mosquitto_sub capture of el/&lt;room&gt;/tracks with the
+measured publish rate, per-frame processing latency on the GPU box,
+and the diff.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol start="2">
+<li>Replay rig before real cameras: mediamtx looping a recorded clip → tracker MVP against it → tracks on MQTT. <strong>Done when</strong> <code>mosquitto_sub</code> shows sane 15 Hz tracks from a looped clip.</li>
+</ol>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting software build
+(chapter: engineering.engineered.lighting/07-building-the-software/,
+build-order step 3 — resolver MVP). The step-2 tracker is publishing
+el/&lt;room&gt;/tracks at 15 Hz from the looped clip; still no hardware
+anywhere.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: build the resolver as one asyncio process on uvloop: subscribe
+tracks and context with aiomqtt (==2.5.1); compute per-fixture
+pan/tilt with the aim math driven by the fixture poses and
+calibration in config/rooms/; include the safety-cone checks and
+assignment; publish bench targets on spotlight/target using the Doc 6
+envelope fields. Testing: capture a golden-track session as (ts, id,
+x, y, vx, vy) jsonl into tests/golden_tracks/, replay it at
+wall-clock pace into the resolver in CI, and assert the pan/tilt
+outputs within tolerance; cover the pure geometry (homography, aim
+inverse, cone checks) with plain pytest +
+numpy.testing.assert_allclose. Follow the chapter&#39;s pins,
+re-verifying at build time per the version-drift rule.
+
+Done when: golden-track replay produces expected angles in pytest.
+
+Report back: the pytest output including the golden-track tolerances,
+a sample of the published spotlight/target messages, and the diff.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol start="3">
+<li>Resolver MVP: consume tracks, aim math from <code>config/rooms/</code>, publish bench targets. <strong>Done when</strong> golden-track replay produces expected angles in pytest.</li>
+</ol>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting software build
+(chapter: engineering.engineered.lighting/07-building-the-software/,
+build-order step 4 — the simulated fixture). The step-3 resolver
+passes its golden-track tests; this step stays entirely hardware-free
+— the fixture is a compiled host-platform binary.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: create an esphome config in firmware/tests/host/ using the host
+platform with an api server and template outputs standing in for
+hardware, exposing the fixture_aim action. Then the integration test:
+spin the compiled binary up as a subprocess, connect with real
+aioesphomeapi (&gt;=45.6.0, ReconnectLogic, noise encryption — mandatory
+since 2026.1), call fixture_aim with typed floats, and assert the
+resulting state — the same pattern ESPHome&#39;s own tests/integration/
+uses in its CI. Remember the host caveats: no MQTT component, no real
+GPIO — template stand-ins only, which is exactly what we want. Wire
+it into GitHub Actions alongside esphome config validate.
+
+Done when: the whole loop passes with no hardware attached.
+
+Report back: the integration-test pytest output, the CI run result,
+and the diff.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol start="4">
+<li>Simulated fixture: host-platform config + <code>fixture_aim</code> action; resolver integration test green in CI. <strong>Done when</strong> the whole loop passes with no hardware attached.</li>
+</ol>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting software build
+(chapter: engineering.engineered.lighting/07-building-the-software/,
+build-order step 5 — point it at reality). Steps 1-4 proved every
+component against the replay rig and the simulated fixture; this step
+prepares the swap to the real camera and the Doc 4 bench rig but
+stays hardware-free itself — anything that actually moves the fixture
+belongs to the Doc 5 Phase 0 session and its own prompt.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: make the swap a pure configuration change. Point the restreamer
+at the real camera&#39;s RTSP URL (still reading only through the local
+restream, per the ingest rules), update config/rooms/ with the real
+camera pose and fixture pose, and switch the resolver&#39;s output to the
+bench lane — spotlight/target over MQTT, which the Doc 4 ESPHome node
+forwards to CAN. Verify the perception side only: the tracker
+consuming the live stream, sane 15 Hz tracks on el/&lt;room&gt;/tracks, the
+resolver publishing plausible angles — with the fixture&#39;s supply left
+off. Do not command or enable any fixture motion in this session.
+
+Done when: the tracker runs against the live camera and the resolver
+publishes plausible bench targets, with every component already
+tested before hardware enters — the remaining unknowns are physics,
+not code.
+
+Report back: a mosquitto_sub capture of el/&lt;room&gt;/tracks and of
+spotlight/target from the live stream, the measured track rate, and
+the config diff.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol start="5">
+<li>Point it at reality: swap the looped clip for the real camera, the simulated fixture for the bench rig — this is <a href="../05-teach-it-to-aim/#phase-0-the-lamp-follows-me-a-weekend-needs-only-the-doc-34-rig-any-rtsp-camera">Doc 5 Phase 0</a>, arrived at with every component already tested. The remaining unknowns are physics, not code.</li>
+</ol>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting software build
+(chapter: engineering.engineered.lighting/07-building-the-software/,
+build-order step 6 — graduating the firmware and override detection).
+The full loop from steps 1-5 runs; the Doc 4 CAN lambdas have
+outgrown a screen. This step is code and host-platform tests only —
+no flashing, no hardware.
+
+Start by proposing a plan and wait for my approval before executing
+anything.
+
+Task: graduate the CAN lambdas into the external component
+firmware/components/fixture_control/ (starts as type: local) — the
+official ~3-file skeleton (__init__.py schema plus .h/.cpp), riding
+the built-in canbus, with mrk-its/esphome-canopen as the structural
+reference; ours is greenfield, since no RMD ESPHome component exists
+anywhere. Respect the chapter&#39;s single-core discipline: event-style
+structure with disable_loop() when idle, logger at INFO once
+telemetry flows, and the 50 ms loop-block threshold. Separately, wire
+hass-client (==1.2.3) into the resolver to subscribe state_changed
+with context data — the override detector&#39;s food — so the coordinator
+notices manual overrides. Validate with esphome config validate and
+the step-4 host-platform integration tests.
+
+Done when: the fixture_control component compiles, config validate
+and the host-platform integration tests pass, and a replayed
+state_changed event with context data is logged as a detected manual
+override.
+
+Report back: the esphome config validate output, the host-platform
+test results, the override-detection log line, and the diff.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ol start="6">
+<li>Graduate the CAN lambdas into <code>fixture_control</code> when they exceed a screen; wire <code>hass-client</code> override detection when the coordinator starts making choices worth overriding.</li>
+</ol>
+<h2 id="risk-register">Risk register<a class="headerlink" href="#risk-register" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>hass-client</code> is maintained by one adjacent project</strong> (Music Assistant) — solid today; the fallback is ~200 lines of raw websocket client, so the exposure is bounded.</li>
+<li><strong>YOLO26/Ultralytics licensing is AGPL</strong> for the library — fine for personal/prototype use; a commercial product needs an Ultralytics license or a differently-licensed detector. Same decision-gate timing as the ESPHome GPL question; bundle them for counsel.</li>
+<li><strong>No public benchmark exists</strong> for this exact GPU on these exact loads (unchanged from <a href="../05-teach-it-to-aim/">Doc 5</a>) — step 2's replay rig is also the benchmark harness.</li>
+<li><strong>Version drift:</strong> everything above was verified July 2026; re-verify pins at build time (the pre-purchase-recheck rule from the hardware BoMs, applied to software).</li>
+</ul>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<p>Ultralytics track mode — <a href="https://docs.ultralytics.com/modes/track">docs.ultralytics.com/modes/track</a> · aioesphomeapi — <a href="https://github.com/esphome/aioesphomeapi">github.com/esphome/aioesphomeapi</a> · ESPHome host platform — <a href="https://esphome.io/components/host">esphome.io/components/host</a> · ESPHome external components — <a href="https://esphome.io/components/external_components">esphome.io/components/external_components</a> + <a href="https://developers.esphome.io/architecture/components">developers.esphome.io/architecture/components</a> · esphome-canopen (structural reference) — <a href="https://github.com/mrk-its/esphome-canopen">github.com/mrk-its/esphome-canopen</a> · build-action — <a href="https://github.com/esphome/build-action">github.com/esphome/build-action</a> · packages/fleet pattern — <a href="https://esphome.io/components/packages">esphome.io/components/packages</a> + <a href="https://github.com/jesserockz/esphome-configs">github.com/jesserockz/esphome-configs</a> · mediamtx config (replay) — <a href="https://mediamtx.org/docs">mediamtx.org/docs</a> · Frigate architecture (process-per-camera precedent) — <a href="https://docs.frigate.video">docs.frigate.video</a> · hass-client — <a href="https://github.com/music-assistant/python-hass-client">github.com/music-assistant/python-hass-client</a> · aiomqtt — <a href="https://pypi.org/project/aiomqtt">pypi.org/project/aiomqtt</a> · uv workspaces — <a href="https://docs.astral.sh/uv">docs.astral.sh/uv</a> · ESPHome LICENSE (GPL boundary) — <a href="https://github.com/esphome/esphome/blob/dev/LICENSE">github.com/esphome/esphome/blob/dev/LICENSE</a> · Made for ESPHome — <a href="https://esphome.io/guides/made_for_esphome">esphome.io/guides/made_for_esphome</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../06-message-contract/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 6 · The Message Contract">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                6 · The Message Contract
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>

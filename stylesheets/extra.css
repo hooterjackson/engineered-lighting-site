@@ -1,0 +1,838 @@
+/* ==========================================================================
+   ENGINEERED LIGHTING — ENGINEERING NOTEBOOK THEME
+   docs/stylesheets/extra.css
+
+   Everything below consumes the tokens in §1. Nothing else in this file
+   (and nothing in the docs) should contain a raw color.
+
+   Palette model: a dark workshop. The ground is true black — darkness first;
+   light only exists because of the dark behind it. Text is warm off-white. The single
+   accent system is the product's own tunable-white range:
+     amber  (~1800 K) = interactive: links, active nav, progress, checks
+     ice    (~6500 K) = emphasis: focus rings, selection, mark, live state
+   No saturated brand colors. No red/green semantics.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap");
+
+/* --------------------------------------------------------------------------
+   §1 · DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Ground — black ramp (darkness first; raises keep a faint warm cast) */
+  --el-bg-0: #000000;              /* page ground. non-negotiable.      */
+  --el-bg-1: #0F0D0B;              /* raised: panels, admonitions       */
+  --el-bg-2: #17140F;              /* highest: inline code, kbd, hover  */
+  --el-bg-deep: #0B0A08;           /* code blocks: just above black     */
+
+  /* Ink — warm off-whites (2700 K paper, not #FFF) */
+  --el-ink: #F2EEE6;               /* primary text          18.1:1 on bg-0 */
+  --el-ink-2: #C9C1B2;             /* secondary             11.8:1          */
+  --el-ink-3: #9C937F;             /* tertiary / captions    6.9:1          */
+  --el-ink-4: #6E6759;             /* faint — decorative + large text only  */
+
+  /* Hairlines — borders, not shadows */
+  --el-line: rgba(242, 238, 230, 0.10);
+  --el-line-2: rgba(242, 238, 230, 0.20);
+
+  /* Accent A — amber, the 1800 K end of the product's tunable range */
+  --el-amber: #E2A24C;             /* links, active nav      9.5:1 on bg-0  */
+  --el-amber-hi: #EFBC77;          /* hover                                 */
+  --el-amber-soft: rgba(226, 162, 76, 0.14);
+  --el-amber-glow: rgba(226, 162, 76, 0.10);
+
+  /* Accent B — ice, the 6500 K end. Emphasis only, never links. */
+  --el-ice: #D6E5F4;               /* focus rings, live state 16.4:1        */
+  --el-ice-soft: rgba(214, 229, 244, 0.14);
+
+  /* Paper — the one light surface: wiring diagrams (white-background SVGs)
+     presented as lit sheets pinned in a dark shop */
+  --el-paper: #FFFFFF;
+
+  /* Type */
+  --el-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --el-track-chrome: 0.12em;       /* mono chrome labels                */
+  --el-track-ui: 0.08em;           /* buttons, meta chips               */
+
+  /* Spacing — 4 px grid (rem here = 20 px, Material's base) */
+  --el-sp-1: 4px;  --el-sp-2: 8px;  --el-sp-3: 12px; --el-sp-4: 16px;
+  --el-sp-6: 24px; --el-sp-8: 32px; --el-sp-12: 48px; --el-sp-16: 64px;
+
+  /* Radius — architectural: square or pill, nothing between */
+  --el-r-0: 0;
+  --el-r-pill: 999px;
+
+  /* Motion — slow, damped, no bounce */
+  --el-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --el-dur-fast: 120ms;
+  --el-dur: 220ms;
+
+  /* Prose measure */
+  --el-measure: 42em;              /* ≈ 70ch in IBM Plex Sans @ 16 px   */
+}
+
+/* --------------------------------------------------------------------------
+   §2 · MATERIAL VARIABLE MAPPING  (scheme: slate, primary/accent: custom)
+   -------------------------------------------------------------------------- */
+[data-md-color-scheme="slate"] {
+  color-scheme: dark;
+  --md-hue: 30; /* neutralize slate's blue cast where derived colors leak */
+
+  --md-text-font: "IBM Plex Sans";
+  --md-code-font: ui-monospace;    /* system mono — no second hosted family */
+
+  --md-default-bg-color: var(--el-bg-0);
+  --md-default-fg-color: var(--el-ink);
+  --md-default-fg-color--light: var(--el-ink-2);
+  --md-default-fg-color--lighter: var(--el-ink-3);
+  --md-default-fg-color--lightest: var(--el-line);
+
+  --md-typeset-color: var(--el-ink);
+  --md-typeset-a-color: var(--el-amber);
+
+  --md-primary-fg-color: var(--el-bg-0);       /* header = ground: no chrome */
+  --md-primary-fg-color--light: var(--el-bg-1);
+  --md-primary-fg-color--dark: var(--el-bg-0);
+  --md-primary-bg-color: var(--el-ink);
+  --md-primary-bg-color--light: var(--el-ink-2);
+
+  --md-accent-fg-color: var(--el-amber-hi);
+  --md-accent-fg-color--transparent: var(--el-amber-glow);
+  --md-accent-bg-color: var(--el-bg-0);
+  --md-accent-bg-color--light: var(--el-bg-0);
+
+  --md-code-fg-color: #E7E1D5;
+  --md-code-bg-color: var(--el-bg-deep);
+  --md-code-hl-color: var(--el-amber-soft);
+  --md-code-hl-comment-color: #8A8271;
+  --md-code-hl-punctuation-color: #B3AA97;
+  --md-code-hl-operator-color: #B3AA97;
+  --md-code-hl-keyword-color: #A9C4E0;         /* keywords lean ice   */
+  --md-code-hl-function-color: #F2EEE6;
+  --md-code-hl-name-color: #DCD5C6;
+  --md-code-hl-string-color: #DCA76A;          /* strings lean amber  */
+  --md-code-hl-number-color: #E4BE8C;
+  --md-code-hl-constant-color: #A9C4E0;
+  --md-code-hl-special-color: #D6E5F4;
+  --md-code-hl-variable-color: #DCD5C6;
+  --md-code-hl-generic-color: #C9C1B2;
+
+  --md-typeset-mark-color: var(--el-ice-soft);
+  --md-typeset-del-color: rgba(226, 162, 76, 0.12);
+  --md-typeset-ins-color: rgba(214, 229, 244, 0.12);
+  --md-typeset-kbd-color: var(--el-bg-2);
+  --md-typeset-kbd-accent-color: var(--el-bg-2);
+  --md-typeset-kbd-border-color: var(--el-bg-deep);
+
+  --md-typeset-table-color: var(--el-line);
+  --md-typeset-table-color--light: rgba(242, 238, 230, 0.03);
+
+  --md-admonition-fg-color: var(--el-ink-2);
+  --md-admonition-bg-color: var(--el-bg-1);
+
+  --md-footer-bg-color: transparent;
+  --md-footer-bg-color--dark: transparent;
+  --md-footer-fg-color: var(--el-ink-2);
+  --md-footer-fg-color--light: var(--el-ink-3);
+  --md-footer-fg-color--lighter: var(--el-ink-4);
+
+  /* Depth = hairlines, not drop-shadows */
+  --md-shadow-z1: none;
+  --md-shadow-z2: none;
+  --md-shadow-z3: 0 0 0 1px var(--el-line);
+}
+
+/* --------------------------------------------------------------------------
+   §3 · BASE — quiet global behavior
+   -------------------------------------------------------------------------- */
+::selection { background: var(--el-ice-soft); }
+
+:focus-visible {
+  outline: 2px solid var(--el-ice);
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) transparent; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(242, 238, 230, 0.14); border: 3px solid var(--el-bg-0); }
+::-webkit-scrollbar-thumb:hover { background: rgba(242, 238, 230, 0.28); }
+::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* --------------------------------------------------------------------------
+   §4 · HEADER — the content is the interface; the bar disappears into it
+   -------------------------------------------------------------------------- */
+.md-header {
+  background: var(--el-bg-0);
+  border-bottom: 1px solid var(--el-line);
+  box-shadow: none;
+}
+.md-header--shadow { box-shadow: none; }
+.md-header__title { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.01em; }
+.md-header__topic:first-child { font-weight: 500; }
+.md-header__button { color: var(--el-ink-2); }
+.md-header__button:hover { color: var(--el-amber); }
+.md-header__button.md-logo { padding-right: 0; }
+.md-header__button.md-logo :is(img, svg) { height: 1.1rem; width: auto; }
+
+/* Search — a hairline slot, not a tinted pill */
+.md-search__form {
+  background: rgba(242, 238, 230, 0.05);
+  border: 1px solid var(--el-line);
+  border-radius: 0;
+}
+.md-search__form:hover { background: rgba(242, 238, 230, 0.08); }
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+  background: var(--el-bg-1);
+  border-color: var(--el-line-2);
+  border-radius: 0;
+}
+.md-search__input { font-size: 0.7rem; }
+.md-search__input::placeholder { color: var(--el-ink-3); }
+.md-search__output { border-radius: 0; box-shadow: 0 0 0 1px var(--el-line-2); }
+
+/* --------------------------------------------------------------------------
+   §5 · NAVIGATION — chapter list; numbers read as fixture IDs
+   -------------------------------------------------------------------------- */
+.md-nav { font-size: 0.7rem; }
+.md-nav__link { color: var(--el-ink-2); font-variant-numeric: tabular-nums; }
+.md-nav__item .md-nav__link--active,
+.md-nav__item .md-nav__link--active code { color: var(--el-amber); font-weight: 600; }
+
+/* Desktop: drop the repeated site title above the chapter list — the header
+   already carries identity ("no chrome") */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-nav__title { display: none; }
+  .md-sidebar--primary .md-nav__list { padding-top: 0.4rem; }
+}
+
+/* TOC title as a mono chrome label */
+.md-nav--secondary .md-nav__title {
+  font-family: var(--el-mono);
+  font-size: 0.5rem;
+  font-weight: 400;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  color: var(--el-ink-4);
+  background: transparent;
+  box-shadow: none;
+}
+.md-nav--secondary .md-nav__link { color: var(--el-ink-3); }
+.md-nav--secondary .md-nav__link--active { color: var(--el-amber); }
+
+/* Mobile drawer */
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary .md-nav__title {
+    background: var(--el-bg-1);
+    color: var(--el-ink);
+    border-bottom: 1px solid var(--el-line);
+    box-shadow: none;
+  }
+  .md-nav--primary .md-nav__title ~ .md-nav__list { box-shadow: none; }
+  .md-nav--primary .md-nav__item { border-top: 1px solid var(--el-line); }
+}
+
+/* Back-to-top: the one floating chip — chrome pill */
+.md-top {
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-pill);
+  box-shadow: none;
+  color: var(--el-ink-2);
+}
+.md-top:focus, .md-top:hover { background: rgba(23, 20, 15, 0.85); color: var(--el-amber); }
+
+/* --------------------------------------------------------------------------
+   §6 · PROSE — generous leading, ~70ch measure; tables/code/figures run full
+   -------------------------------------------------------------------------- */
+.md-typeset { font-size: 0.8rem; line-height: 1.65; }
+.md-typeset p, .md-typeset ul, .md-typeset ol, .md-typeset dl, .md-typeset blockquote {
+  max-width: var(--el-measure);
+  text-wrap: pretty;
+}
+
+.md-typeset h1 {
+  color: var(--el-ink);
+  font-weight: 600;
+  font-size: 1.7em;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.9em;
+}
+.md-typeset h2 {
+  font-weight: 600;
+  font-size: 1.3em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 2.4em 0 0.8em;
+}
+.md-typeset h3 { font-weight: 600; font-size: 1.08em; letter-spacing: -0.005em; }
+.md-typeset h4 { font-weight: 600; font-size: 0.9em; }
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 { scroll-margin-top: 3.2rem; }
+
+/* The series line under a doc H1 ("**Engineered Lighting prototype series ·
+   July 2026**") becomes a mono chrome label */
+.md-typeset h1 + p > strong:only-child {
+  font-family: var(--el-mono);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  color: var(--el-ink-3);
+}
+
+/* Links — amber, always distinguishable, brighter on hover */
+.md-typeset a {
+  color: var(--el-amber);
+  text-decoration: underline;
+  text-decoration-color: rgba(226, 162, 76, 0.35);
+  text-underline-offset: 0.16em;
+  transition: color var(--el-dur-fast) var(--el-ease), text-decoration-color var(--el-dur-fast) var(--el-ease);
+}
+.md-typeset a:hover, .md-typeset a:focus {
+  color: var(--el-amber-hi);
+  text-decoration-color: currentcolor;
+}
+
+/* Section dividers — a cooling filament */
+.md-typeset hr {
+  border: none;
+  height: 1px;
+  margin: 3em 0;
+  background: linear-gradient(90deg, transparent, rgba(226, 162, 76, 0.35) 18%, rgba(242, 238, 230, 0.28) 50%, rgba(226, 162, 76, 0.35) 82%, transparent);
+}
+
+.md-typeset blockquote {
+  border-left: 1px solid var(--el-line-2);
+  color: var(--el-ink-2);
+}
+
+.md-content .md-typeset mark { color: var(--el-ink); } /* scoped: search-result hit marks keep Material's accent */
+
+.md-typeset kbd {
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--el-bg-2);
+  color: var(--el-ink-2);
+}
+
+.md-typeset .headerlink { color: var(--el-ink-4); }
+.md-typeset :is(h1, h2, h3, h4, h5, h6) .headerlink:is(:hover, :focus) { color: var(--el-amber); }
+
+/* --------------------------------------------------------------------------
+   §7 · CODE — recessed, hairlined, system mono
+   -------------------------------------------------------------------------- */
+.md-typeset code { border-radius: 0; font-size: 0.82em; }
+.md-typeset :not(pre) > code {
+  background: rgba(242, 238, 230, 0.07);
+  color: var(--el-ink);
+  padding: 0.08em 0.35em;
+}
+.md-typeset pre > code { padding: 0.9em 1.1em; line-height: 1.55; }
+.md-typeset .highlight, .md-typeset pre { border-radius: 0; }
+.md-typeset .highlight > pre > code, .md-typeset > pre > code {
+  border: 1px solid var(--el-line);
+}
+.md-clipboard { color: var(--el-ink-4); }
+:hover > .md-clipboard { color: var(--el-ink-3); }
+.md-clipboard:focus, .md-clipboard:hover { color: var(--el-amber); }
+
+/* --------------------------------------------------------------------------
+   §8 · TABLES — dense BoMs: hairline rules only, no zebra, no verticals
+   -------------------------------------------------------------------------- */
+.md-typeset table:not([class]) {
+  font-size: 0.66rem;
+  border: none;
+  border-top: 1px solid var(--el-line-2);
+  border-bottom: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+  font-variant-numeric: tabular-nums;
+}
+.md-typeset table:not([class]) th {
+  font-family: var(--el-mono);
+  font-weight: 400;
+  font-size: 0.52rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  color: var(--el-ink-3);
+  padding: 0.7em 0.9em;
+  vertical-align: bottom;
+}
+.md-typeset table:not([class]) td {
+  padding: 0.65em 0.9em;
+  border-top: 1px solid var(--el-line);
+  vertical-align: top;
+}
+.md-typeset table:not([class]) tbody tr:hover {
+  background: rgba(242, 238, 230, 0.03);
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   §9 · ADMONITIONS — quiet panels; a mono label row, no fat accent bar.
+   Ice = informational (note, info, tip…) · Amber = cautionary (warning,
+   trap, danger…). Two custom types: `trap` and `rules` (golden rules).
+   -------------------------------------------------------------------------- */
+:root {
+  --md-admonition-icon--trap: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath fill="none" stroke="%23000" stroke-width="1.7" stroke-linejoin="round" d="M12 3.4 21.2 19.6H2.8Z"/%3E%3Cpath stroke="%23000" stroke-width="1.7" d="M12 9.5v4.4"/%3E%3Ccircle cx="12" cy="16.7" r=".4" fill="%23000" stroke="%23000"/%3E%3C/svg%3E');
+  --md-admonition-icon--rules: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cg stroke="%23000" stroke-width="1.6" stroke-linecap="round"%3E%3Cpath d="M12 2.8v5M12 16.2v5M2.8 12h5M16.2 12h5M5.5 5.5l3.5 3.5M15 15l3.5 3.5M18.5 5.5 15 9M9 15l-3.5 3.5"/%3E%3C/g%3E%3C/svg%3E');
+}
+
+.md-typeset .admonition, .md-typeset details {
+  border: 1px solid var(--el-line);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--el-bg-1);
+  font-size: 0.68rem;
+  max-width: 46em;
+}
+.md-typeset .admonition-title, .md-typeset summary {
+  background: rgba(242, 238, 230, 0.03);
+  border: none;
+  max-width: none; /* §6 prose measure caps p elements — the title band must fill */
+  width: auto; /* Material ≥9.6 sets fit-content; we want a full-width band */
+  font-family: var(--el-mono);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  padding-top: 0.65em;
+  padding-bottom: 0.65em;
+}
+.md-typeset .admonition-title::before, .md-typeset summary::before {
+  top: 0.6em;
+  height: 0.75rem;
+  width: 0.75rem;
+}
+
+/* Informational family — ice */
+.md-typeset :is(.admonition, details):is(.note, .abstract, .summary, .info, .todo, .tip, .hint, .success, .check, .done, .question, .help, .faq, .example, .quote, .cite) {
+  border-color: var(--el-line);
+}
+.md-typeset :is(.note, .abstract, .summary, .info, .todo, .tip, .hint, .success, .check, .done, .question, .help, .faq, .example, .quote, .cite) > :is(.admonition-title, summary) {
+  background: var(--el-ice-soft);
+  background: rgba(214, 229, 244, 0.05);
+  color: var(--el-ice);
+}
+.md-typeset :is(.note, .abstract, .summary, .info, .todo, .tip, .hint, .success, .check, .done, .question, .help, .faq, .example, .quote, .cite) > :is(.admonition-title, summary)::before {
+  background-color: var(--el-ice);
+}
+
+/* Cautionary family — amber (incl. custom `trap` and `rules`) */
+.md-typeset :is(.admonition, details):is(.warning, .caution, .attention, .failure, .fail, .missing, .danger, .error, .bug, .trap, .rules) {
+  border-color: rgba(226, 162, 76, 0.3);
+}
+.md-typeset :is(.warning, .caution, .attention, .failure, .fail, .missing, .danger, .error, .bug, .trap, .rules) > :is(.admonition-title, summary) {
+  background: rgba(226, 162, 76, 0.07);
+  color: var(--el-amber);
+}
+.md-typeset :is(.warning, .caution, .attention, .failure, .fail, .missing, .danger, .error, .bug, .trap, .rules) > :is(.admonition-title, summary)::before {
+  background-color: var(--el-amber);
+}
+.md-typeset :is(.trap) > :is(.admonition-title, summary)::before {
+  -webkit-mask-image: var(--md-admonition-icon--trap);
+  mask-image: var(--md-admonition-icon--trap);
+}
+.md-typeset :is(.rules) > :is(.admonition-title, summary)::before {
+  -webkit-mask-image: var(--md-admonition-icon--rules);
+  mask-image: var(--md-admonition-icon--rules);
+}
+
+/* Agent-prompt — the AI-native lane: copy-paste blocks that lead each
+   software stage. Amber (interactive), robot glyph, printable. */
+:root {
+  --md-admonition-icon--agent-prompt: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cg fill="none" stroke="%23000" stroke-width="1.6"%3E%3Crect x="4.5" y="8" width="15" height="10.5" rx="1"/%3E%3Cpath stroke-linecap="round" d="M12 8V5"/%3E%3Ccircle cx="12" cy="4" r="1.1"/%3E%3Cpath stroke-linecap="round" d="M9 12.5v2M15 12.5v2"/%3E%3C/g%3E%3C/svg%3E');
+}
+.md-typeset :is(.admonition, details):is(.agent-prompt) {
+  border-color: rgba(226, 162, 76, 0.45);
+}
+.md-typeset :is(.agent-prompt) > :is(.admonition-title, summary) {
+  background: rgba(226, 162, 76, 0.1);
+  color: var(--el-amber);
+}
+.md-typeset :is(.agent-prompt) > :is(.admonition-title, summary)::before {
+  background-color: var(--el-amber);
+  -webkit-mask-image: var(--md-admonition-icon--agent-prompt);
+  mask-image: var(--md-admonition-icon--agent-prompt);
+}
+
+/* --------------------------------------------------------------------------
+   §10 · BUTTONS — quiet technical controls
+   -------------------------------------------------------------------------- */
+.md-typeset .md-button {
+  font-family: var(--el-mono);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: var(--el-track-ui);
+  text-transform: uppercase;
+  color: var(--el-ink-2);
+  background: transparent;
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  padding: 0.7em 1.4em;
+  text-decoration: none;
+  transition: all var(--el-dur-fast) var(--el-ease);
+}
+.md-typeset .md-button:hover, .md-typeset .md-button:focus {
+  color: var(--el-ink);
+  background: rgba(242, 238, 230, 0.06);
+  border-color: rgba(242, 238, 230, 0.35);
+}
+.md-typeset .md-button--primary {
+  background: var(--el-amber);
+  border-color: var(--el-amber);
+  color: var(--el-bg-0);
+}
+.md-typeset .md-button--primary:hover, .md-typeset .md-button--primary:focus {
+  background: var(--el-amber-hi);
+  border-color: var(--el-amber-hi);
+  color: var(--el-bg-0);
+}
+
+/* --------------------------------------------------------------------------
+   §11 · GRID CARDS (landing) — hairline panels, no lift
+   -------------------------------------------------------------------------- */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--el-line);
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem 1.1rem;
+  transition: border-color var(--el-dur) var(--el-ease), background var(--el-dur) var(--el-ease);
+}
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--el-line-2);
+  background: rgba(242, 238, 230, 0.02);
+  box-shadow: none;
+}
+.md-typeset .grid.cards > ul > li hr {
+  margin: 0.7em 0;
+  background: var(--el-line);
+}
+.md-typeset .grid.cards .twemoji.lg { color: var(--el-amber); }
+
+/* --------------------------------------------------------------------------
+   §12 · FIGURES — wiring diagrams as lit sheets: white card, hairline frame,
+   faint halo (the schematic is the lit object in the dark room)
+   -------------------------------------------------------------------------- */
+.md-typeset p:has(> img:only-child) { margin: 2em 0 0; max-width: none; }
+.md-typeset p:has(> img:only-child) > img {
+  display: block;
+  width: 100%;
+  background: var(--el-paper);
+  border: 1px solid var(--el-line-2);
+  padding: clamp(10px, 2.2vw, 22px);
+  box-shadow: 0 0 48px rgba(242, 238, 230, 0.05);
+}
+.md-typeset p:has(> img:only-child) + p:has(> em:only-child) {
+  margin: 0.6em 0 2.2em;
+  max-width: var(--el-measure);
+}
+.md-typeset p:has(> img:only-child) + p > em:only-child {
+  font-family: var(--el-mono);
+  font-style: normal;
+  font-size: 0.58rem;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: var(--el-ink-3);
+}
+
+/* --------------------------------------------------------------------------
+   §13 · BoM CHECKLIST — panels, luminous progress, square amber checks
+   (selectors carry .md-typeset/.md-content to outrank the page's inline CSS)
+   -------------------------------------------------------------------------- */
+/* The checklist page earns a wider grid: its table is the content, and the
+   default 61rem grid forced internal scrolling on wide screens. Prose on the
+   page stays capped at --el-measure; only the panels widen. */
+.md-grid:has(.bom-section) { max-width: 76rem; }
+
+.md-content #bom-global {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.6em 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--el-line);
+  background: var(--el-bg-1);
+}
+.md-content #bom-bar {
+  flex: 1;
+  height: 5px;
+  border: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(242, 238, 230, 0.09);
+  overflow: hidden;
+}
+.md-content #bom-bar::-webkit-progress-bar { background: rgba(242, 238, 230, 0.09); }
+/* fill warms from amber toward white as the list completes — the tunable range */
+.md-content #bom-bar::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--el-amber), #F0E7D6);
+  transition: width var(--el-dur) var(--el-ease);
+}
+.md-content #bom-bar::-moz-progress-bar { background: linear-gradient(90deg, var(--el-amber), #F0E7D6); }
+.md-content #bom-global-text {
+  font-family: var(--el-mono);
+  font-size: 0.55rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  color: var(--el-ink-3);
+  white-space: nowrap;
+}
+
+.md-typeset .bom-section {
+  margin: 1.2em 0;
+  padding: 0 1rem 0.6rem;
+  border: 1px solid var(--el-line);
+  border-radius: 0;
+  background: var(--el-bg-1);
+  max-width: none;
+}
+.md-typeset .bom-section summary {
+  padding: 0.75rem 1.8rem 0.75rem 0;
+  margin: 0 -1rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  background: transparent;
+  color: var(--el-ink);
+}
+.md-typeset .bom-section summary::before { display: none; }
+.md-typeset .bom-section summary strong {
+  font-family: var(--md-text-font-family);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+.md-typeset .bom-section .bom-progress {
+  font-family: var(--el-mono);
+  font-size: 0.52rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  color: var(--el-amber);
+  margin-left: auto;
+}
+.md-typeset .bom-section table { margin-top: 0; }
+.md-typeset .bom-section .bom-scroll { overflow-x: auto; }
+
+.md-typeset input.bom-box {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  margin: 0.1em 0 0;
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  vertical-align: top;
+  transition: border-color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
+}
+.md-typeset input.bom-box:hover { border-color: var(--el-amber); }
+.md-typeset input.bom-box:checked { border-color: var(--el-amber); background: var(--el-amber-soft); }
+.md-typeset input.bom-box:checked::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--el-amber);
+  -webkit-mask: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath fill="none" stroke="%23000" stroke-width="3.4" stroke-linecap="square" d="M4.5 12.6 10 18.2 19.5 6.8"/%3E%3C/svg%3E') center / contain no-repeat;
+  mask: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath fill="none" stroke="%23000" stroke-width="3.4" stroke-linecap="square" d="M4.5 12.6 10 18.2 19.5 6.8"/%3E%3C/svg%3E') center / contain no-repeat;
+}
+.md-typeset input.bom-box:focus-visible { outline: 2px solid var(--el-ice); outline-offset: 2px; }
+
+/* Chapter task lists (docs 3/4 verdict checklists) — same check language as the BoM.
+   checklist.js enables these inputs and persists them under el-done-v1. */
+.md-typeset .task-list-indicator::before { background-color: var(--el-ink-3); }
+.md-typeset [type="checkbox"]:checked + .task-list-indicator::before { background-color: var(--el-amber); }
+.md-typeset .task-list-control { cursor: pointer; }
+.md-typeset .task-list-control [type="checkbox"]:focus-visible + .task-list-indicator {
+  outline: 2px solid var(--el-ice);
+  outline-offset: 2px;
+}
+.md-typeset .el-done-progress {
+  font-family: var(--el-mono);
+  font-size: 0.55rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  color: var(--el-amber);
+  margin: 0.4em 0 1.6em;
+}
+
+.md-typeset .bom-optional {
+  font-family: var(--el-mono);
+  font-size: 0.48rem;
+  letter-spacing: var(--el-track-ui);
+  text-transform: uppercase;
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-pill);
+  padding: 0.1em 0.7em;
+  color: var(--el-ink-3);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.md-typeset .bom-owned td { color: var(--el-ink-3); }
+.md-typeset .bom-section tr:has(.bom-box:checked) label { color: var(--el-ink-3); }
+
+/* --------------------------------------------------------------------------
+   §14 · FOOTER — prev/next as quiet wayfinding
+   -------------------------------------------------------------------------- */
+.md-footer { border-top: 1px solid var(--el-line); }
+.md-footer__inner { padding-top: 0.6rem; padding-bottom: 0.6rem; }
+.md-footer__direction {
+  font-family: var(--el-mono);
+  font-size: 0.5rem;
+  letter-spacing: var(--el-track-chrome);
+  text-transform: uppercase;
+  opacity: 1;
+  color: var(--el-ink-4);
+}
+.md-footer__title { font-size: 0.8rem; font-weight: 500; }
+.md-footer__link:is(:focus, :hover) { opacity: 1; color: var(--el-amber); }
+.md-copyright, .md-copyright__highlight { color: var(--el-ink-4); font-size: 0.55rem; }
+html .md-footer-meta.md-typeset a { color: var(--el-ink-3); }
+html .md-footer-meta.md-typeset a:is(:focus, :hover) { color: var(--el-amber); }
+
+/* --------------------------------------------------------------------------
+   §15 · LANDING HERO — the one cone of light. Never behind body text.
+   -------------------------------------------------------------------------- */
+.el-hero {
+  position: relative;
+  padding: 3.4rem 0 1.4rem;
+  margin-bottom: 1.6rem;
+}
+.el-hero::before {
+  content: "";
+  position: absolute;
+  inset: -2.4rem -14% 0;
+  pointer-events: none;
+  background: radial-gradient(58% 46% at 50% 0%, rgba(236, 184, 114, 0.15) 0%, rgba(236, 184, 114, 0.05) 46%, transparent 72%);
+}
+@media (max-width: 44.9375em) {
+  /* the -14% side bleed widens the page into horizontal scroll on phones;
+     the gradient fades by 72%, so losing the bleed is invisible */
+  .el-hero::before { inset: -2.4rem 0 0; }
+}
+.el-hero::after {
+  /* the source: a pinpoint at the cone's apex */
+  content: "";
+  position: absolute;
+  top: -0.15rem;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  transform: translateX(-50%);
+  border-radius: var(--el-r-pill);
+  background: var(--el-ink);
+  box-shadow: 0 0 14px 3px rgba(236, 184, 114, 0.55);
+}
+.el-hero > * { position: relative; }
+.el-hero__kicker {
+  font-family: var(--el-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-amber);
+  margin-bottom: 1.1rem;
+}
+.md-typeset .el-hero h1 {
+  font-size: clamp(1.7rem, 4.6vw, 2.35rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.65em;
+  max-width: 15em;
+}
+.el-hero p:not(.el-hero__kicker):not(.el-hero__meta) {
+  color: var(--el-ink-2);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-width: 40em;
+}
+.el-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1.1rem;
+  max-width: none;
+}
+.el-hero__meta span {
+  font-family: var(--el-mono);
+  font-size: 0.5rem;
+  letter-spacing: var(--el-track-ui);
+  text-transform: uppercase;
+  color: var(--el-ink-3);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-pill);
+  padding: 0.3em 1em 0.35em;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   §16 · PRINT — paper mode lives here: white ground, no nav, full-width
+   diagrams. (The dark scheme is the only screen scheme; print is the
+   "light mode".)
+   -------------------------------------------------------------------------- */
+@media print {
+  [data-md-color-scheme="slate"] {
+    color-scheme: light;
+    --md-default-bg-color: #ffffff;
+    --md-default-fg-color: #1a1814;
+    --md-default-fg-color--light: #4a463e;
+    --md-default-fg-color--lighter: #6e6759;
+    --md-default-fg-color--lightest: rgba(26, 24, 20, 0.12);
+    --md-typeset-color: #1a1814;
+    --md-typeset-a-color: #8a5a1d;
+    --md-code-fg-color: #1a1814;
+    --md-code-bg-color: #f6f4ef;
+    --md-admonition-fg-color: #1a1814;
+    --md-admonition-bg-color: #faf8f4;
+    --md-typeset-table-color: rgba(26, 24, 20, 0.2);
+    --el-ink: #1a1814;
+    --el-ink-2: #3d3931;
+    --el-ink-3: #5c564a;
+    --el-ink-4: #6e6759;
+    --el-line: rgba(26, 24, 20, 0.15);
+    --el-line-2: rgba(26, 24, 20, 0.3);
+    --el-bg-0: #ffffff;
+    --el-bg-1: #faf8f4;
+    --el-bg-2: #f2efe8;
+    --el-bg-deep: #f6f4ef;
+    --el-amber: #8a5a1d;
+    --el-amber-hi: #8a5a1d;
+  }
+  body, .md-container, .md-main { background: #fff !important; }
+  .md-header, .md-sidebar, .md-footer, .md-top, .md-search, .md-overlay,
+  .md-typeset .md-button, .md-content__button, .el-hero::before, .el-hero::after {
+    display: none !important;
+  }
+  .md-main__inner { margin-top: 0; }
+  .md-content { max-width: none; margin: 0; }
+  .md-typeset { font-size: 11pt; line-height: 1.55; }
+  .md-typeset p:has(> img:only-child) > img {
+    border: 1px solid rgba(26, 24, 20, 0.25);
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+  }
+  .md-typeset .highlight > pre > code, .md-typeset > pre > code {
+    border-color: rgba(26, 24, 20, 0.2);
+  }
+  .md-typeset a { text-decoration-color: currentcolor; }
+  .md-typeset table:not([class]), .md-typeset pre, .md-typeset .admonition {
+    break-inside: avoid;
+  }
+}

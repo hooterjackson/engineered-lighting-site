@@ -1,0 +1,1565 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The 10-stage gimbal bench build: motors answering on CAN by stage 4, a balanced aimed head by stage 8, full BoM and wiring.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/03-build-the-gimbal/">
+      
+      
+        <link rel="prev" href="../02-choosing-the-motors/">
+      
+      
+        <link rel="next" href="../03b-print-the-frame/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3 · Build the Gimbal - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="3 · Build the Gimbal - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The 10-stage gimbal bench build: motors answering on CAN by stage 4, a balanced aimed head by stage 8, full BoM and wiring." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/03-build-the-gimbal.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/03-build-the-gimbal/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="3 · Build the Gimbal - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The 10-stage gimbal bench build: motors answering on CAN by stage 4, a balanced aimed head by stage 8, full BoM and wiring." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/03-build-the-gimbal.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-3-build-the-gimbal-bench-plan-step-by-step" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3 · Build the Gimbal
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-buy-this-350405-total" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — buy this, ~$350–405 total
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-in-six-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts in six terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-bench-setup-and-the-three-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1 — Bench setup and the three rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-hello-esp32-and-exactly-how-code-gets-onto-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 — Hello, ESP32 (and exactly how code gets onto the board)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-3-wire-the-can-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3 — Wire the CAN line
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-4-first-contact-read-then-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4 — First contact: read, then move
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-5-characterize-the-measurements-everything-depends-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 5 — Characterize (the measurements everything depends on)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-6-second-motor-one-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 6 — Second motor, one bus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-7-print-the-frame-balance-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 7 — Print the frame, balance the head
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-8-aim-at-the-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 8 — Aim at the room
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-9-hand-the-keys-to-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 9 — Hand the keys to the network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-10-verdict-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 10 — Verdict checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-as-your-lab-partner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI as your lab partner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference card
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-buy-this-350405-total" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — buy this, ~$350–405 total
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-in-six-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts in six terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-bench-setup-and-the-three-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1 — Bench setup and the three rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-hello-esp32-and-exactly-how-code-gets-onto-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 — Hello, ESP32 (and exactly how code gets onto the board)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-3-wire-the-can-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3 — Wire the CAN line
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-4-first-contact-read-then-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4 — First contact: read, then move
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-5-characterize-the-measurements-everything-depends-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 5 — Characterize (the measurements everything depends on)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-6-second-motor-one-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 6 — Second motor, one bus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-7-print-the-frame-balance-the-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 7 — Print the frame, balance the head
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-8-aim-at-the-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 8 — Aim at the room
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-9-hand-the-keys-to-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 9 — Hand the keys to the network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-10-verdict-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 10 — Verdict checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-as-your-lab-partner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI as your lab partner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference card
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-3-build-the-gimbal-bench-plan-step-by-step">Doc 3 · Build the Gimbal — Bench Plan, Step by Step<a class="headerlink" href="#doc-3-build-the-gimbal-bench-plan-step-by-step" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong>
+For a first-time gimbal builder with limited electronics experience. Ten stages; each is one bench session with a "you're done when" checkpoint. Motors move on command by stage 4 — no mechanical work needed until stage 7.</p>
+<h2 id="bill-of-materials-buy-this-350405-total">Bill of Materials — buy this, ~$350–405 total<a class="headerlink" href="#bill-of-materials-buy-this-350405-total" title="Permanent link">&para;</a></h2>
+<p><em>"Est." = total price for the quantity shown in that row.</em></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Part</th>
+<th>Qty</th>
+<th>Est.</th>
+<th>Where</th>
+<th>Notes / traps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>MyActuator RMD-L-5005-100-C</strong> (CAN variant; the -R twin is RS485)</td>
+<td>2 (+1 spare recommended — see note)</td>
+<td>$215 for 2 / $322.50 for 3</td>
+<td><a href="https://www.dingsmotionusa.com/rmd-l-5005">Dings Motion USA</a>, $107.50 ea</td>
+<td>The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 92 g, Ø49 mm puck; <a href="../02-choosing-the-motors/">Doc 2</a> is the full story, and its availability addendum covers this exact part swap. Order the <strong>-C (CAN)</strong> variant explicitly. Ask the seller to include mating cables for the 4-pin port (VCC/GND/CANL/CANH) — one per motor plus a spare — and keep the protocol PDF that ships in the box: it's the authority on byte layouts for your unit's firmware. Why 3: this motor family sells out episodically; the third unit is the permanent bench-dev unit and feeds the future second fixture</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ESP32-C6 dev board (ESP32-C6-DevKitC-1)</td>
+<td>1</td>
+<td>$9–15</td>
+<td>Amazon, Adafruit, DigiKey</td>
+<td>Same chip as the fixture — everything learned transfers</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board")</td>
+<td>2 (1+spare)</td>
+<td>$8</td>
+<td>Amazon</td>
+<td>The ESP32 has the CAN <em>brain</em> on-chip but not the line driver — this little board is the voice, converting chip signals to the differential CAN wire pair. 3.3 V logic, breadboard-friendly. Bus termination gets measured and set in stage 3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>120 Ω resistors, ¼ W</td>
+<td>few</td>
+<td>$1</td>
+<td>any resistor kit</td>
+<td>CAN bus termination</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Bench power supply, <strong>≥3 A continuous, adjustable current limit</strong></td>
+<td>1</td>
+<td>$45–60</td>
+<td>Amazon (any 30 V/5 A unit)</td>
+<td>Powers the motors and, later, the whole bench. The adjustable current limit is smoke insurance for a first build, and the 3 A rating covers the motors' real appetite (~1–1.5 A running, 5–8 A instantaneous peaks)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Multimeter</td>
+<td>1</td>
+<td>$20</td>
+<td>Amazon</td>
+<td>Non-negotiable — polarity check before every first power-up</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Breadboard + jumper wires</td>
+<td>1 kit</td>
+<td>$10</td>
+<td>Amazon</td>
+<td>Signals only — power never routes through it</td>
+</tr>
+<tr>
+<td>8</td>
+<td>USB-C data cable</td>
+<td>1</td>
+<td>—</td>
+<td>you own one</td>
+<td>Charge-only cables are a classic trap</td>
+</tr>
+<tr>
+<td>9</td>
+<td>M2.5 + M3 screw assortment</td>
+<td>1 box</td>
+<td>$10</td>
+<td>Amazon</td>
+<td>Confirm sizes against the motor drawing (<a href="https://www.myactuator.com">myactuator.com</a> downloads)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>USB-to-CAN adapter ("CANable" or clone) — <em>optional but recommended</em></td>
+<td>1</td>
+<td>$20–25</td>
+<td>Amazon</td>
+<td>Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence</td>
+</tr>
+<tr>
+<td>11</td>
+<td>PETG filament + access to any FDM 3D printer &amp; slicer; 6804 or 608 bearings</td>
+<td>—</td>
+<td>$20</td>
+<td>Amazon / local makerspace</td>
+<td>For stage 7's three frame parts. No printer at home? A library, makerspace, or online print service works — the parts are small</td>
+</tr>
+<tr>
+<td>12</td>
+<td>C-clamp or small bench vise</td>
+<td>1</td>
+<td>$10</td>
+<td>hardware store</td>
+<td>Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Payload stand-in: small flashlight or ~100 g weight</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>Real LED head comes from <a href="../04-full-fixture-bench/">Doc 4</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Digital calipers</td>
+<td>1</td>
+<td>$10–20</td>
+<td>Amazon</td>
+<td>The frame chapter (<a href="../03b-print-the-frame/">Doc 3b</a>) runs on measurements — every MEASURE-ME parameter in the scaffold comes from these</td>
+</tr>
+</tbody>
+</table>
+<p><em>Family sold out again? <a href="https://www.digikey.com/en/products/detail/cubemars/GL-40/16705289">CubeMars GL40 II</a> ($134, DigiKey, direct-drive, CAN) is the buy-today alternative at the cost of a protocol port; <a href="https://shop.m5stack.com/products/rollercan-unit-with-bldc-motor-stm32">M5Stack RollerCAN</a> ($44) is the dev bridge while waiting.</em></p>
+<h2 id="concepts-in-six-terms">Concepts in six terms<a class="headerlink" href="#concepts-in-six-terms" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>CAN bus:</strong> a two-wire intercom line. Every device has an address (ours: pan = 0x141, tilt = 0x142 — hex numbers are just house numbers). Messages are always <strong>8 data bytes</strong> — short frames get silently ignored (a documented real-user bug).</li>
+<li><strong>Transceiver &amp; termination:</strong> the ESP32 has the CAN <em>brain</em> on-chip but not the <em>voice</em> — the SN65HVD230 chip is the voice. The wire pair needs a 120 Ω resistor at each end (termination) so signals don't echo.</li>
+<li><strong>Current limit:</strong> a bench supply setting that caps output current. Set low, a wiring mistake fizzles instead of smoking. Our bring-up setting: <strong>2.0 A</strong> (enough for one motor to run; still safe).</li>
+<li><strong>Common ground:</strong> two power sources (USB-powered ESP32, 12 V motor supply) must share one ground wire, or signals have no reference and <em>nothing works</em>. The #1 "why is it dead" cause.</li>
+<li><strong>Absolute encoder:</strong> the motor knows its angle the instant power arrives — within one revolution (it can't count full turns made while off, so the frame gets hard stops).</li>
+<li><strong>0xA4:</strong> the workhorse command of this build — "go to angle X, no faster than Y°/s," packed in 8 bytes. The motor does all trajectory math onboard. (A few housekeeping commands appear too: 0x92 read-angle, 0x79 set-address, 0x63/0x64 set-zero.)</li>
+</ul>
+<hr />
+<h2 id="stage-1-bench-setup-and-the-three-rules">Stage 1 — Bench setup and the three rules<a class="headerlink" href="#stage-1-bench-setup-and-the-three-rules" title="Permanent link">&para;</a></h2>
+<p>Set the supply to <strong>12.0 V, current limit 2.0 A</strong> <em>before</em> connecting anything (12 V is gentler for bring-up; motors accept 12–24 V; raise toward 3 A in stage 6 for two-motor moves).</p>
+<p>The rules that prevent 90% of beginner damage: <strong>(1)</strong> multimeter checks polarity before every first power-up; <strong>(2)</strong> wire only with power off; <strong>(3)</strong> one common ground between ESP32 and motor supply.</p>
+<p><strong>Done when:</strong> supply reads 12.0 V / 2.0 A limit and you can explain rule 3.</p>
+<h2 id="stage-2-hello-esp32-and-exactly-how-code-gets-onto-the-board">Stage 2 — Hello, ESP32 (and exactly how code gets onto the board)<a class="headerlink" href="#stage-2-hello-esp32-and-exactly-how-code-gets-onto-the-board" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal build
+(chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 2).
+An ESP32-C6-DevKitC-1 is plugged into this computer by USB-C. Start by
+proposing a plan and wait for my approval before executing anything.
+Then: install arduino-cli if missing, install the esp32 core (&gt;=3.x),
+detect the board&#39;s port, compile and upload the stock Blink example
+(FQBN esp32:esp32:esp32c6), then open a serial monitor at 115200 and
+show me 10 seconds of output. Done when: the LED blinks and you&#39;ve shown
+me serial output. If upload fails at &quot;Connecting…&quot;, tell me to hold the
+BOOT button and retry rather than guessing. Report back: the exact
+commands you ran and the captured output.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Every sketch in this doc reaches the board the same way — learn it once here:</p>
+<details>
+<summary>Do it by hand — understand what the agent did</summary>
+<ol>
+<li>Download <strong>Arduino IDE 2.x</strong> from arduino.cc and install.</li>
+<li>Open <strong>Boards Manager</strong> (second icon in the left sidebar) → search "esp32" → install <strong>"esp32 by Espressif Systems," version 3.x or newer</strong> (this teaches the IDE about the C6). Takes a few minutes.</li>
+<li>Plug the dev board in with a <strong>USB-C data cable</strong>.</li>
+<li><strong>Tools → Board → esp32 → "ESP32C6 Dev Module"</strong>, then <strong>Tools → Port →</strong> the entry that appeared when you plugged in (Windows: <code>COM5</code>-style; Mac: <code>/dev/cu.usbmodem…</code>). Not sure which? Unplug, note the list, replug — the new one is yours.</li>
+<li>Open <strong>File → Examples → 01.Basics → Blink</strong>. Click the <strong>✓ (Verify)</strong> button to compile, then the <strong>→ (Upload)</strong> arrow. The black console below should march through <code>Writing at 0x… (100%)</code> and end with <code>Hard resetting…</code>.</li>
+<li>To <em>see</em> what the board says: open <strong>Serial Monitor</strong> (magnifying-glass icon, top right), set the dropdown to <strong>115200 baud</strong>, and set the line-ending dropdown beside it to <strong>"New Line"</strong> (the sketches read commands terminated by a newline — with the wrong setting, typed commands sit there doing nothing). This window is your conversation with the microcontroller — every stage-4+ command gets typed here, every reply appears here.</li>
+<li>From now on: <strong>File → New Sketch → paste the code from this doc → Upload → open Serial Monitor.</strong> That's the whole workflow.</li>
+</ol>
+</details>
+<p><strong>Done when:</strong> LED blinks and text appears in Serial Monitor.
+<strong>If stuck:</strong> port never appears = charge-only cable (swap it). Upload dies at <code>Connecting…</code> = hold the board's <strong>BOOT</strong> button until writing starts. Gibberish in the monitor = baud isn't 115200.</p>
+<h2 id="stage-3-wire-the-can-line">Stage 3 — Wire the CAN line<a class="headerlink" href="#stage-3-wire-the-can-line" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="Gimbal CAN wiring diagram" src="../assets/wiring-gimbal-can.svg" /></p>
+<p><em>Color diagram (covers stages 3–6; stage 3 wires Motor A only — Motor B is the dashed box). Plain-text version below for quick bench reference:</em></p>
+<details>
+<summary>Plain-text wiring (quick bench reference)</summary>
+<div class="highlight"><pre><span></span><code>ESP32-C6                SN65HVD230 board          RMD-L-5005 motor
+--------                ----------------          ----------------
+3V3  ──────────────────  3V3
+GND  ──────────────────  GND ───────┬───────────  GND (power minus)
+GPIO6 (TX) ────────────  CTX        │
+GPIO7 (RX) ────────────  CRX        │
+                          CANH ─────┼───────────  CAN H     ← lightly twist
+                          CANL ─────┼───────────  CAN L     ← these two
+                                    │
+Bench supply +12V ──────────────────┼───────────  VCC (power plus)
+Bench supply GND ───────────────────┘
+</code></pre></div>
+</details>
+<p>Annotations:</p>
+<ul>
+<li><strong>Why GPIO6/7:</strong> many online examples use GPIO4/5, which are <em>strapping pins</em> on the C6 (read by the chip at boot). They usually work; avoiding them removes a category of weird boot behavior for free.</li>
+<li><strong>Termination check:</strong> with everything unpowered, measure resistance CANH↔CANL. ~120 Ω = one resistor present somewhere; ~60 Ω = two (correct); open = none. Add external 120 Ω resistors until the bus reads ~60 Ω.</li>
+<li><strong>Motor power never touches the breadboard</strong> (rails are ~1 A). Motor + and − go directly to the supply terminals; only thin signal wires (CAN pair, signal ground) touch the breadboard.</li>
+</ul>
+<p><strong>Done when:</strong> wired, powered, nothing warm.</p>
+<h2 id="stage-4-first-contact-read-then-move">Stage 4 — First contact: read, then move<a class="headerlink" href="#stage-4-first-contact-read-then-move" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal build
+(chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 4).
+The stage-3 wiring is live on the bench: ESP32-C6 and SN65HVD230 on the
+breadboard, one RMD-L-5005 motor clamped to the bench, supply at 12.0 V
+with the 2.0 A current limit set. Start by proposing a plan and wait for
+my approval before executing anything. Then: compile and upload the
+stage-4 sketch in the chapter (FQBN esp32:esp32:esp32c6, TX=GPIO6,
+RX=GPIO7, CAN at 1 Mbit/s), open serial at 115200 with newline line
+endings, and send r to read the angle (command 0x92) BEFORE any motion —
+any reply at all is the win. Only after I confirm the read: one small
+watched move, a10 (command 0xA4 at 30 deg/s). Traps: CAN frames are
+always 8 data bytes — short frames are silently ignored; the first
+absolute move can sweep up to a half-turn because factory zero is
+arbitrary; if upload dies at &quot;Connecting…&quot;, tell me to hold the BOOT
+button and retry rather than guessing; if there is no CAN reply, print
+the twai_get_status_info error counters after a send — climbing counters
+mean wiring, not code.
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current limit
+stays as set. Announce each motion command before sending it and wait
+for my explicit go.
+Done when: commanded angles work and the power-cycle trick passes.
+Report back: the exact commands you ran and the captured serial output,
+including the raw 0x92 reply frames.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p><strong>Clamp the motor to the bench first</strong> — a commanded motor twists its own body as hard as its shaft; unclamped motors jump.</p>
+<p>Upload:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;driver/twai.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="w">  </span><span class="n">twai_general_config_t</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWAI_GENERAL_CONFIG_DEFAULT</span><span class="p">(</span>
+<span class="w">      </span><span class="p">(</span><span class="n">gpio_num_t</span><span class="p">)</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">gpio_num_t</span><span class="p">)</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">TWAI_MODE_NORMAL</span><span class="p">);</span><span class="w">   </span><span class="c1">// TX=GPIO6, RX=GPIO7</span>
+<span class="w">  </span><span class="n">twai_timing_config_t</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWAI_TIMING_CONFIG_1MBITS</span><span class="p">();</span><span class="w">  </span><span class="c1">// RMD motors talk at 1 Mbit/s</span>
+<span class="w">  </span><span class="n">twai_filter_config_t</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TWAI_FILTER_CONFIG_ACCEPT_ALL</span><span class="p">();</span>
+<span class="w">  </span><span class="n">twai_driver_install</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">f</span><span class="p">);</span>
+<span class="w">  </span><span class="n">twai_start</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;CAN up. r = read angle, a&lt;deg&gt; = move (a45), z = go to 0&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">send8</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d0</span><span class="p">,</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d1</span><span class="p">,</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d2</span><span class="p">,</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d3</span><span class="p">,</span>
+<span class="w">                        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d4</span><span class="p">,</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d5</span><span class="p">,</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d6</span><span class="p">,</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d7</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">twai_message_t</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">identifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">data_length_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w">   </span><span class="c1">// ALWAYS 8 bytes</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">d0</span><span class="p">,</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">d3</span><span class="p">,</span><span class="n">d4</span><span class="p">,</span><span class="n">d5</span><span class="p">,</span><span class="n">d6</span><span class="p">,</span><span class="n">d7</span><span class="p">};</span><span class="w"> </span><span class="n">memcpy</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">  </span><span class="n">twai_transmit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// 0xA4 = &quot;go to &lt;deg&gt; absolute, max &lt;dps&gt; deg/sec&quot;. deg → hundredths, little-endian.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">moveTo</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">dps</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)(</span><span class="n">deg</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.0f</span><span class="p">);</span>
+<span class="w">  </span><span class="n">send8</span><span class="p">(</span><span class="mh">0x141</span><span class="p">,</span><span class="w"> </span><span class="mh">0xA4</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="n">dps</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="n">dps</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">        </span><span class="n">p</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">trim</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">)</span><span class="w">      </span><span class="n">send8</span><span class="p">(</span><span class="mh">0x141</span><span class="p">,</span><span class="w"> </span><span class="mh">0x92</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">   </span><span class="c1">// read angle</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;z&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">startsWith</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">))</span><span class="w"> </span><span class="n">moveTo</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">toFloat</span><span class="p">(),</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">twai_message_t</span><span class="w"> </span><span class="n">rx</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">twai_receive</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rx</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ESP_OK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;reply id=0x%03X data=&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="p">)</span><span class="n">rx</span><span class="p">.</span><span class="n">identifier</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%02X &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rx</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The session: type <code>r</code> — <strong>any reply is the win</strong> (proves wiring, transceiver, bitrate, motor). Then <code>a10</code> — the motor turns to absolute 10° and holds (it resists a gentle hand). Heads-up on the very first move: the factory zero is wherever assembly left it, so the first absolute command may sweep up to a half-turn — calm at the 30°/s limit, but that's why the motor is clamped. Play with <code>a45</code>, <code>a-30</code>, <code>z</code>.</p>
+<p><strong>The no-homing party trick:</strong> move to <code>a45</code>, kill motor power, nudge the shaft (less than a full turn), power on, type <code>r</code> — it still knows its angle. That's the product's silent-wake feature. Fine print: single-turn encoder, so the frame gets hard stops making a full off-power revolution impossible.</p>
+<p><strong>Done when:</strong> commanded angles work and the power-cycle trick passes.
+<strong>If stuck (no reply):</strong> first check the software non-bug — Serial Monitor line-ending set to "New Line" (stage 2, step 6)? Then hardware, in order: CANH/CANL swapped → missing common ground → motor unpowered → termination. The driver fails <em>silently</em> on a broken bus; print <code>twai_get_status_info</code> error counters after a send (climbing counters = wiring, not code). This is where the $20 USB-CAN dongle earns its keep.</p>
+<h2 id="stage-5-characterize-the-measurements-everything-depends-on">Stage 5 — Characterize (the measurements everything depends on)<a class="headerlink" href="#stage-5-characterize-the-measurements-everything-depends-on" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal build
+(chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 5).
+The stage-4 rig is live: one clamped motor answering 0x92/0xA4 over CAN,
+and I&#39;m standing by with a phone dB app and the supply ammeter — I call
+out every meter reading, you log it. Start by proposing a plan and wait
+for my approval before executing anything. Then drive the stage&#39;s
+measurement sweeps using the stage-4 sketch in the chapter: noise at
+hold and during moves at 10 / 30 / 60 / 90 deg/s (phone at 30 cm, same
+app throughout so stage-10 numbers compare); hold current unloaded and
+then with ~100 g hung 4 cm off-axis; warmth after 30 minutes holding;
+and the resolution steps a10.00, a10.50, a10.05 with a flashlight taped
+on while I watch the wall. Pause after each condition, prompt me for the
+reading, and build the noise/current table as we go. The fast rows
+matter most: follow-me needs 54–80 deg/s on close passes, so they decide
+whether tracking stays silent or gets speed-capped.
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current limit
+stays as set. Announce each motion command before sending it and wait
+for my explicit go.
+Done when: the numbers are written down.
+Report back: the completed noise/current table and the serial log of
+every command you sent.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ul>
+<li><strong>Noise</strong> (phone dB app — pick one and stick with it so stage-10 numbers compare, e.g. NIOSH SLM on iOS or Sound Meter on Android; 30 cm distance): at hold, and during moves at <strong>10 / 30 / 60 / 90 °/s</strong>. Quiet room ≈ 30–40 dB. Two verdicts ride on this: whine <em>at hold</em> (the sealed loop can't be retuned — this is the RMD bet's one risk), and the speed where motion becomes audible — <strong>follow-me needs 54–80°/s on close passes</strong> (<a href="../05-teach-it-to-aim/">Doc 5</a>), so the fast rows decide whether tracking stays silent or gets speed-capped.</li>
+<li><strong>Hold current</strong> (supply ammeter): unloaded, then with ~100 g hung 4 cm off-axis — previews why the balanced head matters.</li>
+<li><strong>Warmth</strong> after 30 min holding: warm fine; too-hot-to-touch is thermal-budget data.</li>
+<li><strong>Resolution feel:</strong> step <code>a10.00 → a10.50 → a10.05</code> with a flashlight taped on; watch the wall (0.05° ≈ 2 mm at 2.4 m).</li>
+</ul>
+<p><strong>Done when:</strong> the numbers are written down.</p>
+<h2 id="stage-6-second-motor-one-bus">Stage 6 — Second motor, one bus<a class="headerlink" href="#stage-6-second-motor-one-bus" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal build
+(chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 6).
+Motor B is on the bench at the factory address, connected ALONE on the
+CAN pair; motor A is disconnected for the re-address step. Start by
+proposing a plan and wait for my approval before executing anything.
+Then: change motor B&#39;s ID to 2 with command 0x79 per the manual&#39;s &quot;CAN
+ID setting&quot; section — send that write exactly once, never in a loop
+(it&#39;s a persistent flash write, so wear is real, and it only takes
+effect after a reboot), have me power-cycle the motor, and verify it
+now answers at 0x142. Next I&#39;ll daisy-chain both motors on one
+CANH/CANL pair and raise the supply current limit toward 3 A; then
+extend the stage-4 sketch in the chapter with a b&lt;deg&gt; command for
+motor 0x142 and a combined p&lt;deg&gt; t&lt;deg&gt; command that sends the two
+0xA4 frames back-to-back (~0.1 ms apart — simultaneous for a
+spotlight).
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current limit
+stays as set. Announce each motion command before sending it and wait
+for my explicit go.
+Done when: combined pan+tilt commands move both motors; each still
+answers alone.
+Report back: the sketch diff and serial captures showing replies from
+both 0x141 and 0x142.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Motors ship with the same address, so: connect motor B <strong>alone</strong>, change its ID to 2 (command 0x79 per the manual's "CAN ID setting" section, or MyActuator's PC tool), power-cycle, verify it answers at 0x142. Then daisy-chain both on one CANH/CANL pair, raise the current limit toward 3 A, extend the sketch with <code>b&lt;deg&gt;</code> and a combined command (two frames back-to-back ≈ 0.1 ms apart — simultaneous for a spotlight).</p>
+<blockquote>
+<p>From here on, some stages describe <em>what</em> to add rather than printing every line — deliberately: this is where the <strong>AI-as-lab-partner workflow (below)</strong> takes over. "Extend the stage-4 sketch with a <code>b&lt;deg&gt;</code> command for motor 0x142 and a combined <code>p&lt;deg&gt; t&lt;deg&gt;</code> command" is a one-prompt job.</p>
+</blockquote>
+<p><strong>Done when:</strong> combined pan+tilt commands move both motors; each still answers alone.</p>
+<h2 id="stage-7-print-the-frame-balance-the-head">Stage 7 — Print the frame, balance the head<a class="headerlink" href="#stage-7-print-the-frame-balance-the-head" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p>Three printed parts — pan base, yoke, head shell — turn two motors into an aimed head. The full frame chapter, with the parametric OpenSCAD scaffold, the five-minute fit coupon, and X1C print settings, is <strong><a href="../03b-print-the-frame/">Doc 3b · Print the Frame</a></strong>. Print there, then come back here to wire and balance.</p>
+<p>Wire routing: motor pigtails (power + CAN) cross each joint as a loose <strong>service loop</strong> — droopy, never taut across full travel.</p>
+<p><strong>Balancing (the important 20 minutes):</strong> power OFF, the head should stay wherever you pose it. If it flops, slide the counterweight. Balanced head = near-zero hold current = silent and cool. Verify: hold current at 0°/45°/90° tilt barely differs from the unloaded stage-5 reading.</p>
+<p><strong>Done when:</strong> the powered-off head stays posed anywhere; powered moves are smooth, no cable snags.</p>
+<h2 id="stage-8-aim-at-the-room">Stage 8 — Aim at the room<a class="headerlink" href="#stage-8-aim-at-the-room" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal build
+(chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 8).
+The balanced rig from stage 7 is clamped at a measured height h above
+the desk, with a desk-corner origin and taped target marks measured in
+meters. Start by proposing a plan and wait for my approval before
+executing anything. Then: extend the stage-6 sketch in the chapter with
+a goto x y serial command implementing the stage&#39;s math — pan =
+atan2(y_t - y_f, x_t - x_f), tilt = atan(horizontal_distance / h) —
+using the h and fixture position (x_f, y_f) I give you. Upload, then
+walk the beam between the taped marks one goto at a time, logging
+commanded target vs. where the beam actually lands so we can see the
+systematic error (mount lean, zero offsets) — in the product that
+becomes a one-time install calibration.
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current limit
+stays as set. Announce each motion command before sending it and wait
+for my explicit go.
+Done when: goto 0.5 0.3 lands within a few cm, repeatably.
+Report back: the sketch diff, the goto commands you sent, and the
+logged table of commanded vs. actual landings with the systematic
+offset noted.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Clamp the rig at height <em>h</em> above the desk. Pick an origin (a desk corner), measure in meters. For a target at (x_t, y_t) with the fixture at (x_f, y_f): <code>pan = atan2(y_t − y_f, x_t − x_f)</code>, <code>tilt = atan(horizontal_distance / h)</code>. Add a <code>goto x y</code> serial command implementing that; walk the beam between taped marks; note the systematic error (mount lean, zero offsets) — in the product this becomes a one-time install calibration.</p>
+<p><strong>Done when:</strong> <code>goto 0.5 0.3</code> lands within a few cm, repeatably.</p>
+<h2 id="stage-9-hand-the-keys-to-the-network">Stage 9 — Hand the keys to the network<a class="headerlink" href="#stage-9-hand-the-keys-to-the-network" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal build
+(chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 9).
+The aimed rig from stage 8 is on the bench, and a Home Assistant
+machine running the Mosquitto broker add-on is on the LAN — I&#39;ll give
+you its IP and the WiFi details. Start by proposing a plan and wait for
+my approval before executing anything. Then: add WiFi + MQTT to the
+stage-8 sketch in the chapter using the PubSubClient and ArduinoJson
+libraries. Subscribe to spotlight/target and parse the Doc 6 envelope
+{&quot;v&quot;:1,&quot;ts&quot;:1784150000000,&quot;pan&quot;:32.5,&quot;tilt&quot;:-14,&quot;rate&quot;:10} — v and ts
+are the contract&#39;s mandatory envelope fields — into the two CAN frames,
+and publish read-back angles every few seconds. Then test end to end:
+publish a target from this laptop (mosquitto_pub or MQTT Explorer),
+watch the read-back topic confirm the move, and do the final check with
+the USB cable unplugged.
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. The bench current limit
+stays as set. Announce each motion command before sending it and wait
+for my explicit go.
+Done when: an MQTT publish from your laptop aims the beam, no USB
+attached.
+Report back: the sketch diff and a mosquitto_sub -t &#39;spotlight/#&#39; -v
+capture showing the published target and the read-back angles that
+followed.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<p>Add WiFi + MQTT: install the <strong>PubSubClient</strong> and <strong>ArduinoJson</strong> libraries (Sketch → Include Library → Manage Libraries, search by name). The broker is the <strong>Mosquitto add-on in Home Assistant</strong> (<a href="../04-full-fixture-bench/#prerequisites">Doc 4's prerequisites box</a>) — point the sketch at your HA machine's IP. Behavior: subscribe to <strong><code>spotlight/target</code></strong>, parse <code>{"v":1,"ts":1784150000000,"pan":32.5,"tilt":-14,"rate":10}</code> (<code>v</code>/<code>ts</code> are the contract's mandatory envelope fields — <a href="../06-message-contract/">Doc 6</a>) → two CAN frames; publish read-back angles every few seconds. Note: this MQTT lane is the <em>bench</em> interface — production replaces it with a direct native-API action (<a href="../06-message-contract/#1-spotlighttarget-aim-commands-gpu-box-fixture-stream-15-hz">Doc 6 §1</a>). (Another one-prompt AI-partner job: "add WiFi+MQTT to this sketch per this paragraph.") Test from MQTT Explorer or a Home Assistant automation.</p>
+<p><strong>Done when:</strong> an MQTT publish from your laptop aims the beam, no USB attached.</p>
+<h2 id="stage-10-verdict-checklist">Stage 10 — Verdict checklist<a class="headerlink" href="#stage-10-verdict-checklist" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Hold noise, balanced head, several angles — indistinguishable from the room (&lt;~35 dB)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sweep noise at 10–90°/s (the speed-vs-silence decision)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Repeatability: same <code>goto</code> mark 20×, scatter ≤ 1 cm at 1 m (≈0.5°)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Power-loss recovery: correct angle knowledge, zero homing motion</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 4-hour hold: current, temperature, no intermittent whine</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 50 full-travel sweeps: service loops intact</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Total power draw at 24 V — record it for the fixture power budget (external design doc: the fixture brief's ~60 W mode-based table)</li>
+</ul>
+<p><strong>Pass</strong> → the architecture graduates to the fixture's lower-module PCB (C6 TWAI + $2 transceiver, actuators as-is). <strong>Whine or heat at hold</strong> → try the other supply voltage (24 V vs 12 V), re-balance harder, then fall back to the DIY FOC path (<a href="../02-choosing-the-motors/">Doc 2</a>, "The DIY path and its documented pain") where you own the loop.</p>
+<h2 id="ai-as-your-lab-partner">AI as your lab partner<a class="headerlink" href="#ai-as-your-lab-partner" title="Permanent link">&para;</a></h2>
+<p>The Serial Monitor output, compiler errors, and CAN frames in this build are all text — which makes every debugging step here something an AI can read, reason about, and often fix. Four levels, in order of setup effort:</p>
+<p><strong>Level 0 — paste the evidence (zero setup).</strong> When something misbehaves, paste into Claude: the <em>entire</em> sketch, the <em>entire</em> Serial Monitor output (not excerpts — the boring lines are often the clue), and one sentence on what you expected. Compiler errors especially: ESP32 toolchain errors are verbose and AI-friendly. This alone resolves most beginner walls.</p>
+<p><strong>Level 1 — let the agent drive the board (Claude Code + arduino-cli).</strong> Arduino has a command-line twin, <code>arduino-cli</code>, which means a coding agent with shell access can run the whole loop itself:</p>
+<div class="highlight"><pre><span></span><code>arduino-cli<span class="w"> </span>compile<span class="w"> </span>--fqbn<span class="w"> </span>esp32:esp32:esp32c6<span class="w"> </span>gimbal_sketch/<span class="w"> </span>--upload<span class="w"> </span>-p<span class="w"> </span>/dev/cu.usbmodem101
+arduino-cli<span class="w"> </span>monitor<span class="w"> </span>-p<span class="w"> </span>/dev/cu.usbmodem101<span class="w"> </span>-c<span class="w"> </span><span class="nv">baudrate</span><span class="o">=</span><span class="m">115200</span>
+</code></pre></div>
+<p>Run Claude Code in the folder holding your sketch (keep it in git so edits are reviewable) and ask things like: <em>"Upload this, send <code>r</code> over serial, capture 30 seconds of output, and tell me why the reply frames don't decode as angles."</em> (For scripted send-and-capture the agent will typically write itself a five-line pyserial helper rather than use the interactive monitor — let it.) The agent edits, recompiles, re-uploads, and re-reads output in a loop — the same iteration you'd do by hand, minus the hand. Give it these docs as context so it knows the pins, addresses, and protocol.</p>
+<p><strong>Level 2 — let the agent see the bus and the telemetry.</strong> The optional USB-CAN dongle (BoM #10) turns raw bus traffic into text an agent can decode. On a Mac bench (yours), that's a small <strong>python-can</strong> script with the dongle in <code>slcan</code> mode streaming every frame as text; on a Linux box it's one command (<code>candump can0</code>). Either way, Claude can diff what's on the wire against the RMD protocol PDF — far better than a human squinting at hex. Once stage 9 adds MQTT, <code>mosquitto_sub -t 'spotlight/#' -v</code> gives an agent live telemetry to watch while it commands test moves and checks the reported angles match.</p>
+<p><strong>Level 3 — let it see the bench.</strong> Photograph the breadboard and ask Claude to check the wiring against this doc's stage-3 diagram before first power-up. Cheap, catches swapped CANH/CANL and missing grounds surprisingly well.</p>
+<p><strong>One hard rule:</strong> the agent never commands motion unattended. Current limit stays set, your hand stays near the supply switch, and any agent-driven test that moves the motor happens while you watch. Agents are excellent at reading; keep the physical-safety authority human.</p>
+<h2 id="reference-card">Reference card<a class="headerlink" href="#reference-card" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Thing</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CAN bitrate / frame size</td>
+<td>1 Mbit/s · always 8 data bytes</td>
+</tr>
+<tr>
+<td>Motor addresses</td>
+<td>pan 0x141 · tilt 0x142 (set via cmd 0x79)</td>
+</tr>
+<tr>
+<td>Move command</td>
+<td>0xA4: <code>[A4 00 spdLo spdHi pos0..pos3]</code>, pos = deg×100, int32 little-endian</td>
+</tr>
+<tr>
+<td>Read angle / set zero</td>
+<td>0x92 · 0x63/0x64 (zero write needs reboot; do once, never in a loop — flash wear)</td>
+</tr>
+<tr>
+<td>Pins</td>
+<td>TX=GPIO6→CTX, RX=GPIO7←CRX (GPIO4/5 avoided: strapping pins)</td>
+</tr>
+<tr>
+<td>Supply</td>
+<td>12 V bring-up @ 2.0 A limit (→~3 A two-motor); 24 V test in stage 10; motor power direct to PSU, never via breadboard</td>
+</tr>
+<tr>
+<td>Golden rules</td>
+<td>multimeter first · wire cold · one ground · twist CANH/CANL · balanced head = silent head</td>
+</tr>
+</tbody>
+</table>
+<h2 id="risk-register">Risk register<a class="headerlink" href="#risk-register" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Hold whine.</strong> A balanced head should hold silently; audible whine at hold means current is fighting gravity — rebalance (stage 7's counterweight slot) before blaming the motor. Stage 5's hold-noise row is the baseline; stage 10 re-checks it at several angles.</li>
+<li><strong>Protocol drift.</strong> Byte layouts vary across RMD firmware revisions — the protocol PDF that ships in the box is the authority for <em>your</em> unit, over anything online (including this doc's frame examples). When replies don't decode, diff against the PDF first.</li>
+<li><strong>Single-turn absolute encoder.</strong> The motor knows its angle within one revolution but can't count full turns made while powered off — the frame's hard stops (stage 7) are what make power-loss recovery unambiguous. Don't delete them to save print time.</li>
+<li><strong>Supply volatility.</strong> This motor family sells out episodically at retail (the 4005 did exactly that in July 2026 — see Doc 2's addendum). The third-unit spare in the BoM is the insurance; the alternates line under the BoM is the fallback path.</li>
+<li><strong>Speed vs. silence.</strong> The 54–80 °/s band that follow-me needs (stage 5) may not be silent on your unit. If it isn't, the perception layer speed-caps close passes — losing some tracking snappiness — rather than accepting audible sweeps. Decide with stage-10 data, not hope.</li>
+</ul>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.myactuator.com">MyActuator RMD-L-5005 downloads</a> — the STEP files (stage 7 frame design) and the protocol PDF that is the authority on your unit's byte layouts.</li>
+<li><a href="https://github.com/isaac879/Pan-Tilt-Mount">isaac879's Pan-Tilt-Mount</a> — printable pan/tilt geometry worth studying before designing the yoke.</li>
+<li><a href="https://github.com/Visaging/ESP32-Gimbal">Visaging ESP32-Gimbal</a> — an ESP32-class gimbal build; different goals (stabilization), same mechanical vocabulary.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../02-choosing-the-motors/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2 · Choosing the Motors">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2 · Choosing the Motors
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03b-print-the-frame/" class="md-footer__link md-footer__link--next" aria-label="Next: 3b · Print the Frame">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3b · Print the Frame
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>

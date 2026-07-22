@@ -1,0 +1,990 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Round-1 research digest: the physics, vocabulary, and five lessons under every later decision.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/01-how-we-got-here/">
+      
+      
+        <link rel="prev" href="../00b-ai-native-workflow/">
+      
+      
+        <link rel="next" href="../02-choosing-the-motors/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1 · How We Got Here - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="1 · How We Got Here - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="Round-1 research digest: the physics, vocabulary, and five lessons under every later decision." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/01-how-we-got-here.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/01-how-we-got-here/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="1 · How We Got Here - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="Round-1 research digest: the physics, vocabulary, and five lessons under every later decision." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/01-how-we-got-here.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-1-how-we-got-here-gimbal-research-round-1-archive" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1 · How We Got Here
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-project-in-one-paragraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The project, in one paragraph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-document-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The document map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shopping-list-for-this-document-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shopping list for this document: nothing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-question-we-asked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The question we asked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english-these-terms-appear-in-every-later-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English — these terms appear in every later doc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-five-lessons-that-survived" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The five lessons that survived
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-round-got-wrong-and-round-2-fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this round got wrong (and round 2 fixed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading-the-round-1-sources-worth-opening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading (the round-1 sources worth opening)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-project-in-one-paragraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The project, in one paragraph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-document-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The document map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shopping-list-for-this-document-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shopping list for this document: nothing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-question-we-asked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The question we asked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english-these-terms-appear-in-every-later-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English — these terms appear in every later doc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-five-lessons-that-survived" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The five lessons that survived
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-round-got-wrong-and-round-2-fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this round got wrong (and round 2 fixed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading-the-round-1-sources-worth-opening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading (the round-1 sources worth opening)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-1-how-we-got-here-gimbal-research-round-1-archive">Doc 1 · How We Got Here — Gimbal Research, Round 1 (Archive)<a class="headerlink" href="#doc-1-how-we-got-here-gimbal-research-round-1-archive" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong></p>
+<h2 id="the-project-in-one-paragraph">The project, in one paragraph<a class="headerlink" href="#the-project-in-one-paragraph" title="Permanent link">&para;</a></h2>
+<p>We're building the robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head (smart CAN servo motors, absolute encoders, no homing dance) carrying a high-CRI 3-up LED spot, living alongside the fixture's tunable-white ambient zones, exposed to Home Assistant as ordinary entities <em>and</em> aimed autonomously by a camera-driven perception stack — following people, lighting task surfaces and books, pointing at art when idle, never sweeping across eyes. This seven-document series takes it from research through a working bench prototype to the system architecture, with everything adversarially reviewed and every purchase specified.</p>
+<h2 id="the-document-map">The document map<a class="headerlink" href="#the-document-map" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Doc</th>
+<th>What it is</th>
+<th>You buy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="./">How We Got Here</a></td>
+<td>Round-1 research digest: the physics, vocabulary, and five lessons under every later decision. Archive — read for understanding</td>
+<td>nothing</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="../02-choosing-the-motors/">Choosing the Motors</a></td>
+<td>The decision journey to the RMD-L-4005 smart CAN actuators — what was evaluated, why integrated actuators won</td>
+<td>(decision feeds Doc 3)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="../03-build-the-gimbal/">Build the Gimbal</a></td>
+<td>10-stage bench build: motors answering on CAN by stage 4, a balanced aimed head by stage 8. Full BoM, wiring, code, AI-partner workflow</td>
+<td>~$350–405</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="../04-full-fixture-bench/">Build the Full Fixture Bench</a></td>
+<td>One ESP32-C6 running the whole fixture: 21 tunable-white channels + CC spotlight + gimbal, in ESPHome/Home Assistant</td>
+<td>~$170–240</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="../05-teach-it-to-aim/">Teach It to Aim</a></td>
+<td>The perception stack: cameras, ground-plane tracking, beam self-calibration, coordination, safety, user stories, phased roadmap (Phase 0 = a weekend)</td>
+<td>~$120–320 per room</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="../06-message-contract/">The Message Contract</a></td>
+<td>The one page every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture (HA entities + autonomy without fights). <em>When docs disagree, Doc 6 wins</em></td>
+<td>nothing</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="../07-building-the-software/">Building the Software</a></td>
+<td>The code: pinned stack, repo layout, hardware-free testing (replay cameras, simulated fixtures), deployment, firmware growth path, licensing gates</td>
+<td>nothing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading paths:</strong> <em>Building this weekend?</em> → <a href="../03-build-the-gimbal/">Doc 3</a>, then <a href="../04-full-fixture-bench/">4</a> (skim their concepts sections; Docs 1–<a href="../02-choosing-the-motors/">2</a> optional background). <em>Understanding the choices?</em> → 1 → <a href="../02-choosing-the-motors/">2</a>, then skim <a href="../05-teach-it-to-aim/">5</a>. <em>Writing the software?</em> → <a href="../06-message-contract/">6</a> → <a href="../07-building-the-software/">7</a>, with <a href="../05-teach-it-to-aim/">5</a> as the spec. <em>Total prototype budget, all hardware:</em> roughly <strong>$640–985</strong> for one room end-to-end.</p>
+<h2 id="shopping-list-for-this-document-nothing">Shopping list for this document: nothing<a class="headerlink" href="#shopping-list-for-this-document-nothing" title="Permanent link">&para;</a></h2>
+<p>This is background reading — all purchases live in Docs <a href="../03-build-the-gimbal/">3</a>–<a href="../05-teach-it-to-aim/">5</a>. What this doc carries is the <em>understanding</em>: the physics, the vocabulary, and five lessons every later decision rests on.</p>
+<hr />
+<h2 id="the-question-we-asked">The question we asked<a class="headerlink" href="#the-question-we-asked" title="Permanent link">&para;</a></h2>
+<p>Can the fixture's fixed spotlight become robotic — a motorized pan/tilt head that aims light anywhere in the room, silently, controlled by software? Round 1 surveyed how everyone else has ever built "a light that moves": stage lighting, camera gimbals, hobbyist builds.</p>
+<h2 id="concepts-plain-english-these-terms-appear-in-every-later-doc">Concepts (plain English — these terms appear in every later doc)<a class="headerlink" href="#concepts-plain-english-these-terms-appear-in-every-later-doc" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Moving head / yoke:</strong> the standard mechanical layout for a robotic light. A base rotates left–right (<strong>pan</strong>); a U-shaped bracket (the <strong>yoke</strong>) rides on it and tilts the lamp up–down (<strong>tilt</strong>). Every DJ club light is built this way.</li>
+<li><strong>Torque:</strong> twisting force. Motors are rated by how much they can exert (we use newton-centimeters, N·cm). The tilt motor must fight gravity trying to flop the lamp head downward.</li>
+<li><strong>Stepper motor:</strong> moves in fixed clicks ("steps"), no feedback — you <em>count</em> steps to know position. Cheap, precise, everywhere in 3D printers.</li>
+<li><strong>Microstepping / silent drivers:</strong> electronics that slide a stepper <em>between</em> its clicks in tiny increments. This is what makes modern 3D printers quiet — a measured drop from 74 dB to <strong>35 dB</strong> just by swapping the driver chip (TMC-series "StealthChop").</li>
+<li><strong>Hobby servo:</strong> a small motor+gearbox+position sensor in one box (the RC-car part). Convenient, but the cheap internal sensor "hunts" — constantly twitching, audibly, when holding a load.</li>
+<li><strong>BLDC gimbal motor:</strong> the pancake-shaped brushless motors inside camera stabilizers. Direct drive (no gears at all), which is why camera gimbals are silent and smooth.</li>
+<li><strong>Encoder:</strong> a position sensor on a joint. An <strong>absolute</strong> encoder knows the angle the moment power comes on — no "finding home" ritual.</li>
+<li><strong>Homing:</strong> how a motor system without absolute encoders finds a reference point — usually by driving into a switch or a hard stop at startup. Commercial moving heads do a loud full-range "homing dance" on every power-up.</li>
+<li><strong>Slip ring vs. service loop:</strong> two ways to get wires across a rotating joint. A slip ring (sliding contacts) allows endless rotation but adds noise and wear; a <strong>service loop</strong> (a slack coil of wire) limits rotation to a turn or so but is silent, free, and reliable.</li>
+</ul>
+<h2 id="the-five-lessons-that-survived">The five lessons that survived<a class="headerlink" href="#the-five-lessons-that-survived" title="Permanent link">&para;</a></h2>
+<p><strong>Lesson 1 — Stage lighting is the right idea at the wrong scale.</strong> Commercial "mini" moving heads weigh 1.4–3.6 kg — 10–70× our ~50–150 g spotlight head — and their fans are the loudest thing in the room (a verified purchaser on a well-liked Chauvet: "the fans on these are really loud... very noticeable when [music is] not [playing]"). Even <em>quiet-rated</em> theatrical fixtures measure 39.6–49.5 dBA — too loud for a living room, where the ambient floor is ~30–40 dBA. <strong>Design target set here: no fans, motion ≤~35 dBA, zero noise parked.</strong></p>
+<p><strong>Lesson 2 — The torque problem is small, and balance nearly erases it.</strong> Worst case (150 g head hanging 6 cm off the tilt axis): torque = mass × gravity × radius = <strong>8.83 N·cm</strong>. But <em>balance the head</em> so its center of mass sits on the tilt axis (like every camera gimbal requires) and the requirement collapses to <strong>~1.5 N·cm</strong> — small enough for thumb-sized motors, and it means near-zero current (silent, cool) while holding position for hours. Balance became a design requirement, not a nicety.</p>
+<p><strong>Lesson 3 — Silence favors gearless designs and joint encoders.</strong> The quietest documented builds either use steppers on silent drivers (good) or direct-drive BLDC with closed-loop control (best — a documented robot head on gimbal motors: "nearly completely silent," ~350 mA worst-case hold). Hobby servos lose on hunting noise; worm gears self-lock nicely (motor fully off while holding!) but waste &gt;50% of torque to friction and can creep under building vibration. And putting the <strong>absolute encoder on the joint itself</strong> means the fixture wakes up already knowing where the beam points — the loud homing dance is deleted from the product.</p>
+<p><strong>Lesson 4 — Skip the slip ring.</strong> Commercial movers all chose limited rotation (540° pan) with a wire bundle over slip rings — and our beam power at 24 V is under 1 A, easy for a service loop of flexible silicone wire. Continuous rotation is a capability the coordinator doesn't need.</p>
+<p><strong>Lesson 5 — There's no shortcut through cheap DMX moving heads.</strong> Driving a $100 club light over DMX as a prototype fails three ways: 8-bit pan resolution (visible ~2° jumps on slow sweeps), loud fans, and the power-up homing dance. Buy one only as a teardown donor, never as the product path.</p>
+<h2 id="what-this-round-got-wrong-and-round-2-fixed">What this round got wrong (and round 2 fixed)<a class="headerlink" href="#what-this-round-got-wrong-and-round-2-fixed" title="Permanent link">&para;</a></h2>
+<p>Round 1's recommendation — NEMA-11 stepper motors + belt reduction + silent driver chips — was reasonable but built everything by hand: motor mounts, belts, tensioners, encoder mounting, motor-control firmware. Round 2 found the same outcome available as a <strong>sealed smart actuator</strong> (motor + encoder + tuned controller in one purchasable part, commanded digitally) — fewer parts, fewer failure modes, and it deleted most of round 1's engineering. Read <a href="../02-choosing-the-motors/">Doc 2</a> for that decision.</p>
+<h2 id="further-reading-the-round-1-sources-worth-opening">Further reading (the round-1 sources worth opening)<a class="headerlink" href="#further-reading-the-round-1-sources-worth-opening" title="Permanent link">&para;</a></h2>
+<ul>
+<li>isaac879 Pan-Tilt-Mount (the best-documented quiet stepper build; "almost completely silent in 16th microstepping") — <a href="https://github.com/isaac879/Pan-Tilt-Mount">github.com/isaac879/Pan-Tilt-Mount</a></li>
+<li>ETC's published fixture noise data (the only hard dBA numbers in stage lighting) — <a href="https://support.etcconnect.com">support.etcconnect.com</a> (Ambient Fan Noise in dBA of LED Fixtures)</li>
+<li>Cameo moving-head teardown (how commercial movers home and drive) — <a href="https://hackaday.io/project/28331">hackaday.io/project/28331</a></li>
+<li>TMC2208 vs A4988 measured sound test (74 dB → 35 dB) — <a href="https://the-diy-life.com">the-diy-life.com</a></li>
+<li>GoodDog gimbal head (the near-silent BLDC precedent, with measured hold current) — gooddog.ai/bumble/gimbal-electronics</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../00b-ai-native-workflow/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Work With an AI Agent">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Work With an AI Agent
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../02-choosing-the-motors/" class="md-footer__link md-footer__link--next" aria-label="Next: 2 · Choosing the Motors">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2 · Choosing the Motors
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>
