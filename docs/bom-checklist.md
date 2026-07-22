@@ -13,12 +13,12 @@ Every purchase in the series, in one list. Check items off as you order — stat
     All prices in the series were verified in July 2026 — **re-check live prices when ordering**. This is the docs' own pre-purchase-recheck rule (see [Doc 7's risk register](07-building-the-software.md)).
 
 <div id="bom-global">
-  <progress id="bom-bar" max="30" value="0" aria-labelledby="bom-global-text"></progress>
-  <span id="bom-global-text">0/30 items</span>
+  <progress id="bom-bar" max="31" value="0" aria-labelledby="bom-global-text"></progress>
+  <span id="bom-global-text">0/31 items</span>
 </div>
 
 <details open class="bom-section" data-section="d3" markdown="0">
-<summary><strong><a href="../03-build-the-gimbal/">Doc 3 · Gimbal (~$340–385)</a></strong> <span class="bom-progress"></span></summary>
+<summary><strong><a href="../03-build-the-gimbal/">Doc 3 · Gimbal (~$350–405)</a></strong> <span class="bom-progress"></span></summary>
 <div class="bom-scroll">
 <table>
 <thead><tr><th></th><th>Part</th><th>Qty</th><th>Est.</th><th>Where</th><th>Why</th></tr></thead>
@@ -36,6 +36,7 @@ Every purchase in the series, in one list. Check items off as you order — stat
 <tr><td><input type="checkbox" class="bom-box" id="d3-printing" data-lo="20" data-hi="20" aria-label='PETG filament + FDM printer access; 6804 or 608 bearings'></td><td><label for="d3-printing">PETG filament + FDM printer access; 6804 or 608 bearings</label></td><td>—</td><td>$20</td><td>Amazon / local makerspace</td><td>For stage 7's three frame parts — a makerspace or print service works</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-clamp" data-lo="10" data-hi="10" aria-label='C-clamp or small bench vise'></td><td><label for="d3-clamp">C-clamp or small bench vise</label></td><td>1</td><td>$10</td><td>hardware store</td><td>Clamps the bare motor before its first move</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-payload" aria-label='Payload stand-in: small flashlight or ~100 g weight'></td><td><label for="d3-payload">Payload stand-in: small flashlight or ~100 g weight</label></td><td>1</td><td>—</td><td>—</td><td>Real LED head comes from <a href="../04-full-fixture-bench/">Doc 4</a></td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d3-calipers" data-lo="10" data-hi="20" aria-label='Digital calipers'></td><td><label for="d3-calipers">Digital calipers</label></td><td>1</td><td>$10–20</td><td>Amazon</td><td>The frame chapter (<a href="../03b-print-the-frame/">Doc 3b</a>) runs on measurements</td></tr>
 </tbody>
 </table>
 </div>

@@ -13,7 +13,7 @@ def test_checklist_persists_across_reload(page):
     page.goto("/bom-checklist/")
     for cid in CHECK_IDS:
         page.check(f"#{cid}")
-    assert page.locator(".bom-progress").first.text_content().startswith("2/13")
+    assert page.locator(".bom-progress").first.text_content().startswith("2/14")
     page.reload()
     for cid in CHECK_IDS:
         assert page.is_checked(f"#{cid}"), f"{cid} lost after reload"
@@ -45,10 +45,10 @@ def test_copy_unchecked_shopping_list(page, context):
 def test_global_progress_math(page):
     page.goto("/bom-checklist/")
     # text_content(), not inner_text(): the theme uppercases these via CSS
-    assert page.locator("#bom-global-text").text_content() == "0/30 items"
+    assert page.locator("#bom-global-text").text_content() == "0/31 items"
     page.check("#d3-motors")
-    assert page.locator("#bom-global-text").text_content() == "1/30 items"
-    assert page.locator(".bom-progress").first.text_content() == "1/13 · ~$269 checked"
+    assert page.locator("#bom-global-text").text_content() == "1/31 items"
+    assert page.locator(".bom-progress").first.text_content() == "1/14 · ~$269 checked"
 
 
 def test_chapter_done_when_persists(page):

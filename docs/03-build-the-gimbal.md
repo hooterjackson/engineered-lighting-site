@@ -8,7 +8,7 @@ description: "The 10-stage gimbal bench build: motors answering on CAN by stage 
 **Engineered Lighting prototype series · July 2026**
 For a first-time gimbal builder with limited electronics experience. Ten stages; each is one bench session with a "you're done when" checkpoint. Motors move on command by stage 4 — no mechanical work needed until stage 7.
 
-## Bill of Materials — buy this, ~$340–385 total
+## Bill of Materials — buy this, ~$350–405 total
 
 *"Est." = total price for the quantity shown in that row.*
 
@@ -27,6 +27,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 11 | PETG filament + access to any FDM 3D printer & slicer; 6804 or 608 bearings | — | $20 | Amazon / local makerspace | For stage 7's three frame parts. No printer at home? A library, makerspace, or online print service works — the parts are small |
 | 12 | C-clamp or small bench vise | 1 | $10 | hardware store | Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig |
 | 13 | Payload stand-in: small flashlight or ~100 g weight | 1 | — | — | Real LED head comes from [Doc 4](04-full-fixture-bench.md) |
+| 14 | Digital calipers | 1 | $10–20 | Amazon | The frame chapter ([Doc 3b](03b-print-the-frame.md)) runs on measurements — every MEASURE-ME parameter in the scaffold comes from these |
 
 *Family sold out again? [CubeMars GL40 II](https://www.digikey.com/en/products/detail/cubemars/GL-40/16705289) ($134, DigiKey, direct-drive, CAN) is the buy-today alternative at the cost of a protocol port; [M5Stack RollerCAN](https://shop.m5stack.com/products/rollercan-unit-with-bldc-motor-stm32) ($44) is the dev bridge while waiting.*
 
@@ -290,13 +291,7 @@ Motors ship with the same address, so: connect motor B **alone**, change its ID 
 
 *Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
 
-Three printed parts (design against the L-5005 STEP files from [myactuator.com](https://www.myactuator.com); PETG, 4+ perimeters):
-
-1. **Pan base** — clamps to a shelf so the assembly hangs downward; pan motor body bolts to it (the motor's output flange *is* the pan bearing).
-2. **Yoke** — U-bracket on the pan flange; one arm carries the tilt motor, the other a bearing pin. **Include hard stops** (see stage 4 fine print).
-3. **Head shell** — flashlight/LED on the tilt flange, with a **counterweight slot** (slide coins/a bolt).
-
-**Never designed a part before?** This is a genuinely good first CAD project (three simple brackets), and it's also prime AI-partner territory: **OpenSCAD** is CAD written as code, which means Claude can draft all three parts for you — give it the motor's flange dimensions from the L-5005 drawing (bolt-circle diameter, hole size, body diameter) and this stage's descriptions, print, measure what's off, iterate. Two or three print cycles is normal; the parts are 20-minute prints. Geometry references if you want to see how others shaped a yoke: [isaac879's Pan-Tilt-Mount](https://github.com/isaac879/Pan-Tilt-Mount) and the [Visaging ESP32-Gimbal](https://github.com/Visaging/ESP32-Gimbal) (both printable designs).
+Three printed parts — pan base, yoke, head shell — turn two motors into an aimed head. The full frame chapter, with the parametric OpenSCAD scaffold, the five-minute fit coupon, and X1C print settings, is **[Doc 3b · Print the Frame](03b-print-the-frame.md)**. Print there, then come back here to wire and balance.
 
 Wire routing: motor pigtails (power + CAN) cross each joint as a loose **service loop** — droopy, never taut across full travel.
 

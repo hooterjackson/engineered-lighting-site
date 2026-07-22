@@ -46,6 +46,20 @@ jobs:
           path: test-artifacts/screens/
           if-no-files-found: ignore
 
+  cad:
+    # frame.scad must render headless; macOS can't run OpenSCAD in the dev
+    # sandbox, so Linux CI is the render check of record. Non-gating.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends openscad
+      - name: Render all frame parts
+        run: |
+          for p in coupon pan_base yoke head_shell all; do
+            openscad -o "/tmp/$p.stl" -D "part=\"$p\"" docs/cad/frame.scad
+            test -s "/tmp/$p.stl"
+          done
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
