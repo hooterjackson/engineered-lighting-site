@@ -9,7 +9,7 @@ description: "Round-1 research digest: the physics, vocabulary, and five lessons
 
 ## The project, in one paragraph
 
-We're building the robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head (smart CAN servo motors, absolute encoders, no homing dance) carrying a high-CRI 3-up LED spot, living alongside the fixture's tunable-white ambient zones, exposed to Home Assistant as ordinary entities *and* aimed autonomously by a camera-driven perception stack — following people, lighting task surfaces and books, pointing at art when idle, never sweeping across eyes. This seven-document series takes it from research through a working bench prototype to the system architecture, with everything adversarially reviewed and every purchase specified.
+We're building the robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head (smart CAN servo motors, absolute encoders, no homing dance) carrying a high-CRI 3-up LED spot, living alongside the fixture's tunable-white ambient zones, exposed to Home Assistant as ordinary entities *and* aimed autonomously by a camera-driven perception stack — following people, lighting task surfaces and books, pointing at art when idle, never sweeping across eyes. This eight-document series takes it from research through a working bench prototype to the system architecture — and into the first hand-built fixture — with everything adversarially reviewed and every purchase specified.
 
 ## The document map
 
@@ -22,8 +22,9 @@ We're building the robotic spotlight for the Engineered Lighting fixture: a sile
 | 5 | [Teach It to Aim](05-teach-it-to-aim.md) | The perception stack: cameras, ground-plane tracking, beam self-calibration, coordination, safety, user stories, phased roadmap (Phase 0 = a weekend) | ~$120–320 per room |
 | 6 | [The Message Contract](06-message-contract.md) | The one page every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture (HA entities + autonomy without fights). *When docs disagree, Doc 6 wins* | nothing |
 | 7 | [Building the Software](07-building-the-software.md) | The code: pinned stack, repo layout, hardware-free testing (replay cameras, simulated fixtures), deployment, firmware growth path, licensing gates | nothing |
+| 8 | [Build the Fixture](08-build-the-fixture.md) | Six wiring steps from breadboard to a hand-soldered fixture that screws into a lamp socket — stacked protoboards, a wiring map, and a diagram per step | ~$105–120 |
 
-**Reading paths:** *Building this weekend?* → [Doc 3](03-build-the-gimbal.md), then [4](04-full-fixture-bench.md) (skim their concepts sections; Docs 1–[2](02-choosing-the-motors.md) optional background). *Understanding the choices?* → 1 → [2](02-choosing-the-motors.md), then skim [5](05-teach-it-to-aim.md). *Writing the software?* → [6](06-message-contract.md) → [7](07-building-the-software.md), with [5](05-teach-it-to-aim.md) as the spec. *Total prototype budget, all hardware:* roughly **$640–985** for one room end-to-end.
+**Reading paths:** *Building this weekend?* → [Doc 3](03-build-the-gimbal.md), then [4](04-full-fixture-bench.md) (skim their concepts sections; Docs 1–[2](02-choosing-the-motors.md) optional background). *Understanding the choices?* → 1 → [2](02-choosing-the-motors.md), then skim [5](05-teach-it-to-aim.md). *Writing the software?* → [6](06-message-contract.md) → [7](07-building-the-software.md), with [5](05-teach-it-to-aim.md) as the spec. *Making it permanent?* → [8](08-build-the-fixture.md), once [4](04-full-fixture-bench.md)'s checklist passes. *Total prototype budget, all hardware:* roughly **$745–1105** for one room end-to-end.
 
 ## Shopping list for this document: nothing
 
