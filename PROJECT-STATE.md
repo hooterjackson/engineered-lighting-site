@@ -19,7 +19,9 @@ Material, deployed via GitHub Actions).
 
 - **Site:** live — 7 chapters + Doc 3b (frame) + Doc 8 (fixture build, added
   2026-07-29) + BoM checklist + AI-workflow page. Adversarial review rounds
-  applied throughout. Design pass (DESIGN.md) done.
+  applied throughout, including a sitewide coherence pass after Doc 8 landed
+  (seam fixes: Doc 8 shell-scope note, Doc 4 graduation pointer → Doc 8,
+  Home card now spans Docs 1–4 · 8). Design pass (DESIGN.md) done.
 - **Motor swap: DONE sitewide.** Earlier revisions of this file listed two
   prompts as pending; git history shows both were executed before it was
   committed. `8fb39bf` (2026-07-21) propagated RMD-L-4005 → **RMD-L-5005**
@@ -79,9 +81,14 @@ Material, deployed via GitHub Actions).
    for motor power, 3× 10 kΩ PicoBuck IN pulldowns vs full-on boot
    flash, bulk cap on the motor branch (start 1000 µF), bench-feed break
    in the bus, both-AC-leads-live rule, PCAs live WITH the ULNs on B2.
-   Remaining: fold Doc 8's BoM into the interactive checklist page
-   (careful edit — localStorage IDs + progress totals), and run the
-   site's usual adversarial review on the published page.
+   The fixture SHELL is deliberately undesigned (Doc 8 carries an honest
+   scope note; it's a Doc 3b-style OpenSCAD session once parts are in
+   hand). Remaining: fold Doc 8's BoM into the interactive checklist page
+   (careful edit — localStorage IDs + progress totals). Sitewide
+   coherence review done 2026-07-29. Known nit, deliberate: the $1105
+   high end = prior $985 + Doc 8's $120 (instance-consistent everywhere);
+   a fresh component-sum of per-doc highs gives ~$1085 — recompute
+   sitewide only if derivable-to-the-dollar totals ever matter.
 
 ## Decisions ledger (one line each — full reasoning is in the docs)
 
