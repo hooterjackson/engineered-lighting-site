@@ -79,9 +79,7 @@ The yoke's orientation is the one that matters: printed arms-up, layer lines run
 
 ## How it all goes together
 
-![Gimbal assembly — exploded, numbered in build order, with the assembled result inset](assets/gimbal-assembly-guide.svg)
-
-*Gold, orange and teal are the three printed parts; gray parts are bought. Open [`cad/assembly.scad`](cad/assembly.scad) in OpenSCAD to orbit this view live (a `view` dropdown flips exploded ↔ assembled).*
+Open [`cad/assembly.scad`](cad/assembly.scad) in OpenSCAD and press F5 to orbit the full assembly — a `view` dropdown flips exploded ↔ assembled, with the motors, bearing, LED housing, C-clamp and shelf shown as mockups around the printed parts.
 
 ## Build order
 
