@@ -11,6 +11,9 @@
 !/docs/
 !/tests/
 !/requirements-test.txt
+!/PROJECT-STATE.md
+!/prompts/
+!/site-build-brief.md
 
 # Belt and braces (also excluded by /* above)
 site/
