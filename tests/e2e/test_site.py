@@ -6,7 +6,7 @@ import pathlib
 
 SCREENS = pathlib.Path(__file__).resolve().parents[2] / "test-artifacts" / "screens"
 
-CHECK_IDS = ("d3-motors", "d3-multimeter", "d5-poe-switch")
+CHECK_IDS = ("d3-motors", "d3-multimeter", "d5-poe-switch", "d8-irm")
 
 
 def test_checklist_persists_across_reload(page):
@@ -45,9 +45,9 @@ def test_copy_unchecked_shopping_list(page, context):
 def test_global_progress_math(page):
     page.goto("/bom-checklist/")
     # text_content(), not inner_text(): the theme uppercases these via CSS
-    assert page.locator("#bom-global-text").text_content() == "0/31 items"
+    assert page.locator("#bom-global-text").text_content() == "0/43 items"
     page.check("#d3-motors")
-    assert page.locator("#bom-global-text").text_content() == "1/31 items"
+    assert page.locator("#bom-global-text").text_content() == "1/43 items"
     assert page.locator(".bom-progress").first.text_content() == "1/14 · ~$269 checked"
 
 

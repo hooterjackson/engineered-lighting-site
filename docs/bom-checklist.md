@@ -7,14 +7,14 @@ hide:
 
 # Bill of Materials — interactive checklist
 
-Every purchase in the series, in one list. Check items off as you order — state persists in your browser (nothing leaves your device). The full "Notes / traps" for each part live in the chapter BoM tables: [Doc 3](03-build-the-gimbal.md), [Doc 4](04-full-fixture-bench.md), [Doc 5](05-teach-it-to-aim.md). ([Doc 8](08-build-the-fixture.md)'s fixture-stage additions live in its own chapter BoM for now.)
+Every purchase in the series, in one list. Check items off as you order — state persists in your browser (nothing leaves your device). The full "Notes / traps" for each part live in the chapter BoM tables: [Doc 3](03-build-the-gimbal.md), [Doc 4](04-full-fixture-bench.md), [Doc 5](05-teach-it-to-aim.md), [Doc 8](08-build-the-fixture.md).
 
 !!! note "Prices verified July 2026"
     All prices in the series were verified in July 2026 — **re-check live prices when ordering**. This is the docs' own pre-purchase-recheck rule (see [Doc 7's risk register](07-building-the-software.md)).
 
 <div id="bom-global">
-  <progress id="bom-bar" max="31" value="0" aria-labelledby="bom-global-text"></progress>
-  <span id="bom-global-text">0/31 items</span>
+  <progress id="bom-bar" max="43" value="0" aria-labelledby="bom-global-text"></progress>
+  <span id="bom-global-text">0/43 items</span>
 </div>
 
 <details open class="bom-section" data-section="d3" markdown="0">
@@ -33,7 +33,7 @@ Every purchase in the series, in one list. Check items off as you order — stat
 <tr><td><input type="checkbox" class="bom-box" id="d3-usbc" aria-label='USB-C data cable'></td><td><label for="d3-usbc">USB-C data cable</label></td><td>1</td><td>—</td><td>you own one</td><td>Charge-only cables are a classic trap</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-screws" data-lo="10" data-hi="10" aria-label='M2.5 + M3 screw assortment'></td><td><label for="d3-screws">M2.5 + M3 screw assortment</label></td><td>1 box</td><td>$10</td><td>Amazon</td><td>Confirm sizes against the motor drawing</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-usb-can" data-lo="20" data-hi="25" aria-label='USB-to-CAN adapter ("CANable" or clone)'></td><td><label for="d3-usb-can">USB-to-CAN adapter ("CANable" or clone) <span class="bom-optional">optional</span></label></td><td>1</td><td>$20–25</td><td>Amazon</td><td>Lets your laptop eavesdrop on the bus — turns "nothing happens" into evidence</td></tr>
-<tr><td><input type="checkbox" class="bom-box" id="d3-printing" data-lo="20" data-hi="20" aria-label='PETG filament + FDM printer access; 6804 or 608 bearings'></td><td><label for="d3-printing">PETG filament + FDM printer access; 6804 or 608 bearings</label></td><td>—</td><td>$20</td><td>Amazon / local makerspace</td><td>For stage 7's three frame parts — a makerspace or print service works</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d3-printing" data-lo="20" data-hi="20" aria-label='PETG filament + FDM printer access; 683 or 608 bearings'></td><td><label for="d3-printing">PETG filament + FDM printer access; 683 or 608 bearings</label></td><td>—</td><td>$20</td><td>Amazon / local makerspace</td><td>For stage 7's three frame parts — a makerspace or print service works</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-clamp" data-lo="10" data-hi="10" aria-label='C-clamp or small bench vise'></td><td><label for="d3-clamp">C-clamp or small bench vise</label></td><td>1</td><td>$10</td><td>hardware store</td><td>Clamps the bare motor before its first move</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-payload" aria-label='Payload stand-in: small flashlight or ~100 g weight'></td><td><label for="d3-payload">Payload stand-in: small flashlight or ~100 g weight</label></td><td>1</td><td>—</td><td>—</td><td>Real LED head comes from <a href="../04-full-fixture-bench/">Doc 4</a></td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d3-calipers" data-lo="10" data-hi="20" aria-label='Digital calipers'></td><td><label for="d3-calipers">Digital calipers</label></td><td>1</td><td>$10–20</td><td>Amazon</td><td>The frame chapter (<a href="../03b-print-the-frame/">Doc 3b</a>) runs on measurements</td></tr>
@@ -79,6 +79,31 @@ Every purchase in the series, in one list. Check items off as you order — stat
 <tr><td><input type="checkbox" class="bom-box" id="d5-lidar-scan" aria-label='iPhone/iPad Pro with LiDAR (borrow one) + Polycam or Scaniverse app'></td><td><label for="d5-lidar-scan">iPhone/iPad Pro with LiDAR (borrow one) + Polycam or Scaniverse app</label></td><td>1</td><td>free–$</td><td>App Store</td><td>One-time room scan, ~1–3 cm accuracy — use Space Mode (LiDAR)</td></tr>
 <tr><td><input type="checkbox" class="bom-box" id="d5-depth-cam" data-lo="359" data-hi="579" aria-label='Stereo depth camera — Orbbec Gemini 335L ($359) or Luxonis OAK-D Pro PoE ($579)'></td><td><label for="d5-depth-cam">Stereo depth camera — Orbbec Gemini 335L ($359) or Luxonis OAK-D Pro PoE ($579) <span class="bom-optional">optional, later</span></label></td><td>0–1</td><td>$359 / $579</td><td><a href="https://store.orbbec.com">store.orbbec.com</a>, <a href="https://shop.luxonis.com">shop.luxonis.com</a></td><td>Buy only after Tier-0 tracking measurably misses, not before</td></tr>
 <tr class="bom-owned"><td>—</td><td>Already owned</td><td>—</td><td>—</td><td>—</td><td>RTX 6000 Blackwell box (runs all perception), the Doc 3/4 bench rig, Home Assistant + MQTT</td></tr>
+</tbody>
+</table>
+</div>
+<p><button type="button" class="md-button" data-reset>Reset section</button> <button type="button" class="md-button" data-copy>Copy unchecked as shopping list</button></p>
+</details>
+
+<details open class="bom-section" data-section="d8" markdown="0">
+<summary><strong><a href="../08-build-the-fixture/">Doc 8 · Fixture build (~$105–120)</a></strong> <span class="bom-progress"></span></summary>
+<div class="bom-scroll">
+<table>
+<thead><tr><th></th><th>Part</th><th>Qty</th><th>Est.</th><th>Where</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><input type="checkbox" class="bom-box" id="d8-protoboards" data-lo="15" data-hi="15" aria-label='Round prototyping PCB, 2.84" (72 mm), 593 plated holes'></td><td><label for="d8-protoboards">Round prototyping PCB, 2.84" (72 mm), 593 plated holes</label></td><td>1 pack of 4</td><td>$15</td><td><a href="https://www.etsy.com/listing/1785807382/vegetable-can-round-prototyping-pcb-w593">Etsy</a></td><td>All three get used — B1 power, B2 drivers, B3 logic — plus a spare. No power rails, which is why the trunk rule exists</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-irm" data-lo="25" data-hi="25" aria-label='Mean Well IRM-90-24ST (24 V · 3.75 A · potted · fanless · screw terminals)'></td><td><label for="d8-irm">Mean Well IRM-90-24ST (24 V · 3.75 A · potted · fanless · screw terminals)</label></td><td>1</td><td>~$25</td><td><a href="https://www.bravoelectro.com/irm-90-24.html">Bravo Electro</a>, DigiKey, Mouser</td><td>The fixture's PSU — ST (screw-terminal) on purpose: the plain IRM outspans a 72 mm round, so this one mounts to the body</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-e26" data-lo="8" data-hi="12" aria-label='E26 socket-to-wire adapter (660 W rated, 18 AWG leads)'></td><td><label for="d8-e26">E26 socket-to-wire adapter (660 W rated, 18 AWG leads)</label></td><td>1 (+1 spare)</td><td>$8–12</td><td>Amazon, hardware store</td><td>The entire AC feed (~0.6–0.9 A at 120 V) — treat both leads as live; no wall dimmer on that circuit</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-headers" data-lo="7" data-hi="7" aria-label='Female pin-header socket strips, 2.54 mm break-away'></td><td><label for="d8-headers">Female pin-header socket strips, 2.54 mm break-away</label></td><td>1 kit</td><td>$7</td><td>Amazon</td><td>Socket every module — C6, both PCAs, CAN board, buck. Dead module = 10-second swap</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-jst" data-lo="12" data-hi="12" aria-label='JST-XH connector kit, pre-crimped leads (2/3/4-pin)'></td><td><label for="d8-jst">JST-XH connector kit, pre-crimped leads (2/3/4-pin)</label></td><td>1 kit</td><td>$12</td><td>Amazon</td><td>7 tape zones (4-pin) + the spot (3 ± pairs = six conductors, returns never shared). Solder the tails — never crimp</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-xt30" data-lo="8" data-hi="8" aria-label='XT30 connector pairs'></td><td><label for="d8-xt30">XT30 connector pairs</label></td><td>3 pairs</td><td>$8</td><td>Amazon</td><td>Motor power (one pair per motor) + the bench-feed break — JST-XH is a 3 A part; motor peaks hit 5–8 A</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-caps" data-lo="6" data-hi="6" aria-label='100 nF ceramic capacitors'></td><td><label for="d8-caps">100 nF ceramic capacitors</label></td><td>~10</td><td>$6</td><td>Amazon</td><td>One at every module's supply pins — long soldered rails need what the breadboard never did</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-bulk-cap" data-lo="3" data-hi="3" aria-label='Electrolytic bulk cap, 1000 µF / 35 V, low-ESR'></td><td><label for="d8-bulk-cap">Electrolytic bulk cap, 1000 µF / 35 V, low-ESR</label></td><td>1</td><td>$3</td><td>Amazon, DigiKey</td><td>Rides the motors' millisecond slew peaks. Start at 1000 µF — if the IRM hiccups at power-on, the cap is too big</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-standoffs" data-lo="9" data-hi="9" aria-label='Nylon M3 standoff kit'></td><td><label for="d8-standoffs">Nylon M3 standoff kit</label></td><td>1</td><td>$9</td><td>Amazon</td><td>Stack spacing + a vent path; nylon can't short against pad-side joints</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-bus-wire" data-lo="8" data-hi="8" aria-label='Tinned solid bus wire, 16–18 AWG'></td><td><label for="d8-bus-wire">Tinned solid bus wire, 16–18 AWG</label></td><td>1 roll</td><td>$8</td><td>Amazon</td><td>Becomes the two trunks — +24 V and ground</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-strippers" data-lo="15" data-hi="15" aria-label='Wire strippers + flush cutters'></td><td><label for="d8-strippers">Wire strippers + flush cutters <span class="bom-optional">if not owned</span></label></td><td>1 each</td><td>~$15</td><td>Amazon</td><td>Never in an earlier BoM — the bench got by, but 100+ soldered joints won't</td></tr>
+<tr><td><input type="checkbox" class="bom-box" id="d8-silicone-wire" data-lo="17" data-hi="17" aria-label='Silicone stranded wire 22–24 AWG + heat-shrink'></td><td><label for="d8-silicone-wire">Silicone stranded wire 22–24 AWG + heat-shrink <span class="bom-optional">if not owned</span></label></td><td>—</td><td>~$17</td><td>Amazon</td><td>The service loops across the pan/tilt joints want the floppiest wire available</td></tr>
+<tr class="bom-owned"><td>—</td><td>Already owned</td><td>—</td><td>—</td><td>—</td><td>Everything else installs from Docs 3/4 — motors, C6, CAN board, PCAs, ULNs + sockets, PicoBuck, star + optics + heatsink, tape spool, Pololu buck, fuse holder (step to a 4 A slow-blow if you 2× the tape), screws, wire + 10 kΩ stock. Retired: breadboards and WAGOs</td></tr>
 </tbody>
 </table>
 </div>

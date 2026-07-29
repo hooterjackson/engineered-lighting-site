@@ -88,9 +88,11 @@ Material, deployed via GitHub Actions).
    terminal-cover room away from LED heat, strain-relieved E26 cord
    entry, 3× M3 standoffs + vent path for the 72 mm stack, tape ring at
    B2 height, full pan/tilt clearance + service-loop slack,
-   heatsink→outside-air path, reachable B3 USB-C window). Remaining:
-   fold Doc 8's BoM into the interactive checklist page (careful edit —
-   localStorage IDs + progress totals). Sitewide coherence review done
+   heatsink→outside-air path, reachable B3 USB-C window). Doc 8's BoM
+   folded into the interactive checklist 2026-07-29 (12 new d8-* ids —
+   saved state untouched — 31→43 items, e2e count assertions updated;
+   bearing drift fixed while in there: 683 or 608 per frame.scad +
+   Doc 3b, where Doc 3's BoM had said 6804). Sitewide coherence review done
    2026-07-29; totals recomputed as the straight sum of per-doc highs —
    350–405 + 170–240 + 120–320 + 105–120 = **$745–1085** — and
    propagated (Home hero + footer, Doc 1 reading paths).

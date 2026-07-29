@@ -24,7 +24,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 8 | USB-C data cable | 1 | — | you own one | Charge-only cables are a classic trap |
 | 9 | M2.5 + M3 screw assortment | 1 box | $10 | Amazon | Confirm sizes against the motor drawing ([myactuator.com](https://www.myactuator.com) downloads) |
 | 10 | USB-to-CAN adapter ("CANable" or clone) — *optional but recommended* | 1 | $20–25 | Amazon | Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence |
-| 11 | PETG filament + access to any FDM 3D printer & slicer; 6804 or 608 bearings | — | $20 | Amazon / local makerspace | For stage 7's three frame parts. No printer at home? A library, makerspace, or online print service works — the parts are small |
+| 11 | PETG filament + access to any FDM 3D printer & slicer; 683 or 608 bearings | — | $20 | Amazon / local makerspace | For stage 7's three frame parts. No printer at home? A library, makerspace, or online print service works — the parts are small |
 | 12 | C-clamp or small bench vise | 1 | $10 | hardware store | Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig |
 | 13 | Payload stand-in: small flashlight or ~100 g weight | 1 | — | — | Real LED head comes from [Doc 4](04-full-fixture-bench.md) |
 | 14 | Digital calipers | 1 | $10–20 | Amazon | The frame chapter ([Doc 3b](03b-print-the-frame.md)) runs on measurements — every MEASURE-ME parameter in the scaffold comes from these |
