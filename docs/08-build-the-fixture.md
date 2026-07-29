@@ -53,14 +53,34 @@ board's height. Each board has one job:
 The PCAs live *with* the ULNs on purpose: the 21 dim signals never leave
 their board, and only about a dozen wires ever cross between boards.
 
-> **Honest scope note — the shell comes later.** The fixture *body* (the
-> enclosure that holds PSU, stack, tape ring, and gimbal together and
-> actually screws in) is deliberately not designed yet — it's a
-> [Doc 3b](03b-print-the-frame.md)-style OpenSCAD session once the real
-> parts are in hand for measuring. Steps 1–6 don't need it: the stack
-> builds and tests clamped to a bench plate, exactly like every build
-> before it. The body matters at step 7, when the IRM and the E26 feed
-> make it a thing that screws into a socket.
+!!! info "The fixture body is its own design track — this chapter builds everything that goes inside it"
+
+    The *body* — the enclosure that holds PSU, stack, tape ring, and gimbal
+    together and actually screws in — is being designed separately, as its
+    own CAD project, with the real parts in hand for measuring. Nothing
+    below waits on it: steps 1–6 build and test the whole stack clamped to
+    a bench plate, and step 7 is where electronics and body meet. What the
+    body design owes the electronics is exactly this interface list:
+
+    - **PSU mount** — a flat spot for the IRM-90-24ST brick, 109 × 52 ×
+      33.5 mm plus finger room for its screw-terminal cover, placed away
+      from the LED star's heat.
+    - **Cord entry** — a strain-relieved hole where the E26 adapter's two
+      leads enter.
+    - **Stack mounts** — three M3 standoff points for the 72 mm board
+      stack, with a vent path past the boards.
+    - **Tape ring at Board 2's height** — the seven zone pigtails are
+      short; the tape lives where they reach.
+    - **Gimbal clearance** — full pan/tilt travel, plus room for the droopy
+      service loops that cross the joints.
+    - **Heat path** — the star's heatsink reaches outside air, or the
+      step-7 soak proves it doesn't have to.
+    - **USB window** — Board 3's USB-C stays reachable, so reflashing never
+      means opening the fixture.
+
+    Build the stack first, measure the real thing, then freeze the body —
+    the same measure-then-print logic as [Doc 3b](03b-print-the-frame.md)'s
+    coupon-first frame.
 
 Three assembly rules:
 
@@ -322,7 +342,8 @@ Replies but no motion = you're in Hold/Manual mode, not a wiring problem.
 
 This is where the fixture body enters: mount the IRM to it, give the E26
 adapter's cord a strain-relieved entry, and give the star's heatsink its air
-path. (Shell design is its own session — see the scope note up top.)
+path. (The body arrives from its own design track — the interface list up
+top is exactly what this step needs it to provide.)
 
 **Do this:**
 
