@@ -7,7 +7,7 @@ hide:
 
 # Bill of Materials — interactive checklist
 
-Every purchase in the series, in one list. Check items off as you order — state persists in your browser (nothing leaves your device). The full "Notes / traps" for each part live in the chapter BoM tables: [Doc 3](03-build-the-gimbal.md), [Doc 4](04-full-fixture-bench.md), [Doc 5](05-teach-it-to-aim.md).
+Every purchase in the series, in one list. Check items off as you order — state persists in your browser (nothing leaves your device). The full "Notes / traps" for each part live in the chapter BoM tables: [Doc 3](03-build-the-gimbal.md), [Doc 4](04-full-fixture-bench.md), [Doc 5](05-teach-it-to-aim.md). ([Doc 8](08-build-the-fixture.md)'s fixture-stage additions live in its own chapter BoM for now.)
 
 !!! note "Prices verified July 2026"
     All prices in the series were verified in July 2026 — **re-check live prices when ordering**. This is the docs' own pre-purchase-recheck rule (see [Doc 7's risk register](07-building-the-software.md)).
