@@ -1,0 +1,83 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="620" fill="#fff"/>
+  <text x="30" y="34" font-size="18" font-weight="bold" fill="#111">Step 3 · First light — one zone through the whole chain</text>
+  <text x="30" y="53" font-size="11" fill="#555">Exactly Doc 4 stage 2, in soldered form. Get ONE zone perfect before copying it six more times.</text>
+
+  <rect x="40" y="90" width="150" height="170" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="115" y="112" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">ESP32-C6 (B3)</text>
+  <g font-size="10" fill="#223" text-anchor="end">
+    <text x="182" y="140">3V3</text>
+    <text x="182" y="170">GND</text>
+    <text x="182" y="200">GPIO2 · SDA</text>
+    <text x="182" y="230">GPIO3 · SCL</text>
+  </g>
+
+  <rect x="300" y="90" width="200" height="180" fill="#fdf6ec" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="400" y="112" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">PCA9685 #1 · 0x40 (B2)</text>
+  <g font-size="10" fill="#223">
+    <text x="308" y="140">VCC</text>
+    <text x="308" y="170">GND</text>
+    <text x="308" y="200">SDA</text>
+    <text x="308" y="230">SCL</text>
+    <text x="492" y="140" text-anchor="end">LED0</text>
+    <text x="492" y="170" text-anchor="end">LED1</text>
+    <text x="492" y="200" text-anchor="end">LED2</text>
+  </g>
+  <text x="400" y="256" font-size="9" text-anchor="middle" fill="#8a6a2f">V+ pin stays unconnected · A0 open on THIS board</text>
+
+  <line x1="190" y1="136" x2="300" y2="136" stroke="#7b2d8b" stroke-width="3"/>
+  <line x1="190" y1="166" x2="300" y2="166" stroke="#222" stroke-width="3"/>
+  <line x1="190" y1="196" x2="300" y2="196" stroke="#1d6fd6" stroke-width="3"/><text x="245" y="190" font-size="9" fill="#1d6fd6" text-anchor="middle">SDA</text>
+  <line x1="190" y1="226" x2="300" y2="226" stroke="#0e8a7a" stroke-width="3"/><text x="245" y="242" font-size="9" fill="#0e8a7a" text-anchor="middle">SCL</text>
+
+  <rect x="530" y="60" width="330" height="52" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="542" y="78" font-size="10" font-weight="bold" fill="#8a1c1c">The classic trap, pre-solved:</text>
+  <text x="542" y="92" font-size="9" fill="#7c2a2a">PCA9685 VCC gets 3V3 — NOT 5 V. At 5 V, I2C silently fails.</text>
+  <text x="542" y="104" font-size="9" fill="#7c2a2a">V+ (servo power) stays empty. 100 nF at VCC while you're there.</text>
+
+  <rect x="560" y="150" width="190" height="180" fill="#eefaf1" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="655" y="172" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">ULN2803A chip 1 (B2)</text>
+  <text x="655" y="186" font-size="9" text-anchor="middle" fill="#555">in its DIP socket</text>
+  <g font-size="10" fill="#223">
+    <text x="568" y="212">IN1 (p1)</text>
+    <text x="568" y="242">IN2 (p2)</text>
+    <text x="568" y="272">IN3 (p3)</text>
+    <text x="742" y="212" text-anchor="end">OUT1 (p18)</text>
+    <text x="742" y="242" text-anchor="end">OUT2 (p17)</text>
+    <text x="742" y="272" text-anchor="end">OUT3 (p16)</text>
+    <text x="742" y="302" text-anchor="end">GND (p9)</text>
+  </g>
+  <text x="655" y="322" font-size="9" text-anchor="middle" fill="#3f7c55">OUTn = pin 19−n · COM (p10) n/c</text>
+
+  <path d="M 500 136 L 530 136 L 530 208 L 560 208" fill="none" stroke="#c47a00" stroke-width="3"/>
+  <path d="M 500 166 L 522 166 L 522 238 L 560 238" fill="none" stroke="#7a7a7a" stroke-width="3"/>
+  <path d="M 500 196 L 514 196 L 514 268 L 560 268" fill="none" stroke="#2e86c1" stroke-width="3"/>
+
+  <rect x="560" y="400" width="400" height="110" fill="#fff8ec" stroke="#a8792a" stroke-width="1.5" rx="8"/>
+  <text x="760" y="422" font-size="12" font-weight="bold" text-anchor="middle" fill="#6b4c12">Valent X · Zone 1 — via one 4-pin JST-XH plug</text>
+  <g font-size="10" fill="#6b4c12" text-anchor="middle">
+    <text x="620" y="450">+24 V</text>
+    <text x="720" y="450">1800 K −</text>
+    <text x="820" y="450">3500 K −</text>
+    <text x="915" y="450">6500 K −</text>
+  </g>
+  <text x="760" y="482" font-size="9" text-anchor="middle" fill="#8a6a2f">common anode · label all 4 wires from the tape's printed pad markings</text>
+  <text x="760" y="496" font-size="9" text-anchor="middle" fill="#8a6a2f">wrong color on a slider = swapped wires — fix the wires, keep labels truthful</text>
+
+  <path d="M 750 208 L 782 208 L 782 370 L 720 370 L 720 400" fill="none" stroke="#c47a00" stroke-width="3"/>
+  <path d="M 750 238 L 790 238 L 790 378 L 820 378 L 820 400" fill="none" stroke="#7a7a7a" stroke-width="3"/>
+  <path d="M 750 268 L 798 268 L 798 386 L 915 386 L 915 400" fill="none" stroke="#2e86c1" stroke-width="3"/>
+
+  <line x1="40" y1="440" x2="480" y2="440" stroke="#d62828" stroke-width="6"/>
+  <text x="46" y="430" font-size="10" font-weight="bold" fill="#8a1c1c">+24 V BUS (step 1)</text>
+  <path d="M 480 440 L 560 440" fill="none" stroke="#d62828" stroke-width="3"/>
+  <line x1="40" y1="480" x2="480" y2="480" stroke="#222" stroke-width="6"/>
+  <text x="46" y="500" font-size="10" font-weight="bold" fill="#111">GND STAR (step 1)</text>
+  <path d="M 655 330 L 655 348 L 500 348 L 500 480" fill="none" stroke="#222" stroke-width="3"/>
+  <circle cx="500" cy="480" r="4" fill="#222"/>
+  <text x="508" y="368" font-size="8.5" fill="#333">ULN p9 → straight to star</text>
+
+  <rect x="40" y="530" width="930" height="60" fill="#f2fbf4" stroke="#3f7c55" stroke-width="1.5" rx="8"/>
+  <text x="56" y="554" font-size="11" font-weight="bold" fill="#3f7c55">DONE WHEN</text>
+  <text x="56" y="572" font-size="10" fill="#2f5c40">"Zone 1" works from HA exactly like the breadboard — smooth candlelight-to-daylight sweep. If dead: check the ESPHome log's I2C scan for 0x40 (missing = SDA/SCL swapped or no VCC).</text>
+</svg>
