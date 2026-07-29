@@ -118,15 +118,32 @@ Material, deployed via GitHub Actions).
 - Spotlight payload (2026-07-29, Marcelo's call): the Cree 3-up star mounts
   in a **DLH-3UP-EH** aluminum LED housing (Ø0.99" finned barrel, 1.26"
   long, hollow 1/2"-14 NPT rear stub = wire exit) — the housing is the
-  star's heatsink AND the head's sliding balance mass. frame.scad v2:
-  yoke arms bridged + teardropped collar bores (they were floating,
-  unprintable as one part), head shell = pinch-collar cradle (ID =
-  payload_od + 0.6 ≈ 25.75 mm, M3 pinch bolt locks the slide), and an
-  M8-through-the-608 axle bolt replaces the never-modeled "stub";
-  docs/cad/assembly.scad + a labeled assembly figure added to Doc 3b.
-  BoM ripple NOT yet applied (Marcelo to call): where the housing
-  purchase lands — it supersedes Doc 4's flat heatsink at the fixture
-  stage.
+  star's heatsink AND the head's sliding balance mass. frame.scad is at
+  **v3** (`b11accb`, 2026-07-29, redesigned after Marcelo's fit review of
+  v2): nine flat-printed plates, zero supports, one repeated T-joint
+  (printed tabs into slots + M3 bolts into side-loaded square nuts);
+  motors BOLTED, never friction-fit (pan = back-cover bolt pattern under
+  the base; tilt = face-mount pattern + boss-clearance window, body
+  OUTSIDE the arm — the RMD's 4-pin side connector makes any collar
+  impossible); 608 sits in a boss-padded full-depth pocket, M8 axle runs
+  through it into a captive end-plate nut and installs LAST, so the head
+  is supported on both sides and the assembly order is built into the
+  geometry; head = boss/main/end plates + face-bolted **cradle_ring**
+  (ID = payload_od + 0.6 ≈ 25.75 mm, pinch bolt locks the slide, ring +
+  plate grip the barrel near its center); two orthogonal balance trims
+  (slide the housing, then the M5 nuts in the tail slot).
+  docs/cad/assembly.scad `use`s the real part modules (exploded ↔
+  assembled views); Doc 3b rewritten to match ("Nine Flat Parts, One
+  Coupon" — the coupon now proves BOTH motor bolt patterns). The planned
+  Doc 3b assembly figure was dropped: binary/base64 can't ride the
+  text-only GitHub connector (asset corrupted in transit, deleted in
+  `ac67684`) — the doc points readers at assembly.scad instead. The
+  motor-interface numbers (mount/back BCD 43, bolt Ø2.8, boss clear 34,
+  boss len 8) are MEASURE-ME nominals awaiting the calipers step. BoM
+  ripple NOT yet applied (Marcelo to call): where the housing purchase
+  lands — it supersedes Doc 4's flat heatsink at the fixture stage.
+  Doc 3b's BoM delta now carries the small-hardware handful (~$8: M3×10
+  + square nuts, M8×35 + nut, M2.5 motor screws).
 - Fixture-v0 power (2026-07-29, sized smallest-possible-in-fixture): loads
   split steady vs transient — steady worst case ~25 W as designed (~40 W
   with 2× tape); dual-axis slews add ~30–40 W briefly; balanced hold ≈ 0 W.
