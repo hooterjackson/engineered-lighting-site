@@ -186,7 +186,7 @@ GPIO3 (SCL) ─────────  SCL
                        LED1 ─────────────────────── IN2 → OUT2 (pin 17) → tape 3500K −
                        LED2 ─────────────────────── IN3 → OUT3 (pin 16) → tape 6500K −
 24V bus ── +24 V ─────────────────────────────────── tape +24V (common anode)
-ground star ──────────────────────────────────────── ULN GND (pin 9)
+ground star ────────────────────────────────────── ULN GND (pin 9)
 ```
 
 </details>
@@ -578,7 +578,7 @@ Checklist:
 - [ ] 30-min soak "everything on": ULNs warm-not-hot, star heatsink warm, no reboots in logs
 - [ ] Worst-case 24 V current — record it for the fixture power budget (external design doc: the fixture brief's ~60 W mode-based table)
 
-**What graduates to the fixture PCB:** this architecture as-is — C6 + I2C PWM expansion + low-side drive + CC channels + CAN — with ULNs → MOSFETs/driver ICs at higher PWM frequency, PicoBuck → integrated CC stage, WAGOs → copper.
+**What graduates to the fixture PCB:** this architecture as-is — C6 + I2C PWM expansion + low-side drive + CC channels + CAN — with ULNs → MOSFETs/driver ICs at higher PWM frequency, PicoBuck → integrated CC stage, WAGOs → copper. Long before that PCB exists, **[Doc 8](08-build-the-fixture.md)** makes this exact bench permanent by hand — the same architecture soldered onto stacked protoboards inside an E26-fed fixture.
 
 ## Risk register
 
