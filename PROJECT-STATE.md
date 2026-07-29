@@ -115,6 +115,18 @@ Material, deployed via GitHub Actions).
 - Software: stack + repo layout + hardware-free testing per Doc 7 (ESPHome
   host-platform simulated fixture is the CI trick). Licensing gates flagged for
   product phase: ESPHome GPLv3, Ultralytics AGPL.
+- Spotlight payload (2026-07-29, Marcelo's call): the Cree 3-up star mounts
+  in a **DLH-3UP-EH** aluminum LED housing (Ø0.99" finned barrel, 1.26"
+  long, hollow 1/2"-14 NPT rear stub = wire exit) — the housing is the
+  star's heatsink AND the head's sliding balance mass. frame.scad v2:
+  yoke arms bridged + teardropped collar bores (they were floating,
+  unprintable as one part), head shell = pinch-collar cradle (ID =
+  payload_od + 0.6 ≈ 25.75 mm, M3 pinch bolt locks the slide), and an
+  M8-through-the-608 axle bolt replaces the never-modeled "stub";
+  docs/cad/assembly.scad + a labeled assembly figure added to Doc 3b.
+  BoM ripple NOT yet applied (Marcelo to call): where the housing
+  purchase lands — it supersedes Doc 4's flat heatsink at the fixture
+  stage.
 - Fixture-v0 power (2026-07-29, sized smallest-possible-in-fixture): loads
   split steady vs transient — steady worst case ~25 W as designed (~40 W
   with 2× tape); dual-axis slews add ~30–40 W briefly; balanced hold ≈ 0 W.
