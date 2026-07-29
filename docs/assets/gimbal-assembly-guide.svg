@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="1240" viewBox="0 0 1760 1240" font-family="Helvetica, Arial, sans-serif">
+<rect width="1760" height="1240" fill="#fcfbf8"/>
+<rect x="0" y="0" width="666" height="1240" fill="#f4f1e8"/>
+<text x="36" y="64" font-size="31" font-weight="bold" fill="#1a1a1a">How the gimbal assembles</text>
+<text x="36" y="94" font-size="16.5" fill="#666">Doc 3 stage 7 · Doc 3b build order — printed parts, motors,</text>
+<text x="36" y="116" font-size="16.5" fill="#666">and the DLH-3UP-EH LED housing, pulled apart along both axes</text>
+<circle cx="56" cy="166" r="17" fill="#263238"/>
+<text x="56" y="172" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+<text x="88" y="172" font-size="20" font-weight="bold" fill="#1a1a1a">Clamp the pan base to a shelf edge</text>
+<text x="88" y="199" font-size="17" fill="#3a3a3a">Its ear goes under the C-clamp; the plate hangs past the</text>
+<text x="88" y="223" font-size="17" fill="#3a3a3a">edge. The shelf plays “ceiling.”</text>
+<circle cx="56" cy="269" r="17" fill="#263238"/>
+<text x="56" y="275" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+<text x="88" y="275" font-size="20" font-weight="bold" fill="#1a1a1a">Hang the pan motor</text>
+<text x="88" y="302" font-size="17" fill="#3a3a3a">Motor body bolts UP against the plate (4× M3). Its</text>
+<text x="88" y="326" font-size="17" fill="#3a3a3a">output flange faces DOWN.</text>
+<circle cx="56" cy="372" r="17" fill="#263238"/>
+<text x="56" y="378" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+<text x="88" y="378" font-size="20" font-weight="bold" fill="#1a1a1a">Bolt the yoke to the pan flange</text>
+<text x="88" y="405" font-size="17" fill="#3a3a3a">Flange disc, 4× M3 — arms hang down. Pan now swings the</text>
+<text x="88" y="429" font-size="17" fill="#3a3a3a">whole yoke. Check full travel clears the motor body.</text>
+<circle cx="56" cy="475" r="17" fill="#263238"/>
+<text x="56" y="481" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">4</text>
+<text x="88" y="481" font-size="20" font-weight="bold" fill="#1a1a1a">Arm the tilt axis</text>
+<text x="88" y="508" font-size="17" fill="#3a3a3a">Tilt motor body slides into the motor-arm collar, flange</text>
+<text x="88" y="532" font-size="17" fill="#3a3a3a">facing IN. The 608 bearing presses into the far arm.</text>
+<circle cx="56" cy="578" r="17" fill="#263238"/>
+<text x="56" y="584" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">5</text>
+<text x="88" y="584" font-size="20" font-weight="bold" fill="#1a1a1a">Mount the head shell</text>
+<text x="88" y="611" font-size="17" fill="#3a3a3a">Disc bolts to the tilt flange (4× M3). Then the M8 axle</text>
+<text x="88" y="635" font-size="17" fill="#3a3a3a">bolt slides through the bearing from outside into the</text>
+<text x="88" y="659" font-size="17" fill="#3a3a3a">end plate — the head is now held on BOTH sides.</text>
+<circle cx="56" cy="705" r="17" fill="#263238"/>
+<text x="56" y="711" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">6</text>
+<text x="88" y="711" font-size="20" font-weight="bold" fill="#1a1a1a">Slide in the LED housing, balance</text>
+<text x="88" y="738" font-size="17" fill="#3a3a3a">The aluminum housing (it IS the star&#x27;s heatsink) glides</text>
+<text x="88" y="762" font-size="17" fill="#3a3a3a">through the pinch cradle — its barrel CROSSES the tilt</text>
+<text x="88" y="786" font-size="17" fill="#3a3a3a">axis. Slide it until the powered-OFF head stays posed</text>
+<text x="88" y="810" font-size="17" fill="#3a3a3a">anywhere, then nip the M3 pinch bolt. M5 nuts on the</text>
+<text x="88" y="834" font-size="17" fill="#3a3a3a">tail = fine trim. Balance is the silence mechanism.</text>
+<line x1="36" y1="878" x2="620" y2="878" stroke="#d8d2c2" stroke-width="2"/>
+<text x="40" y="906" font-size="15.5" fill="#555">Axes — pan: vertical · tilt: horizontal (thin gray lines).</text>
+<text x="40" y="930" font-size="15.5" fill="#555">Cradle ID = housing Ø0.99&quot; + 0.6 mm ≈ 1.014&quot; — a slide fit on purpose.</text>
+<text x="40" y="954" font-size="15.5" fill="#555">Hardware: 12× M3 at the flanges (the fit coupon proves the pattern</text>
+<text x="40" y="978" font-size="15.5" fill="#555">   first) · 1× M3 pinch bolt · 1× M8 axle bolt · M5 + nuts for trim.</text>
+<text x="40" y="1002" font-size="15.5" fill="#555">Wires: out the housing&#x27;s rear NPT bore, then droopy service loops.</text>
+<text x="40" y="1026" font-size="15.5" fill="#555">Printed: gold = pan base · orange = yoke · teal = head shell.</text>
+<image x="690" y="60" width="739" height="1093" href="data:image/png;base64,
+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
+<...transcription of the embedded raster is corrupted — aborting this payload...>
