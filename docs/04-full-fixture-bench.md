@@ -186,7 +186,7 @@ GPIO3 (SCL) ─────────  SCL
                        LED1 ─────────────────────── IN2 → OUT2 (pin 17) → tape 3500K −
                        LED2 ─────────────────────── IN3 → OUT3 (pin 16) → tape 6500K −
 24V bus ── +24 V ─────────────────────────────────── tape +24V (common anode)
-ground star ────────────────────────────────────── ULN GND (pin 9)
+ground star ──────────────────────────────────────── ULN GND (pin 9)
 ```
 
 </details>
