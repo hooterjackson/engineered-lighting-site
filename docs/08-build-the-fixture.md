@@ -66,21 +66,18 @@ heat-shrink + a lighter. The rounds have no power rails — just 593 plated
 holes — so technique is the whole game:
 
 1. **Sockets: tack ONE pin, look, then finish.** Solder a single corner pin,
-   check the strip sits flat, reflow if tilted, then do the rest. A tilted
-   socket means the module never seats.
-2. **A good joint looks like a tiny volcano.** Heat pad *and* lead together
-   for ~2 seconds, feed solder to the joint (not the iron), let it flow, and
-   leave. Blobby ball = cold joint; redo it with flux.
-3. **Trunks are laid, not drawn.** Strip a length of the solid bus wire, lay
-   it along a row of holes, and tack it every 4–5 holes. Taps solder straight
-   onto it.
-4. **Beep everything before power.** Meter in continuity mode: every
-   connection you just made beeps; every *neighboring* pad it might have
-   bridged to stays silent. This one habit replaces most debugging.
-5. **Never crimp.** The JST kits come with pre-crimped pigtails — you solder
-   the bare tails and heat-shrink them. XT30 convention: the half with
-   recessed metal goes on the live (supply) side, so nothing exposed is ever
-   hot.
+   check the strip sits flat, reflow if tilted, then do the rest.
+2. **A good joint looks like a tiny volcano.** Heat pad *and* lead ~2
+   seconds, feed solder to the joint (not the iron), let it flow, leave.
+   Blobby ball = cold joint. Redo it with flux.
+3. **Trunks are laid, not drawn.** Strip a length of bus wire, lay it along a
+   row of holes, tack it every 4–5 holes. Taps solder straight onto it.
+4. **Beep everything before power.** Meter on continuity: every joint you
+   made beeps; every *neighboring* pad stays silent. This habit replaces
+   most debugging.
+5. **Never crimp.** The JST kits come pre-crimped — you solder the bare
+   tails. Board side gets the header, load side gets the plug. XT30s: the
+   half with recessed metal goes on the live side.
 
 ## Bill of Materials — buy this, ~$105 (+ ~$15 of tools)
 
