@@ -20,8 +20,9 @@ Material, deployed via GitHub Actions).
 - **Site:** live — 7 chapters + Doc 3b (frame) + Doc 8 (fixture build, added
   2026-07-29) + BoM checklist + AI-workflow page. Adversarial review rounds
   applied throughout, including a sitewide coherence pass after Doc 8 landed
-  (seam fixes: Doc 8 shell-scope note, Doc 4 graduation pointer → Doc 8,
-  Home card now spans Docs 1–4 · 8). Design pass (DESIGN.md) done.
+  (seam fixes: Doc 8 body-interface note, Doc 3 + Doc 4 graduation
+  pointers → Doc 8, Home card spans Docs 1–4 · 8, totals made derivable
+  at $745–1085). Design pass (DESIGN.md) done.
 - **Motor swap: DONE sitewide.** Earlier revisions of this file listed two
   prompts as pending; git history shows both were executed before it was
   committed. `8fb39bf` (2026-07-21) propagated RMD-L-4005 → **RMD-L-5005**
@@ -75,20 +76,24 @@ Material, deployed via GitHub Actions).
    each with done-when + traps), and chapter 08-build-the-fixture.md —
    all now IN THE REPO (docs/ + docs/assets/): Home + Doc 1 doc-maps
    gained row 8, the series became
-   "eight-document", totals propagated $640–985 → $745–1105 sitewide,
+   "eight-document", totals propagated $640–985 → $745–1085 sitewide,
    bom-checklist notes Doc 8's BoM lives in-chapter for now, and
    `mkdocs build --strict` verified. Review catches baked in: XT30
    for motor power, 3× 10 kΩ PicoBuck IN pulldowns vs full-on boot
    flash, bulk cap on the motor branch (start 1000 µF), bench-feed break
    in the bus, both-AC-leads-live rule, PCAs live WITH the ULNs on B2.
-   The fixture SHELL is deliberately undesigned (Doc 8 carries an honest
-   scope note; it's a Doc 3b-style OpenSCAD session once parts are in
-   hand). Remaining: fold Doc 8's BoM into the interactive checklist page
-   (careful edit — localStorage IDs + progress totals). Sitewide
-   coherence review done 2026-07-29. Known nit, deliberate: the $1105
-   high end = prior $985 + Doc 8's $120 (instance-consistent everywhere);
-   a fresh component-sum of per-doc highs gives ~$1085 — recompute
-   sitewide only if derivable-to-the-dollar totals ever matter.
+   The fixture BODY is Marcelo's own design track (his call, 2026-07-29)
+   — the docs treat it as a parallel project, not a gap: Doc 8's scope
+   note hands that track its interface list (IRM-90-24ST mount +
+   terminal-cover room away from LED heat, strain-relieved E26 cord
+   entry, 3× M3 standoffs + vent path for the 72 mm stack, tape ring at
+   B2 height, full pan/tilt clearance + service-loop slack,
+   heatsink→outside-air path, reachable B3 USB-C window). Remaining:
+   fold Doc 8's BoM into the interactive checklist page (careful edit —
+   localStorage IDs + progress totals). Sitewide coherence review done
+   2026-07-29; totals recomputed as the straight sum of per-doc highs —
+   350–405 + 170–240 + 120–320 + 105–120 = **$745–1085** — and
+   propagated (Home hero + footer, Doc 1 reading paths).
 
 ## Decisions ledger (one line each — full reasoning is in the docs)
 
