@@ -379,7 +379,7 @@ Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Ske
 - [ ] 50 full-travel sweeps: service loops intact
 - [ ] Total power draw at 24 V — record it for the fixture power budget (external design doc: the fixture brief's ~60 W mode-based table)
 
-**Pass** → the architecture graduates to the fixture's lower-module PCB (C6 TWAI + $2 transceiver, actuators as-is). **Whine or heat at hold** → try the other supply voltage (24 V vs 12 V), re-balance harder, then fall back to the DIY FOC path ([Doc 2](02-choosing-the-motors.md), "The DIY path and its documented pain") where you own the loop.
+**Pass** → the architecture graduates to the fixture's lower-module PCB (C6 TWAI + $2 transceiver, actuators as-is). (The hand-built stop before any PCB — this gimbal plus [Doc 4](04-full-fixture-bench.md)'s bench, soldered into a real fixture — is **[Doc 8](08-build-the-fixture.md)**.) **Whine or heat at hold** → try the other supply voltage (24 V vs 12 V), re-balance harder, then fall back to the DIY FOC path ([Doc 2](02-choosing-the-motors.md), "The DIY path and its documented pain") where you own the loop.
 
 ## AI as your lab partner
 
