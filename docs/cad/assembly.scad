@@ -1,88 +1,65 @@
 // assembly.scad — HOW THE GIMBAL GOES TOGETHER (Engineered Lighting · Doc 3b)
-// Companion to cad/frame.scad: same parameters, but every part shown IN PLACE,
-// with the motors, 608 bearing, DLH LED housing, C-clamp and shelf as mockups.
+//
+// Companion to frame.scad v3: this file `use`s the REAL part modules, so the
+// assembly view can never drift from the printed geometry. Motors, bearing,
+// DLH-3UP-EH LED housing, hardware, C-clamp and shelf appear as mockups.
 //
 //   view = "assembled"  → everything in its final position
-//   view = "exploded"   → pulled apart along the two axes, guide lines shown
+//   view = "exploded"   → pulled apart along the axes, guide lines shown
 //
-// Open this in OpenSCAD, press F5, and orbit with the mouse.
-//
-// This mirrors frame.scad v2's corrected geometry (bridged yoke arms,
-// pinch-collar cradle crossing the tilt axis, M8-through-608 axle) with the
-// motors, bearing, DLH-3UP-EH LED housing, C-clamp and shelf as mockups, so
-// you can see every part in place before anything prints.
+// Open in OpenSCAD, press F5, orbit with the mouse. The numbered comments
+// below match Doc 3b's build order.
+
+use <frame.scad>
 
 /* [View] */
 view = "exploded"; // [exploded, assembled]
 
-/* [Motor interface — same values as frame.scad] */
+// ---- placement numbers (keep in sync with frame.scad's params) -------------------
 flange_bolt_circle_d = 30;
-flange_bolt_d        = 3.2;
-flange_bolt_n        = 4;
-flange_center_bore_d = 8.1;
-body_d               = 49;
-body_len             = 24;
+body_d      = 49;
+body_len    = 24;
+boss_len    = 8;      // how far the output boss stands proud of the motor face
+payload_od  = 25.15;
+arm_offset  = 8;
+t           = 6;
+bearing_od  = 22;
+bearing_w   = 7;
+ring_w      = 10;
+arm_w       = 60;
 
-/* [Payload + frame] */
-payload_od    = 25.15; // DLH-3UP-EH aluminum LED housing — Ø0.99" per its drawing
-payload_clear = 0.6;   // slide fit: the housing glides in the cradle to balance
-cradle_w      = 12;    // cradle grip width on the finned barrel
-arm_offset   = 8;
-wall         = 4;
-bearing_od   = 22;  // 608
-bearing_id   = 8;
-bearing_w    = 7;
-clamp_ear_w  = 30;
-hard_stop_h  = 6;
+span    = body_d + 2 * arm_offset;         // 65 — inner face to inner face
+drop    = body_d / 2 + arm_offset;         // 32.5 — bridge underside → tilt axis
+arm_h   = drop + 28;
+z_bridge = -(body_len + boss_len);         // bridge TOP face (mates the pan boss face)
+z_tilt   = z_bridge - t - drop;            // tilt-axis height
+head_L   = 49;
 
 $fn = 64;
 
-// ---- derived -----------------------------------------------------------------
-span    = body_d + 2 * arm_offset;          // daylight between the two arms
-disc_d  = flange_bolt_circle_d + 4 * wall;  // every flange disc
-drop    = body_d / 2 + arm_offset;          // yoke-arm root → tilt axis
-z_disc  = -(body_len + 2 + wall);           // yoke disc top face (under pan boss)
-z_tilt  = z_disc - drop;                    // tilt-axis height (world)
-x_head  = -span / 2 + body_len / 2 + 2;     // head-shell flange plane
-cradle_id = payload_od + payload_clear;     // ≈ 25.75 mm ≈ 1.014"
-ring_od   = cradle_id + 2 * wall;
-ring_c    = wall + ring_od / 2;             // head local: barrel crosses tilt axis here
-
 // exploded offsets (all 0 when assembled)
 e = (view == "exploded") ? 1 : 0;
-E_SHELF = 100 * e;
-E_BASE  = 64 * e;
-E_PANM  = 34 * e;
-E_TILTM = 36 * e;   // out -x
-E_BRG   = 30 * e;   // out +x
-E_HEAD  = 44 * e;   // down
-E_LIGHT = 84 * e;   // further down
+E_SHELF = 96 * e;    // shelf + clamp, up
+E_BASE  = 62 * e;    // pan base, up
+E_PANM  = 32 * e;    // pan motor, up
+E_ARM   = 34 * e;    // arm plates, out ±x
+E_TILTM = 40 * e;    // tilt motor, further out -x
+E_BRG   = 26 * e;    // bearing, out +x
+E_M8    = 46 * e;    // M8 axle, further out +x
+E_HEAD  = 46 * e;    // head plates, down
+E_RING  = 30 * e;    // cradle ring, toward viewer (-y)
+E_LIGHT = 64 * e;    // housing, down + toward viewer
 
-// ---- helpers -------------------------------------------------------------------
-module flange_bolts(h = 10) {
-  for (i = [0 : flange_bolt_n - 1])
-    rotate([0, 0, i * 360 / flange_bolt_n])
-      translate([flange_bolt_circle_d / 2, 0, -1])
-        cylinder(d = flange_bolt_d, h = h + 2);
-}
-module disc_with_holes() {
-  difference() {
-    cylinder(d = disc_d, h = wall);
-    translate([0, 0, -1]) cylinder(d = flange_center_bore_d, h = wall + 2);
-    flange_bolts(wall);
-  }
-}
-
-// ---- mockups (bought parts, not printed) -----------------------------------------
+// ---- mockups (bought parts) --------------------------------------------------------
 module motor(boss_at_top = false) {          // RMD-L-5005 stand-in, body along +z
   color("Silver") cylinder(d = body_d, h = body_len);
-  color("DimGray") translate([0, 0, boss_at_top ? body_len : -2])
-    cylinder(d = flange_bolt_circle_d + 4, h = 2);
+  color("DimGray") translate([0, 0, boss_at_top ? body_len : -boss_len])
+    cylinder(d = flange_bolt_circle_d + 4, h = boss_len);
 }
 module bearing608() {
   color("LightSteelBlue") difference() {
     cylinder(d = bearing_od, h = bearing_w, center = true);
-    cylinder(d = bearing_id, h = bearing_w + 2, center = true);
+    cylinder(d = 8, h = bearing_w + 2, center = true);
   }
 }
 module led_housing() {                       // DLH-3UP-EH mockup: barrel along y, beam +y
@@ -99,132 +76,81 @@ module led_housing() {                       // DLH-3UP-EH mockup: barrel along 
   color("LemonChiffon") rotate([-90, 0, 0]) translate([0, 0, 13])     // the beam
     cylinder(d1 = 22, d2 = 52, h = 32);
 }
-module c_clamp() {                           // wraps shelf + ear at the ear
+module m8_axle() {                            // shaft along +z local, hex behind origin
+  color([.42, .42, .46]) {
+    cylinder(d = 7.8, h = 26);
+    translate([0, 0, -5]) cylinder(d = 13, h = 5, $fn = 6);
+  }
+}
+module c_clamp() {
   color([.35, .35, .38]) {
-    translate([-7, -4, -7])  cube([14, 40, 7]);       // lower jaw (under the ear)
-    translate([-7, -4, 21])  cube([14, 40, 7]);       // upper jaw (over the shelf)
-    translate([-7, 30, -7])  cube([14, 6, 35]);       // spine
-    translate([0, 8, -16])   cylinder(d = 5, h = 10); // screw
-    translate([0, 8, -19])   cylinder(d = 14, h = 4); // handle pad
+    translate([-7, -4, -7])  cube([14, 40, 7]);
+    translate([-7, -4, 21])  cube([14, 40, 7]);
+    translate([-7, 30, -7])  cube([14, 6, 35]);
+    translate([0, 8, -16])   cylinder(d = 5, h = 10);
+    translate([0, 8, -19])   cylinder(d = 14, h = 4);
   }
 }
-module shelf() { color("BurlyWood") translate([-58, 16, 4.2]) cube([116, 74, 16]); }
+module shelf() { color("BurlyWood") translate([-58, 16, 6.2]) cube([116, 74, 16]); }
 
-// ---- printed parts (corrected where frame.scad is a scaffold) --------------------
-module pan_base() {
-  color("Gold") difference() {
-    union() {
-      cylinder(d = body_d + 2 * wall, h = wall);
-      translate([-(clamp_ear_w / 2), body_d / 2 - 1, 0])
-        cube([clamp_ear_w, clamp_ear_w + 1, wall]);                    // clamp ear
-      translate([body_d / 2 - 2, -hard_stop_h / 2, wall - 0.01])
-        cube([wall, hard_stop_h, hard_stop_h]);                        // pan hard stop
-    }
-    translate([0, 0, -1]) cylinder(d = flange_center_bore_d, h = wall + 2);
-    flange_bolts(wall);
-  }
-}
+// ================================ SCENE ==============================================
+// pan axis = world Z · tilt axis = world X · beam fires +y into the room.
+// Printed parts keep their own colors per subassembly:
+//   gold = pan base · orange = yoke (bridge + arms) · teal = head parts.
 
-module yoke_arm(bore, t) {                   // hanging slab ending in a collar
-  slab_len = drop - bore / 2 - wall + 8;     // overlaps the collar by ~8
-  translate([0, -body_d / 4, -slab_len]) cube([t, body_d / 2, slab_len + 0.01]);
-  translate([0, 0, -drop]) rotate([0, 90, 0]) difference() {
-    cylinder(d = bore + 2 * wall, h = t);                              // collar
-    translate([0, 0, -1]) cylinder(d = bore, h = t + 2);
-  }
-}
+// 1 · shelf + C-clamp; pan base's ear goes under the clamp
+rotate([0, 0, 180]) translate([0, 0, E_SHELF]) { shelf(); translate([0, 38, 0]) c_clamp(); }
+rotate([0, 0, 180]) translate([0, 0, E_BASE]) rotate([180, 0, 0])
+  translate([0, 0, -t]) color("Gold") pan_base();   // post-side down, into the swing plane
 
-module yoke() {
-  color("Orange") {
-    translate([0, 0, -wall]) disc_with_holes();                        // pan-flange disc
-    // FIX 1: bridge bar joins the disc to both arm roots
-    difference() {
-      translate([-(span / 2 + wall + body_len / 2), -body_d / 4, -wall])
-        cube([span + 2 * wall + body_len / 2 + bearing_w, body_d / 2, wall]);
-      translate([0, 0, -wall - 1]) cylinder(d = flange_center_bore_d, h = wall + 2);
-    }
-    translate([span / 2, 0, -wall]) yoke_arm(bearing_od, wall + bearing_w);       // bearing arm
-    translate([-span / 2 - wall - body_len / 2, 0, -wall])
-      yoke_arm(body_d + 0.6, wall + body_len / 2);                                // motor arm
-    translate([-hard_stop_h / 2, flange_bolt_circle_d / 2 + wall, -2 * wall])     // tilt stop
-      cube([hard_stop_h, wall, wall]);
-  }
-}
+//     pan motor — BACK bolts up under the plate, output boss faces down
+translate([0, 0, -body_len + E_PANM]) motor(boss_at_top = false);
 
-module head_shell() {                        // local +z = tilt axis; beam = local +y
-  color("MediumTurquoise") difference() {
-    union() {
-      disc_with_holes();                                               // bolts to tilt flange
-      translate([0, 0, wall - 0.01]) cylinder(d = disc_d, h = 4);      // gusset
-      // FIX 2: pinch-collar cradle rotated 90° — the housing CROSSES the
-      // tilt axis, so tilting sweeps the beam instead of rolling it.
-      translate([0, 0, ring_c]) rotate([-90, 0, 0])
-        cylinder(d = ring_od, h = cradle_w, center = true);
-      translate([ring_od / 2 - wall, -cradle_w / 2, ring_c - 5])       // pinch ears
-        cube([wall + 6, cradle_w, 10]);
-      translate([-2, -cradle_w / 2, ring_c])                           // spine
-        cube([4, cradle_w, ring_od / 2 + 4]);
-      // FIX 3: end plate — an M8 bolt through the 608 threads in here
-      translate([0, 0, ring_c + ring_od / 2]) cylinder(d = flange_bolt_circle_d, h = wall);
-      translate([-2, -62, ring_c + 14]) cube([4, 58, 18]);             // counterweight tail
-    }
-    translate([0, 0, ring_c]) rotate([-90, 0, 0])                      // payload bore
-      cylinder(d = cradle_id, h = cradle_w + 20, center = true);
-    translate([cradle_id / 2 - 1, -(cradle_w + 2) / 2, ring_c - 1])    // pinch slit
-      cube([wall + 10, cradle_w + 2, 2]);
-    translate([0, 0, ring_c + ring_od / 2 - 1]) cylinder(d = 8.2, h = wall + 2); // M8 hole
-    translate([-3, -56, ring_c + 20.35]) cube([6, 38, 5.3]);           // M5 slot
-  }
-  // M5 counterweight mock (bolt + stacked nuts riding the slot)
-  color([.3, .3, .33]) translate([-6, -40, ring_c + 23]) rotate([0, 90, 0])
-    cylinder(d = 11, h = 12, $fn = 6);
-}
+// 2 · yoke bridge bolts to the pan output flange
+translate([0, 0, z_bridge - t]) color("Orange") yoke_bridge();
 
-// ---- exploded-view guide lines -----------------------------------------------
+// 3 · arm plates tab up into the bridge (M3s + square nuts lock them)
+//     local→world: x↦y, y↦z, z↦x  (rotate([90,0,90]))
+translate([-span / 2 - t - E_ARM, 0, z_bridge - t]) rotate([90, 0, 90])
+  color("Orange") arm_motor();
+translate([span / 2 + E_ARM, 0, z_bridge - t]) rotate([90, 0, 90])
+  color("Orange") arm_bearing();
+
+// 6a · tilt motor — body OUTSIDE the left arm, face-bolted to it; its boss
+//      reaches through the arm's window into the gap
+translate([-span / 2 - t - body_len - E_ARM - E_TILTM, 0, z_tilt]) rotate([0, 90, 0])
+  motor(boss_at_top = true);
+
+// 4 · head boss plate on the tilt boss (bolted on the desk, before step 6)
+translate([-span / 2 + boss_len - t, 0, z_tilt - E_HEAD]) rotate([90, 0, 90])
+  color("MediumTurquoise") head_boss_plate();
+
+// 5 · head main plate spans the gap; end plate catches the far side
+translate([-span / 2 + boss_len, -8 - t / 2, z_tilt - E_HEAD]) rotate([90, 0, 90])
+  color("MediumTurquoise") head_main_plate();
+translate([-span / 2 + boss_len + head_L, 0, z_tilt - E_HEAD]) rotate([90, 0, 90])
+  color("MediumTurquoise") head_end_plate();
+
+// 6b · 608 presses into the bearing arm; the M8 axle slides through it
+//      into the end plate's captive nut — head now held on BOTH sides
+translate([span / 2 + t + 4 - bearing_w / 2 + E_ARM + E_BRG, 0, z_tilt]) rotate([0, 90, 0])
+  bearing608();
+translate([span / 2 + t + 8 + E_ARM + E_M8, 0, z_tilt]) rotate([0, -90, 0]) m8_axle();
+
+// 7 · cradle ring face-bolts over the main plate's window; the housing
+//     slides through — slide to balance, then nip the pinch bolt
+translate([-span / 2 + boss_len + head_L / 2, -5 - E_RING, z_tilt - E_HEAD]) rotate([-90, 0, 0])
+  color("MediumTurquoise") cradle_ring();
+translate([-span / 2 + boss_len + head_L / 2, -3 - E_RING, z_tilt - E_HEAD - E_LIGHT])
+  led_housing();
+
+// exploded-view guide lines
 module axis_line(a, b) {
   color([.55, .55, .55]) hull() { translate(a) sphere(d = 1.2); translate(b) sphere(d = 1.2); }
 }
-
-// ================================ SCENE ==========================================
-// pan axis = world Z (vertical) · tilt axis = world X (horizontal)
-// shelf + clamp ear live on the -y side; the beam fires +y into the open room
-
-// 1 · shelf + C-clamp (the bench's stand-in for "hanging from the ceiling")
-rotate([0, 0, 180]) translate([0, 0, E_SHELF]) { shelf(); translate([0, 38, 0]) c_clamp(); }
-
-// 2 · pan base — ear under the clamp, motor plate cantilevers past the shelf edge
-rotate([0, 0, 180]) translate([0, 0, E_BASE]) pan_base();
-
-//     pan motor — BODY bolts up against the plate, output flange faces DOWN
-translate([0, 0, -body_len + E_PANM]) motor(boss_at_top = false);
-
-// 3 · yoke — its disc bolts to the pan output flange, arms hang down
-translate([0, 0, z_disc + wall]) yoke();
-
-// 4a · tilt motor — body slides into the motor-arm collar, flange faces INWARD
-translate([-span / 2 - body_len / 2 - E_TILTM, 0, z_tilt]) rotate([0, 90, 0])
-  motor(boss_at_top = true);
-
-// 4b · 608 bearing — presses into the bearing-arm collar
-translate([span / 2 + wall + bearing_w / 2 + E_BRG, 0, z_tilt]) rotate([0, 90, 0])
-  bearing608();
-
-// 5 · head shell — disc onto the tilt flange; the M8 axle bolt slides in
-//     through the bearing from outside and lands in the end plate
-translate([x_head, 0, z_tilt - E_HEAD]) rotate([0, 90, 0]) head_shell();
-translate([span / 2 + wall + bearing_w + 5 + E_BRG + 22 * e, 0, z_tilt])
-  rotate([0, -90, 0]) color([.42, .42, .46]) {
-    cylinder(d = 7.8, h = 30);                                         // M8 axle bolt
-    translate([0, 0, -4.5]) cylinder(d = 13, h = 4.5, $fn = 6);        // its hex head
-  }
-
-// 6 · LED housing — slides through the cradle, balanced across the tilt axis
-translate([x_head + ring_c, 0, z_tilt - E_HEAD - E_LIGHT]) led_housing();
-
 if (view == "exploded") {
-  axis_line([0, 0, E_SHELF + 2], [0, 0, z_disc - 6]);                          // pan axis
-  axis_line([-span / 2 - body_len - E_TILTM - 8, 0, z_tilt],
-            [span / 2 + wall + bearing_w + E_BRG + 10, 0, z_tilt]);            // tilt axis
-  axis_line([x_head + ring_c, 0, z_tilt - 2],
-            [x_head + ring_c, 0, z_tilt - E_HEAD - E_LIGHT + 6]);              // head drop
+  axis_line([0, 0, E_SHELF + 2], [0, 0, z_bridge - 8]);                        // pan axis
+  axis_line([-span / 2 - t - body_len - E_ARM - E_TILTM - 8, 0, z_tilt],
+            [span / 2 + t + 34 + E_ARM + E_M8, 0, z_tilt]);                    // tilt axis
+  axis_line([0, -4, z_tilt - 4], [0, -4, z_tilt - E_HEAD - E_LIGHT + 8]);      // head drop
 }
