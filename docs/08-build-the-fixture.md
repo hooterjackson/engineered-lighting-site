@@ -53,6 +53,15 @@ board's height. Each board has one job:
 The PCAs live *with* the ULNs on purpose: the 21 dim signals never leave
 their board, and only about a dozen wires ever cross between boards.
 
+> **Honest scope note — the shell comes later.** The fixture *body* (the
+> enclosure that holds PSU, stack, tape ring, and gimbal together and
+> actually screws in) is deliberately not designed yet — it's a
+> [Doc 3b](03b-print-the-frame.md)-style OpenSCAD session once the real
+> parts are in hand for measuring. Steps 1–6 don't need it: the stack
+> builds and tests clamped to a bench plate, exactly like every build
+> before it. The body matters at step 7, when the IRM and the E26 feed
+> make it a thing that screws into a socket.
+
 Three assembly rules:
 
 1. Build each board **flat on the desk**. Stack last.
@@ -141,8 +150,9 @@ from — and testing them empty.
 
 **Do this:**
 
-1. Mount the IRM to the body. **Do not connect it** — it stays disconnected
-   until step 7.
+1. Set the IRM aside — it mounts to the body at step 7 and stays
+   disconnected until then. Everything until then runs from the bench
+   supply.
 2. Lay the +24 V trunk and the ground trunk along B1 (rule 3).
 3. Solder in the fuse holder, then the bench-feed XT30 in the +24 V run.
 4. Mount the buck; wire VIN and GND to the trunks.
@@ -309,6 +319,10 @@ Replies but no motion = you're in Hold/Manual mode, not a wiring problem.
     limit set. A commanded motor twists its own body as hard as its shaft.
 
 ## Step 7 — Swap in the real PSU, then the verdict
+
+This is where the fixture body enters: mount the IRM to it, give the E26
+adapter's cord a strain-relieved entry, and give the star's heatsink its air
+path. (Shell design is its own session — see the scope note up top.)
 
 **Do this:**
 

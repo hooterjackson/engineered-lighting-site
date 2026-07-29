@@ -29,9 +29,9 @@ This eight-document series takes it from research through a working bench protot
 
     ---
 
-    A pan/tilt head you can't hear: smart CAN actuators, absolute encoders, a balanced high-CRI LED payload — researched, chosen, and bench-built step by step.
+    A pan/tilt head you can't hear: smart CAN actuators, absolute encoders, a balanced high-CRI LED payload — researched, chosen, bench-built, and finally hand-soldered into a fixture that screws into a lamp socket.
 
-    [:octicons-arrow-right-24: Docs 1–4](01-how-we-got-here.md)
+    [:octicons-arrow-right-24: Docs 1–4 · 8](01-how-we-got-here.md)
 
 -   :material-eye:{ .lg .middle } **The aiming intelligence**
 
