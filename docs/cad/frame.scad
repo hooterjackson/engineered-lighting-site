@@ -534,12 +534,21 @@ else if (part == "yoke")        emit("yoke");
 else if (part == "cradle")      emit("cradle");
 else if (part == "cradle_cap")  emit("cradle_cap");
 else if (part == "__legacy__")  p_tol_coupon();
+// Every part laid flat, PACKED TO FIT a 256 x 256 bed with a 6 mm gap. The
+// offsets are computed from each part's measured print bounding box, not
+// eyeballed, so the plate really does fit rather than being "a picture of the
+// set" that has to be split. Re-measure with tools/run_checks.py (the bed
+// checks export each part) if any part changes size.
+//
+//   row 1  yoke 75.22 x 64.22 · base_plate 70.61 x 81.50 · cradle 49.73 x 32.00
+//   row 2  tol_coupon 84.00 x 34.00 · fit_coupon 88.58 x 41.18
+//   row 3  bore_gauge 90.46 x 12.00 · cradle_cap 40.73 x 32.00
 else if (part == "all") {
-  translate([  0,   0, 0]) p_yoke();
-  translate([110,   0, 0]) p_base_plate();
-  translate([200,   0, 0]) p_cradle();
-  translate([260,   0, 0]) p_cradle_cap();
-  translate([  0, 120, 0]) p_tol_coupon();
-  translate([110, 120, 0]) p_fit_coupon();
-  translate([210, 120, 0]) p_bore_gauge();
+  translate([ 47.1,  36.1, 0]) p_yoke();          // -> x  4.0.. 79.2  y  4.0.. 68.2
+  translate([110.7,  29.5, 0]) p_base_plate();    // -> x 85.2..155.8  y  4.0.. 85.5
+  translate([161.8,  20.0, 0]) p_cradle();        // -> x161.8..211.5  y  4.0.. 36.0
+  translate([  4.0,  95.5, 0]) p_tol_coupon();    // -> x  4.0.. 88.0  y 95.5..129.5
+  translate([113.7, 116.1, 0]) p_fit_coupon();    // -> x 94.0..182.6  y 95.5..136.7
+  translate([  4.0, 147.7, 0]) p_bore_gauge();    // -> x  4.0.. 94.5  y141.7..153.7
+  translate([ 92.0, 157.7, 0]) p_cradle_cap();    // -> x100.5..141.2  y141.7..173.7
 }

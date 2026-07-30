@@ -1,151 +1,174 @@
 ---
 title: 3b · Print the Frame
-description: "The gimbal's printed frame: six parts that print flat with no supports, every joint a bolt you can see, every fit derived from three numbers you measure off your own printer, and three cheap test pieces that find out before anything expensive prints."
+description: "The gimbal's printed frame: four parts that print flat with no supports, no bearings at all, every fit derived from three numbers you measure off your own printer, and a boolean test suite that proves each hole actually exists before you print anything."
 ---
 
-# Doc 3b · Print the Frame — Six Parts, Three Test Pieces, No Guesswork
+# Doc 3b · Print the Frame — Four Parts, Three Test Pieces, No Guesswork
 
 **Engineered Lighting prototype series · July 2026**
-The frame chapter [Doc 3](03-build-the-gimbal.md) stage 7 points at. Context, fixed: the motors are **RMD-L-5005** (Ø49 × ~24 mm, 92 g, mounting holes on *both* faces), the spotlight payload is the **DLH-3UP-EH aluminum LED housing** (Ø0.99" finned barrel, 1.26" overall, flush front face — nothing protrudes — and a hollow 1/2"-14 NPT rear stub the wires come out of), the printer is a **Bambu Lab X1C**, and the material is **PETG Basic** (PETG-CF for the yoke if it's on hand). Iteration is the plan, not a failure mode.
 
-!!! agent-prompt "🤖 Give this to your agent"
+The frame chapter [Doc 3](03-build-the-gimbal.md) stage 7 points at. Context, fixed: the motors are **RMD-L-5005** (Ø49 × 23.9 mm, 92 g), the spotlight payload is the **DLH-3UP-EH aluminium LED housing** (Ø0.99″ barrel, 1.26″ overall, flush front, hollow ½″-14 NPT rear stub the wires come out of), the printer is a **Bambu Lab X1C**, and the material is **PETG Basic**.
 
-    ```text
-    You're my bench agent for the Engineered Lighting gimbal frame
-    (chapter: engineering.engineered.lighting/03b-print-the-frame/). The
-    RMD-L-5005 motors and my calipers are on the bench, a Bambu Lab X1C is
-    on the network, and cad/frame_params.scad, cad/frame.scad and
-    cad/assembly.scad from this chapter are in my repo. Start by proposing
-    a plan and wait for my approval before executing anything. The first
-    part to print is tol_coupon, which measures my printer, not the design
-    — I will report which test hole my M3 drops through, which post the
-    608 turns freely on, and which ring it presses into, and you set
-    hole_comp, hole_comp_h and shaft_comp in frame_params.scad from that.
-    Then fit_coupon and bore_gauge against the real motor and the real
-    housing. Here are my caliper measurements: [paste the MEASURE-ME list
-    with your numbers]. Every edit goes in frame_params.scad — frame.scad
-    is geometry only. Re-render with the openscad CLI after each round.
-    Done when: all three tolerance constants came off a part I printed,
-    every MEASURE-ME value is replaced by a measured one, and the coupon
-    seats flush on both faces of the real motor. Report back: the
-    parameter diff after each round and the exact commands you ran.
-    ```
+This is **frame v8**, and it is a ground-up rebuild. Two things drove it.
 
-    *[How to run this prompt →](00b-ai-native-workflow.md)*
+## What changed, and why it matters
 
-*Printing stalled — bad first layers, fit that won't converge, no printer time? A hand-drilled aluminum bar or plywood yoke made from a 1:1 printed drawing is a legitimate v0; the geometry is a few brackets, not art.*
+**The motor is now read, not guessed.** Earlier revisions were built on an invented output flange — six holes on a Ø30 circle, an M4 rear mount on Ø43, a 4 mm output boss. None of those exist. The vendor's own STEP file is now in the repo at [`ref/RMD-L-5005-S.STEP`](https://github.com/hooterjackson/engineered-lighting-site/blob/main/ref/RMD-L-5005-S.STEP), parsed by [`ref/step_dump.py`](https://github.com/hooterjackson/engineered-lighting-site/blob/main/ref/step_dump.py), and written up in [`ref/RMD-L-5005-S.md`](https://github.com/hooterjackson/engineered-lighting-site/blob/main/ref/RMD-L-5005-S.md). What it says:
 
-## The six parts
-
-| Part | What it is |
+| | |
 |---|---|
-| `base_plate` | The only part that touches the world. The pan motor's **rear cover** bolts up into it, heads counterbored flush so the plate still sits flat under a shelf; a tongue reaches aft for the C-clamp; a buttressed post hangs 29 mm down into the yoke's swing plane as the pan hard stop. |
-| `yoke` | Bridge and both arms, **one piece**. Prints standing on its bridge with the arms pointing up — zero supports, and there is no joint to align because there is no joint. |
-| `cradle` | The head's saddle. Bolts to the tilt motor's output boss, carries the trunnion, holds the lower half of the housing bore. |
-| `cradle_cap` | The other half of the clamp. Four screws pinch the housing between the two halves. |
-| `trunnion` | The printed axle stub. There is no steel axle in this design. |
-| `bearing_carrier` | Holds the 608 on the idle side and, on purpose, has oversize screw holes so it can *find* the axis instead of fighting it. |
+| Output face | **Flat.** A Ø47 annulus, then a 1 mm 45° chamfer out to Ø49. **There is no boss** — stand-proud is 0.000 mm |
+| Output bolts | 4 × M3 on **Ø25**, tapped only **2.500 mm deep**, breaking through into the rotor cavity |
+| Stationary housing | begins **3.000 mm** back from the output face |
+| Rear mount | 4 × M2.5 on a **20 × 20 mm square** (Ø28.284 at 45°), 10.7 mm deep |
+| Through bore | **Ø8.1** ("S" variant) |
+| Anything protruding past Ø49 | **Nothing.** Max radius anywhere is exactly R24.5. The connectors are recesses cut *into* the casting |
+
+That 2.5 mm thread depth is the single most constraining number in the design. Every M3 into an output flange is **M3 × 10**, derived from it. The previous revision's assembly drawing called for M3 × 13 and M3 × 14 — both bottom out 2.5–3.5 mm before the head seats, so the joint never clamps and the screw tip ends up inside the motor.
+
+**The idle side of the tilt axis is gone.** No trunnion, no bearing carrier, no 608, six fewer screws, one fewer yoke arm. The head cantilevers off the tilt motor's own output.
+
+That deletes 62 g from a 177 g machine to carry **0.505 N and 0.0146 N·m** — about 3.5% of the motor's peak torque, with 0.58 N of prying on the output bolts against an M3 proof load near 2000 N. It also removes an *over-constrained* twin-bearing axis: two bearings on one axis need the printed parts to be coaxial with the motor's own bearing, which printed parts cannot guarantee, and which the old design papered over with a build-time "leave three screws loose, swing the head, then tighten" ritual. A misaligned second bearing loads the motor's bearing sideways — it can make worse the thing it is supposed to protect.
+
+!!! warning "One number here is unverified, and it is the important one"
+
+    **The RMD-L manual publishes no bearing load ratings at all.** There is no radial or moment figure for the output. The case for the cantilever is an argument from load magnitude and from the journal diameter — the STEP shows the rotor running in a Ø46.6 bore, and moment capacity scales with that — **not** from a datasheet. The load numbers are echoed on every render so that if the head ever grows, the change is visible instead of silent. If a rating ever surfaces, check it against 0.505 N and 0.0146 N·m.
+
+## The four parts
+
+| Part | What it is | Mass |
+|---|---|---|
+| `base_plate` | The only part that touches the world. The pan motor's rear bolts up into it, heads counterbored flush; a tongue reaches aft for the C-clamp; a buttressed post hangs down as the pan hard stop | 33.4 g |
+| `yoke` | Bridge disc and **one** arm, one piece. Prints standing on its bridge with the arm pointing up — zero supports, and no joint to align because there is no joint | 47.0 g |
+| `cradle` | The head's saddle. Bolts flat to the tilt motor's output face and holds the lower half of the housing bore | 23.2 g |
+| `cradle_cap` | The other half of the clamp. Four screws pinch the housing between the halves | 21.0 g |
+| | **printed machine** | **124.6 g** |
+
+Masses are measured off the exported STLs at PETG density by [`tools/meshcheck.py`](https://github.com/hooterjackson/engineered-lighting-site/blob/main/tools/meshcheck.py), which computes volume and centre of mass twice — once from a hand-rolled divergence-theorem sum, once from `trimesh` — and refuses to report a centre of mass without a stated coordinate frame. v7 was 177.1 g across six parts.
 
 Plus three test pieces that exist to be wrong cheaply, in the order you print them:
 
-**`tol_coupon`** measures *your printer*. FDM gets holes and shafts wrong in opposite directions — a hole comes out undersize, a post comes out oversize — and every fit in this project is derived from three constants that describe by how much. The coupon prints four candidate values for each: find which hole your M3 drops through, which post your 608 slides onto and turns freely on, and which ring it presses into. Type those three numbers into `frame_params.scad` and every part in the set resizes itself. It is 45 g and you print it once, ever.
+**`tol_coupon`** (14.9 g) measures *your printer*. FDM gets holes and shafts wrong in opposite directions — a hole comes out undersize, a post oversize — and every fit here derives from three constants that say by how much. Find which test hole your M3 drops through, which drilled-sideways hole it drops through, and which post measures nominal. Type three numbers into `frame_params.scad` and the whole set resizes itself.
 
-**`fit_coupon`** then checks the *motor*: a 3 mm disc carrying both bolt circles, the centre bore, and scribe rings at the boss and body diameters. **`bore_gauge`** checks the *housing*: a 14 mm slice of the real clamp — put the real barrel in it and find out whether Ø25.75 actually slides.
+**`fit_coupon`** (11.4 g) checks the *motor*: **two separate tiles**, one per bolt circle. They are separate on purpose — drawn concentrically, the Ø25 and Ø28.284 circles overlap into merged slots, and an M3 and an M2.5 both drop through the same hole, so the coupon proves neither circle.
+
+**`bore_gauge`** (14.2 g) checks the *housing*: a 12 mm slice of the real clamp, both halves lying flat on the bed, the cap half crown-down so its bore prints as a valley exactly as the real cap does.
 
 ## The rules the design follows
 
-**Every joint is a bolt you can see.** No tabs, no slots, no square nuts buried in pockets, nothing friction-fit. Printed-to-motor joints bolt into the motor's own threaded holes; printed-to-printed joints are machine screws self-tapping into printed pilot holes, with heat-set M3 inserts as the upgrade if anything ever works loose.
+**Every joint is a bolt you can see.** No tabs, no captive nuts, nothing friction-fit. Printed-to-motor joints use the motor's own threads; printed-to-printed self-taps into printed pilot holes.
 
-**The motors are bolted by their rear covers.** Both RMD faces carry mounting holes, and the rear one is a flat plate, so the mating surface is unambiguous. The tilt motor's body therefore lives *inside* the yoke with its connector hanging in free air, and both motors are bolted through a plate from the outside, where a driver can reach.
+**Every fit is derived, never typed.** Three measured constants and the fit functions built on them. Horizontal (bridged) holes get their own class, because a sideways hole prints with a sagging roof and comes out worse than a vertical one.
 
-**Nothing is sized in absolute millimetres if a fit depends on it.** `m3_clear`, the 608's bore, the trunnion's stub, the recess that lands on the motor boss — all of them come out of fit functions driven by the three numbers `tol_coupon` measures. This is not decoration: the previous revision drew the trunnion stub at 7.85 mm to enter an 8.00 mm bearing, and because external cylinders print *over* size it would have come out at about 8.0 and never gone in.
+**The part lands flat on a flat face.** There is no boss to register on, so the four M3 locate it. A plate laid on the output face sits on the Ø47 annulus and has **3.0 mm of axial room at full Ø49** before it touches the stator — which is what would clamp the motor solid.
 
-**Where a printed part lands on a rotating boss, it lands on the boss and nothing else.** The locating recess is 1 mm deep against a boss that stands about 4 mm proud. That margin is deliberate: a part that bottomed out on the *stator* face would clamp the motor solid.
+**Nothing bridges.** The hard stop is a post and a lug that *collide*, not a post in an arc groove: the old groove was 1565 mm² of flat roof with 45 mm unsupported runs printed over a 0.6 mm clearance. There is no groove now, so the whole failure mode is deleted rather than mitigated. The clamp bore is two valleys. Horizontal round holes are hexagons with a vertex up, so the roof is a 60° peak.
 
-**Nothing that has to be round prints as a bridge.** The bearing pocket is a first-layer-accurate hole in a flat-printed carrier. The clamp bore is two valleys, one in the saddle and one in the cap, each printed concave-up. Lightening pockets are hexagons with a vertex up, so their roofs are a 60° peak rather than a 32 mm bridge. Every part is oriented inside the file, so `part="yoke"` gives you a slice-ready STL.
+!!! note "A trick that only works in one direction"
 
-**Only three bolts hold the head to the tilt motor, and that's the point.** A bolt driven along the tilt axis needs a straight run for the driver, and the head's own body blocks any hole below the split line. So the design uses the three output-flange holes that sit *above* the split line, driven while the cap is off and the whole space above the bore is open air. Turn the output boss until one hole points straight up before you start. Three M3 on a 30 mm bolt circle carry the head's ~100 g and the motor's torque with an embarrassing margin.
+    The hexagon-vertex-up trick helps a hole whose **axis is horizontal**, where the hexagon's apex becomes the roof. A pocket cut straight down into a face has a flat roof whatever its plan shape. The cap's crown pocket was removed rather than hexagonalised, because the cap prints crown-down and any pocket there is a 32.7 mm bridge directly under the clamp.
 
-**Both axes are hollow, and the cable route is one open channel.** The LED wires leave the housing's rear stub, run forward along a channel cut into the inner face of the cradle's motor-side plate, pass through that plate on the axis and straight through the **tilt motor's hollow shaft**, out through the arm, up a trough in the arm's outer face, around the corner, along a trough under the bridge and up through the **pan motor's hollow shaft**. Every millimetre of it is open from the outside, so the bundle drops in *after* everything is bolted together — there is no tunnel to thread and no service loop to snag. Two zip-tie points, one on the arm and one on the base plate. Verify that through-bore on arrival — it's a MEASURE-ME; if it turns out solid, the tie points are already there for external routing.
+**Balance is drawn in, on the axis where it matters.** The tilt axis sits **1.75 mm above** the housing's axis, which puts the measured centre of mass of the whole head — saddle, cap and barrel — on it, leaving 6.9 × 10⁻⁶ N·m of standing torque. Solved from measured geometry by [`tools/solve_balance.py`](https://github.com/hooterjackson/engineered-lighting-site/blob/main/tools/solve_balance.py), in **model** coordinates.
+
+The **pan** axis is deliberately *not* balanced, and the reason is worth stating: the pan axis is vertical and gravity is parallel to it, so a centre-of-mass offset along the arm produces **no torque about the pan axis at all**. The motor holds any heading on zero current whatever that offset is. All it does is load the output bearing with 0.0128 N·m. Nulling it would cost about 7 mm of arm reach, a bigger bridge disc and ~12 g. Reported, not engineered away.
 
 ## The parametric scaffold
 
-The frame is three OpenSCAD files. [`cad/frame_params.scad`](cad/frame_params.scad) holds **every number, once** — motor interface, payload, thicknesses, the print-tolerance constants and the fit functions built on them, then one derived chain that sets the machine's size. [`cad/frame.scad`](cad/frame.scad) is nothing but geometry, and [`cad/assembly.scad`](cad/assembly.scad) draws the whole machine. Both of the latter `include` the parameters file, so the assembly view cannot disagree with the parts you print. Placeholders are marked **MEASURE-ME**, and every one of them is checked by a coupon.
+Four OpenSCAD files. [`cad/frame_params.scad`](cad/frame_params.scad) holds **every number, once**, and every number carries a provenance tag — `[STEP]`, `[MANUAL]`, `[DRAWING]`, `[STD]`, `[CHOICE]`, `[MEASURE]`, `[UNVERIFIED]` — so an invented dimension is visible in the source instead of in a failed build. [`cad/frame.scad`](cad/frame.scad) is nothing but geometry. [`cad/assembly.scad`](cad/assembly.scad) draws the whole machine. [`cad/checks.scad`](cad/checks.scad) is the test suite.
 
 ```scad
-/* [Motor interface — MEASURE-ME] */
-out_boss_d   = 36;    // MEASURE-ME  rotating output boss OD
-out_boss_h   = 4;     // MEASURE-ME  how far the boss stands proud
-out_bcd      = 30;    // MEASURE-ME  output-flange bolt circle
-rear_bcd     = 43;    // MEASURE-ME  REAR cover bolt circle — this is the mount
-shaft_bore_d = 8.1;   // MEASURE-ME  hollow through-bore (8.1 "S" / 12.7 "L")
+/* [Motor interface — all [STEP], read out of the vendor's own solid model] */
+motor_d          = 49;    // body OD. Also the max radius ANYWHERE: R24.5
+motor_len        = 23.9;
+out_flat_od      = 47;    // the flat annulus you land on
+stator_x         = 3.0;   // ** the stationary housing starts here **
+out_bcd          = 25;    // 4 x M3
+out_thread_depth = 2.5;   // ** and they break into the rotor cavity **
+out_thread_use   = 2.3;   // what we allow ourselves, so there is air under the tip
+out_boss_h       = 0;     // there is no boss. 0.000 mm proud.
+rear_bcd         = rear_sq * sqrt(2);   // 28.284 — a 20x20 square, at 45 deg
 
-/* [Print tolerances — MEASURE these with tol_coupon] */
-hole_comp   = 0.25;  // vertical holes come out this much UNDERSIZE
-hole_comp_h = 0.40;  // horizontal holes come out worse — the roof sags
-shaft_comp  = 0.15;  // external cylinders come out this much OVERSIZE
-
-function free_h(nom)  = nom + 0.5 + hole_comp;   // bolt drops through
-function tap_h(nom)   = nom - 0.45 + hole_comp;  // self-taps into PETG
-function slip_s(nom)  = nom - 0.15 - shaft_comp; // shaft that must TURN in a bore
-
-/* [Payload — DLH-3UP-EH, off LEDdynamics' drawing] */
-payload_od    = 25.15; // Ø0.99" over the fin crests — the clamped diameter
-payload_clear = 0.6;   // slide fit: Ø25.75 ≈ 1.014", slides by hand
-boss_recess   = 1;     // locating recess — KEEP WELL UNDER out_boss_h
+// screw lengths that CANNOT bottom out in the motor, derived not chosen
+function out_screw_len(through) = through + out_thread_use;
 ```
 
-Render any part, or the whole plate, from the CLI:
+Render or export any part from the CLI. `orient` picks the frame:
 
 ```bash
 openscad -o tol_coupon.stl -D 'part="tol_coupon"' cad/frame.scad   # print this first
-openscad -o cradle.stl     -D 'part="cradle"'     cad/frame.scad
+openscad -o yoke.stl       -D 'part="yoke"'       cad/frame.scad   # print orientation
+openscad -o yoke_model.stl -D 'part="yoke"' -D 'orient="model"' cad/frame.scad
 openscad -o plate.stl      -D 'part="all"'        cad/frame.scad
 ```
 
+Use `orient="model"` for anything you intend to *measure*. A centre of mass read off a print-orientation export is a rigid transform away from every other number in the project, and reading one as the other is a mistake that has already shipped here once.
+
+## The test suite
+
+`checks.scad` and [`tools/run_checks.py`](https://github.com/hooterjackson/engineered-lighting-site/blob/main/tools/run_checks.py) run **34 checks** of three kinds. Run them after any change:
+
+```bash
+python tools/run_checks.py
+```
+
+**`hole:` — a hole that must exist.** The probe is the *ideal* hole, intersected with the *finished* part. Empty means the material really was removed. This inversion is the only thing that sees a cut which missed: such a cut removes nothing, changes no mass, and renders as a clean solid. The previous revision's cradle had **no output-flange bolt holes at all** — the cut was a centred cylinder 2.865 mm short of the plate — and nothing but a boolean could see it.
+
+**`clash:` — two things that must not touch**, positioned exactly as assembled: head against both motors and against the yoke at tilt 0 and ±90°, the payload through its sweep, nothing entering the stator zone, the hard-stop post against the bridge and the arm at every heading.
+
+**`bed:` — the exported STL's minimum Z**, measured rather than asserted. The old `p_cradle` put its part 1.740 mm *below* the bed, where a slicer silently clips away the keel's entire first-layer footprint, and `bore_gauge` floated its second half 16 mm in the air.
+
+Both boolean kinds are proven to fail when they should — reintroduce the old centred-cut bug and `hole:yoke_arm_bolts` reports 158.270 mm³; pull `drop` to 12 and `clash:cradle_v_yoke_0` reports 525.1 mm³. A suite that cannot fail is worse than no suite, because it gets believed.
+
 ## X1C print settings, per part
 
-| Part | Material | Walls / infill / layer | Orientation | Roughly |
+| Part | Material | Walls / infill / layer | Orientation | Mass |
 |---|---|---|---|---|
-| `tol_coupon` | PETG Basic | 3 / 15% / 0.2 mm | flat, as emitted | ~1½ h · 45 g |
-| `fit_coupon` | PETG Basic | 4 / 30% / 0.2 mm | flat, as emitted | 20 min · 9 g |
-| `bore_gauge` | PETG Basic | 4 / 40% / 0.2 mm | as emitted | 35 min · 18 g |
-| `base_plate` | PETG Basic | 4 / 40% gyroid / 0.2 mm | post UP; installs post DOWN | 2 h · 38 g |
-| `yoke` | PETG-CF if on hand | 5 / 40% gyroid / 0.2 mm | arms UP, bridge on the bed | 6 h · 96 g |
-| `cradle` | PETG Basic | 4 / 40% gyroid / 0.2 mm | as emitted, bore a valley | 1½ h · 21 g |
-| `cradle_cap` | PETG Basic | 4 / 40% / 0.2 mm | inverted, bore a valley | 45 min · 11 g |
-| `trunnion` | PETG Basic | 5 / 60% / 0.2 mm | stub UP | 30 min · 6 g |
-| `bearing_carrier` | PETG Basic | 4 / 40% / 0.2 mm | pocket UP | 30 min · 9 g |
+| `tol_coupon` | PETG Basic | 3 / 15% / 0.2 mm | flat, as emitted | 14.9 g |
+| `fit_coupon` | PETG Basic | 4 / 30% / 0.2 mm | flat, as emitted | 11.4 g |
+| `bore_gauge` | PETG Basic | 4 / 40% / 0.2 mm | flat, both halves | 14.2 g |
+| `base_plate` | PETG Basic | 4 / 40% gyroid / 0.2 mm | flipped, post UP | 33.4 g |
+| `yoke` | PETG-CF if on hand | 5 / 40% gyroid / 0.2 mm | bridge on the bed, arm UP | 47.0 g |
+| `cradle` | PETG Basic | 4 / 40% gyroid / 0.2 mm | as emitted, bore a valley | 23.2 g |
+| `cradle_cap` | PETG Basic | 4 / 40% / 0.2 mm | crown down, bore a valley | 21.0 g |
 
-The masses are measured off the exported STLs at PETG's density and a 0.92 packing factor, not guessed: **181 g for the machine**, 72 g for the three test pieces, and the yoke is more than half the machine on its own. Times are slicer estimates at these settings and will move with your profile. `part="all"` lays every part flat, but that layout is 206 × 265 mm — a picture of the set, not a bed. Split it in two on a 256 mm X1C. There is not a single support in the set and no overhang steeper than 60°.
+Masses are measured off the STLs, not estimated. Print times are not listed because they depend on your profile more than on the geometry — the yoke is the long one at 59.6 mm tall.
+
+`part="all"` lays the whole set flat in **207.5 × 169.7 mm**, which fits a 256 mm X1C bed in **one job**. Those offsets are computed from each part's measured bounding box, not eyeballed. There is not a single support in the set and no overhang past 60°.
 
 ## How it all goes together
 
-Open [`cad/assembly.scad`](cad/assembly.scad) in OpenSCAD and press F5. It `use`s `frame.scad` — importing the part modules without running that file's own render block — and `include`s the same `frame_params.scad`, so the assembly can never drift from the printed geometry. It draws **every part and every one of the 27 bolts** — both motors with their real bolt patterns, the 608, the LED housing with its flush front, the wire runs, the C-clamp and the shelf. A `view` dropdown flips exploded ↔ assembled, `pan` and `tilt` pose it, `show_cap` unchecks to look inside the clamp, and `clip` takes a section through the whole thing.
+Open [`cad/assembly.scad`](cad/assembly.scad) and press F5. `view` flips exploded ↔ assembled, `pan` and `tilt` pose it, `show_cap` unchecks to look inside the clamp, and `clip` sections it.
+
+!!! danger "If the version banner prints `undef`, stop"
+
+    `assembly.scad` echoes `cad_version` on load. If that says `undef`, your `frame_params.scad` is not the file these were written against — and OpenSCAD does not fail loudly. It prints `WARNING: Ignoring unknown variable`, collapses the missing names to `undef`, silently **drops the geometry those names positioned**, writes a valid-looking STL and exits 0. A slicer will happily accept it.
+
+    That is the whole explanation for "only some of the parts render". If you have downloaded these files more than once, check what is actually in the folder you opened: a browser saves a second copy as `frame_params_1.scad`, which nothing includes, leaving the *stale* `frame_params.scad` as the one being read. Work in the repo clone, not in a downloads folder.
 
 ## Build order
 
-Each step ends with something you can check by hand, and each one leaves the next step's fasteners reachable — that ordering is a property of the geometry, not a hope.
+Each step leaves the next step's fasteners reachable — that ordering is a property of the geometry, not a hope.
 
-1. **`tol_coupon` first, before anything else.** Set `hole_comp`, `hole_comp_h` and `shaft_comp` from what it tells you. *Done when you have written three numbers into `frame_params.scad` that came off a part you printed, not out of this document.*
-2. **Then the other two coupons.** *Done when the output-flange bolts thread the inner circle, the rear-cover bolts thread the outer circle, the disc seats flush on the boss, and the real housing slides into the bore gauge and locks when you nip its screws.* Fix the parameters here; a 20-minute reprint beats a 6-hour one.
-3. **Yoke onto the pan motor, while the yoke is still empty.** Stand it on its arm tips, drop the motor into the bridge's locating recess boss-down, drive six M3 up from underneath. Turn the motor first so its **side connector faces the base plate's cable trough** — one of the other three positions puts the connector straight into the hard-stop post. *Done when the motor sits square and the yoke doesn't rock.* Do it now — once the head is in, those six bolts are behind it.
-4. **Base plate down onto the pan motor's rear**, four M4 through the counterbores. *Done when the plate sits flat on a table with the yoke hanging free and swinging to the hard stop in both directions.*
-5. **Cradle onto the tilt motor**, on the bench. Turn the output boss until one hole points straight up, then drive the three bolts above the split line. *Done when the cradle is rigid on the motor and the motor still turns freely by hand.*
-6. **Trunnion onto the cradle's right plate**, three screws, heads outside. *Done when the stub runs true — spin it against a fixed pencil mark and watch for wobble.*
-7. **Head up between the arms**, four M4 through the **left arm from the outside** into the tilt motor's rear holes. *Done when the head hangs on one side and swings.*
-8. **608 into the carrier, carrier over the stub, three screws — left loose.** Swing the head through its whole travel, *then* tighten. *Done when the head is supported on both sides and still falls under its own weight from any angle. If it binds, back those three screws off and let the carrier move.*
-9. **Wires** through both hollow shafts, then the C-clamp onto the shelf.
-10. **Housing in, cap on, balance.** Lay the housing into the saddle, slide it along the bore until the powered-off head stays where you leave it, *then* pull the four cap screws down. There is no trim bolt and no counterweight, because the balance is drawn in: the tilt axis sits 1.45 mm **above** the housing's axis, which is where the measured centre of mass of the whole head — saddle, cap, trunnion and barrel — actually lands. Then back to [Doc 3 stage 7](03-build-the-gimbal.md#stage-7-print-the-frame-balance-the-head).
-
-The bore is 32 mm long against a 22.6 mm finned barrel, so there are **9.4 mm of slide** — but it is now trim, not the balance mechanism. Solving for where the tilt axis has to sit puts the head's centre of mass on it to within 0.2 mm across any plausible housing weight, which is a gravity torque under 0.1 mN·m. Balance *is* the silence mechanism: centre of mass on the tilt axis means near-zero hold current, which means a cool, quiet motor. The slide is there for when your barrel is not the one on the drawing.
+1. **`tol_coupon` first, before anything else.** Set `hole_comp`, `hole_comp_h` and `shaft_comp` from what it tells you. *Done when three numbers in `frame_params.scad` came off a part you printed.*
+2. **Then the other two coupons.** *Done when the output bolts thread one tile, the rear bolts thread the other, and the real housing slides into the bore gauge and locks when you nip its screws.* Fix parameters here; a 20-minute reprint beats a 6-hour one.
+3. **Cradle onto the tilt motor**, on the bench, motor loose. Turn the output until two holes sit above the split line, then **two M3 × 10** through the plate. *Done when the cradle is rigid and the motor still turns freely by hand.* Do it now, while a driver reaches straight in.
+4. **Tilt motor onto the yoke arm, from outside the arm** — four **M2.5 × 16** through the arm into the rear square. The head is already on and hangs inboard; nothing is trapped. *Done when the head swings freely and falls under its own weight from any angle.*
+5. **Yoke onto the pan motor** — four **M3 × 10** up through the bridge.
+6. **Base plate down onto the pan motor's rear** — four **M2.5 × 16** through the counterbores. **The connector clocking is decided here**, not earlier: the rear square offers exactly four positions, so turn the motor *now* so its connector faces the cable trough. (The old chapter put this instruction on a step where turning the motor cannot change it, which costs up to three teardowns.) *Done when the plate sits flat and the yoke swings to the stop both ways.*
+7. **Wires**, then **housing in, cap on, balance.** Lay the housing into the saddle, slide it until the powered-off head stays where you leave it, *then* pull the four cap screws down.
 
 ## Two things worth knowing before you print
 
-**The pan hard stop is mechanical because the encoder is single-turn and the whole cable bundle passes through the pan axis.** A post on the base plate rides in an arc groove in the bridge, giving about **307°** of travel with the dead wedge pointed aft. It sits at a 31 mm radius, and because it is the one feature on this machine that gets *hit* — a 30 mm blade printed standing up, loaded across its layers, which is the weakest direction a printed part has — it carries a tapered buttress down 80% of its length that turns it into a T-section loaded along them. Even so, set a conservative current limit before you first test travel, and if it ever shears, an M6 bolt drops into the same position as the metal upgrade.
+**The clamp must never bottom out, and it doesn't.** The barrel is Ø25.15 **± 0.38** — the drawing's own two-place-decimal tolerance, a 0.76 mm spread on the one dimension the clamp depends on. The bore is cut for the *largest* barrel allowed, and the cap's bore sits 0.79 mm above the split line, against a worst case of 0.48 mm of travel needed to reach the *smallest*. So the screws set the grip and any barrel inside tolerance is actually held. Get this backwards and the ears land plastic-on-plastic and clamp air.
 
-**Tilt is limited in firmware, not by a stop.** The frame clears a full rotation — the head's swing radius is 24.5 mm against a 32 mm drop, and that was checked by intersecting the posed head with the yoke as solids at 0 and ±90° rather than by eye — so what limits tilt is the cable and the servo's own position limits. A mechanical stop that close to the tilt axis could not survive stall torque, and pretending otherwise would be worse than saying so.
+There are **9.4 mm of slide** for trim, and it is trim — the balance is drawn in. But note the sleeve length behind it (0.89″ = 22.6 mm) is **unverified**: the drawing carries 0.89, 0.80 and 0.70 and states what none of them measure. Measure yours before relying on the grip length.
+
+**The pan hard stop is mechanical because the whole cable bundle passes through the pan axis.** A post on the base plate and a lug on the bridge's rim collide, giving **329.8°** of travel with the dead wedge aft. Worst case is the motor driving into it at peak torque: 0.42 N·m at a 38.1 mm radius is about 11 N, which puts under 1 MPa in the post's root — roughly 25× margin even across layer lines, and it carries a tapered buttress on top of that because a hard stop is the one feature that gets *hit*.
+
+**Tilt is limited in firmware, not by a stop.** The head's swing radius is 24.3 mm against a 32 mm drop — checked by intersecting the posed head with the yoke as solids at 0 and ±90°, not by eye.
 
 ## BoM delta
 
-Two additions to [Doc 3's BoM](03-build-the-gimbal.md#bill-of-materials-buy-this-350405-total): **digital calipers ($10–20)**, because the whole chapter runs on measurements, and a **small hardware handful (~$10)**: eight M4 socket cap screws in 16 and 20 mm, about twenty M3 in 14–20 mm, and M2.5 screws instead of M4 if the rear circle turns out to be tapped M2.5. No square nuts, no captive hardware, nothing exotic, and no counterweight — the tilt axis is drawn 1.45 mm above the housing's axis, which is exactly where the head's centre of mass sits, so there is nothing to trim. Filament and the 608 are already in the list.
+Against [Doc 3's BoM](03-build-the-gimbal.md#bill-of-materials-buy-this-350405-total): **digital calipers ($10–20)**, because the chapter runs on measurements, and a **small hardware handful (~$10)** — about eight M3 × 10 socket cap screws, eight M2.5 × 16, and four M3 × 25 for the clamp.
+
+**No bearings.** Row 11 of Doc 3 used to list "683 or 608 bearings"; there was never a 683 in the design, and as of v8 there is no bearing at all. No square nuts, no captive hardware, no counterweight.
