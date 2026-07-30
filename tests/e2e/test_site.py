@@ -9,11 +9,19 @@ SCREENS = pathlib.Path(__file__).resolve().parents[2] / "test-artifacts" / "scre
 CHECK_IDS = ("d3-motors", "d3-multimeter", "d5-poe-switch", "d8-irm")
 
 
+def _section_total(page, section="d3"):
+    """How many items that section actually has, so adding one doesn't fail a test."""
+    return page.locator(f'.bom-section[data-section="{section}"] .bom-box').count()
+
+
 def test_checklist_persists_across_reload(page):
     page.goto("/bom-checklist/")
     for cid in CHECK_IDS:
         page.check(f"#{cid}")
-    assert page.locator(".bom-progress").first.text_content().startswith("2/14")
+    # totals come from the page, not from a literal: the BoM is allowed to grow
+    assert page.locator(".bom-progress").first.text_content().startswith(
+        f"2/{_section_total(page)}"
+    )
     page.reload()
     for cid in CHECK_IDS:
         assert page.is_checked(f"#{cid}"), f"{cid} lost after reload"
@@ -44,11 +52,18 @@ def test_copy_unchecked_shopping_list(page, context):
 
 def test_global_progress_math(page):
     page.goto("/bom-checklist/")
+    total = page.locator(".bom-box").count()
     # text_content(), not inner_text(): the theme uppercases these via CSS
-    assert page.locator("#bom-global-text").text_content() == "0/43 items"
+    assert page.locator("#bom-global-text").text_content() == f"0/{total} items"
+    assert page.locator("#bom-bar").get_attribute("max") == str(total), (
+        "the progress bar's max is hardcoded in the page and has drifted from the "
+        "number of checkboxes actually on it"
+    )
     page.check("#d3-motors")
-    assert page.locator("#bom-global-text").text_content() == "1/43 items"
-    assert page.locator(".bom-progress").first.text_content() == "1/14 · ~$269 checked"
+    assert page.locator("#bom-global-text").text_content() == f"1/{total} items"
+    assert page.locator(".bom-progress").first.text_content() == (
+        f"1/{_section_total(page)} · ~$269 checked"
+    )
 
 
 def test_chapter_done_when_persists(page):
