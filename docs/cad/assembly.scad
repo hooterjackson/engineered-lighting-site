@@ -1,6 +1,6 @@
 // =============================================================================
 // assembly.scad · Engineered Lighting — robotic spotlight, THE WHOLE MACHINE
-// v5 (2026-07-30)
+// v6 (2026-07-30)
 // =============================================================================
 //
 // HOW THIS FILE STAYS HONEST
@@ -16,9 +16,12 @@
 //   printed:  base_plate · yoke · cradle · cradle_cap · trunnion · bearing_carrier
 //   bought:   2 × RMD-L-5005 (with their real bolt patterns and connectors),
 //             608 bearing, DLH-3UP-EH LED housing (flush front), C-clamp, shelf
-//   fitted:   all 27 screws, the balance-trim washer stack, and the whole cable
-//             run — housing → tilt motor's hollow shaft → arm trough → bridge
-//             trough → pan motor's hollow shaft → base-plate trough
+//   fitted:   all 27 screws and the whole cable run — housing → the channel in
+//             the cradle's motor-side plate → tilt motor's hollow shaft → down
+//             the arm's outer trough → under the bridge → pan motor's hollow
+//             shaft → base-plate trough. No trim washers any more: the tilt axis
+//             sits axis_z above the housing's axis, which puts the measured CoM
+//             of the whole head ON the axis.
 //
 //   view  = assembled | exploded          pan / tilt / slide  — pose it
 //   show_cap = false                      look inside the clamp
@@ -41,7 +44,6 @@ show_wires = true;
 show_shelf = true;
 show_cap   = true;
 show_beam  = false;
-trim_stack = 3;       // [0:8] washers on the keel trim bolt (3 nulls the CoM)
 clip       = "none";  // [none, front, side]
 
 $fn = 48;
@@ -60,8 +62,6 @@ hx      = bore_x;                       // the head's place along the tilt axis
 module screw(d = 3, len = 12, hd = m3_head_d, hh = 2.6) {
   color("#33343a") { cylinder(d = hd, h = hh); translate([0, 0, -len]) cylinder(d = d, h = len + 0.1); }
 }
-module washer(od = 9, id = 4.4, t = 1) { color("#55565e") difference() {
-  cylinder(d = od, h = t); cylinder(d = id, h = 3 * t, center = true); } }
 module screw_ring(bcd, n, a0, len, d = 3, hd = m3_head_d) {   // heads at z=0, driven -Z
   for (i = [0 : n - 1]) rotate([0, 0, a0 + i * 360 / n]) translate([bcd / 2, 0, 0]) screw(d, len, hd);
 }
@@ -144,7 +144,10 @@ module scene() {
 
   // 3 · pan motor: REAR bolted up under the plate, output boss facing down
   translate([0, 0, -E_PANM]) {
-    rotate([180, 0, 0]) rotate([0, 0, 90]) rmd_motor();
+    // connector at +X, which is where the base plate's cable trough goes. At
+    // +90 deg it lands inside the hard-stop post — an interference the clash
+    // check caught and the eye did not.
+    rotate([180, 0, 0]) rmd_motor();
     if (show_bolts) translate([0, 0, t_plate - 3.2 + E_BOLT])
       screw_ring(rear_bcd, rear_bolt_n, rear_bolt_a0, t_plate + 7, 4, m4_head_d);
   }
@@ -181,26 +184,22 @@ module scene() {
         rotate([0, 90, 0]) rotate([0, 0, 90]) screw_ring(trun_bcd, 3, 0, trun_t + 9);
 
       // 8 · the housing lays in; the cap pinches it. Slide to balance FIRST.
-      translate([hx, slide, -E_HOUS]) led_housing();
-      if (show_cap) color("#39c0bd") translate([hx, 0, E_CAP]) cradle_cap();
-      if (show_bolts) for (x = [-cap_bolt_x, cap_bolt_x], y = [-cap_bolt_y, cap_bolt_y])
-        translate([hx + x, y, cap_z + E_CAP + E_BOLT]) screw(3, cap_z - 3);
+      //     Both sit axis_z below the tilt axis — that offset IS the balance.
+      translate([0, 0, -axis_z]) {
+        translate([hx, slide, -E_HOUS]) led_housing();
+        if (show_cap) color("#39c0bd") translate([hx, 0, E_CAP]) cradle_cap();
+        if (show_bolts) for (x = [-cap_bolt_x, cap_bolt_x], y = [-cap_bolt_y, cap_bolt_y])
+          translate([hx + x, y, cap_z + E_CAP + E_BOLT]) screw(3, cap_z - 3);
+      }
 
-      // 9 · balance trim — measured: the head sits 1.5 mm above the axis, which
-      //     three M4 washers on the keel bolt cancel
-      if (show_bolts && trim_stack > 0)
-        translate([hx, cr_len / 2 + 1, -base_z + 3.4]) rotate([-90, 0, 0]) {
-          for (i = [0 : trim_stack - 1]) translate([0, 0, i * 1.1]) washer();
-          translate([0, 0, trim_stack * 1.1]) screw(4, cr_len + trim_stack * 1.1 + 4, m4_head_d);
-        }
-
-      // the head's share of the cable run: out of the housing's stub, forward
-      // along the channel in the cap's corner, into the motor's hollow shaft
+      // 9 · the head's share of the cable run: out of the housing's rear stub,
+      //     forward along the channel cut in the motor-side plate, then straight
+      //     through onto the tilt axis and into the motor's hollow shaft
       if (show_wires) wire([
-        [hx, slide - payload_body / 2 - payload_stub_l + 1, 0],
-        [hx - blk_in + trough_w / 2 + 1, slide - 13, 2.9],
-        [hx - blk_in + trough_w / 2 + 1, -2, 2.9],
-        [hx + x_left + 3, 0, 0.5], [hx + x_left - 2, 0, 0]]);
+        [hx, slide - payload_body / 2 - payload_stub_l + 1, -axis_z],
+        [hx + x_left + cr_wall - 1.5, -cr_len / 2 + 3, 0],
+        [hx + x_left + cr_wall - 1.5, -3, 0],
+        [hx + x_left + 3, 0, 0], [hx + x_left - 2, 0, 0]]);
     }
 
     // 10 · 608 in its carrier on the RIGHT arm — three screws, tightened LAST
@@ -216,8 +215,10 @@ module scene() {
     //      trough, then up through the pan motor's hollow shaft
     if (show_wires) wire([
       [-span_h - 2, 0, z_tilt], [-arm_out - 1, 0, z_tilt],
-      [-arm_out + 1.6, 0, z_tilt + 6], [-arm_out + 1.6, 0, -t_bridge - 4],
-      [-arm_out + 2, 0, -t_bridge + 1.6], [-14, 0, -t_bridge + 1.6], [0, 0, 4]]);
+      [-arm_out + trough_d / 2, 0, z_tilt + 5],
+      [-arm_out + trough_d / 2, 0, -t_bridge - trough_d / 2],
+      [-arm_out + 4, 0, -t_bridge + trough_d / 2],
+      [-14, 0, -t_bridge + trough_d / 2], [0, 0, 4]]);
   }
   // 12 · and out of the pan motor into the base plate's trough, aft to the world
   if (show_wires) wire([[0, 0, -6], [0, 0, t_plate - 1.7], [30, 0, t_plate - 1.7],
