@@ -1,303 +1,462 @@
-// frame.scad — Engineered Lighting gimbal frame · v3 (Doc 3b · Print the Frame)
+// =============================================================================
+// frame.scad  ·  Engineered Lighting — robotic spotlight, PRINTED FRAME
+// v4 (2026-07-30) — redesigned from the ground up.
+// =============================================================================
 //
-// Motor:   MyActuator RMD-L-5005 (Ø49 × ~24 mm, 92 g).
-// Payload: DLH-3UP-EH aluminum LED housing (Ø0.99" finned barrel, 1.26" long,
-//          hollow 1/2"-14 NPT rear = wire exit). The housing is BOTH the
-//          star's heatsink and the head's sliding balance mass; the cradle
-//          ID is payload_od + payload_clear ≈ 25.75 mm ≈ 1.014" so it slips
-//          in and glides. A ~Ø25 mm flashlight fits as the bench stand-in.
+// SIX printed parts and two five-minute test coupons. That's the whole frame.
 //
-// v3 REDESIGN (2026-07-29, from Marcelo's fit review of v2):
-//   · EVERY part prints FLAT exactly as modeled — no supports anywhere.
-//     Strength comes from bolted joints, not tall fragile prints.
-//   · Motors are BOLTED, never friction-fit: the pan base uses the motor's
-//     back-cover mounting pattern; the tilt arm face-mounts the motor
-//     around a boss clearance window. (A collar can't even slide over the
-//     body — the 4-pin connector is in the way. Face-mounting leaves the
-//     connector hanging in free air.)
-//   · Plates join with one repeated T-joint: printed tabs drop into slots,
-//     then two M3 bolts pass through the slotted plate into SQUARE NUTS
-//     side-loaded into pockets in the tabbed plate. Print flat, bolt square.
-//   · The head's second support is an M8 bolt: outside → through the 608 in
-//     the bearing arm → into the captive M8 nut in the head end plate.
+//   base_plate       clamps to the shelf; the PAN motor bolts under it
+//   yoke             ONE piece: bridge + both arms (no joinery, nothing to align)
+//   cradle           the head's saddle: bolts to the TILT output, holds the housing
+//   cradle_cap       the other half of the clamp — pinches the housing
+//   trunnion         the printed axle stub (there is no steel axle in this design)
+//   bearing_carrier  holds the 608 and lets the tilt axis self-align
+//   fit_coupon       proves BOTH motor bolt circles before any real filament
+//   bore_gauge       proves the housing slide-and-clamp fit
 //
-// ASSEMBLY ORDER (the design is built around this — see Doc 3b):
-//   1  pan motor's BACK bolts under pan_base; C-clamp the ear to a shelf.
-//   2  yoke_bridge bolts to the pan output flange.
-//   3  arm_motor + arm_bearing tab up into the bridge; 2× M3 each, nuts in
-//      the arms' edge pockets. You now have a rigid hanging U.
-//   4  head_boss_plate bolts to the TILT motor's output flange — on the
-//      desk, with room to swing a driver.
-//   5  head_main_plate tabs into the boss plate (2× M3); head_end_plate
-//      tabs onto its far edge (drop the M8 nut into its pocket first).
-//   6  tilt motor — head hanging on it — face-bolts to arm_motor from the
-//      outside. Press the 608 into arm_bearing's pocket. Slide the M8 in
-//      from outside, through the bearing, into the end-plate nut. The head
-//      is now supported on BOTH sides of the yoke.
-//   7  cradle_ring face-bolts over the main plate's housing window (3× M3).
-//      Slide the LED housing through; balance; nip the ring's pinch bolt.
+// -----------------------------------------------------------------------------
+// THE SEVEN RULES THIS DESIGN FOLLOWS
+// -----------------------------------------------------------------------------
+// 1  Every part prints flat-out with ZERO supports and no long bridges. The
+//    orientation is baked in: `part="yoke"` emits the part already oriented.
+// 2  Nothing is friction-fit or tabbed together. Every printed-to-printed joint
+//    is a bolt you can see, and every printed-to-MOTOR joint is a bolt going
+//    into the motor's own threaded holes.
+// 3  The motors are bolted by their REAR covers. Both RMD faces carry mounting
+//    holes; the rear ones are used here because the rear is a flat plate, so the
+//    mating surface is unambiguous. (No collar could ever slide over an RMD body
+//    anyway — the 4-pin connector is in the way.)
+// 4  Every surface that has to be ROUND and accurate prints as a vertical hole
+//    or a first-layer pocket. Nothing that locates anything prints as a bridge.
+// 5  Where a printed part bolts to a rotating output boss, it lands ON THE BOSS
+//    and nowhere else — boss_recess is deliberately much smaller than the boss
+//    height, because a part that bottoms out on the stator would clamp the motor
+//    solid.
+// 6  Both axes are hollow: wires run through the tilt motor, up the arm, through
+//    the bridge and up through the pan motor. No service loop to snag.
+// 7  Anything read off a drawing instead of off calipers is marked MEASURE-ME
+//    and is used by fit_coupon, so it gets checked for 12 g of PETG.
 //
-// BALANCING (two orthogonal trims): slide the housing fore/aft in the
-// cradle for beam-axis balance, then slide the M5 + nuts up/down the tail
-// slot for the vertical trim. Powered-off head stays posed = done.
+// -----------------------------------------------------------------------------
+// BUILD ORDER (each step ends with something you can check by hand)
+// -----------------------------------------------------------------------------
+// 1  fit_coupon + bore_gauge. The coupon bolts to both faces of a real motor;
+//    the gauge takes the real housing and clamps it. Fix the numbers HERE.
+// 2  YOKE ONTO THE PAN MOTOR FIRST. Stand the yoke on its arm tips, drop the pan
+//    motor into the bridge's locating recess (boss down), and drive six M3 up
+//    from underneath. Do this while the yoke is EMPTY — once the head is in, those
+//    six bolts are behind it.
+// 3  base_plate down onto the pan motor's rear: four M4 through the counterbores.
+//    You now have plate on top, motor, yoke hanging.
+// 4  cradle -> tilt motor, on the bench: turn the output boss until one hole
+//    points straight up, then drive the three bolts that sit ABOVE the split line.
+//    They are the only three a driver can reach, and three is plenty.
+// 5  trunnion -> cradle's right plate: three screws, heads outside. Head done.
+// 6  Lift that subassembly up between the arms and bolt through the LEFT ARM from
+//    the OUTSIDE into the tilt motor's rear holes. The head hangs on one side.
+// 7  608 into bearing_carrier, carrier over the trunnion stub, three screws into
+//    the right arm — LEFT LOOSE. Swing the head through its whole travel, THEN
+//    tighten: the oversize screw holes let the bearing find the true axis.
+// 8  Wires, through both hollow shafts. C-clamp to the shelf.
+// 9  Lay the housing into the saddle, cap on, four screws. Slide it to balance
+//    before you nip them down; fine trim is washers on an M4 through the keel.
 //
-// Geometry truth = MyActuator's L-series 2D drawing + the housing drawing +
-// YOUR calipers. Every MEASURE-ME is a placeholder nominal. Print the
-// fit_coupon FIRST — it proves BOTH motor bolt patterns at once.
+// Companion: assembly.scad — every part, every bolt, poseable in pan and tilt.
+// =============================================================================
 
-/* [Part selector] */
-part = "coupon"; // [coupon, pan_base, yoke_bridge, arm_motor, arm_bearing, head_boss_plate, head_main_plate, head_end_plate, cradle_ring, all]
+/* [What to render] */
+part = "all"; // [fit_coupon, bore_gauge, base_plate, yoke, cradle, cradle_cap, trunnion, bearing_carrier, all, none]
 
 /* [Motor interface — MEASURE-ME] */
-flange_bolt_circle_d = 30;   // MEASURE-ME — output-flange bolt circle
-flange_bolt_d        = 3.2;  // MEASURE-ME — output-flange bolt clearance (M3?)
-flange_bolt_n        = 4;    // MEASURE-ME — bolt count per the drawing
-flange_center_bore_d = 8.1;  // drawing: 8.1 mm thru-bore ("S" variant; 12.7 on "L")
-boss_clear_d         = 34;   // MEASURE-ME — output flange OD + 2 mm swing room
-mount_bolt_circle_d  = 43;   // MEASURE-ME — FRONT face-mount holes around the boss
-mount_bolt_d         = 2.8;  // MEASURE-ME — front mount clearance (M2.5 assumed)
-mount_bolt_n         = 4;    // MEASURE-ME — count per the drawing
-back_bolt_circle_d   = 43;   // MEASURE-ME — BACK cover mounting holes (pan side)
-back_bolt_d          = 2.8;  // MEASURE-ME — back mount clearance (M2.5 assumed)
-back_bolt_n          = 4;    // MEASURE-ME — count per the drawing
-body_d               = 49;   // drawing: Ø49 body — verify on arrival
-body_len             = 24;   // drawing: ~24 mm body — verify on arrival
+// RMD-L-5005. The nominals below are read off MyActuator's L-series drawing;
+// every one of them is a guess until the coupon says otherwise.
+motor_d      = 49;    // body OD — drawing
+motor_len    = 24;    // rear face to front face — drawing
+out_boss_d   = 36;    // MEASURE-ME  rotating output boss OD
+out_boss_h   = 4;     // MEASURE-ME  how far the boss stands proud of the front face
+out_bcd      = 30;    // MEASURE-ME  output-flange bolt circle
+out_bolt_n   = 6;     // MEASURE-ME  how many holes in it
+out_bolt_a0  = 0;     // MEASURE-ME  angle of the first hole
+rear_bcd     = 43;    // MEASURE-ME  REAR cover bolt circle — this is the mount
+rear_bolt_n  = 4;     // MEASURE-ME
+rear_bolt_a0 = 45;    // MEASURE-ME
+shaft_bore_d = 8.1;   // MEASURE-ME  hollow through-bore (8.1 on "S", 12.7 on "L")
 
-/* [Payload + frame] */
-payload_od    = 25.15; // MEASURE-ME — DLH-3UP-EH barrel, Ø0.99" per its drawing
-payload_clear = 0.6;   // slide fit: slip in, glide to balance
-ring_w        = 10;    // cradle ring thickness (grip on the finned barrel)
-arm_offset    = 8;     // daylight between arm plate and motor body
-t             = 6;     // plate thickness, everywhere
-bearing_od    = 22;    // 608 (683 = 7 mm) — measure the one you bought
-bearing_w     = 7;     // bearing width
-m8_clear      = 8.4;   // M8 axle clearance
-clamp_ear_w   = 30;    // C-clamp ear width
-hard_stop_h   = 6;     // pan hard-stop post height
+/* [Payload — DLH-3UP-EH, off LEDdynamics' drawing] */
+payload_od     = 25.15; // Ø0.99" over the fin crests — the clamped diameter
+payload_body   = 22.6;  // 0.89" finned length: all the grip there is
+payload_stub_d = 21.3;  // 1/2"-14 NPT major dia (the rear stub is the wire exit)
+payload_stub_l = 9.4;   // 1.26" overall − 0.89" body
+payload_clear  = 0.6;   // slide fit — "just over an inch", slides by hand
+                        // the bore is cr_len long, the housing 32 mm: the extra
+                        // 4 mm plus the clamp's grip is your whole balance range
+
+/* [Frame] */
+t_plate   = 8;    // base plate
+t_bridge  = 9;    // yoke bridge
+t_arm     = 10;   // yoke arms
+drop      = 38;   // bridge underside -> tilt axis (must clear the head's swing)
+arm_w_top = 40;   // arm width where it leaves the bridge
+arm_w_bot = 54;   // arm width at the tilt axis (must cover the rear bolt circle)
+cr_len    = 36;   // cradle length along the housing axis
+cr_wall   = 8;    // cradle side plates: motor side and trunnion side
+plate_z   = 18;   // side plates rise this far ABOVE the split line
+base_z    = 20;   // ...and the saddle reaches this far below it
+cap_z     = 22;   // cap's outer height
+clamp_nip = 0.4;  // the cap's bore sits this low, so it PINCHES before it bottoms
+cap_bolt_x = 17.5; cap_bolt_y = 11;   // the four cap screws
+boss_recess = 1;  // locating recess depth — KEEP WELL UNDER out_boss_h
+stop_r    = 31;   // pan hard-stop radius (post and groove centreline)
+stop_w    = 8;    // groove width, radial
+stop_deep = 4;    // groove depth
+stop_arc  = 345;  // groove sweep -> 311 deg of usable pan travel
+
+/* [Hardware] */
+m3_clear = 3.4;  m3_pilot = 2.55; m3_head_d = 6.4;   // pilot = self-tapping into PETG
+m4_clear = 4.5;  m4_head_d = 8.4;
+bearing_od = 22; bearing_id = 8; bearing_w = 7;
 
 $fn = 64;
 
-// ---- derived -------------------------------------------------------------------
-cradle_id = payload_od + payload_clear;    // ≈ 25.75 mm ≈ 1.014"
-span      = body_d + 2 * arm_offset;       // inner face → inner face of the arms
-drop      = body_d / 2 + arm_offset;       // bridge underside → tilt axis
-arm_w     = 60;                            // arm plate width  (covers the Ø43 pattern)
-arm_h     = drop + 28;                     // arm plate height (axis 28 above the toe)
-gap       = 0.4;                           // printed tab/slot clearance
-nut_w     = 5.8;                           // M3 square nut pocket (5.5 nominal)
-nut_t     = 2.7;                           //   ... pocket thickness (2.4 nominal)
-head_L    = 49;                            // head: boss-plate face → end-plate face
-                                           // (spans the yoke gap so the M8 engages
-                                           //  its nut just inboard of the bearing)
-js_arm    = 13;                            // arm↔bridge joint: tab centers ±13
-jb_arm    = 25;                            //   ... bolt lines at ±25
-js_head   = 9;                             // head joints: tab centers ±9
-jb_head   = 21;                            //   ... bolt lines at ±21
+// ---------------------------------------------------------------- derived ----
+bore_d   = payload_od + payload_clear;          // 25.75 ≈ 1.014"
+blk_in   = bore_d / 2 + 2;                      // 2 mm shoulder each side of the bore
+x_left   = -(blk_in + cr_wall);                 // outer face of the motor-side plate
+x_mate   = x_left + boss_recess;                // ...and the plane that lands on the boss
+x_right  =   blk_in + cr_wall;                  // face the trunnion bolts to
+trun_t   = 6;                                   // trunnion flange thickness
+trun_gap = 4;                                   // clearance so the head drops into the yoke
+carrier_t = 9;
+boss_locate_d = out_boss_d + 0.4;
 
-// ---- shared bits ------------------------------------------------------------------
-module bolt_circle(bcd, d, n, h = t, a0 = 0) {
+// the one chain that sets the whole machine's size
+span_h   = (motor_len + out_boss_h - x_mate + x_right + trun_t + trun_gap) / 2;
+arm_x    = span_h + t_arm / 2;                  // arm centreline
+arm_out  = span_h + t_arm;
+bore_x   = -span_h + motor_len + out_boss_h - x_mate;  // head's place on the tilt axis
+z_tilt   = -t_bridge - drop;
+arm_below = rear_bcd / 2 + 5;
+arm_h    = drop + arm_below;
+bridge_y = 2 * (stop_r + stop_w / 2 + 2);
+post_h   = motor_len + out_boss_h - boss_recess + 3;   // 3 mm into the groove
+stub_len = t_arm + carrier_t + trun_gap + 0.9;
+head_sweep = sqrt(pow(cr_len / 2, 2) + pow(cap_z, 2));
+
+echo(str("v4  span_in=", 2 * span_h, "  bore_x=", bore_x, "  arm_h=", arm_h,
+         "  head_sweep=", head_sweep, " vs drop=", drop,
+         "  slide=", cr_len - payload_body, "mm  stub_len=", stub_len));
+
+// ---------------------------------------------------------------- helpers ----
+module bolt_ring(bcd, d, n, h, a0 = 0) {        // ring in XY, drilled along Z
   for (i = [0 : n - 1]) rotate([0, 0, a0 + i * 360 / n])
-    translate([bcd / 2, 0, -1]) cylinder(d = d, h = h + 2);
-}
-// Tabs along a part's +y edge (edge line y=0), poking +y by one thickness.
-module tabs_up(centers, w = 12) {
-  for (c = centers) translate([c - w / 2, -0.01, 0]) cube([w, t + 0.01, t]);
-}
-// Edge hardware for the tabbed part: M3 pilot drilled INTO the y=0 edge at
-// x = each bolt line, plus a square-nut pocket 8 mm in, loaded from the top face.
-module edge_bolt_cuts(lines) {
-  for (c = lines) {
-    translate([c, 0.01, t / 2]) rotate([90, 0, 0]) cylinder(d = 3.2, h = 17);
-    translate([c - nut_w / 2, -8 - nut_w, t / 2 - nut_t / 2])
-      cube([nut_w, nut_w, t]);                       // open to the top face
-  }
-}
-// Cuts for the slotted plate: tab slots + M3 clearance, along a line x = x0.
-module slot_line_cuts(x0, centers, lines, w = 12) {
-  for (c = centers)
-    translate([x0 - (t + gap) / 2, c - (w + gap) / 2, -1])
-      cube([t + gap, w + gap, t + 2]);
-  for (c = lines) translate([x0, c, -1]) cylinder(d = 3.4, h = t + 2);
+    translate([bcd / 2, 0, 0]) cylinder(d = d, h = h, center = true);
 }
 
-// ---- 1 · fit coupon: print me first (~5 min) ---------------------------------------
-// One 3 mm disc proves EVERYTHING against the real motor: output-flange bolts
-// thread the inner circle, face-mount bolts thread the outer circle, the
-// center bore clears, and the scribed groove shows the boss swing clearance.
+module bolt_ring_x(bcd, d, n, len, a0 = 0) {    // ring in YZ, drilled along X
+  for (i = [0 : n - 1]) rotate([a0 + i * 360 / n, 0, 0])
+    translate([0, 0, bcd / 2]) rotate([0, 90, 0]) cylinder(d = d, h = len, center = true);
+}
+
+module zip_pair_z(spacing = 8) {                // two slots through a Z-thickness plate
+  for (s = [-1, 1]) translate([0, s * spacing / 2, 0])
+    linear_extrude(60, center = true) offset(r = 1.2) square([6, 0.1], center = true);
+}
+module zip_pair_x(spacing = 8) { rotate([0, 90, 0]) zip_pair_z(spacing); }
+
+module arc_prism(r_in, r_out, angle, h) {       // ring segment h tall, centred on +X
+  rotate([0, 0, -angle / 2])
+    rotate_extrude(angle = angle) translate([r_in, 0]) square([r_out - r_in, h]);
+}
+
+// =============================================================================
+// 1 · fit_coupon — bolts to a real motor before any real part is printed
+// =============================================================================
 module fit_coupon() {
-  difference() {
-    cylinder(d = mount_bolt_circle_d + 12, h = 3);
-    translate([0, 0, -1]) cylinder(d = flange_center_bore_d, h = 5);
-    bolt_circle(flange_bolt_circle_d, flange_bolt_d, flange_bolt_n, 3);
-    bolt_circle(mount_bolt_circle_d, mount_bolt_d, mount_bolt_n, 3, 45);
-    translate([0, 0, 2.2]) difference() {                        // boss-clearance scribe
-      cylinder(d = boss_clear_d + 1, h = 1);
-      translate([0, 0, -1]) cylinder(d = boss_clear_d - 1, h = 3);
-    }
-  }
-}
-
-// ---- 2 · pan base: clamps to the shelf, pan motor bolts UNDER it -------------------
-// Uses the motor's BACK-cover holes; output flange faces down at the yoke.
-// The hard-stop post is a Ø8 pillar on the ear, LONG enough to reach down
-// into the yoke bridge's swing plane — the bridge corner meets it at the
-// travel limit. (Install the plate post-side DOWN; it prints post-up, flat.)
-module pan_base() {
+  d = rear_bcd + 14;
   difference() {
     union() {
-      cylinder(d = body_d + 2 * t, h = t);                           // motor plate
-      translate([-(clamp_ear_w / 2), body_d / 2 - 1, 0])             // clamp ear
-        cube([clamp_ear_w, clamp_ear_w + 1, t]);
-      translate([0, 48, t - 0.01]) cylinder(d = 8, h = 32);          // pan hard stop
+      cylinder(d = d, h = 3);
+      translate([0, -d / 2 - 4, 0]) linear_extrude(3)
+        offset(r = 3) square([16, 4], center = true);          // grab tab
     }
-    translate([0, 0, -1]) cylinder(d = 14, h = t + 2);               // wire pass
-    bolt_circle(back_bolt_circle_d, back_bolt_d, back_bolt_n);       // back-cover bolts
+    bolt_ring(out_bcd,  m3_clear, out_bolt_n,  9, out_bolt_a0);
+    bolt_ring(rear_bcd, m4_clear, rear_bolt_n, 9, rear_bolt_a0);
+    cylinder(d = shaft_bore_d, h = 9, center = true);
+    // scribe rings: lay the coupon on the motor and read the fit by eye
+    for (dia = [out_boss_d, motor_d]) translate([0, 0, 2.4]) difference() {
+      cylinder(d = dia + 0.5, h = 2);
+      translate([0, 0, -1]) cylinder(d = dia - 0.5, h = 4);
+    }
+    // legends, so the two circles can't be mixed up
+    translate([0, out_bcd / 2 - 8, 2.2]) linear_extrude(1.2)
+      text("OUT", size = 4.5, halign = "center", valign = "center");
+    translate([0, -rear_bcd / 2 + 5, 2.2]) linear_extrude(1.2)
+      text("REAR", size = 4.5, halign = "center", valign = "center");
   }
 }
 
-// ---- 3 · yoke bridge: flat bar on the pan output flange ----------------------------
-// The arms tab into it from below; M3s drop through into the arms' edge nuts.
-module yoke_bridge() {
-  L = span + 2 * t + 28;
-  difference() {
-    translate([-L / 2, -30, 0]) cube([L, 60, t]);
-    translate([0, 0, -1]) cylinder(d = flange_center_bore_d, h = t + 2);
-    bolt_circle(flange_bolt_circle_d, flange_bolt_d, flange_bolt_n);    // pan flange
-    for (sx = [-1, 1])
-      slot_line_cuts(sx * (span + t) / 2, [-js_arm, js_arm], [-jb_arm, jb_arm]);
+// =============================================================================
+// 2 · bore_gauge — one slice of the cradle's clamp: slide fit + pinch test
+// =============================================================================
+module bore_gauge() {
+  gl = 14;
+  difference() {                                                 // saddle slice
+    translate([x_left, -gl / 2, -base_z]) cube([x_right - x_left, gl, base_z + plate_z]);
+    translate([0, -gl / 2 - 1, 0]) rotate([-90, 0, 0]) cylinder(d = bore_d, h = gl + 2);
+    translate([-blk_in, -gl / 2 - 1, 0.02]) cube([2 * blk_in, gl + 2, plate_z + 1]);
+    for (x = [-cap_bolt_x, cap_bolt_x]) translate([x, 0, plate_z - 15])
+      cylinder(d = m3_pilot, h = 17);
   }
+  translate([0, gl + 6, 0]) difference() {                       // cap slice, printed alongside
+    translate([-blk_in, -gl / 2, 0]) cube([2 * blk_in, gl, cap_z]);
+    translate([0, -gl / 2 - 1, -clamp_nip]) rotate([-90, 0, 0]) cylinder(d = bore_d, h = gl + 2);
+    translate([-bore_d, -gl / 2 - 1, -bore_d - clamp_nip]) cube([2 * bore_d, gl + 2, bore_d]);
+    for (x = [-cap_bolt_x, cap_bolt_x]) translate([x, 0, 0]) {
+      cylinder(d = m3_clear, h = cap_z);
+      translate([0, 0, 5.2]) cylinder(d = m3_head_d, h = cap_z);
+    }
+  }
+  translate([0, gl + 6, 0]) for (x = [-cap_bolt_x, cap_bolt_x], sx = [1])   // feet on the cap slice
+    translate([x, 0, plate_z + clamp_nip]) hull() {
+      cylinder(d = 11, h = cap_z - plate_z - clamp_nip);
+      translate([(blk_in - abs(x)) * sign(x), 0, 0]) cylinder(d = 11, h = cap_z - plate_z - clamp_nip);
+    }
 }
 
-// ---- 4/5 · the two arm plates -------------------------------------------------------
-// Flat plates; the tilt axis crosses them `drop` below the bridge underside.
-module arm_blank() {
-  difference() {
-    translate([-arm_w / 2, -arm_h, 0]) cube([arm_w, arm_h, t]);
-    edge_bolt_cuts([-jb_arm, jb_arm]);
-    for (sx = [-1, 1]) translate([sx * (arm_w / 2 - 7), -arm_h + 8, -1])
-      cylinder(d = 4.2, h = t + 2);                                  // zip-tie points
-  }
-  tabs_up([-js_arm, js_arm]);
-}
-module arm_motor() {                        // tilt motor face-bolts to this one
-  difference() {
-    arm_blank();
-    translate([0, -drop, -1]) cylinder(d = boss_clear_d, h = t + 2);   // boss window
-    translate([0, -drop, 0])
-      bolt_circle(mount_bolt_circle_d, mount_bolt_d, mount_bolt_n, t, 45);
-    translate([0, -drop + boss_clear_d / 2 + 8, -1]) cylinder(d = 2.9, h = t + 2);
-      // ^ tilt hard-stop: thread an M3 standoff here once travel is chosen
-  }
-}
-module arm_bearing() {                      // the 608 lives in this one
-  // The 608 is 7 wide but the plate is 6 thick, so a printed boss pad grows
-  // the seat: 4 mm pad + 6 mm plate = 7 mm pocket with a 3 mm shoulder.
-  // The pad is on the top print face — still prints flat, no supports.
+// =============================================================================
+// 3 · base_plate — the only part that touches the world.
+// prints POST UP; installs POST DOWN, motor and post both under the plate.
+// origin = centre of the face the pan motor's rear cover bolts to
+// =============================================================================
+module base_plate() {
   difference() {
     union() {
-      arm_blank();
-      translate([0, -drop, 0]) cylinder(d = bearing_od + 12, h = t + 4);  // boss pad
-    }
-    translate([0, -drop, -1]) cylinder(d = m8_clear, h = t + 6);          // M8 through
-    translate([0, -drop, 3])                                              // 608 pocket,
-      cylinder(d = bearing_od + 0.4, h = t + 4);                          // 3 mm shoulder
-  }
-}
-
-// ---- 6 · head boss plate: bolts to the TILT output flange --------------------------
-// Its flange pattern is rotated 45° so the bolts sit clear of the slot line.
-module head_boss_plate() {
-  difference() {
-    translate([-16, -28, 0]) cube([32, 56, t]);
-    translate([0, 0, -1]) cylinder(d = flange_center_bore_d, h = t + 2);
-    bolt_circle(flange_bolt_circle_d, flange_bolt_d, flange_bolt_n, t, 45);
-    slot_line_cuts(-8, [-js_head, js_head], [-jb_head, jb_head]);
-      // ^ the main plate joins along this line, offset -8 so that plate +
-      //   ring together grip the housing near the CENTER of its barrel
-  }
-}
-
-// ---- 7 · head main plate: one flat part carries the whole head ---------------------
-// Housing window mid-span (the ring does the gripping — together ~16 mm of
-// guided bore), ring bolt holes around it, tabs on BOTH short edges, and a
-// tail below with a VERTICAL M5 slot: the housing slide trims fore/aft
-// balance, the M5 stack trims up/down. Prints flat.
-module head_main_plate() {
-  difference() {
-    union() {
-      translate([0, -28, 0]) cube([head_L, 56, t]);
-      translate([head_L / 2 - 8, -58, 0]) cube([16, 32, t]);           // trim tail
-      // tabs, left edge (→ boss plate) and right edge (→ end plate)
-      for (c = [-js_head, js_head]) {
-        translate([-t, c - 6, 0]) cube([t + 0.01, 12, t]);
-        translate([head_L - 0.01, c - 6, 0]) cube([t + 0.01, 12, t]);
+      linear_extrude(t_plate) offset(r = 6) offset(r = -6) union() {
+        offset(r = 8) square([68, 62], center = true);       // hub over the motor
+        translate([-22, -90]) square([44, 62]);              // aft tongue for the C-clamp
+      }
+      rotate([0, 0, 270]) {                                  // hard-stop post, aft
+        translate([0, 0, -post_h])
+          arc_prism(stop_r - stop_w / 2 + 0.7, stop_r + stop_w / 2 - 0.7, 34, post_h);
+        translate([0, 0, -7])                                // gusset, grows OUTWARD only
+          arc_prism(stop_r - stop_w / 2 + 0.7, stop_r + 8, 34, 7);
       }
     }
-    translate([head_L / 2, 0, -1]) cylinder(d = cradle_id + 1, h = t + 2); // window
-    translate([head_L / 2, 0, 0]) bolt_circle(cradle_id + 10, 3.4, 2, t, 90);
-    translate([head_L / 2 - 2.65, -52, -1]) cube([5.3, 20, t + 2]);    // M5 trim slot
-    // edge bolts + nut pockets, both short edges
-    for (c = [-jb_head, jb_head]) {
-      translate([0.01, c, t / 2]) rotate([0, -90, 0]) cylinder(d = 3.2, h = 17);
-      translate([8, c - nut_w / 2, t / 2 - nut_t / 2]) cube([nut_w, nut_w, t]);
-      translate([head_L - 0.01, c, t / 2]) rotate([0, 90, 0]) cylinder(d = 3.2, h = 17);
-      translate([head_L - 8 - nut_w, c - nut_w / 2, t / 2 - nut_t / 2])
-        cube([nut_w, nut_w, t]);
-    }
+    // pan motor: rear cover bolts UP into the plate, heads counterbored flush
+    bolt_ring(rear_bcd, m4_clear, rear_bolt_n, 3 * t_plate, rear_bolt_a0);
+    translate([0, 0, t_plate + 0.8])
+      bolt_ring(rear_bcd, m4_head_d, rear_bolt_n, 8, rear_bolt_a0);   // 3.2 deep
+    cylinder(d = 13, h = 3 * t_plate, center = true);         // wire pass
+    for (y = [-52, -72]) translate([0, y, 0]) rotate([0, 0, 90]) zip_pair_z();
+    for (x = [-30, 30]) translate([x, 25, 0]) zip_pair_z();
   }
 }
 
-// ---- 8 · head end plate: catches the M8 axle ----------------------------------------
-module head_end_plate() {
-  difference() {
-    translate([-16, -28, 0]) cube([32, 56, t]);
-    translate([0, 0, -1]) cylinder(d = m8_clear, h = t + 2);
-    translate([0, 0, t - 3.3]) cylinder(d = 15.4, h = 4, $fn = 6);     // captive M8 nut
-    slot_line_cuts(-8, [-js_head, js_head], [-jb_head, jb_head]);
-      // ^ same slot line as the boss plate: both plates mount in the same
-      //   orientation, main plane offset -8 from the tilt-axis centerline
+// =============================================================================
+// 4 · yoke — bridge + both arms in ONE part. Prints ARMS UP, bridge on the bed.
+// origin = centre of the bridge's TOP face; the boss lands boss_recess below it
+// =============================================================================
+module arm_blank() {
+  hull() {
+    translate([0, 0, -t_bridge - 0.01]) linear_extrude(0.01)
+      square([t_arm, arm_w_top], center = true);
+    translate([0, 0, -t_bridge - arm_h]) linear_extrude(0.01)
+      square([t_arm, arm_w_bot], center = true);
   }
 }
 
-// ---- 9 · cradle ring: the DLH housing's pinch clamp ---------------------------------
-// Prints FLAT (strongest hoop), then face-bolts over the main plate's window.
-// Slit + ears: one M3 pinches the ring closed once the head balances.
-module cradle_ring() {
+module yoke() {
   difference() {
     union() {
-      cylinder(d = cradle_id + 10, h = ring_w);                        // the ring
-      for (a = [90, 270]) rotate([0, 0, a])                            // bolt lugs
-        translate([cradle_id / 2 - 1, -6, 0]) cube([9.5, 12, ring_w]);
-      translate([cradle_id / 2 - 1, -8, 0]) cube([13, 16, ring_w]);    // pinch ears
+      translate([0, 0, -t_bridge]) linear_extrude(t_bridge)
+        offset(r = 8) offset(r = -8) square([2 * arm_out, bridge_y], center = true);
+      for (s = [-1, 1]) translate([s * arm_x, 0, 0]) arm_blank();
     }
-    translate([0, 0, -1]) cylinder(d = cradle_id, h = ring_w + 2);     // payload bore
-    translate([cradle_id / 2 - 2, -1, -1]) cube([17, 2, ring_w + 2]);  // slit
-    translate([cradle_id / 2 + 7, -9, ring_w / 2]) rotate([-90, 0, 0]) // pinch bolt
-      cylinder(d = 3.2, h = 18);
-    for (a = [90, 270]) rotate([0, 0, a])                              // lug bolts
-      translate([cradle_id / 2 + 5, 0, -1]) cylinder(d = 3.4, h = ring_w + 2);
+
+    // --- bridge: pan output interface --------------------------------------
+    translate([0, 0, -boss_recess]) cylinder(d = boss_locate_d, h = boss_recess + 1);
+    bolt_ring(out_bcd, m3_clear, out_bolt_n, 3 * t_bridge, out_bolt_a0);
+    cylinder(d = 13, h = 3 * t_bridge, center = true);                // wire pass
+    // --- bridge: pan hard-stop groove (island at +Y, so home is mid-travel) -
+    rotate([0, 0, 97.5]) rotate_extrude(angle = stop_arc)
+      translate([stop_r - stop_w / 2, -stop_deep]) square([stop_w, stop_deep + 0.01]);
+    // --- bridge: tie-down holes in the dead corners -------------------------
+    for (sx = [-1, 1], sy = [-1, 1]) translate([sx * 32, sy * 30, 0])
+      cylinder(d = 10, h = 3 * t_bridge, center = true);
+    // --- bridge underside: cable run from the left arm to the centre --------
+    translate([-arm_out, -13.5, -t_bridge - 0.01]) cube([arm_out, 9, 3]);
+
+    // --- LEFT arm: the tilt motor bolts to its inner face -------------------
+    translate([-arm_x, 0, z_tilt]) {
+      bolt_ring_x(rear_bcd, m4_clear, rear_bolt_n, 4 * t_arm, rear_bolt_a0);
+      rotate([0, 90, 0]) cylinder(d = 13, h = 4 * t_arm, center = true);   // wire pass
+      translate([t_arm / 2 - 1.2, 0, 0]) rotate([0, 90, 0])
+        cylinder(d = rear_bcd - 9, h = 2.5, center = true);                // cover relief
+    }
+    // --- RIGHT arm: trunnion stub passes; carrier screws from the outside ---
+    translate([arm_x, 0, z_tilt]) {
+      rotate([0, 90, 0]) cylinder(d = 13, h = 4 * t_arm, center = true);
+      bolt_ring_x(34, m3_pilot, 3, 2.4 * t_arm, 90);
+    }
+    // --- both arms: cable channel up the outer face + zip anchors -----------
+    for (s = [-1, 1]) translate([s * arm_out, -13.5, 0]) {
+      translate([s == -1 ? 0 : -3, 0, z_tilt]) cube([3, 9, -z_tilt]);
+      for (z = [z_tilt + 15, z_tilt + 33]) translate([0, 4.5, z]) zip_pair_x();
+    }
   }
 }
 
-// ---- render --------------------------------------------------------------------------
-// ALL parts print flat exactly as modeled — nothing needs supports.
-if (part == "coupon") fit_coupon();
-if (part == "pan_base") pan_base();
-if (part == "yoke_bridge") yoke_bridge();
-if (part == "arm_motor") arm_motor();
-if (part == "arm_bearing") arm_bearing();
-if (part == "head_boss_plate") head_boss_plate();
-if (part == "head_main_plate") head_main_plate();
-if (part == "head_end_plate") head_end_plate();
-if (part == "cradle_ring") cradle_ring();
-if (part == "all") {                        // one X1C plate, everything flat
-  fit_coupon();
-  translate([78, 0, 0]) pan_base();
-  translate([0, 78, 0]) yoke_bridge();
-  translate([-72, -72, 0]) arm_motor();
-  translate([0, -72, 0]) arm_bearing();
-  translate([64, -86, 0]) head_boss_plate();
-  translate([52, 140, 0]) head_main_plate();
-  translate([112, -86, 0]) head_end_plate();
-  translate([-72, 16, 0]) cradle_ring();
+// =============================================================================
+// 5 · cradle — the head, as a SPLIT CLAMP. The housing lays into the saddle and
+// the cap pinches it, so nothing has to thread through a long bore and the whole
+// space above the split line is empty while you bolt the motor on.
+// Housing axis = Y, tilt axis = X, origin = where they cross.
+// =============================================================================
+// which of the output-flange holes sit ABOVE the split line — the only ones a
+// driver can reach, and the reason the boss gets turned one hole "up" first
+function out_bolt_z(i) = out_bcd / 2 * cos(out_bolt_a0 + i * 360 / out_bolt_n);
+
+module cradle_profile() {
+  difference() {
+    union() {
+      translate([x_left, -base_z]) square([x_right - x_left, base_z]);      // saddle base
+      translate([x_left, 0]) square([cr_wall, plate_z]);                    // motor-side plate
+      translate([blk_in, 0]) square([cr_wall, plate_z]);                    // trunnion-side plate
+    }
+    translate([0, 0.02]) intersection() {                                   // lower half-bore
+      circle(d = bore_d);
+      translate([-bore_d, -bore_d]) square([2 * bore_d, bore_d]);
+    }
+    for (sx = [-1, 1]) translate([sx * x_right, -base_z]) rotate(45)        // corner chamfers
+      square([4.6, 4.6], center = true);
+  }
+}
+
+module cradle() {
+  difference() {
+    rotate([90, 0, 0]) translate([0, 0, -cr_len / 2])
+      linear_extrude(cr_len) cradle_profile();
+
+    // --- motor-side plate: the three reachable output-flange bolts ---------
+    for (i = [0 : out_bolt_n - 1]) if (out_bolt_z(i) > 2)
+      rotate([out_bolt_a0 + i * 360 / out_bolt_n, 0, 0]) translate([0, 0, out_bcd / 2])
+        rotate([0, 90, 0]) cylinder(d = m3_clear, h = 3 * cr_wall, center = true);
+    translate([x_left - 0.01, 0, 0]) rotate([0, 90, 0])                     // boss recess
+      cylinder(d = boss_locate_d, h = boss_recess + 0.01);
+    // wire path: straight through on the axis into the motor's hollow shaft. The
+    // bundle then runs aft along the channel in the cap's corner (see cradle_cap).
+    rotate([0, 90, 0]) translate([0, 0, x_left - 1]) cylinder(d = 10, h = cr_wall + 2);
+
+    // --- trunnion-side plate: three screws, driven from OUTSIDE ------------
+    translate([blk_in + cr_wall / 2, 0, 0]) bolt_ring_x(18, m3_pilot, 3, cr_wall + 5, 90);
+
+    // --- the four cap screws ----------------------------------------------
+    for (x = [-cap_bolt_x, cap_bolt_x], y = [-cap_bolt_y, cap_bolt_y])
+      translate([x, y, plate_z - 15]) cylinder(d = m3_pilot, h = 17);
+
+    // --- trim-weight hole, on the vertical centreline ---------------------
+    translate([0, 0, -base_z + 3.6]) rotate([90, 0, 0])
+      cylinder(d = m4_clear, h = cr_len + 2, center = true);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 5b · cradle_cap — the other half of the clamp. Prints INVERTED (its outside on
+// the bed), so its half-bore is a valley: accurate, no supports.
+// -----------------------------------------------------------------------------
+module cradle_cap() {
+  difference() {
+    union() {
+      rotate([90, 0, 0]) translate([0, 0, -cr_len / 2]) linear_extrude(cr_len)
+        difference() {
+          translate([-blk_in, 0]) square([2 * blk_in, cap_z]);
+          translate([0, -clamp_nip]) intersection() {                       // upper half-bore
+            circle(d = bore_d);
+            translate([-bore_d, 0]) square([2 * bore_d, bore_d]);
+          }
+          for (sx = [-1, 1]) translate([sx * (blk_in - 3), 2.6])            // wire channels
+            square([6, 5.2], center = true);
+          for (s = [-1, 1]) translate([s * blk_in, cap_z]) rotate(45)
+            square([4.6, 4.6], center = true);
+        }
+      // four feet that land on the side plates
+      for (x = [-cap_bolt_x, cap_bolt_x], y = [-cap_bolt_y, cap_bolt_y])
+        translate([x, y, plate_z + clamp_nip]) hull() {
+          cylinder(d = 11, h = cap_z - plate_z - clamp_nip);
+          translate([(blk_in - abs(x)) * sign(x), 0, 0])
+            cylinder(d = 11, h = cap_z - plate_z - clamp_nip);
+        }
+    }
+    for (x = [-cap_bolt_x, cap_bolt_x], y = [-cap_bolt_y, cap_bolt_y])
+      translate([x, y, plate_z]) {
+        cylinder(d = m3_clear, h = cap_z);
+        translate([0, 0, 5.2]) cylinder(d = m3_head_d, h = cap_z);          // counterbore
+      }
+  }
+}
+
+// =============================================================================
+// 6 · trunnion — the printed axle. Prints STUB UP: no bridge, no steel.
+// origin = the cradle face it bolts to; stub runs +X
+// =============================================================================
+module trunnion() {
+  difference() {
+    rotate([0, 90, 0]) union() {
+      cylinder(d = 26, h = trun_t);                                    // flange
+      cylinder(d1 = 26, d2 = 12, h = 5);                               // taper into the stub
+      translate([0, 0, trun_t]) cylinder(d = bearing_id - 0.15, h = stub_len);
+      translate([0, 0, trun_t + stub_len - 1])                         // lead-in chamfer
+        cylinder(d1 = bearing_id - 0.15, d2 = bearing_id - 1.8, h = 1);
+    }
+    translate([trun_t / 2, 0, 0]) bolt_ring_x(18, m3_clear, 3, 3 * trun_t, 90);
+  }
+}
+
+// =============================================================================
+// 7 · bearing_carrier — the 608 pocket prints as a first-layer-accurate hole.
+// Oversize screw holes on purpose: this part FINDS the axis, it doesn't set it.
+// origin = the arm's outer face; body runs +X
+// =============================================================================
+module bearing_carrier() {
+  difference() {
+    rotate([0, 90, 0]) cylinder(d = 46, h = carrier_t);
+    // bearing pocket, opening outward so you can see and push on the bearing
+    translate([carrier_t - bearing_w - 0.3, 0, 0]) rotate([0, 90, 0])
+      cylinder(d = bearing_od + 0.05, h = bearing_w + 0.4);
+    rotate([0, 90, 0]) cylinder(d = bearing_od - 4, h = 3 * carrier_t, center = true);
+    rotate([0, 90, 0]) cylinder(d1 = bearing_od - 1, d2 = bearing_od - 4, h = 1.5);
+    translate([carrier_t / 2, 0, 0]) bolt_ring_x(34, m3_clear + 0.8, 3, 3 * carrier_t, 90);
+  }
+}
+
+// =============================================================================
+// print orientations — `part="x"` gives you a slice-ready part
+// =============================================================================
+module p_fit_coupon()      { fit_coupon(); }
+module p_bore_gauge()      { bore_gauge(); }
+module p_base_plate()      { translate([0, 0, t_plate]) rotate([180, 0, 0]) base_plate(); }
+module p_yoke()            { rotate([180, 0, 0]) yoke(); }
+module p_cradle()          { translate([0, 0, base_z]) cradle(); }
+module p_cradle_cap()      { translate([0, 0, cap_z]) rotate([180, 0, 0]) cradle_cap(); }
+module p_trunnion()        { rotate([0, -90, 0]) trunnion(); }
+module p_bearing_carrier() { rotate([0, -90, 0]) bearing_carrier(); }
+
+if (part == "fit_coupon")           p_fit_coupon();
+else if (part == "bore_gauge")      p_bore_gauge();
+else if (part == "base_plate")      p_base_plate();
+else if (part == "yoke")            p_yoke();
+else if (part == "cradle")          p_cradle();
+else if (part == "cradle_cap")      p_cradle_cap();
+else if (part == "trunnion")        p_trunnion();
+else if (part == "bearing_carrier") p_bearing_carrier();
+else if (part == "all") {
+  // one X1C plate (256 x 256), everything flat, nothing touching
+  translate([  0, -84, 0]) rotate([0, 0, 90]) p_base_plate();
+  translate([  0,   5, 0])                    p_yoke();
+  translate([-88,  62, 0])                    p_cradle();
+  translate([-86, 104, 0])                    p_cradle_cap();
+  translate([-24,  88, 0])                    p_bore_gauge();
+  translate([ 78,  78, 0])                    p_fit_coupon();
+  translate([ 82, -14, 0])                    p_bearing_carrier();
+  translate([116,  22, 0])                    p_trunnion();
 }
