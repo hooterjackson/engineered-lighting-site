@@ -1,6 +1,6 @@
 // =============================================================================
 // frame_params.scad · Engineered Lighting — every number the frame is built from
-// v6 (2026-07-30)
+// v7 (2026-07-30)
 // =============================================================================
 // BOTH frame.scad and assembly.scad `include` this file. That is the whole
 // anti-drift mechanism: there is exactly one copy of every dimension, and the
@@ -12,18 +12,42 @@
 // only as good as the three numbers you feed them.
 // =============================================================================
 
-/* [Motor interface — MEASURE-ME] */
-motor_d      = 49;    // body OD — drawing
-motor_len    = 24;    // rear face to front face — drawing
-out_boss_d   = 36;    // MEASURE-ME  rotating output boss OD
-out_boss_h   = 4;     // MEASURE-ME  how far the boss stands proud of the front face
-out_bcd      = 30;    // MEASURE-ME  output-flange bolt circle
-out_bolt_n   = 6;     // MEASURE-ME  how many holes in it
-out_bolt_a0  = 0;     // MEASURE-ME  angle of the first hole (turn the boss to suit)
-rear_bcd     = 43;    // MEASURE-ME  REAR cover bolt circle — this is the mount
-rear_bolt_n  = 4;     // MEASURE-ME
-rear_bolt_a0 = 45;    // MEASURE-ME
-shaft_bore_d = 8.1;   // MEASURE-ME  hollow through-bore (8.1 on "S", 12.7 on "L")
+cad_version = "v7";   // all three files echo this. If the three numbers below
+                      // do not match on load, you have a mismatched set of files
+                      // and that is why half the assembly is missing.
+
+/* [Motor interface — RMD-L-5005]
+   Read off the RMD-L Series Servo Actuator User Manual Rev 1.01, section 2.1,
+   "RMD-50 SERIES" drawing — not off a guess. An earlier version of this file had
+   six output holes on a 30 mm circle and an M4 rear mount; the motor has four
+   M3 on 25, and the rear is M2.5. Everything downstream was oversized to suit.
+   The two numbers the manual does NOT publish are still marked MEASURE-ME, and
+   the design is built to tolerate either answer for them. */
+motor_d      = 49;    // body OD — manual
+motor_len    = 23.9;  // rear face to front face — manual, "5005(23.9mm)"
+out_bcd      = 25;    // output-flange bolt circle — manual, 4 x M3
+out_bolt_n   = 4;     // manual
+out_bolt_d   = 3;     // M3 — manual
+out_bolt_a0  = 45;    // turn the boss to suit: at 45 deg TWO holes clear the split
+                      // line. At 0 only one does, and the head needs two.
+rear_sq      = 20;    // REAR mount is a 20 x 20 SQUARE, not a circle — manual
+rear_bolt_n  = 4;     // manual, 4 x M2.5
+rear_bolt_d  = 2.5;   // M2.5 — manual. This is the whole machine's load path.
+rear_bolt_a0 = 45;    // ...which as a bolt CIRCLE is rear_sq*sqrt(2) at 45 deg
+rear_bcd     = rear_sq * sqrt(2);   // 28.28 — the square, expressed as a circle
+shaft_bore_d = 8.1;   // 8.1 on the "S" bore variant, 12.7 on the "L" — Dings
+
+/* [Motor interface — the two the manual does not give you. MEASURE-ME.] */
+// The manual's front view is a flat Ø49 face with the bore and the four M3. No
+// boss or spigot is drawn or dimensioned anywhere in it. So: measure yours.
+//   · If a rotating boss stands proud, put its OD and height here and the
+//     printed part lands on it and nothing else, which is what you want.
+//   · If the front face is flat, leave out_boss_h at 0. The part then lands
+//     flat on the face — fine IF the whole front face rotates, which is the
+//     usual arrangement on a pancake actuator, and a disaster if it doesn't.
+//     fit_coupon's scribe rings are how you find out, for 3 g of PETG.
+out_boss_d   = 36;    // MEASURE-ME  rotating output boss OD (unused if h = 0)
+out_boss_h   = 0;     // MEASURE-ME  how far it stands proud. 0 = flat face.
 
 /* [Payload — DLH-3UP-EH, off LEDdynamics' drawing] */
 payload_od     = 25.15; // Ø0.99" over the fin crests — the clamped diameter
@@ -42,33 +66,40 @@ cr_wall  = 8;     // cradle side plates
 // The tilt axis does NOT pass through the housing's axis: it sits a hair above
 // it, so that the head's own centre of mass — cap, saddle, housing and all —
 // lands ON the axis. Measured, not guessed: the printed parts were exported and
-// weighed in software, giving 38.3 g of plastic whose CoM is 2.37 mm above the
+// weighed in software, giving 41.5 g of plastic whose CoM is 2.97 mm above the
 // bore, against a housing of about 25 g sitting on it. Solve for where the axis
 // has to be and you get the number below. It costs nothing — an offset is free —
 // and it is why there is no trim-washer bolt in this design any more.
 // Residual over a 18-32 g housing: under 0.2 mm, i.e. under 0.1 mN.m.
-axis_z   = 1.45;  // = Mp*zp / (Mp + Mh)
+axis_z   = 1.86;  // = Mp*zp / (Mp + Mh)
 cr_len   = 32;    // cradle length along the housing axis
-plate_z  = 14;    // side plates rise this far ABOVE the split line. Only as far
-                  // as the cap needs to land: every mm here is mass ABOVE the
-                  // tilt axis, and it thins the cap's clamping ear.
+plate_z  = 16;    // side plates rise this far ABOVE the split line. Only as far
+                  // as the highest reachable output bolt needs — every mm here
+                  // is mass ABOVE the tilt axis, and it thins the cap's ear.
 base_z   = 16;    // ...and the saddle reaches this far below it
-cap_z    = 20;    // cap's outer height
+cap_z    = 22;    // cap's outer height — set by the ear, not the bore: the ear
+                  // is cap_z - plate_z - clamp_nip thick and an M3 pulls on it
 clamp_nip  = 0.4; // the cap's bore sits this low, so it PINCHES before it bottoms
 cap_bolt_y = 11;  // cap-screw spacing along the housing axis
-cap_ear_d  = 10;  // ear pad dia — keep the outer edge clear of the motor body
-cap_pocket = 4;   // lightening pocket in the cap's crown (prints first-layer)
+cap_ear_d  = 9;   // ear pad dia. cap_bolt_x below keeps its outer edge inboard
+                  // of the motor's face plane, which is what actually matters.
+cap_pocket = 6;   // lightening pocket in the cap's crown (prints first-layer).
+                  // Every gram taken off here is a gram taken off ABOVE the axis.
 pilot_len  = 10;  // cap-screw thread depth in the plate. Must stop short of
                   // the trunnion's bolt ring at z = 0.
 keel_chamf = 9;   // dead-corner chamfer under the saddle
 
 /* [Frame — the yoke] */
 drop      = 32;   // bridge underside -> tilt axis. Must clear head_sweep.
-arm_pad_d = 54;   // round pad at the tilt axis (covers the rear bolt circle)
 arm_neck  = 30;   // arm width where it meets the bridge
-arm_pocket_d = 32; // hex lightening pocket in the pad (vertex up = no bridge)
+// hex lightening pocket. Max radius must stay INSIDE the rear bolts' head
+// seats: heads start at rear_bcd/2 - m25_head_d/2 = 11.7, so 22/2 = 11 clears.
+arm_pocket_d = 22; // vertex up, so the roof is a 60 deg peak, not a bridge
 arm_pocket_z = 4;  // ...and how deep (of t_arm). Leaves a 6 mm web.
-boss_recess = 1;  // locating recess depth — KEEP WELL UNDER out_boss_h
+// locating recess: a quarter of the boss's height, capped at 1 mm, and it
+// disappears entirely on a flat-faced motor. Never let this reach out_boss_h —
+// a part that bottoms on the STATOR face clamps the motor solid.
+boss_recess = min(1, out_boss_h / 4);
 
 /* [Frame — the pan hard stop] */
 stop_r    = 31;   // post and groove centreline radius
@@ -104,6 +135,7 @@ function loc_h(nom)   = nom + 0.70 + hole_comp;    // recess you seat by hand
 function slot_fit(nom) = nom - 0.30 - shaft_comp - hole_comp;
 
 /* [Hardware — every fit derived, nothing hardcoded] */
+m25_clear = free_h(2.5); m25_clear_x = free_hx(2.5); m25_head_d = 4.9;
 m3_clear = free_h(3);  m3_clear_x = free_hx(3);  m3_head_d = 6.4;
 m3_pilot = tap_h(3);   m3_pilot_x = tap_hx(3);
 m4_clear = free_h(4);  m4_clear_x = free_hx(4);  m4_head_d = 8.4;
@@ -118,6 +150,7 @@ trun_flange_d = 26; trun_bcd = 18; trun_t = 6; trun_gap = 4;
 // =============================================================================
 bore_d  = payload_od + payload_clear;        // 25.75 ≈ 1.014"
 blk_in  = bore_d / 2 + 2;                    // 2 mm shoulder each side of the bore
+arm_pad_d = rear_bcd + m25_head_d + 8;       // pad only as big as the rear circle needs
 x_left  = -(blk_in + cr_wall);               // outer face of the motor-side plate
 x_mate  = x_left + boss_recess;              // ...the plane that lands on the boss
 x_right =   blk_in + cr_wall;                // face the trunnion bolts to
@@ -132,15 +165,28 @@ bridge_r = stop_r + stop_w / 2 + 2.5;        // the bridge is a DISC, not a slab
 post_h  = motor_len + out_boss_h - boss_recess + stop_deep - 0.6;  // 0.6 off the floor
 butt_h  = motor_len + out_boss_h - boss_recess - 3;  // buttress stops 3 mm above
                                                      // the bridge's top face
-stub_len = t_arm + carrier_t + trun_gap + 0.9;
+// the trunnion is a stepped shaft: fat where it is just spanning air and plate,
+// thin only where it is actually inside the 608's bore
+stub_len   = t_arm + carrier_t + trun_gap + 0.9;   // flange face to stub tip
+shank_d    = 14;                                   // fat section OD
+brg_face   = trun_gap + t_arm + carrier_t - bearing_w - 0.3;  // where the bore starts
+shank_len  = brg_face - 1;                         // stop 1 mm short of it
+journal_len = stub_len - shank_len;                // ...the rest is Ø stub_d
 boss_locate_d = loc_h(out_boss_d);
 cap_w   = slot_fit(2 * blk_in);              // cap body drops between the plates
-cap_bolt_x = blk_in + cr_wall / 2;           // centred in the plate, not on its edge
+// Centred in the plate — UNLESS that would push the ear past the plane the motor
+// mates on, in which case the motor wins. On a flat-faced motor the whole Ø49
+// body sits against x_left, so anything of the cap that crosses x_left is inside
+// the motor. This is the third time that corner has bitten; deriving it means it
+// cannot bite again whatever out_boss_h turns out to be.
+cap_bolt_x = min(blk_in + cr_wall / 2, -x_left - cap_ear_d / 2 - 0.6);
 
-// the flange bolt circle needs this much plate above the tilt axis, which is
-// more than the cap's landing face needs — so it gets a local pad, not 6 mm of
-// extra wall down the whole part
-bolt_pad_z = out_bcd / 2 + m3_head_d / 2 + 1.5;
+// how far the plate has to reach above the tilt axis: to the highest bolt the
+// driver can actually get to, plus its head and a little meat. With four holes
+// at 45 deg that is 8.84 + 3.2 + 1.5 = 13.5, which plate_z now covers outright —
+// so the local pad that v6 needed is gone, one whole feature deleted.
+bolt_pad_z = max([for (i = [0 : out_bolt_n - 1]) if (out_bolt_up(i)) out_bolt_z(i)])
+             + m3_head_d / 2 + 1.5;
 
 // what has to clear what — the farthest corner of the head from the tilt axis
 head_sweep = max(sqrt(pow(cr_len / 2, 2) + pow(cap_z - axis_z, 2)),
