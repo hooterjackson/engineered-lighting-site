@@ -1,6 +1,6 @@
 // =============================================================================
 // frame.scad · Engineered Lighting — robotic spotlight, PRINTED FRAME
-// v6 (2026-07-30)
+// v7 (2026-07-30)
 // =============================================================================
 //
 // Six printed parts, three test pieces. Numbers live in frame_params.scad; this
@@ -20,50 +20,57 @@
 //   fit_coupon       both motor bolt circles + both diameters, for 3 g of PETG.
 //   bore_gauge       the real clamp in miniature: does the housing slide?
 //
-// WHAT CHANGED IN v6, and why
-//  · TOLERANCES. Nothing in v5 compensated for the fact that FDM gets holes and
-//    shafts wrong in OPPOSITE directions. The trunnion's stub was modelled at
-//    7.85 mm to enter an 8.00 mm bearing and would have printed at ~8.0 — the
-//    machine could not have been assembled. Every fit in the project is now
-//    derived from three measured numbers via the fit functions in
-//    frame_params.scad, and tol_coupon exists to measure them on YOUR printer.
-//  · Holes drilled sideways get their own fit class. A horizontal hole prints
-//    with a sagging roof, so it comes out worse than a vertical one; six call
-//    sites that were quietly using the vertical number now use the _x number.
-//  · BALANCE BY CONSTRUCTION. The tilt axis sits axis_z above the housing's axis
-//    instead of through it, which puts the measured centre of mass of the whole
-//    head ON the axis. That deleted the balance-trim bolt and its washer stack.
-//  · The hard-stop post is the one part on this machine that gets hit, and it
-//    was a 30 mm blade printed across its layers. It now carries a tapered
-//    buttress down 80% of its length.
-//  · Arbitrary holes and dead features removed: the right arm's copied wire
-//    hole, the cap's wire channel (it was inside the bore and cut nothing), and
-//    two "frame pockets" that were a no-op on one arm and a buried void on the
-//    other. The pockets that remain are hexagons with a vertex up, so their
-//    roofs are a 60 deg peak instead of a 32 mm bridge.
-//  · The cable route is now ONE open channel end to end. v5's route had a 6 mm
-//    gap in it and a 3.5 mm-deep tunnel you could not lay a cable into.
-//  · The clamp actually fits: the cap's body was drawn exactly as wide as the
-//    slot it drops into, which after print growth on one part and shrink on the
-//    other is a 0.4 mm interference. It is now a derived slip fit.
-//  · Two interferences found by intersecting the positioned parts as solids
-//    rather than by eye: the cap's motor-side ear stood inside the tilt motor's
-//    output boss, and the pan motor's side connector stood inside the hard-stop
-//    post.
+// WHAT CHANGED IN v7, and why
+//  · THE MOTOR. Everything below used to be built on an invented output flange:
+//    six holes on a 30 mm circle, and an M4 rear mount on 43. The RMD-L manual
+//    Rev 1.01 says four M3 on 25, and a rear of four M2.5 on a 20 x 20 square.
+//    Every bolt circle here was wrong and every part was oversized to suit. The
+//    machine lost 18 g by being drawn against the real motor instead.
+//  · The manual publishes no output boss at all, so out_boss_h now defaults to
+//    ZERO — a flat front face — and every dimension that depended on a boss
+//    derives itself from that number rather than assuming one exists.
+//  · Only two output holes clear the split line now, not three. Two M3 at
+//    r = 12.5 hold the head with about 20x margin on the motor's peak torque,
+//    but it is a real reduction and it is stated here rather than buried.
+//  · The trunnion is a STEPPED shaft. Only the 9 mm inside the 608 has to be
+//    7.7 mm; v6 ran that diameter the whole 24 mm, most of it spanning air and
+//    plate as a bare cantilever. Ø14 there is 11x stiffer for 1.9 g.
+//  · cap_bolt_x is DERIVED from the plane the motor mates on. The cap's ear
+//    landing inside the motor was caught by boolean intersection twice; a
+//    derived position means it cannot come back whatever the boss turns out
+//    to be.
+//  · The cradle's local bolt pad is gone — with the highest reachable bolt at
+//    8.84 mm instead of 15, plate_z covers it outright.
+//
+// WHAT CHANGED IN v6
+//  · TOLERANCES. Nothing before v6 compensated for the fact that FDM gets holes
+//    and shafts wrong in OPPOSITE directions. The trunnion's stub was modelled
+//    at 7.85 mm to enter an 8.00 mm bearing and would have printed at ~8.0 — the
+//    machine could not have been assembled. Every fit is now derived from three
+//    measured numbers via the fit functions in frame_params.scad, and tol_coupon
+//    exists to measure them on YOUR printer.
+//  · Holes drilled sideways get their own fit class, because a horizontal hole
+//    prints with a sagging roof and comes out worse than a vertical one.
+//  · BALANCE BY CONSTRUCTION: the tilt axis sits axis_z above the housing's
+//    axis, which puts the measured centre of mass of the whole head ON it.
+//  · The hard-stop post carries a tapered buttress down 80% of its length.
+//  · The cable route is ONE open channel end to end.
+//  · The clamp actually fits: the cap's body is a derived slip fit in the slot
+//    it drops into, instead of being drawn exactly as wide as it.
 //
 // BUILD ORDER
 //  0 tol_coupon. Set hole_comp / hole_comp_h / shaft_comp from what it tells
 //    you. Everything below assumes those three numbers are yours, not mine.
 //  1 fit_coupon + bore_gauge, against the real motor and the real housing.
 //  2 Yoke onto the pan motor while the yoke is EMPTY: stand it on its arm tips,
-//    motor into the bridge recess boss-down, six M3 up from underneath. Turn the
+//    motor into the bridge recess boss-down, four M3 up from underneath. Turn the
 //    motor so its side connector faces the base plate's cable trough — one of the
 //    other three positions puts it straight into the hard-stop post.
-//  3 Base plate down onto the motor's rear: four M4 through the counterbores.
-//  4 Cradle onto the tilt motor: turn the boss until one hole points straight up,
-//    drive the three bolts above the split line.
+//  3 Base plate down onto the motor's rear: four M2.5 through the counterbores.
+//  4 Cradle onto the tilt motor: turn the boss until two holes sit above centre,
+//    drive the bolts above the split line (two of them, at out_bolt_a0 = 45).
 //  5 Trunnion onto the cradle's right plate: three screws, heads outside.
-//  6 Head up between the arms; four M4 through the LEFT ARM from the outside.
+//  6 Head up between the arms; four M2.5 through the LEFT ARM from the outside.
 //  7 608 into the carrier, carrier over the stub, three screws LEFT LOOSE. Swing
 //    the head through full travel, then tighten.
 //  8 Wires: cradle -> tilt motor's bore -> arm trough -> bridge trough -> pan
@@ -78,7 +85,7 @@ part = "all"; // [tol_coupon, fit_coupon, bore_gauge, base_plate, yoke, cradle, 
 
 $fn = 64;
 
-echo(str("v6  span_in=", 2 * span_h, "  bridge_dia=", 2 * bridge_r, "  arm_h=", arm_h,
+echo(str(cad_version, " frame  span_in=", 2 * span_h, "  bridge_dia=", 2 * bridge_r, "  arm_h=", arm_h,
          "  head_sweep=", head_sweep, " vs drop=", drop, "  slide=", slide_range, "mm"));
 
 // ---------------------------------------------------------------- helpers ----
@@ -124,7 +131,7 @@ module fit_coupon() {
         offset(r = 3) square([16, 4], center = true);
     }
     bolt_ring(out_bcd,  m3_clear, out_bolt_n,  9, out_bolt_a0);
-    bolt_ring(rear_bcd, m4_clear, rear_bolt_n, 9, rear_bolt_a0);
+    bolt_ring(rear_bcd, m25_clear, rear_bolt_n, 9, rear_bolt_a0);
     cylinder(d = shaft_bore_d, h = 9, center = true);
     for (dia = [out_boss_d, motor_d]) translate([0, 0, 2.4]) difference() {
       cylinder(d = dia + 0.5, h = 2);
@@ -170,7 +177,9 @@ module bore_gauge() {
 // prints POST UP; installs POST DOWN. origin = the face the motor's rear meets.
 // =============================================================================
 module base_plate() {
-  hub_d = rear_bcd + m4_head_d + 6;                 // only as big as the bolts need
+  // the bolt circle is only Ø28, but the plate is what the motor's Ø49 rear face
+  // lands on, so it wants to cover most of that or the motor rocks on four screws
+  hub_d = max(rear_bcd + m25_head_d + 6, motor_d - 5);
   tongue_w = 2 * (post_w / 2 + 6);
   difference() {
     union() {
@@ -191,12 +200,12 @@ module base_plate() {
                   stop_r + stop_w / 2 + 5, 2 * asin(post_w / 2 / stop_r), butt_h);
       }
     }
-    bolt_ring(rear_bcd, m4_clear, rear_bolt_n, 3 * t_plate, rear_bolt_a0);
-    // 4.2 deep, so a 4 mm cap head sinks fully below the face. This counterbore
+    bolt_ring(rear_bcd, m25_clear, rear_bolt_n, 3 * t_plate, rear_bolt_a0);
+    // 3 deep, so a 2.5 mm cap head sinks fully below the face. This counterbore
     // prints as a FIRST-LAYER pocket (the plate goes on the bed face-down), which
     // is why it can be a free_h fit and not a bridged-hole fit.
-    translate([0, 0, t_plate - 0.2])
-      bolt_ring(rear_bcd, free_h(m4_head_d), rear_bolt_n, 8, rear_bolt_a0);
+    translate([0, 0, t_plate - 0.5])
+      bolt_ring(rear_bcd, free_h(m25_head_d), rear_bolt_n, 6, rear_bolt_a0);
     cylinder(d = wire_hole_d, h = 3 * t_plate, center = true);
     // ONE cable trough: out of the pan motor's bore and sideways off the hub.
     // Sideways, not aft: aft is where the hard-stop post and the C-clamp live,
@@ -250,7 +259,7 @@ module yoke() {
 
     // --- LEFT arm: the tilt motor bolts to its inner face ----------------
     translate([-arm_x, 0, z_tilt]) {
-      bolt_ring_x(rear_bcd, m4_clear_x, rear_bolt_n, 4 * t_arm, rear_bolt_a0);
+      bolt_ring_x(rear_bcd, m25_clear_x, rear_bolt_n, 4 * t_arm, rear_bolt_a0);
       rotate([0, 90, 0]) cylinder(d = wire_hole_d + 1, h = 4 * t_arm, center = true);
       // lightening pocket, OUTER face only — the motor mates the inner one. Hex
       // with a vertex up so the pocket roof is a 60 deg peak, not a 32 mm bridge.
@@ -259,8 +268,8 @@ module yoke() {
     }
     // --- RIGHT arm: stub passes through; carrier screws from outside -----
     translate([arm_x, 0, z_tilt]) {
-      // clearance for the trunnion STUB only — no wire has ever come through here
-      rotate([0, 90, 0]) cylinder(d = free_hx(bearing_id) + 2, h = 4 * t_arm, center = true);
+      // clearance for the trunnion's SHANK — no wire has ever come through here
+      rotate([0, 90, 0]) cylinder(d = free_hx(shank_d) + 1.5, h = 4 * t_arm, center = true);
       bolt_ring_x(carrier_bcd, m3_pilot_x, 3, 2.4 * t_arm, 90);
       // pocket the INNER face here: the carrier has to land on a flat outer one.
       // The hex's flats fall inside the pilot circle, so all three screws still
@@ -282,7 +291,7 @@ module yoke() {
 // =============================================================================
 // 5 · cradle — the head's saddle. Housing axis = Y, tilt axis = X.
 // The space above the split line is empty while you bolt the motor on: that is
-// what makes the three output-flange bolts reachable.
+// what makes the reachable output-flange bolts reachable.
 // =============================================================================
 module cradle_profile() {
   difference() {
@@ -303,22 +312,15 @@ module cradle_profile() {
 module cradle() {
   difference() {
     // origin = the TILT AXIS. The bore sits axis_z below it, which is the whole
-    // balancing trick: no ballast, no trim washers, just a 1.45 mm offset.
-    union() {
-      translate([0, 0, -axis_z])
-        rotate([90, 0, 0]) translate([0, 0, -cr_len / 2]) linear_extrude(cr_len) cradle_profile();
-      // Local pad on the motor-side plate. The flange's top bolt needs 19.7 mm
-      // of plate above the tilt axis; the cap's landing face needs 12.6. Raising
-      // the whole wall to 19.7 would be 6 mm of dead plastic down the entire part
-      // AND all of it above the axis, so instead the pad follows the one bolt
-      // that needs it and sits in the gap between the cap's two ears.
-      translate([x_left, 0, 0]) rotate([0, 90, 0]) linear_extrude(cr_wall) hull() {
-        translate([-out_bcd / 2, 0]) circle(d = m3_head_d + 3);
-        translate([-(plate_z - axis_z) + 1, 0]) square([2, 10], center = true);
-      }
-    }
+    // balancing trick: no ballast, no trim washers, just an axis_z offset.
+    // v6 needed a local pad here because the flange's top bolt sat 19.7 mm above
+    // the axis. On the real bolt circle the highest reachable one is at 8.84, so
+    // plate_z covers it outright and the pad is gone — a whole feature deleted by
+    // getting the motor's dimensions right instead of guessing them.
+    translate([0, 0, -axis_z])
+      rotate([90, 0, 0]) translate([0, 0, -cr_len / 2]) linear_extrude(cr_len) cradle_profile();
 
-    // the three reachable output-flange bolts
+    // the reachable output-flange bolts: the ones above the split line
     for (i = [0 : out_bolt_n - 1]) if (out_bolt_up(i))
       rotate([out_bolt_a0 + i * 360 / out_bolt_n, 0, 0]) translate([0, 0, out_bcd / 2])
         rotate([0, 90, 0]) cylinder(d = m3_clear_x, h = 3 * cr_wall, center = true);
@@ -367,14 +369,6 @@ module cradle_cap() {
     }
     for (x = [-cap_bolt_x, cap_bolt_x], y = [-cap_bolt_y, cap_bolt_y])
       translate([x, y, plate_z]) cylinder(d = m3_clear, h = cap_z);
-    // The tilt motor's output boss stands 3 mm proud of the face the cradle lands
-    // on, and the cap's motor-side ear reaches straight into it. Found by running
-    // a boolean intersection of the two positioned parts, not by eye. Relieve it
-    // with the same circle the cradle uses, so the two reliefs agree by
-    // construction. Takes the ear's outboard corner only — the bolt seat is 3 mm
-    // clear of this cut.
-    translate([x_left - 8, 0, axis_z]) rotate([0, 90, 0])
-      cylinder(d = boss_locate_d, h = 8 + boss_recess);
     // lightening pocket in the cap's outer face. It prints as a first-layer
     // pocket (the cap goes on the bed outside-down) and it takes mass off the
     // ABOVE-axis side, so it makes the head lighter AND better balanced.
@@ -391,8 +385,13 @@ module trunnion() {
   difference() {
     rotate([0, 90, 0]) union() {
       cylinder(d = trun_flange_d, h = trun_t);
-      translate([0, 0, trun_t - 0.01]) cylinder(d1 = trun_flange_d - 6, d2 = 12, h = 4);
-      translate([0, 0, trun_t]) cylinder(d = stub_d, h = stub_len - 1);
+      // STEPPED. Only the last stretch has to be 7.7 mm, because only the last
+      // stretch is inside the bearing. Everything before it — the gap, the arm,
+      // most of the carrier — was a 7.7 mm plastic cantilever in v6 for no
+      // reason. Ø14 through that span is 11x the bending stiffness for 1.9 g,
+      // and the step faces UP in print orientation, so it needs no support.
+      translate([0, 0, trun_t - 0.01]) cylinder(d = shank_d, h = shank_len + 0.01);
+      translate([0, 0, trun_t + shank_len]) cylinder(d = stub_d, h = journal_len - 1);
       translate([0, 0, trun_t + stub_len - 1])                        // lead-in
         cylinder(d1 = stub_d, d2 = stub_d - 1.6, h = 1);
     }
@@ -456,8 +455,10 @@ module tol_coupon() {
       translate([0,  16.5, ct - 1]) lbl(cand[i], 3.4);       // beside, not on top
       translate([0, -16.5, ct - 1]) lbl(cand[i], 3.4);
     }
-    translate([2, 8, ct - 1]) linear_extrude(1.1) text("FREE", size = 4.5);
-    translate([2, -12, ct - 1]) linear_extrude(1.1) text("TAP", size = 4.5);
+    translate([2, 12, ct - 1]) linear_extrude(1.1) text("M3 FREE", size = 4.2);
+    translate([2, 6, ct - 1]) linear_extrude(1.1) text("3.65-3.95", size = 3);
+    translate([2, -10, ct - 1]) linear_extrude(1.1) text("M3 TAP", size = 4.2);
+    translate([2, -16, ct - 1]) linear_extrude(1.1) text("2.70-3.00", size = 3);
     // sideways holes: two heights x two positions, drilled along +X
     for (i = [0 : 3]) {
       py = (i % 2 == 0) ? -9 : 9;
@@ -490,7 +491,8 @@ module tol_coupon() {
       cylinder(d = bearing_od + 0.10 + cand[i * 2 + 1], h = 20, center = true);
       translate([0, 15.5, ct - 1]) lbl(cand[i * 2 + 1], 3.4);
     }
-    translate([-52, 12, ct - 1]) linear_extrude(1.1) text("608 FIT", size = 4.5);
+    translate([-52, 15, ct - 1]) linear_extrude(1.1) text("608 FIT", size = 4.2);
+    translate([-52, -19, ct - 1]) linear_extrude(1.1) text("posts 7.7-7.9   rings 22.3 / 22.5", size = 3.2);
   }
 }
 
@@ -517,15 +519,15 @@ else if (part == "cradle_cap")      p_cradle_cap();
 else if (part == "trunnion")        p_trunnion();
 else if (part == "bearing_carrier") p_bearing_carrier();
 // every part, laid out flat. This is a picture of the set, not a bed: it is
-// 206 x 265 mm, so a 220 bed takes it in three jobs.
+// 203 x 233 mm, so a 256 mm bed takes it in two jobs.
 else if (part == "all") {
-  translate([  51.4,   37.7, 0]) p_yoke();
-  translate([ 140.2,   37.5, 0]) p_fit_coupon();
-  translate([ 190.8,   13.0, 0]) p_trunnion();
+  translate([  49.8,   37.7, 0]) p_yoke();
+  translate([ 137.2,   37.5, 0]) p_fit_coupon();
+  translate([ 187.7,   13.0, 0]) p_trunnion();
   translate([  54.0,  104.4, 0]) p_tol_coupon();
-  translate([ 158.7,  113.1, 0]) p_base_plate();
-  translate([  23.9,  207.1, 0]) p_bore_gauge();
-  translate([  79.6,  216.1, 0]) p_cradle();
-  translate([ 135.4,  216.1, 0]) p_cradle_cap();
-  translate([ 188.2,  220.1, 0]) p_bearing_carrier();
+  translate([ 152.0,  106.4, 0]) p_base_plate();
+  translate([  22.9,  200.4, 0]) p_bore_gauge();
+  translate([  77.6,  209.4, 0]) p_cradle();
+  translate([ 131.8,  209.4, 0]) p_cradle_cap();
+  translate([ 183.1,  213.4, 0]) p_bearing_carrier();
 }
