@@ -49,12 +49,42 @@ shaft_bore_d = 8.1;   // 8.1 on the "S" bore variant, 12.7 on the "L" — Dings
 out_boss_d   = 36;    // MEASURE-ME  rotating output boss OD (unused if h = 0)
 out_boss_h   = 0;     // MEASURE-ME  how far it stands proud. 0 = flat face.
 
-/* [Payload — DLH-3UP-EH, off LEDdynamics' drawing] */
-payload_od     = 25.15; // Ø0.99" over the fin crests — the clamped diameter
-payload_body   = 22.6;  // 0.89" finned length
-payload_stub_d = 21.3;  // 1/2"-14 NPT major dia — the rear stub is the wire exit
-payload_stub_l = 9.4;   // 1.26" overall − 0.89" body
-payload_clear  = 0.6;   // slide fit: Ø25.75 ≈ 1.014", slides by hand
+/* [Payload — DLH-3UP-EH, off LEDdynamics' own assembly drawing
+   (ledsupply.com/content/pdf/DLH-3UP-EH-Assembly.pdf, Rev A) and spec table]
+
+   Two things on that drawing changed this design, and both were things I had
+   wrong before:
+
+   1. THE TITLE BLOCK SAYS "TWO PLACE DECIMAL ± .015". The Ø0.99" is a two-place
+      decimal, so the diameter you are clamping is 25.15 ± 0.38 mm — anywhere
+      from 24.77 to 25.53. That is a 0.76 mm spread on the one dimension the
+      whole clamp depends on, and it is why clamp_gap below is what it is.
+   2. IT IS NOT FINNED. The product page says "4 small channels around the
+      diameter of the sleeve" — grooves cut in, not rings standing out. So the
+      clamp bears on a smooth cylindrical land interrupted four times, which is
+      better for grip than fin crests, and means payload_od is a real diameter
+      rather than a crest-to-crest figure.
+
+   The barrel you grip is the SLEEVE, and the sleeve unscrews from the slug it
+   is threaded onto. Nothing in this frame twists the housing about its own
+   axis, so that is not a load path — but thread-lock it anyway before you
+   clamp it, because a clamp on the sleeve does not hold the slug. */
+payload_od     = 25.15; // Ø0.99" — the clamped diameter, and see the tolerance
+payload_tol    = 0.38;  // ±, from the drawing's own two-place-decimal block
+payload_len    = 32;    // 1.26" overall
+payload_body   = 22.6;  // 0.89" on the drawing. UNVERIFIED: the drawing carries
+                        // 0.89, 0.80 and 0.70 and states what none of them
+                        // measure. This is the plausible reading — sleeve length
+                        // — but measure yours before trusting the grip length.
+payload_stub_d = 21.3;  // 1/2"-14 NPT major dia, from the thread standard, not
+                        // from LEDdynamics — they publish only the thread spec
+payload_stub_l = 9.4;   // UNVERIFIED, and probably wrong: this is 1.26" - 0.89",
+                        // but the 1-Up sheet gives 1.46" - 1.06" = 0.40" for the
+                        // same stub, so the subtraction does not mean this.
+payload_wire_d = 3.175; // 1/8" centre hole — the wires' actual exit
+// bore sized for the LARGEST the housing is allowed to be, plus a slide fit
+payload_clear  = 0.2;
+bore_d_calc    = payload_od + payload_tol + payload_clear;   // 25.73
 
 /* [Frame — thicknesses] */
 t_plate  = 7;     // base plate
@@ -67,11 +97,11 @@ cr_wall  = 8;     // cradle side plates
 // it, so that the head's own centre of mass — cap, saddle, housing and all —
 // lands ON the axis. Measured, not guessed: the printed parts were exported and
 // weighed in software, giving 41.5 g of plastic whose CoM is 2.97 mm above the
-// bore, against a housing of about 25 g sitting on it. Solve for where the axis
+// bore, against a housing of 25.5 g (LEDSupply publish 0.9 oz) sitting on it. Solve
 // has to be and you get the number below. It costs nothing — an offset is free —
 // and it is why there is no trim-washer bolt in this design any more.
 // Residual over a 18-32 g housing: under 0.2 mm, i.e. under 0.1 mN.m.
-axis_z   = 1.86;  // = Mp*zp / (Mp + Mh)
+axis_z   = 1.74;  // = Mp*zp / (Mp + Mh), Mh = 25.5 g published
 cr_len   = 32;    // cradle length along the housing axis
 plate_z  = 16;    // side plates rise this far ABOVE the split line. Only as far
                   // as the highest reachable output bolt needs — every mm here
@@ -79,7 +109,14 @@ plate_z  = 16;    // side plates rise this far ABOVE the split line. Only as far
 base_z   = 16;    // ...and the saddle reaches this far below it
 cap_z    = 22;    // cap's outer height — set by the ear, not the bore: the ear
                   // is cap_z - plate_z - clamp_nip thick and an M3 pulls on it
-clamp_nip  = 0.4; // the cap's bore sits this low, so it PINCHES before it bottoms
+// THE CLAMP MUST NEVER BOTTOM OUT. This was a real defect: with a 0.4 mm nip and
+// a bore cut for the housing's max diameter, a min-tolerance barrel needs the cap
+// to travel 0.49 mm before it even touches — so the ears would land on the plates
+// and the screws would clamp air. The gap is now larger than the worst-case slop
+// by construction, which means the SCREWS set the grip, not a hard stop, and any
+// barrel inside the drawing's tolerance is held.
+clamp_gap  = payload_tol / 2 + 0.5 + payload_clear / 2;   // 0.79
+clamp_nip  = clamp_gap;   // the cap's bore sits this low
 cap_bolt_y = 11;  // cap-screw spacing along the housing axis
 cap_ear_d  = 9;   // ear pad dia. cap_bolt_x below keeps its outer edge inboard
                   // of the motor's face plane, which is what actually matters.
@@ -148,7 +185,7 @@ trun_flange_d = 26; trun_bcd = 18; trun_t = 6; trun_gap = 4;
 // =============================================================================
 // derived — the single chain that sets the whole machine's size
 // =============================================================================
-bore_d  = payload_od + payload_clear;        // 25.75 ≈ 1.014"
+bore_d  = bore_d_calc;                       // 25.73 — sized for max material
 blk_in  = bore_d / 2 + 2;                    // 2 mm shoulder each side of the bore
 arm_pad_d = rear_bcd + m25_head_d + 8;       // pad only as big as the rear circle needs
 x_left  = -(blk_in + cr_wall);               // outer face of the motor-side plate
@@ -191,7 +228,7 @@ bolt_pad_z = max([for (i = [0 : out_bolt_n - 1]) if (out_bolt_up(i)) out_bolt_z(
 // what has to clear what — the farthest corner of the head from the tilt axis
 head_sweep = max(sqrt(pow(cr_len / 2, 2) + pow(cap_z - axis_z, 2)),
                  sqrt(pow(cr_len / 2, 2) + pow(base_z + axis_z, 2)));
-slide_range = cr_len - payload_body;
+slide_range = cr_len - payload_body;         // grip is on the SLEEVE only
 
 // which output-flange holes sit ABOVE the split line: the only ones a driver can
 // reach, which is why the boss gets turned one hole "up" before you bolt it
