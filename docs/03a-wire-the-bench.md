@@ -141,6 +141,8 @@ Three rules, all of which the diagram shows:
 
 **Its ground must be connected.** This is the counterintuitive one. canable.io is explicit: *"You must connect ground for the CAN bus to function properly."* On an isolated "Pro" adapter, isolation separates the USB side from the CAN side — the CAN side still needs a ground reference shared with the bus it is listening to. **Isolated does not mean floating.** If your adapter has a 5 V pin — the 4-pin variants do, the 3-pin ones do not — leave it empty; it is an output.
 
+These three rules describe the bus from stage 4 onward, where the motor is one physical end. For the pre-motor **two-node** check — transceiver and adapter only, with the terminator rule inverted — see [Doc 3c · Prove the Bus](03c-prove-the-bus.md).
+
 !!! trap "Check which board you actually have"
     Openlight Labs sells the CANable, CANable 2.0, CANable Pro, and CANable Pro 1.1 — there is no "CANable 2.0 Pro" in their lineup. A board sold under that name is most likely the **MKS (Makerbase) CANable V2.0 Pro**, a different design built on an STM32G431.
 

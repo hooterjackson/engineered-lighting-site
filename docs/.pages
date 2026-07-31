@@ -1,4 +1,14 @@
 nav:
   - index.md
   - bom-checklist.md
+  - 00b-ai-native-workflow.md
+  - 01-how-we-got-here.md
+  - 02-choosing-the-motors.md
+  - 03-build-the-gimbal.md
+  # 3c sits here deliberately: the bus proof happens between stage 2 and
+  # stage 3, so the sidebar follows build order. The letters are accession
+  # order (3a and 3b were published first) and never change once live.
+  - 03c-prove-the-bus.md
+  - 03a-wire-the-bench.md
+  - 03b-print-the-frame.md
   - ...

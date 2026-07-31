@@ -23,7 +23,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 7 | Breadboard + jumper wires | 1 kit | $10 | Amazon | Signals only — power never routes through it |
 | 8 | USB-C data cable | 1 | — | you own one | Charge-only cables are a classic trap |
 | 9 | M2.5 + M3 screw assortment | 1 box | $10 | Amazon | Confirm sizes against the motor drawing ([myactuator.com](https://www.myactuator.com) downloads) |
-| 10 | USB-to-CAN adapter ("CANable" or clone) — *optional but recommended* | 1 | $20–25 | Amazon | Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence. It isn't in the stage-3 diagram — [Doc 3a](03a-wire-the-bench.md) shows where it taps in, and why its own terminator stays off |
+| 10 | USB-to-CAN adapter ("CANable" or clone) — *optional but recommended* | 1 | $20–25 | Amazon | Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence. It isn't in the stage-3 diagram — [Doc 3a](03a-wire-the-bench.md) shows where it taps in, and [Doc 3c](03c-prove-the-bus.md) turns it into a pre-motor proof of your whole CAN side |
 | 11 | PETG filament + access to any FDM 3D printer & slicer | — | $20 | Amazon / local makerspace | For the frame: **four printed parts** (base plate, yoke, cradle, cradle cap) plus three small test coupons — see [Doc 3b](03b-print-the-frame.md). **No bearings.** This row used to read "683 or 608 bearings": there was never a 683 in the design, and as of frame v8 there is no bearing at all — the tilt axis cantilevers off the motor's own output. No printer at home? A library, makerspace, or online print service works — the parts are small |
 | 12 | C-clamp or small bench vise | 1 | $10 | hardware store | Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig |
 | 13 | Payload stand-in: small flashlight or ~100 g weight | 1 | — | — | Real LED head comes from [Doc 4](04-full-fixture-bench.md) |
@@ -87,6 +87,8 @@ Every sketch in this doc reaches the board the same way — learn it once here:
 
 **Done when:** LED blinks and text appears in Serial Monitor.
 **If stuck:** port never appears = charge-only cable (swap it). Upload dies at `Connecting…` = hold the board's **BOOT** button until writing starts. Gibberish in the monitor = baud isn't 115200.
+
+**Have the optional USB-CAN adapter (BoM row 10)?** Before any motor exists, **[Doc 3c · Prove the Bus](03c-prove-the-bus.md)** wires it and the transceiver into a two-node bench bus — no motor, no 12 V — and proves your entire CAN side: driver config, bit timing, transceiver, wiring, and the exact bytes on the wire. Half an hour now, and stage 4's troubleshooting ladder starts with half its rungs pre-checked.
 
 ## Stage 3 — Wire the CAN line
 
