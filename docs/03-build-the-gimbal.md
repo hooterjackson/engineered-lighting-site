@@ -14,7 +14,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 
 | # | Part | Qty | Est. | Where | Notes / traps |
 |---|---|---|---|---|---|
-| 1 | **MyActuator RMD-L-5005-100-C** (CAN variant; the -R twin is RS485) | 2 (+1 spare recommended — see note) | $215 for 2 / $322.50 for 3 | [Dings Motion USA](https://www.dingsmotionusa.com/rmd-l-5005), $107.50 ea | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 92 g, Ø49 mm puck; [Doc 2](02-choosing-the-motors.md) is the full story, and its availability addendum covers this exact part swap. Order the **-C (CAN)** variant explicitly. Ask the seller to include mating cables for the 4-pin port (VCC/GND/CANL/CANH) — one per motor plus a spare — and keep the protocol PDF that ships in the box: it's the authority on byte layouts for your unit's firmware. Why 3: this motor family sells out episodically; the third unit is the permanent bench-dev unit and feeds the future second fixture |
+| 1 | **MyActuator RMD-L-5005-100-C** (CAN variant; the -R twin is RS485) | 2 (+1 spare recommended — see note) | $215 for 2 / $322.50 for 3 | [Dings Motion USA](https://www.dingsmotionusa.com/rmd-l-5005), $107.50 ea | The smart pan/tilt actuators — motor, absolute encoder, and tuned controller in one 92 g, Ø49 mm puck; [Doc 2](02-choosing-the-motors.md) is the full story, and its availability addendum covers this exact part swap. Order the **-C (CAN)** variant explicitly. Ask the seller to include mating cables for the **6-pin JST ZH** port (VCC · VCC · GND · GND · CANH · CANL — power is doubled up; it is ZH, *not* the larger XH) — one per motor plus a spare. They ship terminated on both ends, so [Doc 3a](03a-wire-the-bench.md) covers cutting one down into a bench harness. Keep the protocol PDF that ships in the box: it's the authority on byte layouts for your unit's firmware. Why 3: this motor family sells out episodically; the third unit is the permanent bench-dev unit and feeds the future second fixture |
 | 2 | ESP32-C6 dev board (ESP32-C6-DevKitC-1) | 1 | $9–15 | Amazon, Adafruit, DigiKey | Same chip as the fixture — everything learned transfers |
 | 3 | SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board") | 2 (1+spare) | $8 | Amazon | The ESP32 has the CAN *brain* on-chip but not the line driver — this little board is the voice, converting chip signals to the differential CAN wire pair. 3.3 V logic, breadboard-friendly. Bus termination gets measured and set in stage 3 |
 | 4 | 120 Ω resistors, ¼ W | few | $1 | any resistor kit | CAN bus termination |
@@ -23,7 +23,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 7 | Breadboard + jumper wires | 1 kit | $10 | Amazon | Signals only — power never routes through it |
 | 8 | USB-C data cable | 1 | — | you own one | Charge-only cables are a classic trap |
 | 9 | M2.5 + M3 screw assortment | 1 box | $10 | Amazon | Confirm sizes against the motor drawing ([myactuator.com](https://www.myactuator.com) downloads) |
-| 10 | USB-to-CAN adapter ("CANable" or clone) — *optional but recommended* | 1 | $20–25 | Amazon | Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence |
+| 10 | USB-to-CAN adapter ("CANable" or clone) — *optional but recommended* | 1 | $20–25 | Amazon | Lets your laptop eavesdrop on the bus; turns "nothing happens" into readable evidence. It isn't in the stage-3 diagram — [Doc 3a](03a-wire-the-bench.md) shows where it taps in, and why its own terminator stays off |
 | 11 | PETG filament + access to any FDM 3D printer & slicer | — | $20 | Amazon / local makerspace | For the frame: **four printed parts** (base plate, yoke, cradle, cradle cap) plus three small test coupons — see [Doc 3b](03b-print-the-frame.md). **No bearings.** This row used to read "683 or 608 bearings": there was never a 683 in the design, and as of frame v8 there is no bearing at all — the tilt axis cantilevers off the motor's own output. No printer at home? A library, makerspace, or online print service works — the parts are small |
 | 12 | C-clamp or small bench vise | 1 | $10 | hardware store | Stage 4 clamps the bare motor before its first move; stages 7–8 clamp the assembled rig |
 | 13 | Payload stand-in: small flashlight or ~100 g weight | 1 | — | — | Real LED head comes from [Doc 4](04-full-fixture-bench.md) |
@@ -120,6 +120,8 @@ Annotations:
 - **Why GPIO6/7:** many online examples use GPIO4/5, which are *strapping pins* on the C6 (read by the chip at boot). They usually work; avoiding them removes a category of weird boot behavior for free.
 - **Termination check:** with everything unpowered, measure resistance CANH↔CANL. ~120 Ω = one resistor present somewhere; ~60 Ω = two (correct); open = none. Add external 120 Ω resistors until the bus reads ~60 Ω.
 - **Motor power never touches the breadboard** (rails are ~1 A). Motor + and − go directly to the supply terminals; only thin signal wires (CAN pair, signal ground) touch the breadboard.
+
+The diagram above is a schematic — it shows which signal meets which. The parts in your hands don't have bare wires: the motor ends in a 6-pin **JST ZH** connector, the common ground is a real screw terminal, and the optional USB-CAN sniffer isn't drawn here at all. That layer is **[Doc 3a · Wire It For Real](03a-wire-the-bench.md)** — connector pinout and how to make the harness, what "one ground" looks like with a screwdriver, where wires may split and how, tapping the sniffer onto the bus, and what the little micro-USB board in the motor box is for. Wire there, then come back here and power up.
 
 **Done when:** wired, powered, nothing warm.
 
@@ -263,8 +265,9 @@ The session: type `r` — **any reply is the win** (proves wiring, transceiver, 
     ID setting" section — send that write exactly once, never in a loop
     (it's a persistent flash write, so wear is real, and it only takes
     effect after a reboot), have me power-cycle the motor, and verify it
-    now answers at 0x142. Next I'll daisy-chain both motors on one
-    CANH/CANL pair and raise the supply current limit toward 3 A; then
+    now answers at 0x142. Next I'll T-tap both motors off one CANH/CANL
+    trunk (the L series has one port, so this is a tap, not a chain) and
+    raise the supply current limit toward 3 A; then
     extend the stage-4 sketch in the chapter with a b<deg> command for
     motor 0x142 and a combined p<deg> t<deg> command that sends the two
     0xA4 frames back-to-back (~0.1 ms apart — simultaneous for a
@@ -281,7 +284,7 @@ The session: type `r` — **any reply is the win** (proves wiring, transceiver, 
 
     *[How to run this prompt →](00b-ai-native-workflow.md)*
 
-Motors ship with the same address, so: connect motor B **alone**, change its ID to 2 (command 0x79 per the manual's "CAN ID setting" section, or MyActuator's PC tool), power-cycle, verify it answers at 0x142. Then daisy-chain both on one CANH/CANL pair, raise the current limit toward 3 A, extend the sketch with `b<deg>` and a combined command (two frames back-to-back ≈ 0.1 ms apart — simultaneous for a spotlight).
+Motors ship with the same address, so: connect motor B **alone**, change its ID to 2 (command 0x79 per the manual's "CAN ID setting" section, or MyActuator's PC tool), power-cycle, verify it answers at 0x142. Then T-tap both motors off one CANH/CANL trunk — the L series has a single port, so this is a tap, not a chain ([Doc 3a](03a-wire-the-bench.md#one-port-no-daisy-chain)) — raise the current limit toward 3 A, extend the sketch with `b<deg>` and a combined command (two frames back-to-back ≈ 0.1 ms apart — simultaneous for a spotlight).
 
 > From here on, some stages describe *what* to add rather than printing every line — deliberately: this is where the **AI-as-lab-partner workflow (below)** takes over. "Extend the stage-4 sketch with a `b<deg>` command for motor 0x142 and a combined `p<deg> t<deg>` command" is a one-prompt job.
 
