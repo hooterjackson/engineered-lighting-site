@@ -109,7 +109,7 @@ The spotlight must be an ordinary HA citizen *and* autonomous. Those coexist onl
 
 | Entity | Type | Who uses it |
 |---|---|---|
-| `light.spot1` | light (brightness + CCT) | Everyone — knobs, groups, scenes, voice, *and the coordinator* (via `light.turn_on` service calls) |
+| `light.spot1` | light (brightness + CCT) | Everyone — knobs, groups, scenes, voice, *and the coordinator* (via `light.turn_on` service calls). **CCT range per the 2026-07-31 addendum — the warm end is amber-extended** |
 | `select.spot1_mode` | select: `Auto / Hold / Manual` | Humans and coordinator. Firmware obeys aim targets **only in Auto** — autonomy is a visible switch, not an invisible force (story G4). (Ecosystem idiom check: Frigate exposes exactly this as its `ptz_autotracker` switch; our select adds the Hold state) |
 | `select.spot1_preset` | select: named aim presets (`Chair / Table / Art / …`) | One-shot recall of calibrated positions — the ONVIF `GotoPreset` / Frigate `return_preset` pattern. One preset is designated the *idle* preset: the stage-2 failsafe destination (§1 — hold-and-fade comes first, always) |
 | `number.spot1_pan`, `number.spot1_tilt` | numbers (degrees) | Manual jog + calibration; writing one flips mode to Manual. (Deliberately *not* a repurposed `cover`-tilt entity — HA's developer docs explicitly warn against reusing cover for non-opening devices) |
@@ -148,3 +148,59 @@ Manual override rule: when a human touches anything (knob, slider, scene, mode s
 ## Change discipline
 
 Additive changes (new optional field, new enum value) don't bump `v`. Breaking changes (rename, unit change, semantic change) bump `v`, and publishers dual-publish `v` and `v+1` for one transition period. Every schema here has one owner process — no topic has two writers. (Clarification: the HA number entities **never** publish to `spotlight/target` — they ride HA per rule 2. The only second writer the topic ever sees is a human's manual test-publish from MQTT Explorer during bench debugging, and then only while the resolver is stopped.)
+
+---
+
+## Addendum · 2026-07-31 — the spotlight's three dies, and the bench console
+
+Two decisions that this page is the authority for. Recorded as an addendum
+rather than an edit in place, so the reasoning survives alongside the rule.
+
+### The spot light engine is one entity, not three
+
+The built star is **warm-white XP-E2 + cool-white XP-E2 + PC Amber**, and all
+three dies sit behind the single `light.spot1` entity above. (Doc 4's BoM
+describes a warm/neutral/cool XP-G2 star — that is the reference design; this
+fixture's star is the builder's own, the same relationship [Doc 3b](03b-print-the-frame.md)
+has with the frame.)
+
+**The colour-temperature range extends at the warm end**: cold stays 5700 K,
+warm becomes roughly **1800 K-equivalent**. "Equivalent" is doing real work
+there — PC Amber sits well off the blackbody locus, so the warm third of the
+dial is deliberately amber-tinted rather than merely warm. This mirrors what
+the ambient tape already does, where the warm half of each zone's dial blends
+toward a 1800 K deep-warm.
+
+**There is no amber entity, and there will not be one.** An "amber boost"
+number would be a second photometric write path, and rule 1 above allows
+exactly one. A scene that asks for 2700 K gets a warm-dominant blend on the
+same slider it has always used; the mixing is the fixture's business.
+
+*Implementation note, not contract:* ESPHome has no white/white/amber light
+platform and custom colour modes are not extensible, so this lands as an
+external component presenting `COLOR_TEMPERATURE` with the three-channel curve
+inside its `write_state()`. Until it exists, the fixture YAML drives the two
+whites and leaves amber dark.
+
+### The commissioning console is a sanctioned API client
+
+The bench console (the `gimbal-bench` repo's localhost tool) may hold one of
+the fixture's native-API connections for reads, log streaming, and non-aim
+entities. Budget the slots: ESPHome allows five by default and Home Assistant,
+the resolver, and the console each take one.
+
+**It is not a second aim writer.** Aim in Auto belongs to the resolver alone.
+The console may move the head two ways: through the HA-modelled manual lane
+(`number.spot1_pan` / `number.spot1_tilt`, which flips mode to Manual and is
+therefore visible as a human acting), or by calling `fixture_aim` directly
+during bench parity testing **while the resolver is stopped** — the same
+narrow exception this page already grants a hand-typed MQTT test-publish.
+
+### One coupling constant
+
+The motors carry a comm-loss watchdog (`0xB3`) set to **3000 ms**: if the bus
+goes quiet longer than that, each motor cuts its own output. It is the only
+protection that survives the controller crashing, and it constrains firmware
+forever — **any armed firmware must poll status at 1 Hz or faster.** Change
+the poll cadence and the watchdog together, or an idle armed fixture will trip
+it every few seconds and drop its position hold.

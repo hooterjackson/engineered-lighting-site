@@ -4,7 +4,7 @@
 read this file first — it replaces the chat history that produced this repo.
 Update it at the end of every working session.*
 
-**Last updated:** 2026-07-31 (bench session — first motor motion)
+**Last updated:** 2026-07-31 (bench session — first motor motion; then the commissioning-console build)
 
 ## What this project is
 
@@ -47,9 +47,14 @@ Material, deployed via GitHub Actions).
 
 ## Pending work queue (in order)
 
-1. **Finish stage 4** - one move through the bench-UI path (the first motion
-   was driven from the USB-CAN adapter), then flash firmware v2 and run the
-   health-gate injection drill (`gimbal-bench` repo, commit e9acea7).
+1. **Bench session, in this order** (the order is the safety property):
+   flash **v2** and burn down its drill list first (SAFE replays, health
+   injection drill) so a regression has one suspect; then flash **v3**;
+   then `commission_verify.py` both motors; then **`commission_watchdog.py`
+   BEFORE any velocity drill** - 0xB3 is the only protection that survives
+   the ESP32 crashing mid-move. Then jog/vel/stop drills, one move through
+   the bench-UI path (the first motion came from the USB-CAN adapter), and
+   the remaining rituals: multiturn, zero, limits.
 2. **Stage 5 characterization** - `tools/sweep_runner.py --live` walks the
    hold/sweep/resolution protocol with dB-meter cues.
 3. **Stage 6** - motor B ALONE on the bus, re-addressed to 0x142 via
@@ -233,3 +238,50 @@ conclusion still holds; only the pin count was wrong.
 flat plates, 608 bearing in a boss-padded pocket) were true as written; the
 design has since moved to v8 - four parts, no bearing, no counterweight, the
 tilt axis cantilevered off the motor output. See Doc 3b.
+
+### 2026-07-31 (later) — the bench tool becomes a commissioning console
+
+**Direction.** The gimbal debugger is being grown into the tool that sets up
+the ESP32 for the whole project: gimbal first, then the LED engine, then
+pairing to Home Assistant, then firmware updates. Built after a documentation
+sweep (protocol V4.2 read end to end, both vendor manuals, Docs 4/6/7/8, the
+Cree and Valent X datasheets) and an adversarial review that changed the
+design rather than decorating it - the velocity command was redesigned, a
+torque command was cut outright, and several ordering hazards were caught.
+
+**Four decisions, recorded in the Doc 6 addendum where they belong:**
+
+1. The spot star (warm XP-E2 + cool XP-E2 + PC Amber) sits behind ONE
+   `light.spot1`, amber folded into the warm end of the CCT dial. No amber
+   entity - that would be a second photometric write path.
+2. The console is a sanctioned native-API client, but never a second aim
+   writer.
+3. Motor comm-loss watchdog 0xB3 = 3000 ms, coupled forever to >=1 Hz status
+   polling while armed. Change them together or not at all.
+4. Persistent motor writes stay in ritualized one-shot tools. Never firmware,
+   never a UI button.
+
+**Commissioning values sheet** (what the bench writes into the motors):
+CAN ids pan 0x141 / tilt 0x142 · 0xB3 = 3000 ms · multi-turn save ON ·
+travel limits mirroring +/-170 and +/-90 (UNIT UNDOCUMENTED - the tool
+discovers it by probing) · accel planners in 100..60000 dps/s, and 0 on index
+0 means direct tracking, not "no limit" · PID indexes are the non-contiguous
+set {01,02,04,05,07,08,09} and float-format writes need motor firmware
+>= 20240528.
+
+**Known-unknowns kept as bench experiments:** 0xB6 active-reply semantics ·
+whether 0x20-03 fault push persists · whether the motor-side angle limit
+gates relative moves at all · what a relative move does to an axis already
+running a speed loop (firmware refuses that combination until someone runs it
+on purpose).
+
+**Motor firmware updates: there is no field path.** Both manuals were checked.
+Recovery and deep configuration go through the vendor's Windows setup software
+over the motor's 4-pin serial port, so a USB-TTL adapter belongs in the bench
+kit. This is also why `commission_verify.py` exists: a drive that loses its
+CAN interface gets recovered by a factory restore that wipes its identity and
+tuning, and the JSON snapshot is what makes that survivable.
+
+**Naming:** the artifacts keep their names - the repo is still `gimbal-bench`,
+the tool still lives in `tools/bench_ui`. "Commissioning console" is what it
+is becoming, not a rename.
