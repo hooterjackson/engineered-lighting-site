@@ -1,0 +1,1312 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The connector-level companion to stage 3: the motor's JST ZH-6 port and how to get from it to bare wire, what 'one common ground' actually means with a screwdriver in your hand, where wires may split and where they may not, how to tap a USB-CAN sniffer onto the bus, and what the little micro-USB board in the motor box is for.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/03a-wire-the-bench/">
+      
+      
+        <link rel="prev" href="../03c-prove-the-bus/">
+      
+      
+        <link rel="next" href="../03b-print-the-frame/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3a · Wire It For Real - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="3a · Wire It For Real - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The connector-level companion to stage 3: the motor's JST ZH-6 port and how to get from it to bare wire, what 'one common ground' actually means with a screwdriver in your hand, where wires may split and where they may not, how to tap a USB-CAN sniffer onto the bus, and what the little micro-USB board in the motor box is for." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/03a-wire-the-bench.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/03a-wire-the-bench/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="3a · Wire It For Real - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The connector-level companion to stage 3: the motor's JST ZH-6 port and how to get from it to bare wire, what 'one common ground' actually means with a screwdriver in your hand, where wires may split and where they may not, how to tap a USB-CAN sniffer onto the bus, and what the little micro-USB board in the motor box is for." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/03a-wire-the-bench.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-3a-wire-it-for-real-connectors-grounds-and-the-can-sniffer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3a · Wire It For Real
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BoM Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03c-prove-the-bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3c · Prove the Bus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3a · Wire It For Real
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3a · Wire It For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-motors-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The motor's connector
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The motor&#39;s connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-your-own-motor-not-this-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read your own motor, not this table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-the-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making the harness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-port-no-daisy-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One port, no daisy-chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-common-ground-with-a-screwdriver-in-your-hand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One common ground, with a screwdriver in your hand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-wires-may-split-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where wires may split, and how
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where wires may split, and how">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signals-the-breadboard-is-the-splitter-with-one-exception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals: the breadboard is the splitter — with one exception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-power-lever-nuts-not-pigtails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor power: lever nuts, not pigtails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-the-usb-can-sniffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding the USB-CAN sniffer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding the USB-CAN sniffer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which-firmware-is-on-your-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which firmware is on your board
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-micro-usb-board-in-the-motor-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The micro-USB board in the motor box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-switch-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you switch on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-build-the-fixture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 · Build the Fixture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-motors-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The motor's connector
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The motor&#39;s connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-your-own-motor-not-this-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read your own motor, not this table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-the-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making the harness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-port-no-daisy-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One port, no daisy-chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-common-ground-with-a-screwdriver-in-your-hand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One common ground, with a screwdriver in your hand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-wires-may-split-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where wires may split, and how
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where wires may split, and how">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signals-the-breadboard-is-the-splitter-with-one-exception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals: the breadboard is the splitter — with one exception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-power-lever-nuts-not-pigtails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor power: lever nuts, not pigtails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-the-usb-can-sniffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding the USB-CAN sniffer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding the USB-CAN sniffer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which-firmware-is-on-your-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which firmware is on your board
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-micro-usb-board-in-the-motor-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The micro-USB board in the motor box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-switch-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you switch on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-3a-wire-it-for-real-connectors-grounds-and-the-can-sniffer">Doc 3a · Wire It For Real — Connectors, Grounds, and the CAN Sniffer<a class="headerlink" href="#doc-3a-wire-it-for-real-connectors-grounds-and-the-can-sniffer" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong></p>
+<p>The chapter <a href="../03-build-the-gimbal/">Doc 3</a> stage 3 points at. Stage 3's diagram is a <em>schematic</em> — it shows which signal meets which signal. This is the other half: what those connections look like when you are holding the actual parts, which do not have bare wires hanging off them.</p>
+<p>Four things bite first-time builders here, and none of them are in the schematic:</p>
+<ul>
+<li>The motor has a <strong>6-pin connector</strong>, not four wires, and it is a connector most people have never crimped.</li>
+<li>"One common ground" is a sentence until you are looking at a bench supply wondering where the wire goes.</li>
+<li>Some wires must split three ways; the rules for <em>how</em> differ depending on whether it is a signal or motor power.</li>
+<li>The optional USB-CAN adapter (BoM #10) is not in the stage-3 diagram at all.</li>
+</ul>
+<p>Everything below is verified against the manufacturer's own manuals, and where two official documents disagree — they do, twice — this chapter says so instead of picking one.</p>
+<hr />
+<h2 id="the-motors-connector">The motor's connector<a class="headerlink" href="#the-motors-connector" title="Permanent link">&para;</a></h2>
+<p>The RMD-L-5005 has <strong>one</strong> power-and-comms port. It is a <strong>JST ZH, 1.5 mm pitch, 6 position</strong> — header <code>S6B-ZR-SM4A-TF</code> on the motor, mating housing <code>ZHR-6</code>, crimps <code>SZH-002T-P0.5</code> (AWG 28–26).</p>
+<div class="admonition trap">
+<p class="admonition-title">It is ZH, not XH</p>
+<p>JST XH is 2.5 mm pitch — nearly twice the size — and it is what most hobby parts bins are full of. Order XH housings and nothing will fit. The pitch is the whole difference: <strong>ZH = 1.5 mm</strong>.</p>
+</div>
+<p>Six positions carry only four signals, because power is doubled up:</p>
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>VCC</td>
+</tr>
+<tr>
+<td>2</td>
+<td>VCC</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>5</td>
+<td>CANH</td>
+</tr>
+<tr>
+<td>6</td>
+<td>CANL</td>
+</tr>
+</tbody>
+</table>
+<p>The 70/90-size motors use an 8-position version of the same connector with three VCC and three GND. The <code>-R</code> (RS485) variant of your motor is identical except positions 5/6 are 485B and 485A.</p>
+<h3 id="read-your-own-motor-not-this-table">Read your own motor, not this table<a class="headerlink" href="#read-your-own-motor-not-this-table" title="Permanent link">&para;</a></h3>
+<p><strong>The housing is laser-marked with the signal names, right beside the connector.</strong> That marking is the authority. Two reasons not to trust any table, including this one:</p>
+<ol>
+<li><strong>Nobody documents which physical end is position 1.</strong> Both official manuals give a left-to-right <em>order</em> as seen in a photo. Neither numbers the circuits. A pre-made pigtail can therefore land backwards.</li>
+<li><strong>The two manuals disagree about CANH and CANL.</strong> The RMD-L user manual says CANH then CANL; the MC-series driver manual says CAN_L then CAN_H. They agree completely on the power positions, which is the part that matters — and a swapped CAN pair is harmless, it just refuses to communicate.</li>
+</ol>
+<p>Confirm with a multimeter on continuity before you power anything: <strong>the two VCC contacts beep to each other, and the two GND contacts beep to each other.</strong> That identifies both pairs with certainty, no power required.</p>
+<p>Then check the connection that must <em>not</em> exist: <strong>VCC↔GND must not beep.</strong> Test it at the bare ends and again at the connector face once the joins are made and the heat-shrink is on. A single stray strand at a join is the most common way this harness fails, and it fails into the one fault the drive is not protected against.</p>
+<div class="admonition danger">
+<p class="admonition-title">Reverse polarity is documented as fatal</p>
+<p>MC-series manual §4.1: <em>"It is strictly forbidden to reverse the interface… the circuit board will be burned."</em> The same manual's feature list claims "anti-reverse protection," but its own specification table does not list reverse-polarity among the protections. <strong>Do not rely on it.</strong> Ring out the harness first and bring it up current-limited.</p>
+<p>Also from the manual: <em>"Connect and then turn on the power, do not plug and unplug the terminal with power."</em> No hot-plugging, ever.</p>
+</div>
+<h3 id="making-the-harness">Making the harness<a class="headerlink" href="#making-the-harness" title="Permanent link">&para;</a></h3>
+<p>The motors ship with cables terminated on <strong>both</strong> ends, and there is no official breakout for the L series. You will be making an adapter. The pragmatic route:</p>
+<ol>
+<li>Keep the end that plugs into the motor. Cut the far connector off.</li>
+<li>Strip <strong>all six</strong> conductors — both VCC wires and both GND wires, not one of each. Halving the contacts halves an already-marginal current budget.</li>
+<li>Within a few centimetres of the connector, join the two VCC wires into one heavier lead and the two GND wires into another — 20 AWG is right for the run to the supply. A <strong>WAGO 221 lever nut</strong> does this without an iron (see <em>Motor power</em>, below); thin stranded wire at motor current makes a poor first soldering job.</li>
+<li>Terminate however your bench likes: ferrules or banana plugs. Not tinned ends anywhere something clamps them — solder cold-flows under pressure and the joint loosens.</li>
+</ol>
+<p>Hand-crimping ZH at 1.5 mm pitch is genuinely difficult, which is why reusing the factory-crimped end beats starting from a bag of loose contacts.</p>
+<div class="admonition warning">
+<p class="admonition-title">The connector is the weak link, and it is not close</p>
+<p>JST ZH is rated <strong>1.0 A per contact</strong> — roughly 2 A per rail with both contacts populated. The L-Series product manual rates this motor's driver at <strong>5 A continuous, 8 A instantaneous</strong>. (The MC-series manual says 3 A / 6 A for the same pairing — the two official documents conflict.)</p>
+<p>Either way the connector is far below the drive's ceiling. The model number's <code>100</code> is watts: at the 24 V we run, that is roughly 4 A — and it would be 8 A at the 12 V bottom of the range — both well past what the connector can carry. <strong>The connector, not the drive, sets your ceiling.</strong></p>
+<p>So keep the bench limit at <strong>2.0 A</strong> through stage 5, keep the ZH pigtail short, and set an explicit current ceiling in the configuration software rather than trusting the drive to stay modest. That 2.0 A is a connector limit, not a convenience setting: if the supply trips into current limit, find out why — do not raise it.</p>
+</div>
+<h3 id="one-port-no-daisy-chain">One port, no daisy-chain<a class="headerlink" href="#one-port-no-daisy-chain" title="Permanent link">&para;</a></h3>
+<p>The RMD-<strong>X</strong> series has two identical ports so motors chain motor-to-motor. The <strong>L</strong> series does not — it has a single port, and both motors <strong>T-tap off one trunk</strong>. Stage 6 adds Motor B as a second tap, not as a link in a chain.</p>
+<hr />
+<h2 id="one-common-ground-with-a-screwdriver-in-your-hand">One common ground, with a screwdriver in your hand<a class="headerlink" href="#one-common-ground-with-a-screwdriver-in-your-hand" title="Permanent link">&para;</a></h2>
+<p>Stage 1's rule 3 says the ESP32 and the motor supply must share a ground. Here is what that means physically.</p>
+<p>Think of voltage as height, always measured from some floor. Your ESP32 judges "is this signal high or low?" against <em>its</em> floor. The motor judges against <em>its</em> floor. If those two floors are not physically bolted together, neither one knows what the other means by 3.3 volts — and the bus sits there dead, with every individual wire perfectly correct. This is the number-one cause of a build that looks right and does nothing.</p>
+<p>It is one wire, and it must be <strong>clamped, not touched</strong>:</p>
+<ol>
+<li>Cut about 30 cm of wire and strip 10 mm off each end.</li>
+<li>Push one end into the breadboard's ground rail — the same rail carrying the ESP32's GND pin and the transceiver's GND pin.</li>
+<li>Take the other end to the bench supply's <strong>black (−) terminal</strong>. Binding post: unscrew the collar, wrap the bare wire clockwise around the post, screw it back down. Spring clip: press, insert, release.</li>
+<li>Tug it. If it moves, do it again.</li>
+</ol>
+<p>The supply's black terminal is now the single floor the whole bench measures against: supply −, both motor grounds, the ESP32's ground, and — once you add it — the sniffer's ground.</p>
+<div class="admonition trap">
+<p class="admonition-title">One exception to the single floor</p>
+<p>The drive's serial debug port has its own ground, galvanically isolated from power ground. The manual is explicit: <em>"the GND of the serial port communication interface and the GND of the power supply are not the same and cannot be mixed."</em></p>
+<p>Do not bond it to the bench floor, and never use a debug-port pin to find power ground. It is the only thing on the bench that does not belong to the star above.</p>
+</div>
+<hr />
+<h2 id="where-wires-may-split-and-how">Where wires may split, and how<a class="headerlink" href="#where-wires-may-split-and-how" title="Permanent link">&para;</a></h2>
+<p>The rule that governs this is stage 3's third annotation: <strong>signals may ride the breadboard, motor power may not.</strong> Breadboard rails give up around 1 A; the motor's instantaneous rating is 6 A or 8 A depending on which manual you believe (see the connector warning above). Either figure is several times what a rail will carry.</p>
+<h3 id="signals-the-breadboard-is-the-splitter-with-one-exception">Signals: the breadboard <em>is</em> the splitter — with one exception<a class="headerlink" href="#signals-the-breadboard-is-the-splitter-with-one-exception" title="Permanent link">&para;</a></h3>
+<p>That is what a breadboard does. Each row of five holes is one internally-connected node. CANH has wires to join at stage 3 — one in from the transceiver, one out to the sniffer — so push them into different holes of the same row. Same for CANL on its own row. No pigtails, no soldering, no connectors.</p>
+<div class="admonition trap">
+<p class="admonition-title">The motor's own CAN pair does not belong in a breadboard</p>
+<p>Everything on the transceiver side is stiff 22 AWG solid core, which is what breadboard clips are designed to grip. The pair coming off the <strong>motor harness</strong> is the factory's thin stranded wire, and it fails in a breadboard two different ways — both of which we hit in one evening:</p>
+<ul>
+<li><strong>Bare stranded:</strong> the strands splay under the clip and nothing makes contact. It looks seated. It is not.</li>
+<li><strong>Tinned:</strong> solder <em>cold-flows</em> under sustained spring pressure. It works, then quietly stops working minutes later — the same physics behind Doc 8's "never tin a wire going under a screw."</li>
+</ul>
+<p>Land the motor's CANH and CANL in <strong>screw terminals</strong> instead — the USB-CAN adapter's spare terminals are right there and already on the bus. <strong>Fresh-stripped bare strands under the screw, never tinned.</strong> No adapter? A <strong>WAGO 221 lever nut</strong> per line does the same job (the power section below already has you buying them), or solder the joint properly with heat-shrink.</p>
+<p>Symptom if you skip this: the motor answers reads for a while, then goes silent — indistinguishable from the undervoltage latch until you check the rail. Two failure modes, one look.</p>
+</div>
+<h3 id="motor-power-lever-nuts-not-pigtails">Motor power: lever nuts, not pigtails<a class="headerlink" href="#motor-power-lever-nuts-not-pigtails" title="Permanent link">&para;</a></h3>
+<p><strong>Stage 3 needs no power splitting at all</strong> — one motor, one feed. It first arrives at stage 6, when Motor B joins.</p>
+<p>When it does, use <strong>WAGO 221 lever nuts</strong> (the same part <a href="../04-full-fixture-bench/">Doc 4</a> uses for the fixture bench). A 3-way takes the supply's + in one port and feeds both motors from the other two; a second 3-way does the same for −.</p>
+<ol>
+<li>Strip about 11 mm — the block has a strip gauge moulded into its side.</li>
+<li>Lift the orange lever fully.</li>
+<li>Insert the bare wire until it stops.</li>
+<li>Close the lever. Tug-test.</li>
+</ol>
+<p>Reusable, no iron, no heat-shrink, and openable when you change your mind. Soldered pigtails work too, but they are a poor first soldering job: thin stranded wire, high current, and no mechanical support. Many bench supplies will also accept two wires under one binding post, which is fine for two motors.</p>
+<hr />
+<h2 id="adding-the-usb-can-sniffer">Adding the USB-CAN sniffer<a class="headerlink" href="#adding-the-usb-can-sniffer" title="Permanent link">&para;</a></h2>
+<p>BoM #10 — a CANable or clone — is the difference between "nothing happens" and readable evidence. Stage 4's troubleshooting ladder is where it earns its price. It is a <strong>third listener on the same two wires</strong>.</p>
+<p><img alt="CANable tapped onto the gimbal CAN bus" src="../assets/wiring-canable-tap.svg" /></p>
+<p>Three rules, all of which the diagram shows:</p>
+<p><strong>Tap mid-span, never at an end.</strong> The two terminated nodes have to be the physical ends of the run. Hang the sniffer past one of them and the wire out to it becomes an unterminated leg that reflects. TI's application note puts the maximum un-terminated stub at <strong>0.3 m</strong> at 1 Mbit/s — keep the tap short.</p>
+<p><strong>Its own terminator stays OFF.</strong> Your bus already has two. Every CANable variant has a switch or jumper for this, and <strong>no vendor documents the as-shipped position</strong> — so set it off deliberately, then prove it with the resistance check below.</p>
+<p><strong>Its ground must be connected.</strong> This is the counterintuitive one. canable.io is explicit: <em>"You must connect ground for the CAN bus to function properly."</em> On an isolated "Pro" adapter, isolation separates the USB side from the CAN side — the CAN side still needs a ground reference shared with the bus it is listening to. <strong>Isolated does not mean floating.</strong> If your adapter has a 5 V pin — the 4-pin variants do, the 3-pin ones do not — leave it empty; it is an output.</p>
+<p>These three rules describe the bus from stage 4 onward, where the motor is one physical end. For the pre-motor <strong>two-node</strong> check — transceiver and adapter only, with the terminator rule inverted — see <a href="../03c-prove-the-bus/">Doc 3c · Prove the Bus</a>.</p>
+<div class="admonition trap">
+<p class="admonition-title">Check which board you actually have</p>
+<p>Openlight Labs sells the CANable, CANable 2.0, CANable Pro, and CANable Pro 1.1 — there is no "CANable 2.0 Pro" in their lineup. A board sold under that name is most likely the <strong>MKS (Makerbase) CANable V2.0 Pro</strong>, a different design built on an STM32G431.</p>
+<p>It matters twice. <strong>Pin order:</strong> no source documents the MKS board's terminal labels — read the silkscreen on the board in your hand. <strong>Firmware:</strong> mainline candleLight_fw states outright that <em>"STM32G431-based devices (e.g. CANable-MKS 2.0) are not supported by this project yet,"</em> and the MKS board uses a 64 KB flash variant while Openlight's firmware builds for the 128 KB part. Do not cross-flash them casually.</p>
+</div>
+<h3 id="which-firmware-is-on-your-board">Which firmware is on your board<a class="headerlink" href="#which-firmware-is-on-your-board" title="Permanent link">&para;</a></h3>
+<p>Plug it in and look before installing anything. A <strong>serial device</strong> means slcan firmware; a <strong>USB device with no serial port</strong> means candleLight. Windows: Device Manager, look for a COM port. Mac: <code>ls /dev/cu.usb*</code>. Linux: <code>lsusb</code>, then <code>dmesg | tail</code>. That single observation picks your software path:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># slcan build. Channel is COM4@115200 on Windows,</span>
+<span class="c1"># /dev/cu.usbmodem14201@115200 on a Mac.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">can</span>
+<span class="n">bus</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">Bus</span><span class="p">(</span><span class="n">interface</span><span class="o">=</span><span class="s2">&quot;slcan&quot;</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="s2">&quot;COM4@115200&quot;</span><span class="p">,</span> <span class="n">bitrate</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">bus</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></div>
+<p>Use <code>interface=</code>, not the older <code>bustype=</code> — <code>bustype=</code> is deprecated in current python-can, and canable.io's own example is stale on this point. For a candleLight build, install <code>python-can[gs-usb]</code> and use <code>interface="gs_usb"</code> instead. On Linux, <a href="../03-build-the-gimbal/">Doc 3's</a> lab-partner section notes <code>candump can0</code> does the same job in one command.</p>
+<hr />
+<h2 id="the-micro-usb-board-in-the-motor-box">The micro-USB board in the motor box<a class="headerlink" href="#the-micro-usb-board-in-the-motor-box" title="Permanent link">&para;</a></h2>
+<p>Some RMD orders include a small board with a micro-USB socket and a short keyed cable. <strong>It is a USB-to-UART adapter for the motor's separate 4-pin debug port — not a USB-CAN adapter.</strong> It has no CAN transceiver and cannot replace BoM #10.</p>
+<p>What it is for is the vendor's Windows configuration GUI: setting the CAN ID, tuning the current/speed/position loops, running position calibration, and reading live telemetry. That overlaps usefully with stage 6, which sets the motor's address by broadcasting command <code>0x79</code> on the bus — doing it through the vendor tool instead avoids broadcasting anything.</p>
+<div class="admonition danger">
+<p class="admonition-title">Three things before you plug it in</p>
+<p><strong>Do not connect the 5 V wire.</strong> The vendor manual prints it in red: <em>"the wire need to connect to TX, RX, GND. MUST NOT to connect 5V."</em> A widely-copied community wiring table connects 5 V anyway — it is for a different motor family. Follow the vendor.</p>
+<p><strong>Use the supplied cable exactly as it shipped.</strong> The board's pad order and the drive's pin order are not the same, so pin-1-to-pin-1 is wrong, and no document resolves whether the board's TX pad needs a crossover. Do not re-pin it.</p>
+<p><strong>The debug port's logic level is undocumented, and you must measure it against the right ground.</strong> Put the black probe on the <strong>debug port's own GND pin</strong> — never on the supply's − terminal. Those two grounds are isolated from each other (see <a href="#one-common-ground-with-a-screwdriver-in-your-hand">One common ground</a>), so referencing power ground gives you a meaningless floating number rather than an answer. With the drive powered and the debug connector unmated, read the drive's TX pin against the debug port's GND: an idle UART rests high, so a good reading is close to either 3.3 V or 5 V. Anything else means your reference is wrong — stop and re-check it rather than interpreting it. A 5 V adapter into a 3.3 V-only input is how these get damaged.</p>
+<p>Brace the probe or use a hooked test lead. Slipping across a 1.25 mm pitch connector shorts two pins together, which is its own way to end the afternoon.</p>
+</div>
+<p>One further caution: the configuration software version that lists the L-5005 (Setup Software V4.0) connects over <strong>USB-CAN</strong>, not serial. The only tool with a documented serial path is the older GUI 2.1, whose manual is written for the X series. So this board may not be sufficient on its own for an L-series motor — try it, but expect the CAN adapter to be the reliable path.</p>
+<hr />
+<h2 id="before-you-switch-on">Before you switch on<a class="headerlink" href="#before-you-switch-on" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Motor's laser-marked labels read, and the harness rung out against them</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Continuity confirms the two VCC contacts beep together, and the two GND contacts beep together</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>VCC↔GND does not beep</strong>, measured at the finished harness</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Supply set to <strong>24.0 V, limit 2.0 A</strong> — before anything is connected (12 V is the motor's undervoltage-latch line, not a gentler option)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> One ground wire clamped from the breadboard rail to the supply's − terminal</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Powered-off resistance across CANH↔CANL reads <strong>~60 Ω</strong> (~120 Ω = one terminator, open = none, ~40 Ω = three)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Nothing is plugged or unplugged from here on with the power on</li>
+</ul>
+<p><em>If you have the sniffer:</em> its terminator switched <strong>off</strong>, its ground connected, its 5 V pin empty.</p>
+<p><strong>Done when:</strong> the bench measures 60 Ω cold, VCC and GND are not shorted, polarity checks out at the motor plug, and you can point at the single place every ground meets.</p>
+<p>Then go back to <a href="../03-build-the-gimbal/#stage-3-wire-the-can-line">Doc 3 stage 3</a>, switch on, and watch the supply's ammeter: a few tens of milliamps and nothing warm is stage 3 done. <a href="../03-build-the-gimbal/#stage-4-first-contact-read-then-move">Stage 4</a> makes it talk.</p>
+<hr />
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<p>Verified against primary documents rather than forum lore:</p>
+<ul>
+<li><strong>RMD-L Series Servo Actuator User Manual</strong> Rev 1.01, §3.1–3.5 — connector part number, signal order, debug header, DIP switch</li>
+<li><strong>MC Series Brushless Servo Driver Manual</strong> V3.0 — the MC-L-100-O board integrated into this motor: pad layout, serial isolation, reverse-polarity and hot-plug warnings</li>
+<li><strong>L Series Product Manual</strong> 251029 — L-5005 electrical ratings and the model-number decode (<code>100</code> is watts, not a gear ratio)</li>
+<li><strong>JST ZH series datasheet</strong> — 1.0 A per contact, AWG 28–26, ZHR-6 and SZH-002T-P0.5</li>
+<li><strong>TI SLLA270</strong>, <em>Controller Area Network Physical Layer Requirements</em> — 0.3 m stub limit, 40 m at 1 Mbit/s, single-point grounding</li>
+<li><strong>canable.io</strong> getting-started, <strong>Openlight Labs</strong> product pages, <strong>candleLight_fw</strong> README</li>
+</ul>
+<p>Where those sources conflict — CANH/CANL order, and the drive's current rating — this chapter reports both rather than choosing.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../03c-prove-the-bus/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3c · Prove the Bus">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3c · Prove the Bus
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03b-print-the-frame/" class="md-footer__link md-footer__link--next" aria-label="Next: 3b · Print the Frame">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3b · Print the Frame
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+    
+  </body>
+</html>
