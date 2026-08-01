@@ -46,6 +46,10 @@ it hears — which is precisely what makes arming safe in this session.
 
 *Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
 
+![Two-node bench wiring: ESP32-C6 carrier, Waveshare SN65HVD230, MKS CANable V2.0 Pro](assets/wiring-3c-two-node.svg)
+
+*As-built diagram for this bench's exact boards. Yours may differ — which is what step 1 below exists to catch. Note the 6/7 jumpers **cross**: the Waveshare header prints RX above TX, so wiring by position instead of by label swaps the pair.*
+
 "Power off" here means: **ESP32 USB cable out, adapter USB cable out.** There's no supply in
 this session at all.
 
