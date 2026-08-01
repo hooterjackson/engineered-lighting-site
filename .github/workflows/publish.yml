@@ -55,7 +55,12 @@ jobs:
       - run: sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends openscad
       - name: Render all frame parts
         run: |
-          for p in coupon pan_base yoke head_shell all; do
+          # These names must match frame.scad's own part dispatch. They were
+          # last updated for frame v8 (the v7 names - coupon, pan_base,
+          # head_shell - rendered empty and this job had been failing on
+          # every push since).
+          for p in tol_coupon fit_coupon bore_gauge \
+                   base_plate yoke cradle cradle_cap all; do
             openscad -o "/tmp/$p.stl" -D "part=\"$p\"" docs/cad/frame.scad
             test -s "/tmp/$p.stl"
           done
