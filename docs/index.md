@@ -17,7 +17,7 @@ This eight-document series takes it from research through a working bench protot
 
 *This is our internal engineering notebook, published openly — hardware assumptions (a CUDA GPU box for Docs [5](05-teach-it-to-aim.md)–[7](07-building-the-software.md), an existing Home Assistant install) are ours.*
 
-<p class="el-hero__meta"><span>July 2026</span><span>8 documents</span><span>$745–1085 end to end</span><span>Current phase · parts ordering</span></p>
+<p class="el-hero__meta"><span>July 2026</span><span>8 documents</span><span>$745–1085 end to end</span><span>Current phase · bench bring-up</span></p>
 
 </div>
 
@@ -74,4 +74,4 @@ Everything the series tells you to buy, in one interactive list — check items 
 
 ---
 
-**Total prototype budget, all hardware:** roughly **$745–1085** for one room end-to-end · **Current phase:** parts ordering / bench build
+**Total prototype budget, all hardware:** roughly **$745–1085** for one room end-to-end · **Current phase:** bench bring-up — first motor motion 2026-07-31 (Doc 3 stage 4)

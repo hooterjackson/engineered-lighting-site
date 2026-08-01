@@ -18,7 +18,7 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 | 2 | ESP32-C6 dev board (ESP32-C6-DevKitC-1) | 1 | $9–15 | Amazon, Adafruit, DigiKey | Same chip as the fixture — everything learned transfers |
 | 3 | SN65HVD230 CAN transceiver breakout (Waveshare "CAN Board") | 2 (1+spare) | $8 | Amazon | The ESP32 has the CAN *brain* on-chip but not the line driver — this little board is the voice, converting chip signals to the differential CAN wire pair. 3.3 V logic, breadboard-friendly. Bus termination gets measured and set in stage 3 |
 | 4 | 120 Ω resistors, ¼ W | few | $1 | any resistor kit | CAN bus termination |
-| 5 | Bench power supply, **≥3 A continuous, adjustable current limit** | 1 | $45–60 | Amazon (any 30 V/5 A unit) | Powers the motors and, later, the whole bench. The adjustable current limit is smoke insurance for a first build, and the 3 A rating covers the motors' real appetite (~1–1.5 A running, 5–8 A instantaneous peaks) |
+| 5 | Bench power supply, **≥3 A continuous, adjustable current limit** | 1 | $45–60 | Amazon (any 30 V/5 A unit) | Powers the motors and, later, the whole bench. **Run the motor rail at 24 V** — 12 V is this motor's undervoltage-latch line (stage 1). The adjustable current limit is smoke insurance for a first build, and the 3 A rating covers the motors' real appetite (~1–1.5 A running, 5–8 A instantaneous peaks) |
 | 6 | Multimeter | 1 | $20 | Amazon | Non-negotiable — polarity check before every first power-up |
 | 7 | Breadboard + jumper wires | 1 kit | $10 | Amazon | Signals only — power never routes through it |
 | 8 | USB-C data cable | 1 | — | you own one | Charge-only cables are a classic trap |
@@ -35,20 +35,22 @@ For a first-time gimbal builder with limited electronics experience. Ten stages;
 
 - **CAN bus:** a two-wire intercom line. Every device has an address (ours: pan = 0x141, tilt = 0x142 — hex numbers are just house numbers). Messages are always **8 data bytes** — short frames get silently ignored (a documented real-user bug).
 - **Transceiver & termination:** the ESP32 has the CAN *brain* on-chip but not the *voice* — the SN65HVD230 chip is the voice. The wire pair needs a 120 Ω resistor at each end (termination) so signals don't echo.
-- **Current limit:** a bench supply setting that caps output current. Set low, a wiring mistake fizzles instead of smoking. Our bring-up setting: **2.0 A** (enough for one motor to run; still safe).
-- **Common ground:** two power sources (USB-powered ESP32, 12 V motor supply) must share one ground wire, or signals have no reference and *nothing works*. The #1 "why is it dead" cause.
+- **Current limit:** a bench supply setting that caps output current. Set low, a wiring mistake fizzles instead of smoking. Our bring-up setting: **2.0 A** at 24 V (enough for one motor to run; still safe). The limit is the insurance — not a low voltage.
+- **Common ground:** two power sources (USB-powered ESP32, 24 V motor supply) must share one ground wire, or signals have no reference and *nothing works*. The #1 "why is it dead" cause.
 - **Absolute encoder:** the motor knows its angle the instant power arrives — within one revolution (it can't count full turns made while off, so the frame gets hard stops).
-- **0xA4:** the workhorse command of this build — "go to angle X, no faster than Y°/s," packed in 8 bytes. The motor does all trajectory math onboard. (A few housekeeping commands appear too: 0x92 read-angle, 0x79 set-address, 0x63/0x64 set-zero.)
+- **0xA4:** the workhorse command of this build — "go to angle X, no faster than Y°/s," packed in 8 bytes. The motor does all trajectory math onboard. (A few housekeeping commands appear too: 0x92 read-angle, **0x9A read-status** — volts and error flags, the pre-flight that catches a bad rail — 0x79 set-address, 0x63/0x64 set-zero.)
 
 ---
 
 ## Stage 1 — Bench setup and the three rules
 
-Set the supply to **12.0 V, current limit 2.0 A** *before* connecting anything (12 V is gentler for bring-up; motors accept 12–24 V; raise toward 3 A in stage 6 for two-motor moves).
+Set the supply to **24.0 V, current limit 2.0 A** *before* connecting anything (raise toward 3 A in stage 6 for two-motor moves).
+
+**Run the motor rail at 24 V, not 12.** The datasheet range is 12–24 V, but 12 V is this motor's *undervoltage-latch line*, not an operating point: at 12.0 V it acknowledges a move command, refuses to execute it, blinks a latched error, and — this unit's own quirk — takes its CAN interface down until you power-cycle. Bench-verified 2026-07-31, after two hours of chasing wiring that was never wrong. The **current limit**, not the voltage, is your smoke insurance: it caps a wiring fault either way, and reverse polarity kills the drive at any voltage. That's what rule 1 is for.
 
 The rules that prevent 90% of beginner damage: **(1)** multimeter checks polarity before every first power-up; **(2)** wire only with power off; **(3)** one common ground between ESP32 and motor supply.
 
-**Done when:** supply reads 12.0 V / 2.0 A limit and you can explain rule 3.
+**Done when:** supply reads 24.0 V / 2.0 A limit and you can explain rule 3.
 
 ## Stage 2 — Hello, ESP32 (and exactly how code gets onto the board)
 
@@ -88,7 +90,7 @@ Every sketch in this doc reaches the board the same way — learn it once here:
 **Done when:** LED blinks and text appears in Serial Monitor.
 **If stuck:** port never appears = charge-only cable (swap it). Upload dies at `Connecting…` = hold the board's **BOOT** button until writing starts. Gibberish in the monitor = baud isn't 115200.
 
-**Have the optional USB-CAN adapter (BoM row 10)?** Before any motor exists, **[Doc 3c · Prove the Bus](03c-prove-the-bus.md)** wires it and the transceiver into a two-node bench bus — no motor, no 12 V — and proves your entire CAN side: driver config, bit timing, transceiver, wiring, and the exact bytes on the wire. Half an hour now, and stage 4's troubleshooting ladder starts with half its rungs pre-checked.
+**Have the optional USB-CAN adapter (BoM row 10)?** Before any motor exists, **[Doc 3c · Prove the Bus](03c-prove-the-bus.md)** wires it and the transceiver into a two-node bench bus — no motor, no motor supply — and proves your entire CAN side: driver config, bit timing, transceiver, wiring, and the exact bytes on the wire. Half an hour now, and stage 4's troubleshooting ladder starts with half its rungs pre-checked.
 
 ## Stage 3 — Wire the CAN line
 
@@ -111,7 +113,7 @@ GPIO7 (RX) ────────────  CRX        │
                           CANH ─────┼───────────  CAN H     ← lightly twist
                           CANL ─────┼───────────  CAN L     ← these two
                                     │
-Bench supply +12V ──────────────────┼───────────  VCC (power plus)
+Bench supply +24V ──────────────────┼───────────  VCC (power plus)
 Bench supply GND ───────────────────┘
 ```
 
@@ -121,7 +123,7 @@ Annotations:
 
 - **Why GPIO6/7:** many online examples use GPIO4/5, which are *strapping pins* on the C6 (read by the chip at boot). They usually work; avoiding them removes a category of weird boot behavior for free.
 - **Termination check:** with everything unpowered, measure resistance CANH↔CANL. ~120 Ω = one resistor present somewhere; ~60 Ω = two (correct); open = none. Add external 120 Ω resistors until the bus reads ~60 Ω.
-- **Motor power never touches the breadboard** (rails are ~1 A). Motor + and − go directly to the supply terminals; only thin signal wires (CAN pair, signal ground) touch the breadboard.
+- **Motor power never touches the breadboard** (rails are ~1 A). Motor + and − go directly to the supply terminals; only thin signal wires (CAN pair, signal ground) touch the breadboard — with one exception the hard way: the *motor's own* stranded CAN pair belongs in screw terminals, not breadboard clips ([Doc 3a](03a-wire-the-bench.md#signals-the-breadboard-is-the-splitter-with-one-exception)).
 
 The diagram above is a schematic — it shows which signal meets which. The parts in your hands don't have bare wires: the motor ends in a 6-pin **JST ZH** connector, the common ground is a real screw terminal, and the optional USB-CAN sniffer isn't drawn here at all. That layer is **[Doc 3a · Wire It For Real](03a-wire-the-bench.md)** — connector pinout and how to make the harness, what "one ground" looks like with a screwdriver, where wires may split and how, tapping the sniffer onto the bus, and what the little micro-USB board in the motor box is for. Wire there, then come back here and power up.
 
@@ -135,7 +137,7 @@ The diagram above is a schematic — it shows which signal meets which. The part
     You're my bench agent for the Engineered Lighting gimbal build
     (chapter: engineering.engineered.lighting/03-build-the-gimbal/, stage 4).
     The stage-3 wiring is live on the bench: ESP32-C6 and SN65HVD230 on the
-    breadboard, one RMD-L-5005 motor clamped to the bench, supply at 12.0 V
+    breadboard, one RMD-L-5005 motor clamped to the bench, supply at 24.0 V
     with the 2.0 A current limit set. Start by proposing a plan and wait for
     my approval before executing anything. Then: compile and upload the
     stage-4 sketch in the chapter (FQBN esp32:esp32:esp32c6, TX=GPIO6,
@@ -196,6 +198,7 @@ void loop() {
   if (Serial.available()) {
     String c = Serial.readStringUntil('\n'); c.trim();
     if (c == "r")      send8(0x141, 0x92,0,0,0,0,0,0,0);   // read angle
+    else if (c == "s") send8(0x141, 0x9A,0,0,0,0,0,0,0);   // status: volts + errors
     else if (c == "z") moveTo(0, 30);
     else if (c.startsWith("a")) moveTo(c.substring(1).toFloat(), 30);
   }
@@ -208,12 +211,14 @@ void loop() {
 }
 ```
 
-The session: type `r` — **any reply is the win** (proves wiring, transceiver, bitrate, motor). Then `a10` — the motor turns to absolute 10° and holds (it resists a gentle hand). Heads-up on the very first move: the factory zero is wherever assembly left it, so the first absolute command may sweep up to a half-turn — calm at the 30°/s limit, but that's why the motor is clamped. Play with `a45`, `a-30`, `z`.
+The session: type `r` — **any reply is the win** (proves wiring, transceiver, bitrate, motor). Then type `s` before you move anything: the reply's bytes 4–5 are the supply voltage *as the motor measures it* (0.1 V per count, so `F0 00` = 24.0 V) and bytes 6–7 are its error flags. **You want 24-ish volts and `00 00`.** Thirty seconds here buys you the whole failure tree below. Then `a10` — the motor turns to absolute 10° and holds (it resists a gentle hand). Heads-up on the very first move: the factory zero is wherever assembly left it, so the first absolute command may sweep up to a half-turn — calm at the 30°/s limit, but that's why the motor is clamped. Play with `a45`, `a-30`, `z`.
 
 **The no-homing party trick:** move to `a45`, kill motor power, nudge the shaft (less than a full turn), power on, type `r` — it still knows its angle. That's the product's silent-wake feature. Fine print: single-turn encoder, so the frame gets hard stops making a full off-power revolution impossible.
 
 **Done when:** commanded angles work and the power-cycle trick passes.
-**If stuck (no reply):** first check the software non-bug — Serial Monitor line-ending set to "New Line" (stage 2, step 6)? Then hardware, in order: CANH/CANL swapped → missing common ground → motor unpowered → termination. The driver fails *silently* on a broken bus; print `twai_get_status_info` error counters after a send (climbing counters = wiring, not code). This is where the $20 USB-CAN dongle earns its keep.
+**If stuck (no reply):** first check the software non-bug — Serial Monitor line-ending set to "New Line" (stage 2, step 6)? Then hardware, in order: CANH/CANL swapped → missing common ground → motor unpowered → termination. The driver fails *silently* on a broken bus; print `twai_get_status_info` error counters after a send (climbing counters = wiring, not code). This is where the $20 USB-CAN dongle earns its keep. One more, learned the hard way: **thin stranded wire in a breadboard clip is not a connection** — see [Doc 3a](03a-wire-the-bench.md#where-wires-may-split-and-how).
+
+**If it acks but won't move (and the LED starts slow-blinking):** the motor is *fine* and your wiring is fine — it has latched a **Level-2 error** and is refusing motion. Read `s` (0x9A): if the voltage is near 12 V, that is the diagnosis — this 24 V-nominal motor latches undervoltage the instant its power stage tries to energize (stage 1). Raise the rail to 24 V and power-cycle. Two follow-ons worth knowing: the fault also takes this unit's **CAN interface down** — reads that worked a second ago go silent, and the error counters stay clean because your side is blameless — and a **power cycle is the verified recovery** (the protocol's 0x76 system-reset may also work; untested here). Blinking LED = latched error, solid = healthy: that little light is the fastest instrument on the bench.
 
 ## Stage 5 — Characterize (the measurements everything depends on)
 
@@ -296,11 +301,11 @@ Motors ship with the same address, so: connect motor B **alone**, change its ID 
 
 *Hands-on stage — no agent lane; the level-3 wiring photo check applies.*
 
-Three printed parts — pan base, yoke, head shell — turn two motors into an aimed head. The full frame chapter, with the parametric OpenSCAD scaffold, the five-minute fit coupon, and X1C print settings, is **[Doc 3b · Print the Frame](03b-print-the-frame.md)**. Print there, then come back here to wire and balance.
+A printed frame turns two motors into an aimed head. **[Doc 3b](03b-print-the-frame.md) publishes a worked reference design** — four parts, three test pieces, motor geometry measured out of the vendor STEP, and a boolean suite that proves each hole exists before you print. The frame on this bench is being drawn by hand with that as inspiration; treat 3b's numbers as the *constraints any frame must satisfy* rather than a parts list to copy. The chapter is **[Doc 3b · Print the Frame](03b-print-the-frame.md)**. Print there, then come back here to wire and balance.
 
 Wire routing: motor pigtails (power + CAN) cross each joint as a loose **service loop** — droopy, never taut across full travel.
 
-**Balancing (the important 20 minutes):** power OFF, the head should stay wherever you pose it. If it flops, slide the counterweight. Balanced head = near-zero hold current = silent and cool. Verify: hold current at 0°/45°/90° tilt barely differs from the unloaded stage-5 reading.
+**Balancing (the important 20 minutes):** power OFF, the head should stay wherever you pose it. If it flops, slacken the cradle cap and slide the housing until it stays — frame v8 balances by moving mass onto the axis, not by adding a counterweight. Balanced head = near-zero hold current = silent and cool. Verify: hold current at 0°/45°/90° tilt barely differs from the unloaded stage-5 reading.
 
 **Done when:** the powered-off head stays posed anywhere; powered moves are smooth, no cable snags.
 
@@ -384,7 +389,7 @@ Add WiFi + MQTT: install the **PubSubClient** and **ArduinoJson** libraries (Ske
 - [ ] 50 full-travel sweeps: service loops intact
 - [ ] Total power draw at 24 V — record it for the fixture power budget (external design doc: the fixture brief's ~60 W mode-based table)
 
-**Pass** → the architecture graduates to the fixture's lower-module PCB (C6 TWAI + $2 transceiver, actuators as-is). (The hand-built stop before any PCB — this gimbal plus [Doc 4](04-full-fixture-bench.md)'s bench, soldered into a real fixture — is **[Doc 8](08-build-the-fixture.md)**.) **Whine or heat at hold** → try the other supply voltage (24 V vs 12 V), re-balance harder, then fall back to the DIY FOC path ([Doc 2](02-choosing-the-motors.md), "The DIY path and its documented pain") where you own the loop.
+**Pass** → the architecture graduates to the fixture's lower-module PCB (C6 TWAI + $2 transceiver, actuators as-is). (The hand-built stop before any PCB — this gimbal plus [Doc 4](04-full-fixture-bench.md)'s bench, soldered into a real fixture — is **[Doc 8](08-build-the-fixture.md)**.) **Whine or heat at hold** → re-balance harder, then fall back to the DIY FOC path ([Doc 2](02-choosing-the-motors.md), "The DIY path and its documented pain") where you own the loop.
 
 ## AI as your lab partner
 
@@ -415,13 +420,16 @@ Run Claude Code in the folder holding your sketch (keep it in git so edits are r
 | Motor addresses | pan 0x141 · tilt 0x142 (set via cmd 0x79) |
 | Move command | 0xA4: `[A4 00 spdLo spdHi pos0..pos3]`, pos = deg×100, int32 little-endian |
 | Read angle / set zero | 0x92 · 0x63/0x64 (zero write needs reboot; do once, never in a loop — flash wear) |
+| Health / recovery | **0x9A** — bytes 4–5 = supply volts (0.1 V/count), 6–7 = error flags (0x0004 = low voltage). 0x76 = system reset (untested; power cycle is the verified recovery) |
+| LED codes | solid = running normally · **slow flash = latched Level-2 error** (undervoltage, over-temp…) · fast flash = Level-1, needs restart |
 | Pins | TX=GPIO6→CTX, RX=GPIO7←CRX (GPIO4/5 avoided: strapping pins) |
-| Supply | 12 V bring-up @ 2.0 A limit (→~3 A two-motor); 24 V test in stage 10; motor power direct to PSU, never via breadboard |
+| Supply | **24 V** @ 2.0 A limit (→~3 A two-motor). 12 V is the undervoltage-latch line, not an operating point. Motor power direct to PSU, never via breadboard |
 | Golden rules | multimeter first · wire cold · one ground · twist CANH/CANL · balanced head = silent head |
 
 ## Risk register
 
-- **Hold whine.** A balanced head should hold silently; audible whine at hold means current is fighting gravity — rebalance (stage 7's counterweight slot) before blaming the motor. Stage 5's hold-noise row is the baseline; stage 10 re-checks it at several angles.
+- **Hold whine.** A balanced head should hold silently; audible whine at hold means current is fighting gravity — rebalance (stage 7's housing slide) before blaming the motor. Stage 5's hold-noise row is the baseline; stage 10 re-checks it at several angles.
+- **Undervoltage latch, and the mute that follows.** At 12 V this 24 V-nominal motor acks moves, refuses them, slow-blinks, and drops off CAN until a power cycle — the failure looks exactly like bad wiring and is not (bench-verified 2026-07-31). Run the rail at 24 V, and read 0x9A before the first move of any session.
 - **Protocol drift.** Byte layouts vary across RMD firmware revisions — the protocol PDF that ships in the box is the authority for *your* unit, over anything online (including this doc's frame examples). When replies don't decode, diff against the PDF first.
 - **Single-turn absolute encoder.** The motor knows its angle within one revolution but can't count full turns made while powered off — the frame's hard stops (stage 7) are what make power-loss recovery unambiguous. Don't delete them to save print time.
 - **Supply volatility.** This motor family sells out episodically at retail (the 4005 did exactly that in July 2026 — see Doc 2's addendum). The third-unit spare in the BoM is the insurance; the alternates line under the BoM is the fallback path.

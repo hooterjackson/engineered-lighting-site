@@ -1,6 +1,6 @@
 ---
 title: 3c · Prove the Bus
-description: "An optional half-hour between stage 2 and stage 3: put the USB-CAN adapter and the transceiver on a two-node bench bus — no motor, no 12 V — and watch your own frames arrive on the wire. If the motor doesn't answer later, you'll already know your entire side is good."
+description: "An optional half-hour between stage 2 and stage 3: put the USB-CAN adapter and the transceiver on a two-node bench bus — no motor, no motor supply — and watch your own frames arrive on the wire. If the motor doesn't answer later, you'll already know your entire side is good."
 ---
 
 # Doc 3c · Prove the Bus — Two Nodes, No Motor
@@ -141,3 +141,7 @@ Then head back to [Doc 3 stage 3](03-build-the-gimbal.md#stage-3-wire-the-can-li
 motor — remembering the adapter's terminator **flips OFF** as it moves to a mid-span tap
 ([Doc 3a shows where](03a-wire-the-bench.md#adding-the-usb-can-sniffer)). When stage 4's first
 `r` gets no reply, you'll know which half of the world to suspect: not yours.
+
+And when the motor answers reads happily but goes mute the moment you command a move — that is
+its **undervoltage latch**, not your wiring. Check the rail is at 24 V and power-cycle; stage 4's
+ladder has the full tree.

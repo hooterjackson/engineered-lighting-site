@@ -9,6 +9,11 @@ description: "The gimbal's printed frame: four parts that print flat with no sup
 
 The frame chapter [Doc 3](03-build-the-gimbal.md) stage 7 points at. Context, fixed: the motors are **RMD-L-5005** (Ø49 × 23.9 mm, 92 g), the spotlight payload is the **DLH-3UP-EH aluminium LED housing** (Ø0.99″ barrel, 1.26″ overall, flush front, hollow ½″-14 NPT rear stub the wires come out of), the printer is a **Bambu Lab X1C**, and the material is **PETG Basic**.
 
+!!! note "This scaffold is reference, not the frame being built"
+    The OpenSCAD in this chapter was machine-generated, and it is published as **worked reference** — a documented set of constraints, measured-from-STEP motor geometry, and a boolean test suite showing what a frame has to satisfy. **The frame actually going on this bench is being designed by hand**, with the scaffold as inspiration rather than a source of parts.
+
+    Read the numbers here as *requirements* — the 2.5 mm tapped depth, the 3.0 mm of axial room before the stator, the 0.505 N and 0.0146 N·m the tilt axis carries, the unpublished bearing rating that argument rests on. Those hold for any frame. The specific parts, print orientations and gram counts describe one solution to them.
+
 This is **frame v8**, and it is a ground-up rebuild. Two things drove it.
 
 ## What changed, and why it matters

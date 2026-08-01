@@ -4,7 +4,7 @@
 read this file first — it replaces the chat history that produced this repo.
 Update it at the end of every working session.*
 
-**Last updated:** 2026-07-29 (Cowork cloud session — reconciled against git history)
+**Last updated:** 2026-07-31 (bench session — first motor motion)
 
 ## What this project is
 
@@ -31,23 +31,33 @@ Material, deployed via GitHub Actions).
   wiring-SVG labels edited, checklist localStorage IDs preserved). `db41f3f`
   (2026-07-22) added Doc 3b + `docs/cad/frame.scad` (parametric scaffold +
   fit coupon). The prompt files remain in `prompts/` as executed history.
-- **Nothing purchased yet.** The Dings order (3× RMD-L-5005-100-C, $107.50 ea,
-  2 build + 1 spare/bench unit) is NOT yet placed. Doc 4 (LED bench) and
-  Doc 5 (camera) BoMs unordered. Valent X sourcing is resolved on the site —
-  click-to-buy at BuyRite/LBC ($486 spool), BTF FCOB listed as the budget
-  bench substitute.
+- **Motors purchased; bench is live.** Doc 3 **stage 4 passed 2026-07-31**:
+  motor answering on CAN at 0x141, 0xA4 moves commanded and landed to 0.01
+  degrees, and the no-homing power-cycle trick verified (the encoder reported
+  80.21 deg after a power-off hand rotation). Getting there cost three
+  diagnosed failures, all now written into the site: stranded wire fails in
+  breadboard clips two ways (splay bare, cold-flow tinned); 12.0 V is this
+  24 V-nominal motor's undervoltage-latch line, not a gentle bring-up; and
+  when that latches, this unit takes its CAN interface down until a power
+  cycle. Doc 4 (LED bench) and Doc 5 (camera) BoMs unordered. Valent X
+  sourcing is resolved on the site - click-to-buy at BuyRite/LBC ($486
+  spool), BTF FCOB listed as the budget bench substitute.
 - **Hardware owned:** RTX 6000 Blackwell GPU box, Home Assistant install,
   Bambu Lab X1C printer (PETG/PETG-CF on hand assumed).
 
 ## Pending work queue (in order)
 
-1. **Place the Dings Motion USA order** — 3× RMD-L-5005-100-C (explicitly the
-   -C CAN variant; ask for mating cables, one per motor + a spare; keep the
-   protocol PDF that ships in the box — it's the authority on byte layouts).
-2. When the order ships: update Home's "current phase" line (hero meta +
-   footer in `docs/index.md`).
-3. On motor arrival: Doc 3 stages 1–6 (bench bring-up); then calipers → fill
-   frame.scad's MEASURE-ME parameters → Doc 3b's coupon-first build order.
+1. **Finish stage 4** - one move through the bench-UI path (the first motion
+   was driven from the USB-CAN adapter), then flash firmware v2 and run the
+   health-gate injection drill (`gimbal-bench` repo, commit e9acea7).
+2. **Stage 5 characterization** - `tools/sweep_runner.py --live` walks the
+   hold/sweep/resolution protocol with dB-meter cues.
+3. **Stage 6** - motor B ALONE on the bus, re-addressed to 0x142 via
+   `tools/readdress.py` (0x79 is a one-shot persistent flash write).
+4. **Frame** - being designed BY HAND on this bench. Doc 3b's generated
+   OpenSCAD scaffold stays published as worked reference (constraints,
+   STEP-measured motor geometry, boolean test suite), not as a parts list;
+   the chapter now says so at the top.
 4. **Later, post-bench — fixture integration v0 (hand-soldered):** port the
    Doc 4 architecture off the breadboards onto 2–3 stacked round protoboards
    ("vegetable can" round prototyping PCB, Etsy) inside a fixture body, fed
@@ -196,3 +206,30 @@ Material, deployed via GitHub Actions).
    state and the pending queue; then let's continue."*
 4. Note: Cowork **local** sessions stay on the machine they ran on — this file
    is the continuity mechanism, not chat history. Keep it updated.
+
+### 2026-07-31 — first motor motion; frame authorship; two corrections
+
+**Stage 4 passed.** One RMD-L-5005 on the bench, answering 0x92 and executing
+0xA4 to 0.01 deg, power-cycle trick verified. Three failures diagnosed on the
+way, all now in the site: stranded motor CAN wires must land in screw
+terminals (they fail bare AND tinned in breadboard clips); the motor rail runs
+at **24 V** because 12.0 V is this unit's undervoltage-latch line; and a
+latched fault takes its CAN interface down until power cycle (power cycle is
+the verified recovery, 0x76 untested). LED codes are the fastest instrument:
+solid = normal, slow flash = latched Level-2 error.
+
+**Frame: designed by hand from here.** The generated OpenSCAD in Doc 3b stays
+published as *worked reference* - the STEP-measured motor geometry, the
+2.5 mm tapped depth, the cantilever load argument, the boolean test suite -
+but the frame going on this bench is being drawn by hand with that as
+inspiration. Doc 3b and Doc 3 stage 7 both say so now.
+
+**Correction to the 2026-07-29 entry above:** it describes the RMD's port as a
+"4-pin side connector". It is a **6-pin JST ZH** (VCC, VCC, GND, GND, CANH,
+CANL - power doubled up), documented in Doc 3a. The collar-impossible
+conclusion still holds; only the pin count was wrong.
+
+**Correction to the frame ledger:** entries describing frame.scad at v3 (nine
+flat plates, 608 bearing in a boss-padded pocket) were true as written; the
+design has since moved to v8 - four parts, no bearing, no counterweight, the
+tilt axis cantilevered off the motor output. See Doc 3b.

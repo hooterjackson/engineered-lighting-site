@@ -63,14 +63,14 @@ The motors ship with cables terminated on **both** ends, and there is no officia
 1. Keep the end that plugs into the motor. Cut the far connector off.
 2. Strip **all six** conductors — both VCC wires and both GND wires, not one of each. Halving the contacts halves an already-marginal current budget.
 3. Within a few centimetres of the connector, join the two VCC wires into one heavier lead and the two GND wires into another — 20 AWG is right for the run to the supply. A **WAGO 221 lever nut** does this without an iron (see *Motor power*, below); thin stranded wire at motor current makes a poor first soldering job.
-4. Terminate however your bench likes: bare tinned ends, ferrules, or banana plugs.
+4. Terminate however your bench likes: ferrules or banana plugs. Not tinned ends anywhere something clamps them — solder cold-flows under pressure and the joint loosens.
 
 Hand-crimping ZH at 1.5 mm pitch is genuinely difficult, which is why reusing the factory-crimped end beats starting from a bag of loose contacts.
 
 !!! warning "The connector is the weak link, and it is not close"
     JST ZH is rated **1.0 A per contact** — roughly 2 A per rail with both contacts populated. The L-Series product manual rates this motor's driver at **5 A continuous, 8 A instantaneous**. (The MC-series manual says 3 A / 6 A for the same pairing — the two official documents conflict.)
 
-    Either way the connector is far below the drive's ceiling. The model number's `100` is watts: at 24 V that is roughly 4 A, and at the 12 V we bring up on it is roughly 8 A — both well past what the connector can carry. **The connector, not the drive, sets your ceiling.**
+    Either way the connector is far below the drive's ceiling. The model number's `100` is watts: at the 24 V we run, that is roughly 4 A — and it would be 8 A at the 12 V bottom of the range — both well past what the connector can carry. **The connector, not the drive, sets your ceiling.**
 
     So keep the bench limit at **2.0 A** through stage 5, keep the ZH pigtail short, and set an explicit current ceiling in the configuration software rather than trusting the drive to stay modest. That 2.0 A is a connector limit, not a convenience setting: if the supply trips into current limit, find out why — do not raise it.
 
@@ -106,11 +106,19 @@ The supply's black terminal is now the single floor the whole bench measures aga
 
 The rule that governs this is stage 3's third annotation: **signals may ride the breadboard, motor power may not.** Breadboard rails give up around 1 A; the motor's instantaneous rating is 6 A or 8 A depending on which manual you believe (see the connector warning above). Either figure is several times what a rail will carry.
 
-### Signals: the breadboard *is* the splitter
+### Signals: the breadboard *is* the splitter — with one exception
 
-That is what a breadboard does. Each row of five holes is one internally-connected node. CANH has three wires to join at stage 3 — one in from the transceiver, one out to the motor, one out to the sniffer — so push all three into different holes of the same row. No pigtails, no soldering, no connectors.
+That is what a breadboard does. Each row of five holes is one internally-connected node. CANH has wires to join at stage 3 — one in from the transceiver, one out to the sniffer — so push them into different holes of the same row. Same for CANL on its own row. No pigtails, no soldering, no connectors.
 
-Same for CANL on its own row. This is why the CAN pair is allowed on the breadboard and motor power is not.
+!!! trap "The motor's own CAN pair does not belong in a breadboard"
+    Everything on the transceiver side is stiff 22 AWG solid core, which is what breadboard clips are designed to grip. The pair coming off the **motor harness** is the factory's thin stranded wire, and it fails in a breadboard two different ways — both of which we hit in one evening:
+
+    - **Bare stranded:** the strands splay under the clip and nothing makes contact. It looks seated. It is not.
+    - **Tinned:** solder *cold-flows* under sustained spring pressure. It works, then quietly stops working minutes later — the same physics behind Doc 8's "never tin a wire going under a screw."
+
+    Land the motor's CANH and CANL in **screw terminals** instead — the USB-CAN adapter's spare terminals are right there and already on the bus. **Fresh-stripped bare strands under the screw, never tinned.** No adapter? A **WAGO 221 lever nut** per line does the same job (the power section below already has you buying them), or solder the joint properly with heat-shrink.
+
+    Symptom if you skip this: the motor answers reads for a while, then goes silent — indistinguishable from the undervoltage latch until you check the rail. Two failure modes, one look.
 
 ### Motor power: lever nuts, not pigtails
 
@@ -189,7 +197,7 @@ One further caution: the configuration software version that lists the L-5005 (S
 - [ ] Motor's laser-marked labels read, and the harness rung out against them
 - [ ] Continuity confirms the two VCC contacts beep together, and the two GND contacts beep together
 - [ ] **VCC↔GND does not beep**, measured at the finished harness
-- [ ] Supply set to **12.0 V, limit 2.0 A** — before anything is connected
+- [ ] Supply set to **24.0 V, limit 2.0 A** — before anything is connected (12 V is the motor's undervoltage-latch line, not a gentler option)
 - [ ] One ground wire clamped from the breadboard rail to the supply's − terminal
 - [ ] Powered-off resistance across CANH↔CANL reads **~60 Ω** (~120 Ω = one terminator, open = none, ~40 Ω = three)
 - [ ] Nothing is plugged or unplugged from here on with the power on
