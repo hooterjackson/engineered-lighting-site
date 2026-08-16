@@ -15,6 +15,9 @@ One ESP32-C6 controlling all three fixture subsystems on the bench: **21 channel
 > 2. **An MQTT broker** — install the official **Mosquitto broker** add-on in HA now (Settings → Add-ons). [Doc 3](03-build-the-gimbal.md) stage 9, this doc's stage 6 look-ahead, and all of [Doc 5](05-teach-it-to-aim.md) publish through it.
 > 3. **Basic soldering** — a $25–40 iron kit (in the BoM) and three easy jobs: wires onto the tape's big copper pads, one solder-blob jumper on PCA9685 #2, and optionally the PicoBuck current jumper. The tape pads are a forgiving place to learn; tin the pad, tin the wire, touch them together with the iron.
 
+!!! warning "The YAML in this chapter is the bench's history — the wiring is current, the flash lane is not"
+    Every wire, pin, address, and measurement in these stages is exactly what you build — follow them to the letter. The flash lane is another story: the fixture's C6 now runs Arduino-based Zigbee firmware, not ESPHome, so where a stage says *install*, *flash*, or `esphome run`, that lane no longer applies — take the firmware step from the bench console instead. The YAML stays because it is the clearest statement of the architecture you are soldering: read it as the wiring's second witness, not as something to flash.
+
 ## The whole bench, one picture
 
 ![Full bench overview diagram](assets/wiring-full-bench-overview.svg)
@@ -128,6 +131,8 @@ This build runs at **24 V** (tape-native; motors accept it too — one rail, lik
 3. **Breadboard carries signals only** (I2C, PWM, dim lines — milliamps). All real current (24 V feeds, tape, spotlight, motors) lives on WAGOs and 18–20 AWG wire. Rails die ~1 A; respect that and there are no mystery failures.
 4. Multimeter ritual: 24 V at the bus, 5 V from the buck, 0 Ω between all grounds.
 
+Holding the actual supply and wondering where the wire goes? [Doc 4a](04a-wire-the-zones.md#your-supply-before-anything-else) is this stage at screw-terminal level — the real output block, the pigtail ritual, and checkpoints CP1–CP7.
+
 **Done when:** one fused 24 V bus, one star ground, 5 V logic rail.
 
 ## Stage 2 — First light: one zone, three sliders
@@ -165,6 +170,8 @@ This build runs at **24 V** (tape-native; motors accept it too — one rail, lik
     *[How to run this prompt →](00b-ai-native-workflow.md)*
 
 Cut one radial zone (2 tape segments = 4.92") at the printed cut lines; solder four wires: +24 V and the three channel negatives — **label them from the tape's printed pad markings** (this is also where you verify the common-anode wiring the spec sheet implies).
+
+First tape solder of the build? [Doc 4a](04a-wire-the-zones.md#tape-work) is this step held in your hands — practice joints on the spool tail, the pad-lift trap, and the beep tests that prove the harness before it ever sees power.
 
 Wire the chain (power off):
 

@@ -350,7 +350,10 @@ top is exactly what this step needs it to provide.)
 1. Disconnect the bench feed.
 2. Land the E26 adapter's leads and the trunk wires on the IRM's screw
    terminals — L, N, +Vo, −Vo; there is no earth terminal and none is needed
-   (Class II). Fit the terminal cover; screw blocks can't be heat-shrunk.
+   (Class II). As built, the ST's output block duplicates its terminals —
+   two +Vo screws and two −Vo screws, internally one output — land the
+   pigtails one per screw. Fit the terminal cover; screw blocks can't be
+   heat-shrunk.
 3. Strain-relieve the adapter leads where they enter the body.
 4. Screw it into a socket and re-run the short version of everything.
 
