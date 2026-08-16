@@ -28,6 +28,10 @@ Doc 4 [stage 1](04-full-fixture-bench.md#stage-1-power-backbone) says "bench sup
 
 ![IRM-90-24ST terminal block, checkpoints CP1–CP4, and the pigtail split](assets/wiring-psu-terminals.svg)
 
+And here is the diagram's subject in the flesh — this build's own unit, already mounted on the fixture frame:
+
+![The bench's own IRM-90-24, annotated: the mains block, the doubled output screws, and where the meter ritual actually happens](assets/photo-psu-irm90.jpg)
+
 Four rules before a screwdriver goes anywhere near it. Each one is named after the way it fails:
 
 1. **Unplug it — not "switched off."** A power strip's rocker can break the neutral and leave line sitting on the block; its neon lamp proves nothing after the lamp dies. The named failure is a screwdriver landing across L and N on a block you believed dead — at mains that is not a spark, it is an arc that machines the tip and ends the afternoon. Cord out of the wall, in your line of sight, before every touch.
@@ -71,6 +75,8 @@ The breadboard carries **signals only** — I2C, dimmer lines, milliamps. A brea
 
 Three checkpoints close the backbone: 24 V at the bus after the fuse (CP5), 5.0 V at the buck output **measured before the ESP32 is connected** (CP6 — a swapped VIN/GND survives; fix it and re-test), and one resistance sweep proving supply−, the star, the ESP32's GND, and every ULN pin 9 all sit within 1 Ω of each other (CP7).
 
+![The Pololu 24 V to 5 V converter, annotated: IN from the fused bus, GND to the star, OUT is checkpoint CP6, PG and EN stay empty](assets/photo-buck-5v.jpg)
+
 ---
 
 ## The chain, demystified
@@ -88,6 +94,8 @@ The **address is a house number.** Both boards hear every order on the same two 
 !!! danger "An unbridged board #2 is a second 0x40, not a missing 0x41"
     Skip the jumper and board #2 does not sit quietly waiting to be found. It is a **second device answering at 0x40** — both chips reply at once, and the bus traffic meant for the zones that already work gets corrupted by the newcomer. The failure reads backwards: you added zones 6 and 7 and *zones 1 through 5* started glitching. Bridge A0 with everything unpowered, **before the board's SDA and SCL ever touch the bus.**
 
+![This build's own hub, annotated: VCC's 3.3 V law, the two shared wires, the empty V+ and OE, zone 1's three channels, and the A0 pads board #2 gets bridged on](assets/photo-pca9685-hub.jpg)
+
 Three traps, all pre-solved in the stage YAML but not in your wiring:
 
 - **VCC gets 3.3 V. Never 5 V.** At 5 V the chip's logic threshold rises above what the C6 outputs and I2C fails *silently* — the maddening kind, where every wire is seated and nothing answers.
@@ -96,6 +104,10 @@ Three traps, all pre-solved in the stage YAML but not in your wiring:
 
 Before power touches the chain, CP8: the wire landing on PCA VCC beeps to the 3V3 rail **and to nothing else**. If it beeps anywhere else, rewire before power.
 
+The other end of those two wires is the brain. This build keeps a spare ESP32-C6 board for exactly this chapter — the whole chain gets proven on the expendable board before the fixture's own brain ever touches it:
+
+![The spare ESP32-C6 board, annotated: 3V3 and GND to the hub, GPIO 2 and 3 as the two shared wires, and the COM port the test program talks through](assets/photo-spare-c6.jpg)
+
 ### Hop 2 — the ULN2803, or: eight switches in one chip
 
 ![ULN2803 close-up: IN n to OUT 19−n, pin 9 to the star, and one channel's full current path](assets/wiring-hop-uln2803.svg)
@@ -103,6 +115,10 @@ Before power touches the chain, CP8: the wire landing on PCA VCC beeps to the 3V
 A ULN2803 is **eight electronic switches in one package**. Put 3.3 V on IN *n* and the switch at OUT (19−*n*) — the pin directly across the chip — closes, connecting that tape wire to ground. Current then flows the full loop: 24 V bus → tape → OUT pin → through the chip → pin 9 → the star. The chip **eats about 1 V doing it, so the tape sees ~23 V.** That is a voltage statement, small and uniform — every channel loses the same volt, and the eye reads it as nothing at all.
 
 Pin 9 goes to the star. Pin 10 stays unconnected.
+
+One board in the parts box looks like it belongs in this chain and does not — it drives the *spotlight*, a different milestone with a different physics:
+
+![The three-channel constant-current driver with its warning banner: spotlight only, never the tape](assets/photo-spotlight-driver-warning.jpg)
 
 One closing rule for the whole chain: **one I2C master and one 3V3 source on the bus at a time.** The C6 gives the orders and the C6's regulator feeds the logic — wire in a second of either and the bus stops being a party line and becomes a committee.
 
@@ -115,6 +131,10 @@ The Valent X spool is the most expensive thing on this bench, and the work in th
 ![Tape end close-up: cut line, printed pads, wire flags, solder order, strain relief, and the stray-strand trap](assets/wiring-zone-solder.svg)
 
 **Practice on the spool tail first.** The spool's outer end is scrap the moment you cut your first zone. Make two or three practice joints there before touching a real zone: a lifted pad on the tail costs nothing, and a lifted pad on a cut zone costs one cut-line of tape — not the day, but not free either. Nobody's first tape joint should be one that has to work.
+
+This is your spool at a cut line — the four pads, and the printed letters every wire label copies:
+
+![The Valent X tape at a cut line, annotated: 24V+, W, N and C pads, and the pad row the cut goes through](assets/photo-tape-pads.jpg)
 
 The rules, each with its failure attached:
 
@@ -183,6 +203,10 @@ Work the ladder top-down. Each rung is a witness, and each failure names exactly
 | 7 | Nothing anywhere | — | Back to the stage-1 ritual numbers: bus, buck, grounds |
 
 One meter honesty note for rung 4: **a DMM averages PWM.** At 40% it reads ~1.3 V, at 70% ~2.3 V — numbers that look like faults and aren't. Never probe at partial level; command 100% and expect ~3.3 V, or learn nothing.
+
+Rung 2's far end, for completeness — the radio the commands travel through. It lives in the Home Assistant box and never gets a wire from this bench:
+
+![The Zigbee coordinator stick in the Home Assistant box — nothing to wire; pairing happens on HA's screen](assets/photo-zigbee-stick.jpg)
 
 ---
 
