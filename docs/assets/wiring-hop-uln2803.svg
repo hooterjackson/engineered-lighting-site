@@ -1,0 +1,90 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · Hop 2 — the ULN2803: eight switches in one chip</text>
+  <text x="30" y="56" font-size="12" fill="#555">3.3 V on IN n closes the switch at OUT (19−n), directly across the chip. The chip eats ~1 V; the tape sees ~23 V.</text>
+
+  <!-- +24V bus -->
+  <rect x="60" y="90" width="140" height="54" fill="#ffe9e6" stroke="#d62828" stroke-width="2" rx="6"/>
+  <text x="130" y="112" font-size="11" font-weight="bold" text-anchor="middle" fill="#8a1c1c">+24 V BUS</text>
+  <text x="130" y="128" font-size="9" text-anchor="middle" fill="#b45">(WAGO)</text>
+
+  <!-- tape channel -->
+  <rect x="760" y="86" width="210" height="84" fill="#fff8ec" stroke="#a8792a" stroke-width="1.5" rx="8"/>
+  <text x="865" y="110" font-size="12" font-weight="bold" text-anchor="middle" fill="#6b4c12">one tape channel</text>
+  <text x="865" y="126" font-size="9" text-anchor="middle" fill="#8a6a2f">+24 V in at the common anode,</text>
+  <text x="865" y="139" font-size="9" text-anchor="middle" fill="#8a6a2f">this channel's − wire back out</text>
+  <text x="865" y="158" font-size="9" text-anchor="middle" fill="#8a6a2f">sees ~23 V while switched on</text>
+
+  <!-- current path: bus -> tape -->
+  <path d="M 200 110 L 760 110" fill="none" stroke="#d62828" stroke-width="4"/>
+  <text x="480" y="102" font-size="10" fill="#8a1c1c">the current's trip: bus → tape →</text>
+  <!-- tape -> OUT1 -->
+  <path d="M 760 150 L 624 150" fill="none" stroke="#c47a00" stroke-width="4"/>
+  <text x="692" y="168" font-size="10" fill="#8a5a00" text-anchor="middle">→ OUT →</text>
+
+  <!-- chip body -->
+  <rect x="384" y="130" width="240" height="300" fill="#eefaf1" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="504" y="152" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">ULN2803A</text>
+  <g font-size="10" fill="#223">
+    <text x="392" y="184">IN1 (p1)</text>
+    <text x="392" y="214">IN2 (p2)</text>
+    <text x="392" y="244">IN3 (p3)</text>
+    <text x="392" y="274">IN4–8</text>
+    <text x="392" y="404">GND (p9)</text>
+    <text x="616" y="184" text-anchor="end">OUT1 (p18)</text>
+    <text x="616" y="214" text-anchor="end">OUT2 (p17)</text>
+    <text x="616" y="244" text-anchor="end">OUT3 (p16)</text>
+    <text x="616" y="274" text-anchor="end">OUT4–8</text>
+    <text x="616" y="404" text-anchor="end">COM (p10)</text>
+  </g>
+  <!-- straight-across arrows -->
+  <g stroke="#3f7c55" stroke-width="1.5" stroke-dasharray="5 4" fill="none">
+    <line x1="452" y1="210" x2="556" y2="210"/>
+    <line x1="452" y1="240" x2="556" y2="240"/>
+  </g>
+  <text x="504" y="300" font-size="10" text-anchor="middle" fill="#3f7c55">OUTn = pin 19−n — directly across</text>
+
+  <!-- switch glyph + 1V drop inside chip on OUT1 path -->
+  <path d="M 624 150 L 600 150 L 600 162" fill="none" stroke="#c47a00" stroke-width="4"/>
+  <circle cx="600" cy="164" r="2.5" fill="#8a5a00"/>
+  <path d="M 600 164 L 588 178" fill="none" stroke="#8a5a00" stroke-width="2.5"/>
+  <circle cx="600" cy="184" r="2.5" fill="#8a5a00"/>
+  <path d="M 600 186 L 600 372 L 420 372 L 420 396" fill="none" stroke="#c47a00" stroke-width="4"/>
+  <text x="612" y="250" font-size="10" font-weight="bold" fill="#8a5a00">~1 V eaten</text>
+  <text x="612" y="264" font-size="10" fill="#8a5a00">right here</text>
+
+  <!-- pin 9 to star -->
+  <path d="M 384 400 L 210 400" fill="none" stroke="#222" stroke-width="4"/>
+  <rect x="60" y="372" width="150" height="56" fill="#ececec" stroke="#222" stroke-width="2" rx="6"/>
+  <text x="135" y="395" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">GND STAR</text>
+  <text x="135" y="411" font-size="9" text-anchor="middle" fill="#444">→ star, always DIRECT</text>
+  <text x="296" y="392" font-size="10" fill="#333" text-anchor="middle">p9 → star</text>
+
+  <!-- pin 10 crossed out -->
+  <line x1="624" y1="400" x2="660" y2="400" stroke="#999" stroke-width="3"/>
+  <line x1="634" y1="390" x2="652" y2="410" stroke="#c33" stroke-width="3"/>
+  <line x1="652" y1="390" x2="634" y2="410" stroke="#c33" stroke-width="3"/>
+  <text x="670" y="404" font-size="9" fill="#8a1c1c">pin 10 COM: leave unconnected</text>
+
+  <!-- IN side note -->
+  <g stroke="#7a7a7a" stroke-width="2.5" fill="none">
+    <line x1="310" y1="180" x2="384" y2="180"/>
+    <line x1="310" y1="210" x2="384" y2="210"/>
+    <line x1="310" y1="240" x2="384" y2="240"/>
+  </g>
+  <text x="300" y="184" font-size="10" text-anchor="end" fill="#555">from PCA LED0</text>
+  <text x="300" y="214" font-size="10" text-anchor="end" fill="#555">LED1</text>
+  <text x="300" y="244" font-size="10" text-anchor="end" fill="#555">LED2 — 3.3 V signals</text>
+
+  <!-- voltage-statement box -->
+  <rect x="660" y="330" width="310" height="76" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="672" y="350" font-size="10" font-weight="bold" fill="#6b5200">THE ~1 V IS A VOLTAGE STATEMENT</text>
+  <text x="672" y="368" font-size="9.5" fill="#514000">small and uniform — every channel loses the same</text>
+  <text x="672" y="382" font-size="9.5" fill="#514000">volt, so the eye reads ~23 V as nothing at all</text>
+  <text x="672" y="396" font-size="9.5" fill="#514000">(500 mA/channel ceiling; the package is the real limit)</text>
+
+  <!-- ground rule -->
+  <rect x="60" y="470" width="910" height="60" fill="#f2fbf4" stroke="#3f7c55" stroke-width="1.5" rx="8"/>
+  <text x="76" y="493" font-size="11" font-weight="bold" fill="#3f7c55">EVERY PIN 9 GOES DIRECT TO THE STAR — NEVER CHAINED</text>
+  <text x="76" y="511" font-size="10" fill="#2f5c40">Chained grounds turn shared return current into small offsets: two zones at identical settings visibly disagree. That mismatch is this wire, not software.</text>
+</svg>

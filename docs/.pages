@@ -11,4 +11,8 @@ nav:
   - 03c-prove-the-bus.md
   - 03a-wire-the-bench.md
   - 03b-print-the-frame.md
+  # 04a is the connector-level companion to Doc 4 stages 1-4, same pattern
+  # as 3a. Letters are accession order and never change.
+  - 04-full-fixture-bench.md
+  - 04a-wire-the-zones.md
   - ...

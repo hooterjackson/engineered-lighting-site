@@ -1,0 +1,105 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="620" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · Tape end close-up — cut, label, solder, anchor, then tug</text>
+  <text x="30" y="56" font-size="12" fill="#555">Practice on the spool tail first: a lifted pad there costs nothing; on a cut zone it costs one cut-line of tape.</text>
+
+  <!-- tape strip -->
+  <rect x="60" y="150" width="600" height="120" fill="#fff8ec" stroke="#a8792a" stroke-width="2" rx="6"/>
+  <text x="360" y="142" font-size="11" font-weight="bold" text-anchor="middle" fill="#6b4c12">Valent X tape · zone end</text>
+
+  <!-- cut line -->
+  <line x1="120" y1="150" x2="120" y2="270" stroke="#c33" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <text x="120" y="292" font-size="10" font-weight="bold" text-anchor="middle" fill="#8a1c1c">cut at the PRINTED line only</text>
+  <text x="120" y="306" font-size="9" text-anchor="middle" fill="#7c2a2a">anywhere else kills both neighbouring segments</text>
+
+  <!-- printed pads -->
+  <g fill="#e8c27a" stroke="#8a6a2f" stroke-width="1.5">
+    <rect x="150" y="176" width="46" height="26" rx="3"/>
+    <rect x="150" y="218" width="46" height="26" rx="3"/>
+    <rect x="270" y="176" width="46" height="26" rx="3"/>
+    <rect x="270" y="218" width="46" height="26" rx="3"/>
+  </g>
+  <g font-size="9" font-weight="bold" text-anchor="middle" fill="#5c430e">
+    <text x="173" y="193">+24V</text>
+    <text x="173" y="235">1800 K</text>
+    <text x="293" y="193">3500 K</text>
+    <text x="293" y="235">6500 K</text>
+  </g>
+  <text x="400" y="196" font-size="10" fill="#8a6a2f">← the PRINT beside each pad is</text>
+  <text x="400" y="210" font-size="10" fill="#8a6a2f">the only authority — your spool,</text>
+  <text x="400" y="224" font-size="10" fill="#8a6a2f">not any diagram (including this one)</text>
+
+  <!-- wires with label flags -->
+  <g stroke-width="3" fill="none">
+    <path d="M 196 189 C 380 170 520 120 700 116" stroke="#d62828"/>
+    <path d="M 196 231 C 400 250 540 320 700 316" stroke="#c47a00"/>
+    <path d="M 316 189 C 460 176 560 176 700 180" stroke="#7a7a7a"/>
+    <path d="M 316 231 C 470 244 570 250 700 248" stroke="#2e86c1"/>
+  </g>
+  <g fill="#fff" stroke="#555" stroke-width="1">
+    <rect x="700" y="106" width="86" height="20" rx="3"/>
+    <rect x="700" y="170" width="86" height="20" rx="3"/>
+    <rect x="700" y="238" width="86" height="20" rx="3"/>
+    <rect x="700" y="306" width="86" height="20" rx="3"/>
+  </g>
+  <g font-size="9" font-weight="bold" text-anchor="middle" fill="#333">
+    <text x="743" y="120">"+24V"</text>
+    <text x="743" y="184">"3500K −"</text>
+    <text x="743" y="252">"6500K −"</text>
+    <text x="743" y="320">"1800K −"</text>
+  </g>
+  <text x="893" y="120" font-size="9" fill="#555">label flags at BOTH ends,</text>
+  <text x="893" y="134" font-size="9" fill="#555">copied from the pad print —</text>
+  <text x="893" y="148" font-size="9" fill="#555">never from wire colour</text>
+
+  <!-- strain relief anchor -->
+  <rect x="330" y="152" width="26" height="116" fill="#d9e6d9" fill-opacity="0.7" stroke="#3f7c55" stroke-width="2" rx="4"/>
+  <text x="343" y="120" font-size="10" font-weight="bold" text-anchor="middle" fill="#2a5c3a">ANCHOR</text>
+  <line x1="343" y1="126" x2="343" y2="150" stroke="#3f7c55" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="343" y="288" font-size="9" text-anchor="middle" fill="#2a5c3a">within ~20 mm of the pads,</text>
+  <text x="343" y="301" font-size="9" text-anchor="middle" fill="#2a5c3a">BEFORE the tug test — a tug</text>
+  <text x="343" y="314" font-size="9" text-anchor="middle" fill="#2a5c3a">lands here, never on a joint</text>
+
+  <!-- solder order -->
+  <rect x="60" y="350" width="380" height="96" fill="#f2fbf4" stroke="#3f7c55" stroke-width="1.5" rx="8"/>
+  <text x="76" y="372" font-size="11" font-weight="bold" fill="#3f7c55">SOLDER ORDER (Doc 8's volcano rule)</text>
+  <g font-size="10" fill="#2f5c40">
+    <text x="76" y="392">1 · tin the pad    2 · tin the wire</text>
+    <text x="76" y="408">3 · touch them together with the iron — 2 s, done</text>
+    <text x="76" y="424">4 · a tiny volcano = good · a blobby ball = redo with flux</text>
+    <text x="76" y="440">then CP9–CP11: beep every wire to its own pad only</text>
+  </g>
+
+  <!-- wire gauge trap -->
+  <rect x="60" y="466" width="380" height="76" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="76" y="488" font-size="10" font-weight="bold" fill="#8a1c1c">24–26 AWG SILICONE STRANDED ONLY</text>
+  <text x="76" y="506" font-size="9.5" fill="#7c2a2a">22 AWG solid is the canonical lifted-pad cause:</text>
+  <text x="76" y="520" font-size="9.5" fill="#7c2a2a">a stiff wire works as a lever, and every nudge pries</text>
+  <text x="76" y="534" font-size="9.5" fill="#7c2a2a">at a pad held on by adhesive and hope</text>
+
+  <!-- stray strand inset -->
+  <circle cx="800" cy="450" r="95" fill="#fff" stroke="#555" stroke-width="2"/>
+  <line x1="737" y1="379" x2="672" y2="330" stroke="#555" stroke-width="2"/>
+  <g fill="#e8c27a" stroke="#8a6a2f" stroke-width="1.5">
+    <rect x="742" y="410" width="52" height="30" rx="3"/>
+    <rect x="742" y="460" width="52" height="30" rx="3"/>
+  </g>
+  <path d="M 750 438 C 762 448 774 452 786 462" fill="none" stroke="#c33" stroke-width="1.6"/>
+  <path d="M 794 425 C 830 418 850 430 856 442" fill="none" stroke="#c47a00" stroke-width="3"/>
+  <path d="M 794 475 C 832 470 852 478 858 488" fill="none" stroke="#2e86c1" stroke-width="3"/>
+  <text x="800" y="562" font-size="10" font-weight="bold" text-anchor="middle" fill="#8a1c1c">one stray strand bridging pads = CP9 fails</text>
+  <text x="800" y="576" font-size="9.5" text-anchor="middle" fill="#7c2a2a">reflow, re-beep — never shrug it off</text>
+
+  <!-- meter note -->
+  <rect x="480" y="380" width="200" height="130" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="492" y="400" font-size="10" font-weight="bold" fill="#6b5200">THE METER CANNOT</text>
+  <text x="492" y="414" font-size="10" font-weight="bold" fill="#6b5200">SEE THROUGH LEDs</text>
+  <g font-size="9" fill="#514000">
+    <text x="492" y="432">pad-to-pad reads OL on a good</text>
+    <text x="492" y="445">harness AND a reversed one.</text>
+    <text x="492" y="462">polarity = the pad print, plus</text>
+    <text x="492" y="475">first power with + and ONE</text>
+    <text x="492" y="488">channel landed — a reversal</text>
+    <text x="492" y="501">simply lights nothing</text>
+  </g>
+</svg>
