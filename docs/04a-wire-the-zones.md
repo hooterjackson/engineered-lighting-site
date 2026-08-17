@@ -18,6 +18,22 @@ Four things bite first-time builders here, and none of them are in the schematic
 
 Everything below is verified against the manufacturers' own datasheets, and every number was measured on this bench before it was printed here.
 
+!!! abstract "The order this happens in"
+    The sections below are grouped by *subject*, so they read well as reference but not as a running order. On the day, work them in this sequence — and finish each one before starting the next, because every stage's checkpoints assume the previous stage's numbers are already true.
+
+    | # | What you do | Section | Ends when |
+    |---|---|---|---|
+    | 1 | Identify the supply, land the mains feed and four pigtails, prove the output | [Your supply](#your-supply-before-anything-else) | CP1–CP4 pass, cover on |
+    | 2 | One fuse, the WAGO bus, the ground star, the buck measured | [The 24 V backbone](#the-24-v-backbone) | CP5–CP7 pass |
+    | 3 | Learn the two chips, then wire the control side | [The chain](#the-chain-demystified) | CP8 passes |
+    | 4 | Practice joints, then solder **one** zone and strain-relieve it | [Tape work](#tape-work) | CP9–CP11 pass |
+    | 5 | First power on that one zone — watched, not walked away from | [CP12](#the-checkpoint-table) | Three whites lit, supply steady |
+    | 6 | Repeat 4–5 for the remaining zones, one at a time | [Tape work](#tape-work) | Each zone lights from the app |
+
+    Two things worth knowing before you start. **The supply's mains feed comes first**, and it needs a powered E26 socket to screw into — check you have one now, not at step 1. And **do one zone completely before starting the second**: a fault found on zone 1 is a fault you fix once, while the same fault repeated across seven zones is a day.
+
+    If a zone is dark at step 5 or 6, do not start guessing — go to [When a zone is dark](#when-a-zone-is-dark) and work the rungs in order. Each rung you pass clears a suspect, which is the whole point of doing them in order.
+
 ---
 
 ## Your supply, before anything else
@@ -52,6 +68,7 @@ The mains feed on this bench is an **E26 socket-to-wire adapter** — a lamp soc
 - **Black = LIVE (hot) → lands on AC/L.** In North American wiring, black is never ground. Ever.
 - **White = NEUTRAL → lands on AC/N.**
 - **There is no ground wire, and this block takes none.** Two leads is correct for a Class II supply. A green or bare wire has no home here.
+- **You also need something for it to screw into.** The adapter ends in a lamp *base*, not a plug — so it needs a powered **E26 socket**: a socket-to-plug cable, a desk lamp, a clamp light. Check you have one before the day starts; the BoM stocks the adapter and nothing to receive it, which is an easy way to reach a supply you cannot switch on. **Whatever you use must not be on a dimmer** — wall switch or in-cord. A dimmer chops the AC waveform, and this supply should never be asked to eat that.
 
 And then the rule that outranks the colors: **treat both leads as live whenever the adapter is screwed into a powered socket.** A lamp socket can be miswired upstream — shell hot instead of shell neutral — and the adapter's leads inherit whatever the socket does. The colors tell you where each lead *lands*; they never tell you a lead is safe to touch. Unplugged is the only safe.
 
@@ -250,6 +267,13 @@ The rules, each with its failure attached:
 - **Solder order, tinning, and what a good joint looks like** are [Doc 8's five rules](08-build-the-fixture.md#soldering-these-boards-five-rules) — tin the pad, tin the wire, touch them together with the iron, and expect the tiny volcano, not the blobby ball. They are not repeated here; go read them.
 - **Strain-relieve the 4-wire pigtail within ~20 mm of the pads BEFORE the tug test.** Anchor the bundle to the tape's backing so a pull lands on the anchor, not the joints. Do it in this order or the tug test is itself the pad-lift event — you would be testing the pads' adhesive, not your solder.
 
+!!! danger "A warm/cool swap is the one mistake nothing here can catch"
+    Every other error in this chapter announces itself. A bridge trips CP10, a stray strand trips CP9, an open trips CP11, a short makes the supply hiccup at CP12. **Transposing W and C does none of that.**
+
+    The firmware weights all three channels identically, so it has no idea which is which — warm, neutral and cool are a *convention carried in the labels*, not something any wire, chip or witness can verify. Solder W to the cool channel and C to the warm one and the zone lights on cue, `ZB zone=1 on=1 level=255` prints exactly as it should, and CP12 through CP15 all pass. You would discover it weeks later, when a zone runs cold while its neighbour runs warm at the same setting.
+
+    That is why the labelling rule above is not bookkeeping. **The tape flag you write before soldering is the only check that exists** — so write it from the spool's own printed pads, every zone, every time, and never from the wire's color or from memory of the last zone.
+
 The wire itself, so the right spool is never a guess:
 
 ![The two wire kits side by side: thin 24 AWG silicone spools and thicker 20 AWG spools, with a bag of heat-shrink](assets/photo-wire-kits.jpg){ loading=lazy }
@@ -317,7 +341,7 @@ One part in the drawer already belongs to that chapter, not this one:
 
 Work the ladder top-down. Each rung is a witness, and each failure names exactly who it indicts — never skip a rung, because every rung you pass clears a suspect.
 
-Rung 2's far end is the radio the commands travel through. It lives in the Home Assistant box, never gets a wire from this bench, and pairing happens on HA's screen:
+Rung 3's far end is the radio the commands travel through. It lives in the Home Assistant box, never gets a wire from this bench, and pairing happens on HA's screen:
 
 ![The Zigbee coordinator stick, plugged into the Home Assistant box](assets/photo-zigbee-stick.jpg){ loading=lazy }
 
@@ -326,14 +350,30 @@ Rung 2's far end is the radio the commands travel through. It lives in the Home 
 | Rung | Witness | Healthy reading | A failure here indicts |
 |---|---|---|---|
 | 1 | Tap the zone in the app | It lights | Nothing. Go home. |
-| 2 | The zone's serial line in the console: `ZB zone=1 on=1 level=255` | The line prints as you tap | Line missing → the command never reached the board — the network/app side, not one wire of yours |
-| 3 | The hub ACK witness: `ZB pca hub=0x40 present=1` | `present=1` | `present=0` → the I2C hop: SDA/SCL seating **or swapped**, VCC on 3.3 V, the address jumper |
+| 2 | The hub ACK witness: `ZB pca hub=0x40 present=1` | `present=1` | `present=0` → the I2C hop: SDA/SCL seating **or swapped**, VCC on 3.3 V, the address jumper. **Settle this before rung 3** — see the note below |
+| 3 | The zone's serial line in the console: `ZB zone=1 on=1 level=255` | The line prints as you tap | Missing **while rung 2 reads `present=1`** → the command never reached the board: the network/app side, not one wire of yours. Missing while rung 2 reads `present=0` → you are still on rung 2's fault, and this rung has told you nothing |
 | 4 | **CP13** — DMM on the zone's PCA LED pin, zone commanded **100%** | ~3.3 V (the pin's average is duty × 3.3 V) | 0.00 V at 100% with the hub ACK good → the PCA output or OE |
 | 5 | **CP14** — DMM on the zone's ULN OUT pin | ~1 V commanded on; commanded off it reads **high and unstable, ~8–24 V** through the LED string — that instability is normal | ~1 V while commanded **off** → a stuck ULN channel |
 | 6 | **CP15** — across the lit channel, tape +24 pad to that channel's − | ~23 V | 23 V present and still dark → the tape itself: a joint past the probe, a dead cut, or a reversed pad |
 | 7 | Nothing anywhere | — | Back to the stage-1 ritual numbers: bus, buck, grounds |
 
+!!! warning "Why rung 2 comes before rung 3 — a silent zone line is not evidence"
+    The firmware prints `ZB zone=…` **only after a successful I2C write to that zone's hub.** With the hub absent it skips the zone entirely and prints nothing — so on an unwired or mis-wired bus, a missing zone line is the *expected* output and says nothing at all about whether your tap reached the board.
+
+    Read the two together or you will misread both:
+
+    - `present=0`, no zone line → **the I2C hop.** Your wiring. Rung 2.
+    - `present=1`, no zone line → **the command never arrived.** Network or app.
+    - `present=1`, zone line prints, still dark → **downstream of the chip.** Carry on to rung 4.
+
+    The radio was already proven end-to-end before any of this was wired, using the spotlight endpoint — which needs no hardware. So if the hub is answering and the zone line still will not print, suspect the app, not the copper.
+
 One meter honesty note for rung 4: **a DMM averages PWM.** At 40% it reads ~1.3 V, at 70% ~2.3 V — numbers that look like faults and aren't. Never probe at partial level; command 100% and expect ~3.3 V, or learn nothing.
+
+!!! trap "Every zone looks identical in the app"
+    The zone endpoints carry no per-zone name, so Home Assistant lists **eight entities all called "Light"** — one spotlight and seven zones — with nothing on screen to tell you which is which. Do not guess, and do not trust list order.
+
+    Map them once, from the bench, and the ambiguity is gone for good: **tap one, read which number the console prints.** `ZB zone=3 on=1 level=255` means that entity is zone 3. Rename it in Home Assistant on the spot, then move to the next. This only works once a hub is present — before that, per the box above, the zone lines are silent and you would be renaming from guesswork.
 
 ---
 
