@@ -24,13 +24,17 @@ Everything below is verified against the manufacturers' own datasheets, and ever
 
 Doc 4 [stage 1](04-full-fixture-bench.md#stage-1-power-backbone) says "bench supply" and draws a lab brick. On this bench the supply *is* the **Mean Well IRM-90-24ST** — the exact part [Doc 8](08-build-the-fixture.md) later mounts inside the fixture body. Same rail, same protection, same screw block: run the fixture's own documented supply from day one and the fixture's power chapter validates itself while you build zones.
 
-[Doc 8](08-build-the-fixture.md) describes that block as "L, N, +Vo, −Vo" — which under-describes the thing in front of you. The ST's output side **duplicates its terminals: two +Vo screws and two −Vo screws**, internally one output. Six screws total, and the two on the left are mains.
+[Doc 8](08-build-the-fixture.md) describes that block as "L, N, +Vo, −Vo" — which under-describes the thing in front of you. The ST's output side **duplicates its terminals: two +Vo screws and two −Vo screws**, internally one output. Six screws total, and the pair at the **AC/L–AC/N end** is mains — on the mounted unit in the photo below, that end is uppermost.
 
 ![IRM-90-24ST terminal block, checkpoints CP1–CP4, and the pigtail split](assets/wiring-psu-terminals.svg)
 
-And here is the diagram's subject in the flesh — this build's own unit, already mounted on the fixture frame:
+And here is the diagram's subject in the flesh — this build's own unit, already mounted on the fixture frame. It is shown with the terminal cover off **for this photo only**; the rules below put it back:
 
-![The bench's own IRM-90-24, annotated: the mains block, the doubled output screws, and where the meter ritual actually happens](assets/photo-psu-irm90.jpg)
+![This build's IRM-90-24ST mounted on the fixture frame, mains block at the top, output block at the bottom](assets/photo-psu-irm90.jpg){ loading=lazy }
+
+1. **DANGER — the mains block (AC/L + AC/N).** Wall voltage lives on these two screws whenever the cord is plugged in. Unplug — not switched off — before any tool or probe goes near it.
+2. **The output block: four screws, two +Vo and two −Vo, internally one 24 V output.** CP1–CP3 happen here — on these bare screws, **unplugged**, *before* any pigtails are landed.
+3. **The pigtail ends.** Every *powered* reading (CP4: 24 V ±5% on every +/− pairing) happens out here on wire ends, cover on, fingers never on the block. Pair A → the fuse → the LED bus; pair B → the 5 V buck, deliberately unfused — **after** CP1/CP2 prove the doubled screws are common.
 
 Four rules before a screwdriver goes anywhere near it. Each one is named after the way it fails:
 
@@ -40,6 +44,18 @@ Four rules before a screwdriver goes anywhere near it. Each one is named after t
 4. **Strain relief on the cord.** The named failure is one snag: it pulls L out of its screw and leaves it waving bare inside the bench. Anchor the cord so a tug lands on the anchor, never on the screws.
 
 There is no earth screw on this block, and there is not supposed to be: the IRM is **Class II** — double-insulated. Do not go looking for a ground to add.
+
+### The cord itself — which wire is which
+
+The mains feed on this bench is an **E26 socket-to-wire adapter** — a lamp socket with two 18 AWG leads, black and white. Get this straight once, because guessing it backwards is the most dangerous mistake this chapter can host:
+
+- **Black = LIVE (hot) → lands on AC/L.** In North American wiring, black is never ground. Ever.
+- **White = NEUTRAL → lands on AC/N.**
+- **There is no ground wire, and this block takes none.** Two leads is correct for a Class II supply. A green or bare wire has no home here.
+
+And then the rule that outranks the colors: **treat both leads as live whenever the adapter is screwed into a powered socket.** A lamp socket can be miswired upstream — shell hot instead of shell neutral — and the adapter's leads inherit whatever the socket does. The colors tell you where each lead *lands*; they never tell you a lead is safe to touch. Unplugged is the only safe.
+
+Landing the leads under L and N — strip, seat, tighten, tug, cover on — is the same screw ritual as the output side, done **first**, cord out of the wall.
 
 ### The sequence that makes powered probing safe
 
@@ -75,13 +91,28 @@ The breadboard carries **signals only** — I2C, dimmer lines, milliamps. A brea
 
 Three checkpoints close the backbone: 24 V at the bus after the fuse (CP5), 5.0 V at the buck output **measured before the ESP32 is connected** (CP6 — a swapped VIN/GND survives; fix it and re-test), and one resistance sweep proving supply−, the star, the ESP32's GND, and every ULN pin 9 all sit within 1 Ω of each other (CP7).
 
-![The Pololu 24 V to 5 V converter, annotated: IN from the fused bus, GND to the star, OUT is checkpoint CP6, PG and EN stay empty](assets/photo-buck-5v.jpg)
+The buck itself, before it goes anywhere (it ships bare — two wires soldered to IN and GND are all it needs today):
+
+![The Pololu 5 V step-down regulator, bare, pin row along its left edge](assets/photo-buck-5v.jpg){ loading=lazy }
+
+1. **IN** — 24 V from the supply's **pair-B pigtail, straight off the PSU.** Not through the fuse: the single T3.15AL250V guards the LED bus only. (Only in the single-pair fallback does IN come off the fused bus instead.)
+2. **GND** — two pads, same net: the corner pad *and* the in-row pad between IN and OUT. Use either; one goes to the ground star.
+3. **OUT** — expect **5.0 V** here on the meter. That is CP6, and nothing connects to this pin today.
+4. **PG and EN** — the first two holes in the row. Leave both empty.
 
 ---
 
 ## The chain, demystified
 
 Stage 2's diagram shows the whole chain at once — it stays [where it is](04-full-fixture-bench.md#stage-2-first-light-one-zone-three-sliders); this section is the close-ups. Two part numbers do everything, and neither is an explanation. Here is what each one *is*.
+
+First, triage the parts box. One board in it looks like it belongs in this chain and does not — it drives the *spotlight*, a different milestone with different physics:
+
+![The three-channel constant-current driver, banner-marked: spotlight only, never the tape](assets/photo-spotlight-driver-warning.jpg){ loading=lazy }
+
+This is the BoM's PicoBuck-class driver (this unit's chips read AL8860; ~330 mA per channel). It forces a fixed **current** through three **separate** outputs — the tape is a fixed-**voltage**, common-anode part with one shared 24 V, so there is nothing here for it to connect to. Set it aside until spotlight day. The same fence runs the other way: the spotlight's bare LED star never touches the 24 V bus.
+
+And a fact both remaining boards share: **they ship bare.** The dimmer hubs and the spare brain all arrive with loose header strips. Solder the headers first — [Doc 8's five rules](08-build-the-fixture.md#soldering-these-boards-five-rules), big forgiving pads, and the best possible warm-up before the tape's small ones.
 
 ### Hop 1 — the PCA9685, or: sixteen dimmers on two wires
 
@@ -94,11 +125,27 @@ The **address is a house number.** Both boards hear every order on the same two 
 !!! danger "An unbridged board #2 is a second 0x40, not a missing 0x41"
     Skip the jumper and board #2 does not sit quietly waiting to be found. It is a **second device answering at 0x40** — both chips reply at once, and the bus traffic meant for the zones that already work gets corrupted by the newcomer. The failure reads backwards: you added zones 6 and 7 and *zones 1 through 5* started glitching. Bridge A0 with everything unpowered, **before the board's SDA and SCL ever touch the bus.**
 
-![This build's own hub, annotated: VCC's 3.3 V law, the two shared wires, the empty V+ and OE, zone 1's three channels, and the A0 pads board #2 gets bridged on](assets/photo-pca9685-hub.jpg)
+![This build's own hub, a genuine Adafruit PCA9685 at address 0x40](assets/photo-pca9685-hub.jpg){ loading=lazy }
+
+1. **CAUTION — VCC.** Takes **3.3 V from the brain, never 5 V**. This is not just a silent failure: the board's own pull-up resistors tie SDA and SCL to VCC, so 5 V here puts 5 V on the C6's GPIO 2 and 3 — past the chip's 3.6 V absolute maximum. It can kill the brain, quietly.
+2. **CAUTION — V+, VCC's next-door neighbour.** Stays **EMPTY**. One position over from the pin you want, and the reason to read the silkscreen letter by letter.
+3. **SDA and SCL** — the two shared wires, from GPIO 2 and GPIO 3 respectively.
+4. **GND** — to the ground star. (OE, two pins over, also stays empty — a genuine Adafruit board already holds it enabled; on a clone, verify.)
+5. **Channel 0** — zone 1's three channels are 0, 1, 2, and the wire comes off the **PWM** hole of each, nothing else. See the close-up below.
+6. **The V+/GND terminal footprint** (block supplied loose) — stays unpopulated for the tape build.
+7. **The A0 address pads** — hub #2 only: bridge this pair with solder so it answers at 0x41, *before* its bus wires ever land. See the close-up below.
+
+One trap the photo can't show: **both ends of the board carry the same six control pins in mirrored order.** Use the end shown here, and read the silkscreen every time — landing the four wires on the far end in the same left-to-right order swaps SDA with SCL and puts VCC on V+.
+
+The two close-ups that make 5 and 7 unmistakable:
+
+![Close-up of the channel grid: the PWM column is the only column you use; rows 0, 1, 2 are zone 1](assets/photo-pca9685-channels.jpg){ loading=lazy }
+
+![Close-up of the address pads: A0 is the bottom pair, the one hub #2 gets bridged on](assets/photo-pca9685-a0.jpg){ loading=lazy }
 
 Three traps, all pre-solved in the stage YAML but not in your wiring:
 
-- **VCC gets 3.3 V. Never 5 V.** At 5 V the chip's logic threshold rises above what the C6 outputs and I2C fails *silently* — the maddening kind, where every wire is seated and nothing answers.
+- **VCC gets 3.3 V. Never 5 V.** At 5 V the chip's logic threshold rises above what the C6 outputs and I2C fails *silently* — and worse, the board's pull-ups drag SDA/SCL to VCC, putting 5 V on GPIO pins rated for 3.6 V absolute maximum. The silent failure can also be a dead brain.
 - **V+ stays unconnected.** It is servo power for a job this board doesn't have.
 - **OE must sit low.** On a genuine Adafruit board a pulldown already holds it there; on a clone, verify — a floating OE tri-states all sixteen outputs, and the board plays dead while the I2C scan looks perfect.
 
@@ -106,7 +153,17 @@ Before power touches the chain, CP8: the wire landing on PCA VCC beeps to the 3V
 
 The other end of those two wires is the brain. This build keeps a spare ESP32-C6 board for exactly this chapter — the whole chain gets proven on the expendable board before the fixture's own brain ever touches it:
 
-![The spare ESP32-C6 board, annotated: 3V3 and GND to the hub, GPIO 2 and 3 as the two shared wires, and the COM port the test program talks through](assets/photo-spare-c6.jpg)
+![The spare ESP32-C6 dev board, bare, antenna up, two USB-C ports at the bottom](assets/photo-spare-c6.jpg){ loading=lazy }
+
+1. **CAUTION — 3V3.** This pin powers the hub's VCC. Never a 5 V pin — see the hub trap above for why that can kill this board.
+2. **GND** — to the ground star. Every board shares one floor.
+3. **GPIO 2 = SDA.** On the antenna-side header, it is the **first pin below GND** — the close-up below shows the printed digits.
+4. **GPIO 3 = SCL** — the second pin below GND.
+5. **The left USB-C port, silkscreened COM** — the cable goes here to drive the test program.
+
+Solder the header pins into the **outer round holes** — the inner flat pads are for surface-mounting, and a pin sunk there will not reach a breadboard. Four pins are enough: GND, 3V3, 2, 3.
+
+![Close-up of the antenna-side header: GND, then 2 (SDA), then 3 (SCL), printed on the board itself](assets/photo-spare-c6-pins.jpg){ loading=lazy }
 
 ### Hop 2 — the ULN2803, or: eight switches in one chip
 
@@ -116,10 +173,6 @@ A ULN2803 is **eight electronic switches in one package**. Put 3.3 V on IN *n* a
 
 Pin 9 goes to the star. Pin 10 stays unconnected.
 
-One board in the parts box looks like it belongs in this chain and does not — it drives the *spotlight*, a different milestone with a different physics:
-
-![The three-channel constant-current driver with its warning banner: spotlight only, never the tape](assets/photo-spotlight-driver-warning.jpg)
-
 One closing rule for the whole chain: **one I2C master and one 3V3 source on the bus at a time.** The C6 gives the orders and the C6's regulator feeds the logic — wire in a second of either and the bus stops being a party line and becomes a committee.
 
 ---
@@ -128,21 +181,40 @@ One closing rule for the whole chain: **one I2C master and one 3V3 source on the
 
 The Valent X spool is the most expensive thing on this bench, and the work in this section is the only work that can damage it. Read all of it before the iron heats up.
 
-![Tape end close-up: cut line, printed pads, wire flags, solder order, strain relief, and the stray-strand trap](assets/wiring-zone-solder.svg)
-
 **Practice on the spool tail first.** The spool's outer end is scrap the moment you cut your first zone. Make two or three practice joints there before touching a real zone: a lifted pad on the tail costs nothing, and a lifted pad on a cut zone costs one cut-line of tape — not the day, but not free either. Nobody's first tape joint should be one that has to work.
 
 This is your spool at a cut line — the four pads, and the printed letters every wire label copies:
 
-![The Valent X tape at a cut line, annotated: 24V+, W, N and C pads, and the pad row the cut goes through](assets/photo-tape-pads.jpg)
+![The Valent X tape at a cut line: four half-moon pads in a row, per-die letters beside each LED](assets/photo-tape-pads.jpg){ loading=lazy }
+
+1. **24V+** — the shared plus wire, common to all three channels. Comes from the fused 24 V bus (WAGO), never from a breadboard rail.
+2. **W** — the warm channel's negative wire.
+3. **N** — the neutral channel's negative. **Nothing to do with mains neutral** — here N is just a color.
+4. **C** — the cool channel's negative.
+5. **CAUTION — the cut.** The dashed line in the photo is where the printed cut line runs: **straight across the tape, through the centres of all four pads.** Each half-moon becomes a full pad for the segment on its side. Anywhere else kills the segments on both sides of your scissors.
+
+What the letters mean, in the vocabulary every other table on this site uses:
+
+| Pad letter | Channel | Lands on |
+|---|---|---|
+| W | **1800 K** warm | its own ULN OUT pin |
+| N | **3500 K** neutral | its own ULN OUT pin |
+| C | **6500 K** cool | its own ULN OUT pin |
+
+Because 24V+ is shared, **a solder bridge between any two pads is a dead short** — CP10's whole job is catching one.
 
 The rules, each with its failure attached:
 
 - **Cut at the printed cut lines.** Anywhere else severs traces mid-segment, and both segments on either side of the cut go dark forever.
 - **Label every wire from the tape's printed pad markings.** Never from wire color, and never from any diagram — including ours. Your spool's pad order is the authority; a diagram is somebody else's spool. Write the label on a flag of tape at both ends of the wire before the wire ever meets the iron.
 - **Use 24–26 AWG silicone stranded wire for pad wires.** 22 AWG solid is the canonical lifted-pad cause: it works as a lever, and every nudge of the stiff wire pries at a pad held on by adhesive and hope. The floppy stuff can't transmit a snag to the joint.
+- **Strip only 2–3 mm for a tape pad** — a bared length that fits *on* the half-moon with nothing hanging over. This is not the WAGO's 11 mm; carry that habit here and the overhang becomes the stray strand CP9 exists to catch.
 - **Solder order, tinning, and what a good joint looks like** are [Doc 8's five rules](08-build-the-fixture.md#soldering-these-boards-five-rules) — tin the pad, tin the wire, touch them together with the iron, and expect the tiny volcano, not the blobby ball. They are not repeated here; go read them.
 - **Strain-relieve the 4-wire pigtail within ~20 mm of the pads BEFORE the tug test.** Anchor the bundle to the tape's backing so a pull lands on the anchor, not the joints. Do it in this order or the tug test is itself the pad-lift event — you would be testing the pads' adhesive, not your solder.
+
+The schematic version of the same step, for the wire-flag and solder-order detail:
+
+![Tape end schematic: printed pads, wire flags, solder order, strain relief, and the stray-strand trap](assets/wiring-zone-solder.svg)
 
 ### The meter cannot see through LEDs
 
@@ -192,21 +264,23 @@ When the checklist passes and the iron comes out, the technique chapter is alrea
 
 Work the ladder top-down. Each rung is a witness, and each failure names exactly who it indicts — never skip a rung, because every rung you pass clears a suspect.
 
+Rung 2's far end is the radio the commands travel through. It lives in the Home Assistant box, never gets a wire from this bench, and pairing happens on HA's screen:
+
+![The Zigbee coordinator stick, plugged into the Home Assistant box](assets/photo-zigbee-stick.jpg){ loading=lazy }
+
+1. Stays plugged in exactly as it is — on the day, you open **Add device** in Home Assistant and the fixture pairs to this.
+
 | Rung | Witness | Healthy reading | A failure here indicts |
 |---|---|---|---|
 | 1 | Tap the zone in the app | It lights | Nothing. Go home. |
 | 2 | The zone's serial line in the console: `ZB zone=1 on=1 level=255` | The line prints as you tap | Line missing → the command never reached the board — the network/app side, not one wire of yours |
-| 3 | The hub ACK witness: `ZB pca hub=0x40 present=1` | `present=1` | `present=0` → the I2C hop: SDA/SCL seating, VCC on 3.3 V, the address jumper |
+| 3 | The hub ACK witness: `ZB pca hub=0x40 present=1` | `present=1` | `present=0` → the I2C hop: SDA/SCL seating **or swapped**, VCC on 3.3 V, the address jumper |
 | 4 | **CP13** — DMM on the zone's PCA LED pin, zone commanded **100%** | ~3.3 V (the pin's average is duty × 3.3 V) | 0.00 V at 100% with the hub ACK good → the PCA output or OE |
 | 5 | **CP14** — DMM on the zone's ULN OUT pin | ~1 V commanded on; commanded off it reads **high and unstable, ~8–24 V** through the LED string — that instability is normal | ~1 V while commanded **off** → a stuck ULN channel |
 | 6 | **CP15** — across the lit channel, tape +24 pad to that channel's − | ~23 V | 23 V present and still dark → the tape itself: a joint past the probe, a dead cut, or a reversed pad |
 | 7 | Nothing anywhere | — | Back to the stage-1 ritual numbers: bus, buck, grounds |
 
 One meter honesty note for rung 4: **a DMM averages PWM.** At 40% it reads ~1.3 V, at 70% ~2.3 V — numbers that look like faults and aren't. Never probe at partial level; command 100% and expect ~3.3 V, or learn nothing.
-
-Rung 2's far end, for completeness — the radio the commands travel through. It lives in the Home Assistant box and never gets a wire from this bench:
-
-![The Zigbee coordinator stick in the Home Assistant box — nothing to wire; pairing happens on HA's screen](assets/photo-zigbee-stick.jpg)
 
 ---
 
