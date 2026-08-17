@@ -57,6 +57,22 @@ And then the rule that outranks the colors: **treat both leads as live whenever 
 
 Landing the leads under L and N — strip, seat, tighten, tug, cover on — is the same screw ritual as the output side, done **first**, cord out of the wall.
 
+![The E26 socket-to-wire adapter: screw base, black and white 18 AWG leads, factory connector on the ends](assets/photo-e26-adapter.jpg){ loading=lazy }
+
+1. **DANGER — the screw base.** Mains the moment it is screwed into a live socket. It goes into the socket **last**, after everything below is landed and covered — and comes out first for any change.
+2. **The black lead = LIVE** → lands under **AC/L**.
+3. **The white lead = neutral** → lands under **AC/N**.
+4. **CAUTION — the factory connector on the ends: cut it off.** It exists for downlights, not for screw blocks. Snip it, strip 7–8 mm of fresh copper on each lead, and land bare stranded wire under the screws — never the connector, never tinned ends.
+
+And the meter that referees every checkpoint from here on — with one honest limitation to know about now:
+
+![The bench multimeter, a TESMEN TM-510: display, mode buttons, COM and INPUT jacks](assets/photo-multimeter.jpg){ loading=lazy }
+
+1. **Auto mode** — it picks volts/ohms/continuity by what the probes touch. All the checkpoints in this chapter run in Auto plus the beeper.
+2. **The continuity beeper** — CP1, CP2, CP7 through CP11 all live on this icon.
+3. **CAUTION — two jacks, volts and ohms only. This meter has NO current range.** Every checkpoint in this chapter that talks about current is therefore a *watch-and-expect* check, not a measurement — see CP12. (The wiring is protected by the fuse and by the supply's own overload hiccup either way.)
+4. **NCV** — hold the top edge near a wire and it warns of live mains without touching. A free extra check before fingers go anywhere near the supply end.
+
 ### The sequence that makes powered probing safe
 
 The trick is to arrange things so the meter never has to visit the block while it is live. In this order:
@@ -69,6 +85,11 @@ The trick is to arrange things so the meter never has to visit the block while i
 The load split falls out of the pigtails for free: **one +/− pair → the fuse → the WAGO +24 V bus** (its − mate goes to the ground star), and **the other pair → the D24V22F5 buck**. One fuse — the single **T3.15AL250V** on the bus pair's + leg — and only one, which has been the site's law since [stage 1](04-full-fixture-bench.md#stage-1-power-backbone).
 
 Be honest about what that fuse does: **it protects the wiring.** The IRM is a 3.75 A supply that answers overloads by dropping into hiccup mode, so it will never push enough current to blow a 3.15 A time-delay fuse selectively — do not expect the fuse to save a chip or point at a faulted zone. It exists so that if a fault ever feeds the bus past the supply's own protection, the sacrificial weak point is a 50-cent cylinder and not your 18–20 AWG wiring. That is worth $7. It is not worth more.
+
+![The inline fuse holder on its red leads, and the box of 3.15 A slow-blow ceramic fuses](assets/photo-fuse-kit.jpg){ loading=lazy }
+
+1. **The inline holder** — it unscrews in the middle and the fuse lives inside. It goes in **one place only**: the bus pair's **+** leg, between the pigtail and the +24 V WAGO.
+2. **The fuses** — 3.15 A slow-blow ceramic, 5 × 20 mm, ten of them. "Slow-blow" is the property that matters (it rides through power-up inrush); 3.15 is the IEC value that *is* "3 A". One in the holder, the box in the drawer.
 
 !!! trap "If CP1 or CP2 does not beep"
     Stop. Your unit's doubled terminals are not common on that rail, and nothing about this chapter's split is safe to assume anymore. Run **single-pair operation**: one proven +/− pair feeds the fuse and the bus, the buck moves to the bus *after* the fuse (exactly as stage 1's diagram draws it), and the second pair gets capped — insulated, folded back, out of the story. **Never bridge unproven terminals yourself.** A bridge you add to a block you don't understand is a decision the datasheet didn't approve.
@@ -84,6 +105,13 @@ Be honest about what that fuse does: **it protects the wiring.** The IRM is a 3.
 3. Insert to the stop.
 4. Lever down.
 5. **Tug it. If it moves, do it again.**
+
+![The WAGO 221 assortment, open: two-, three- and five-port lever nuts plus inline splices](assets/photo-wago-kit.jpg){ loading=lazy }
+
+1. **Lever up = open.** This one is ready to take a wire; the litany above closes it.
+2. **The five-port blocks** — these become the **+24 V bus** and the **ground star**: one wire in from the supply side, the rest fan out.
+3. **Two- and three-port blocks** — joins and taps along the way.
+4. **The inline splice** — wire-to-wire, for extending a lead without a block.
 
 The bus pigtail's + lands in the fuse holder; the fuse's far side lands in the **+24 V bus** WAGO. Its − mate lands in the **ground star** WAGO — and that WAGO is the single floor the whole bench measures against. **Every ground goes directly to the star, never chained** device-to-device. The named failure is *zone-to-zone brightness mismatch*: chained grounds turn shared return current into small voltage offsets, and two zones at identical settings visibly disagree — a wiring fault that looks exactly like a software bug and isn't.
 
@@ -171,6 +199,16 @@ Solder the header pins into the **outer round holes** — the inner flat pads ar
 
 A ULN2803 is **eight electronic switches in one package**. Put 3.3 V on IN *n* and the switch at OUT (19−*n*) — the pin directly across the chip — closes, connecting that tape wire to ground. Current then flows the full loop: 24 V bus → tape → OUT pin → through the chip → pin 9 → the star. The chip **eats about 1 V doing it, so the tape sees ~23 V.** That is a voltage statement, small and uniform — every channel loses the same volt, and the eye reads it as nothing at all.
 
+This is the chip itself, and the one fact about its body that the schematic cannot teach:
+
+![One ULN2803A chip: an 18-pin DIP with a half-moon notch at one end](assets/photo-uln2803.jpg){ loading=lazy }
+
+1. **CAUTION — the notch marks the pin-1 end.** Seat every chip so its notch matches the drawing/socket orientation **before** power. A chip seated backwards puts the tape's 24 V returns onto its logic inputs and dies on first power — across four chips and 21 channels if the habit sticks. Count pins from the notch, never from habit.
+2. **Pin 1 = IN 1** — bottom-left corner when the printing reads upright.
+3. **Pin 9 = GND** — bottom-right corner, straight to the ground star.
+4. **Pin 10 = COM** — top-right corner, stays **empty** for LEDs.
+5. **Pin 18 = OUT 1** — top-left corner, directly across from IN 1. That is the OUT = 19 − IN rule in the flesh: inputs count up along the bottom, their outputs sit straight across on top.
+
 Pin 9 goes to the star. Pin 10 stays unconnected.
 
 One closing rule for the whole chain: **one I2C master and one 3V3 source on the bus at a time.** The C6 gives the orders and the C6's regulator feeds the logic — wire in a second of either and the bus stops being a party line and becomes a committee.
@@ -212,6 +250,14 @@ The rules, each with its failure attached:
 - **Solder order, tinning, and what a good joint looks like** are [Doc 8's five rules](08-build-the-fixture.md#soldering-these-boards-five-rules) — tin the pad, tin the wire, touch them together with the iron, and expect the tiny volcano, not the blobby ball. They are not repeated here; go read them.
 - **Strain-relieve the 4-wire pigtail within ~20 mm of the pads BEFORE the tug test.** Anchor the bundle to the tape's backing so a pull lands on the anchor, not the joints. Do it in this order or the tug test is itself the pad-lift event — you would be testing the pads' adhesive, not your solder.
 
+The wire itself, so the right spool is never a guess:
+
+![The two wire kits side by side: thin 24 AWG silicone spools and thicker 20 AWG spools, with a bag of heat-shrink](assets/photo-wire-kits.jpg){ loading=lazy }
+
+1. **The 24 AWG silicone kit (thin, six colors)** — THE tape-pad wire. Six colors means 24V+, W, N and C can each keep a color for a whole zone.
+2. **The 20 AWG kit (thicker)** — the 24 V feed runs: supply pigtails, bus-to-zone feeds.
+3. **The heat-shrink bag** — the strain-relief anchor material for the tape pigtails.
+
 The schematic version of the same step, for the wire-flag and solder-order detail:
 
 ![Tape end schematic: printed pads, wire flags, solder order, strain relief, and the stray-strand trap](assets/wiring-zone-solder.svg)
@@ -228,7 +274,7 @@ The beep rituals earn their keep proving what they *can* prove:
 - **CP10** — the +24 pad to each − pad reads OL, no sustained beep. The LED string blocks the meter, so a solid beep here can only be a solder bridge. Reflow it.
 - **CP11** — with the zone chained in and power off, the ULN OUT pin beeps to the tape's − wire, end to end. Open means a break: beep it segment by segment until you find which joint went quiet.
 
-Then the zone's first power is CP12: one zone, meter in the 10 A jack, idle current in the tens of milliamps, and the zone full-on recorded — ~80 mA expected for a radial. A supply that hiccups or trips instead is telling you there's a short; find it, don't retry blind.
+Then the zone's first power is CP12 — and honesty about this bench's meter: the TM-510 has **no current range**, so CP12 is a *watch-and-expect* check, not a reading. One zone landed, power on, and for thirty seconds you watch three things: the supply stays steady (no rhythmic clicking — that hiccup is its overload protection saying *short*), all three whites actually light, and nothing — chip, wire, tape — gets warm. A supply that hiccups is telling you there's a short; find it, don't retry blind.
 
 !!! info "JST-XH is graduation-adjacent"
     The fixture build puts every zone on a JST-XH plug — the site's 3 A law for that connector holds, and a zone's ~80–160 mA clears it by a mile. But that is [Doc 8](08-build-the-fixture.md)'s step. For bench bring-up, soldered tails straight into the WAGOs and breadboard are fine. Don't buy crimping problems before the design is frozen.
@@ -237,12 +283,12 @@ Then the zone's first power is CP12: one zone, meter in the 10 A jack, idle curr
 
 ## Power math, published honestly
 
-The numbers you plan around should be the numbers a meter read. These were (CP12, meter in the 10 A jack):
+Honestly twice over: these figures are **derived from the tape's own rating** (the spool's watts-per-foot, split across the lengths this build cuts), not yet measured — this bench's meter has no current range, so they stand as *expectations* until a current-capable meter visits. They are what the fuse and the supply were sized against:
 
 | Zone | Length | Whole zone, full on | Per channel |
 |---|---|---|---|
-| Radial (zones 1–6) | 4.92″ — 2 segments | **≈ 80 mA** | ~27 mA |
-| Bottom ring (zone 7) | 9.84″ — 4 segments | **≈ 160 mA** | ~53 mA |
+| Radial (zones 1–6) | 4.92″ — 2 segments | **≈ 80 mA expected** | ~27 mA |
+| Bottom ring (zone 7) | 9.84″ — 4 segments | **≈ 160 mA expected** | ~53 mA |
 
 Against the ULN2803's **500 mA per-channel ceiling**, 27 and 53 mA are loafing. But read the ceiling honestly too: it is per channel, **one at a time**. Run channels together and the package's total dissipation becomes the real limit long before any single channel's 500 mA does. At this build's currents that limit never comes close; if you ever scale the tape, the package is the number to check, not the 500.
 
@@ -257,6 +303,13 @@ You will find a watts-per-foot figure printed on the spool box. It is deliberate
 The gate is [Doc 8's](08-build-the-fixture.md) and it is one sentence: **[stage 7's checklist](04-full-fixture-bench.md#stage-7-integration-day-verdict) passes on the breadboard first.** Solder freezes a *validated* design — never an aspirational one. Every hour spent soldering an unproven chain is an hour of desoldering you scheduled for later.
 
 When the checklist passes and the iron comes out, the technique chapter is already written: [Doc 8's five soldering rules](08-build-the-fixture.md#soldering-these-boards-five-rules). They are not duplicated here. Rule 4 — beep everything before power — is this chapter's CP9–CP11 wearing work clothes.
+
+One part in the drawer already belongs to that chapter, not this one:
+
+![A 1000 microfarad 35 volt electrolytic capacitor with its negative-stripe marking](assets/photo-bulk-cap.jpg){ loading=lazy }
+
+1. The **1000 µF 35 V bulk capacitor** — [Doc 8](08-build-the-fixture.md)'s power-board part. It waits in the drawer today; the breadboard build doesn't use it.
+2. **CAUTION — the stripe marks the NEGATIVE leg.** Electrolytics installed backwards fail loudly and sometimes wetly. When its day comes: stripe to ground, always.
 
 ---
 
@@ -301,7 +354,7 @@ Every CP this chapter has named, in one place. Print it; tape it above the bench
 | CP9 | After soldering | Each wire to each pad | Beeps to its **own** pad only, neighbours silent | Stray strand → reflow, re-beep |
 | CP10 | Same | +24 pad ↔ each − pad | OL / no sustained beep (the LED string blocks the meter; a solid beep = solder bridge) | Reflow |
 | CP11 | Zone chained, off | ULN OUT pin ↔ tape − wire | Beeps | Open → beep segment by segment |
-| CP12 | First power, one zone, meter in the 10 A jack | Supply current | Idle tens of mA; zone full-on recorded (~80 mA radial expected) | Hiccup/trip → find the short, don't retry blind |
+| CP12 | First power, one zone — watch for 30 s (this meter has no current range) | Supply steady, all three whites lit, nothing warm | No hiccup clicking; three colors visible; everything cool | Hiccup/trip → find the short, don't retry blind |
 | CP13 | Zone commanded **100%** | The zone's PCA LED pin | ~3.3 V (duty × 3.3 V; a DMM averages PWM — never probe at partial level) | 0.00 V at 100% with hub ACK → PCA output/OE |
 | CP14 | Zone commanded on, then off | The zone's ULN OUT pin | ~1 V on; off = high and unstable, ~8–24 V through the LED string (normal) | ~1 V while commanded **off** → stuck channel |
 | CP15 | Zone lit | Across the lit channel | ~23 V | Dark with 23 V present → the tape or the joints |
@@ -318,7 +371,7 @@ Every CP this chapter has named, in one place. Print it; tape it above the bench
 - [ ] PCA VCC beeps to the 3V3 rail and to nothing else (CP8); V+ empty; A0 on board #2 bridged before its bus wires land
 - [ ] Every tape wire beeps to its own pad only (CP9); +24 to − pads all read OL (CP10)
 - [ ] The 4-wire pigtail is strain-relieved within ~20 mm of the pads — and was before the tug test
-- [ ] Meter in the 10 A jack for the first power-up (CP12)
+- [ ] First power-up watched, not walked away from: supply steady, all three whites lit, nothing warm (CP12)
 
 **Done when:** the supply is identified and pigtailed, every pad beeps to its own wire and nothing else, and you can point at the single place every ground meets.
 
