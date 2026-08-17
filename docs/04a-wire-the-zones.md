@@ -18,6 +18,27 @@ Four things bite first-time builders here, and none of them are in the schematic
 
 Everything below is verified against the manufacturers' own datasheets, and every number was measured on this bench before it was printed here.
 
+??? info "Words this chapter uses — open this if any of them are new"
+    None of these are hard, but they appear below without being introduced, and a checkpoint you can't read is a checkpoint you can't trust.
+
+    | Word | What it means here |
+    |---|---|
+    | **Continuity** | The meter setting that beeps when two points are connected to each other. "It beeps" and "it has continuity" say the same thing. |
+    | **OL** | What the meter shows when there is **no** connection — short for *over limit*, the display's way of saying "infinite resistance". On this bench OL is often the *healthy* answer, so read each checkpoint for which one it wants. |
+    | **Pigtail** | A short wire landed under a terminal screw, so that everything afterwards connects to a wire instead of to the screw. It is how you avoid working near the mains block once power is on. |
+    | **Bus** | One shared connection point that many wires join — here, the lever-nut block where every zone gets its +24 V. |
+    | **Star** | The single block where every ground meets. Called a star because the wires radiate from one centre instead of being chained one to the next. |
+    | **Rail** | A supply voltage treated as a place: "the 3V3 rail" means anywhere that carries 3.3 V. |
+    | **AWG** | Wire thickness. **Bigger number = thinner wire.** 24 AWG is thin and floppy (tape pads); 18–20 AWG is thicker and carries the 24 V runs. |
+    | **Tinned** | A bare wire end coated with solder. Correct *before* soldering to a tape pad; **wrong** under a screw terminal, where solder slowly squashes and the screw goes loose. |
+    | **Silkscreen** | The printed lettering on a circuit board. It is the authority on which pin is which — always outranks wire colour, memory, or a diagram. |
+    | **I2C, SDA, SCL** | The two-wire language the brain uses to talk to the dimmer hubs. **SDA** carries the data; **SCL** is the clock that paces it. Every hub listens to the same two wires. |
+    | **PWM** and **duty** | Dimming by switching fully on and off very fast. **Duty** is the share of time it is on — 40% duty looks about 40% bright. |
+    | **OE** (Output Enable) | A pin that turns all of a hub's outputs on or off at once. It must sit low (connected to ground) or the hub answers on I2C perfectly while emitting nothing. |
+    | **Pull-up resistor** | A small resistor already on the board that holds a signal wire up at its supply voltage when nothing else is driving it. It is why the hub's VCC voltage matters so much. |
+    | **Common anode** | How this tape is built: all three colours share one +24 V wire, and each colour is switched on its **negative** side. |
+    | **DIP** and **the notch** | A chip package with two rows of legs. The half-moon notch marks the pin-1 end, and is the only reliable way to tell which way round it goes. |
+
 !!! abstract "The order this happens in"
     The sections below are grouped by *subject*, so they read well as reference but not as a running order. On the day, work them in this sequence — and finish each one before starting the next, because every stage's checkpoints assume the previous stage's numbers are already true.
 
@@ -81,7 +102,7 @@ Landing the leads under L and N — strip, seat, tighten, tug, cover on — is t
 3. **The white lead = neutral** → lands under **AC/N**.
 4. **CAUTION — the factory connector on the ends: cut it off.** It exists for downlights, not for screw blocks. Snip it, strip 7–8 mm of fresh copper on each lead, and land bare stranded wire under the screws — never the connector, never tinned ends.
 
-And the meter that referees every checkpoint from here on — with one honest limitation to know about now:
+And the meter that settles every checkpoint from here on — with one honest limitation worth knowing now:
 
 ![The bench multimeter, a TESMEN TM-510: display, mode buttons, COM and INPUT jacks](assets/photo-multimeter.jpg){ loading=lazy }
 
@@ -115,7 +136,7 @@ Be honest about what that fuse does: **it protects the wiring.** The IRM is a 3.
 
 ## The 24 V backbone
 
-[Stage 1's diagram](04-full-fixture-bench.md#stage-1-power-backbone) is already connector-level here — the WAGOs are drawn as WAGOs. What it cannot show is the litany, so here it is, the same one every lever nut on this bench gets:
+[Stage 1's diagram](04-full-fixture-bench.md#stage-1-power-backbone) is already connector-level here — the WAGOs are drawn as WAGOs. What it cannot show is the routine, so here it is — the same five steps every lever nut on this bench gets:
 
 1. Strip **11 mm** — to the gauge moulded into the block's side, not by eye.
 2. Lever fully up. Halfway is a spring pressing on nothing.
@@ -151,11 +172,11 @@ The buck itself, before it goes anywhere (it ships bare — two wires soldered t
 
 Stage 2's diagram shows the whole chain at once — it stays [where it is](04-full-fixture-bench.md#stage-2-first-light-one-zone-three-sliders); this section is the close-ups. Two part numbers do everything, and neither is an explanation. Here is what each one *is*.
 
-First, triage the parts box. One board in it looks like it belongs in this chain and does not — it drives the *spotlight*, a different milestone with different physics:
+First, sort the parts box. One board in it looks like it belongs in this chain and does not — it drives the *spotlight*, a different milestone with different physics:
 
 ![The three-channel constant-current driver, banner-marked: spotlight only, never the tape](assets/photo-spotlight-driver-warning.jpg){ loading=lazy }
 
-This is the BoM's PicoBuck-class driver (this unit's chips read AL8860; ~330 mA per channel). It forces a fixed **current** through three **separate** outputs — the tape is a fixed-**voltage**, common-anode part with one shared 24 V, so there is nothing here for it to connect to. Set it aside until spotlight day. The same fence runs the other way: the spotlight's bare LED star never touches the 24 V bus.
+This is the BoM's PicoBuck-class driver (this unit's chips read AL8860; ~330 mA per channel). It forces a fixed **current** through three **separate** outputs — the tape is a fixed-**voltage**, common-anode part with one shared 24 V, so there is nothing here for it to connect to. Set it aside until spotlight day. The rule runs both ways: the spotlight's bare LED star never touches the 24 V bus either.
 
 And a fact both remaining boards share: **they ship bare.** The dimmer hubs and the spare brain all arrive with loose header strips. Solder the headers first — [Doc 8's five rules](08-build-the-fixture.md#soldering-these-boards-five-rules), big forgiving pads, and the best possible warm-up before the tape's small ones.
 
@@ -228,7 +249,7 @@ This is the chip itself, and the one fact about its body that the schematic cann
 
 Pin 9 goes to the star. Pin 10 stays unconnected.
 
-One closing rule for the whole chain: **one I2C master and one 3V3 source on the bus at a time.** The C6 gives the orders and the C6's regulator feeds the logic — wire in a second of either and the bus stops being a party line and becomes a committee.
+One closing rule for the whole chain: **one I2C master and one 3V3 source on the bus at a time.** The C6 gives the orders and the C6's regulator feeds the logic — wire in a second of either and the two hubs start contradicting each other on the same wires.
 
 ---
 
@@ -300,7 +321,7 @@ The beep rituals earn their keep proving what they *can* prove:
 
 Then the zone's first power is CP12 — and honesty about this bench's meter: the TM-510 has **no current range**, so CP12 is a *watch-and-expect* check, not a reading. One zone landed, power on, and for thirty seconds you watch three things: the supply stays steady (no rhythmic clicking — that hiccup is its overload protection saying *short*), all three whites actually light, and nothing — chip, wire, tape — gets warm. A supply that hiccups is telling you there's a short; find it, don't retry blind.
 
-!!! info "JST-XH is graduation-adjacent"
+!!! info "JST-XH belongs to the next chapter, not this one"
     The fixture build puts every zone on a JST-XH plug — the site's 3 A law for that connector holds, and a zone's ~80–160 mA clears it by a mile. But that is [Doc 8](08-build-the-fixture.md)'s step. For bench bring-up, soldered tails straight into the WAGOs and breadboard are fine. Don't buy crimping problems before the design is frozen.
 
 ---
@@ -314,7 +335,7 @@ Honestly twice over: these figures are **derived from the tape's own rating** (t
 | Radial (zones 1–6) | 4.92″ — 2 segments | **≈ 80 mA expected** | ~27 mA |
 | Bottom ring (zone 7) | 9.84″ — 4 segments | **≈ 160 mA expected** | ~53 mA |
 
-Against the ULN2803's **500 mA per-channel ceiling**, 27 and 53 mA are loafing. But read the ceiling honestly too: it is per channel, **one at a time**. Run channels together and the package's total dissipation becomes the real limit long before any single channel's 500 mA does. At this build's currents that limit never comes close; if you ever scale the tape, the package is the number to check, not the 500.
+Against the ULN2803's **500 mA per-channel ceiling**, 27 and 53 mA are nowhere near the limit. But read the ceiling honestly too: it is per channel, **one at a time**. Run channels together and the package's total dissipation becomes the real limit long before any single channel's 500 mA does. At this build's currents that limit never comes close; if you ever scale the tape, the package is the number to check, not the 500.
 
 You will find a watts-per-foot figure printed on the spool box. It is deliberately not printed here, and no per-foot scaling rule is either: these are the two zone lengths this build cuts, they were measured, and measured figures are what the fuse and the supply get sized against.
 
@@ -324,7 +345,7 @@ You will find a watts-per-foot figure printed on the spool box. It is deliberate
 
 ## Graduating off the breadboard
 
-The gate is [Doc 8's](08-build-the-fixture.md) and it is one sentence: **[stage 7's checklist](04-full-fixture-bench.md#stage-7-integration-day-verdict) passes on the breadboard first.** Solder freezes a *validated* design — never an aspirational one. Every hour spent soldering an unproven chain is an hour of desoldering you scheduled for later.
+The gate is [Doc 8's](08-build-the-fixture.md) and it is one sentence: **[stage 7's checklist](04-full-fixture-bench.md#stage-7-integration-day-verdict) passes on the breadboard first.** Soldering makes a design permanent, so prove it works loose on the breadboard first. Every hour spent soldering an unproven chain is an hour of desoldering you scheduled for later.
 
 When the checklist passes and the iron comes out, the technique chapter is already written: [Doc 8's five soldering rules](08-build-the-fixture.md#soldering-these-boards-five-rules). They are not duplicated here. Rule 4 — beep everything before power — is this chapter's CP9–CP11 wearing work clothes.
 

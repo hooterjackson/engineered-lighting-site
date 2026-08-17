@@ -69,6 +69,12 @@
 
   /* Prose measure */
   --el-measure: 42em;              /* ≈ 70ch in IBM Plex Sans @ 16 px   */
+
+  /* Figure width on the page. Deliberately well under the prose measure:
+     a photo at full column width reads as the subject and the text as the
+     caption, which is backwards for a build guide. Detail is a click away
+     (§12b), so this trades nothing away. */
+  --el-figure-w: 30em;
 }
 
 /* --------------------------------------------------------------------------
@@ -528,11 +534,22 @@ html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) tra
 .md-typeset p:has(> img:only-child) { margin: 2em 0 0; max-width: none; }
 .md-typeset p:has(> img:only-child) > img {
   display: block;
+  /* Figures read at a modest width so they punctuate the prose instead of
+     interrupting it. Full detail is one click away - see §12b. */
   width: 100%;
+  max-width: var(--el-figure-w);
+  margin-inline: auto;
   background: var(--el-paper);
   border: 1px solid var(--el-line-2);
   padding: clamp(10px, 2.2vw, 22px);
   box-shadow: 0 0 48px rgba(242, 238, 230, 0.05);
+  cursor: zoom-in;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.md-typeset p:has(> img:only-child) > img:hover,
+.md-typeset p:has(> img:only-child) > img:focus-visible {
+  border-color: var(--el-amber);
+  box-shadow: 0 0 48px rgba(242, 238, 230, 0.12);
 }
 .md-typeset p:has(> img:only-child) + p:has(> em:only-child) {
   margin: 0.6em 0 2.2em;
@@ -545,6 +562,73 @@ html { accent-color: var(--el-amber); scrollbar-color: rgba(242,238,230,.18) tra
   line-height: 1.7;
   letter-spacing: 0.02em;
   color: var(--el-ink-3);
+}
+
+/* --------------------------------------------------------------------------
+   §12b · CLICK-TO-ENLARGE — the figure at reading size, the detail on demand
+   (behaviour in docs/js/lightbox.js; no library, the pins stay as they are)
+   -------------------------------------------------------------------------- */
+.el-lightbox[hidden] { display: none; }
+.el-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: clamp(14px, 4vw, 52px);
+  background: rgba(0, 0, 0, 0.94);
+  cursor: zoom-out;
+}
+.el-lightbox__img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 1400px);
+  max-height: 84vh;
+  object-fit: contain;
+  background: var(--el-paper);
+  border: 1px solid var(--el-line-2);
+  padding: clamp(8px, 1.6vw, 18px);
+  cursor: default;
+}
+.el-lightbox__cap {
+  margin: 0;
+  max-width: min(100%, 60ch);
+  font-family: var(--el-mono);
+  font-size: 0.58rem;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--el-ink-3);
+}
+.el-lightbox__cap[hidden] { display: none; }
+.el-lightbox__close {
+  position: absolute;
+  top: clamp(10px, 2.4vw, 26px);
+  right: clamp(10px, 2.4vw, 26px);
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--el-ink-2);
+  background: var(--el-bg-1);
+  border: 1px solid var(--el-line-2);
+  cursor: pointer;
+}
+.el-lightbox__close:hover,
+.el-lightbox__close:focus-visible {
+  color: var(--el-bg-0);
+  background: var(--el-amber);
+  border-color: var(--el-amber);
+}
+body.el-lightbox-open { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset p:has(> img:only-child) > img { transition: none; }
 }
 
 /* --------------------------------------------------------------------------
@@ -822,12 +906,17 @@ html .md-footer-meta.md-typeset a:is(:focus, :hover) { color: var(--el-amber); }
   .md-main__inner { margin-top: 0; }
   .md-content { max-width: none; margin: 0; }
   .md-typeset { font-size: 11pt; line-height: 1.55; }
+  /* Paper has no click target, so the on-screen reading width and its zoom
+     affordance both come off: a printed figure should be as large as it can be. */
   .md-typeset p:has(> img:only-child) > img {
     border: 1px solid rgba(26, 24, 20, 0.25);
     padding: 0;
     box-shadow: none;
     width: 100%;
+    max-width: none;
+    cursor: auto;
   }
+  .el-lightbox { display: none !important; }
   .md-typeset .highlight > pre > code, .md-typeset > pre > code {
     border-color: rgba(26, 24, 20, 0.2);
   }
