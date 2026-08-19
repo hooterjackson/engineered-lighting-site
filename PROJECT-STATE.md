@@ -1,10 +1,34 @@
 # PROJECT-STATE — Engineered Lighting · Robotic Spotlight
 
-*Session-handoff file. Any Claude (Cowork, Claude Code, claude.ai) on any machine:
-read this file first — it replaces the chat history that produced this repo.
-Update it at the end of every working session.*
+*Session-handoff file: the narrative of how this repo got here, and the site's own
+build state. It replaces the chat history that produced this repo. Any Claude
+(Cowork, Claude Code, claude.ai) on any machine can read it for context; update it
+at the end of every working session.*
 
-**Last updated:** 2026-07-31 (bench session — first motor motion; then the commissioning-console build)
+> ### What to work on next is not in this file — it is in `product-os`
+>
+> | Question | Authoritative source |
+> |---|---|
+> | What should I do next, and why? Is it blocked or gated? | **product-os** |
+> | Is it actually *done*? (a SHA, a path, a dated note) | **product-os** |
+> | How did this project get here, and what does the site say? | **this file** + `docs/` |
+>
+> Start a session from
+> `https://raw.githubusercontent.com/hooterjackson/product-os/main/public/llms.txt`
+> — fetchable from any tool, no clone needed. With a clone: `~/Claude/product-os`,
+> then `python3 tools/rank.py`.
+>
+> **Cite the item ID in your first message** (`EL-004`, `SITE-002`). That one token
+> is what links the conversation to the work; nothing else recovers it.
+>
+> This is a pointer, **not a merge** — do not sync the two by hand. When they
+> disagree about *status or priority*, product-os wins. When either disagrees with
+> a ruling or current bench evidence in `gimbal-bench`, the ruling wins and the
+> stale side gets an item.
+
+**Last updated:** 2026-07-31 (bench session — first motor motion; then the
+commissioning-console build) — *the last edit to **this file**, not to the repo.
+`git log -1` is the repo's real state; this file lags it by design.*
 
 ## What this project is
 
@@ -206,11 +230,18 @@ Material, deployed via GitHub Actions).
 ## How to resume on any machine
 
 1. `git clone https://github.com/hooterjackson/engineered-lighting-site.git`
+   — or, on an existing clone, **`git fetch` first**. A local tracking ref that
+   has not been fetched will answer "up to date" while the remote is dozens of
+   commits ahead; it has already lied here by 54.
 2. Open the folder in Claude Code (or point a Cowork session at it).
-3. First message: *"Read PROJECT-STATE.md and the docs it references; summarize
-   state and the pending queue; then let's continue."*
+3. Get the queue from product-os, not from this file — fetch
+   `.../product-os/main/public/llms.txt` (link at the top) or run
+   `python3 tools/rank.py` in `~/Claude/product-os`. Then, first message:
+   *"Working on `<ITEM-ID>`. Read PROJECT-STATE.md and the docs it references,
+   summarize the state that item depends on, and let's continue."*
 4. Note: Cowork **local** sessions stay on the machine they ran on — this file
-   is the continuity mechanism, not chat history. Keep it updated.
+   carries the narrative and product-os carries the queue and the evidence.
+   Neither is chat history. Keep both updated.
 
 ### 2026-07-31 — first motor motion; frame authorship; two corrections
 
