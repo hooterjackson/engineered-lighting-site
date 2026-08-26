@@ -17,3 +17,4 @@ run `python <name>_gen.py` — then copy the render over the published asset.
 | `uln-map_gen.py` | `photo-anno-uln-map.jpg` |
 | `a0-bridge_gen.py` | `photo-anno-a0-bridge.jpg` |
 | `spot-driver_gen.py` | `photo-anno-spot-driver.jpg` (input IMG_2453, rotated 180°) |
+| `spot-star_gen.py` | `photo-anno-spot-star.jpg` (input IMG_2507) |

@@ -48,7 +48,7 @@
   <!-- driver -->
   <rect x="490" y="100" width="220" height="360" fill="#fdf1f0" stroke="#a33" stroke-width="1.5" rx="8"/>
   <text x="600" y="126" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">3-ch CC driver</text>
-  <text x="600" y="142" font-size="9" text-anchor="middle" fill="#556">AL8860 ×3 · 2×R300 → ~660 mA</text>
+  <text x="600" y="142" font-size="9" text-anchor="middle" fill="#556">the PicoBuck · ~330 mA as shipped</text>
   <g font-size="9.5" font-weight="bold" fill="#223">
     <text x="500" y="204">IN1</text>
     <text x="500" y="244">IN2</text>

@@ -28,7 +28,7 @@ Everything below is verified against the parts on this bench — the LuxDrive SJ
     | **Die** | One bare LED emitter. The star carries three, each electrically its own lamp. |
     | **Forward voltage (Vf)** | The voltage an LED happens to drop while conducting — for these dies, around 3 V. On the tape you *supplied* a voltage; here the driver supplies current and the ~3 V simply appears across the die. You never set it. |
     | **Buck driver** | A switching circuit that steps 24 V down efficiently. This board's version switches on and off thousands of times a second, watching the current and correcting it continuously. |
-    | **Sense resistor** | How the driver knows the current: a tiny resistor in the loop that the chip holds 0.1 V across. This board carries **two, marked R300** (0.30 Ω), side by side per channel — in parallel that is 0.15 Ω, and 0.1 V ÷ 0.15 Ω ≈ **660 mA**. The current is a property of the board, not a knob. |
+    | **Sense resistor** | How the driver knows the current: a tiny resistor in the loop that the chip holds 0.1 V across. This board carries **two, marked R300** (0.30 Ω), side by side per channel — but only one is connected as shipped: 0.1 V ÷ 0.30 Ω ≈ **330 mA**. The second waits behind an open **solder jumper**; bridge it and the pair reads 0.15 Ω ≈ 660 mA. The current is a property of the board — the jumper is its one factory-sanctioned knob. |
     | **MCPCB** | Metal-core PCB — the star's aluminum plate. Its whole job is moving heat from the dies into your heatsink. It is also why the star must never run bare. |
     | **Thermal adhesive** | The glue between star and heatsink. It conducts heat; air does not. Full-face contact, thin layer. |
     | **Duty floor** | The low end of PWM dimming where a CC driver's regulation gets twitchy — typically below ~5%. You will measure yours and write it down. |
@@ -59,7 +59,13 @@ The LuxDrive SJX-1 is **three separate lamps sharing one aluminum plate**. Each 
 
 This build's dies are **warm-white XP-E2, cool-white XP-E2, and PC Amber** — the maker's own star, per the [Doc 6 addendum](06-message-contract.md#the-spot-light-engine-is-one-entity-not-three). Unlit, the two whites are nearly indistinguishable and the amber is only a shade deeper. Do not decide from phosphor color. The naming happens at [S8](#first-power-and-first-light), by light.
 
-**S1 — the heatsink, before anything else.** Thermal adhesive, thin and full-face, star centered on the ≥2″×2″ heatsink from the BoM. Let it cure per its own instructions. At this build's driver current the star dissipates **~6 W** into a coin-sized plate — twice the reference build's ~3 W, because the driver runs ~660 mA per channel (below) — and bare, it climbs past safe junction temperature in well under a minute. There is no bare-star test, not even a one-second one.
+And here is the plate itself, with every printed mark found:
+
+![The real star annotated: three pad pairs ringed in the channel colors with the plate's own printed polarity beside each, one die ringed as the looks-alike example](assets/photo-anno-spot-star.jpg){ loading=lazy }
+
+Look closely at the three +/− transcriptions and notice they **do not match each other**: the top pair prints + on its left pad, the left pair prints − on its *upper* pad, the right pair + on its upper. Three pairs, three different orientations, one plate — which is exactly why S2's rule is *read the print beside each pair* and never "same as the last one."
+
+**S1 — the heatsink, before anything else.** Thermal adhesive, thin and full-face, star centered on the ≥2″×2″ heatsink from the BoM. Let it cure per its own instructions. The star dissipates **~3 W** into a coin-sized plate as shipped — and ~6 W if the driver's current jumpers are ever bridged (below) — and bare, it climbs past safe junction temperature in well under a minute. There is no bare-star test, not even a one-second one.
 
 **S2 — polarity, proven cold.** Two witnesses, in order:
 
@@ -75,10 +81,20 @@ This build's dies are **warm-white XP-E2, cool-white XP-E2, and PC Amber** — t
 
 ![This build's three-channel constant-current driver, annotated: the VIN block, the three logic inputs, the three output pairs, and the twin R300s that set each channel's current](assets/photo-anno-spot-driver.jpg){ loading=lazy }
 
-This is the board [Doc 4a told you to set aside until spotlight day](04a-wire-the-zones.md#the-chain-demystified). Spotlight day is today. What it is: **three independent constant-current buck converters on one PCB** — an AL8860 driver chip, a 33 µH inductor (the chunky "330" squares), and the sense resistors per channel. The chip holds 0.1 V across the sense, so the sense sets the current — and here the board has a correction to offer the site: **each channel carries *two* R300 resistors side by side**, and the parallel pair reads 0.15 Ω, so each channel forces **~660 mA** — not the ~330 mA an earlier read of this board assumed from a single R300 ([Doc 4a's line has the correction](04a-wire-the-zones.md#the-chain-demystified)). Brightness is not set by voltage and not set by the load — it is set by those resistors, and dimmed by pulsing the channel's input.
+This is the board [Doc 4a told you to set aside until spotlight day](04a-wire-the-zones.md#the-chain-demystified). Spotlight day is today. What it is: **the genuine SparkFun PicoBuck** — identified down to its published schematic — which is to say, **three independent constant-current buck converters on one PCB**: an AL8860 driver chip, a 33 µH inductor (the chunky "330" squares), and the sense resistors per channel. The chip holds 0.1 V across the sense, so the sense sets the current: one R300 always in the loop → **~330 mA as shipped**. And the pair of R300s you can see side by side per channel is not a mystery — the second one is the **660 mA option**, wired through the small open solder jumper beside them. Bridge that jumper and the twin joins in parallel; leave it open and it is just a passenger. Brightness is not set by voltage and not set by the load — it is set by that resistor, and dimmed by pulsing the channel's input.
 
-!!! warning "~660 mA and the amber die — the margin worth knowing"
-    The white XP-E2 dies are rated to 1 A, so ~660 mA leaves them a third of headroom. **PC Amber's absolute ceiling is 700 mA** — this driver sits under it by barely 6%. Inside rating, but with that margin S1's thermal path and S10's soak are load-bearing, not ceremonial: the number that keeps the amber die honest is the heatsink's temperature, and you check it, not hope it.
+!!! info "In plain terms — one lamp-feeder, two settings, and yours ships on the gentle one"
+    This board pushes a fixed amount of electricity through each lamp — there is no knob. But there *is* a switch: each channel has a pair of tiny bare pads, and a blob of solder across them moves that channel from the **gentle** setting (as shipped) to the **strong** one — about twice the push, so roughly twice the light and twice the heat. Your board arrived with all three switches open: gentle, everywhere, with every lamp far inside its comfort zone.
+
+    What that means at the bench:
+
+    - **Nothing needs ordering, and nothing runs near a limit.** Build as written.
+    - **The upgrade is already on the board.** If a lamp ever needs to be brighter, that channel's blob-switch is sitting there waiting — a one-minute soldering job, per channel, reversible with solder wick.
+    - **One lamp deserves care if you ever do it.** The two white lamps take the strong setting with room to spare; the amber one is rated only a little above it. Strong whites + gentle amber is the sensible combination, and the warning below has the numbers.
+    - **The heatsink rules are unchanged** — gentle still cooks a bare star in under a minute. The glue-down step and the ten-minute warm-check (S10) stay exactly as written.
+
+!!! warning "If you ever bridge a jumper — the amber margin"
+    At the bridged ~660 mA, the white XP-E2 dies (rated 1 A) keep a third of headroom; **PC Amber's absolute ceiling is 700 mA**, barely 6% above it. So if brighter ever matters, bridge the *whites'* jumpers and leave the amber's open — and re-run S10's soak afterward, because ~6 W is twice the heat the first soak proved. As shipped, with every jumper open, none of this is in play.
 
 Three pad groups, three jobs:
 
@@ -86,13 +102,13 @@ Three pad groups, three jobs:
 - **IN block** — `IN1`, `IN2`, `IN3`, and a `GND`. Logic-level dimming inputs: 3.3 V PWM from the C6, one pin per channel. The site's pin ledger reserves **GPIO10 → IN1, GPIO11 → IN2, GPIO18 → IN3**, at **500 Hz** — CC dim inputs want ~1 kHz or less, which is exactly why [Doc 4 stage 5](04-full-fixture-bench.md#stage-5-the-spotlight-constant-current) put these three signals on native pins instead of the PCA9685.
 - **OUT blocks** — `OUT1±`, `OUT2±`, `OUT3±`. One ± pair per die. **Six conductors, and the returns never share a wire** — each OUT− is that channel's own regulation loop back through its sense resistor; merge two returns and the chips read each other's current and regulate garbage.
 
-!!! note "This unit vs. the reference PicoBuck"
-    Doc 4's BoM names the SparkFun PicoBuck; the board on this bench is the same animal with different markings — AL8860s instead of AL8805s, same three-channel CC buck, same block layout, same wiring story. One difference matters: **the PicoBuck ships at 330 mA with a solder jumper to reach 660 — this board has no jumper because it is, in effect, permanently jumpered.** Its twin R300s fix ~660 mA per channel, full stop. Everything the reference docs say about "the 330/660 decision" is already decided on this board, in hardware.
+!!! note "This unit *is* the reference"
+    Doc 4's BoM names the SparkFun PicoBuck, and this board is that exact part — the current revision, verified against SparkFun's own v1.2 schematic: AL8860 per channel, a fixed 0.3 Ω sense (R1/R2/R3), a second 0.3 Ω (R4/R5/R6) behind per-channel solder jumpers (SJ1/SJ2/SJ3), and the perforated snap-off mounting ears. The branding lives on the back of the board, which is how a top-down photo once passed it off as a nameless clone. Open jumpers = 330 mA, the shipped state; bridged = 660.
 
 !!! trap "The inputs float ON"
     Leave an IN pin unconnected and that channel runs at full current. The C6's pins also float while it boots. Both facts together are [Doc 8's pulldown law](08-build-the-fixture.md#step-5-the-spotlight), inherited here at birth: **a 10 kΩ resistor from each IN to ground**, so the resting state of the whole spotlight is *dark*, and light only ever happens because firmware asked for it. S7 proves the pulldowns before the C6 is even powered — read it before you wire.
 
-**S3 — identify and ring out, unpowered.** Confirm you are holding the CC driver and not something from the tape chain: three AL8860s, three 330 inductors, a side-by-side pair of R300s per channel. The board ships with bare pads — solder its leads now, per [Doc 8's five rules](08-build-the-fixture.md#soldering-these-boards-five-rules): **solid-core 22 AWG stubs on the IN block** (they land in the breadboard, and solid is what breadboard clips grip — [Doc 3a's lesson](03a-wire-the-bench.md#where-wires-may-split-and-how)), **stranded silicone on VIN and the three OUT pairs** (they get handled, and they carry the current). Then one beep that buys a simpler bench: **VIN− ↔ the IN block's GND.** On this board they beep — one ground net — so a single ground wire to the star point serves both power return and logic reference. If your board's don't beep, wire the IN GND to the ground star separately, and trust the meter over this paragraph.
+**S3 — identify and ring out, unpowered.** Confirm you are holding the CC driver and not something from the tape chain: three AL8860s, three 330 inductors, a side-by-side pair of R300s per channel with a small open solder jumper beside each pair — **confirm all three jumpers are open** (bare pads, no bridge), because open is the gentle 330 mA state every number in this chapter assumes. The board ships with bare pads — solder its leads now, per [Doc 8's five rules](08-build-the-fixture.md#soldering-these-boards-five-rules): **solid-core 22 AWG stubs on the IN block** (they land in the breadboard, and solid is what breadboard clips grip — [Doc 3a's lesson](03a-wire-the-bench.md#where-wires-may-split-and-how)), **stranded silicone on VIN and the three OUT pairs** (they get handled, and they carry the current). Then one beep that buys a simpler bench: **VIN− ↔ the IN block's GND.** On this board they beep — one ground net — so a single ground wire to the star point serves both power return and logic reference. If your board's don't beep, wire the IN GND to the ground star separately, and trust the meter over this paragraph.
 
 ---
 
@@ -159,7 +175,7 @@ And the one reframe worth keeping: **dark at boot is not a fault.** It is the pu
 |---|---|---|---|---|
 | S1 | Before anything | Star mounted on heatsink, adhesive cured, full-face | No bare star, ever | Mount it now — there is no bare-star test |
 | S2 | Star, cold | Polarity flags from silkscreen; diode-mode glow if the meter can | Flags written; glow (if any) matches the printed + | No glow both ways = meter tops out — the print still rules |
-| S3 | Driver, unpowered | Identify (3× AL8860, 330s, twin R300s); leads soldered; VIN− ↔ IN-GND | Beeps — one ground net | No beep = wire IN GND to the star separately |
+| S3 | Driver, unpowered | Identify (3× AL8860, 330s, twin R300s, jumpers OPEN); leads soldered; VIN− ↔ IN-GND | Beeps — one ground net; three bare jumpers | No beep = wire IN GND to the star separately; a bridged jumper = that channel runs 660 |
 | S4 | Harness, unpowered | Each OUT lead ↔ its own star pad, + to + | Own pad beeps, neighbours silent | A crossed pair — fix it cold |
 | S5 | Inputs, unpowered | Each IN row ↔ its GPIO wire and its 10 kΩ | Own wires only; 10 kΩ far side to ground | Rewire before power |
 | S6 | Supply on, C6 off | 24 V across VIN pads | 24 V, star aimed at wall | Fuse, WAGO, leads |
@@ -174,10 +190,11 @@ And the one reframe worth keeping: **dark at boot is not a fault.** It is the pu
 
 Verified against primary documents rather than forum lore:
 
-- **Diodes Inc. AL8860 datasheet** — hysteretic buck LED driver: the 0.1 V mean sense threshold (with this board's twin R300s in parallel → ~660 mA), input voltage range, and PWM dimming behavior on the control pin
+- **Diodes Inc. AL8860 datasheet** — hysteretic buck LED driver: the 0.1 V mean sense threshold (over 0.30 Ω → ~330 mA as shipped), input voltage range, and PWM dimming behavior on the control pin
+- **SparkFun picoBuck v1.2 schematic** — the document that settled this board's identity and current: per channel, sense resistor R*n* fixed at 0.3 Ω plus a second 0.3 Ω behind solder jumper SJ*n*; open = ~330 mA, bridged = ~660 mA
 - **Cree XLamp XP-E2 datasheet** — forward voltage ~3 V class, and the ~5 V reverse-voltage ceiling behind this chapter's prove-polarity-cold rule
 - **LuxDrive / LEDdynamics SJX-1** 20 mm star — three electrically isolated die positions, per-die ± pads
 - **SparkFun PicoBuck hookup guide** — the reference board Doc 4's BoM names: same block layout, and the floats-ON behavior the pulldown law answers
 - Site cross-references: [Doc 4 stage 5](04-full-fixture-bench.md#stage-5-the-spotlight-constant-current) (the stage this chapter unpacks) · [Doc 4a](04a-wire-the-zones.md) (the tape-side habits this page reverses) · [Doc 8 step 5](08-build-the-fixture.md#step-5-the-spotlight) (the same wiring made permanent) · [Doc 6's addendum](06-message-contract.md#the-spot-light-engine-is-one-entity-not-three) (why three dies present as one light)
 
-Where this board and the reference PicoBuck disagree — the chip marking and the absent 660 mA jumper — this chapter describes the board on the bench.
+And a note on how this chapter got its numbers right: a first read of the board saw the twin R300s, missed the open jumper beside them, and called the channel current ~660 mA. The schematic and a zoom on the jumper pads corrected it to ~330 as shipped — which is the chapter's own S-checkpoint ethos applied to itself: the board in your hand outranks any read of a photograph, and a measurement outranks both.

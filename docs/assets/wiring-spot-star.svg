@@ -92,7 +92,7 @@
   <rect x="620" y="456" width="350" height="120" fill="#fdecec" stroke="#c33" rx="6"/>
   <text x="632" y="477" font-size="10" font-weight="bold" fill="#8a1c1c">NEVER BARE, NEVER THE BUS</text>
   <g font-size="9.5" fill="#7c2a2a">
-    <text x="632" y="496">Heatsink first (S1): the star dissipates ~6 W into a</text>
+    <text x="632" y="496">Heatsink first (S1): the star dissipates ~3 W into a</text>
     <text x="632" y="511">coin-sized plate and cooks itself bare in under a</text>
     <text x="632" y="526">minute. And 24 V never touches these pads — the</text>
     <text x="632" y="541">driver stands between the bus and the star, always.</text>

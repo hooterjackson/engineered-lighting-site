@@ -32,7 +32,8 @@ COORDS = {
     # explainer components (channel 1 column, nearest VIN)
     "AL8860": (1462, 1470),  # SOT-25 marked "A5 2f T / AL8860"
     "IND330": (1445, 1214),  # power inductor marked "330" (33 uH)
-    "R300":   (1452, 1627),  # center of the ch1 sense PAIR - two R300s side by side
+    "R300":   (1452, 1627),  # center of the ch1 sense PAIR - R1 + its jumpered twin
+    "SJ":     (1552, 1645),  # the open solder jumper (SJ) that adds the twin in parallel
 }
 
 # ---------------- style ----------------
@@ -100,7 +101,7 @@ d.rectangle([PX - 3, PY - 3, PX + photo.width + 2, PY + photo.height + 2],
 # ---- title / subtitle ----
 d.text((40, 28), "Doc 4b \u00b7 The three-channel driver \u2014 every block named",
        font=F_TITLE, fill="#111111")
-d.text((40, 84), "One constant-current buck per channel. Twin R300 sense resistors set ~660 mA \u2014 "
+d.text((40, 84), "One constant-current buck per channel. ~330 mA as shipped; the open jumper beside the sense resistor doubles it \u2014 "
        "dim by pulsing the INs, never by the rail.", font=F_SUB, fill="#555555")
 
 # ---- rings ----
@@ -115,6 +116,7 @@ ring(d, COORDS["OUT1-"], 42, AMBER);    ring(d, COORDS["OUT1+"], 40, AMBER)
 ring(d, COORDS["AL8860"], 72, GREEN)
 ring(d, COORDS["IND330"], 147, GREEN)
 ring(d, COORDS["R300"], 80, GREEN, ry=52)
+ring(d, COORDS["SJ"], 34, "#c9a227")
 
 # ---- polarity glyphs at the OUT rings (per the print: + = square pad, - = round pad) ----
 F_PM = ImageFont.truetype(r"C:\Windows\Fonts\arialbd.ttf", 40)
@@ -149,7 +151,7 @@ leader(d, [(b[0] - 2, (b[1] + b[3]) // 2), (cvs(COORDS["IND330"])[0] + 128, cvs(
 b = label_box(d, 1390, 925, ["AL8860 \u2014 one CC", "buck per channel"], GREEN, anchor="left")
 leader(d, [(b[0] - 2, (b[1] + b[3]) // 2), (cvs(COORDS["AL8860"])[0] + 66, cvs(COORDS["AL8860"])[1] - 28)], GREEN)
 
-b = label_box(d, 1390, 1098, ["2\u00d7 R300 in parallel = 0.15 \u03a9", "\u2192 ~660 mA, fixed"], GREEN, anchor="left")
+b = label_box(d, 1348, 1098, ["R300 \u2192 ~330 mA as shipped", "bridge pads \u2192 ~660 mA"], GREEN, anchor="left")
 leader(d, [(b[0] - 2, (b[1] + b[3]) // 2), (cvs(COORDS["R300"])[0] + 66, cvs(COORDS["R300"])[1] - 34)], GREEN)
 
 # ---- input-edge labels (band below photo), leaders up to rings ----
@@ -172,7 +174,7 @@ label_box(d, 700, 1754, ["inputs float ON \u2014 10 k\u03a9 pulldown on each (S5
           CAUT_B, font=F_CAUT, text_color=CAUT_T, bw=3)
 
 # ---- caption under the photo ----
-cap = "this build\u2019s driver \u00b7 AL8860 \u00d73 \u00b7 twin R300s → ~660 mA per channel"
+cap = "this build’s driver · the genuine PicoBuck · AL8860 ×3 · ~330 mA as shipped"
 w = d.textbbox((0, 0), cap, font=F_CAP)[2]
 d.text(((CW - w) // 2, 1822), cap, font=F_CAP, fill=INK)
 
