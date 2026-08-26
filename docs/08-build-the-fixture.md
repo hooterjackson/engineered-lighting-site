@@ -282,7 +282,11 @@ wiring. Wrong colors = swapped wires at the plug. Fix wires, not YAML.
 
 **What's happening:** three PWM wires dim three constant-current channels,
 one per LED die. Each die is individually drivable — one tunable Spotlight or
-three separate lights is firmware's choice, not wiring's.
+three separate lights is firmware's choice, not wiring's. Meeting the driver
+or the bare star for the first time here? [Doc 4b](04b-wire-the-spotlight.md)
+is the bench version of this exact step — the same blocks demystified, the
+S-checkpoints, and the which-die-is-which naming ritual whose flags this
+step's wiring should already carry.
 
 **Do this:**
 

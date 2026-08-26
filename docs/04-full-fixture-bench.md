@@ -428,6 +428,8 @@ Second hub, and no new pins to put it on? [Doc 4a](04a-wire-the-zones.md#the-sec
 
 Wiring: PicoBuck VIN from the 24 V bus/star ground; each output pair to one Cree die (check printed polarity). The three dim signals come from **native ESP32 pins** — GPIO10/11/18:
 
+First bare-LED build? **[Doc 4b · Wire the Spotlight For Real](04b-wire-the-spotlight.md)** is this stage held in your hands — what a constant-current driver actually is, the polarity mistake that stopped being harmless the moment the tape chapter ended, the pulldowns that keep boot dark, and the ritual that names which die is which. Wire there, then come back here for the firmware lane.
+
 > **Why native pins, not the PCA9685:** each PCA9685 chip runs ONE frequency for all 16 channels. Tape wants ~1.2 kHz+ (flicker); CC-driver dim inputs typically want ≤1 kHz. Rather than compromise both, the spotlight's 3 signals use the C6's own LEDC channels (6 exist; 3 free after this).
 
 ```yaml

@@ -15,4 +15,7 @@ nav:
   # as 3a. Letters are accession order and never change.
   - 04-full-fixture-bench.md
   - 04a-wire-the-zones.md
+  # 04b is the same pattern for Doc 4 stage 5 — the spotlight's star and
+  # CC driver at connector level. Letters are accession order.
+  - 04b-wire-the-spotlight.md
   - ...
