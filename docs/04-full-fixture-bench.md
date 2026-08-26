@@ -173,6 +173,8 @@ Cut one radial zone (2 tape segments = 4.92") at the printed cut lines; solder f
 
 First tape solder of the build? [Doc 4a](04a-wire-the-zones.md#tape-work) is this step held in your hands — practice joints on the spool tail, the pad-lift trap, and the beep tests that prove the harness before it ever sees power.
 
+Want to see this exact chain on the real parts before you wire it? [Doc 4a's zone-1 figure](04a-wire-the-zones.md#the-fan-out-which-channel-drives-which-zone) is a photograph of it end to end — the three PWM holes on the hub, the three input pins on the chip, and the tape's W / N / C pads, with one color following each white the whole way.
+
 Wire the chain (power off):
 
 ![Zone 1 first-light wiring diagram](assets/wiring-zone1-first-light.svg)
@@ -380,6 +382,8 @@ Footnotes: the slider midpoint won't be *exactly* 3500 K (HA works in mireds —
 | 7 (bottom ring) | hub2 : 3, 4, 5 | chip4 : 1, 2, 3 | 18, 17, 16 |
 
 Every chip's pin 9 goes to the ground star; pin 10 stays unconnected; every zone's +24 V lead goes to the WAGO bus.
+
+Second hub, and no new pins to put it on? [Doc 4a](04a-wire-the-zones.md#the-second-hub-two-boards-the-same-two-wires) photographs both boards side by side with the four bus wires drawn on, and draws the two hubs on one bus — where those four wires physically meet, why an address blob is the only difference between the boards, and the two checkpoints that catch a jumper that only *looks* bridged. Its [fan-out section](04a-wire-the-zones.md#the-fan-out-which-channel-drives-which-zone) draws the table above, including the one row that surprises people: **chip 3 is fed by both hubs** — zone 5 from hub1, zone 6 from hub2 — so wire this table zone by zone, never chip by chip.
 
 4. Duplicate the stage-3 block per zone (`z2_`…`z7_`). Verbose but transparent — compress with ESPHome "packages" later, not now.
 5. After flashing, watch Logs for `Component ... took a long time` — the single-core C6 telling you it's straining. This design computes only on changes, so you shouldn't see it; this is the honest untested territory (nobody has benchmarked 24 PWM + CAN + WiFi on a C6).

@@ -1,6 +1,6 @@
 ---
 title: 4a · Wire the Zones For Real
-description: "The connector-level companion to Doc 4 stages 1–4: the IRM-90-24ST's real terminal block and the pigtail ritual that makes probing it safe, what a PCA9685 and a ULN2803 actually are, soldering to tape without lifting a pad, why a healthy harness reads OL on the meter, and the fifteen checkpoints that walk a dark zone back to light."
+description: "The connector-level companion to Doc 4 stages 1–4: the IRM-90-24ST's real terminal block and the pigtail ritual that makes probing it safe, what a PCA9685 and a ULN2803 actually are, how two hubs share one two-wire bus and which channel drives which zone, soldering to tape without lifting a pad, why a healthy harness reads OL on the meter, and the checkpoints that walk a dark zone back to light."
 ---
 
 # Doc 4a · Wire the Zones For Real — The Supply, the Chain, and the Tape
@@ -9,10 +9,11 @@ description: "The connector-level companion to Doc 4 stages 1–4: the IRM-90-24
 
 The chapter [Doc 4](04-full-fixture-bench.md) stages 1–4 point at. Those stages' diagrams are *schematics* — they show which signal meets which signal. This is the other half: what those connections look like when you are holding the actual parts, which arrive with no bare wires, no labels you chose, and one terminal block that carries mains.
 
-Four things bite first-time builders here, and none of them are in the schematics:
+Five things bite first-time builders here, and none of them are in the schematics:
 
 - The supply is not a lab brick with binding posts. It is the fixture's own **IRM-90-24ST**, and its screw block puts **120 V mains two finger-widths from the 24 V** you came for.
 - Two chips do all the work — the PCA9685 and the ULN2803 — and the stages assume you know what they are. You don't have to. This chapter tells you.
+- **There are two of the first chip**, and every schematic on this site draws one. Seven zones need more channels than a single hub has — and the second hub adds no wires to the ESP32, which is exactly what makes it hard to picture.
 - Soldering to LED tape is easy, and ruining LED tape is easier. The difference is wire gauge, strain relief, and practicing on the spool tail first.
 - Your multimeter **cannot see through LEDs**, and not knowing that will send you chasing a fault that does not exist.
 
@@ -46,10 +47,12 @@ Everything below is verified against the manufacturers' own datasheets, and ever
     |---|---|---|---|
     | 1 | Identify the supply, land the mains feed and four pigtails, prove the output | [Your supply](#your-supply-before-anything-else) | CP1–CP4 pass, cover on |
     | 2 | One fuse, the WAGO bus, the ground star, the buck measured | [The 24 V backbone](#the-24-v-backbone) | CP5–CP7 pass |
-    | 3 | Learn the two chips, then wire the control side | [The chain](#the-chain-demystified) | CP8 passes |
+    | 3 | Learn the two chips, then wire the control side — **both** hubs | [The chain](#the-chain-demystified) | CP8, CP8b and CP8c pass |
     | 4 | Practice joints, then solder **one** zone and strain-relieve it | [Tape work](#tape-work) | CP9–CP11 pass |
     | 5 | First power on that one zone — watched, not walked away from | [CP12](#the-checkpoint-table) | Three whites lit, supply steady |
     | 6 | Repeat 4–5 for the remaining zones, one at a time | [Tape work](#tape-work) | Each zone lights from the app |
+
+    **The photo figures, by step.** Four of the figures below are photographs of the actual parts with every pad named and every wire drawn on. Open the one for the step you are on and work from it: step 3 has [the two hubs on one bus](#the-second-hub-two-boards-the-same-two-wires), [the A0 blob before and after](#the-second-hub-two-boards-the-same-two-wires), and [how to read the ULN2803](#hop-2-the-uln2803-or-eight-switches-in-one-chip); steps 4–6 have [one zone's whole trip, pad to pad](#the-fan-out-which-channel-drives-which-zone). Every figure enlarges on click.
 
     Two things worth knowing before you start. **The supply's mains feed comes first**, and it needs a powered E26 socket to screw into — check you have one now, not at step 1. And **do one zone completely before starting the second**: a fault found on zone 1 is a fault you fix once, while the same fault repeated across seven zones is a day.
 
@@ -231,6 +234,49 @@ Solder the header pins into the **outer round holes** — the inner flat pads ar
 
 ![Close-up of the antenna-side header: GND, then 2 (SDA), then 3 (SCL), printed on the board itself](assets/photo-spare-c6-pins.jpg){ loading=lazy }
 
+### The second hub — two boards, the same two wires
+
+Zone 1 needs three channels and a hub holds sixteen, so every diagram up to this point has drawn one hub and been honest about it. Seven zones is **21 channels**. The second hub arrives at [Doc 4 stage 4](04-full-fixture-bench.md#stage-4-scale-to-7-zones-21-channels), and it is the moment the wiring stops matching any picture on this site.
+
+Here is the picture:
+
+![Two PCA9685 hubs on one I2C bus: the shared four wires, the A0 difference, and the two ways to land it](assets/wiring-hop-two-hubs.svg)
+
+**The second hub costs no ESP32 pins.** That is the whole answer, and it is also why it is hard to picture: you go looking for the wiring that tells the two boards apart, and there isn't any. Both boards take the same four wires — 3V3, GND, GPIO 2 (SDA), GPIO 3 (SCL) — landed exactly as [Hop 1](#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires) describes for the first one. What tells them apart is a blob of solder.
+
+That is what an address *is*. Every order the C6 sends carries a house number at the front; both boards hear every order, and the number decides which one acts. Board #1 leaves A0 open and answers at **0x40**. Board #2 gets A0 bridged and answers at **0x41**. Nothing else about the two boards differs — same pins, same voltage, same wires, same everything.
+
+Here is the same picture on the boards themselves:
+
+![The four-wire bus on the real boards: the ESP32-C6 feeding both PCA9685 hubs, V+ crossed out on both, A0 open on hub #1 and bridged on hub #2](assets/photo-anno-two-hubs.jpg){ loading=lazy }
+
+Follow any one color and the story repeats four times: off the C6, onto hub #1's pad, on to hub #2's — the same order at every landing. The V+ pin wears a red X on both boards, and the one thing that tells the hubs apart sits down by the address strip: the A0 pair, ringed green and open on hub #1, ringed red and bridged on hub #2.
+
+**Where those four wires physically meet** is a separate question, and the answer is: your choice. Two shapes both work.
+
+- **One row per signal on the breadboard.** Four rows — 3V3, GND, SDA, SCL. The C6's wire goes into the row and so does each hub's. A breadboard row *is* a junction, which is exactly what a bus needs. Prefer this on the bench: every wire is separately seatable, and separately beep-testable.
+- **Chained, board to board.** The PCA9685 carries the same six control pins at **both** ends, so hub #1's far header can feed hub #2 directly. Tidier, fewer breadboard rows, and it is the shape the soldered fixture ends up with — but read the trap before you use it.
+
+!!! trap "The far-end header is mirrored, and the chain is where that bites"
+    The six control pins at the other end of the board are the same six signals in **mirrored order**. Copy the near end's left-to-right order onto the far end and you have swapped SDA with SCL *and* put VCC on V+. The first is a silently dead bus; the second puts 3.3 V on the servo rail.
+
+    Read the silkscreen at the end you are actually wiring, letter by letter, every time. It is the same rule [Hop 1](#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires) gives for one board — chaining is just where ignoring it costs two.
+
+One thing genuinely does double. **Each board carries its own SDA and SCL pull-up resistors**, so two boards put two sets in parallel and the bus sees half the resistance it saw with one. At 400 kHz over breadboard-length runs that is harmless, and if anything it sharpens the edges. It is worth knowing because it is the kind of fact that surprises you at hub four, not at hub two.
+
+And the trap [Hop 1](#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires) already named, restated here because this is the section where it fires:
+
+!!! danger "Bridge A0 before the board's bus wires ever land"
+    An unbridged board #2 is not a missing 0x41. It is a **second 0x40**, answering alongside board #1, and the traffic meant for the zones that already work gets corrupted by the newcomer. The failure reads backwards: you wire zones 6 and 7, and *zones 1 through 5* start glitching.
+
+    Worse, **an I2C scan cannot see it.** A bus with one board at 0x40 and a bus with two boards both at 0x40 produce the same scan. A scan proves you have two hubs only when it reports **0x40 *and* 0x41** — which is CP8c.
+
+    So bridge A0 with everything unpowered, before that board's SDA and SCL ever touch the bus, and prove the blob with **CP8b** rather than trusting how it looks. Solder that has wetted one pad and merely leaned on the other photographs beautifully.
+
+What the blob looks like on the pads, and what CP8b reads on each board:
+
+![The A0 pads before and after: open on hub #1 with the meter reading high, solder-bridged on hub #2 with the meter reading near zero ohms](assets/photo-anno-a0-bridge.jpg){ loading=lazy }
+
 ### Hop 2 — the ULN2803, or: eight switches in one chip
 
 ![ULN2803 close-up: IN n to OUT 19−n, pin 9 to the star, and one channel's full current path](assets/wiring-hop-uln2803.svg)
@@ -249,7 +295,40 @@ This is the chip itself, and the one fact about its body that the schematic cann
 
 Pin 9 goes to the star. Pin 10 stays unconnected.
 
+The whole map, drawn on the chip itself — the figure to have open the first time you seat one:
+
+![The ULN2803 pin map on the photo: every pin numbered from the notch, inputs along the bottom, their outputs directly across](assets/photo-anno-uln-map.jpg){ loading=lazy }
+
 One closing rule for the whole chain: **one I2C master and one 3V3 source on the bus at a time.** The C6 gives the orders and the C6's regulator feeds the logic — wire in a second of either and the two hubs start contradicting each other on the same wires.
+
+### The fan-out — which channel drives which zone
+
+Two hubs and four switch chips make 21 channels, and the map that assigns them is [Doc 4 stage 4's table](04-full-fixture-bench.md#stage-4-scale-to-7-zones-21-channels). Here it is as a picture, because one row of it is not what it looks like:
+
+![The fan-out: which hub channel feeds which ULN chip, and the one chip fed by both hubs](assets/wiring-hub-fanout.svg)
+
+Read one zone at a time, left to right. Zone 4's three channels come from hub #1's channels 9, 10 and 11, enter ULN chip 2 at pins 4, 5 and 6, and leave from pins 15, 14 and 13 to zone 4's plug — always in warm / neutral / cool order.
+
+And here is one row of the map traced across the actual parts — zone 1, pad to pad:
+
+![Zone 1 across the real parts: PCA channels 0 to 2 into ULN chip 1, its outputs onto the tape's W, N and C pads, and +24 V running straight to the tape](assets/photo-anno-zone1-chain.jpg){ loading=lazy }
+
+The colors do the bookkeeping: amber enters at channel 0, exits at pin 18, lands on W; grey and blue do the same for N and C. And the red +24 V feed goes from the WAGO bus straight to the tape's 24V+ pad — it has no business at either chip, and the figure routes it the way the bench should: around, never through.
+
+Three things the picture is for.
+
+**Nothing from the tape touches a hub.** The hubs emit 3.3 V signals and nothing else. Each PCA9685 channel is a group of three holes — PWM, V+, GND — and you take the **PWM** hole only, as [Hop 1](#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires) says. The tape's +24 V runs from the WAGO bus straight to the tape, and the only wires that ever carry tape current are the negatives leaving the ULN's OUT pins. [Hop 2](#hop-2-the-uln2803-or-eight-switches-in-one-chip) has that current's whole trip.
+
+**The channels do not run out evenly.** Hub #1 gives 15 of its 16 channels to zones 1–5; hub #2 gives 6 of its 16 to zones 6–7 and keeps ten spare. That lopsidedness is deliberate — filling the first board before starting the second puts the boundary in one place instead of two.
+
+**And chip 3 is fed by both hubs.** Every other ULN chip takes both of its zones from a single hub. Chip 3 takes zone 5 from hub #1 and zone 6 from hub #2, because that is exactly where the 15-channel boundary falls.
+
+!!! trap "Wire zone by zone, never chip by chip"
+    Chip-by-chip is the tempting order: you have a chip in its socket, you fill its inputs, you move on. It works for chips 1, 2 and 4, and it reaches for the wrong board exactly once — at chip 3's inputs 4, 5 and 6, which belong to hub **#2**.
+
+    The symptom is quiet, and it lies to [the ladder](#when-a-zone-is-dark): zone 5 works, zone 6 is dark, and the chip and the firmware are both blameless. **CP13 passes** — hub #2 really is driving its channel-0 pin at 3.3 V — while **CP14 fails**, because the wire between that pin and chip 3's IN 4 was never made. A missing wire between two healthy things is the one fault the rungs can bracket but not name.
+
+    Wiring zone by zone — three channels in, three out, one plug, test it, next — deletes the failure instead of catching it. It is also the order [Doc 8 step 4](08-build-the-fixture.md#step-4-scale-to-seven) prescribes for the soldered build.
 
 ---
 
@@ -412,6 +491,8 @@ Every CP this chapter has named, in one place. Print it; tape it above the bench
 | CP6 | Backbone | Buck output, **not** connected to the ESP32 | 5.0 V | VIN/GND swapped — survives; fix, retest |
 | CP7 | Backbone, Ω | Supply− ↔ star ↔ ESP32 GND ↔ every ULN pin 9 | < 1 Ω | A ground is chained or missing |
 | CP8 | Chain, power off | The wire landing on PCA VCC | Beeps to the 3V3 rail and to nothing else | Rewire before power |
+| CP8b | Both hubs, **unpowered**, resistance — compare the two boards | Hub #2's A0 pad pair, then hub #1's | Hub #2 near **0 Ω** (a bridge is a dead short); hub #1's same pair reads high — kΩ or OL | Hub #2 not near 0 Ω → the blob only *looks* bridged: reflow it. Hub #1 near 0 Ω → you bridged the wrong board |
+| CP8c | Both hubs on the bus, C6 powered over USB (the 24 V rail is not needed) | Which addresses answer the I2C scan / hub witness | **0x40 and 0x41**, both | Only 0x40 → either #2 is unbridged (two boards colliding at one address) or #2 is not on the bus at all. **The scan cannot tell you which** — go back to CP8b |
 | CP9 | After soldering | Each wire to each pad | Beeps to its **own** pad only, neighbours silent | Stray strand → reflow, re-beep |
 | CP10 | Same | +24 pad ↔ each − pad | OL / no sustained beep (the LED string blocks the meter; a solid beep = solder bridge) | Reflow |
 | CP11 | Zone chained, off | ULN OUT pin ↔ tape − wire | Beeps | Open → beep segment by segment |
@@ -429,7 +510,9 @@ Every CP this chapter has named, in one place. Print it; tape it above the bench
 - [ ] The terminal cover is **on** (and goes back on before every power-up after this one)
 - [ ] One fuse — T3.15AL250V on the bus pair's + leg — and only one
 - [ ] Every ground runs direct to the star; nothing chained
-- [ ] PCA VCC beeps to the 3V3 rail and to nothing else (CP8); V+ empty; A0 on board #2 bridged before its bus wires land
+- [ ] PCA VCC beeps to the 3V3 rail and to nothing else (CP8); V+ empty; A0 on board #2 bridged before its bus wires land, and proved near 0 Ω against board #1's open pair (CP8b)
+- [ ] Both hubs answer once the C6 is powered — **0x40 and 0x41** (CP8c). Only 0x40 is not "one hub missing"; it may be two hubs colliding
+- [ ] Zone 6's three signal wires come off hub **#2**, not hub #1 — chip 3 is the one chip fed by both boards ([the fan-out](#the-fan-out-which-channel-drives-which-zone))
 - [ ] Every tape wire beeps to its own pad only (CP9); +24 to − pads all read OL (CP10)
 - [ ] The 4-wire pigtail is strain-relieved within ~20 mm of the pads — and was before the tug test
 - [ ] First power-up watched, not walked away from: supply steady, all three whites lit, nothing warm (CP12)
@@ -446,6 +529,7 @@ Verified against primary documents rather than forum lore:
 
 - **Diode LED Valent X Tunable White** product page and spec sheet — 24 V common anode, printed cut lines and pad markings
 - **NXP PCA9685 datasheet** — 16-channel PWM over I2C, the address pins, OE behavior, and V<sub>IH</sub> = 0.7·V<sub>DD</sub> (the 3.3 V rule)
+- **Adafruit 16-Channel PWM/Servo Driver** (product #815) documentation — the breakout's own SDA/SCL pull-ups, the A0–A5 address pads, and the control header duplicated at both ends of the board
 - **TI ULN2803A datasheet** — Darlington saturation (the ~1 V), the 500 mA per-channel and package-dissipation limits, pin geometry
 - **Pololu D24V22F5** product page — fixed 5 V, 2.5 A, nothing to mis-adjust
 - **WAGO 221 series** documentation — the 11 mm strip gauge and lever litany

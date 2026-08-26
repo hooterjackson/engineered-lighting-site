@@ -227,6 +227,11 @@ chip 1 → plug → tape. Get ONE zone perfect before copying it six times.
 1. On B2: solder the PCA #1 socket and the ULN chip-1 DIP socket.
 2. Run four wires up from B3: 3V3, GND, SDA (GPIO2), SCL (GPIO3).
 3. Wire PCA LED0/1/2 to ULN IN1/2/3; OUT18/17/16 to a 4-pin zone header.
+   Counting those pins for the first time? [Doc 4a's ULN pin
+   map](04a-wire-the-zones.md#hop-2-the-uln2803-or-eight-switches-in-one-chip)
+   numbers every one of them on the real chip, and [its zone-1
+   figure](04a-wire-the-zones.md#the-fan-out-which-channel-drives-which-zone)
+   photographs this whole step, hub hole to tape pad.
 4. Solder the zone-1 pigtail to the tape: +24 V and three channel negatives,
    labeled from the tape's printed pad markings.
 5. Run the zone's +24 V wire from the trunk; ULN pin 9 goes straight to star.
@@ -254,7 +259,10 @@ channel map on the diagram. Print it; tape it above the bench.
 **Do this:**
 
 1. Bridge PCA #2's A0 jumper **before** soldering its socket → it answers at
-   0x41 on the same two I2C wires.
+   0x41 on the same two I2C wires. [Doc 4a photographs those pads open and
+   bridged](04a-wire-the-zones.md#the-second-hub-two-boards-the-same-two-wires),
+   with the meter reading each one must give — a blob can look bridged and
+   touch only one pad.
 2. Seat ULN chips 2–4 in their sockets.
 3. Work zone by zone from the map: three channels in, three out, one plug.
    Test each zone as its plug lands — unwired zones just sit dark in HA.
