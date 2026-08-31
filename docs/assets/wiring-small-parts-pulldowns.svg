@@ -3,7 +3,10 @@
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 8 · The three 10 kΩ — the spotlight's default-to-dark</text>
   <text x="30" y="57" font-size="12" fill="#555">One resistor per PicoBuck input, soldered on the driver's side of the wire — so "off" stays true even when nothing else is saying anything.</text>
 
-  <text x="500" y="96" font-size="11" font-weight="bold" text-anchor="middle" fill="#333">Three things meet at each input: the wire from the brain · the 10 kΩ to ground · the pin. Solder all three to one node.</text>
+  <rect x="756" y="70" width="214" height="26" fill="#eefaf1" stroke="#3f7c55" stroke-width="1.5" rx="13"/>
+  <text x="863" y="87" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#3f7c55">POLARITY: NONE — either way round</text>
+
+  <text x="420" y="96" font-size="11" font-weight="bold" text-anchor="middle" fill="#333">Three things meet at each input: the wire from the brain · the 10 kΩ to ground · the pin. One node.</text>
 
   <!-- B3 logic -->
   <rect x="40" y="130" width="180" height="190" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
@@ -45,7 +48,8 @@
     <rect x="492" y="368" width="16" height="36"/>
     <rect x="522" y="368" width="16" height="36"/>
   </g>
-  <text x="556" y="392" font-size="10" font-weight="bold" fill="#6b4c12">10 kΩ ×3</text>
+  <text x="448" y="384" font-size="10" font-weight="bold" text-anchor="end" fill="#6b4c12">10 kΩ ×3 — soldered</text>
+  <text x="448" y="398" font-size="10" font-weight="bold" text-anchor="end" fill="#6b4c12">AT these pads, on B1</text>
 
   <!-- PicoBuck -->
   <rect x="560" y="140" width="290" height="230" fill="#fdf1f0" stroke="#a33" stroke-width="1.5" rx="8"/>
@@ -92,12 +96,22 @@
   </g>
 
   <rect x="664" y="510" width="296" height="128" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="6"/>
-  <text x="676" y="531" font-size="10" font-weight="bold" fill="#333">SOLDERING NOTES</text>
+  <text x="676" y="531" font-size="10" font-weight="bold" fill="#333">PICK THE RIGHT ONE FROM THE KIT</text>
   <g font-size="9.5" fill="#444">
-    <text x="676" y="550">· No polarity — either way round.</text>
-    <text x="676" y="565">· ¼ W is 200× more than the job needs;</text>
-    <text x="676" y="580">  any 10 kΩ from the box works.</text>
-    <text x="676" y="595">· Exactly three used (one per IN);</text>
-    <text x="676" y="610">  the rest of the pack are spares.</text>
+    <text x="676" y="550">A 10 kΩ body reads, band by band:</text>
+    <text x="676" y="565">brown · black · orange (· gold)</text>
+  </g>
+  <g>
+    <rect x="700" y="576" width="110" height="16" fill="#e6d3b3" stroke="#8a6a2f" rx="6"/>
+    <line x1="676" y1="584" x2="700" y2="584" stroke="#555" stroke-width="2"/>
+    <line x1="810" y1="584" x2="834" y2="584" stroke="#555" stroke-width="2"/>
+    <rect x="714" y="576" width="9" height="16" fill="#6b3a1f"/>
+    <rect x="736" y="576" width="9" height="16" fill="#111111"/>
+    <rect x="758" y="576" width="9" height="16" fill="#d97a1f"/>
+    <rect x="786" y="576" width="9" height="16" fill="#cdaa3d"/>
+  </g>
+  <g font-size="9.5" fill="#444">
+    <text x="676" y="614">No direction — either leg, either way.</text>
+    <text x="676" y="629">Three used; the rest of the pack are spares.</text>
   </g>
 </svg>

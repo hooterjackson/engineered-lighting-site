@@ -3,6 +3,9 @@
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 8 · The one 1000 µF — the motors' bucket</text>
   <text x="30" y="57" font-size="12" fill="#555">Across both trunks, exactly at the motors' power tap — and the stripe on the can lands on the ground side. Always.</text>
 
+  <rect x="700" y="66" width="270" height="26" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="13"/>
+  <text x="835" y="83" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#8a1c1c">POLARITY: YES — stripe = − = ground</text>
+
   <!-- B1 board -->
   <rect x="40" y="100" width="920" height="330" fill="#fbf6ee" stroke="#334" stroke-width="1.5" rx="8"/>
   <text x="56" y="126" font-size="12.5" font-weight="bold" fill="#223">B1 · POWER</text>
@@ -31,8 +34,10 @@
     <circle cx="640" cy="190" r="4.5" fill="#d62828"/>
     <circle cx="640" cy="330" r="4.5" fill="#222"/>
   </g>
+  <line x1="634" y1="210" x2="596" y2="176" stroke="#d62828" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="590" y="172" font-size="9.5" font-weight="bold" text-anchor="end" fill="#d62828">the + leg → +24 V trunk</text>
   <line x1="612" y1="286" x2="560" y2="300" stroke="#c33" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <text x="554" y="296" font-size="9.5" font-weight="bold" text-anchor="end" fill="#8a1c1c">the STRIPE side → ground trunk</text>
+  <text x="554" y="296" font-size="9.5" font-weight="bold" text-anchor="end" fill="#8a1c1c">the STRIPE side (the shorter leg) → ground trunk</text>
 
   <!-- motor taps -->
   <g stroke-width="3">
@@ -64,12 +69,12 @@
   <text x="52" y="481" font-size="10" font-weight="bold" fill="#8a1c1c">THE STRIPE IS THE NEGATIVE LEG</text>
   <g font-size="9.5" fill="#7c2a2a">
     <text x="52" y="500">It lands on the ground trunk, always —</text>
-    <text x="52" y="515">the other leg on +24 V. Installed</text>
-    <text x="52" y="530">backwards, electrolytics fail loudly</text>
-    <text x="52" y="545">and sometimes wetly. This is the one</text>
-    <text x="52" y="560">of the three small parts where</text>
-    <text x="52" y="575">direction matters. Check the stripe</text>
-    <text x="52" y="590">twice, then solder.</text>
+    <text x="52" y="515">the other leg on +24 V. On a fresh part</text>
+    <text x="52" y="530">the negative leg is also the SHORTER</text>
+    <text x="52" y="545">one: stripe and short leg agree, so you</text>
+    <text x="52" y="560">have two witnesses. Installed backwards,</text>
+    <text x="52" y="575">electrolytics fail loudly and sometimes</text>
+    <text x="52" y="590">wetly. Check twice, then solder.</text>
   </g>
 
   <rect x="352" y="460" width="296" height="150" fill="#fffbe8" stroke="#c9a227" rx="6"/>
