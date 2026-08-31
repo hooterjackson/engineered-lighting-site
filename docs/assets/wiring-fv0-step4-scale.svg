@@ -2,6 +2,8 @@
   <rect width="1000" height="620" fill="#fff"/>
   <text x="30" y="34" font-size="18" font-weight="bold" fill="#111">Step 4 · Scale to 7 zones — same pattern, six more times</text>
   <text x="30" y="53" font-size="11" fill="#555">No new ideas here — only repetition and discipline. The map below is the whole step; print it and tape it above the bench.</text>
+  <rect x="30" y="58" width="500" height="20" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="11"/>
+  <text x="280" y="72" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">ORDER: bridge A0 BEFORE its socket is soldered · then zone by zone, never chip by chip</text>
 
   <rect x="40" y="80" width="200" height="120" fill="#fdf6ec" stroke="#334" stroke-width="1.5" rx="8"/>
   <text x="140" y="102" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">PCA9685 #2 · 0x41 (B2)</text>

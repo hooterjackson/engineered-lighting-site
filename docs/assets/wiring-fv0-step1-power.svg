@@ -2,6 +2,8 @@
   <rect width="1000" height="620" fill="#fff"/>
   <text x="30" y="34" font-size="18" font-weight="bold" fill="#111">Step 1 · Power backbone — the two rails everything drinks from</text>
   <text x="30" y="53" font-size="11" fill="#555">Wire this first, test it empty. Nothing else connects until these numbers are right.</text>
+  <rect x="30" y="58" width="410" height="20" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="11"/>
+  <text x="235" y="72" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">ORDER: the IRM waits until step 7 — bench feed + 2 A limit until then</text>
 
   <rect x="40" y="80" width="170" height="58" fill="#f3f3f3" stroke="#666" stroke-width="1.5" rx="8"/>
   <text x="125" y="102" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">E26 socket-to-wire</text>

@@ -7,6 +7,8 @@
   <rect x="0" y="0" width="1560" height="990" fill="#ffffff"/>
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Fixture v0 · the wiring map — read one lane at a time</text>
   <text x="30" y="56" font-size="12" fill="#555">This page is the overview: what connects to what, and how many wires each connection really is. Pin-level detail lives in the six step diagrams — build in step order 1 → 6.</text>
+  <rect x="20" y="42" width="520" height="20" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="11"/>
+  <text x="280" y="56" font-size="9" font-weight="bold" text-anchor="middle" fill="#6b5200">ORDER: build each board FLAT on the desk — stack LAST · inter-board slack = 1.5× the gap</text>
 
   <!-- legend -->
   <g font-size="10" fill="#333">
