@@ -3,6 +3,9 @@
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · Hop 2 — the ULN2803: eight switches in one chip</text>
   <text x="30" y="56" font-size="12" fill="#555">3.3 V on IN n closes the switch at OUT (19−n), directly across the chip. The chip eats ~1 V; the tape sees ~23 V.</text>
 
+  <rect x="740" y="44" width="230" height="24" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="12"/>
+  <text x="855" y="60" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#8a1c1c">DIRECTION: YES — seat by the NOTCH</text>
+
   <!-- +24V bus -->
   <rect x="60" y="90" width="140" height="54" fill="#ffe9e6" stroke="#d62828" stroke-width="2" rx="6"/>
   <text x="130" y="112" font-size="11" font-weight="bold" text-anchor="middle" fill="#8a1c1c">+24 V BUS</text>
@@ -24,7 +27,10 @@
 
   <!-- chip body -->
   <rect x="384" y="130" width="240" height="300" fill="#eefaf1" stroke="#334" stroke-width="1.5" rx="8"/>
+  <path d="M 490 130 A 14 14 0 0 1 518 130 Z" fill="#ffffff" stroke="#334" stroke-width="1.5"/>
+  <circle cx="504" cy="136" r="16" fill="none" stroke="#c2571a" stroke-width="2.5"/>
   <text x="504" y="152" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">ULN2803A</text>
+  <text x="490" y="168" font-size="8.5" text-anchor="middle" fill="#c2571a" font-weight="bold">seat by the NOTCH — it marks the pin-1/18 end</text>
   <g font-size="10" fill="#223">
     <text x="392" y="184">IN1 (p1)</text>
     <text x="392" y="214">IN2 (p2)</text>

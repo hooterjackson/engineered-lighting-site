@@ -3,6 +3,9 @@
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · Hop 1 — the PCA9685: sixteen dimmers on two wires</text>
   <text x="30" y="56" font-size="12" fill="#555">One order over I2C and the chip holds the level by itself. It answers at 0x40 — unless the A0 jumper says 0x41.</text>
 
+  <rect x="30" y="66" width="356" height="24" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="12"/>
+  <text x="208" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">DIRECTION: the board's two ends are MIRRORED — read YOUR end's silkscreen</text>
+
   <!-- ESP32 -->
   <rect x="50" y="110" width="170" height="210" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
   <text x="135" y="134" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">ESP32-C6</text>

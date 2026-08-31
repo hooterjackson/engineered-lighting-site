@@ -3,6 +3,9 @@
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · The second hub — two boards, the same two wires</text>
   <text x="30" y="57" font-size="12" fill="#555">Seven zones need 21 channels and a hub holds 16. The second board taps the bus the first is already on — same four wires, same order, no new C6 pins.</text>
 
+  <rect x="30" y="66" width="356" height="24" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="12"/>
+  <text x="208" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">DIRECTION: a board's far-end header is MIRRORED — read YOUR end's silkscreen</text>
+
   <!-- legend -->
   <circle cx="706" cy="92" r="4.5" fill="#222"/>
   <text x="718" y="96" font-size="9.5" fill="#555">= joined</text>
