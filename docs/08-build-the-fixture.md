@@ -140,6 +140,43 @@ pulldowns). The bench supply, multimeter, soldering kit, USB-CAN adapter, and
 calipers stay on the bench as tools. **Retired:** the breadboards and the
 WAGOs — their jobs go to soldered trunks and pluggable pigtails.
 
+## The three small parts, and where every one goes
+
+Three rows of the BoM are easy to buy and then lose track of: the 10 kΩ
+resistors, the 100 nF ceramics, and the single big electrolytic. None of them
+existed on the breadboard — which is exactly why it can be unclear where they
+belong now. They are one idea at three speeds — **hold things steady when
+something changes faster than the answer can arrive** — and each has an exact
+address:
+
+| Part | How many | Where, exactly | Direction? |
+|---|---|---|---|
+| 10 kΩ ¼ W resistor | **3** | PicoBuck IN1 / IN2 / IN3, each to the ground trunk — at the driver's pads on B1 (step 5) | no |
+| 100 nF ceramic | **5** | one across each socketed module's supply pin and GND: buck, PCA #1, PCA #2, C6 socket, CAN board (steps 2–4) | no |
+| 1000 µF / 35 V electrolytic | **1** | across both trunks at the motors' XT30 tap, on B1 (step 6) | **yes — stripe to ground** |
+
+![The three 10 kΩ pulldowns: one per PicoBuck input to the ground trunk, soldered on the driver's side of the inter-board wires](assets/wiring-small-parts-pulldowns.svg)
+
+The resistors are the spotlight's "dark unless told otherwise" — the
+[floats-ON trap](04b-wire-the-spotlight.md#the-driver-demystified) is the why.
+The figure's one rule is the where: at the **PicoBuck's** pads, so the promise
+holds even with B3 unplugged, swapped, or mid-flash. Step 5's
+boot-stays-dark check is these three being proven.
+
+![The five 100 nF ceramics: one at each socketed module's supply pins, across all three boards](assets/wiring-small-parts-caps100nf.svg)
+
+The ceramics are placement, not mystery: across each socketed module's supply
+pin and ground, a centimetre away at most, legs short. Steps 2 and 3 each
+place one as they build — this map is the full count of five, including the
+two no step spells out (the CAN board and the buck). The PicoBuck sits this
+one out: it carries its own capacitors on-board.
+
+![The one 1000 µF electrolytic: across both trunks at the motors' power tap, stripe to the ground trunk](assets/wiring-small-parts-bulkcap.svg)
+
+The electrolytic is the only one of the three with a direction — **stripe to
+ground, always** — and the only one with a single address: across the trunks
+at the motors' tap, placed in step 6, spanning the copper step 1 laid down.
+
 ## The map — read one lane at a time
 
 ![Fixture v0 wiring map](assets/wiring-fv0-map.svg)
@@ -293,7 +330,9 @@ step's wiring should already carry.
 1. Mount the star on its heatsink **first** and aim it at a wall — it cooks
    itself bare in under a minute and it is painfully bright.
 2. Run GPIO10/11/18 from B3 to the PicoBuck's IN1/2/3 on B1.
-3. Solder a 10 kΩ pulldown from each IN to ground.
+3. Solder a 10 kΩ pulldown from each IN to ground — [the small-parts
+   figure](#the-three-small-parts-and-where-every-one-goes) draws the exact
+   node: wire, resistor, and pin, all meeting at the driver's pad.
 4. Wire PicoBuck VIN/GND to the trunks.
 5. Wire the three outputs to the three dies: **each output is a ± pair — six
    conductors total — and the returns never share a wire.** Match the printed
@@ -331,8 +370,9 @@ not configuration.
    stubs to each motor's CANH/CANL.
 4. Solder a 120 Ω resistor across CANH–CANL at the **tilt** motor.
 5. Motor power: one XT30 pair per motor, 18 AWG straight from the trunks;
-   the bulk cap sits at that tap. Pigtails cross each joint as droopy
-   service loops.
+   the bulk cap sits at that tap — stripe to the ground trunk, per [the
+   small-parts figure](#the-three-small-parts-and-where-every-one-goes).
+   Pigtails cross each joint as droopy service loops.
 6. Everything OFF: meter across CANH–CANL must read **~60 Ω**. (~120 = a
    terminator missing; open = both.)
 7. Raise the bench supply's limit toward **3 A** — two motors plus every LED
