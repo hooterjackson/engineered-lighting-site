@@ -3,6 +3,11 @@
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 3c · Prove the Bus — two-node bench, as built</text>
   <text x="30" y="56" font-size="12" fill="#555">No motor, no bench supply. Everything runs on USB and 3.3 V. Wire with BOTH USB cables unplugged.</text>
 
+  <rect x="30" y="66" width="428" height="24" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="12"/>
+  <text x="244" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">TERMINATOR: ON today — the adapter IS one end · it flips OFF when the motor joins</text>
+  <rect x="470" y="66" width="404" height="24" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="12"/>
+  <text x="672" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#8a1c1c">DIRECTION: the 6/7 jumpers CROSS on this board — wire by LABEL, not position</text>
+
   <!-- Legend -->
   <g font-size="11" fill="#333">
     <rect x="950" y="18" width="290" height="94" fill="#fbfbfb" stroke="#ccc" rx="6"/>
@@ -19,14 +24,14 @@
   <text x="125" y="146" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">Your computer</text>
   <text x="125" y="163" font-size="10" text-anchor="middle" fill="#556">bench UI at 127.0.0.1:8765</text>
   <text x="125" y="177" font-size="10" text-anchor="middle" fill="#556">+ CANable capture</text>
-  <text x="200" y="205" font-size="10" fill="#556" text-anchor="end">USB-C ①</text>
-  <text x="200" y="233" font-size="10" fill="#556" text-anchor="end">USB-C ②</text>
+  <text x="200" y="205" font-size="10" fill="#556" text-anchor="end">USB-C #1</text>
+  <text x="200" y="233" font-size="10" fill="#556" text-anchor="end">USB-C #2</text>
 
   <!-- USB cables -->
   <path d="M 210 200 L 320 200 L 320 175" fill="none" stroke="#888" stroke-width="4"/>
   <text x="216" y="190" font-size="10" fill="#666">→ “COM” port</text>
   <path d="M 210 228 L 258 228 L 258 672 L 1060 672 L 1060 560" fill="none" stroke="#888" stroke-width="4"/>
-  <text x="520" y="658" font-size="10" fill="#666">USB-C ② runs to the MKS CANable</text>
+  <text x="520" y="658" font-size="10" fill="#666">USB-C #2 runs to the MKS CANable</text>
 
   <!-- ESP32 carrier -->
   <rect x="300" y="120" width="255" height="260" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
@@ -83,7 +88,7 @@
   <text x="1140" y="347" font-size="10" text-anchor="middle" fill="#a33">cap ON tonight</text>
   <text x="1090" y="435" font-size="10" text-anchor="middle" fill="#7a3d00">no 5V pin on this board — nothing to avoid</text>
   <text x="1090" y="455" font-size="10" text-anchor="middle" fill="#7a3d00">BOOT header: leave alone</text>
-  <text x="1090" y="530" font-size="10" text-anchor="middle" fill="#556">USB-C ② ↓</text>
+  <text x="1090" y="530" font-size="10" text-anchor="middle" fill="#556">USB-C #2 ↓</text>
 
   <!-- 3V3 wire -->
   <line x1="555" y1="211" x2="660" y2="221" stroke="#7b2d8b" stroke-width="3.5"/>
@@ -112,7 +117,7 @@
   <text x="672" y="492" font-size="11" font-weight="bold" fill="#622">Before either USB cable goes in</text>
   <g font-size="10" fill="#733">
     <text x="672" y="510">· meter on Ω, probes in L and H at the MKS</text>
-    <text x="672" y="525">· <tspan font-weight="bold">~60 Ω = right</tspan> (Waveshare 120 ∥ MKS 120R)</text>
+    <text x="672" y="525">· <tspan font-weight="bold">~60 Ω = right</tspan> (Waveshare 120 in parallel with MKS 120R)</text>
     <text x="672" y="540">· ~120 Ω = 120R jumper not actually engaged</text>
     <text x="672" y="555">· ~0 Ω = stray strand at a screw terminal</text>
   </g>

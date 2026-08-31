@@ -3,6 +3,11 @@
   <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Stage 3 + the USB-CAN sniffer — where the CANable joins the bus</text>
   <text x="30" y="56" font-size="12" fill="#555">The sniffer is a third listener on the same two wires. It taps mid-span, its own terminator stays OFF, and its ground is not optional.</text>
 
+  <rect x="30" y="66" width="404" height="24" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="12"/>
+  <text x="232" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">TERMINATOR: OFF here — ON only on 3c's two-node bench, never on this bus</text>
+  <rect x="446" y="66" width="330" height="24" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="12"/>
+  <text x="611" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#8a1c1c">GND: REQUIRED — "isolated" does not mean floating</text>
+
   <!-- Legend -->
   <g font-size="11" fill="#333">
     <rect x="890" y="18" width="295" height="76" fill="#fbfbfb" stroke="#ccc" rx="6"/>
