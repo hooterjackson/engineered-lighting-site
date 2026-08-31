@@ -1,5 +1,5 @@
 ---
-title: 3c · Prove the Bus
+title: 3c · Prove the Bus First
 description: "An optional half-hour between stage 2 and stage 3: put the USB-CAN adapter and the transceiver on a two-node bench bus — no motor, no motor supply — and watch your own frames arrive on the wire. If the motor doesn't answer later, you'll already know your entire side is good."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 3a · Wire It For Real
+title: 3a · Wire the Gimbal For Real
 description: "The connector-level companion to stage 3: the motor's JST ZH-6 port and how to get from it to bare wire, what 'one common ground' actually means with a screwdriver in your hand, where wires may split and where they may not, how to tap a USB-CAN sniffer onto the bus, and what the little micro-USB board in the motor box is for."
 ---
 

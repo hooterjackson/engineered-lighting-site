@@ -2,20 +2,28 @@ nav:
   - index.md
   - bom-checklist.md
   - 00b-ai-native-workflow.md
-  - 01-how-we-got-here.md
-  - 02-choosing-the-motors.md
-  - 03-build-the-gimbal.md
-  # 3c sits here deliberately: the bus proof happens between stage 2 and
-  # stage 3, so the sidebar follows build order. The letters are accession
-  # order (3a and 3b were published first) and never change once live.
-  - 03c-prove-the-bus.md
-  - 03a-wire-the-bench.md
-  - 03b-print-the-frame.md
-  # 04a is the connector-level companion to Doc 4 stages 1-4, same pattern
-  # as 3a. Letters are accession order and never change.
-  - 04-full-fixture-bench.md
-  - 04a-wire-the-zones.md
-  # 04b is the same pattern for Doc 4 stage 5 — the spotlight's star and
-  # CC driver at connector level. Letters are accession order.
-  - 04b-wire-the-spotlight.md
+  - Understand the choices:
+      - 01-how-we-got-here.md
+      - 02-choosing-the-motors.md
+  # Inside each build section the sidebar follows BUILD order, not letter
+  # order: 3c's bus proof happens between stage 2 and stage 3. The letters
+  # are accession order (3a and 3b were published first) and never change
+  # once live.
+  - Build the gimbal:
+      - 03-build-the-gimbal.md
+      - 03c-prove-the-bus.md
+      - 03a-wire-the-bench.md
+      - 03b-print-the-frame.md
+  # 4a/4b are the connector-level companions to Doc 4's stages, same
+  # pattern as 3a. Letters are accession order and never change.
+  - Build the bench:
+      - 04-full-fixture-bench.md
+      - 04a-wire-the-zones.md
+      - 04b-wire-the-spotlight.md
+  - Aim it, then program it:
+      - 05-teach-it-to-aim.md
+      - 06-message-contract.md
+      - 07-building-the-software.md
+  - Make it permanent:
+      - 08-build-the-fixture.md
   - ...

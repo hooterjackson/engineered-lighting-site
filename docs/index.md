@@ -57,6 +57,16 @@ Everything the series tells you to buy, in one interactive list — check items 
 
 [:material-format-list-checks: Open the BoM checklist](bom-checklist.md){ .md-button .md-button--primary }
 
+## Reading the diagrams
+
+Every wiring figure in the build chapters leads with a **badge** — the one question that ruins first builds, answered before you read a single wire:
+
+- **Red · POLARITY / DIRECTION / POWER** — getting this backwards costs hardware. *Reversed motor power burns the drive; the electrolytic's stripe goes to ground; USB or the stack, never both.*
+- **Amber · ORDER / settings** — the sequence matters more than the wiring. *Bridge A0 before its socket is soldered; the sniffer's terminator flips between chapters.*
+- **Green · harmless** — the mistake you don't need to fear. *A swapped CAN pair just refuses to talk until you fix it.*
+
+Below each badge the pattern repeats: a **schematic** carries the idea, then an **annotated photograph of this build's own parts** carries the exact pads — so "which hole?" is answered by a picture of the hole.
+
 ## The document map
 
 | # | Doc | What it is | You buy |
@@ -69,6 +79,8 @@ Everything the series tells you to buy, in one interactive list — check items 
 | 6 | [The Message Contract](06-message-contract.md) | The one page every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture (HA entities + autonomy without fights). *When docs disagree, Doc 6 wins* | nothing |
 | 7 | [Building the Software](07-building-the-software.md) | The code: pinned stack, repo layout, hardware-free testing (replay cameras, simulated fixtures), deployment, firmware growth path, licensing gates | nothing |
 | 8 | [Build the Fixture](08-build-the-fixture.md) | Six wiring steps from breadboard to a hand-soldered fixture that screws into a lamp socket — stacked protoboards, a wiring map, and a diagram per step | ~$105–120 |
+
+Each build doc travels with connector-level companions — [3c](03c-prove-the-bus.md) · [3a](03a-wire-the-bench.md) · [3b](03b-print-the-frame.md) for the gimbal, [4a](04a-wire-the-zones.md) · [4b](04b-wire-the-spotlight.md) for the bench — the pages that hold the parts in your hands. The sidebar groups them in build order.
 
 **Reading paths:** *Building this weekend?* → [Doc 3](03-build-the-gimbal.md), then [4](04-full-fixture-bench.md) (skim their concepts sections; Docs [1](01-how-we-got-here.md)–[2](02-choosing-the-motors.md) optional background). *Understanding the choices?* → [1](01-how-we-got-here.md) → [2](02-choosing-the-motors.md), then skim [5](05-teach-it-to-aim.md). *Writing the software?* → [6](06-message-contract.md) → [7](07-building-the-software.md), with [5](05-teach-it-to-aim.md) as the spec. *Making it permanent?* → [8](08-build-the-fixture.md), once [4](04-full-fixture-bench.md)'s checklist passes.
 

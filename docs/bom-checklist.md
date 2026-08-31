@@ -1,5 +1,5 @@
 ---
-title: BoM Checklist
+title: Buy the Parts
 description: "Every purchase in the series in one interactive checklist — check items off as you order; progress persists in your browser."
 hide:
   - toc
