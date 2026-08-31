@@ -142,9 +142,6 @@ Masses are measured off the STLs, not estimated. Print times are not listed beca
 
 `part="all"` lays the whole set flat in **207.5 × 169.7 mm**, which fits a 256 mm X1C bed in **one job**. Those offsets are computed from each part's measured bounding box, not eyeballed. There is not a single support in the set and no overhang past 60°.
 
-The plate itself, with every piece named and its pose stated — slice it exactly as it lands:
-
-![The full print plate annotated: each part named with its one print pose, the tol_coupon flagged print-me-first](assets/render-anno-frame-orientations.jpg){ loading=lazy }
 
 ## How it all goes together
 
@@ -157,10 +154,6 @@ Open [`cad/assembly.scad`](cad/assembly.scad) and press F5. `view` flips explode
     That is the whole explanation for "only some of the parts render". If you have downloaded these files more than once, check what is actually in the folder you opened: a browser saves a second copy as `frame_params_1.scad`, which nothing includes, leaving the *stale* `frame_params.scad` as the one being read. Work in the repo clone, not in a downloads folder.
 
 ## Build order
-
-The whole machine exploded, with every part named and every joint's screws tagged — the figure to keep open while the steps below run:
-
-![The frame exploded: four printed parts, two motors and the housing named, with each joint's screw length tagged and the M3×10 law badged](assets/render-anno-frame-exploded.jpg){ loading=lazy }
 
 Each step leaves the next step's fasteners reachable — that ordering is a property of the geometry, not a hope.
 

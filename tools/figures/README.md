@@ -18,5 +18,3 @@ run `python <name>_gen.py` — then copy the render over the published asset.
 | `a0-bridge_gen.py` | `photo-anno-a0-bridge.jpg` |
 | `spot-driver_gen.py` | `photo-anno-spot-driver.jpg` (input IMG_2453, rotated 180°) |
 | `spot-star_gen.py` | `photo-anno-spot-star.jpg` (input IMG_2507) |
-| `frame-exploded_gen.py` | `render-anno-frame-exploded.jpg` (input cad/renders/exploded.png) |
-| `frame-orientations_gen.py` | `render-anno-frame-orientations.jpg` (input cad/renders/parts-all.png) |
