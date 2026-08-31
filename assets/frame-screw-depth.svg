@@ -1,0 +1,85 @@
+<svg viewBox="0 0 1000 640" width="1000" height="640" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="640" fill="#ffffff"/>
+  <text x="30" y="38" font-size="21" font-weight="bold" fill="#111">Doc 3b · The 2.5 mm that rules every screw</text>
+  <text x="30" y="60" font-size="12.5" fill="#555">The motor's output flange is tapped only 2.5 mm deep, and the holes break through into the rotor cavity. Sections are schematic; the numbers are real.</text>
+
+  <rect x="620" y="74" width="350" height="28" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="14"/>
+  <text x="795" y="93" font-size="11" font-weight="bold" text-anchor="middle" fill="#8a1c1c">DEPTH: 2.5 mm of thread is ALL there is — M3×10 only</text>
+
+  <!-- LEFT: correct -->
+  <text x="255" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#2a5c3a">M3×10 — the derived length</text>
+
+  <!-- printed part -->
+  <rect x="90" y="170" width="330" height="60" fill="#f4f4f0" stroke="#334" stroke-width="1.5"/>
+  <text x="98" y="204" font-size="11" fill="#556">printed part (cradle / bridge)</text>
+  <!-- flange -->
+  <rect x="90" y="230" width="330" height="55" fill="#d8d8de" stroke="#334" stroke-width="1.5"/>
+  <!-- thread band -->
+  <rect x="230" y="230" width="50" height="25" fill="#c2c2cc"/>
+  <g stroke="#666" stroke-width="1.2">
+    <line x1="230" y1="235" x2="280" y2="235"/><line x1="230" y1="241" x2="280" y2="241"/>
+    <line x1="230" y1="247" x2="280" y2="247"/><line x1="230" y1="253" x2="280" y2="253"/>
+  </g>
+  <!-- rotor cavity -->
+  <rect x="150" y="285" width="210" height="90" fill="#3a3a44" stroke="#334" stroke-width="1.5"/>
+  <text x="255" y="352" font-size="10.5" text-anchor="middle" fill="#ddd">rotor cavity — threads break into it</text>
+
+  <!-- screw: head seated, tip with air -->
+  <rect x="243" y="158" width="24" height="12" fill="#8a8f9a" stroke="#333"/>
+  <rect x="249" y="170" width="12" height="108" fill="#a0a5b0" stroke="#333"/>
+  <text x="255" y="296" font-size="10" text-anchor="middle" fill="#9adfb0">air under the tip</text>
+
+  <line x1="290" y1="230" x2="332" y2="230" stroke="#2a5c3a" stroke-width="1"/>
+  <line x1="290" y1="255" x2="332" y2="255" stroke="#2a5c3a" stroke-width="1"/>
+  <line x1="322" y1="230" x2="322" y2="255" stroke="#2a5c3a" stroke-width="1.5"/>
+  <text x="338" y="240" font-size="10.5" fill="#2a5c3a">2.5 mm tapped —</text>
+  <text x="338" y="254" font-size="10.5" fill="#2a5c3a">2.3 used, air spared</text>
+
+  <rect x="120" y="398" width="270" height="30" fill="#eefaf1" stroke="#3f7c55" stroke-width="2" rx="15"/>
+  <text x="255" y="418" font-size="12" font-weight="bold" text-anchor="middle" fill="#2a5c3a">head seats · joint CLAMPS</text>
+
+  <!-- RIGHT: wrong -->
+  <text x="745" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#8a1c1c">M3×13 — three millimetres too honest</text>
+
+  <rect x="580" y="170" width="330" height="60" fill="#f4f4f0" stroke="#334" stroke-width="1.5"/>
+  <text x="588" y="204" font-size="11" fill="#556">same printed part</text>
+  <rect x="580" y="230" width="330" height="55" fill="#d8d8de" stroke="#334" stroke-width="1.5"/>
+  <rect x="720" y="230" width="50" height="25" fill="#c2c2cc"/>
+  <g stroke="#666" stroke-width="1.2">
+    <line x1="720" y1="235" x2="770" y2="235"/><line x1="720" y1="241" x2="770" y2="241"/>
+    <line x1="720" y1="247" x2="770" y2="247"/><line x1="720" y1="253" x2="770" y2="253"/>
+  </g>
+  <rect x="640" y="285" width="210" height="90" fill="#3a3a44" stroke="#334" stroke-width="1.5"/>
+  <text x="745" y="362" font-size="10.5" text-anchor="middle" fill="#ddd">the tip ends up inside the motor</text>
+
+  <!-- screw: bottomed, head proud with gap -->
+  <rect x="733" y="128" width="24" height="12" fill="#8a8f9a" stroke="#333"/>
+  <rect x="739" y="140" width="12" height="168" fill="#a0a5b0" stroke="#333"/>
+  <line x1="700" y1="170" x2="790" y2="170" stroke="#c33" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="968" y="148" font-size="10.5" font-weight="bold" text-anchor="end" fill="#8a1c1c">the head stops HERE — 2.5–3.5 mm proud</text>
+  <text x="968" y="162" font-size="10.5" text-anchor="end" fill="#8a1c1c">the gap never closes; the joint never clamps</text>
+
+  <rect x="610" y="398" width="270" height="30" fill="#fdecec" stroke="#c33" stroke-width="2" rx="15"/>
+  <text x="745" y="418" font-size="12" font-weight="bold" text-anchor="middle" fill="#8a1c1c">bottoms out · NEVER clamps</text>
+
+  <!-- notes -->
+  <rect x="60" y="460" width="430" height="150" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="8"/>
+  <text x="78" y="486" font-size="12" font-weight="bold" fill="#333">DERIVED, NEVER TYPED</text>
+  <g font-size="11.5" fill="#444">
+    <text x="78" y="510">frame_params.scad allows itself 2.3 of the</text>
+    <text x="78" y="530">2.5 mm, and computes every output screw as</text>
+    <text x="78" y="550">out_screw_len(through) = through + 2.3.</text>
+    <text x="78" y="574">A part that gets thicker changes its own</text>
+    <text x="78" y="594">screw length — no human in the loop to forget.</text>
+  </g>
+
+  <rect x="510" y="460" width="430" height="150" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="8"/>
+  <text x="528" y="486" font-size="12" font-weight="bold" fill="#6b5200">THE OTHER 3.0 mm THAT MATTERS</text>
+  <g font-size="11.5" fill="#514000">
+    <text x="528" y="510">The flange is flat — no boss, 0.000 proud —</text>
+    <text x="528" y="530">and the stationary housing starts just</text>
+    <text x="528" y="550">3.0 mm behind the output face. A part that</text>
+    <text x="528" y="574">reaches past that clamps the motor solid.</text>
+    <text x="528" y="594">Every v8 part stops short by design.</text>
+  </g>
+</svg>

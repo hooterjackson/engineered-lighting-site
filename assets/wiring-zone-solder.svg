@@ -1,0 +1,107 @@
+<svg viewBox="0 0 1000 730" width="1000" height="730" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="730" fill="#ffffff"/>
+  <text x="30" y="38" font-size="21" font-weight="bold" fill="#111">Doc 4a · Tape end close-up — cut, label, solder, anchor, tug</text>
+  <text x="30" y="60" font-size="12.5" fill="#555">Practice on the spool tail first — a lifted pad there costs nothing.</text>
+
+  <rect x="660" y="42" width="310" height="28" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="14"/>
+  <text x="815" y="61" font-size="11" font-weight="bold" text-anchor="middle" fill="#8a1c1c">POLARITY: YES — one shared +, three −</text>
+
+  <!-- tape strip -->
+  <rect x="60" y="120" width="620" height="200" fill="#fff8ec" stroke="#a8792a" stroke-width="2" rx="6"/>
+  <text x="370" y="110" font-size="12" font-weight="bold" text-anchor="middle" fill="#6b4c12">Valent X tape · zone end — four pads in a row, ON the cut line itself</text>
+
+  <!-- pads -->
+  <g fill="#e8c27a" stroke="#8a6a2f" stroke-width="1.5">
+    <rect x="106" y="132" width="52" height="36" rx="12"/>
+    <rect x="106" y="180" width="52" height="36" rx="12"/>
+    <rect x="106" y="228" width="52" height="36" rx="12"/>
+    <rect x="106" y="276" width="52" height="36" rx="12"/>
+  </g>
+  <line x1="132" y1="120" x2="132" y2="320" stroke="#c33" stroke-width="3" stroke-dasharray="8 6"/>
+  <g font-weight="bold" text-anchor="middle" fill="#5c430e">
+    <text x="132" y="155" font-size="11">24V+</text>
+    <text x="132" y="205" font-size="14">W</text>
+    <text x="132" y="253" font-size="14">N</text>
+    <text x="132" y="301" font-size="14">C</text>
+  </g>
+
+  <!-- wires + flags -->
+  <g stroke-width="3.5" fill="none">
+    <path d="M 158 150 C 400 142 550 140 700 142" stroke="#d62828"/>
+    <path d="M 158 198 C 400 196 550 194 700 194" stroke="#c47a00"/>
+    <path d="M 158 246 C 400 246 550 246 700 246" stroke="#7a7a7a"/>
+    <path d="M 158 294 C 400 296 550 298 700 298" stroke="#2e86c1"/>
+  </g>
+  <g fill="#fff" stroke="#555" stroke-width="1.2">
+    <rect x="700" y="130" width="78" height="24" rx="4"/>
+    <rect x="700" y="182" width="78" height="24" rx="4"/>
+    <rect x="700" y="234" width="78" height="24" rx="4"/>
+    <rect x="700" y="286" width="78" height="24" rx="4"/>
+  </g>
+  <g font-size="11" font-weight="bold" text-anchor="middle" fill="#333">
+    <text x="739" y="147">"24V+"</text>
+    <text x="739" y="199">"W −"</text>
+    <text x="739" y="251">"N −"</text>
+    <text x="739" y="303">"C −"</text>
+  </g>
+  <g font-size="11" fill="#555">
+    <text x="800" y="192">flags at BOTH ends,</text>
+    <text x="800" y="208">copied from the pad</text>
+    <text x="800" y="224">print — never from</text>
+    <text x="800" y="240">wire colour or memory</text>
+  </g>
+
+  <!-- in-strip notes -->
+  <g font-size="11" fill="#8a6a2f">
+    <text x="210" y="172">← the letters are PRINTED on the tape —</text>
+    <text x="225" y="188">your spool outranks every diagram</text>
+  </g>
+  <text x="210" y="270" font-size="11" fill="#8a6a2f">W = 1800 K · N = 3500 K · C = 6500 K</text>
+
+  <!-- anchor -->
+  <rect x="480" y="124" width="30" height="192" fill="#d9e6d9" fill-opacity="0.75" stroke="#3f7c55" stroke-width="2" rx="5"/>
+  <text x="495" y="352" font-size="11" font-weight="bold" text-anchor="middle" fill="#2a5c3a">ANCHOR — within ~20 mm, BEFORE the tug test</text>
+  <line x1="495" y1="320" x2="495" y2="340" stroke="#3f7c55" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="495" y="368" font-size="10.5" text-anchor="middle" fill="#2a5c3a">a tug lands here, never on a joint</text>
+
+  <!-- cut caption -->
+  <text x="60" y="342" font-size="11.5" font-weight="bold" fill="#8a1c1c">cut ONLY at the printed line — it runs THROUGH the pad centers;</text>
+  <text x="60" y="358" font-size="11.5" font-weight="bold" fill="#8a1c1c">anywhere else kills both neighbouring segments</text>
+
+  <!-- notes, 2 x 2, short lines, bigger type -->
+  <rect x="60" y="396" width="430" height="150" fill="#f2fbf4" stroke="#3f7c55" stroke-width="1.5" rx="8"/>
+  <text x="78" y="422" font-size="12" font-weight="bold" fill="#3f7c55">SOLDER ORDER (the volcano rule)</text>
+  <g font-size="11.5" fill="#2f5c40">
+    <text x="78" y="446">1 · tin the pad   2 · tin the wire</text>
+    <text x="78" y="466">3 · touch them together with the iron — 2 s</text>
+    <text x="78" y="486">4 · tiny volcano = good · blobby ball = redo</text>
+    <text x="78" y="510">Then beep every wire to its OWN pad only —</text>
+    <text x="78" y="530">a stray strand bridging two pads = CP9 fails.</text>
+  </g>
+
+  <rect x="510" y="396" width="430" height="150" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="8"/>
+  <text x="528" y="422" font-size="12" font-weight="bold" fill="#6b5200">THE METER CANNOT SEE THROUGH LEDs</text>
+  <g font-size="11.5" fill="#514000">
+    <text x="528" y="446">Pad-to-pad reads OL on a good harness</text>
+    <text x="528" y="466">AND on a reversed one. Polarity is proven</text>
+    <text x="528" y="486">by the pad print — then first power with +</text>
+    <text x="528" y="506">and ONE channel landed. A reversal just</text>
+    <text x="528" y="526">lights nothing; fix it and relight.</text>
+  </g>
+
+  <rect x="60" y="562" width="430" height="130" fill="#fdecec" stroke="#c33" rx="8"/>
+  <text x="78" y="588" font-size="12" font-weight="bold" fill="#8a1c1c">24–26 AWG SILICONE STRANDED ONLY</text>
+  <g font-size="11.5" fill="#7c2a2a">
+    <text x="78" y="612">22 AWG solid is the canonical lifted-pad</text>
+    <text x="78" y="632">cause: a stiff wire works as a lever, prying</text>
+    <text x="78" y="652">at a pad held on by adhesive and hope.</text>
+  </g>
+
+  <rect x="510" y="562" width="430" height="130" fill="#fdecec" stroke="#c33" stroke-width="2" rx="8"/>
+  <text x="528" y="588" font-size="12" font-weight="bold" fill="#8a1c1c">THE ONE MISTAKE NOTHING CAN CATCH</text>
+  <g font-size="11.5" fill="#7c2a2a">
+    <text x="528" y="612">Swap W and C and every checkpoint still</text>
+    <text x="528" y="632">passes. Warm and cool exist only in YOUR</text>
+    <text x="528" y="652">flags — so copy the print, every zone.</text>
+  </g>
+</svg>

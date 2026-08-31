@@ -1,0 +1,139 @@
+<svg viewBox="0 0 1260 800" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1260" height="800" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 3c · Prove the Bus — two-node bench, as built</text>
+  <text x="30" y="56" font-size="12" fill="#555">No motor, no bench supply. Everything runs on USB and 3.3 V. Wire with BOTH USB cables unplugged.</text>
+
+  <rect x="30" y="66" width="428" height="24" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="12"/>
+  <text x="244" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">TERMINATOR: ON today — the adapter IS one end · it flips OFF when the motor joins</text>
+  <rect x="470" y="66" width="404" height="24" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="12"/>
+  <text x="672" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#8a1c1c">DIRECTION: the 6/7 jumpers CROSS on this board — wire by LABEL, not position</text>
+
+  <!-- Legend -->
+  <g font-size="11" fill="#333">
+    <rect x="950" y="18" width="290" height="94" fill="#fbfbfb" stroke="#ccc" rx="6"/>
+    <line x1="962" y1="40" x2="990" y2="40" stroke="#7b2d8b" stroke-width="3"/><text x="998" y="44">3.3 V</text>
+    <line x1="962" y1="58" x2="990" y2="58" stroke="#222" stroke-width="3"/><text x="998" y="62">GND (one rail)</text>
+    <line x1="962" y1="76" x2="990" y2="76" stroke="#1d6fd6" stroke-width="3"/><text x="998" y="80">GPIO6 = TWAI TX</text>
+    <line x1="962" y1="94" x2="990" y2="94" stroke="#0f8a3d" stroke-width="3"/><text x="998" y="98">GPIO7 = TWAI RX</text>
+    <line x1="1102" y1="40" x2="1130" y2="40" stroke="#e8871e" stroke-width="3"/><text x="1138" y="44">CAN H</text>
+    <line x1="1102" y1="58" x2="1130" y2="58" stroke="#b8860b" stroke-width="3"/><text x="1138" y="62">CAN L</text>
+  </g>
+
+  <!-- Your computer -->
+  <rect x="40" y="120" width="170" height="130" fill="#f3f3f5" stroke="#667" stroke-width="1.5" rx="8"/>
+  <text x="125" y="146" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">Your computer</text>
+  <text x="125" y="163" font-size="10" text-anchor="middle" fill="#556">bench UI at 127.0.0.1:8765</text>
+  <text x="125" y="177" font-size="10" text-anchor="middle" fill="#556">+ CANable capture</text>
+  <text x="200" y="205" font-size="10" fill="#556" text-anchor="end">USB-C #1</text>
+  <text x="200" y="233" font-size="10" fill="#556" text-anchor="end">USB-C #2</text>
+
+  <!-- USB cables -->
+  <path d="M 210 200 L 320 200 L 320 175" fill="none" stroke="#888" stroke-width="4"/>
+  <text x="216" y="190" font-size="10" fill="#666">→ “COM” port</text>
+  <path d="M 210 228 L 258 228 L 258 672 L 1060 672 L 1060 560" fill="none" stroke="#888" stroke-width="4"/>
+  <text x="520" y="658" font-size="10" fill="#666">USB-C #2 runs to the MKS CANable</text>
+
+  <!-- ESP32 carrier -->
+  <rect x="300" y="120" width="255" height="260" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="427" y="146" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">ESP32-C6-WROOM-1 carrier</text>
+  <text x="427" y="161" font-size="10" text-anchor="middle" fill="#556">seated in the breadboard · dual USB-C:</text>
+  <text x="427" y="174" font-size="10" text-anchor="middle" fill="#a33">use “COM”, not “USB”</text>
+  <g font-size="12" fill="#223" text-anchor="end" font-weight="bold">
+    <text x="545" y="216">3V3</text>
+    <text x="545" y="251">GND</text>
+    <text x="545" y="291">6</text>
+    <text x="545" y="326">7</text>
+  </g>
+  <text x="312" y="216" font-size="9" fill="#889">left-edge pins,</text>
+  <text x="312" y="228" font-size="9" fill="#889">column “a” is free</text>
+  <text x="312" y="291" font-size="9" fill="#889">GPIO numbers on</text>
+  <text x="312" y="303" font-size="9" fill="#889">the silkscreen</text>
+  <text x="312" y="344" font-size="9.5" font-weight="bold" fill="#a33">heads-up: the 6 and 7 jumpers CROSS —</text>
+  <text x="312" y="357" font-size="9.5" fill="#a33">this board prints RX above TX. Wire by label.</text>
+
+  <!-- Waveshare transceiver -->
+  <rect x="660" y="150" width="240" height="250" fill="#eefaf1" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="780" y="176" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">Waveshare SN65HVD230</text>
+  <text x="780" y="191" font-size="10" text-anchor="middle" fill="#556">“CAN Board” · VP230 chip</text>
+  <g font-size="12" fill="#223" font-weight="bold">
+    <text x="670" y="226">3.3V</text>
+    <text x="670" y="261">GND</text>
+    <text x="670" y="296">CAN RX</text>
+    <text x="670" y="331">CAN TX</text>
+  </g>
+  <text x="748" y="296" font-size="9" fill="#889">← header, top→bottom</text>
+  <text x="748" y="308" font-size="9" fill="#889">exactly as printed</text>
+  <g font-size="12" fill="#223" text-anchor="end" font-weight="bold">
+    <text x="890" y="231">CANL</text>
+    <text x="890" y="266">CANH</text>
+  </g>
+  <text x="780" y="385" font-size="10" text-anchor="middle" fill="#556">fixed 120 Ω on board (not removable)</text>
+
+  <!-- MKS CANable -->
+  <rect x="950" y="250" width="280" height="310" fill="#fff6ee" stroke="#c2620a" stroke-width="2" rx="8"/>
+  <text x="1090" y="276" font-size="13" font-weight="bold" text-anchor="middle" fill="#7a3d00">MKS CANable V2.0 Pro</text>
+  <text x="1090" y="291" font-size="10" text-anchor="middle" fill="#96562a">isolated (ADM3050E) · STM32G431</text>
+  <g font-size="12" fill="#223" font-weight="bold">
+    <text x="962" y="331">L</text>
+    <text x="962" y="366">H</text>
+    <text x="962" y="401">G</text>
+  </g>
+  <g font-size="9" fill="#889">
+    <text x="978" y="331">= CANL (green terminal)</text>
+    <text x="978" y="366">= CANH</text>
+    <text x="978" y="401">= GND — required. “Isolated” ≠ floating</text>
+  </g>
+  <rect x="1080" y="315" width="120" height="42" fill="#fff" stroke="#c2620a" rx="5"/>
+  <text x="1140" y="332" font-size="11" text-anchor="middle" font-weight="bold" fill="#7a3d00">120R jumper</text>
+  <text x="1140" y="347" font-size="10" text-anchor="middle" fill="#a33">cap ON tonight</text>
+  <text x="1090" y="435" font-size="10" text-anchor="middle" fill="#7a3d00">no 5V pin on this board — nothing to avoid</text>
+  <text x="1090" y="455" font-size="10" text-anchor="middle" fill="#7a3d00">BOOT header: leave alone</text>
+  <text x="1090" y="530" font-size="10" text-anchor="middle" fill="#556">USB-C #2 ↓</text>
+
+  <!-- 3V3 wire -->
+  <line x1="555" y1="211" x2="660" y2="221" stroke="#7b2d8b" stroke-width="3.5"/>
+  <!-- GND: ESP32 -> rail; Waveshare GND -> rail -->
+  <path d="M 555 246 L 600 246 L 600 700 L 1180 700" fill="none" stroke="#222" stroke-width="3.5"/>
+  <path d="M 660 256 L 622 256 L 622 700" fill="none" stroke="#222" stroke-width="3.5"/>
+  <!-- MKS G -> rail -->
+  <path d="M 950 396 L 930 396 L 930 700" fill="none" stroke="#222" stroke-width="3.5"/>
+
+  <!-- Ground rail -->
+  <rect x="560" y="694" width="640" height="12" fill="#dfe4ec" stroke="#222" rx="3"/>
+  <text x="880" y="726" font-size="11" font-weight="bold" text-anchor="middle" fill="#222">breadboard ground rail (blue “−” rail) — ESP32 GND, Waveshare GND, and MKS “G” all land here</text>
+
+  <!-- GPIO6 -> CAN TX (they CROSS) -->
+  <path d="M 555 286 L 596 286 L 596 326 L 660 326" fill="none" stroke="#1d6fd6" stroke-width="3.5"/>
+  <!-- GPIO7 -> CAN RX -->
+  <path d="M 555 321 L 578 321 L 578 291 L 660 291" fill="none" stroke="#0f8a3d" stroke-width="3.5"/>
+
+  <!-- CAN pair -->
+  <path d="M 900 226 L 928 226 L 928 326 L 950 326" fill="none" stroke="#b8860b" stroke-width="3.5"/>
+  <path d="M 900 261 L 914 261 L 914 361 L 950 361" fill="none" stroke="#e8871e" stroke-width="3.5"/>
+  <text x="640" y="452" font-size="10" fill="#845b00">lightly twist the CANL→L / CANH→H pair — keep it short</text>
+
+  <!-- Measurement callout -->
+  <rect x="660" y="470" width="270" height="98" fill="#fdf1ee" stroke="#a33" rx="6"/>
+  <text x="672" y="492" font-size="11" font-weight="bold" fill="#622">Before either USB cable goes in</text>
+  <g font-size="10" fill="#733">
+    <text x="672" y="510">· meter on Ω, probes in L and H at the MKS</text>
+    <text x="672" y="525">· <tspan font-weight="bold">~60 Ω = right</tspan> (Waveshare 120 in parallel with MKS 120R)</text>
+    <text x="672" y="540">· ~120 Ω = 120R jumper not actually engaged</text>
+    <text x="672" y="555">· ~0 Ω = stray strand at a screw terminal</text>
+  </g>
+
+  <!-- Steps -->
+  <rect x="40" y="440" width="440" height="200" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="52" y="462" font-size="11" font-weight="bold" fill="#6b5200">Order of operations</text>
+  <g font-size="10" fill="#514000">
+    <text x="52" y="482">1 · Both USB cables OUT. Wire everything below.</text>
+    <text x="52" y="499">2 · Four jumpers: 3V3→3.3V · GND→rail→GND · 6→CAN TX · 7→CAN RX</text>
+    <text x="52" y="516">3 · Pair: CANL→L, CANH→H (twisted) · MKS G→rail</text>
+    <text x="52" y="533">4 · Cap ON the MKS 120R jumper (no cap? 120 Ω resistor legs into L+H)</text>
+    <text x="52" y="550">5 · Meter says ~60 Ω across L↔H</text>
+    <text x="52" y="567">6 · ESP32 USB into “COM” port · MKS USB in · run bench-ui.ps1</text>
+    <text x="52" y="584">7 · Agent opens the ACKing capture · YOU click ARM · canary · 12 vectors</text>
+    <text x="52" y="606" font-weight="bold">Done when your frames show up on the wire, byte for byte,</text>
+    <text x="52" y="620" font-weight="bold">and the error counters never move.</text>
+  </g>
+</svg>

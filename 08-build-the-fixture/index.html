@@ -1,0 +1,1985 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hand-solder the proven bench architecture onto stacked round protoboards inside an E26-fed fixture body — six wiring steps, each with a diagram, a done-when, and an if-stuck.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/08-build-the-fixture/">
+      
+      
+        <link rel="prev" href="../07-building-the-software/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>8 · Build the Fixture - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="8 · Build the Fixture - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="Hand-solder the proven bench architecture onto stacked round protoboards inside an E26-fed fixture body — six wiring steps, each with a diagram, a done-when, and an if-stuck." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/08-build-the-fixture.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/08-build-the-fixture/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="8 · Build the Fixture - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="Hand-solder the proven bench architecture onto stacked round protoboards inside an E26-fed fixture body — six wiring steps, each with a diagram, a done-when, and an if-stuck." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/08-build-the-fixture.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-8-build-the-fixture-from-breadboard-to-a-thing-that-screws-in" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8 · Build the Fixture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buy the Parts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understand the choices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Understand the choices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the gimbal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the gimbal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03c-prove-the-bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3c · Prove the Bus First
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03a-wire-the-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3a · Wire the Gimbal For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the bench
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the bench
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04a-wire-the-zones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4a · Wire the Zones For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04b-wire-the-spotlight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4b · Wire the Spotlight For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aim it, then program it
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aim it, then program it
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make it permanent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Make it permanent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 · Build the Fixture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 · Build the Fixture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youre-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you're building
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soldering-these-boards-five-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering these boards (five rules)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-buy-this-105-15-of-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — buy this, ~$105 (+ ~$15 of tools)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-small-parts-and-where-every-one-goes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three small parts, and where every one goes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-map-read-one-lane-at-a-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The map — read one lane at a time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-power-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Power backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-the-brain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — The brain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-first-light" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — First light
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-scale-to-seven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Scale to seven
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-the-spotlight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — The spotlight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-the-gimbal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — The gimbal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-swap-in-the-real-psu-then-the-verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Swap in the real PSU, then the verdict
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts (plain English)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youre-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you're building
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soldering-these-boards-five-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering these boards (five rules)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-buy-this-105-15-of-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bill of Materials — buy this, ~$105 (+ ~$15 of tools)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-small-parts-and-where-every-one-goes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three small parts, and where every one goes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-map-read-one-lane-at-a-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The map — read one lane at a time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-power-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Power backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-the-brain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — The brain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-first-light" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — First light
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-scale-to-seven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Scale to seven
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-the-spotlight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — The spotlight
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-the-gimbal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — The gimbal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-swap-in-the-real-psu-then-the-verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Swap in the real PSU, then the verdict
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk register
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-8-build-the-fixture-from-breadboard-to-a-thing-that-screws-in">Doc 8 · Build the Fixture — From Breadboard to a Thing That Screws In<a class="headerlink" href="#doc-8-build-the-fixture-from-breadboard-to-a-thing-that-screws-in" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong>
+The bench taught the architecture; this chapter makes it permanent. Nothing
+new runs here — the YAML, the entities, and the scenes come along unchanged
+from <a href="../04-full-fixture-bench/">Doc 4</a>. Every load ends in a plug and every
+module sits in a socket, so nothing in this build is a one-way door.</p>
+<blockquote>
+<p><strong>The one gate before you start:</strong> <a href="../04-full-fixture-bench/">Doc 4</a>
+stage 7's checklist passes on the breadboard. Solder freezes a <em>validated</em>
+design.</p>
+</blockquote>
+<h2 id="concepts-plain-english">Concepts (plain English)<a class="headerlink" href="#concepts-plain-english" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Trunk:</strong> one thick solid wire soldered along a board that everything taps
+  into. This build has exactly two — +24 V and ground.</li>
+<li><strong>Star ground:</strong> every ground wire runs <em>directly</em> to one point, never
+  chained device-to-device. Chained grounds are why zones mismatch.</li>
+<li><strong>Socketed module:</strong> a board that presses into female pin-headers. A dead
+  module becomes a 10-second swap, not a desoldering job.</li>
+<li><strong>Pigtail &amp; header:</strong> the load's short lead ending in a plug (pigtail); the
+  board carries the matching socket (header). Board = header, load = plug.</li>
+<li><strong>JST-XH vs XT30:</strong> small white plugs for signals and LEDs (3 A) vs chunky
+  yellow plugs for power (30 A). Tape and spot ride JST; motors ride XT30.</li>
+<li><strong>Bulk cap:</strong> a big capacitor that acts like a tiny local battery — it
+  feeds the motors' split-second current spikes so the PSU never sees them.</li>
+<li><strong>Hiccup mode:</strong> how the IRM protects itself. Overloaded, it drops the rail
+  and retries. Good protection, confusing symptom: "the whole fixture blinks."</li>
+<li><strong>Service loop:</strong> slack wire crossing a moving joint in a droop, never taut
+  (<a href="../01-how-we-got-here/">Doc 1</a>'s rule, still in force).</li>
+<li><strong>Y-splice:</strong> three wire ends twisted, soldered, and covered by one sleeve
+  of heat-shrink — how one CAN pair feeds two motors.</li>
+<li><strong>Standoffs:</strong> the threaded nylon pillars that hold stacked boards apart.</li>
+</ul>
+<h2 id="what-youre-building">What you're building<a class="headerlink" href="#what-youre-building" title="Permanent link">&para;</a></h2>
+<p>The map below has a side-view panel: <strong>lamp socket → adapter → PSU → three
+stacked boards → gimbal head.</strong> The tape ring wraps the body at the middle
+board's height. Each board has one job:</p>
+<ul>
+<li><strong>B1 · POWER</strong> (top, nearest the PSU) — the two trunks, fuse, bench-feed
+  XT30, buck, bulk cap, motor XT30s, and the PicoBuck.</li>
+<li><strong>B2 · DRIVERS</strong> (middle) — both PCA9685s, all four ULNs, and the seven
+  zone plugs.</li>
+<li><strong>B3 · LOGIC</strong> (bottom) — the C6 and the CAN board, so the USB port, WiFi
+  antenna, and CAN pair all live at the serviceable end.</li>
+</ul>
+<p>The PCAs live <em>with</em> the ULNs on purpose: the 21 dim signals never leave
+their board, and only about a dozen wires ever cross between boards.</p>
+<div class="admonition info">
+<p class="admonition-title">The fixture body is its own design track — this chapter builds everything that goes inside it</p>
+<p>The <em>body</em> — the enclosure that holds PSU, stack, tape ring, and gimbal
+together and actually screws in — is being designed separately, as its
+own CAD project, with the real parts in hand for measuring. Nothing
+below waits on it: steps 1–6 build and test the whole stack clamped to
+a bench plate, and step 7 is where electronics and body meet. What the
+body design owes the electronics is exactly this interface list:</p>
+<ul>
+<li><strong>PSU mount</strong> — a flat spot for the IRM-90-24ST brick, 109 × 52 ×
+  33.5 mm plus finger room for its screw-terminal cover, placed away
+  from the LED star's heat.</li>
+<li><strong>Cord entry</strong> — a strain-relieved hole where the E26 adapter's two
+  leads enter.</li>
+<li><strong>Stack mounts</strong> — three M3 standoff points for the 72 mm board
+  stack, with a vent path past the boards.</li>
+<li><strong>Tape ring at Board 2's height</strong> — the seven zone pigtails are
+  short; the tape lives where they reach.</li>
+<li><strong>Gimbal clearance</strong> — full pan/tilt travel, plus room for the droopy
+  service loops that cross the joints.</li>
+<li><strong>Heat path</strong> — the star's heatsink reaches outside air, or the
+  step-7 soak proves it doesn't have to.</li>
+<li><strong>USB window</strong> — Board 3's USB-C stays reachable, so reflashing never
+  means opening the fixture.</li>
+</ul>
+<p>Build the stack first, measure the real thing, then freeze the body —
+the same measure-then-print logic as <a href="../03b-print-the-frame/">Doc 3b</a>'s
+coupon-first frame.</p>
+</div>
+<p>Three assembly rules:</p>
+<ol>
+<li>Build each board <strong>flat on the desk</strong>. Stack last.</li>
+<li>Cut every inter-board wire with slack — <strong>1.5× the gap it crosses</strong>.</li>
+<li>Route between-board wires past the board edges, never through the middle.</li>
+</ol>
+<h2 id="soldering-these-boards-five-rules">Soldering these boards (five rules)<a class="headerlink" href="#soldering-these-boards-five-rules" title="Permanent link">&para;</a></h2>
+<p>Tools out: iron, solder + flux, multimeter, wire strippers, flush cutters,
+heat-shrink + a lighter. The rounds have no power rails — just 593 plated
+holes — so technique is the whole game:</p>
+<ol>
+<li><strong>Sockets: tack ONE pin, look, then finish.</strong> Solder a single corner pin,
+   check the strip sits flat, reflow if tilted, then do the rest.</li>
+<li><strong>A good joint looks like a tiny volcano.</strong> Heat pad <em>and</em> lead ~2
+   seconds, feed solder to the joint (not the iron), let it flow, leave.
+   Blobby ball = cold joint. Redo it with flux.</li>
+<li><strong>Trunks are laid, not drawn.</strong> Strip a length of bus wire, lay it along a
+   row of holes, tack it every 4–5 holes. Taps solder straight onto it.</li>
+<li><strong>Beep everything before power.</strong> Meter on continuity: every joint you
+   made beeps; every <em>neighboring</em> pad stays silent. This habit replaces
+   most debugging.</li>
+<li><strong>Never crimp.</strong> The JST kits come pre-crimped — you solder the bare
+   tails. Board side gets the header, load side gets the plug. XT30s: the
+   half with recessed metal goes on the live side.</li>
+</ol>
+<h2 id="bill-of-materials-buy-this-105-15-of-tools">Bill of Materials — buy this, ~$105 (+ ~$15 of tools)<a class="headerlink" href="#bill-of-materials-buy-this-105-15-of-tools" title="Permanent link">&para;</a></h2>
+<p><em>"Est." = total for the quantity shown. Prices verified July 2026 —
+re-check when ordering.</em></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Part</th>
+<th>Qty</th>
+<th>Est.</th>
+<th>Where</th>
+<th>Notes / traps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Round prototyping PCB, 2.84" (72 mm), 593 plated holes, 0.1" pitch</td>
+<td>1 pack of 4</td>
+<td>$15</td>
+<td><a href="https://www.etsy.com/listing/1785807382/vegetable-can-round-prototyping-pcb-w593">Etsy</a></td>
+<td>All three get used — B1 power, B2 drivers, B3 logic — plus a spare. No power rails on these boards, which is why the trunk rule exists</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mean Well <strong>IRM-90-24ST</strong> (24 V · 3.75 A · potted · fanless · screw terminals)</td>
+<td>1</td>
+<td>~$25</td>
+<td><a href="https://www.bravoelectro.com/irm-90-24.html">Bravo Electro</a>, DigiKey, Mouser</td>
+<td>The fixture's PSU. ST variant on purpose: the plain IRM outspans a 72 mm round, so this one mounts to the body — which also keeps the heaviest part off solder joints. Hiccup floor ~103 W clears the ~75 W worst transient</td>
+</tr>
+<tr>
+<td>3</td>
+<td>E26 socket-to-wire adapter (660 W rated, 18 AWG leads)</td>
+<td>1 (+1 spare)</td>
+<td>$8–12</td>
+<td>Amazon, hardware store</td>
+<td>The entire AC feed (~0.6–0.9 A at 120 V). Treat both leads as live; no wall dimmer on that circuit</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Female pin-header socket strips, 2.54 mm break-away</td>
+<td>1 kit</td>
+<td>$7</td>
+<td>Amazon</td>
+<td>Socket every module — C6, both PCAs, CAN board, buck. Dead module = 10-second swap</td>
+</tr>
+<tr>
+<td>5</td>
+<td>JST-XH connector kit, <strong>pre-crimped leads</strong> (2/3/4-pin)</td>
+<td>1 kit</td>
+<td>$12</td>
+<td>Amazon</td>
+<td>7 tape zones (4-pin each) + the spot (3 ± pairs = six conductors, returns never shared). You solder the tails — never crimp</td>
+</tr>
+<tr>
+<td>6</td>
+<td>XT30 connector pairs</td>
+<td>3 pairs</td>
+<td>$8</td>
+<td>Amazon</td>
+<td>Motor power (one pair per motor) + the bench-feed break. JST-XH is a 3 A part; motor peaks hit 5–8 A</td>
+</tr>
+<tr>
+<td>7</td>
+<td>100 nF ceramic capacitors</td>
+<td>~10</td>
+<td>$6</td>
+<td>Amazon</td>
+<td>One at every module's supply pins — long soldered rails need what the breadboard never did</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Electrolytic bulk cap, 1000 µF / 35 V, low-ESR</td>
+<td>1</td>
+<td>$3</td>
+<td>Amazon, DigiKey</td>
+<td>Rides the motors' millisecond slew peaks. Start at 1000 µF: the IRM publishes no max capacitive load, so if it hiccups at power-on, the cap is too big</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Nylon M3 standoff kit</td>
+<td>1</td>
+<td>$9</td>
+<td>Amazon</td>
+<td>Stack spacing + a vent path; nylon can't short against pad-side joints</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Tinned solid bus wire, 16–18 AWG</td>
+<td>1 roll</td>
+<td>$8</td>
+<td>Amazon</td>
+<td>Becomes the two trunks</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Wire strippers + flush cutters <em>(if not owned)</em></td>
+<td>1 each</td>
+<td>~$15</td>
+<td>Amazon</td>
+<td>Never in an earlier BoM — the bench got by, but 100+ soldered joints won't</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Silicone stranded wire 22–24 AWG + heat-shrink <em>(if not owned)</em></td>
+<td>—</td>
+<td>~$17</td>
+<td>Amazon</td>
+<td>The service loops across the pan/tilt joints want the floppiest wire available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Carries over from Docs <a href="../03-build-the-gimbal/">3</a>–<a href="../04-full-fixture-bench/">4</a> — $0:</strong>
+both RMD-L-5005 motors (unit 3 stays the permanent bench spare), the C6
+devkit, the SN65HVD230, both PCA9685s (#2 keeps its bridged 0x41 jumper),
+4× ULN2803A with their DIP sockets, the PicoBuck, the Cree star + Carclo
+optics + heatsink, the Valent X spool (one spool covers even 2× length), the
+Pololu buck, the fuse holder + 3 A slow-blow (<strong>step to 4 A if you 2× the
+tape</strong> — ~3.1 A sustained nuisance-blows a 3 A), the screw assortment, and
+the wire + 10 kΩ resistor stock (three of those 10 ks become the PicoBuck
+pulldowns). The bench supply, multimeter, soldering kit, USB-CAN adapter, and
+calipers stay on the bench as tools. <strong>Retired:</strong> the breadboards and the
+WAGOs — their jobs go to soldered trunks and pluggable pigtails.</p>
+<h2 id="the-three-small-parts-and-where-every-one-goes">The three small parts, and where every one goes<a class="headerlink" href="#the-three-small-parts-and-where-every-one-goes" title="Permanent link">&para;</a></h2>
+<p>Three rows of the BoM are easy to buy and then lose track of: the 10 kΩ
+resistors, the 100 nF ceramics, and the single big electrolytic. None of them
+existed on the breadboard — which is exactly why it can be unclear where they
+belong now. They are one idea at three speeds — <strong>hold things steady when
+something changes faster than the answer can arrive</strong> — and each has an exact
+address:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>How many</th>
+<th>Where, exactly</th>
+<th>Direction?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 kΩ ¼ W resistor</td>
+<td><strong>3</strong></td>
+<td>PicoBuck IN1 / IN2 / IN3, each to the ground trunk — at the driver's pads on B1 (step 5)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>100 nF ceramic</td>
+<td><strong>5</strong></td>
+<td>one across each socketed module's supply pin and GND: buck, PCA #1, PCA #2, C6 socket, CAN board (steps 2–4)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>1000 µF / 35 V electrolytic</td>
+<td><strong>1</strong></td>
+<td>across both trunks at the motors' XT30 tap, on B1 (step 6)</td>
+<td><strong>yes — stripe to ground</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="The three 10 kΩ pulldowns: one per PicoBuck input to the ground trunk, soldered on the driver's side of the inter-board wires" src="../assets/wiring-small-parts-pulldowns.svg" /></p>
+<p>The resistors are the spotlight's "dark unless told otherwise" — the
+<a href="../04b-wire-the-spotlight/#the-driver-demystified">floats-ON trap</a> is the why.
+The figure's one rule is the where: at the <strong>PicoBuck's</strong> pads, so the promise
+holds even with B3 unplugged, swapped, or mid-flash. Step 5's
+boot-stays-dark check is these three being proven.</p>
+<p><img alt="The five 100 nF ceramics: one at each socketed module's supply pins, across all three boards" src="../assets/wiring-small-parts-caps100nf.svg" /></p>
+<p>The ceramics are placement, not mystery: across each socketed module's supply
+pin and ground, a centimetre away at most, legs short. Steps 2 and 3 each
+place one as they build — this map is the full count of five, including the
+two no step spells out (the CAN board and the buck). The PicoBuck sits this
+one out: it carries its own capacitors on-board.</p>
+<p><img alt="The one 1000 µF electrolytic: across both trunks at the motors' power tap, stripe to the ground trunk" src="../assets/wiring-small-parts-bulkcap.svg" /></p>
+<p>The electrolytic is the only one of the three with a direction — <strong>stripe to
+ground, always</strong> — and the only one with a single address: across the trunks
+at the motors' tap, placed in step 6, spanning the copper step 1 laid down.</p>
+<h2 id="the-map-read-one-lane-at-a-time">The map — read one lane at a time<a class="headerlink" href="#the-map-read-one-lane-at-a-time" title="Permanent link">&para;</a></h2>
+<p><img alt="Fixture v0 wiring map" src="../assets/wiring-fv0-map.svg" /></p>
+<p>One chip runs everything on <strong>seven signal pins</strong>: 2 wires of I²C (21 tape
+channels via the PCA9685s), 3 PWM pins (spotlight), 2 CAN pins (both motors,
+by address). Power is two trunks on B1. Then build in order — each step is
+one bench session, and each has its own diagram below:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What</th>
+<th>Rough time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Power backbone</td>
+<td>1–2 h</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The brain</td>
+<td>30–45 min</td>
+</tr>
+<tr>
+<td>3</td>
+<td>First light (zone 1)</td>
+<td>1–2 h</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Scale to 7 zones</td>
+<td>an afternoon — it's 28 wires</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Spotlight</td>
+<td>~1 h</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Gimbal</td>
+<td>1–2 h</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Real PSU + verdict</td>
+<td>~1 h + a 30-min soak</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-1-power-backbone">Step 1 — Power backbone<a class="headerlink" href="#step-1-power-backbone" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="Step 1: power backbone" src="../assets/wiring-fv0-step1-power.svg" /></p>
+<p><strong>What's happening:</strong> you're building the two rails everything else drinks
+from — and testing them empty.</p>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>Set the IRM aside — it mounts to the body at step 7 and stays
+   disconnected until then. Everything until then runs from the bench
+   supply.</li>
+<li>Lay the +24 V trunk and the ground trunk along B1 (rule 3).</li>
+<li>Solder in the fuse holder, then the bench-feed XT30 in the +24 V run.</li>
+<li>Mount the buck; wire VIN and GND to the trunks.</li>
+<li>Beep-test every connection (rule 4), then clip the bench supply to the
+   bench-feed, current limit at 2 A.</li>
+</ol>
+<p><strong>Done when:</strong> 24 V at the bus, 5 V from the buck, one solid star ground,
+nothing warm after five minutes.</p>
+<p><strong>If stuck:</strong> no 24 V = fuse not seated or supply leads reversed. Buck reads
+0 V = VIN/GND swapped — it survives that; fix and re-test.</p>
+<h2 id="step-2-the-brain">Step 2 — The brain<a class="headerlink" href="#step-2-the-brain" title="Permanent link">&para;</a></h2>
+<p><img alt="Step 2: the brain" src="../assets/wiring-fv0-step2-brain.svg" /></p>
+<p><strong>What's happening:</strong> B3 gets its socket, the C6 presses in, and the fixture
+gains a computer.</p>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>Solder female socket strips for the C6 (rule 1 — tack one pin first).</li>
+<li>Point the USB-C port at the serviceable end; keep the antenna end away
+   from the ground trunk.</li>
+<li>Run 5 V and GND up from B1. Add a 100 nF cap right at the socket's power
+   pins.</li>
+<li>Press the C6 in.</li>
+</ol>
+<p><strong>Done when:</strong> the C6 boots from stack power alone (USB unplugged) and shows
+up in Home Assistant.</p>
+<p><strong>If stuck:</strong> measure 5.0 V <em>at the C6's socket pins</em>, not at the buck — a
+tilted socket or dry joint drops it on the way.</p>
+<div class="admonition trap">
+<p class="admonition-title">The dual-power trap</p>
+<p>First flash happens over USB — and while USB is plugged in, the stack's
+24 V stays OFF. Never feed the C6 from both sides at once. After that
+first flash, every update is wireless.</p>
+</div>
+<h2 id="step-3-first-light">Step 3 — First light<a class="headerlink" href="#step-3-first-light" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="Step 3: zone 1" src="../assets/wiring-fv0-step3-zone1.svg" /></p>
+<p><strong>What's happening:</strong> one zone travels the whole chain — C6 → PCA #1 → ULN
+chip 1 → plug → tape. Get ONE zone perfect before copying it six times.</p>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>On B2: solder the PCA #1 socket and the ULN chip-1 DIP socket.</li>
+<li>Run four wires up from B3: 3V3, GND, SDA (GPIO2), SCL (GPIO3).</li>
+<li>Wire PCA LED0/1/2 to ULN IN1/2/3; OUT18/17/16 to a 4-pin zone header.
+   Counting those pins for the first time? <a href="../04a-wire-the-zones/#hop-2-the-uln2803-or-eight-switches-in-one-chip">Doc 4a's ULN pin
+   map</a>
+   numbers every one of them on the real chip, and <a href="../04a-wire-the-zones/#the-fan-out-which-channel-drives-which-zone">its zone-1
+   figure</a>
+   photographs this whole step, hub hole to tape pad.</li>
+<li>Solder the zone-1 pigtail to the tape: +24 V and three channel negatives,
+   labeled from the tape's printed pad markings.</li>
+<li>Run the zone's +24 V wire from the trunk; ULN pin 9 goes straight to star.</li>
+<li>Beep-test, power up, test from HA.</li>
+</ol>
+<p><strong>Done when:</strong> "Zone 1" sweeps candlelight→daylight from HA, exactly like the
+breadboard.</p>
+<p><strong>If stuck:</strong> the ESPHome log's I2C scan says whether 0x40 was found (missing
+= SDA/SCL swapped or no VCC). Found but dark = beep the LED0→IN1 and
+OUT1→plug runs.</p>
+<div class="admonition trap">
+<p class="admonition-title">The classic trap, pre-solved</p>
+<p>PCA9685 VCC gets <strong>3V3 — never 5 V</strong> (at 5 V, I2C fails silently). V+
+stays empty. Drop a 100 nF at VCC while you're there.</p>
+</div>
+<h2 id="step-4-scale-to-seven">Step 4 — Scale to seven<a class="headerlink" href="#step-4-scale-to-seven" title="Permanent link">&para;</a></h2>
+<p><img alt="Step 4: scale to 7 zones" src="../assets/wiring-fv0-step4-scale.svg" /></p>
+<p><strong>What's happening:</strong> nothing new — six repeats of step 3, driven by the
+channel map on the diagram. Print it; tape it above the bench.</p>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>Bridge PCA #2's A0 jumper <strong>before</strong> soldering its socket → it answers at
+   0x41 on the same two I2C wires. <a href="../04a-wire-the-zones/#the-second-hub-two-boards-the-same-two-wires">Doc 4a photographs those pads open and
+   bridged</a>,
+   with the meter reading each one must give — a blob can look bridged and
+   touch only one pad.</li>
+<li>Seat ULN chips 2–4 in their sockets.</li>
+<li>Work zone by zone from the map: three channels in, three out, one plug.
+   Test each zone as its plug lands — unwired zones just sit dark in HA.</li>
+<li>Label all 28 wires at both ends. Every zone's +24 V comes from the trunk,
+   never from a neighboring zone.</li>
+</ol>
+<p><strong>Done when:</strong> seven independent tunable lights, and the "all zones 2200 K @
+20%" scene runs — movie mode, now inside a fixture.</p>
+<p><strong>If stuck:</strong> one zone dead? The sockets are your superpower — swap ULN
+chip 1 and chip 2. Problem follows the chip → chip; stays with the zone →
+wiring. Wrong colors = swapped wires at the plug. Fix wires, not YAML.</p>
+<h2 id="step-5-the-spotlight">Step 5 — The spotlight<a class="headerlink" href="#step-5-the-spotlight" title="Permanent link">&para;</a></h2>
+<p><img alt="Step 5: spotlight" src="../assets/wiring-fv0-step5-spot.svg" /></p>
+<p><strong>What's happening:</strong> three PWM wires dim three constant-current channels,
+one per LED die. Each die is individually drivable — one tunable Spotlight or
+three separate lights is firmware's choice, not wiring's. Meeting the driver
+or the bare star for the first time here? <a href="../04b-wire-the-spotlight/">Doc 4b</a>
+is the bench version of this exact step — the same blocks demystified, the
+S-checkpoints, and the which-die-is-which naming ritual whose flags this
+step's wiring should already carry.</p>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>Mount the star on its heatsink <strong>first</strong> and aim it at a wall — it cooks
+   itself bare in under a minute and it is painfully bright.</li>
+<li>Run GPIO10/11/18 from B3 to the PicoBuck's IN1/2/3 on B1.</li>
+<li>Solder a 10 kΩ pulldown from each IN to ground — <a href="#the-three-small-parts-and-where-every-one-goes">the small-parts
+   figure</a> draws the exact
+   node: wire, resistor, and pin, all meeting at the driver's pad.</li>
+<li>Wire PicoBuck VIN/GND to the trunks.</li>
+<li>Wire the three outputs to the three dies: <strong>each output is a ± pair — six
+   conductors total — and the returns never share a wire.</strong> Match the printed
+   +/− on each die.</li>
+</ol>
+<p><strong>Done when:</strong> every die dims cleanly from HA, and a power-cycle stays dark
+through boot.</p>
+<p><strong>If stuck:</strong> one die dark = that pair's polarity, or two wires swapped with
+a neighbor's pair. All dark = pulldowns shorted or PWM lines on the wrong
+GPIOs.</p>
+<div class="admonition trap">
+<p class="admonition-title">Why the pulldowns</p>
+<p>PicoBuck inputs float ON, and the C6's pins float while it boots —
+without pulldowns the spot blasts full-bright at every power-up. The
+boot-stays-dark test in the done-when is these resistors earning their
+keep.</p>
+</div>
+<h2 id="step-6-the-gimbal">Step 6 — The gimbal<a class="headerlink" href="#step-6-the-gimbal" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="Step 6: gimbal" src="../assets/wiring-fv0-step6-gimbal.svg" /></p>
+<p><strong>What's happening:</strong> the motors keep their bench addresses (pan 0x141, tilt
+0x142 — set in <a href="../03-build-the-gimbal/">Doc 3</a> stage 6), so this is wiring,
+not configuration.</p>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>Wire the SN65 on B3: 3V3, GND to the B3 return, CTX←GPIO6, CRX←GPIO7.</li>
+<li>Lightly twist the CANH/CANL pair; run it toward the yoke.</li>
+<li>Y-splice the pair (three ends, one joint, one sleeve of shrink) — short
+   stubs to each motor's CANH/CANL.</li>
+<li>Solder a 120 Ω resistor across CANH–CANL at the <strong>tilt</strong> motor.</li>
+<li>Motor power: one XT30 pair per motor, 18 AWG straight from the trunks;
+   the bulk cap sits at that tap — stripe to the ground trunk, per <a href="#the-three-small-parts-and-where-every-one-goes">the
+   small-parts figure</a>.
+   Pigtails cross each joint as droopy service loops.</li>
+<li>Everything OFF: meter across CANH–CANL must read <strong>~60 Ω</strong>. (~120 = a
+   terminator missing; open = both.)</li>
+<li>Raise the bench supply's limit toward <strong>3 A</strong> — two motors plus every LED
+   can clip a 2 A limit and sag the rail, which reads as mystery resets.</li>
+</ol>
+<p><strong>Done when:</strong> both motors answer an angle read over the fixture's own
+wiring, and the HA pan/tilt sliders move the beam — with all seven zones lit.</p>
+<p><strong>If stuck:</strong> no reply = the <a href="../03-build-the-gimbal/">Doc 3</a> stage-4 ladder,
+in order: 60 Ω check → common ground → CANH/CANL swapped → motor unpowered.
+Replies but no motion = you're in Hold/Manual mode, not a wiring problem.</p>
+<div class="admonition trap">
+<p class="admonition-title">Motors are watched, always</p>
+<p>First moves happen with your hand near the supply switch and the current
+limit set. A commanded motor twists its own body as hard as its shaft.</p>
+</div>
+<h2 id="step-7-swap-in-the-real-psu-then-the-verdict">Step 7 — Swap in the real PSU, then the verdict<a class="headerlink" href="#step-7-swap-in-the-real-psu-then-the-verdict" title="Permanent link">&para;</a></h2>
+<p>This is where the fixture body enters: mount the IRM to it, give the E26
+adapter's cord a strain-relieved entry, and give the star's heatsink its air
+path. (The body arrives from its own design track — the interface list up
+top is exactly what this step needs it to provide.)</p>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>Disconnect the bench feed.</li>
+<li>Land the E26 adapter's leads and the trunk wires on the IRM's screw
+   terminals — L, N, +Vo, −Vo; there is no earth terminal and none is needed
+   (Class II). As built, the ST's output block duplicates its terminals —
+   two +Vo screws and two −Vo screws, internally one output — land the
+   pigtails one per screw. Fit the terminal cover; screw blocks can't be
+   heat-shrunk.</li>
+<li>Strain-relieve the adapter leads where they enter the body.</li>
+<li>Screw it into a socket and re-run the short version of everything.</li>
+</ol>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting fixture build
+(chapter: engineering.engineered.lighting/08-build-the-fixture/,
+step 7 — the verdict soak). The hand-soldered fixture is assembled and
+running on its internal IRM-90-24ST; Home Assistant sees all 7 zones,
+the Spotlight, and the pan/tilt controls. Start by proposing a plan
+and wait for my approval before executing anything. Then run the
+verdict with me: walk me through each checklist item in the chapter,
+and for the 30-minute everything-on soak, watch the ESPHome device
+logs the whole time and summarize warnings, resets, and any
+&quot;took a long time&quot; lines; I handle the touch tests and read the
+worst-case current from the meter at the bench-feed point before we
+switch to the IRM.
+SAFETY — non-negotiable: never command motor motion unless I confirm
+I&#39;m watching with a hand near the supply switch. Announce each motion
+command before sending it and wait for my explicit go.
+Done when: every checklist item passes on IRM power.
+Report back: the checklist with pass/fail and evidence per item, and
+the soak-log summary.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All 7 zones + spotlight + gimbal work on IRM power</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Power-cycle at the wall switch: the fixture wakes knowing its angles (no homing), and the spot stays dark through boot</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 30-minute soak, everything on: ULNs warm-not-hot, star heatsink warm, IRM case warm-not-hot, no reboots in the logs</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Worst-case 24 V current recorded — compare against the ~60 W budget</li>
+</ul>
+<h2 id="risk-register">Risk register<a class="headerlink" href="#risk-register" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Protoboard joints under vibration</strong> — the gimbal shakes its own house.
+  Strain-relieve pigtails at each board edge; the socketed modules are the
+  serviceable insurance.</li>
+<li><strong>Heat in an enclosure</strong> — the soak test is the truth. The star's heatsink
+  needs an air path through the shell; the IRM sits away from the LED
+  thermal mass.</li>
+<li><strong>Inter-board wiring is where beginner builds die</strong> — hence the board
+  allocation that keeps it to ~a dozen wires, the slack rule, and
+  build-flat-stack-last.</li>
+<li><strong>Supply substitutions</strong> — if the IRM-90-24ST drifts out of stock, the
+  sizing logic is the spec, not the part number: steady ~25–40 W, transients
+  +30–40 W, and the replacement's hiccup floor must clear the sum.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../07-building-the-software/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 7 · Building the Software">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                7 · Building the Software
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+        <script src="../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1636 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The connector-level companion to Doc 4 stage 5: what a constant-current driver actually is and why the tape's rules all reverse here, the three-die star and how to learn which die is which by light instead of by eye, the pulldowns that keep boot from blasting full-bright, the polarity mistake that is no longer harmless, and the S-checkpoints that walk a dark die back to light.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/04b-wire-the-spotlight/">
+      
+      
+        <link rel="prev" href="../04a-wire-the-zones/">
+      
+      
+        <link rel="next" href="../05-teach-it-to-aim/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4b · Wire the Spotlight For Real - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="4b · Wire the Spotlight For Real - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The connector-level companion to Doc 4 stage 5: what a constant-current driver actually is and why the tape's rules all reverse here, the three-die star and how to learn which die is which by light instead of by eye, the pulldowns that keep boot from blasting full-bright, the polarity mistake that is no longer harmless, and the S-checkpoints that walk a dark die back to light." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/04b-wire-the-spotlight.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/04b-wire-the-spotlight/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="4b · Wire the Spotlight For Real - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The connector-level companion to Doc 4 stage 5: what a constant-current driver actually is and why the tape's rules all reverse here, the three-die star and how to learn which die is which by light instead of by eye, the pulldowns that keep boot from blasting full-bright, the polarity mistake that is no longer harmless, and the S-checkpoints that walk a dark die back to light." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/04b-wire-the-spotlight.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-4b-wire-the-spotlight-for-real-the-star-the-driver-and-constant-current" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4b · Wire the Spotlight For Real
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buy the Parts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understand the choices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Understand the choices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the gimbal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the gimbal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03c-prove-the-bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3c · Prove the Bus First
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03a-wire-the-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3a · Wire the Gimbal For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the bench
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the bench
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04a-wire-the-zones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4a · Wire the Zones For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4b · Wire the Spotlight For Real
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4b · Wire the Spotlight For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-star-demystified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The star, demystified
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-driver-demystified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The driver, demystified
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wire-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wire it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-power-and-first-light" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First power, and first light
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-a-die-is-dark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When a die is dark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-s-checkpoint-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The S-checkpoint table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aim it, then program it
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aim it, then program it
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make it permanent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Make it permanent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-build-the-fixture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 · Build the Fixture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-star-demystified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The star, demystified
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-driver-demystified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The driver, demystified
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wire-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wire it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-power-and-first-light" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First power, and first light
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-a-die-is-dark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When a die is dark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-s-checkpoint-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The S-checkpoint table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-4b-wire-the-spotlight-for-real-the-star-the-driver-and-constant-current">Doc 4b · Wire the Spotlight For Real — The Star, the Driver, and Constant Current<a class="headerlink" href="#doc-4b-wire-the-spotlight-for-real-the-star-the-driver-and-constant-current" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · August 2026</strong></p>
+<p>The chapter <a href="../04-full-fixture-bench/#stage-5-the-spotlight-constant-current">Doc 4 stage 5</a> points at. Stage 5's wiring is one paragraph, and it is a correct paragraph — but it assumes you already know what a constant-current driver is, which die is which on an unlit star, and why the habits <a href="../04a-wire-the-zones/">Doc 4a</a> just taught you must all be <em>unlearned</em> at this bench corner. This chapter is that other half, for the parts in your hands.</p>
+<p>Five things bite first-time builders here, and the first one is the frame for all the rest:</p>
+<ul>
+<li><strong>The driver is a different species.</strong> Everything on the tape side holds <em>voltage</em> steady and lets the load draw what it wants. This board holds <em>current</em> steady and applies whatever voltage that takes. Most of the tape chapter's instincts quietly reverse here — this chapter marks each reversal where it happens.</li>
+<li><strong>The star is three separate lamps that look almost identical unlit.</strong> Which die is warm, which is cool, and which is amber is learned by lighting them, never by squinting at phosphor.</li>
+<li><strong>The driver's inputs float ON.</strong> Without a pulldown on each one, the star blasts full-bright at every power-up while the C6 is still booting.</li>
+<li><strong>The star cooks itself bare in under a minute, and it is painfully bright.</strong> The heatsink is step zero, and the beam aims at the wall — never at your face.</li>
+<li><strong>A reversed die is no longer the harmless mistake it was on the tape.</strong> <a href="../04a-wire-the-zones/#the-meter-cannot-see-through-leds">Doc 4a</a> taught you to prove tape polarity by lighting one channel and shrugging if it stayed dark. Here that shrug can cost a die — polarity gets proven <strong>cold</strong>, and this chapter shows how.</li>
+</ul>
+<p>Everything below is verified against the parts on this bench — the LuxDrive SJX-1 star and this build's AL8860 three-channel driver — and against the manufacturers' own datasheets.</p>
+<details class="info">
+<summary>Words this chapter uses — open this if any of them are new</summary>
+<p><a href="../04a-wire-the-zones/">Doc 4a's vocabulary</a> still applies — continuity, OL, bus, star, rail, silkscreen, tinned. These are the new ones.</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>What it means here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CC vs CV</strong></td>
+<td>Constant-current vs constant-voltage. The tape is CV: feed it 24 V, it limits its own current. A bare LED die is CC territory: it must be <em>fed</em> an exact current, or it runs away and burns. Two kinds of dimmer for two kinds of physics — <a href="../04-full-fixture-bench/#concepts-plain-english-read-once-everything-refers-back">Doc 4's concepts</a> introduced this; today it becomes wiring.</td>
+</tr>
+<tr>
+<td><strong>Die</strong></td>
+<td>One bare LED emitter. The star carries three, each electrically its own lamp.</td>
+</tr>
+<tr>
+<td><strong>Forward voltage (Vf)</strong></td>
+<td>The voltage an LED happens to drop while conducting — for these dies, around 3 V. On the tape you <em>supplied</em> a voltage; here the driver supplies current and the ~3 V simply appears across the die. You never set it.</td>
+</tr>
+<tr>
+<td><strong>Buck driver</strong></td>
+<td>A switching circuit that steps 24 V down efficiently. This board's version switches on and off thousands of times a second, watching the current and correcting it continuously.</td>
+</tr>
+<tr>
+<td><strong>Sense resistor</strong></td>
+<td>How the driver knows the current: a tiny resistor in the loop that the chip holds 0.1 V across. This board carries <strong>two, marked R300</strong> (0.30 Ω), side by side per channel — but only one is connected as shipped: 0.1 V ÷ 0.30 Ω ≈ <strong>330 mA</strong>. The second waits behind an open <strong>solder jumper</strong>; bridge it and the pair reads 0.15 Ω ≈ 660 mA. The current is a property of the board — the jumper is its one factory-sanctioned knob.</td>
+</tr>
+<tr>
+<td><strong>MCPCB</strong></td>
+<td>Metal-core PCB — the star's aluminum plate. Its whole job is moving heat from the dies into your heatsink. It is also why the star must never run bare.</td>
+</tr>
+<tr>
+<td><strong>Thermal adhesive</strong></td>
+<td>The glue between star and heatsink. It conducts heat; air does not. Full-face contact, thin layer.</td>
+</tr>
+<tr>
+<td><strong>Duty floor</strong></td>
+<td>The low end of PWM dimming where a CC driver's regulation gets twitchy — typically below ~5%. You will measure yours and write it down.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="admonition abstract">
+<p class="admonition-title">The order this happens in</p>
+<p>Same rule as <a href="../04a-wire-the-zones/">Doc 4a</a>: sections are grouped by subject; on the day, work this sequence, and finish each step before the next.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>What you do</th>
+<th>Section</th>
+<th>Ends when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Mount the star on its heatsink; prove polarity and (maybe) meet the dies</td>
+<td><a href="#the-star-demystified">The star</a></td>
+<td>S1–S2 pass</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Identify the driver, solder its leads, ring it out</td>
+<td><a href="#the-driver-demystified">The driver</a></td>
+<td>S3 passes</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Harness: outputs to dies, inputs + pulldowns, power</td>
+<td><a href="#wire-it">Wire it</a></td>
+<td>S4–S6 pass</td>
+</tr>
+<tr>
+<td>4</td>
+<td>First power — the boot-dark proof, before any logic exists</td>
+<td><a href="#first-power-and-first-light">First power</a></td>
+<td>S7 passes</td>
+</tr>
+<tr>
+<td>5</td>
+<td>First light, one die at a time — name them</td>
+<td><a href="#first-power-and-first-light">First power</a></td>
+<td>S8 passes</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Sweep each channel; find the duty floor; soak</td>
+<td><a href="#first-power-and-first-light">First power</a></td>
+<td>S9–S10 pass</td>
+</tr>
+</tbody>
+</table>
+<p>Nothing on this page touches the tape chain, and the rule from <a href="../04a-wire-the-zones/#the-chain-demystified">Doc 4a</a> runs both ways: <strong>the tape never meets this driver, and the star never meets the 24 V bus.</strong> The driver stands between the bus and the star, always.</p>
+</div>
+<hr />
+<h2 id="the-star-demystified">The star, demystified<a class="headerlink" href="#the-star-demystified" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="The three-die star: three isolated lamps on one aluminum plate, each with its own ± pad pair" src="../assets/wiring-spot-star.svg" /></p>
+<p>The LuxDrive SJX-1 is <strong>three separate lamps sharing one aluminum plate</strong>. Each die has its own <strong>+ and − pad pair</strong>, electrically connected to nothing else on the star — which is precisely the property <a href="../04-full-fixture-bench/#bill-of-materials-led-side-170240-doc-3s-gimbal-bom">Doc 4's BoM</a> demanded when it warned that most stock 3-up stars are series-wired and cannot be driven per channel. Yours can. One die per driver channel, three channels, and the fixture's tunable spotlight falls out of the wiring.</p>
+<p>This build's dies are <strong>warm-white XP-E2, cool-white XP-E2, and PC Amber</strong> — the maker's own star, per the <a href="../06-message-contract/#the-spot-light-engine-is-one-entity-not-three">Doc 6 addendum</a>. Unlit, the two whites are nearly indistinguishable and the amber is only a shade deeper. Do not decide from phosphor color. The naming happens at <a href="#first-power-and-first-light">S8</a>, by light.</p>
+<p>And here is the plate itself, with every printed mark found:</p>
+<p><img alt="The real star annotated: three pad pairs ringed in the channel colors with the plate's own printed polarity beside each, one die ringed as the looks-alike example" loading="lazy" src="../assets/photo-anno-spot-star.jpg" /></p>
+<p>Look closely at the three +/− transcriptions and notice they <strong>do not match each other</strong>: the top pair prints + on its left pad, the left pair prints − on its <em>upper</em> pad, the right pair + on its upper. Three pairs, three different orientations, one plate — which is exactly why S2's rule is <em>read the print beside each pair</em> and never "same as the last one."</p>
+<p><strong>S1 — the heatsink, before anything else.</strong> Thermal adhesive, thin and full-face, star centered on the ≥2″×2″ heatsink from the BoM. Let it cure per its own instructions. The star dissipates <strong>~3 W</strong> into a coin-sized plate as shipped — and ~6 W if the driver's current jumpers are ever bridged (below) — and bare, it climbs past safe junction temperature in well under a minute. There is no bare-star test, not even a one-second one.</p>
+<p><strong>S2 — polarity, proven cold.</strong> Two witnesses, in order:</p>
+<ol>
+<li><strong>The silkscreen.</strong> Each pad pair carries printed <strong>+</strong> and <strong>−</strong> marks beside the pads. Write each pair's polarity on a tape flag <em>now</em> — the same flag ritual as <a href="../04a-wire-the-zones/#tape-work">the tape pads</a>, and for the same reason: the print on the part is the authority, and the flag is how it survives into the harness.</li>
+<li><strong>The diode-mode glow.</strong> A single die's ~3 V forward voltage sits right at the edge of what a meter's diode mode can source. Probes across one pair, red on the printed <strong>+</strong>: many meters will make the die glow faintly — which proves polarity <em>and</em> tells you that die's color, before any supply exists. If yours reads OL both ways and nothing glows, that's fine — the meter tops out below Vf, and witness 1 already settled it.</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Why polarity is proven cold here, when the tape got to shrug</p>
+<p>On the tape, a reversed channel simply stayed dark: 24 V spread across a whole string of junctions, nothing exceeded, fix and relight. <strong>A bare die on a constant-current output has no such forgiveness.</strong> A CC driver with no conducting path lets its output float toward the rail — which puts reverse voltage across a die rated for about 5 V of it. So: flags from the silkscreen, the glow if your meter offers it, and the ring-out at S4. The first time a die sees the driver live, its polarity is already a settled fact.</p>
+</div>
+<hr />
+<h2 id="the-driver-demystified">The driver, demystified<a class="headerlink" href="#the-driver-demystified" title="Permanent link">&para;</a></h2>
+<p><img alt="This build's three-channel constant-current driver, annotated: the VIN block, the three logic inputs, the three output pairs, and the twin R300s that set each channel's current" loading="lazy" src="../assets/photo-anno-spot-driver.jpg" /></p>
+<p>This is the board <a href="../04a-wire-the-zones/#the-chain-demystified">Doc 4a told you to set aside until spotlight day</a>. Spotlight day is today. What it is: <strong>the genuine SparkFun PicoBuck</strong> — identified down to its published schematic — which is to say, <strong>three independent constant-current buck converters on one PCB</strong>: an AL8860 driver chip, a 33 µH inductor (the chunky "330" squares), and the sense resistors per channel. The chip holds 0.1 V across the sense, so the sense sets the current: one R300 always in the loop → <strong>~330 mA as shipped</strong>. And the pair of R300s you can see side by side per channel is not a mystery — the second one is the <strong>660 mA option</strong>, wired through the small open solder jumper beside them. Bridge that jumper and the twin joins in parallel; leave it open and it is just a passenger. Brightness is not set by voltage and not set by the load — it is set by that resistor, and dimmed by pulsing the channel's input.</p>
+<div class="admonition info">
+<p class="admonition-title">In plain terms — one lamp-feeder, two settings, and yours ships on the gentle one</p>
+<p>This board pushes a fixed amount of electricity through each lamp — there is no knob. But there <em>is</em> a switch: each channel has a pair of tiny bare pads, and a blob of solder across them moves that channel from the <strong>gentle</strong> setting (as shipped) to the <strong>strong</strong> one — about twice the push, so roughly twice the light and twice the heat. Your board arrived with all three switches open: gentle, everywhere, with every lamp far inside its comfort zone.</p>
+<p>What that means at the bench:</p>
+<ul>
+<li><strong>Nothing needs ordering, and nothing runs near a limit.</strong> Build as written.</li>
+<li><strong>The upgrade is already on the board.</strong> If a lamp ever needs to be brighter, that channel's blob-switch is sitting there waiting — a one-minute soldering job, per channel, reversible with solder wick.</li>
+<li><strong>One lamp deserves care if you ever do it.</strong> The two white lamps take the strong setting with room to spare; the amber one is rated only a little above it. Strong whites + gentle amber is the sensible combination, and the warning below has the numbers.</li>
+<li><strong>The heatsink rules are unchanged</strong> — gentle still cooks a bare star in under a minute. The glue-down step and the ten-minute warm-check (S10) stay exactly as written.</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">If you ever bridge a jumper — the amber margin</p>
+<p>At the bridged ~660 mA, the white XP-E2 dies (rated 1 A) keep a third of headroom; <strong>PC Amber's absolute ceiling is 700 mA</strong>, barely 6% above it. So if brighter ever matters, bridge the <em>whites'</em> jumpers and leave the amber's open — and re-run S10's soak afterward, because ~6 W is twice the heat the first soak proved. As shipped, with every jumper open, none of this is in play.</p>
+</div>
+<p>Three pad groups, three jobs:</p>
+<ul>
+<li><strong>VIN block</strong> — <code>VIN+</code> and <code>VIN−</code>. The 24 V feed, from the fused bus and the ground star. This is the <em>only</em> place 24 V touches this corner of the bench.</li>
+<li><strong>IN block</strong> — <code>IN1</code>, <code>IN2</code>, <code>IN3</code>, and a <code>GND</code>. Logic-level dimming inputs: 3.3 V PWM from the C6, one pin per channel. The site's pin ledger reserves <strong>GPIO10 → IN1, GPIO11 → IN2, GPIO18 → IN3</strong>, at <strong>500 Hz</strong> — CC dim inputs want ~1 kHz or less, which is exactly why <a href="../04-full-fixture-bench/#stage-5-the-spotlight-constant-current">Doc 4 stage 5</a> put these three signals on native pins instead of the PCA9685.</li>
+<li><strong>OUT blocks</strong> — <code>OUT1±</code>, <code>OUT2±</code>, <code>OUT3±</code>. One ± pair per die. <strong>Six conductors, and the returns never share a wire</strong> — each OUT− is that channel's own regulation loop back through its sense resistor; merge two returns and the chips read each other's current and regulate garbage.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">This unit <em>is</em> the reference</p>
+<p>Doc 4's BoM names the SparkFun PicoBuck, and this board is that exact part — the current revision, verified against SparkFun's own v1.2 schematic: AL8860 per channel, a fixed 0.3 Ω sense (R1/R2/R3), a second 0.3 Ω (R4/R5/R6) behind per-channel solder jumpers (SJ1/SJ2/SJ3), and the perforated snap-off mounting ears. The branding lives on the back of the board, which is how a top-down photo once passed it off as a nameless clone. Open jumpers = 330 mA, the shipped state; bridged = 660.</p>
+</div>
+<div class="admonition trap">
+<p class="admonition-title">The inputs float ON</p>
+<p>Leave an IN pin unconnected and that channel runs at full current. The C6's pins also float while it boots. Both facts together are <a href="../08-build-the-fixture/#step-5-the-spotlight">Doc 8's pulldown law</a>, inherited here at birth: <strong>a 10 kΩ resistor from each IN to ground</strong>, so the resting state of the whole spotlight is <em>dark</em>, and light only ever happens because firmware asked for it. S7 proves the pulldowns before the C6 is even powered — read it before you wire.</p>
+</div>
+<p><strong>S3 — identify and ring out, unpowered.</strong> Confirm you are holding the CC driver and not something from the tape chain: three AL8860s, three 330 inductors, a side-by-side pair of R300s per channel with a small open solder jumper beside each pair — <strong>confirm all three jumpers are open</strong> (bare pads, no bridge), because open is the gentle 330 mA state every number in this chapter assumes. The board ships with bare pads — solder its leads now, per <a href="../08-build-the-fixture/#soldering-these-boards-five-rules">Doc 8's five rules</a>: <strong>solid-core 22 AWG stubs on the IN block</strong> (they land in the breadboard, and solid is what breadboard clips grip — <a href="../03a-wire-the-bench/#where-wires-may-split-and-how">Doc 3a's lesson</a>), <strong>stranded silicone on VIN and the three OUT pairs</strong> (they get handled, and they carry the current). Then one beep that buys a simpler bench: <strong>VIN− ↔ the IN block's GND.</strong> On this board they beep — one ground net — so a single ground wire to the star point serves both power return and logic reference. If your board's don't beep, wire the IN GND to the ground star separately, and trust the meter over this paragraph.</p>
+<hr />
+<h2 id="wire-it">Wire it<a class="headerlink" href="#wire-it" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="Spotlight hookup: fused 24 V into VIN, three GPIO PWM lines with pulldowns into the IN block, three output pairs to the star's three dies, one ground star" src="../assets/wiring-spot-hookup.svg" /></p>
+<p>The whole hookup, in the order that keeps every step checkable:</p>
+<ol>
+<li><strong>Outputs first, power last.</strong> Solder or terminate the three OUT pairs to the star's three pad pairs — <strong>+ to +, − to − per the S2 flags</strong>, one pair per die, six conductors total. Keep them short on the bench; in the fixture these six become service loops across the gimbal joints (<a href="../08-build-the-fixture/#step-5-the-spotlight">Doc 8 step 5</a>), but today short and tidy beats droopy.</li>
+<li><strong>S4 — ring out the pairs.</strong> Each driver OUT+ beeps to exactly one star + pad, its own; each OUT− to its own − pad; neighbours silent. A single crossed pair here is the difference between a working spotlight and a mystery at S8.</li>
+<li><strong>Inputs.</strong> Each IN stub lands in its own breadboard row. Into each row: a <strong>10 kΩ to the ground rail</strong>, and a jumper to its GPIO — <strong>10 → IN1, 11 → IN2, 18 → IN3</strong>. Signals only on the breadboard, same law as always. (The soldered, fixture-lane placement of these same three resistors is drawn in <a href="../08-build-the-fixture/#the-three-small-parts-and-where-every-one-goes">Doc 8's small-parts maps</a>.)</li>
+<li><strong>S5 — beep the logic.</strong> Each IN row beeps to its own GPIO wire and to its 10 kΩ, and to nothing else. Each 10 kΩ's far side beeps to ground.</li>
+<li><strong>Power.</strong> Fused +24 V bus → <code>VIN+</code>; <code>VIN−</code> → the ground star — the same star every ground on this bench already meets, C6 included (<a href="../04a-wire-the-zones/#the-checkpoint-table">CP7</a> is the precedent). <strong>S6:</strong> 24 V across the VIN pads with the supply on and the star aimed at the wall — but do not power up until the checklist below.</li>
+</ol>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Star on its heatsink, cured, aimed at the wall (S1)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Polarity flags written from the star's own silkscreen (S2)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> OUT pairs rung out — each lead to its own pad, + to +, neighbours silent (S4)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All three 10 kΩ pulldowns in place and beeped (S5)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> VIN from the fused bus; every ground at the one star; the C6's ground among them</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Nothing from the tape chain anywhere on this corner of the bench</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Nobody's eyes on the beam line</li>
+</ul>
+<hr />
+<h2 id="first-power-and-first-light">First power, and first light<a class="headerlink" href="#first-power-and-first-light" title="Permanent link">&para;</a></h2>
+<p><strong>S7 — the boot-dark proof, before logic exists.</strong> Power the 24 V rail with the <strong>C6 unpowered</strong>. The pulldowns hold all three INs low, so all three dies stay dark for a slow thirty seconds, nothing warming. This is the proof that no future firmware state, crash, or boot transient can blast the beam — the resting state of the hardware itself is dark. Then power the C6: still dark through boot. If anything lit in either half, a pulldown is missing or miswired — fix it before firmware ever gets a say.</p>
+<div class="admonition warning">
+<p class="admonition-title">The flash lane, honestly — same status as Doc 4's</p>
+<p><a href="../04-full-fixture-bench/">Doc 4's warning box</a> applies unchanged: the fixture's C6 runs the Arduino Zigbee image, and the spotlight's photometric lane — LEDC PWM on GPIO10/11/18 behind the existing <code>gimbal-spotlight</code> entity — is firmware still to come, taken from the bench console when it lands. The wiring on this page is current and complete without it. For first light today, any 3.3 V PWM source on those three pins does the job — the spare C6 with a throwaway sketch is the sanctioned bench path, and the deployed fixture never needs to be touched for it.</p>
+</div>
+<p><strong>S8 — first light, one die at a time, and the naming ritual.</strong> Drive one channel to 100%. One die lights — painfully bright, wall-aimed. <strong>Now name it</strong>: warm white, cool white, or amber, judged by the light on the wall, never by the phosphor. Write the color on that channel's OUT-pair flag and note the GPIO that lit it. Repeat for the other two. Three channels, three names, written down — this map is what firmware will encode, and the flags are its source of truth. (Wrong color on a slider later = the map was guessed, not lit. Same law as the tape's: <a href="../04a-wire-the-zones/#tape-work">labels stay truthful</a>.)</p>
+<p><strong>S9 — the sweep, and the duty floor.</strong> Sweep each channel 0 → 100%. Smooth through the top and middle; somewhere below ~5% duty expect the dimming to get twitchy — steps, flicker, or a refusal to go lower. <strong>Note the floor per channel and write it down</strong>: <a href="../04-full-fixture-bench/#stage-5-the-spotlight-constant-current">Doc 4 stage 5</a> already promised the coordinator respects it in software, and the number it respects is the one you record today.</p>
+<p><strong>S10 — the soak.</strong> All three channels at 100% for ten minutes: heatsink warm-not-hot, joints intact, nothing drifting. That is the spotlight's whole thermal story on the bench, and the number to remember when <a href="../08-build-the-fixture/#step-5-the-spotlight">Doc 8</a> puts the same star inside a body.</p>
+<p><strong>Done when:</strong> boot is dark twice over, three dies have names written on their flags, each channel dims to its recorded floor, and the ten-minute soak stays cool.</p>
+<hr />
+<h2 id="when-a-die-is-dark">When a die is dark<a class="headerlink" href="#when-a-die-is-dark" title="Permanent link">&para;</a></h2>
+<p>Work it top-down; every rung you pass clears a suspect, and the swap-test on rung 3 is the one that splits the world in half.</p>
+<table>
+<thead>
+<tr>
+<th>Rung</th>
+<th>Symptom</th>
+<th>Says</th>
+<th>Do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>All three blast ON at power-up</strong></td>
+<td>A pulldown is missing, miswired, or its IN wire is on the wrong row</td>
+<td>Back to S5 — this is the one failure the boot-dark proof exists to catch</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Everything dead, all channels</strong></td>
+<td>The 24 V never arrived</td>
+<td>24 V across the VIN pads (fuse seat, WAGO, leads); then the S3 ground beep</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>One die never lights</strong></td>
+<td>Logic side or output side — split them</td>
+<td>Swap-test at the driver: move a <em>working</em> channel's IN wire onto the suspect IN. Die lights → the fault is logic-side (GPIO wire, pulldown row, firmware map). Stays dark → output side: that pair's polarity (S2 flags), a crossed pair (S4), or the die</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Lights, won't dim cleanly</strong></td>
+<td>PWM frequency or the floor</td>
+<td>Confirm ~500 Hz on the pin; below your S9 floor, twitchy is the part's honest behavior — the floor is a number to respect, not a fault to fix</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Meter says the IN is "only 1.3 V"</strong></td>
+<td>You probed at partial duty</td>
+<td>A DMM averages PWM — <a href="../04a-wire-the-zones/#the-checkpoint-table">Doc 4a's CP13 note</a>, same physics. Command 100% and expect ~3.3 V, or learn nothing</td>
+</tr>
+</tbody>
+</table>
+<p>And the one reframe worth keeping: <strong>dark at boot is not a fault.</strong> It is the pulldowns doing the only job they have. The spotlight resting dark is the design working.</p>
+<hr />
+<h2 id="the-s-checkpoint-table">The S-checkpoint table<a class="headerlink" href="#the-s-checkpoint-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>S</th>
+<th>Setup</th>
+<th>Measure / do</th>
+<th>Healthy</th>
+<th>If not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>Before anything</td>
+<td>Star mounted on heatsink, adhesive cured, full-face</td>
+<td>No bare star, ever</td>
+<td>Mount it now — there is no bare-star test</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>Star, cold</td>
+<td>Polarity flags from silkscreen; diode-mode glow if the meter can</td>
+<td>Flags written; glow (if any) matches the printed +</td>
+<td>No glow both ways = meter tops out — the print still rules</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>Driver, unpowered</td>
+<td>Identify (3× AL8860, 330s, twin R300s, jumpers OPEN); leads soldered; VIN− ↔ IN-GND</td>
+<td>Beeps — one ground net; three bare jumpers</td>
+<td>No beep = wire IN GND to the star separately; a bridged jumper = that channel runs 660</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>Harness, unpowered</td>
+<td>Each OUT lead ↔ its own star pad, + to +</td>
+<td>Own pad beeps, neighbours silent</td>
+<td>A crossed pair — fix it cold</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>Inputs, unpowered</td>
+<td>Each IN row ↔ its GPIO wire and its 10 kΩ</td>
+<td>Own wires only; 10 kΩ far side to ground</td>
+<td>Rewire before power</td>
+</tr>
+<tr>
+<td>S6</td>
+<td>Supply on, C6 off</td>
+<td>24 V across VIN pads</td>
+<td>24 V, star aimed at wall</td>
+<td>Fuse, WAGO, leads</td>
+</tr>
+<tr>
+<td>S7</td>
+<td>Same — then C6 on</td>
+<td>The boot-dark proof, both halves, 30 s each</td>
+<td>Dark throughout, nothing warm</td>
+<td>Rung 1 of the ladder</td>
+</tr>
+<tr>
+<td>S8</td>
+<td>One channel at 100%</td>
+<td>Light it, name it, flag it — ×3</td>
+<td>Three named channels</td>
+<td>Rung 3's swap-test</td>
+</tr>
+<tr>
+<td>S9</td>
+<td>Each channel</td>
+<td>Sweep 0→100%; find the duty floor</td>
+<td>Smooth above the floor; floor recorded</td>
+<td>Rung 4</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>All on, 10 min</td>
+<td>Heatsink and joints</td>
+<td>Warm-not-hot, nothing drifting</td>
+<td>Thermal path — recheck S1's contact</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<p>Verified against primary documents rather than forum lore:</p>
+<ul>
+<li><strong>Diodes Inc. AL8860 datasheet</strong> — hysteretic buck LED driver: the 0.1 V mean sense threshold (over 0.30 Ω → ~330 mA as shipped), input voltage range, and PWM dimming behavior on the control pin</li>
+<li><strong>SparkFun picoBuck v1.2 schematic</strong> — the document that settled this board's identity and current: per channel, sense resistor R<em>n</em> fixed at 0.3 Ω plus a second 0.3 Ω behind solder jumper SJ<em>n</em>; open = ~330 mA, bridged = ~660 mA</li>
+<li><strong>Cree XLamp XP-E2 datasheet</strong> — forward voltage ~3 V class, and the ~5 V reverse-voltage ceiling behind this chapter's prove-polarity-cold rule</li>
+<li><strong>LuxDrive / LEDdynamics SJX-1</strong> 20 mm star — three electrically isolated die positions, per-die ± pads</li>
+<li><strong>SparkFun PicoBuck hookup guide</strong> — the reference board Doc 4's BoM names: same block layout, and the floats-ON behavior the pulldown law answers</li>
+<li>Site cross-references: <a href="../04-full-fixture-bench/#stage-5-the-spotlight-constant-current">Doc 4 stage 5</a> (the stage this chapter unpacks) · <a href="../04a-wire-the-zones/">Doc 4a</a> (the tape-side habits this page reverses) · <a href="../08-build-the-fixture/#step-5-the-spotlight">Doc 8 step 5</a> (the same wiring made permanent) · <a href="../06-message-contract/#the-spot-light-engine-is-one-entity-not-three">Doc 6's addendum</a> (why three dies present as one light)</li>
+</ul>
+<p>And a note on how this chapter got its numbers right: a first read of the board saw the twin R300s, missed the open jumper beside them, and called the channel current ~660 mA. The schematic and a zoom on the jumper pads corrected it to ~330 as shipped — which is the chapter's own S-checkpoint ethos applied to itself: the board in your hand outranks any read of a photograph, and a measurement outranks both.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../04a-wire-the-zones/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4a · Wire the Zones For Real">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                4a · Wire the Zones For Real
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05-teach-it-to-aim/" class="md-footer__link md-footer__link--next" aria-label="Next: 5 · Teach It to Aim">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                5 · Teach It to Aim
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+        <script src="../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>

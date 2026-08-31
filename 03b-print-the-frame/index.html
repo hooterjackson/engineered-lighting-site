@@ -1,0 +1,1591 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The gimbal's printed frame: four parts that print flat with no supports, no bearings at all, every fit derived from three numbers you measure off your own printer, and a boolean test suite that proves each hole actually exists before you print anything.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/03b-print-the-frame/">
+      
+      
+        <link rel="prev" href="../03a-wire-the-bench/">
+      
+      
+        <link rel="next" href="../04-full-fixture-bench/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3b · Print the Frame - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="3b · Print the Frame - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The gimbal's printed frame: four parts that print flat with no supports, no bearings at all, every fit derived from three numbers you measure off your own printer, and a boolean test suite that proves each hole actually exists before you print anything." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/03b-print-the-frame.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/03b-print-the-frame/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="3b · Print the Frame - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The gimbal's printed frame: four parts that print flat with no supports, no bearings at all, every fit derived from three numbers you measure off your own printer, and a boolean test suite that proves each hole actually exists before you print anything." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/03b-print-the-frame.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-3b-print-the-frame-four-parts-three-test-pieces-no-guesswork" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3b · Print the Frame
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buy the Parts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understand the choices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Understand the choices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the gimbal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the gimbal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03c-prove-the-bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3c · Prove the Bus First
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03a-wire-the-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3a · Wire the Gimbal For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-changed-and-why-it-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed, and why it matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four parts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-rules-the-design-follows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The rules the design follows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-parametric-scaffold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The parametric scaffold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-test-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The test suite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x1c-print-settings-per-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X1C print settings, per part
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-all-goes-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it all goes together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-things-worth-knowing-before-you-print" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two things worth knowing before you print
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bom-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BoM delta
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the bench
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the bench
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04a-wire-the-zones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4a · Wire the Zones For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04b-wire-the-spotlight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4b · Wire the Spotlight For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aim it, then program it
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aim it, then program it
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make it permanent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Make it permanent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-build-the-fixture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 · Build the Fixture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-changed-and-why-it-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed, and why it matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four parts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-rules-the-design-follows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The rules the design follows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-parametric-scaffold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The parametric scaffold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-test-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The test suite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x1c-print-settings-per-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X1C print settings, per part
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-all-goes-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it all goes together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-things-worth-knowing-before-you-print" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two things worth knowing before you print
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bom-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BoM delta
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-3b-print-the-frame-four-parts-three-test-pieces-no-guesswork">Doc 3b · Print the Frame — Four Parts, Three Test Pieces, No Guesswork<a class="headerlink" href="#doc-3b-print-the-frame-four-parts-three-test-pieces-no-guesswork" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong></p>
+<p>The frame chapter <a href="../03-build-the-gimbal/">Doc 3</a> stage 7 points at. Context, fixed: the motors are <strong>RMD-L-5005</strong> (Ø49 × 23.9 mm, 92 g), the spotlight payload is the <strong>DLH-3UP-EH aluminium LED housing</strong> (Ø0.99″ barrel, 1.26″ overall, flush front, hollow ½″-14 NPT rear stub the wires come out of), the printer is a <strong>Bambu Lab X1C</strong>, and the material is <strong>PETG Basic</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">This scaffold is reference, not the frame being built</p>
+<p>The OpenSCAD in this chapter was machine-generated, and it is published as <strong>worked reference</strong> — a documented set of constraints, measured-from-STEP motor geometry, and a boolean test suite showing what a frame has to satisfy. <strong>The frame actually going on this bench is being designed by hand</strong>, with the scaffold as inspiration rather than a source of parts.</p>
+<p>Read the numbers here as <em>requirements</em> — the 2.5 mm tapped depth, the 3.0 mm of axial room before the stator, the 0.505 N and 0.0146 N·m the tilt axis carries, the unpublished bearing rating that argument rests on. Those hold for any frame. The specific parts, print orientations and gram counts describe one solution to them.</p>
+</div>
+<p>This is <strong>frame v8</strong>, and it is a ground-up rebuild. Two things drove it.</p>
+<h2 id="what-changed-and-why-it-matters">What changed, and why it matters<a class="headerlink" href="#what-changed-and-why-it-matters" title="Permanent link">&para;</a></h2>
+<p><strong>The motor is now read, not guessed.</strong> Earlier revisions were built on an invented output flange — six holes on a Ø30 circle, an M4 rear mount on Ø43, a 4 mm output boss. None of those exist. The vendor's own STEP file is now in the repo at <a href="https://github.com/hooterjackson/engineered-lighting-site/blob/main/ref/RMD-L-5005-S.STEP"><code>ref/RMD-L-5005-S.STEP</code></a>, parsed by <a href="https://github.com/hooterjackson/engineered-lighting-site/blob/main/ref/step_dump.py"><code>ref/step_dump.py</code></a>, and written up in <a href="https://github.com/hooterjackson/engineered-lighting-site/blob/main/ref/RMD-L-5005-S.md"><code>ref/RMD-L-5005-S.md</code></a>. What it says:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Output face</td>
+<td><strong>Flat.</strong> A Ø47 annulus, then a 1 mm 45° chamfer out to Ø49. <strong>There is no boss</strong> — stand-proud is 0.000 mm</td>
+</tr>
+<tr>
+<td>Output bolts</td>
+<td>4 × M3 on <strong>Ø25</strong>, tapped only <strong>2.500 mm deep</strong>, breaking through into the rotor cavity</td>
+</tr>
+<tr>
+<td>Stationary housing</td>
+<td>begins <strong>3.000 mm</strong> back from the output face</td>
+</tr>
+<tr>
+<td>Rear mount</td>
+<td>4 × M2.5 on a <strong>20 × 20 mm square</strong> (Ø28.284 at 45°), 10.7 mm deep</td>
+</tr>
+<tr>
+<td>Through bore</td>
+<td><strong>Ø8.1</strong> ("S" variant)</td>
+</tr>
+<tr>
+<td>Anything protruding past Ø49</td>
+<td><strong>Nothing.</strong> Max radius anywhere is exactly R24.5. The connectors are recesses cut <em>into</em> the casting</td>
+</tr>
+</tbody>
+</table>
+<p>That 2.5 mm thread depth is the single most constraining number in the design. Every M3 into an output flange is <strong>M3 × 10</strong>, derived from it. The previous revision's assembly drawing called for M3 × 13 and M3 × 14 — both bottom out 2.5–3.5 mm before the head seats, so the joint never clamps and the screw tip ends up inside the motor.</p>
+<p><img alt="Cross-section of the output flange: the 2.5 mm thread depth, an M3×10 seating and clamping, and an M3×13 bottoming out with its head proud" src="../assets/frame-screw-depth.svg" /></p>
+<p><strong>The idle side of the tilt axis is gone.</strong> No trunnion, no bearing carrier, no 608, six fewer screws, one fewer yoke arm. The head cantilevers off the tilt motor's own output.</p>
+<p>That deletes 62 g from a 177 g machine to carry <strong>0.505 N and 0.0146 N·m</strong> — about 3.5% of the motor's peak torque, with 0.58 N of prying on the output bolts against an M3 proof load near 2000 N. It also removes an <em>over-constrained</em> twin-bearing axis: two bearings on one axis need the printed parts to be coaxial with the motor's own bearing, which printed parts cannot guarantee, and which the old design papered over with a build-time "leave three screws loose, swing the head, then tighten" ritual. A misaligned second bearing loads the motor's bearing sideways — it can make worse the thing it is supposed to protect.</p>
+<div class="admonition warning">
+<p class="admonition-title">One number here is unverified, and it is the important one</p>
+<p><strong>The RMD-L manual publishes no bearing load ratings at all.</strong> There is no radial or moment figure for the output. The case for the cantilever is an argument from load magnitude and from the journal diameter — the STEP shows the rotor running in a Ø46.6 bore, and moment capacity scales with that — <strong>not</strong> from a datasheet. The load numbers are echoed on every render so that if the head ever grows, the change is visible instead of silent. If a rating ever surfaces, check it against 0.505 N and 0.0146 N·m.</p>
+</div>
+<h2 id="the-four-parts">The four parts<a class="headerlink" href="#the-four-parts" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it is</th>
+<th>Mass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base_plate</code></td>
+<td>The only part that touches the world. The pan motor's rear bolts up into it, heads counterbored flush; a tongue reaches aft for the C-clamp; a buttressed post hangs down as the pan hard stop</td>
+<td>33.4 g</td>
+</tr>
+<tr>
+<td><code>yoke</code></td>
+<td>Bridge disc and <strong>one</strong> arm, one piece. Prints standing on its bridge with the arm pointing up — zero supports, and no joint to align because there is no joint</td>
+<td>47.0 g</td>
+</tr>
+<tr>
+<td><code>cradle</code></td>
+<td>The head's saddle. Bolts flat to the tilt motor's output face and holds the lower half of the housing bore</td>
+<td>23.2 g</td>
+</tr>
+<tr>
+<td><code>cradle_cap</code></td>
+<td>The other half of the clamp. Four screws pinch the housing between the halves</td>
+<td>21.0 g</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>printed machine</strong></td>
+<td><strong>124.6 g</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Masses are measured off the exported STLs at PETG density by <a href="https://github.com/hooterjackson/engineered-lighting-site/blob/main/tools/meshcheck.py"><code>tools/meshcheck.py</code></a>, which computes volume and centre of mass twice — once from a hand-rolled divergence-theorem sum, once from <code>trimesh</code> — and refuses to report a centre of mass without a stated coordinate frame. v7 was 177.1 g across six parts.</p>
+<p>Plus three test pieces that exist to be wrong cheaply, in the order you print them:</p>
+<p><strong><code>tol_coupon</code></strong> (14.9 g) measures <em>your printer</em>. FDM gets holes and shafts wrong in opposite directions — a hole comes out undersize, a post oversize — and every fit here derives from three constants that say by how much. Find which test hole your M3 drops through, which drilled-sideways hole it drops through, and which post measures nominal. Type three numbers into <code>frame_params.scad</code> and the whole set resizes itself.</p>
+<p><strong><code>fit_coupon</code></strong> (11.4 g) checks the <em>motor</em>: <strong>two separate tiles</strong>, one per bolt circle. They are separate on purpose — drawn concentrically, the Ø25 and Ø28.284 circles overlap into merged slots, and an M3 and an M2.5 both drop through the same hole, so the coupon proves neither circle.</p>
+<p><strong><code>bore_gauge</code></strong> (14.2 g) checks the <em>housing</em>: a 12 mm slice of the real clamp, both halves lying flat on the bed, the cap half crown-down so its bore prints as a valley exactly as the real cap does.</p>
+<h2 id="the-rules-the-design-follows">The rules the design follows<a class="headerlink" href="#the-rules-the-design-follows" title="Permanent link">&para;</a></h2>
+<p><strong>Every joint is a bolt you can see.</strong> No tabs, no captive nuts, nothing friction-fit. Printed-to-motor joints use the motor's own threads; printed-to-printed self-taps into printed pilot holes.</p>
+<p><strong>Every fit is derived, never typed.</strong> Three measured constants and the fit functions built on them. Horizontal (bridged) holes get their own class, because a sideways hole prints with a sagging roof and comes out worse than a vertical one.</p>
+<p><strong>The part lands flat on a flat face.</strong> There is no boss to register on, so the four M3 locate it. A plate laid on the output face sits on the Ø47 annulus and has <strong>3.0 mm of axial room at full Ø49</strong> before it touches the stator — which is what would clamp the motor solid.</p>
+<p><strong>Nothing bridges.</strong> The hard stop is a post and a lug that <em>collide</em>, not a post in an arc groove: the old groove was 1565 mm² of flat roof with 45 mm unsupported runs printed over a 0.6 mm clearance. There is no groove now, so the whole failure mode is deleted rather than mitigated. The clamp bore is two valleys. Horizontal round holes are hexagons with a vertex up, so the roof is a 60° peak.</p>
+<div class="admonition note">
+<p class="admonition-title">A trick that only works in one direction</p>
+<p>The hexagon-vertex-up trick helps a hole whose <strong>axis is horizontal</strong>, where the hexagon's apex becomes the roof. A pocket cut straight down into a face has a flat roof whatever its plan shape. The cap's crown pocket was removed rather than hexagonalised, because the cap prints crown-down and any pocket there is a 32.7 mm bridge directly under the clamp.</p>
+</div>
+<p><strong>Balance is drawn in, on the axis where it matters.</strong> The tilt axis sits <strong>1.75 mm above</strong> the housing's axis, which puts the measured centre of mass of the whole head — saddle, cap and barrel — on it, leaving 6.9 × 10⁻⁶ N·m of standing torque. Solved from measured geometry by <a href="https://github.com/hooterjackson/engineered-lighting-site/blob/main/tools/solve_balance.py"><code>tools/solve_balance.py</code></a>, in <strong>model</strong> coordinates.</p>
+<p>The <strong>pan</strong> axis is deliberately <em>not</em> balanced, and the reason is worth stating: the pan axis is vertical and gravity is parallel to it, so a centre-of-mass offset along the arm produces <strong>no torque about the pan axis at all</strong>. The motor holds any heading on zero current whatever that offset is. All it does is load the output bearing with 0.0128 N·m. Nulling it would cost about 7 mm of arm reach, a bigger bridge disc and ~12 g. Reported, not engineered away.</p>
+<h2 id="the-parametric-scaffold">The parametric scaffold<a class="headerlink" href="#the-parametric-scaffold" title="Permanent link">&para;</a></h2>
+<p>Four OpenSCAD files. <a href="../cad/frame_params.scad"><code>cad/frame_params.scad</code></a> holds <strong>every number, once</strong>, and every number carries a provenance tag — <code>[STEP]</code>, <code>[MANUAL]</code>, <code>[DRAWING]</code>, <code>[STD]</code>, <code>[CHOICE]</code>, <code>[MEASURE]</code>, <code>[UNVERIFIED]</code> — so an invented dimension is visible in the source instead of in a failed build. <a href="../cad/frame.scad"><code>cad/frame.scad</code></a> is nothing but geometry. <a href="../cad/assembly.scad"><code>cad/assembly.scad</code></a> draws the whole machine. <a href="../cad/checks.scad"><code>cad/checks.scad</code></a> is the test suite.</p>
+<div class="highlight"><pre><span></span><code>/* [Motor interface — all [STEP], read out of the vendor&#39;s own solid model] */
+motor_d          = 49;    // body OD. Also the max radius ANYWHERE: R24.5
+motor_len        = 23.9;
+out_flat_od      = 47;    // the flat annulus you land on
+stator_x         = 3.0;   // ** the stationary housing starts here **
+out_bcd          = 25;    // 4 x M3
+out_thread_depth = 2.5;   // ** and they break into the rotor cavity **
+out_thread_use   = 2.3;   // what we allow ourselves, so there is air under the tip
+out_boss_h       = 0;     // there is no boss. 0.000 mm proud.
+rear_bcd         = rear_sq * sqrt(2);   // 28.284 — a 20x20 square, at 45 deg
+
+// screw lengths that CANNOT bottom out in the motor, derived not chosen
+function out_screw_len(through) = through + out_thread_use;
+</code></pre></div>
+<p>Render or export any part from the CLI. <code>orient</code> picks the frame:</p>
+<div class="highlight"><pre><span></span><code>openscad<span class="w"> </span>-o<span class="w"> </span>tol_coupon.stl<span class="w"> </span>-D<span class="w"> </span><span class="s1">&#39;part=&quot;tol_coupon&quot;&#39;</span><span class="w"> </span>cad/frame.scad<span class="w">   </span><span class="c1"># print this first</span>
+openscad<span class="w"> </span>-o<span class="w"> </span>yoke.stl<span class="w">       </span>-D<span class="w"> </span><span class="s1">&#39;part=&quot;yoke&quot;&#39;</span><span class="w">       </span>cad/frame.scad<span class="w">   </span><span class="c1"># print orientation</span>
+openscad<span class="w"> </span>-o<span class="w"> </span>yoke_model.stl<span class="w"> </span>-D<span class="w"> </span><span class="s1">&#39;part=&quot;yoke&quot;&#39;</span><span class="w"> </span>-D<span class="w"> </span><span class="s1">&#39;orient=&quot;model&quot;&#39;</span><span class="w"> </span>cad/frame.scad
+openscad<span class="w"> </span>-o<span class="w"> </span>plate.stl<span class="w">      </span>-D<span class="w"> </span><span class="s1">&#39;part=&quot;all&quot;&#39;</span><span class="w">        </span>cad/frame.scad
+</code></pre></div>
+<p>Use <code>orient="model"</code> for anything you intend to <em>measure</em>. A centre of mass read off a print-orientation export is a rigid transform away from every other number in the project, and reading one as the other is a mistake that has already shipped here once.</p>
+<h2 id="the-test-suite">The test suite<a class="headerlink" href="#the-test-suite" title="Permanent link">&para;</a></h2>
+<p><code>checks.scad</code> and <a href="https://github.com/hooterjackson/engineered-lighting-site/blob/main/tools/run_checks.py"><code>tools/run_checks.py</code></a> run <strong>34 checks</strong> of three kinds. Run them after any change:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>tools/run_checks.py
+</code></pre></div>
+<p><strong><code>hole:</code> — a hole that must exist.</strong> The probe is the <em>ideal</em> hole, intersected with the <em>finished</em> part. Empty means the material really was removed. This inversion is the only thing that sees a cut which missed: such a cut removes nothing, changes no mass, and renders as a clean solid. The previous revision's cradle had <strong>no output-flange bolt holes at all</strong> — the cut was a centred cylinder 2.865 mm short of the plate — and nothing but a boolean could see it.</p>
+<p><strong><code>clash:</code> — two things that must not touch</strong>, positioned exactly as assembled: head against both motors and against the yoke at tilt 0 and ±90°, the payload through its sweep, nothing entering the stator zone, the hard-stop post against the bridge and the arm at every heading.</p>
+<p><strong><code>bed:</code> — the exported STL's minimum Z</strong>, measured rather than asserted. The old <code>p_cradle</code> put its part 1.740 mm <em>below</em> the bed, where a slicer silently clips away the keel's entire first-layer footprint, and <code>bore_gauge</code> floated its second half 16 mm in the air.</p>
+<p>Both boolean kinds are proven to fail when they should — reintroduce the old centred-cut bug and <code>hole:yoke_arm_bolts</code> reports 158.270 mm³; pull <code>drop</code> to 12 and <code>clash:cradle_v_yoke_0</code> reports 525.1 mm³. A suite that cannot fail is worse than no suite, because it gets believed.</p>
+<h2 id="x1c-print-settings-per-part">X1C print settings, per part<a class="headerlink" href="#x1c-print-settings-per-part" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Material</th>
+<th>Walls / infill / layer</th>
+<th>Orientation</th>
+<th>Mass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tol_coupon</code></td>
+<td>PETG Basic</td>
+<td>3 / 15% / 0.2 mm</td>
+<td>flat, as emitted</td>
+<td>14.9 g</td>
+</tr>
+<tr>
+<td><code>fit_coupon</code></td>
+<td>PETG Basic</td>
+<td>4 / 30% / 0.2 mm</td>
+<td>flat, as emitted</td>
+<td>11.4 g</td>
+</tr>
+<tr>
+<td><code>bore_gauge</code></td>
+<td>PETG Basic</td>
+<td>4 / 40% / 0.2 mm</td>
+<td>flat, both halves</td>
+<td>14.2 g</td>
+</tr>
+<tr>
+<td><code>base_plate</code></td>
+<td>PETG Basic</td>
+<td>4 / 40% gyroid / 0.2 mm</td>
+<td>flipped, post UP</td>
+<td>33.4 g</td>
+</tr>
+<tr>
+<td><code>yoke</code></td>
+<td>PETG-CF if on hand</td>
+<td>5 / 40% gyroid / 0.2 mm</td>
+<td>bridge on the bed, arm UP</td>
+<td>47.0 g</td>
+</tr>
+<tr>
+<td><code>cradle</code></td>
+<td>PETG Basic</td>
+<td>4 / 40% gyroid / 0.2 mm</td>
+<td>as emitted, bore a valley</td>
+<td>23.2 g</td>
+</tr>
+<tr>
+<td><code>cradle_cap</code></td>
+<td>PETG Basic</td>
+<td>4 / 40% / 0.2 mm</td>
+<td>crown down, bore a valley</td>
+<td>21.0 g</td>
+</tr>
+</tbody>
+</table>
+<p>Masses are measured off the STLs, not estimated. Print times are not listed because they depend on your profile more than on the geometry — the yoke is the long one at 59.6 mm tall.</p>
+<p><code>part="all"</code> lays the whole set flat in <strong>207.5 × 169.7 mm</strong>, which fits a 256 mm X1C bed in <strong>one job</strong>. Those offsets are computed from each part's measured bounding box, not eyeballed. There is not a single support in the set and no overhang past 60°.</p>
+<h2 id="how-it-all-goes-together">How it all goes together<a class="headerlink" href="#how-it-all-goes-together" title="Permanent link">&para;</a></h2>
+<p>Open <a href="../cad/assembly.scad"><code>cad/assembly.scad</code></a> and press F5. <code>view</code> flips exploded ↔ assembled, <code>pan</code> and <code>tilt</code> pose it, <code>show_cap</code> unchecks to look inside the clamp, and <code>clip</code> sections it.</p>
+<div class="admonition danger">
+<p class="admonition-title">If the version banner prints <code>undef</code>, stop</p>
+<p><code>assembly.scad</code> echoes <code>cad_version</code> on load. If that says <code>undef</code>, your <code>frame_params.scad</code> is not the file these were written against — and OpenSCAD does not fail loudly. It prints <code>WARNING: Ignoring unknown variable</code>, collapses the missing names to <code>undef</code>, silently <strong>drops the geometry those names positioned</strong>, writes a valid-looking STL and exits 0. A slicer will happily accept it.</p>
+<p>That is the whole explanation for "only some of the parts render". If you have downloaded these files more than once, check what is actually in the folder you opened: a browser saves a second copy as <code>frame_params_1.scad</code>, which nothing includes, leaving the <em>stale</em> <code>frame_params.scad</code> as the one being read. Work in the repo clone, not in a downloads folder.</p>
+</div>
+<h2 id="build-order">Build order<a class="headerlink" href="#build-order" title="Permanent link">&para;</a></h2>
+<p>Each step leaves the next step's fasteners reachable — that ordering is a property of the geometry, not a hope.</p>
+<ol>
+<li><strong><code>tol_coupon</code> first, before anything else.</strong> Set <code>hole_comp</code>, <code>hole_comp_h</code> and <code>shaft_comp</code> from what it tells you. <em>Done when three numbers in <code>frame_params.scad</code> came off a part you printed.</em></li>
+<li><strong>Then the other two coupons.</strong> <em>Done when the output bolts thread one tile, the rear bolts thread the other, and the real housing slides into the bore gauge and locks when you nip its screws.</em> Fix parameters here; a 20-minute reprint beats a 6-hour one.</li>
+<li><strong>Cradle onto the tilt motor</strong>, on the bench, motor loose. Turn the output until two holes sit above the split line, then <strong>two M3 × 10</strong> through the plate. <em>Done when the cradle is rigid and the motor still turns freely by hand.</em> Do it now, while a driver reaches straight in.</li>
+<li><strong>Tilt motor onto the yoke arm, from outside the arm</strong> — four <strong>M2.5 × 16</strong> through the arm into the rear square. The head is already on and hangs inboard; nothing is trapped. <em>Done when the head swings freely and falls under its own weight from any angle.</em></li>
+<li><strong>Yoke onto the pan motor</strong> — four <strong>M3 × 10</strong> up through the bridge.</li>
+<li><strong>Base plate down onto the pan motor's rear</strong> — four <strong>M2.5 × 16</strong> through the counterbores. <strong>The connector clocking is decided here</strong>, not earlier: the rear square offers exactly four positions, so turn the motor <em>now</em> so its connector faces the cable trough. (The old chapter put this instruction on a step where turning the motor cannot change it, which costs up to three teardowns.) <em>Done when the plate sits flat and the yoke swings to the stop both ways.</em></li>
+<li><strong>Wires</strong>, then <strong>housing in, cap on, balance.</strong> Lay the housing into the saddle, slide it until the powered-off head stays where you leave it, <em>then</em> pull the four cap screws down.</li>
+</ol>
+<h2 id="two-things-worth-knowing-before-you-print">Two things worth knowing before you print<a class="headerlink" href="#two-things-worth-knowing-before-you-print" title="Permanent link">&para;</a></h2>
+<p><strong>The clamp must never bottom out, and it doesn't.</strong> The barrel is Ø25.15 <strong>± 0.38</strong> — the drawing's own two-place-decimal tolerance, a 0.76 mm spread on the one dimension the clamp depends on. The bore is cut for the <em>largest</em> barrel allowed, and the cap's bore sits 0.79 mm above the split line, against a worst case of 0.48 mm of travel needed to reach the <em>smallest</em>. So the screws set the grip and any barrel inside tolerance is actually held. Get this backwards and the ears land plastic-on-plastic and clamp air.</p>
+<p>There are <strong>9.4 mm of slide</strong> for trim, and it is trim — the balance is drawn in. But note the sleeve length behind it (0.89″ = 22.6 mm) is <strong>unverified</strong>: the drawing carries 0.89, 0.80 and 0.70 and states what none of them measure. Measure yours before relying on the grip length.</p>
+<p><strong>The pan hard stop is mechanical because the whole cable bundle passes through the pan axis.</strong> A post on the base plate and a lug on the bridge's rim collide, giving <strong>329.8°</strong> of travel with the dead wedge aft. Worst case is the motor driving into it at peak torque: 0.42 N·m at a 38.1 mm radius is about 11 N, which puts under 1 MPa in the post's root — roughly 25× margin even across layer lines, and it carries a tapered buttress on top of that because a hard stop is the one feature that gets <em>hit</em>.</p>
+<p><strong>Tilt is limited in firmware, not by a stop.</strong> The head's swing radius is 24.3 mm against a 32 mm drop — checked by intersecting the posed head with the yoke as solids at 0 and ±90°, not by eye.</p>
+<h2 id="bom-delta">BoM delta<a class="headerlink" href="#bom-delta" title="Permanent link">&para;</a></h2>
+<p>Against <a href="../03-build-the-gimbal/#bill-of-materials-buy-this-350405-total">Doc 3's BoM</a>: <strong>digital calipers ($10–20)</strong>, because the chapter runs on measurements, and a <strong>small hardware handful (~$10)</strong> — about eight M3 × 10 socket cap screws, eight M2.5 × 16, and four M3 × 25 for the clamp.</p>
+<p><strong>No bearings.</strong> Row 11 of Doc 3 used to list "683 or 608 bearings"; there was never a 683 in the design, and as of v8 there is no bearing at all. No square nuts, no captive hardware, no counterweight.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../03a-wire-the-bench/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3a · Wire the Gimbal For Real">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3a · Wire the Gimbal For Real
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../04-full-fixture-bench/" class="md-footer__link md-footer__link--next" aria-label="Next: 4 · Build the Full Fixture Bench">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4 · Build the Full Fixture Bench
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+        <script src="../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>

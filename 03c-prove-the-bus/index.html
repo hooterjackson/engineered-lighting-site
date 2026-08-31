@@ -1,0 +1,1354 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An optional half-hour between stage 2 and stage 3: put the USB-CAN adapter and the transceiver on a two-node bench bus — no motor, no motor supply — and watch your own frames arrive on the wire. If the motor doesn't answer later, you'll already know your entire side is good.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/03c-prove-the-bus/">
+      
+      
+        <link rel="prev" href="../03-build-the-gimbal/">
+      
+      
+        <link rel="next" href="../03a-wire-the-bench/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3c · Prove the Bus First - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="3c · Prove the Bus First - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="An optional half-hour between stage 2 and stage 3: put the USB-CAN adapter and the transceiver on a two-node bench bus — no motor, no motor supply — and watch your own frames arrive on the wire. If the motor doesn't answer later, you'll already know your entire side is good." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/03c-prove-the-bus.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/03c-prove-the-bus/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="3c · Prove the Bus First - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="An optional half-hour between stage 2 and stage 3: put the USB-CAN adapter and the transceiver on a two-node bench bus — no motor, no motor supply — and watch your own frames arrive on the wire. If the motor doesn't answer later, you'll already know your entire side is good." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/03c-prove-the-bus.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-3c-prove-the-bus-two-nodes-no-motor" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3c · Prove the Bus First
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buy the Parts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understand the choices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Understand the choices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the gimbal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the gimbal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3c · Prove the Bus First
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3c · Prove the Bus First
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-a-listener-is-required-not-nice-to-have" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why a listener is required, not nice-to-have
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wire-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wire it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validate it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-power-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you power up
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03a-wire-the-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3a · Wire the Gimbal For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the bench
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the bench
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04a-wire-the-zones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4a · Wire the Zones For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04b-wire-the-spotlight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4b · Wire the Spotlight For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aim it, then program it
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aim it, then program it
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make it permanent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Make it permanent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-build-the-fixture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 · Build the Fixture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-a-listener-is-required-not-nice-to-have" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why a listener is required, not nice-to-have
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wire-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wire it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validate it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-power-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you power up
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-3c-prove-the-bus-two-nodes-no-motor">Doc 3c · Prove the Bus — Two Nodes, No Motor<a class="headerlink" href="#doc-3c-prove-the-bus-two-nodes-no-motor" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · July 2026</strong></p>
+<p>Between <a href="../03-build-the-gimbal/">Doc 3</a> stage 2 (the board talks) and stage 3 (the motor joins)
+there is an optional session that buys a disproportionate amount of certainty: wire the
+transceiver and the USB-CAN adapter (BoM #10) into a <strong>two-node bus</strong> and watch your own command
+frames arrive on the wire. No motor, no bench supply — the transceiver runs on the ESP32's 3.3 V,
+the adapter on USB.</p>
+<p>What it proves, all at once: the TWAI driver config, the 1 Mbit/s bit timing, the transceiver,
+the CAN wiring, and the exact bytes leaving the board. What that's worth: when a motor doesn't
+answer at stage 4, the debugging ladder starts with <em>half its rungs already checked</em>.</p>
+<p>Skipped BoM #10? Skip this chapter — it stays optional, and stage 4's ladder still works. It's
+just longer.</p>
+<h2 id="why-a-listener-is-required-not-nice-to-have">Why a listener is required, not nice-to-have<a class="headerlink" href="#why-a-listener-is-required-not-nice-to-have" title="Permanent link">&para;</a></h2>
+<p>CAN transmitters demand an audience. Every frame must be acknowledged by at least one other node
+in the same instant it's sent; a transmitter alone on the bus reads back silence, counts it as an
+error, and retries — the error counters climb until the controller takes itself off the bus, and
+this chip doesn't come back without a power cycle. That's also why the bench firmware boots
+<strong>SAFE</strong> and transmits nothing until armed: an armed board with no listener isn't dangerous,
+but it <em>is</em> self-wedging.</p>
+<p>The adapter, with its channel open in normal mode, is that audience. It acknowledges every frame
+it hears — which is precisely what makes arming safe in this session.</p>
+<div class="admonition trap">
+<p class="admonition-title">Two nodes means the terminator rule flips</p>
+<p><a href="../03a-wire-the-bench/#adding-the-usb-can-sniffer">Doc 3a's sniffer rules</a> — tap mid-span,
+terminator <strong>OFF</strong> — describe the stage-4-and-later bus, where the motor is one physical end.
+Today there is no motor: the transceiver and the adapter <em>are</em> the two ends, so the adapter's
+terminator goes <strong>ON</strong>. The Waveshare transceiver board carries a fixed onboard 120 Ω;
+the adapter's makes two; the meter reads ~60 Ω.</p>
+<p>It flips back OFF the moment the motor joins. The tell if you forget: the stage-3 bus reads
+<strong>~40 Ω</strong> instead of 60 — three terminators.</p>
+</div>
+<h2 id="wire-it">Wire it<a class="headerlink" href="#wire-it" title="Permanent link">&para;</a></h2>
+<p><em>Hands-on stage — no agent lane; the level-3 wiring photo check applies.</em></p>
+<p><img alt="Two-node bench wiring: ESP32-C6 carrier, Waveshare SN65HVD230, MKS CANable V2.0 Pro" src="../assets/wiring-3c-two-node.svg" /></p>
+<p><em>As-built diagram for this bench's exact boards. Yours may differ — which is what step 1 below exists to catch. Note the 6/7 jumpers </em><em>cross</em><em>: the Waveshare header prints RX above TX, so wiring by position instead of by label swaps the pair.</em></p>
+<p>"Power off" here means: <strong>ESP32 USB cable out, adapter USB cable out.</strong> There's no supply in
+this session at all.</p>
+<ol>
+<li><strong>Photograph two things and get them checked</strong> (level 3): the adapter's screw-terminal
+   silkscreen, and your dev board's pin labels — both sides. Neither pin order is documented
+   anywhere except the board in your hand — this is doubly true if either is a third-party
+   variant, and per <a href="../03a-wire-the-bench/#adding-the-usb-can-sniffer">Doc 3a</a>, "CANable 2.0
+   Pro" boards usually are. Don't wire until the map is confirmed.</li>
+<li><strong>Set the adapter's terminator ON</strong> — switch or jumper, per its silkscreen. If it turns out
+   to be a solder pad: don't solder. Take a 120 Ω resistor (BoM #4), bend the legs, and clamp
+   one leg into the CANH screw terminal and the other into CANL alongside the bus wires in
+   step 4 — termination with zero soldering.</li>
+<li><strong>Seat the transceiver on the breadboard</strong> so each header pin gets its own five-hole row.
+   Four jumpers, <strong>straight through — CAN is not UART, nothing crosses</strong>: ESP32 <code>3V3</code> → <code>3V3</code>,
+   ESP32 <code>GND</code> → ground rail → <code>GND</code>, <code>GPIO6</code> → <code>CTX</code>, <code>GPIO7</code> → <code>CRX</code>.</li>
+<li><strong>The pair:</strong> two ~25 cm wires, stripped 5 mm, lightly twisted around each other (about a
+   turn every 2 cm). Transceiver <code>CANH</code> → adapter <code>CANH</code>; <code>CANL</code> → <code>CANL</code>. Screw terminals:
+   loosen, bare copper only under the screw, tighten, tug. One more wire: adapter <code>GND</code> → the
+   breadboard ground rail — <em>isolated does not mean floating</em>. A 5V pin, if present, stays
+   empty; it's an output.</li>
+<li><strong>Measure before power.</strong> Multimeter on Ω, probes on CANH and CANL at the adapter's
+   terminals, everything still unplugged: <strong>~60 Ω</strong>.</li>
+</ol>
+<p><strong>Done when:</strong> 60 Ω cold, the adapter's ground is on the rail, and the photos came back clean.
+<strong>If stuck:</strong> ~120 Ω = step 2's terminator isn't actually engaged. Open = a screw terminal
+clamped insulation instead of copper. ~0 Ω = a stray strand bridging the pair at a terminal —
+unscrew, re-strip, redo.</p>
+<h2 id="validate-it">Validate it<a class="headerlink" href="#validate-it" title="Permanent link">&para;</a></h2>
+<div class="admonition agent-prompt">
+<p class="admonition-title">🤖 Give this to your agent</p>
+<div class="highlight"><pre><span></span><code>You&#39;re my bench agent for the Engineered Lighting gimbal build
+(chapter: engineering.engineered.lighting/03c-prove-the-bus/). The
+two-node bench bus is wired and measures 60 ohms cold: ESP32-C6 +
+SN65HVD230 on one end, a USB-CAN adapter (terminator ON) on the other.
+No motor exists yet. Start by proposing a plan and wait for my approval
+before executing anything. Then: identify the adapter&#39;s firmware
+(serial device = slcan; USB device with no serial port = candleLight/
+gs_usb), open a capture in NORMAL mode - never listen-only, the whole
+point is that you ACK my frames - at 1 Mbit/s, and confirm the channel
+is open. Tell me when to arm; ARMING IS MY CLICK, NOT YOURS. Then send
+ONE canary command and read the firmware&#39;s error counters: the frame
+must appear in your capture AND tx_err must read 0. Only then replay
+the full test-vector set, including the deliberate out-of-range values
+that prove the firmware clamps on the wire. If counters climb at the
+canary: tell me to disarm, reopen your channel non-listen-only, and
+have me power-cycle the ESP32 - a no-ACK frame keeps retrying even
+after disarm, and reboot is the only clear.
+Done when: every vector appears on the wire byte-identical with the
+right CAN id, and the counters stay at zero.
+Report back: the capture, the counter readings, and any vector that
+differed.
+</code></pre></div>
+<p><em><a href="../00b-ai-native-workflow/">How to run this prompt →</a></em></p>
+</div>
+<details>
+<summary>Do it by hand — understand what the agent did</summary>
+<ol>
+<li>Plug the adapter in and look before installing anything: a new <strong>COM port</strong> (Windows) or
+   <code>/dev/cu.usb*</code> node (Mac) means slcan firmware; a USB device with <em>no</em> serial port means
+   candleLight. <a href="../03a-wire-the-bench/#which-firmware-is-on-your-board">Doc 3a has the software for both</a>.</li>
+<li>Open the capture at 1 Mbit/s in normal mode. In Cangaroo that's the default — just don't
+   tick "listen only."</li>
+<li>Plug the ESP32 in, open the Serial Monitor (115200, "New Line"), and type <code>arm</code> — the bench
+   sketch from stage 4 boots safe and transmits nothing until you say so.</li>
+<li>Type <code>a10</code>. The capture shows id <code>0x141</code>, data <code>A4 00 1E 00 E8 03 00 00</code> — the same bytes
+   the serial log printed. Type <code>status</code>: every error counter reads 0.</li>
+<li>Try <code>a200</code>. The wire shows 170.00° — the firmware clamped it before encoding. That's the
+   soft limit doing its job where you can see it.</li>
+</ol>
+</details>
+<h2 id="before-you-power-up">Before you power up<a class="headerlink" href="#before-you-power-up" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Both photos confirmed against the wiring above</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Adapter terminator <strong>ON</strong> (or the 120 Ω resistor clamped across its terminals)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Transceiver wired straight through — 3V3, GND, <code>GPIO6→CTX</code>, <code>GPIO7→CRX</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Twisted pair to the adapter; adapter GND on the ground rail; 5V pin empty</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> CANH↔CANL reads <strong>~60 Ω</strong>, everything unplugged</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Capture open in normal mode <em>before</em> anyone arms</li>
+</ul>
+<p><strong>Done when:</strong> your frames appear on the wire byte-for-byte, out-of-range commands arrive
+clamped, and the error counters never move.</p>
+<p>Then head back to <a href="../03-build-the-gimbal/#stage-3-wire-the-can-line">Doc 3 stage 3</a> and wire the
+motor — remembering the adapter's terminator <strong>flips OFF</strong> as it moves to a mid-span tap
+(<a href="../03a-wire-the-bench/#adding-the-usb-can-sniffer">Doc 3a shows where</a>). When stage 4's first
+<code>r</code> gets no reply, you'll know which half of the world to suspect: not yours.</p>
+<p>And when the motor answers reads happily but goes mute the moment you command a move — that is
+its <strong>undervoltage latch</strong>, not your wiring. Check the rail is at 24 V and power-cycle; stage 4's
+ladder has the full tree.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../03-build-the-gimbal/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3 · Build the Gimbal">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3 · Build the Gimbal
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03a-wire-the-bench/" class="md-footer__link md-footer__link--next" aria-label="Next: 3a · Wire the Gimbal For Real">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3a · Wire the Gimbal For Real
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+        <script src="../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>

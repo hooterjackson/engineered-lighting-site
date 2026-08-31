@@ -1,0 +1,2259 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The connector-level companion to Doc 4 stages 1–4: the IRM-90-24ST's real terminal block and the pigtail ritual that makes probing it safe, what a PCA9685 and a ULN2803 actually are, how two hubs share one two-wire bus and which channel drives which zone, soldering to tape without lifting a pad, why a healthy harness reads OL on the meter, and the checkpoints that walk a dark zone back to light.">
+      
+      
+      
+        <link rel="canonical" href="https://engineering.engineered.lighting/04a-wire-the-zones/">
+      
+      
+        <link rel="prev" href="../04-full-fixture-bench/">
+      
+      
+        <link rel="next" href="../04b-wire-the-spotlight/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/el-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4a · Wire the Zones For Real - Engineered Lighting · Engineering Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="4a · Wire the Zones For Real - Engineered Lighting · Engineering Notebook" />
+<meta property="og:description" content="The connector-level companion to Doc 4 stages 1–4: the IRM-90-24ST's real terminal block and the pigtail ritual that makes probing it safe, what a PCA9685 and a ULN2803 actually are, how two hubs share one two-wire bus and which channel drives which zone, soldering to tape without lifting a pad, why a healthy harness reads OL on the meter, and the checkpoints that walk a dark zone back to light." />
+<meta property="og:image" content="https://engineering.engineered.lighting/assets/images/social/04a-wire-the-zones.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://engineering.engineered.lighting/04a-wire-the-zones/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="4a · Wire the Zones For Real - Engineered Lighting · Engineering Notebook" />
+<meta property="twitter:description" content="The connector-level companion to Doc 4 stages 1–4: the IRM-90-24ST's real terminal block and the pigtail ritual that makes probing it safe, what a PCA9685 and a ULN2803 actually are, how two hubs share one two-wire bus and which channel drives which zone, soldering to tape without lifting a pad, why a healthy harness reads OL on the meter, and the checkpoints that walk a dark zone back to light." />
+<meta property="twitter:image" content="https://engineering.engineered.lighting/assets/images/social/04a-wire-the-zones.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doc-4a-wire-the-zones-for-real-the-supply-the-chain-and-the-tape" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-header__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineered Lighting · Engineering Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4a · Wire the Zones For Real
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Engineered Lighting · Engineering Notebook" class="md-nav__button md-logo" aria-label="Engineered Lighting · Engineering Notebook" data-md-component="logo">
+      
+  <img src="../assets/el-logo.svg" alt="logo">
+
+    </a>
+    Engineered Lighting · Engineering Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buy the Parts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00b-ai-native-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work With an AI Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understand the choices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Understand the choices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-how-we-got-here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 · How We Got Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-choosing-the-motors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 · Choosing the Motors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the gimbal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the gimbal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-build-the-gimbal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 · Build the Gimbal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03c-prove-the-bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3c · Prove the Bus First
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03a-wire-the-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3a · Wire the Gimbal For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03b-print-the-frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3b · Print the Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build the bench
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Build the bench
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-full-fixture-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 · Build the Full Fixture Bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4a · Wire the Zones For Real
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4a · Wire the Zones For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#your-supply-before-anything-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your supply, before anything else
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your supply, before anything else">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-cord-itself-which-wire-is-which" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cord itself — which wire is which
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-sequence-that-makes-powered-probing-safe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The sequence that makes powered probing safe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-24-v-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 24 V backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-chain-demystified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The chain, demystified
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The chain, demystified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hop 1 — the PCA9685, or: sixteen dimmers on two wires
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-second-hub-two-boards-the-same-two-wires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The second hub — two boards, the same two wires
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop-2-the-uln2803-or-eight-switches-in-one-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hop 2 — the ULN2803, or: eight switches in one chip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-fan-out-which-channel-drives-which-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The fan-out — which channel drives which zone
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tape-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tape work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tape work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-meter-cannot-see-through-leds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The meter cannot see through LEDs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-math-published-honestly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power math, published honestly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graduating-off-the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graduating off the breadboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-a-zone-is-dark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When a zone is dark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-checkpoint-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The checkpoint table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-switch-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you switch on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04b-wire-the-spotlight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4b · Wire the Spotlight For Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aim it, then program it
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aim it, then program it
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-teach-it-to-aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 · Teach It to Aim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-message-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 · The Message Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-the-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 · Building the Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make it permanent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Make it permanent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-build-the-fixture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 · Build the Fixture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#your-supply-before-anything-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your supply, before anything else
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your supply, before anything else">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-cord-itself-which-wire-is-which" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cord itself — which wire is which
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-sequence-that-makes-powered-probing-safe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The sequence that makes powered probing safe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-24-v-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 24 V backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-chain-demystified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The chain, demystified
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The chain, demystified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hop 1 — the PCA9685, or: sixteen dimmers on two wires
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-second-hub-two-boards-the-same-two-wires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The second hub — two boards, the same two wires
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop-2-the-uln2803-or-eight-switches-in-one-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hop 2 — the ULN2803, or: eight switches in one chip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-fan-out-which-channel-drives-which-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The fan-out — which channel drives which zone
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tape-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tape work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tape work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-meter-cannot-see-through-leds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The meter cannot see through LEDs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-math-published-honestly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power math, published honestly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graduating-off-the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graduating off the breadboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-a-zone-is-dark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When a zone is dark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-checkpoint-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The checkpoint table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-switch-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you switch on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doc-4a-wire-the-zones-for-real-the-supply-the-chain-and-the-tape">Doc 4a · Wire the Zones For Real — The Supply, the Chain, and the Tape<a class="headerlink" href="#doc-4a-wire-the-zones-for-real-the-supply-the-chain-and-the-tape" title="Permanent link">&para;</a></h1>
+<p><strong>Engineered Lighting prototype series · August 2026</strong></p>
+<p>The chapter <a href="../04-full-fixture-bench/">Doc 4</a> stages 1–4 point at. Those stages' diagrams are <em>schematics</em> — they show which signal meets which signal. This is the other half: what those connections look like when you are holding the actual parts, which arrive with no bare wires, no labels you chose, and one terminal block that carries mains.</p>
+<p>Five things bite first-time builders here, and none of them are in the schematics:</p>
+<ul>
+<li>The supply is not a lab brick with binding posts. It is the fixture's own <strong>IRM-90-24ST</strong>, and its screw block puts <strong>120 V mains two finger-widths from the 24 V</strong> you came for.</li>
+<li>Two chips do all the work — the PCA9685 and the ULN2803 — and the stages assume you know what they are. You don't have to. This chapter tells you.</li>
+<li><strong>There are two of the first chip</strong>, and every schematic on this site draws one. Seven zones need more channels than a single hub has — and the second hub adds no wires to the ESP32, which is exactly what makes it hard to picture.</li>
+<li>Soldering to LED tape is easy, and ruining LED tape is easier. The difference is wire gauge, strain relief, and practicing on the spool tail first.</li>
+<li>Your multimeter <strong>cannot see through LEDs</strong>, and not knowing that will send you chasing a fault that does not exist.</li>
+</ul>
+<p>Everything below is verified against the manufacturers' own datasheets, and every number was measured on this bench before it was printed here.</p>
+<details class="info">
+<summary>Words this chapter uses — open this if any of them are new</summary>
+<p>None of these are hard, but they appear below without being introduced, and a checkpoint you can't read is a checkpoint you can't trust.</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>What it means here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Continuity</strong></td>
+<td>The meter setting that beeps when two points are connected to each other. "It beeps" and "it has continuity" say the same thing.</td>
+</tr>
+<tr>
+<td><strong>OL</strong></td>
+<td>What the meter shows when there is <strong>no</strong> connection — short for <em>over limit</em>, the display's way of saying "infinite resistance". On this bench OL is often the <em>healthy</em> answer, so read each checkpoint for which one it wants.</td>
+</tr>
+<tr>
+<td><strong>Pigtail</strong></td>
+<td>A short wire landed under a terminal screw, so that everything afterwards connects to a wire instead of to the screw. It is how you avoid working near the mains block once power is on.</td>
+</tr>
+<tr>
+<td><strong>Bus</strong></td>
+<td>One shared connection point that many wires join — here, the lever-nut block where every zone gets its +24 V.</td>
+</tr>
+<tr>
+<td><strong>Star</strong></td>
+<td>The single block where every ground meets. Called a star because the wires radiate from one centre instead of being chained one to the next.</td>
+</tr>
+<tr>
+<td><strong>Rail</strong></td>
+<td>A supply voltage treated as a place: "the 3V3 rail" means anywhere that carries 3.3 V.</td>
+</tr>
+<tr>
+<td><strong>AWG</strong></td>
+<td>Wire thickness. <strong>Bigger number = thinner wire.</strong> 24 AWG is thin and floppy (tape pads); 18–20 AWG is thicker and carries the 24 V runs.</td>
+</tr>
+<tr>
+<td><strong>Tinned</strong></td>
+<td>A bare wire end coated with solder. Correct <em>before</em> soldering to a tape pad; <strong>wrong</strong> under a screw terminal, where solder slowly squashes and the screw goes loose.</td>
+</tr>
+<tr>
+<td><strong>Silkscreen</strong></td>
+<td>The printed lettering on a circuit board. It is the authority on which pin is which — always outranks wire colour, memory, or a diagram.</td>
+</tr>
+<tr>
+<td><strong>I2C, SDA, SCL</strong></td>
+<td>The two-wire language the brain uses to talk to the dimmer hubs. <strong>SDA</strong> carries the data; <strong>SCL</strong> is the clock that paces it. Every hub listens to the same two wires.</td>
+</tr>
+<tr>
+<td><strong>PWM</strong> and <strong>duty</strong></td>
+<td>Dimming by switching fully on and off very fast. <strong>Duty</strong> is the share of time it is on — 40% duty looks about 40% bright.</td>
+</tr>
+<tr>
+<td><strong>OE</strong> (Output Enable)</td>
+<td>A pin that turns all of a hub's outputs on or off at once. It must sit low (connected to ground) or the hub answers on I2C perfectly while emitting nothing.</td>
+</tr>
+<tr>
+<td><strong>Pull-up resistor</strong></td>
+<td>A small resistor already on the board that holds a signal wire up at its supply voltage when nothing else is driving it. It is why the hub's VCC voltage matters so much.</td>
+</tr>
+<tr>
+<td><strong>Common anode</strong></td>
+<td>How this tape is built: all three colours share one +24 V wire, and each colour is switched on its <strong>negative</strong> side.</td>
+</tr>
+<tr>
+<td><strong>DIP</strong> and <strong>the notch</strong></td>
+<td>A chip package with two rows of legs. The half-moon notch marks the pin-1 end, and is the only reliable way to tell which way round it goes.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="admonition abstract">
+<p class="admonition-title">The order this happens in</p>
+<p>The sections below are grouped by <em>subject</em>, so they read well as reference but not as a running order. On the day, work them in this sequence — and finish each one before starting the next, because every stage's checkpoints assume the previous stage's numbers are already true.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>What you do</th>
+<th>Section</th>
+<th>Ends when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Identify the supply, land the mains feed and four pigtails, prove the output</td>
+<td><a href="#your-supply-before-anything-else">Your supply</a></td>
+<td>CP1–CP4 pass, cover on</td>
+</tr>
+<tr>
+<td>2</td>
+<td>One fuse, the WAGO bus, the ground star, the buck measured</td>
+<td><a href="#the-24-v-backbone">The 24 V backbone</a></td>
+<td>CP5–CP7 pass</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Learn the two chips, then wire the control side — <strong>both</strong> hubs</td>
+<td><a href="#the-chain-demystified">The chain</a></td>
+<td>CP8, CP8b and CP8c pass</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Practice joints, then solder <strong>one</strong> zone and strain-relieve it</td>
+<td><a href="#tape-work">Tape work</a></td>
+<td>CP9–CP11 pass</td>
+</tr>
+<tr>
+<td>5</td>
+<td>First power on that one zone — watched, not walked away from</td>
+<td><a href="#the-checkpoint-table">CP12</a></td>
+<td>Three whites lit, supply steady</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Repeat 4–5 for the remaining zones, one at a time</td>
+<td><a href="#tape-work">Tape work</a></td>
+<td>Each zone lights from the app</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The photo figures, by step.</strong> Four of the figures below are photographs of the actual parts with every pad named and every wire drawn on. Open the one for the step you are on and work from it: step 3 has <a href="#the-second-hub-two-boards-the-same-two-wires">the two hubs on one bus</a>, <a href="#the-second-hub-two-boards-the-same-two-wires">the A0 blob before and after</a>, and <a href="#hop-2-the-uln2803-or-eight-switches-in-one-chip">how to read the ULN2803</a>; steps 4–6 have <a href="#the-fan-out-which-channel-drives-which-zone">one zone's whole trip, pad to pad</a>. Every figure enlarges on click.</p>
+<p>Two things worth knowing before you start. <strong>The supply's mains feed comes first</strong>, and it needs a powered E26 socket to screw into — check you have one now, not at step 1. And <strong>do one zone completely before starting the second</strong>: a fault found on zone 1 is a fault you fix once, while the same fault repeated across seven zones is a day.</p>
+<p>If a zone is dark at step 5 or 6, do not start guessing — go to <a href="#when-a-zone-is-dark">When a zone is dark</a> and work the rungs in order. Each rung you pass clears a suspect, which is the whole point of doing them in order.</p>
+</div>
+<hr />
+<h2 id="your-supply-before-anything-else">Your supply, before anything else<a class="headerlink" href="#your-supply-before-anything-else" title="Permanent link">&para;</a></h2>
+<p>Doc 4 <a href="../04-full-fixture-bench/#stage-1-power-backbone">stage 1</a> says "bench supply" and draws a lab brick. On this bench the supply <em>is</em> the <strong>Mean Well IRM-90-24ST</strong> — the exact part <a href="../08-build-the-fixture/">Doc 8</a> later mounts inside the fixture body. Same rail, same protection, same screw block: run the fixture's own documented supply from day one and the fixture's power chapter validates itself while you build zones.</p>
+<p><a href="../08-build-the-fixture/">Doc 8</a> describes that block as "L, N, +Vo, −Vo" — which under-describes the thing in front of you. The ST's output side <strong>duplicates its terminals: two +Vo screws and two −Vo screws</strong>, internally one output. Six screws total, and the pair at the <strong>AC/L–AC/N end</strong> is mains — on the mounted unit in the photo below, that end is uppermost.</p>
+<p><img alt="IRM-90-24ST terminal block, checkpoints CP1–CP4, and the pigtail split" src="../assets/wiring-psu-terminals.svg" /></p>
+<p>And here is the diagram's subject in the flesh — this build's own unit, already mounted on the fixture frame. It is shown with the terminal cover off <strong>for this photo only</strong>; the rules below put it back:</p>
+<p><img alt="This build's IRM-90-24ST mounted on the fixture frame, mains block at the top, output block at the bottom" loading="lazy" src="../assets/photo-psu-irm90.jpg" /></p>
+<ol>
+<li><strong>DANGER — the mains block (AC/L + AC/N).</strong> Wall voltage lives on these two screws whenever the cord is plugged in. Unplug — not switched off — before any tool or probe goes near it.</li>
+<li><strong>The output block: four screws, two +Vo and two −Vo, internally one 24 V output.</strong> CP1–CP3 happen here — on these bare screws, <strong>unplugged</strong>, <em>before</em> any pigtails are landed.</li>
+<li><strong>The pigtail ends.</strong> Every <em>powered</em> reading (CP4: 24 V ±5% on every +/− pairing) happens out here on wire ends, cover on, fingers never on the block. Pair A → the fuse → the LED bus; pair B → the 5 V buck, deliberately unfused — <strong>after</strong> CP1/CP2 prove the doubled screws are common.</li>
+</ol>
+<p>Four rules before a screwdriver goes anywhere near it. Each one is named after the way it fails:</p>
+<ol>
+<li><strong>Unplug it — not "switched off."</strong> A power strip's rocker can break the neutral and leave line sitting on the block; its neon lamp proves nothing after the lamp dies. The named failure is a screwdriver landing across L and N on a block you believed dead — at mains that is not a spark, it is an arc that machines the tip and ends the afternoon. Cord out of the wall, in your line of sight, before every touch.</li>
+<li><strong>L and N land under their marked screws only.</strong> The named failure is the lead that landed one screw over — a mains wire on +Vo puts 120 V onto the 24 V side and into everything downstream of it. Read the moulded markings, not the wire colors, and look twice before tightening.</li>
+<li><strong>The terminal cover goes back on before EVERY power-up.</strong> Not the final one. Every one. The named failure is the probe you left resting on the bench: it rolls, and a live L screw is exactly probe-tip sized. So is a stray strand of stripped copper. So is a knuckle.</li>
+<li><strong>Strain relief on the cord.</strong> The named failure is one snag: it pulls L out of its screw and leaves it waving bare inside the bench. Anchor the cord so a tug lands on the anchor, never on the screws.</li>
+</ol>
+<p>There is no earth screw on this block, and there is not supposed to be: the IRM is <strong>Class II</strong> — double-insulated. Do not go looking for a ground to add.</p>
+<h3 id="the-cord-itself-which-wire-is-which">The cord itself — which wire is which<a class="headerlink" href="#the-cord-itself-which-wire-is-which" title="Permanent link">&para;</a></h3>
+<p>The mains feed on this bench is an <strong>E26 socket-to-wire adapter</strong> — a lamp socket with two 18 AWG leads, black and white. Get this straight once, because guessing it backwards is the most dangerous mistake this chapter can host:</p>
+<ul>
+<li><strong>Black = LIVE (hot) → lands on AC/L.</strong> In North American wiring, black is never ground. Ever.</li>
+<li><strong>White = NEUTRAL → lands on AC/N.</strong></li>
+<li><strong>There is no ground wire, and this block takes none.</strong> Two leads is correct for a Class II supply. A green or bare wire has no home here.</li>
+<li><strong>You also need something for it to screw into.</strong> The adapter ends in a lamp <em>base</em>, not a plug — so it needs a powered <strong>E26 socket</strong>: a socket-to-plug cable, a desk lamp, a clamp light. Check you have one before the day starts; the BoM stocks the adapter and nothing to receive it, which is an easy way to reach a supply you cannot switch on. <strong>Whatever you use must not be on a dimmer</strong> — wall switch or in-cord. A dimmer chops the AC waveform, and this supply should never be asked to eat that.</li>
+</ul>
+<p>And then the rule that outranks the colors: <strong>treat both leads as live whenever the adapter is screwed into a powered socket.</strong> A lamp socket can be miswired upstream — shell hot instead of shell neutral — and the adapter's leads inherit whatever the socket does. The colors tell you where each lead <em>lands</em>; they never tell you a lead is safe to touch. Unplugged is the only safe.</p>
+<p>Landing the leads under L and N — strip, seat, tighten, tug, cover on — is the same screw ritual as the output side, done <strong>first</strong>, cord out of the wall.</p>
+<p><img alt="The E26 socket-to-wire adapter: screw base, black and white 18 AWG leads, factory connector on the ends" loading="lazy" src="../assets/photo-e26-adapter.jpg" /></p>
+<ol>
+<li><strong>DANGER — the screw base.</strong> Mains the moment it is screwed into a live socket. It goes into the socket <strong>last</strong>, after everything below is landed and covered — and comes out first for any change.</li>
+<li><strong>The black lead = LIVE</strong> → lands under <strong>AC/L</strong>.</li>
+<li><strong>The white lead = neutral</strong> → lands under <strong>AC/N</strong>.</li>
+<li><strong>CAUTION — the factory connector on the ends: cut it off.</strong> It exists for downlights, not for screw blocks. Snip it, strip 7–8 mm of fresh copper on each lead, and land bare stranded wire under the screws — never the connector, never tinned ends.</li>
+</ol>
+<p>And the meter that settles every checkpoint from here on — with one honest limitation worth knowing now:</p>
+<p><img alt="The bench multimeter, a TESMEN TM-510: display, mode buttons, COM and INPUT jacks" loading="lazy" src="../assets/photo-multimeter.jpg" /></p>
+<ol>
+<li><strong>Auto mode</strong> — it picks volts/ohms/continuity by what the probes touch. All the checkpoints in this chapter run in Auto plus the beeper.</li>
+<li><strong>The continuity beeper</strong> — CP1, CP2, CP7 through CP11 all live on this icon.</li>
+<li><strong>CAUTION — two jacks, volts and ohms only. This meter has NO current range.</strong> Every checkpoint in this chapter that talks about current is therefore a <em>watch-and-expect</em> check, not a measurement — see CP12. (The wiring is protected by the fuse and by the supply's own overload hiccup either way.)</li>
+<li><strong>NCV</strong> — hold the top edge near a wire and it warns of live mains without touching. A free extra check before fingers go anywhere near the supply end.</li>
+</ol>
+<h3 id="the-sequence-that-makes-powered-probing-safe">The sequence that makes powered probing safe<a class="headerlink" href="#the-sequence-that-makes-powered-probing-safe" title="Permanent link">&para;</a></h3>
+<p>The trick is to arrange things so the meter never has to visit the block while it is live. In this order:</p>
+<ol>
+<li><strong>Unplugged: prove the bare terminals</strong> — checkpoints CP1–CP3 in <a href="#the-checkpoint-table">the table</a>. Continuity: the two +Vo screws beep to each other (CP1), the two −Vo screws beep to each other (CP2). Then resistance mode across + and −: a short chirp that climbs to tens of kΩ or OL as the output capacitors charge from the meter — that climb is normal (CP3). A beep that never stops is a short; do not plug in.</li>
+<li><strong>Land four pigtails</strong> — 18–20 AWG stranded, one per output screw, long enough to reach the WAGOs with slack. Fresh-stripped bare copper under each screw, never tinned ends — solder cold-flows under a screw and the joint quietly loosens (<a href="../03a-wire-the-bench/">Doc 3a</a> learned this the hard way). Tug each one. If it moves, do it again.</li>
+<li><strong>Fit the cover.</strong></li>
+<li>From here, <strong>every powered reading is pigtail-to-pigtail, cover on</strong> (CP4): plug in and read 24 V ±5% across every +/− pigtail pairing. The screws stay covered for the rest of the build.</li>
+</ol>
+<p>The load split falls out of the pigtails for free: <strong>one +/− pair → the fuse → the WAGO +24 V bus</strong> (its − mate goes to the ground star), and <strong>the other pair → the D24V22F5 buck</strong>. One fuse — the single <strong>T3.15AL250V</strong> on the bus pair's + leg — and only one, which has been the site's law since <a href="../04-full-fixture-bench/#stage-1-power-backbone">stage 1</a>.</p>
+<p>Be honest about what that fuse does: <strong>it protects the wiring.</strong> The IRM is a 3.75 A supply that answers overloads by dropping into hiccup mode, so it will never push enough current to blow a 3.15 A time-delay fuse selectively — do not expect the fuse to save a chip or point at a faulted zone. It exists so that if a fault ever feeds the bus past the supply's own protection, the sacrificial weak point is a 50-cent cylinder and not your 18–20 AWG wiring. That is worth $7. It is not worth more.</p>
+<p><img alt="The inline fuse holder on its red leads, and the box of 3.15 A slow-blow ceramic fuses" loading="lazy" src="../assets/photo-fuse-kit.jpg" /></p>
+<ol>
+<li><strong>The inline holder</strong> — it unscrews in the middle and the fuse lives inside. It goes in <strong>one place only</strong>: the bus pair's <strong>+</strong> leg, between the pigtail and the +24 V WAGO.</li>
+<li><strong>The fuses</strong> — 3.15 A slow-blow ceramic, 5 × 20 mm, ten of them. "Slow-blow" is the property that matters (it rides through power-up inrush); 3.15 is the IEC value that <em>is</em> "3 A". One in the holder, the box in the drawer.</li>
+</ol>
+<div class="admonition trap">
+<p class="admonition-title">If CP1 or CP2 does not beep</p>
+<p>Stop. Your unit's doubled terminals are not common on that rail, and nothing about this chapter's split is safe to assume anymore. Run <strong>single-pair operation</strong>: one proven +/− pair feeds the fuse and the bus, the buck moves to the bus <em>after</em> the fuse (exactly as stage 1's diagram draws it), and the second pair gets capped — insulated, folded back, out of the story. <strong>Never bridge unproven terminals yourself.</strong> A bridge you add to a block you don't understand is a decision the datasheet didn't approve.</p>
+</div>
+<hr />
+<h2 id="the-24-v-backbone">The 24 V backbone<a class="headerlink" href="#the-24-v-backbone" title="Permanent link">&para;</a></h2>
+<p><a href="../04-full-fixture-bench/#stage-1-power-backbone">Stage 1's diagram</a> is already connector-level here — the WAGOs are drawn as WAGOs. What it cannot show is the routine, so here it is — the same five steps every lever nut on this bench gets:</p>
+<ol>
+<li>Strip <strong>11 mm</strong> — to the gauge moulded into the block's side, not by eye.</li>
+<li>Lever fully up. Halfway is a spring pressing on nothing.</li>
+<li>Insert to the stop.</li>
+<li>Lever down.</li>
+<li><strong>Tug it. If it moves, do it again.</strong></li>
+</ol>
+<p><img alt="The WAGO 221 assortment, open: two-, three- and five-port lever nuts plus inline splices" loading="lazy" src="../assets/photo-wago-kit.jpg" /></p>
+<ol>
+<li><strong>Lever up = open.</strong> This one is ready to take a wire; the litany above closes it.</li>
+<li><strong>The five-port blocks</strong> — these become the <strong>+24 V bus</strong> and the <strong>ground star</strong>: one wire in from the supply side, the rest fan out.</li>
+<li><strong>Two- and three-port blocks</strong> — joins and taps along the way.</li>
+<li><strong>The inline splice</strong> — wire-to-wire, for extending a lead without a block.</li>
+</ol>
+<p>The bus pigtail's + lands in the fuse holder; the fuse's far side lands in the <strong>+24 V bus</strong> WAGO. Its − mate lands in the <strong>ground star</strong> WAGO — and that WAGO is the single floor the whole bench measures against. <strong>Every ground goes directly to the star, never chained</strong> device-to-device. The named failure is <em>zone-to-zone brightness mismatch</em>: chained grounds turn shared return current into small voltage offsets, and two zones at identical settings visibly disagree — a wiring fault that looks exactly like a software bug and isn't.</p>
+<p>The breadboard carries <strong>signals only</strong> — I2C, dimmer lines, milliamps. A breadboard rail gives up around 1 A; tape current through one is how rails melt and mysteries begin. All real current lives on the WAGOs and 18–20 AWG wire.</p>
+<p>Three checkpoints close the backbone: 24 V at the bus after the fuse (CP5), 5.0 V at the buck output <strong>measured before the ESP32 is connected</strong> (CP6 — a swapped VIN/GND survives; fix it and re-test), and one resistance sweep proving supply−, the star, the ESP32's GND, and every ULN pin 9 all sit within 1 Ω of each other (CP7).</p>
+<p>The buck itself, before it goes anywhere (it ships bare — two wires soldered to IN and GND are all it needs today):</p>
+<p><img alt="The Pololu 5 V step-down regulator, bare, pin row along its left edge" loading="lazy" src="../assets/photo-buck-5v.jpg" /></p>
+<ol>
+<li><strong>IN</strong> — 24 V from the supply's <strong>pair-B pigtail, straight off the PSU.</strong> Not through the fuse: the single T3.15AL250V guards the LED bus only. (Only in the single-pair fallback does IN come off the fused bus instead.)</li>
+<li><strong>GND</strong> — two pads, same net: the corner pad <em>and</em> the in-row pad between IN and OUT. Use either; one goes to the ground star.</li>
+<li><strong>OUT</strong> — expect <strong>5.0 V</strong> here on the meter. That is CP6, and nothing connects to this pin today.</li>
+<li><strong>PG and EN</strong> — the first two holes in the row. Leave both empty.</li>
+</ol>
+<hr />
+<h2 id="the-chain-demystified">The chain, demystified<a class="headerlink" href="#the-chain-demystified" title="Permanent link">&para;</a></h2>
+<p>Stage 2's diagram shows the whole chain at once — it stays <a href="../04-full-fixture-bench/#stage-2-first-light-one-zone-three-sliders">where it is</a>; this section is the close-ups. Two part numbers do everything, and neither is an explanation. Here is what each one <em>is</em>.</p>
+<p>First, sort the parts box. One board in it looks like it belongs in this chain and does not — it drives the <em>spotlight</em>, a different milestone with different physics:</p>
+<p><img alt="The three-channel constant-current driver, banner-marked: spotlight only, never the tape" loading="lazy" src="../assets/photo-spotlight-driver-warning.jpg" /></p>
+<p>This is the BoM's PicoBuck itself — the genuine SparkFun board, identified down to its published schematic (chips read AL8860; the mounting ears are the PicoBuck's snap-off tabs; the branding is on the back). <strong>~330 mA per channel as shipped</strong> — the second sense resistor visible beside each channel's first is the 660 mA option, waiting behind an open solder jumper (<a href="../04b-wire-the-spotlight/#the-driver-demystified">Doc 4b walks the board pad by pad</a>). It forces a fixed <strong>current</strong> through three <strong>separate</strong> outputs — the tape is a fixed-<strong>voltage</strong>, common-anode part with one shared 24 V, so there is nothing here for it to connect to. Set it aside until spotlight day — that day's chapter is <strong><a href="../04b-wire-the-spotlight/">Doc 4b</a></strong>. The rule runs both ways: the spotlight's bare LED star never touches the 24 V bus either.</p>
+<p>And a fact both remaining boards share: <strong>they ship bare.</strong> The dimmer hubs and the spare brain all arrive with loose header strips. Solder the headers first — <a href="../08-build-the-fixture/#soldering-these-boards-five-rules">Doc 8's five rules</a>, big forgiving pads, and the best possible warm-up before the tape's small ones.</p>
+<h3 id="hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires">Hop 1 — the PCA9685, or: sixteen dimmers on two wires<a class="headerlink" href="#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires" title="Permanent link">&para;</a></h3>
+<p><img alt="PCA9685 close-up: I2C in, LED outputs out, the A0 jumper, and the V+ and OE traps" src="../assets/wiring-hop-pca9685.svg" /></p>
+<p>A PCA9685 is a chip that <strong>takes orders over two shared wires and holds sixteen dimmer signals steady by itself</strong>. The ESP32 says "channel 3 to 40%" once, over I2C; the chip keeps channel 3 at exactly 40% forever without being reminded. That is the whole job, and it is why the C6 can run 21 tape channels without breaking a sweat.</p>
+<p>The <strong>address is a house number.</strong> Both boards hear every order on the same two wires; the number at the front of the order decides who acts on it. Board #1 answers at <strong>0x40</strong>. Board #2 answers at <strong>0x41 — only after its A0 jumper is bridged with a blob of solder.</strong></p>
+<div class="admonition danger">
+<p class="admonition-title">An unbridged board #2 is a second 0x40, not a missing 0x41</p>
+<p>Skip the jumper and board #2 does not sit quietly waiting to be found. It is a <strong>second device answering at 0x40</strong> — both chips reply at once, and the bus traffic meant for the zones that already work gets corrupted by the newcomer. The failure reads backwards: you added zones 6 and 7 and <em>zones 1 through 5</em> started glitching. Bridge A0 with everything unpowered, <strong>before the board's SDA and SCL ever touch the bus.</strong></p>
+</div>
+<p><img alt="This build's own hub, a genuine Adafruit PCA9685 at address 0x40" loading="lazy" src="../assets/photo-pca9685-hub.jpg" /></p>
+<ol>
+<li><strong>CAUTION — VCC.</strong> Takes <strong>3.3 V from the brain, never 5 V</strong>. This is not just a silent failure: the board's own pull-up resistors tie SDA and SCL to VCC, so 5 V here puts 5 V on the C6's GPIO 2 and 3 — past the chip's 3.6 V absolute maximum. It can kill the brain, quietly.</li>
+<li><strong>CAUTION — V+, VCC's next-door neighbour.</strong> Stays <strong>EMPTY</strong>. One position over from the pin you want, and the reason to read the silkscreen letter by letter.</li>
+<li><strong>SDA and SCL</strong> — the two shared wires, from GPIO 2 and GPIO 3 respectively.</li>
+<li><strong>GND</strong> — to the ground star. (OE, two pins over, also stays empty — a genuine Adafruit board already holds it enabled; on a clone, verify.)</li>
+<li><strong>Channel 0</strong> — zone 1's three channels are 0, 1, 2, and the wire comes off the <strong>PWM</strong> hole of each, nothing else. See the close-up below.</li>
+<li><strong>The V+/GND terminal footprint</strong> (block supplied loose) — stays unpopulated for the tape build.</li>
+<li><strong>The A0 address pads</strong> — hub #2 only: bridge this pair with solder so it answers at 0x41, <em>before</em> its bus wires ever land. See the close-up below.</li>
+</ol>
+<p>One trap the photo can't show: <strong>both ends of the board carry the same six control pins in mirrored order.</strong> Use the end shown here, and read the silkscreen every time — landing the four wires on the far end in the same left-to-right order swaps SDA with SCL and puts VCC on V+.</p>
+<p>The two close-ups that make 5 and 7 unmistakable:</p>
+<p><img alt="Close-up of the channel grid: the PWM column is the only column you use; rows 0, 1, 2 are zone 1" loading="lazy" src="../assets/photo-pca9685-channels.jpg" /></p>
+<p><img alt="Close-up of the address pads: A0 is the bottom pair, the one hub #2 gets bridged on" loading="lazy" src="../assets/photo-pca9685-a0.jpg" /></p>
+<p>Three traps, all pre-solved in the stage YAML but not in your wiring:</p>
+<ul>
+<li><strong>VCC gets 3.3 V. Never 5 V.</strong> At 5 V the chip's logic threshold rises above what the C6 outputs and I2C fails <em>silently</em> — and worse, the board's pull-ups drag SDA/SCL to VCC, putting 5 V on GPIO pins rated for 3.6 V absolute maximum. The silent failure can also be a dead brain.</li>
+<li><strong>V+ stays unconnected.</strong> It is servo power for a job this board doesn't have.</li>
+<li><strong>OE must sit low.</strong> On a genuine Adafruit board a pulldown already holds it there; on a clone, verify — a floating OE tri-states all sixteen outputs, and the board plays dead while the I2C scan looks perfect.</li>
+</ul>
+<p>Before power touches the chain, CP8: the wire landing on PCA VCC beeps to the 3V3 rail <strong>and to nothing else</strong>. If it beeps anywhere else, rewire before power.</p>
+<p>The other end of those two wires is the brain. This build keeps a spare ESP32-C6 board for exactly this chapter — the whole chain gets proven on the expendable board before the fixture's own brain ever touches it:</p>
+<p><img alt="The spare ESP32-C6 dev board, bare, antenna up, two USB-C ports at the bottom" loading="lazy" src="../assets/photo-spare-c6.jpg" /></p>
+<ol>
+<li><strong>CAUTION — 3V3.</strong> This pin powers the hub's VCC. Never a 5 V pin — see the hub trap above for why that can kill this board.</li>
+<li><strong>GND</strong> — to the ground star. Every board shares one floor.</li>
+<li><strong>GPIO 2 = SDA.</strong> On the antenna-side header, it is the <strong>first pin below GND</strong> — the close-up below shows the printed digits.</li>
+<li><strong>GPIO 3 = SCL</strong> — the second pin below GND.</li>
+<li><strong>The left USB-C port, silkscreened COM</strong> — the cable goes here to drive the test program.</li>
+</ol>
+<p>Solder the header pins into the <strong>outer round holes</strong> — the inner flat pads are for surface-mounting, and a pin sunk there will not reach a breadboard. Four pins are enough: GND, 3V3, 2, 3.</p>
+<p><img alt="Close-up of the antenna-side header: GND, then 2 (SDA), then 3 (SCL), printed on the board itself" loading="lazy" src="../assets/photo-spare-c6-pins.jpg" /></p>
+<h3 id="the-second-hub-two-boards-the-same-two-wires">The second hub — two boards, the same two wires<a class="headerlink" href="#the-second-hub-two-boards-the-same-two-wires" title="Permanent link">&para;</a></h3>
+<p>Zone 1 needs three channels and a hub holds sixteen, so every diagram up to this point has drawn one hub and been honest about it. Seven zones is <strong>21 channels</strong>. The second hub arrives at <a href="../04-full-fixture-bench/#stage-4-scale-to-7-zones-21-channels">Doc 4 stage 4</a>, and it is the moment the wiring stops matching any picture on this site.</p>
+<p>Here is the picture:</p>
+<p><img alt="Two PCA9685 hubs on one I2C bus: the shared four wires, the A0 difference, and the two ways to land it" src="../assets/wiring-hop-two-hubs.svg" /></p>
+<p><strong>The second hub costs no ESP32 pins.</strong> That is the whole answer, and it is also why it is hard to picture: you go looking for the wiring that tells the two boards apart, and there isn't any. Both boards take the same four wires — 3V3, GND, GPIO 2 (SDA), GPIO 3 (SCL) — landed exactly as <a href="#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires">Hop 1</a> describes for the first one. What tells them apart is a blob of solder.</p>
+<p>That is what an address <em>is</em>. Every order the C6 sends carries a house number at the front; both boards hear every order, and the number decides which one acts. Board #1 leaves A0 open and answers at <strong>0x40</strong>. Board #2 gets A0 bridged and answers at <strong>0x41</strong>. Nothing else about the two boards differs — same pins, same voltage, same wires, same everything.</p>
+<p>Here is the same picture on the boards themselves:</p>
+<p><img alt="The four-wire bus on the real boards: the ESP32-C6 feeding both PCA9685 hubs, V+ crossed out on both, A0 open on hub #1 and bridged on hub #2" loading="lazy" src="../assets/photo-anno-two-hubs.jpg" /></p>
+<p>Follow any one color and the story repeats four times: off the C6, onto hub #1's pad, on to hub #2's — the same order at every landing. The V+ pin wears a red X on both boards, and the one thing that tells the hubs apart sits down by the address strip: the A0 pair, ringed green and open on hub #1, ringed red and bridged on hub #2.</p>
+<p><strong>Where those four wires physically meet</strong> is a separate question, and the answer is: your choice. Two shapes both work.</p>
+<ul>
+<li><strong>One row per signal on the breadboard.</strong> Four rows — 3V3, GND, SDA, SCL. The C6's wire goes into the row and so does each hub's. A breadboard row <em>is</em> a junction, which is exactly what a bus needs. Prefer this on the bench: every wire is separately seatable, and separately beep-testable.</li>
+<li><strong>Chained, board to board.</strong> The PCA9685 carries the same six control pins at <strong>both</strong> ends, so hub #1's far header can feed hub #2 directly. Tidier, fewer breadboard rows, and it is the shape the soldered fixture ends up with — but read the trap before you use it.</li>
+</ul>
+<div class="admonition trap">
+<p class="admonition-title">The far-end header is mirrored, and the chain is where that bites</p>
+<p>The six control pins at the other end of the board are the same six signals in <strong>mirrored order</strong>. Copy the near end's left-to-right order onto the far end and you have swapped SDA with SCL <em>and</em> put VCC on V+. The first is a silently dead bus; the second puts 3.3 V on the servo rail.</p>
+<p>Read the silkscreen at the end you are actually wiring, letter by letter, every time. It is the same rule <a href="#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires">Hop 1</a> gives for one board — chaining is just where ignoring it costs two.</p>
+</div>
+<p>One thing genuinely does double. <strong>Each board carries its own SDA and SCL pull-up resistors</strong>, so two boards put two sets in parallel and the bus sees half the resistance it saw with one. At 400 kHz over breadboard-length runs that is harmless, and if anything it sharpens the edges. It is worth knowing because it is the kind of fact that surprises you at hub four, not at hub two.</p>
+<p>And the trap <a href="#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires">Hop 1</a> already named, restated here because this is the section where it fires:</p>
+<div class="admonition danger">
+<p class="admonition-title">Bridge A0 before the board's bus wires ever land</p>
+<p>An unbridged board #2 is not a missing 0x41. It is a <strong>second 0x40</strong>, answering alongside board #1, and the traffic meant for the zones that already work gets corrupted by the newcomer. The failure reads backwards: you wire zones 6 and 7, and <em>zones 1 through 5</em> start glitching.</p>
+<p>Worse, <strong>an I2C scan cannot see it.</strong> A bus with one board at 0x40 and a bus with two boards both at 0x40 produce the same scan. A scan proves you have two hubs only when it reports <strong>0x40 <em>and</em> 0x41</strong> — which is CP8c.</p>
+<p>So bridge A0 with everything unpowered, before that board's SDA and SCL ever touch the bus, and prove the blob with <strong>CP8b</strong> rather than trusting how it looks. Solder that has wetted one pad and merely leaned on the other photographs beautifully.</p>
+</div>
+<p>What the blob looks like on the pads, and what CP8b reads on each board:</p>
+<p><img alt="The A0 pads before and after: open on hub #1 with the meter reading high, solder-bridged on hub #2 with the meter reading near zero ohms" loading="lazy" src="../assets/photo-anno-a0-bridge.jpg" /></p>
+<h3 id="hop-2-the-uln2803-or-eight-switches-in-one-chip">Hop 2 — the ULN2803, or: eight switches in one chip<a class="headerlink" href="#hop-2-the-uln2803-or-eight-switches-in-one-chip" title="Permanent link">&para;</a></h3>
+<p><img alt="ULN2803 close-up: IN n to OUT 19−n, pin 9 to the star, and one channel's full current path" src="../assets/wiring-hop-uln2803.svg" /></p>
+<p>A ULN2803 is <strong>eight electronic switches in one package</strong>. Put 3.3 V on IN <em>n</em> and the switch at OUT (19−<em>n</em>) — the pin directly across the chip — closes, connecting that tape wire to ground. Current then flows the full loop: 24 V bus → tape → OUT pin → through the chip → pin 9 → the star. The chip <strong>eats about 1 V doing it, so the tape sees ~23 V.</strong> That is a voltage statement, small and uniform — every channel loses the same volt, and the eye reads it as nothing at all.</p>
+<p>This is the chip itself, and the one fact about its body that the schematic cannot teach:</p>
+<p><img alt="One ULN2803A chip: an 18-pin DIP with a half-moon notch at one end" loading="lazy" src="../assets/photo-uln2803.jpg" /></p>
+<ol>
+<li><strong>CAUTION — the notch marks the pin-1 end.</strong> Seat every chip so its notch matches the drawing/socket orientation <strong>before</strong> power. A chip seated backwards puts the tape's 24 V returns onto its logic inputs and dies on first power — across four chips and 21 channels if the habit sticks. Count pins from the notch, never from habit.</li>
+<li><strong>Pin 1 = IN 1</strong> — bottom-left corner when the printing reads upright.</li>
+<li><strong>Pin 9 = GND</strong> — bottom-right corner, straight to the ground star.</li>
+<li><strong>Pin 10 = COM</strong> — top-right corner, stays <strong>empty</strong> for LEDs.</li>
+<li><strong>Pin 18 = OUT 1</strong> — top-left corner, directly across from IN 1. That is the OUT = 19 − IN rule in the flesh: inputs count up along the bottom, their outputs sit straight across on top.</li>
+</ol>
+<p>Pin 9 goes to the star. Pin 10 stays unconnected.</p>
+<p>The whole map, drawn on the chip itself — the figure to have open the first time you seat one:</p>
+<p><img alt="The ULN2803 pin map on the photo: every pin numbered from the notch, inputs along the bottom, their outputs directly across" loading="lazy" src="../assets/photo-anno-uln-map.jpg" /></p>
+<p>One closing rule for the whole chain: <strong>one I2C master and one 3V3 source on the bus at a time.</strong> The C6 gives the orders and the C6's regulator feeds the logic — wire in a second of either and the two hubs start contradicting each other on the same wires.</p>
+<h3 id="the-fan-out-which-channel-drives-which-zone">The fan-out — which channel drives which zone<a class="headerlink" href="#the-fan-out-which-channel-drives-which-zone" title="Permanent link">&para;</a></h3>
+<p>Two hubs and four switch chips make 21 channels, and the map that assigns them is <a href="../04-full-fixture-bench/#stage-4-scale-to-7-zones-21-channels">Doc 4 stage 4's table</a>. Here it is as a picture, because one row of it is not what it looks like:</p>
+<p><img alt="The fan-out: which hub channel feeds which ULN chip, and the one chip fed by both hubs" src="../assets/wiring-hub-fanout.svg" /></p>
+<p>Read one zone at a time, left to right. Zone 4's three channels come from hub #1's channels 9, 10 and 11, enter ULN chip 2 at pins 4, 5 and 6, and leave from pins 15, 14 and 13 to zone 4's plug — always in warm / neutral / cool order.</p>
+<p>And here is one row of the map traced across the actual parts — zone 1, pad to pad:</p>
+<p><img alt="Zone 1 across the real parts: PCA channels 0 to 2 into ULN chip 1, its outputs onto the tape's W, N and C pads, and +24 V running straight to the tape" loading="lazy" src="../assets/photo-anno-zone1-chain.jpg" /></p>
+<p>The colors do the bookkeeping: amber enters at channel 0, exits at pin 18, lands on W; grey and blue do the same for N and C. And the red +24 V feed goes from the WAGO bus straight to the tape's 24V+ pad — it has no business at either chip, and the figure routes it the way the bench should: around, never through.</p>
+<p>Three things the picture is for.</p>
+<p><strong>Nothing from the tape touches a hub.</strong> The hubs emit 3.3 V signals and nothing else. Each PCA9685 channel is a group of three holes — PWM, V+, GND — and you take the <strong>PWM</strong> hole only, as <a href="#hop-1-the-pca9685-or-sixteen-dimmers-on-two-wires">Hop 1</a> says. The tape's +24 V runs from the WAGO bus straight to the tape, and the only wires that ever carry tape current are the negatives leaving the ULN's OUT pins. <a href="#hop-2-the-uln2803-or-eight-switches-in-one-chip">Hop 2</a> has that current's whole trip.</p>
+<p><strong>The channels do not run out evenly.</strong> Hub #1 gives 15 of its 16 channels to zones 1–5; hub #2 gives 6 of its 16 to zones 6–7 and keeps ten spare. That lopsidedness is deliberate — filling the first board before starting the second puts the boundary in one place instead of two.</p>
+<p><strong>And chip 3 is fed by both hubs.</strong> Every other ULN chip takes both of its zones from a single hub. Chip 3 takes zone 5 from hub #1 and zone 6 from hub #2, because that is exactly where the 15-channel boundary falls.</p>
+<div class="admonition trap">
+<p class="admonition-title">Wire zone by zone, never chip by chip</p>
+<p>Chip-by-chip is the tempting order: you have a chip in its socket, you fill its inputs, you move on. It works for chips 1, 2 and 4, and it reaches for the wrong board exactly once — at chip 3's inputs 4, 5 and 6, which belong to hub <strong>#2</strong>.</p>
+<p>The symptom is quiet, and it lies to <a href="#when-a-zone-is-dark">the ladder</a>: zone 5 works, zone 6 is dark, and the chip and the firmware are both blameless. <strong>CP13 passes</strong> — hub #2 really is driving its channel-0 pin at 3.3 V — while <strong>CP14 fails</strong>, because the wire between that pin and chip 3's IN 4 was never made. A missing wire between two healthy things is the one fault the rungs can bracket but not name.</p>
+<p>Wiring zone by zone — three channels in, three out, one plug, test it, next — deletes the failure instead of catching it. It is also the order <a href="../08-build-the-fixture/#step-4-scale-to-seven">Doc 8 step 4</a> prescribes for the soldered build.</p>
+</div>
+<hr />
+<h2 id="tape-work">Tape work<a class="headerlink" href="#tape-work" title="Permanent link">&para;</a></h2>
+<p>The Valent X spool is the most expensive thing on this bench, and the work in this section is the only work that can damage it. Read all of it before the iron heats up.</p>
+<p><strong>Practice on the spool tail first.</strong> The spool's outer end is scrap the moment you cut your first zone. Make two or three practice joints there before touching a real zone: a lifted pad on the tail costs nothing, and a lifted pad on a cut zone costs one cut-line of tape — not the day, but not free either. Nobody's first tape joint should be one that has to work.</p>
+<p>This is your spool at a cut line — the four pads, and the printed letters every wire label copies:</p>
+<p><img alt="The Valent X tape at a cut line: four half-moon pads in a row, per-die letters beside each LED" loading="lazy" src="../assets/photo-tape-pads.jpg" /></p>
+<ol>
+<li><strong>24V+</strong> — the shared plus wire, common to all three channels. Comes from the fused 24 V bus (WAGO), never from a breadboard rail.</li>
+<li><strong>W</strong> — the warm channel's negative wire.</li>
+<li><strong>N</strong> — the neutral channel's negative. <strong>Nothing to do with mains neutral</strong> — here N is just a color.</li>
+<li><strong>C</strong> — the cool channel's negative.</li>
+<li><strong>CAUTION — the cut.</strong> The dashed line in the photo is where the printed cut line runs: <strong>straight across the tape, through the centres of all four pads.</strong> Each half-moon becomes a full pad for the segment on its side. Anywhere else kills the segments on both sides of your scissors.</li>
+</ol>
+<p>What the letters mean, in the vocabulary every other table on this site uses:</p>
+<table>
+<thead>
+<tr>
+<th>Pad letter</th>
+<th>Channel</th>
+<th>Lands on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W</td>
+<td><strong>1800 K</strong> warm</td>
+<td>its own ULN OUT pin</td>
+</tr>
+<tr>
+<td>N</td>
+<td><strong>3500 K</strong> neutral</td>
+<td>its own ULN OUT pin</td>
+</tr>
+<tr>
+<td>C</td>
+<td><strong>6500 K</strong> cool</td>
+<td>its own ULN OUT pin</td>
+</tr>
+</tbody>
+</table>
+<p>Because 24V+ is shared, <strong>a solder bridge between any two pads is a dead short</strong> — CP10's whole job is catching one.</p>
+<p>The rules, each with its failure attached:</p>
+<ul>
+<li><strong>Cut at the printed cut lines.</strong> Anywhere else severs traces mid-segment, and both segments on either side of the cut go dark forever.</li>
+<li><strong>Label every wire from the tape's printed pad markings.</strong> Never from wire color, and never from any diagram — including ours. Your spool's pad order is the authority; a diagram is somebody else's spool. Write the label on a flag of tape at both ends of the wire before the wire ever meets the iron.</li>
+<li><strong>Use 24–26 AWG silicone stranded wire for pad wires.</strong> 22 AWG solid is the canonical lifted-pad cause: it works as a lever, and every nudge of the stiff wire pries at a pad held on by adhesive and hope. The floppy stuff can't transmit a snag to the joint.</li>
+<li><strong>Strip only 2–3 mm for a tape pad</strong> — a bared length that fits <em>on</em> the half-moon with nothing hanging over. This is not the WAGO's 11 mm; carry that habit here and the overhang becomes the stray strand CP9 exists to catch.</li>
+<li><strong>Solder order, tinning, and what a good joint looks like</strong> are <a href="../08-build-the-fixture/#soldering-these-boards-five-rules">Doc 8's five rules</a> — tin the pad, tin the wire, touch them together with the iron, and expect the tiny volcano, not the blobby ball. They are not repeated here; go read them.</li>
+<li><strong>Strain-relieve the 4-wire pigtail within ~20 mm of the pads BEFORE the tug test.</strong> Anchor the bundle to the tape's backing so a pull lands on the anchor, not the joints. Do it in this order or the tug test is itself the pad-lift event — you would be testing the pads' adhesive, not your solder.</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">A warm/cool swap is the one mistake nothing here can catch</p>
+<p>Every other error in this chapter announces itself. A bridge trips CP10, a stray strand trips CP9, an open trips CP11, a short makes the supply hiccup at CP12. <strong>Transposing W and C does none of that.</strong></p>
+<p>The firmware weights all three channels identically, so it has no idea which is which — warm, neutral and cool are a <em>convention carried in the labels</em>, not something any wire, chip or witness can verify. Solder W to the cool channel and C to the warm one and the zone lights on cue, <code>ZB zone=1 on=1 level=255</code> prints exactly as it should, and CP12 through CP15 all pass. You would discover it weeks later, when a zone runs cold while its neighbour runs warm at the same setting.</p>
+<p>That is why the labelling rule above is not bookkeeping. <strong>The tape flag you write before soldering is the only check that exists</strong> — so write it from the spool's own printed pads, every zone, every time, and never from the wire's color or from memory of the last zone.</p>
+</div>
+<p>The wire itself, so the right spool is never a guess:</p>
+<p><img alt="The two wire kits side by side: thin 24 AWG silicone spools and thicker 20 AWG spools, with a bag of heat-shrink" loading="lazy" src="../assets/photo-wire-kits.jpg" /></p>
+<ol>
+<li><strong>The 24 AWG silicone kit (thin, six colors)</strong> — THE tape-pad wire. Six colors means 24V+, W, N and C can each keep a color for a whole zone.</li>
+<li><strong>The 20 AWG kit (thicker)</strong> — the 24 V feed runs: supply pigtails, bus-to-zone feeds.</li>
+<li><strong>The heat-shrink bag</strong> — the strain-relief anchor material for the tape pigtails.</li>
+</ol>
+<p>The schematic version of the same step, for the wire-flag and solder-order detail:</p>
+<p><img alt="Tape end schematic: printed pads, wire flags, solder order, strain relief, and the stray-strand trap" src="../assets/wiring-zone-solder.svg" /></p>
+<h3 id="the-meter-cannot-see-through-leds">The meter cannot see through LEDs<a class="headerlink" href="#the-meter-cannot-see-through-leds" title="Permanent link">&para;</a></h3>
+<p>Here is the trap that costs beginners an evening: <strong>continuity and diode-test modes source a volt or two, and the tape's LED strings need far more than that to conduct.</strong> Every pad-to-pad reading across a channel therefore reads <strong>OL on a good harness AND on a reversed one.</strong> The meter is not telling you the harness is bad. It is telling you it cannot see through LEDs — and it can't, ever, in either direction.</p>
+<p>So polarity is proven two other ways, neither of them a beep: <strong>the pad print</strong> (which you labeled from — see above), and <strong>the first-power test with only + and ONE channel landed.</strong> A reversed connection simply lights nothing; nothing is harmed. Fix it, relight it, then land the rest.</p>
+<p>The beep rituals earn their keep proving what they <em>can</em> prove:</p>
+<ul>
+<li><strong>CP9</strong> — each wire beeps to its own pad only, neighbours silent. A stray strand is a reflow and a re-beep, not a shrug.</li>
+<li><strong>CP10</strong> — the +24 pad to each − pad reads OL, no sustained beep. The LED string blocks the meter, so a solid beep here can only be a solder bridge. Reflow it.</li>
+<li><strong>CP11</strong> — with the zone chained in and power off, the ULN OUT pin beeps to the tape's − wire, end to end. Open means a break: beep it segment by segment until you find which joint went quiet.</li>
+</ul>
+<p>Then the zone's first power is CP12 — and honesty about this bench's meter: the TM-510 has <strong>no current range</strong>, so CP12 is a <em>watch-and-expect</em> check, not a reading. One zone landed, power on, and for thirty seconds you watch three things: the supply stays steady (no rhythmic clicking — that hiccup is its overload protection saying <em>short</em>), all three whites actually light, and nothing — chip, wire, tape — gets warm. A supply that hiccups is telling you there's a short; find it, don't retry blind.</p>
+<div class="admonition info">
+<p class="admonition-title">JST-XH belongs to the next chapter, not this one</p>
+<p>The fixture build puts every zone on a JST-XH plug — the site's 3 A law for that connector holds, and a zone's ~80–160 mA clears it by a mile. But that is <a href="../08-build-the-fixture/">Doc 8</a>'s step. For bench bring-up, soldered tails straight into the WAGOs and breadboard are fine. Don't buy crimping problems before the design is frozen.</p>
+</div>
+<hr />
+<h2 id="power-math-published-honestly">Power math, published honestly<a class="headerlink" href="#power-math-published-honestly" title="Permanent link">&para;</a></h2>
+<p>Honestly twice over: these figures are <strong>derived from the tape's own rating</strong> (the spool's watts-per-foot, split across the lengths this build cuts), not yet measured — this bench's meter has no current range, so they stand as <em>expectations</em> until a current-capable meter visits. They are what the fuse and the supply were sized against:</p>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Length</th>
+<th>Whole zone, full on</th>
+<th>Per channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Radial (zones 1–6)</td>
+<td>4.92″ — 2 segments</td>
+<td><strong>≈ 80 mA expected</strong></td>
+<td>~27 mA</td>
+</tr>
+<tr>
+<td>Bottom ring (zone 7)</td>
+<td>9.84″ — 4 segments</td>
+<td><strong>≈ 160 mA expected</strong></td>
+<td>~53 mA</td>
+</tr>
+</tbody>
+</table>
+<p>Against the ULN2803's <strong>500 mA per-channel ceiling</strong>, 27 and 53 mA are nowhere near the limit. But read the ceiling honestly too: it is per channel, <strong>one at a time</strong>. Run channels together and the package's total dissipation becomes the real limit long before any single channel's 500 mA does. At this build's currents that limit never comes close; if you ever scale the tape, the package is the number to check, not the 500.</p>
+<p>You will find a watts-per-foot figure printed on the spool box. It is deliberately not printed here, and no per-foot scaling rule is either: these are the two zone lengths this build cuts, they were measured, and measured figures are what the fuse and the supply get sized against.</p>
+<p><strong>Why T3.15AL250V.</strong> Fuse values come from an IEC ladder of preferred sizes, and 3.00 A is not on it — <strong>3.15 A is the value that <em>is</em> "3 A."</strong> Decode the letters once and the part number stops being noise: <strong>T</strong> is time-delay (it rides through inrush instead of dying at every power-up), <strong>L</strong> is low breaking capacity (fine at 24 V), <strong>250 V</strong> is the rating ceiling, not a requirement. And the day you run twice the tape, step to <strong>T4AL250V</strong> — the BoM has stocked that fuse beside the 3.15 since Doc 4, for exactly that day.</p>
+<hr />
+<h2 id="graduating-off-the-breadboard">Graduating off the breadboard<a class="headerlink" href="#graduating-off-the-breadboard" title="Permanent link">&para;</a></h2>
+<p>The gate is <a href="../08-build-the-fixture/">Doc 8's</a> and it is one sentence: <strong><a href="../04-full-fixture-bench/#stage-7-integration-day-verdict">stage 7's checklist</a> passes on the breadboard first.</strong> Soldering makes a design permanent, so prove it works loose on the breadboard first. Every hour spent soldering an unproven chain is an hour of desoldering you scheduled for later.</p>
+<p>When the checklist passes and the iron comes out, the technique chapter is already written: <a href="../08-build-the-fixture/#soldering-these-boards-five-rules">Doc 8's five soldering rules</a>. They are not duplicated here. Rule 4 — beep everything before power — is this chapter's CP9–CP11 wearing work clothes.</p>
+<p>One part in the drawer already belongs to that chapter, not this one:</p>
+<p><img alt="A 1000 microfarad 35 volt electrolytic capacitor with its negative-stripe marking" loading="lazy" src="../assets/photo-bulk-cap.jpg" /></p>
+<ol>
+<li>The <strong>1000 µF 35 V bulk capacitor</strong> — <a href="../08-build-the-fixture/">Doc 8</a>'s power-board part. It waits in the drawer today; the breadboard build doesn't use it.</li>
+<li><strong>CAUTION — the stripe marks the NEGATIVE leg.</strong> Electrolytics installed backwards fail loudly and sometimes wetly. When its day comes: stripe to ground, always.</li>
+</ol>
+<hr />
+<h2 id="when-a-zone-is-dark">When a zone is dark<a class="headerlink" href="#when-a-zone-is-dark" title="Permanent link">&para;</a></h2>
+<p>Work the ladder top-down. Each rung is a witness, and each failure names exactly who it indicts — never skip a rung, because every rung you pass clears a suspect.</p>
+<p>Rung 3's far end is the radio the commands travel through. It lives in the Home Assistant box, never gets a wire from this bench, and pairing happens on HA's screen:</p>
+<p><img alt="The Zigbee coordinator stick, plugged into the Home Assistant box" loading="lazy" src="../assets/photo-zigbee-stick.jpg" /></p>
+<ol>
+<li>Stays plugged in exactly as it is — on the day, you open <strong>Add device</strong> in Home Assistant and the fixture pairs to this.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Rung</th>
+<th>Witness</th>
+<th>Healthy reading</th>
+<th>A failure here indicts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Tap the zone in the app</td>
+<td>It lights</td>
+<td>Nothing. Go home.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The hub ACK witness: <code>ZB pca hub=0x40 present=1</code></td>
+<td><code>present=1</code></td>
+<td><code>present=0</code> → the I2C hop: SDA/SCL seating <strong>or swapped</strong>, VCC on 3.3 V, the address jumper. <strong>Settle this before rung 3</strong> — see the note below</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The zone's serial line in the console: <code>ZB zone=1 on=1 level=255</code></td>
+<td>The line prints as you tap</td>
+<td>Missing <strong>while rung 2 reads <code>present=1</code></strong> → the command never reached the board: the network/app side, not one wire of yours. Missing while rung 2 reads <code>present=0</code> → you are still on rung 2's fault, and this rung has told you nothing</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>CP13</strong> — DMM on the zone's PCA LED pin, zone commanded <strong>100%</strong></td>
+<td>~3.3 V (the pin's average is duty × 3.3 V)</td>
+<td>0.00 V at 100% with the hub ACK good → the PCA output or OE</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>CP14</strong> — DMM on the zone's ULN OUT pin</td>
+<td>~1 V commanded on; commanded off it reads <strong>high and unstable, ~8–24 V</strong> through the LED string — that instability is normal</td>
+<td>~1 V while commanded <strong>off</strong> → a stuck ULN channel</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>CP15</strong> — across the lit channel, tape +24 pad to that channel's −</td>
+<td>~23 V</td>
+<td>23 V present and still dark → the tape itself: a joint past the probe, a dead cut, or a reversed pad</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Nothing anywhere</td>
+<td>—</td>
+<td>Back to the stage-1 ritual numbers: bus, buck, grounds</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Why rung 2 comes before rung 3 — a silent zone line is not evidence</p>
+<p>The firmware prints <code>ZB zone=…</code> <strong>only after a successful I2C write to that zone's hub.</strong> With the hub absent it skips the zone entirely and prints nothing — so on an unwired or mis-wired bus, a missing zone line is the <em>expected</em> output and says nothing at all about whether your tap reached the board.</p>
+<p>Read the two together or you will misread both:</p>
+<ul>
+<li><code>present=0</code>, no zone line → <strong>the I2C hop.</strong> Your wiring. Rung 2.</li>
+<li><code>present=1</code>, no zone line → <strong>the command never arrived.</strong> Network or app.</li>
+<li><code>present=1</code>, zone line prints, still dark → <strong>downstream of the chip.</strong> Carry on to rung 4.</li>
+</ul>
+<p>The radio was already proven end-to-end before any of this was wired, using the spotlight endpoint — which needs no hardware. So if the hub is answering and the zone line still will not print, suspect the app, not the copper.</p>
+</div>
+<p>One meter honesty note for rung 4: <strong>a DMM averages PWM.</strong> At 40% it reads ~1.3 V, at 70% ~2.3 V — numbers that look like faults and aren't. Never probe at partial level; command 100% and expect ~3.3 V, or learn nothing.</p>
+<div class="admonition trap">
+<p class="admonition-title">Every zone looks identical in the app</p>
+<p>The zone endpoints carry no per-zone name, so Home Assistant lists <strong>eight entities all called "Light"</strong> — one spotlight and seven zones — with nothing on screen to tell you which is which. Do not guess, and do not trust list order.</p>
+<p>Map them once, from the bench, and the ambiguity is gone for good: <strong>tap one, read which number the console prints.</strong> <code>ZB zone=3 on=1 level=255</code> means that entity is zone 3. Rename it in Home Assistant on the spot, then move to the next. This only works once a hub is present — before that, per the box above, the zone lines are silent and you would be renaming from guesswork.</p>
+</div>
+<hr />
+<h2 id="the-checkpoint-table">The checkpoint table<a class="headerlink" href="#the-checkpoint-table" title="Permanent link">&para;</a></h2>
+<p>Every CP this chapter has named, in one place. Print it; tape it above the bench next to stage 4's zone table.</p>
+<table>
+<thead>
+<tr>
+<th>CP</th>
+<th>Setup</th>
+<th>Measure</th>
+<th>Healthy</th>
+<th>If not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CP1</td>
+<td>Supply <strong>unplugged</strong>, continuity</td>
+<td>+Vo ↔ +Vo</td>
+<td>Beeps</td>
+<td>Isolated outputs → single-pair rule; never bridge unproven terminals</td>
+</tr>
+<tr>
+<td>CP2</td>
+<td>Same</td>
+<td>−Vo ↔ −Vo</td>
+<td>Beeps</td>
+<td>Same branch as CP1</td>
+</tr>
+<tr>
+<td>CP3</td>
+<td>Same, <strong>resistance</strong> mode</td>
+<td>+ ↔ −</td>
+<td>Short chirp, then climbs to tens of kΩ/OL (output caps charging — normal)</td>
+<td>A beep that never stops = short — <strong>do not plug in</strong></td>
+</tr>
+<tr>
+<td>CP4</td>
+<td>Pigtails landed, cover <strong>ON</strong>, powered</td>
+<td>Every pigtail pairing</td>
+<td>24 V ±5% on all</td>
+<td>One pair differs → isolated outputs, single-pair rule</td>
+</tr>
+<tr>
+<td>CP5</td>
+<td>Backbone</td>
+<td>The bus, after the fuse</td>
+<td>24 V</td>
+<td>Fuse seat, holder side, leads</td>
+</tr>
+<tr>
+<td>CP6</td>
+<td>Backbone</td>
+<td>Buck output, <strong>not</strong> connected to the ESP32</td>
+<td>5.0 V</td>
+<td>VIN/GND swapped — survives; fix, retest</td>
+</tr>
+<tr>
+<td>CP7</td>
+<td>Backbone, Ω</td>
+<td>Supply− ↔ star ↔ ESP32 GND ↔ every ULN pin 9</td>
+<td>&lt; 1 Ω</td>
+<td>A ground is chained or missing</td>
+</tr>
+<tr>
+<td>CP8</td>
+<td>Chain, power off</td>
+<td>The wire landing on PCA VCC</td>
+<td>Beeps to the 3V3 rail and to nothing else</td>
+<td>Rewire before power</td>
+</tr>
+<tr>
+<td>CP8b</td>
+<td>Both hubs, <strong>unpowered</strong>, resistance — compare the two boards</td>
+<td>Hub #2's A0 pad pair, then hub #1's</td>
+<td>Hub #2 near <strong>0 Ω</strong> (a bridge is a dead short); hub #1's same pair reads high — kΩ or OL</td>
+<td>Hub #2 not near 0 Ω → the blob only <em>looks</em> bridged: reflow it. Hub #1 near 0 Ω → you bridged the wrong board</td>
+</tr>
+<tr>
+<td>CP8c</td>
+<td>Both hubs on the bus, C6 powered over USB (the 24 V rail is not needed)</td>
+<td>Which addresses answer the I2C scan / hub witness</td>
+<td><strong>0x40 and 0x41</strong>, both</td>
+<td>Only 0x40 → either #2 is unbridged (two boards colliding at one address) or #2 is not on the bus at all. <strong>The scan cannot tell you which</strong> — go back to CP8b</td>
+</tr>
+<tr>
+<td>CP9</td>
+<td>After soldering</td>
+<td>Each wire to each pad</td>
+<td>Beeps to its <strong>own</strong> pad only, neighbours silent</td>
+<td>Stray strand → reflow, re-beep</td>
+</tr>
+<tr>
+<td>CP10</td>
+<td>Same</td>
+<td>+24 pad ↔ each − pad</td>
+<td>OL / no sustained beep (the LED string blocks the meter; a solid beep = solder bridge)</td>
+<td>Reflow</td>
+</tr>
+<tr>
+<td>CP11</td>
+<td>Zone chained, off</td>
+<td>ULN OUT pin ↔ tape − wire</td>
+<td>Beeps</td>
+<td>Open → beep segment by segment</td>
+</tr>
+<tr>
+<td>CP12</td>
+<td>First power, one zone — watch for 30 s (this meter has no current range)</td>
+<td>Supply steady, all three whites lit, nothing warm</td>
+<td>No hiccup clicking; three colors visible; everything cool</td>
+<td>Hiccup/trip → find the short, don't retry blind</td>
+</tr>
+<tr>
+<td>CP13</td>
+<td>Zone commanded <strong>100%</strong></td>
+<td>The zone's PCA LED pin</td>
+<td>~3.3 V (duty × 3.3 V; a DMM averages PWM — never probe at partial level)</td>
+<td>0.00 V at 100% with hub ACK → PCA output/OE</td>
+</tr>
+<tr>
+<td>CP14</td>
+<td>Zone commanded on, then off</td>
+<td>The zone's ULN OUT pin</td>
+<td>~1 V on; off = high and unstable, ~8–24 V through the LED string (normal)</td>
+<td>~1 V while commanded <strong>off</strong> → stuck channel</td>
+</tr>
+<tr>
+<td>CP15</td>
+<td>Zone lit</td>
+<td>Across the lit channel</td>
+<td>~23 V</td>
+<td>Dark with 23 V present → the tape or the joints</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="before-you-switch-on">Before you switch on<a class="headerlink" href="#before-you-switch-on" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> CP1–CP3 passed on the bare terminals, <strong>unplugged</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Four pigtails landed — bare stranded copper under every screw, none tinned, all tugged</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The terminal cover is <strong>on</strong> (and goes back on before every power-up after this one)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> One fuse — T3.15AL250V on the bus pair's + leg — and only one</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Every ground runs direct to the star; nothing chained</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> PCA VCC beeps to the 3V3 rail and to nothing else (CP8); V+ empty; A0 on board #2 bridged before its bus wires land, and proved near 0 Ω against board #1's open pair (CP8b)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Both hubs answer once the C6 is powered — <strong>0x40 and 0x41</strong> (CP8c). Only 0x40 is not "one hub missing"; it may be two hubs colliding</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Zone 6's three signal wires come off hub <strong>#2</strong>, not hub #1 — chip 3 is the one chip fed by both boards (<a href="#the-fan-out-which-channel-drives-which-zone">the fan-out</a>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Every tape wire beeps to its own pad only (CP9); +24 to − pads all read OL (CP10)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The 4-wire pigtail is strain-relieved within ~20 mm of the pads — and was before the tug test</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> First power-up watched, not walked away from: supply steady, all three whites lit, nothing warm (CP12)</li>
+</ul>
+<p><strong>Done when:</strong> the supply is identified and pigtailed, every pad beeps to its own wire and nothing else, and you can point at the single place every ground meets.</p>
+<p>Then go back to <a href="../04-full-fixture-bench/#stage-2-first-light-one-zone-three-sliders">Doc 4 stage 2</a>, power up, and put three sliders on one zone. <a href="../04-full-fixture-bench/#stage-4-scale-to-7-zones-21-channels">Stage 4</a> scales it to seven.</p>
+<hr />
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<p>Verified against primary documents rather than forum lore:</p>
+<ul>
+<li><strong>Diode LED Valent X Tunable White</strong> product page and spec sheet — 24 V common anode, printed cut lines and pad markings</li>
+<li><strong>NXP PCA9685 datasheet</strong> — 16-channel PWM over I2C, the address pins, OE behavior, and V<sub>IH</sub> = 0.7·V<sub>DD</sub> (the 3.3 V rule)</li>
+<li><strong>Adafruit 16-Channel PWM/Servo Driver</strong> (product #815) documentation — the breakout's own SDA/SCL pull-ups, the A0–A5 address pads, and the control header duplicated at both ends of the board</li>
+<li><strong>TI ULN2803A datasheet</strong> — Darlington saturation (the ~1 V), the 500 mA per-channel and package-dissipation limits, pin geometry</li>
+<li><strong>Pololu D24V22F5</strong> product page — fixed 5 V, 2.5 A, nothing to mis-adjust</li>
+<li><strong>WAGO 221 series</strong> documentation — the 11 mm strip gauge and lever litany</li>
+<li><strong>JST XH series datasheet</strong> — the 3 A rating behind the connector law</li>
+<li><strong>Mean Well IRM-90 series datasheet</strong> — the ST screw-terminal block, Class II construction, 3.75 A rating, and hiccup-mode protection</li>
+</ul>
+<p>Where a reading here disagrees with a datasheet's ideal — the ~1 V, the ~23 V, the ~80 mA — the bench number is the one printed, and the section that measured it says how.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../04-full-fixture-bench/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4 · Build the Full Fixture Bench">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                4 · Build the Full Fixture Bench
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../04b-wire-the-spotlight/" class="md-footer__link md-footer__link--next" aria-label="Next: 4b · Wire the Spotlight For Real">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4b · Wire the Spotlight For Real
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/checklist.js"></script>
+      
+        <script src="../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>

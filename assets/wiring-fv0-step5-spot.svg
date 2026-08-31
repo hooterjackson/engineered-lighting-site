@@ -1,0 +1,88 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="620" fill="#fff"/>
+  <text x="30" y="34" font-size="18" font-weight="bold" fill="#111">Step 5 · The spotlight — three constant-current channels</text>
+  <text x="30" y="53" font-size="11" fill="#555">Mount the star on its heatsink BEFORE wiring — it cooks itself bare in under a minute, and it is painfully bright: aim it at a wall.</text>
+  <rect x="30" y="55" width="330" height="22" fill="#fdecec" stroke="#c33" stroke-width="1.5" rx="11"/>
+  <text x="195" y="70" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#8a1c1c">INPUTS FLOAT ON — 10 kΩ pulldowns · boot must stay dark</text>
+
+  <rect x="40" y="90" width="160" height="180" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="120" y="112" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">ESP32-C6 (B3)</text>
+  <g font-size="10" fill="#223" text-anchor="end">
+    <text x="192" y="150">GPIO10</text>
+    <text x="192" y="190">GPIO11</text>
+    <text x="192" y="230">GPIO18</text>
+  </g>
+  <text x="120" y="256" font-size="9" text-anchor="middle" fill="#555">native pins · 500 Hz PWM</text>
+
+  <rect x="420" y="90" width="220" height="220" fill="#fdf0f5" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="530" y="112" font-size="12" font-weight="bold" text-anchor="middle" fill="#223">PicoBuck (B1 · power board)</text>
+  <text x="530" y="127" font-size="9" text-anchor="middle" fill="#555">3× constant-current · 330 mA each</text>
+  <g font-size="10" fill="#223">
+    <text x="428" y="152">IN1</text>
+    <text x="428" y="192">IN2</text>
+    <text x="428" y="232">IN3</text>
+    <text x="428" y="266">VIN · GND</text>
+    <text x="632" y="152" text-anchor="end">OUT1 ±</text>
+    <text x="632" y="192" text-anchor="end">OUT2 ±</text>
+    <text x="632" y="232" text-anchor="end">OUT3 ±</text>
+  </g>
+  <text x="530" y="292" font-size="9" text-anchor="middle" fill="#8a6a2f">current is set in hardware — PWM dims below it</text>
+
+  <line x1="200" y1="146" x2="420" y2="146" stroke="#00838f" stroke-width="3"/>
+  <line x1="200" y1="186" x2="420" y2="186" stroke="#00838f" stroke-width="3"/>
+  <line x1="200" y1="226" x2="420" y2="226" stroke="#00838f" stroke-width="3"/>
+
+  <g stroke="#8a1c1c" stroke-width="2" fill="#fff">
+    <rect x="290" y="158" width="12" height="22"/>
+    <rect x="330" y="198" width="12" height="22"/>
+    <rect x="370" y="238" width="12" height="22"/>
+  </g>
+  <path d="M 296 180 L 296 330 L 500 330" fill="none" stroke="#222" stroke-width="2.5"/>
+  <path d="M 336 220 L 336 330" fill="none" stroke="#222" stroke-width="2.5"/>
+  <path d="M 376 260 L 376 330" fill="none" stroke="#222" stroke-width="2.5"/>
+  <circle cx="336" cy="330" r="3" fill="#222"/><circle cx="376" cy="330" r="3" fill="#222"/>
+  <text x="296" y="352" font-size="9" fill="#8a1c1c" font-weight="bold">3× 10 kΩ pulldowns → star</text>
+  <text x="620" y="394" font-size="9" fill="#8a1c1c" font-weight="bold">each OUT = a ± PAIR — six wires total,</text>
+  <text x="620" y="406" font-size="9" fill="#8a1c1c" font-weight="bold">returns NEVER shared between dies</text>
+
+  <rect x="680" y="60" width="290" height="96" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="692" y="80" font-size="10" font-weight="bold" fill="#8a1c1c">Why the pulldowns (review catch)</text>
+  <g font-size="9" fill="#7c2a2a">
+    <text x="692" y="98">PicoBuck inputs float ON. While the C6 boots,</text>
+    <text x="692" y="112">its pins float — without pulldowns the spot</text>
+    <text x="692" y="126">blasts full-bright at every power-up.</text>
+    <text x="692" y="140">10 kΩ from each IN to ground holds it dark.</text>
+  </g>
+
+  <rect x="700" y="200" width="260" height="150" fill="#fdf0e6" stroke="#a8792a" stroke-width="1.5" rx="8"/>
+  <text x="830" y="222" font-size="12" font-weight="bold" text-anchor="middle" fill="#6b4c12">Cree 3-up star + Carclo optic</text>
+  <g font-size="10" fill="#6b4c12" text-anchor="middle">
+    <text x="770" y="252">warm ±</text>
+    <text x="830" y="252">neutral ±</text>
+    <text x="895" y="252">cool ±</text>
+  </g>
+  <text x="830" y="280" font-size="9" text-anchor="middle" fill="#8a6a2f">match printed + / − per die — one JST plug</text>
+  <text x="830" y="296" font-size="9" text-anchor="middle" fill="#8a6a2f">star bolted to heatsink w/ thermal adhesive</text>
+  <text x="830" y="318" font-size="9" text-anchor="middle" fill="#8a1c1c">head shell must give the heatsink</text>
+  <text x="830" y="330" font-size="9" text-anchor="middle" fill="#8a1c1c">an air path to outside air</text>
+
+  <path d="M 640 148 L 672 148 L 672 240 L 736 240" fill="none" stroke="#d62828" stroke-width="2.5"/>
+  <path d="M 640 188 L 664 188 L 664 248 L 700 248" fill="none" stroke="#222" stroke-width="2.5"/>
+  <path d="M 640 228 L 656 228 L 656 256 L 700 256" fill="none" stroke="#d62828" stroke-width="2.5"/>
+  <text x="660" y="176" font-size="9" fill="#6b4c12">3 ± pairs</text>
+
+  <line x1="40" y1="430" x2="560" y2="430" stroke="#d62828" stroke-width="6"/>
+  <text x="46" y="420" font-size="10" font-weight="bold" fill="#8a1c1c">+24 V BUS</text>
+  <path d="M 470 430 L 470 310 L 466 310" fill="none" stroke="#d62828" stroke-width="3"/>
+  <circle cx="470" cy="430" r="4" fill="#d62828"/>
+  <line x1="40" y1="470" x2="560" y2="470" stroke="#222" stroke-width="6"/>
+  <text x="46" y="490" font-size="10" font-weight="bold" fill="#111">GND STAR</text>
+  <path d="M 500 470 L 500 310" fill="none" stroke="#222" stroke-width="3"/>
+  <circle cx="500" cy="470" r="4" fill="#222"/>
+  <circle cx="500" cy="330" r="3.5" fill="#222"/>
+  <text x="510" y="418" font-size="9" fill="#333">PicoBuck VIN + GND from the rails</text>
+
+  <rect x="40" y="530" width="930" height="60" fill="#f2fbf4" stroke="#3f7c55" stroke-width="1.5" rx="8"/>
+  <text x="56" y="554" font-size="11" font-weight="bold" fill="#3f7c55">DONE WHEN</text>
+  <text x="56" y="572" font-size="10" fill="#2f5c40">Each die dims 0→100% from HA — three lights or one tunable Spotlight. Power-cycle test: the spot stays DARK through boot (the pulldowns working). Note the lowest clean duty (~5% floor).</text>
+</svg>
