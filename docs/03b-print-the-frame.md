@@ -31,6 +31,8 @@ This is **frame v8**, and it is a ground-up rebuild. Two things drove it.
 
 That 2.5 mm thread depth is the single most constraining number in the design. Every M3 into an output flange is **M3 × 10**, derived from it. The previous revision's assembly drawing called for M3 × 13 and M3 × 14 — both bottom out 2.5–3.5 mm before the head seats, so the joint never clamps and the screw tip ends up inside the motor.
 
+![Cross-section of the output flange: the 2.5 mm thread depth, an M3×10 seating and clamping, and an M3×13 bottoming out with its head proud](assets/frame-screw-depth.svg)
+
 **The idle side of the tilt axis is gone.** No trunnion, no bearing carrier, no 608, six fewer screws, one fewer yoke arm. The head cantilevers off the tilt motor's own output.
 
 That deletes 62 g from a 177 g machine to carry **0.505 N and 0.0146 N·m** — about 3.5% of the motor's peak torque, with 0.58 N of prying on the output bolts against an M3 proof load near 2000 N. It also removes an *over-constrained* twin-bearing axis: two bearings on one axis need the printed parts to be coaxial with the motor's own bearing, which printed parts cannot guarantee, and which the old design papered over with a build-time "leave three screws loose, swing the head, then tighten" ritual. A misaligned second bearing loads the motor's bearing sideways — it can make worse the thing it is supposed to protect.
@@ -140,6 +142,10 @@ Masses are measured off the STLs, not estimated. Print times are not listed beca
 
 `part="all"` lays the whole set flat in **207.5 × 169.7 mm**, which fits a 256 mm X1C bed in **one job**. Those offsets are computed from each part's measured bounding box, not eyeballed. There is not a single support in the set and no overhang past 60°.
 
+The plate itself, with every piece named and its pose stated — slice it exactly as it lands:
+
+![The full print plate annotated: each part named with its one print pose, the tol_coupon flagged print-me-first](assets/render-anno-frame-orientations.jpg){ loading=lazy }
+
 ## How it all goes together
 
 Open [`cad/assembly.scad`](cad/assembly.scad) and press F5. `view` flips exploded ↔ assembled, `pan` and `tilt` pose it, `show_cap` unchecks to look inside the clamp, and `clip` sections it.
@@ -151,6 +157,10 @@ Open [`cad/assembly.scad`](cad/assembly.scad) and press F5. `view` flips explode
     That is the whole explanation for "only some of the parts render". If you have downloaded these files more than once, check what is actually in the folder you opened: a browser saves a second copy as `frame_params_1.scad`, which nothing includes, leaving the *stale* `frame_params.scad` as the one being read. Work in the repo clone, not in a downloads folder.
 
 ## Build order
+
+The whole machine exploded, with every part named and every joint's screws tagged — the figure to keep open while the steps below run:
+
+![The frame exploded: four printed parts, two motors and the housing named, with each joint's screw length tagged and the M3×10 law badged](assets/render-anno-frame-exploded.jpg){ loading=lazy }
 
 Each step leaves the next step's fasteners reachable — that ordering is a property of the geometry, not a hope.
 
