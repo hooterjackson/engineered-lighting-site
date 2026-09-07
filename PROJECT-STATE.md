@@ -26,8 +26,7 @@ at the end of every working session.*
 > a ruling or current bench evidence in `gimbal-bench`, the ruling wins and the
 > stale side gets an item.
 
-**Last updated:** 2026-07-31 (bench session — first motor motion; then the
-commissioning-console build) — *the last edit to **this file**, not to the repo.
+**Last updated:** 2026-09-07 (Doc 9: the LIGHT v0.1 PCB learning page) — *the last edit to **this file**, not to the repo.
 `git log -1` is the repo's real state; this file lags it by design.*
 
 ## What this project is
@@ -35,14 +34,16 @@ commissioning-console build) — *the last edit to **this file**, not to the rep
 The robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head
 (smart CAN servo actuators, absolute encoders) carrying a high-CRI 3-up LED spot,
 exposed to Home Assistant as ordinary entities AND autonomously aimed by a
-camera-driven perception stack. Full context lives in the 8-doc series in `docs/`,
+camera-driven perception stack. Full context lives in the 9-doc series in `docs/`,
 published at **https://engineering.engineered.lighting/** (this repo, MkDocs
 Material, deployed via GitHub Actions).
 
 ## Current state (snapshot)
 
 - **Site:** live — 7 chapters + Doc 3b (frame) + Doc 8 (fixture build, added
-  2026-07-29) + BoM checklist + AI-workflow page. Adversarial review rounds
+  2026-07-29) + **Doc 9 (PCB learning page, 2026-09-07 — implemented and
+  validated locally on branch `doc9-understand-the-pcb`; NOT pushed, NOT
+  published)** + BoM checklist + AI-workflow page. Adversarial review rounds
   applied throughout, including a sitewide coherence pass after Doc 8 landed
   (seam fixes: Doc 8 body-interface note, Doc 3 + Doc 4 graduation
   pointers → Doc 8, Home card spans Docs 1–4 · 8, totals made derivable
@@ -316,3 +317,80 @@ tuning, and the JSON snapshot is what makes that survivable.
 **Naming:** the artifacts keep their names - the repo is still `gimbal-bench`,
 the tool still lives in `tools/bench_ui`. "Commissioning console" is what it
 is becoming, not a rename.
+
+### 2026-09-07 — Doc 9: the LIGHT v0.1 PCB, viewable and downloadable
+
+**What landed.** A final chapter, `docs/09-understand-the-pcb.md`, built around an
+interactive viewer of the real board: `docs/js/pcb-viewer.js` (board viewer, part
+finder, detail panel, parts-list cross-selection, 19-sheet schematic browser, hash
+routing, a read-only `window.elPcb` debug API) and `docs/stylesheets/pcb.css`
+(section 17, scoped to `.el-pcb` / `.el-sch`). Both registered in `mkdocs.yml`;
+that plus two lines in `docs/.pages` are the only config changes.
+
+**The governing hardware** is `engineered-lighting-rev-a.kicad_pcb`, SHA-256
+`c046202efa3896d59d12bf19f55ed48b3a6c77532aac199a3a1e9a993e449310`. The page is
+generated from the handoff folder prepared on 2026-09-06 and never modifies it.
+
+**Generator.** `tools/pcb/` (standard library only) has three modes: `build
+--handoff <folder>` verifies the hash chain and derives every published asset;
+`render` regenerates the page's static blocks from the published JSON; `check`
+re-verifies hashes, counts, the manifest and the generated blocks **without** the
+handoff, so CI and the data tests can run it. Regenerate with:
+
+```
+python tools/pcb/build_pcb_assets.py build --handoff "<handoff folder>"
+python tools/pcb/build_pcb_assets.py check
+```
+
+**Published assets** live under `docs/assets/pcb/light-v0.1/` — about 27 MB: 17
+layer plots, 19 schematic sheets, the loose KiCad sources, the complete project
+ZIP, the parts CSV, two PDFs, two assembly drawings, the fabrication reference,
+and four derived JSON files. Largest single file is the 5.6 MB `.kicad_pcb`; the
+previous repo maximum was a 634 kB photograph.
+
+**`docs/assets/pcb/.gitattributes` is load-bearing.** `core.autocrlf=true` plus
+CRLF source files would rewrite line endings on commit and break every SHA-256 in
+the provenance chain on a Linux CI checkout. `* -text` prevents that; verified
+with `git ls-files --eol` and by re-hashing the staged blobs.
+
+**Manufacturing scope stated on the page** (as of 7 September 2026): PCBWay has
+been asked to quote five fabricated boards, two of them fully assembled with all
+248 purchased parts and three supplied bare. Nothing paid or authorised; assembly
+process, stencil and via treatment and factory substitutions not approved. Hand
+soldering appears only as optional rework. Older "bare boards for local hand
+assembly" wording in the handoff and in the CSV comments is explicitly superseded.
+
+**What the page does not claim.** No board has been powered; no firmware has been
+built or flashed. Every component claim carries an evidence class — intended,
+cad-checked, modelled-current, or simulated-historical bound to the older board
+hash it actually came from. `measured` is never used, and a data test fails the
+build if it appears.
+
+**Checks run.** `mkdocs build --strict` twice, clean; the CI add-a-doc rehearsal;
+`pytest tests/e2e -q` → **47 passed** (10 pre-existing, 14 new data checks, 23 new
+browser checks). Screenshots in `test-artifacts/screens/pcb-*.png`. Layout verified
+at 390, 1280 and 1800 px with no page-level horizontal scroll.
+
+**Two fixes worth remembering.** `tests/e2e/conftest.py` now spawns
+`sys.executable` rather than a literal `python3`, so the interpreter running the
+tests is the one serving the site. And Material's `.md-typeset ul:not([hidden])`
+rule outranks a plain class selector, so any list the viewer hides needs either
+higher specificity or the `[hidden]` guard now at the top of `pcb.css`.
+
+**Two-interpreter workflow on this machine.** The global Python 3.12 has MkDocs
+but a broken pytest; the repo `.venv` has pytest and Playwright but no MkDocs.
+Build with the global interpreter, test with `.venv/Scripts/python.exe -m pytest`.
+
+**Open, and needing the owner's call before publication:**
+
+1. The loose `.kicad_pcb` and 19 `.kicad_sch` files are published *in addition to*
+   the project ZIP, as the brief asks — about 7 MB of duplication.
+2. The fabrication-reference ZIP (Gerbers, drills, IPC-D-356) is derived from the
+   same source and scanned clean of quote details, but has not been owner-reviewed.
+3. Repository growth of roughly 27 MB.
+4. Doc 9 hides its table of contents so the board and its detail panel fit side by
+   side at 1280 px, as `bom-checklist.md` already does.
+
+**Deployment: NOT performed.** All work is on branch `doc9-understand-the-pcb`.
+Pushing to `main` auto-deploys via `.github/workflows/publish.yml`, so publication
+waits on explicit approval.

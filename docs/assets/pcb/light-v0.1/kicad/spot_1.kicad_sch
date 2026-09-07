@@ -1,0 +1,4212 @@
+(kicad_sch
+  (version 20250114)
+  (generator "engineered-lighting")
+  (generator_version "0.2")
+  (uuid "ead6f891-c194-50ac-9fcc-1c2451f85dcc")
+  (paper "A3")
+  (title_block
+    (title "Spot 1")
+    (date "2026-09-06")
+    (rev "A draft")
+    (company "Engineered Lighting")
+    (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
+  (lib_symbols
+    (symbol "EL:TPS26600PWPR"
+      (pin_names
+        (offset 0.8))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "U"
+        (at 0 20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "TPS26600PWPR"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "TPS26600PWPR_0_1"
+        (rectangle
+          (start -12.7 17.78)
+          (end 12.7 -17.78)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background))))
+      (symbol "TPS26600PWPR_1_1"
+        (pin power_in line
+          (at -17.78 15.240000000000002 0)
+          (length 5.08)
+          (name "IN"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "1"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin power_in line
+          (at -17.78 12.700000000000003 0)
+          (length 5.08)
+          (name "IN"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "2"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin power_out line
+          (at -17.78 10.160000000000002 0)
+          (length 5.08)
+          (name "RTN"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "3"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin no_connect line
+          (at -17.78 7.620000000000002 0)
+          (length 5.08)
+          (name "NC"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "4"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin input line
+          (at -17.78 5.080000000000002 0)
+          (length 5.08)
+          (name "OVP"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "5"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin input line
+          (at -17.78 2.5400000000000027 0)
+          (length 5.08)
+          (name "MODE"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "6"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin input line
+          (at -17.78 1.7763568394002505e-15 0)
+          (length 5.08)
+          (name "SHDN"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "7"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin input line
+          (at -17.78 -2.539999999999999 0)
+          (length 5.08)
+          (name "UVLO"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "8"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin power_in line
+          (at -17.78 -5.079999999999998 0)
+          (length 5.08)
+          (name "GND"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "9"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin passive line
+          (at -17.78 -7.619999999999997 0)
+          (length 5.08)
+          (name "ILIM"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "11"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin passive line
+          (at -17.78 -10.159999999999997 0)
+          (length 5.08)
+          (name "dVdt"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "12"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin no_connect line
+          (at -17.78 -12.7 0)
+          (length 5.08)
+          (name "NC"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "13"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin power_in line
+          (at -17.78 -15.239999999999998 0)
+          (length 5.08)
+          (name "RTN_EP"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "17"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin passive line
+          (at 17.78 15.240000000000002 180)
+          (length 5.08)
+          (name "IMON"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "10"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin open_collector line
+          (at 17.78 12.700000000000003 180)
+          (length 5.08)
+          (name "FLT"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "14"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin power_out line
+          (at 17.78 10.160000000000002 180)
+          (length 5.08)
+          (name "OUT"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "15"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin passive line
+          (at 17.78 7.620000000000002 180)
+          (length 5.08)
+          (name "OUT"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "16"
+            (effects
+              (font
+                (size 1.0 1.0)))))))
+    (symbol "Device:R"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "R"
+        (at 2.032 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "R"
+        (at 0 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at -1.778 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Resistor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "R res resistor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "R_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "R_0_1"
+        (rectangle
+          (start -1.016 -2.54)
+          (end 1.016 2.54)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "R_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 1.27)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Device:C"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.254))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "C"
+        (at 0.635 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "C"
+        (at 0.635 -2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" ""
+        (at 0.9652 -3.81 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Unpolarized capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "cap capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "C_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "C_0_1"
+        (polyline
+          (pts
+            (xy -2.032 0.762)
+            (xy 2.032 0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -2.032 -0.762)
+            (xy 2.032 -0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "C_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Device:D_Schottky"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "D"
+        (at 0 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "D_Schottky"
+        (at 0 -2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Schottky diode"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "diode Schottky"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "D_Schottky_0_1"
+        (polyline
+          (pts
+            (xy -1.905 0.635)
+            (xy -1.905 1.27)
+            (xy -1.27 1.27)
+            (xy -1.27 -1.27)
+            (xy -0.635 -1.27)
+            (xy -0.635 -0.635))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 1.27 1.27)
+            (xy 1.27 -1.27)
+            (xy -1.27 0)
+            (xy 1.27 1.27))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 1.27 0)
+            (xy -1.27 0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "D_Schottky_1_1"
+        (pin passive line
+          (at -3.81 0 0)
+          (length 2.54)
+          (name "K"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 3.81 0 180)
+          (length 2.54)
+          (name "A"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Driver_LED:AL8860WT"
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "U"
+        (at -6.35 6.35 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "AL8860WT"
+        (at 7.62 6.35 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" "Package_TO_SOT_SMD:TSOT-23-5"
+        (at 0 8.89 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" "https://www.diodes.com/assets/Datasheets/AL8860.pdf"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "40V 1.5A Constant Current Buck LED Driver IC, TSOT-23-5"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "LED Driver Buck Constant Current"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "TSOT?23*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "AL8860WT_0_1"
+        (rectangle
+          (start -7.62 5.08)
+          (end 7.62 -5.08)
+          (stroke
+            (width 0.254)
+            (type solid))
+          (fill
+            (type background))))
+      (symbol "AL8860WT_1_1"
+        (pin open_collector line
+          (at 10.16 -2.54 180)
+          (length 2.54)
+          (name "SW"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin power_in line
+          (at 0 -7.62 90)
+          (length 2.54)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin input line
+          (at -10.16 2.54 0)
+          (length 2.54)
+          (name "CTRL"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin input line
+          (at 10.16 2.54 180)
+          (length 2.54)
+          (name "SET"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin power_in line
+          (at 0 7.62 270)
+          (length 2.54)
+          (name "VIN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "5"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Device:L"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "L"
+        (at -1.27 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "L"
+        (at 1.905 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Inductor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "inductor choke coil reactor magnetic"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "Choke_* *Coil* Inductor_* L_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "L_0_1"
+        (arc
+          (start 0 2.54)
+          (mid 0.6323 1.905)
+          (end 0 1.27)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start 0 1.27)
+          (mid 0.6323 0.635)
+          (end 0 0)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start 0 0)
+          (mid 0.6323 -0.635)
+          (end 0 -1.27)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start 0 -1.27)
+          (mid 0.6323 -1.905)
+          (end 0 -2.54)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "L_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 1.27)
+          (name "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no)))
+  (symbol
+    (lib_id "EL:TPS26600PWPR")
+    (at 83.82 73.66 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "74050336-7945-554b-ac08-53b1153b8e81")
+    (property "Reference" "U14"
+      (at 104.14 48.26 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "spot branch gated eFuse 0.494A nominal"
+      (at 104.14 50.8 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELF:TI_PWP0016A_EP3.3x3.3_6ThermalVias_125um"
+      (at 83.82 73.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "TPS26600PWPR"
+      (at 83.82 73.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Texas Instruments"
+      (at 83.82 73.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps2660.pdf"
+      (at 83.82 73.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "U14")
+          (unit 1))))
+    (pin "1"
+      (uuid "0624cb00-87d2-519f-a11c-ce3f6b3e7bdc"))
+    (pin "2"
+      (uuid "e325366f-0d4c-560f-b9d0-5b2e460cb9b9"))
+    (pin "3"
+      (uuid "c9f5efc7-c4db-5df3-ae9e-4433fcdc4452"))
+    (pin "4"
+      (uuid "665365a6-8327-501e-9acd-308e431dcc2a"))
+    (pin "5"
+      (uuid "870f8167-f8fa-5a51-a82e-6c04fa4d49f7"))
+    (pin "6"
+      (uuid "59f62a29-39c1-5be2-8834-82e1d153a2cd"))
+    (pin "7"
+      (uuid "31240c71-a2a9-57fa-bd52-62a42ebebed3"))
+    (pin "8"
+      (uuid "46177a1d-df80-5be1-b8b7-f21ec57c29d1"))
+    (pin "9"
+      (uuid "8c5256a6-d982-54a8-a2b5-0930299b2fa3"))
+    (pin "11"
+      (uuid "cc00308d-3464-53a0-91fe-dd342eaaded8"))
+    (pin "12"
+      (uuid "1b3006f9-fb99-5a7a-be56-4ba617689f1a"))
+    (pin "13"
+      (uuid "fe9ff7c4-9737-5ea2-800a-9f4853d0ea6a"))
+    (pin "17"
+      (uuid "60f85d4a-9e75-56c5-84e0-2744228184fc"))
+    (pin "10"
+      (uuid "8b99e9f4-4f97-5bf9-a623-4b2cc4cc50f5"))
+    (pin "14"
+      (uuid "770f1d6f-c6c7-5fd5-bef4-0ab41a1fb622"))
+    (pin "15"
+      (uuid "b7f7725a-05bf-52b1-bbb8-d70eb244d491"))
+    (pin "16"
+      (uuid "e96a2610-c577-56ff-9b7d-dd3631503047")))
+  (wire
+    (pts
+      (xy 66.04 58.42)
+      (xy 55.88 58.42))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "28e8711f-8f4d-5f10-abaa-4aa58398eb02"))
+  (global_label "V24_BUS"
+    (shape passive)
+    (at 55.88 58.42 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0a9a245a-65b5-5756-b408-241f3cd20e2a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 60.96)
+      (xy 55.88 60.96))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f4c47cb9-100f-5d86-b5ba-bf161c60e789"))
+  (global_label "V24_BUS"
+    (shape passive)
+    (at 55.88 60.96 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8a98b004-e7bd-5d72-8f17-22483d8f39ba")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 63.5)
+      (xy 55.88 63.5))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "bd2889a2-fe5c-5096-ad4f-71d7a47c4d29"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 55.88 63.5 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "cd351043-ce28-5c68-8723-211486fe1439")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 63.5 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (no_connect
+    (at 66.04 66.04)
+    (uuid "5f921c25-9509-5cec-b9ee-e04dc1a14612"))
+  (wire
+    (pts
+      (xy 66.04 68.58)
+      (xy 52.07 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b935b538-47a6-5674-b1da-12bcdc692d68"))
+  (global_label "SPOT_EFUSE_OVP"
+    (shape passive)
+    (at 52.07 68.58 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8a1d376f-76e5-56bd-a651-9fa658a7a54b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 52.07 68.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 71.12)
+      (xy 52.07 71.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2e1a318e-9d6f-5f25-bcce-98372a503b0b"))
+  (global_label "SPOT_EFUSE_MODE"
+    (shape passive)
+    (at 52.07 71.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "cc14214a-468f-54e4-ad67-619a6e3536e0")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 52.07 71.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 73.66)
+      (xy 50.8 73.66))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9acbfb94-ff54-57c5-9d81-57fda8f1cc35"))
+  (global_label "LIGHT_ENABLE_SAFE"
+    (shape passive)
+    (at 50.8 73.66 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "260f4cdc-3346-5573-8ee6-4b22ae7a81e4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 50.8 73.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 76.2)
+      (xy 55.88 76.2))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d5fb6d31-0014-5f79-914c-9d291ed0489c"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 55.88 76.2 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a9db850a-322c-5c96-ad30-eb2d9a7e880b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 76.2 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 78.74)
+      (xy 58.42 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e74e8fc2-7aa0-5972-bf81-726d80a570f5"))
+  (global_label "GND"
+    (shape passive)
+    (at 58.42 78.74 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8b5d22ec-fbe3-54ed-8cf9-92471ae1265c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 58.42 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 81.28)
+      (xy 52.07 81.28))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0bc6e796-6f2e-502b-bcc9-e3f93b4a8d43"))
+  (global_label "SPOT_EFUSE_ILIM"
+    (shape passive)
+    (at 52.07 81.28 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c35cad3e-8031-53b5-bbda-dfec54fa6c43")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 52.07 81.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 66.04 83.82)
+      (xy 52.07 83.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1d9ea4c4-d247-5bb7-83b5-2448205034f6"))
+  (global_label "SPOT_EFUSE_DVDT"
+    (shape passive)
+    (at 52.07 83.82 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "da179068-a955-5281-9c5a-f19ed5d38fa9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 52.07 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (no_connect
+    (at 66.04 86.36)
+    (uuid "f79e43ef-2763-57fb-bcd6-afc9f5b97fa8"))
+  (wire
+    (pts
+      (xy 66.04 88.9)
+      (xy 55.88 88.9))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "249d5416-a81a-5d11-8bf0-6f12464976d3"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 55.88 88.9 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "bd3a992f-6b8c-503b-b3dd-d2fedbfdf98b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 88.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 101.6 58.42)
+      (xy 115.57 58.42))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c5d85bf1-060d-5892-b2e7-1b4498dad886"))
+  (global_label "SPOT_EFUSE_IMON"
+    (shape passive)
+    (at 115.57 58.42 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8681a49c-3152-5204-8b2e-44c338b6ecf7")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 115.57 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 101.6 60.96)
+      (xy 115.57 60.96))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5e7bfcc0-52ad-573c-bc4b-317454ef68a0"))
+  (global_label "SPOT_EFUSE_FLT_N"
+    (shape passive)
+    (at 115.57 60.96 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f72783ec-eb28-52e9-834a-505949e6a374")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 115.57 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 101.6 66.04)
+      (xy 111.76 66.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f011a020-9987-5b06-aec8-76511172cf0f"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 111.76 66.04 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d2ae0b7d-f0e4-5b10-ba49-f3e278569a89")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 111.76 66.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 160.02 50.8 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "40fd14eb-a468-56e0-8507-4b156cced9ee")
+    (property "Reference" "R515"
+      (at 165.1 49.53 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "24.3k"
+      (at 165.1 52.07 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 160.02 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0724K3L"
+      (at 160.02 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 160.02 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 160.02 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R515")
+          (unit 1))))
+    (pin "1"
+      (uuid "2d16a0fb-ab82-57b8-aa27-83489da74396"))
+    (pin "2"
+      (uuid "e8288439-cbe0-557a-9ea4-7db2b9676a5c")))
+  (wire
+    (pts
+      (xy 160.02 46.99)
+      (xy 160.02 33.02))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4cc41bee-4aa6-5805-9006-a042c8b22fcc"))
+  (global_label "SPOT_EFUSE_ILIM"
+    (shape passive)
+    (at 160.02 33.02 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e3b3cfd0-8bc6-56b8-a26a-9a658af4eb45")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 160.02 33.02 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 160.02 54.61)
+      (xy 160.02 64.77))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f31ad223-0d54-5d42-96d7-85fbdfee18e2"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 160.02 64.77 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "6954aa7f-26ef-545f-8bc3-e8797eafa72d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 160.02 64.77 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 215.9 50.8 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "98067b9f-b7f4-51a1-83e2-541498f90cf5")
+    (property "Reference" "R516"
+      (at 220.98 49.53 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "402k"
+      (at 220.98 52.07 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 215.9 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-07402KL"
+      (at 215.9 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 215.9 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 215.9 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R516")
+          (unit 1))))
+    (pin "1"
+      (uuid "9ca8f320-5866-5580-af00-22ce30c744c3"))
+    (pin "2"
+      (uuid "15df21bf-570e-5f05-9564-119872957ef5")))
+  (wire
+    (pts
+      (xy 215.9 46.99)
+      (xy 215.9 33.02))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "09edcc89-61b1-524a-a0f5-24508fa2e99f"))
+  (global_label "SPOT_EFUSE_MODE"
+    (shape passive)
+    (at 215.9 33.02 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b973a887-e3d9-5436-841f-80e4c65d1539")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 215.9 33.02 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 215.9 54.61)
+      (xy 215.9 64.77))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a185914d-e003-5410-941e-042bb84418f3"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 215.9 64.77 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "3b36b16c-fdaf-575f-a04f-18292afdb2cc")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 215.9 64.77 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 271.78 50.8 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "20486fa0-c11c-5063-a26b-0a7c67e63454")
+    (property "Reference" "R517"
+      (at 276.86 49.53 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "210k"
+      (at 276.86 52.07 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 271.78 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-07210KL"
+      (at 271.78 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 271.78 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 271.78 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R517")
+          (unit 1))))
+    (pin "1"
+      (uuid "0fb1eee2-ddb5-582c-9ff4-2b7a3077844a"))
+    (pin "2"
+      (uuid "890bdf42-edea-5c6c-838a-e8e812e6c790")))
+  (wire
+    (pts
+      (xy 271.78 46.99)
+      (xy 271.78 36.83))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "31f7c217-b760-5ce3-aaac-0bc6779e5842"))
+  (global_label "V24_BUS"
+    (shape passive)
+    (at 271.78 36.83 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4d7237e8-8828-5361-a172-c7a87258a5b7")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 36.83 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 271.78 54.61)
+      (xy 271.78 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9b3d5788-9e79-5af0-b4cf-f7c8db0892e8"))
+  (global_label "SPOT_EFUSE_OVP"
+    (shape passive)
+    (at 271.78 68.58 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "76cf3bc5-51d8-582d-b5fc-d5946b256e48")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 68.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 271.78 88.9 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "b93b5119-a919-5f7a-8b43-562e7eae69dd")
+    (property "Reference" "R518"
+      (at 276.86 87.63 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10k"
+      (at 276.86 90.17 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 271.78 88.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 271.78 88.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 271.78 88.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 271.78 88.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R518")
+          (unit 1))))
+    (pin "1"
+      (uuid "2372cd62-ee9e-5096-aff4-7e0a9fc42050"))
+    (pin "2"
+      (uuid "190e2a9f-dfd0-5fac-8e93-6604a1f7cff8")))
+  (wire
+    (pts
+      (xy 271.78 85.09)
+      (xy 271.78 71.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5b805c60-900e-5beb-bf8c-4b2b318f1d58"))
+  (global_label "SPOT_EFUSE_OVP"
+    (shape passive)
+    (at 271.78 71.12 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c53c6f5b-f0cd-548e-ac08-63fd9e6880c3")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 71.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 271.78 92.71)
+      (xy 271.78 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2842200f-185a-52cf-9be4-7fb93904b492"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 271.78 102.87 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "34bccf03-4b3f-53f8-91d0-4e2bf5064792")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 102.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 160.02 116.84 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "6433ea7a-0db0-58b1-8546-ebf110b21225")
+    (property "Reference" "R519"
+      (at 165.1 115.57 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10k"
+      (at 165.1 118.11 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 160.02 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 160.02 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 160.02 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 160.02 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R519")
+          (unit 1))))
+    (pin "1"
+      (uuid "18692d09-21f4-585a-9b3b-1997e98f5394"))
+    (pin "2"
+      (uuid "276a5269-6e49-5b9c-9d46-e02714f788d8")))
+  (wire
+    (pts
+      (xy 160.02 113.03)
+      (xy 160.02 99.06))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1fc35159-f0e0-5e6a-9fd6-15894c680cc5"))
+  (global_label "SPOT_EFUSE_IMON"
+    (shape passive)
+    (at 160.02 99.06 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "abaf7b36-735a-57b6-827d-863619d177c5")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 160.02 99.06 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 160.02 120.65)
+      (xy 160.02 130.81))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "3cababcf-b358-5673-94da-ae4f321b81b7"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 160.02 130.81 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "14e8b2e5-afe1-5805-a42d-a3483bc89baf")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 160.02 130.81 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 215.9 116.84 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "376ac330-d239-50da-b4c1-a36f13a40a64")
+    (property "Reference" "R520"
+      (at 220.98 115.57 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10k"
+      (at 220.98 118.11 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 215.9 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 215.9 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 215.9 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 215.9 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R520")
+          (unit 1))))
+    (pin "1"
+      (uuid "c57213c9-96d2-5538-ab51-28d14f98b997"))
+    (pin "2"
+      (uuid "41641fd6-94ea-54fd-9532-5a8b585f56fa")))
+  (wire
+    (pts
+      (xy 215.9 113.03)
+      (xy 215.9 105.41))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8bca03a8-e8b9-5dd1-8717-b74e317af858"))
+  (global_label "+3V3"
+    (shape passive)
+    (at 215.9 105.41 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "386b06cd-14d4-5bf0-84fe-9a1400a38b2f")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 215.9 105.41 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 215.9 120.65)
+      (xy 215.9 134.62))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6a1789f5-557d-51ee-af5a-1e0fbe9757dd"))
+  (global_label "SPOT_EFUSE_FLT_N"
+    (shape passive)
+    (at 215.9 134.62 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "05ae6569-fcef-5255-b0cd-98abb7cfdac2")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 215.9 134.62 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 327.66 116.84 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1724fada-7817-5275-9e3b-625097e2ba8a")
+    (property "Reference" "R521"
+      (at 332.74 115.57 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "47k"
+      (at 332.74 118.11 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 327.66 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0747KL"
+      (at 327.66 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 327.66 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 327.66 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R521")
+          (unit 1))))
+    (pin "1"
+      (uuid "549097dc-b688-5059-8340-c659c235bf8b"))
+    (pin "2"
+      (uuid "5b0e9230-ab44-56b3-aa53-80fdcccb1171")))
+  (wire
+    (pts
+      (xy 327.66 113.03)
+      (xy 327.66 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c1568ebf-1735-5153-9287-9502c4d06e3e"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 327.66 102.87 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "98872399-b6d0-5b87-ae8a-47a913a46034")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 327.66 102.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 327.66 120.65)
+      (xy 327.66 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b1e02f2d-612d-5d33-85d0-0123db51b825"))
+  (global_label "GND"
+    (shape passive)
+    (at 327.66 128.27 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "6c16b447-59af-5d49-8813-0f5419ab2f23")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 327.66 128.27 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 160.02 83.82 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "d6035974-04cb-5aeb-bf5c-a30b39aadcc2")
+    (property "Reference" "C516"
+      (at 165.1 82.55 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "47nF 50V X7R"
+      (at 165.1 85.09 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 160.02 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "C1608X7R1H473K080AA"
+      (at 160.02 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 160.02 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1H473K080AA"
+      (at 160.02 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "C516")
+          (unit 1))))
+    (pin "1"
+      (uuid "6a807f46-78b3-5918-b486-3131411e2e7f"))
+    (pin "2"
+      (uuid "8808eb10-c8fa-5fd9-a22f-5d19202728e6")))
+  (wire
+    (pts
+      (xy 160.02 80.01)
+      (xy 160.02 66.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f3fe884d-d707-5509-9054-9fe52c99dd4d"))
+  (global_label "SPOT_EFUSE_DVDT"
+    (shape passive)
+    (at 160.02 66.04 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0fa43bc5-33cc-5ab8-b887-f94347ab547d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 160.02 66.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 160.02 87.63)
+      (xy 160.02 97.79))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f9cbc11c-5384-5512-a46a-8511175efa44"))
+  (global_label "SPOT_RTN"
+    (shape passive)
+    (at 160.02 97.79 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e36f455a-bb1a-552c-b180-8d251be6c852")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 160.02 97.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 27.94 111.76 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "c3aa1dbf-e6bd-5c3d-8c69-b44639627032")
+    (property "Reference" "C517"
+      (at 33.02 110.49 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "100nF 100V X7R"
+      (at 33.02 113.03 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 27.94 111.76 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM188R72A104KA35D"
+      (at 27.94 111.76 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 27.94 111.76 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.murata.com/products/productdetail?partno=GRM188R72A104KA35%23"
+      (at 27.94 111.76 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "C517")
+          (unit 1))))
+    (pin "1"
+      (uuid "61a4fc3d-f6f6-523c-9dc5-b57abb6c19c6"))
+    (pin "2"
+      (uuid "9f3838de-d29b-594f-963c-5b2fd1ab20d1")))
+  (wire
+    (pts
+      (xy 27.94 107.95)
+      (xy 27.94 97.79))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e8c4bf57-add5-5eff-9971-f3c7b8ccb447"))
+  (global_label "V24_BUS"
+    (shape passive)
+    (at 27.94 97.79 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "ac085505-9fa4-554c-b562-a6a9812e19f1")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 27.94 97.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 27.94 115.57)
+      (xy 27.94 123.19))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d2d2c10a-18f2-5270-b57b-e3a47a2ea091"))
+  (global_label "GND"
+    (shape passive)
+    (at 27.94 123.19 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a5130e61-a9e2-58e0-bbb0-7a04807b6457")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 27.94 123.19 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 327.66 83.82 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "5f30ff33-14df-5a3d-b780-dadf43061b51")
+    (property "Reference" "C518"
+      (at 332.74 82.55 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "100nF 100V X7R"
+      (at 332.74 85.09 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 327.66 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM188R72A104KA35D"
+      (at 327.66 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 327.66 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.murata.com/products/productdetail?partno=GRM188R72A104KA35%23"
+      (at 327.66 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "C518")
+          (unit 1))))
+    (pin "1"
+      (uuid "8d22936f-6fff-5768-8577-583f8e10006d"))
+    (pin "2"
+      (uuid "8331b268-6222-588b-8974-5a644b4f2744")))
+  (wire
+    (pts
+      (xy 327.66 87.63)
+      (xy 327.66 95.25))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d84a7fdb-7663-5bc7-bbe4-0952b5e0201c"))
+  (global_label "GND"
+    (shape passive)
+    (at 327.66 95.25 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c019549e-5f04-5844-9e5b-aaff65fc1b8a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 327.66 95.25 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:D_Schottky")
+    (at 381.0 83.82 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "a3cad361-68c2-5e1f-8ceb-9e8f71f8660a")
+    (property "Reference" "D501"
+      (at 381.0 76.2 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "60V output negative transient Schottky"
+      (at 381.0 78.74 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Diode_SMD:D_SMA"
+      (at 381.0 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "B160-13-F"
+      (at 381.0 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 381.0 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.diodes.com/datasheet/download/B130.pdf"
+      (at 381.0 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "D501")
+          (unit 1))))
+    (pin "1"
+      (uuid "d73ba8c0-cf0a-58dd-a8f7-4f3e09fb9ce8"))
+    (pin "2"
+      (uuid "7edb0c56-9fcc-5e51-9c31-88f0fd892887")))
+  (wire
+    (pts
+      (xy 377.19 83.82)
+      (xy 367.03 83.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "150aada3-2747-51fb-95e5-c3b57290d9a8"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 367.03 83.82 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e5bcb6b2-8c78-5c12-986a-4b42fee0c9a9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 367.03 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 384.81 83.82)
+      (xy 392.43 83.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "493f22aa-9452-509a-9d78-f6c7a79afaa1"))
+  (global_label "GND"
+    (shape passive)
+    (at 392.43 83.82 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "47f59e33-741f-50b6-bcfc-93e0b02469f5")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 392.43 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Driver_LED:AL8860WT")
+    (at 43.18 200.66 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2c1a6f6b-82bc-5c68-b64d-d0569247afaf")
+    (property "Reference" "U7"
+      (at 55.88 185.42 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "333mA spotlight CC driver"
+      (at 55.88 187.96 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Package_TO_SOT_SMD:TSOT-23-5"
+      (at 43.18 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "AL8860WT-7"
+      (at 43.18 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 43.18 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.diodes.com/datasheet/download/AL8860.pdf"
+      (at 43.18 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "U7")
+          (unit 1))))
+    (pin "1"
+      (uuid "561d59b2-77e3-545e-a644-3670a8244db9"))
+    (pin "2"
+      (uuid "8ee9d87f-2712-5153-87ba-eb3e2f0811d1"))
+    (pin "3"
+      (uuid "fc4b6352-8992-5ee9-8898-f7f9889010db"))
+    (pin "4"
+      (uuid "fa1836a0-181b-5302-a151-af1eba9c114c"))
+    (pin "5"
+      (uuid "62bf7a14-b7b1-5782-a76e-059cb5dc7b09")))
+  (wire
+    (pts
+      (xy 43.18 208.28)
+      (xy 43.18 215.9))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e8da7256-2558-575e-9dbf-8cd6027c10e1"))
+  (global_label "GND"
+    (shape passive)
+    (at 43.18 215.9 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8c734448-00bc-5143-8e12-d4d68600d384")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 43.18 215.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 33.02 198.12)
+      (xy 21.59 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "39e6de8c-4646-5a4f-bbb1-fc8fb07abb3b"))
+  (global_label "SPOT1_CTRL"
+    (shape passive)
+    (at 21.59 198.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f3a76161-0c8c-5773-80a0-5aad5abceda9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 21.59 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 83.82 170.18 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "9abb868f-18ee-5e7c-b9c8-d68a707ba6e7")
+    (property "Reference" "R523"
+      (at 88.9 168.91 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "0.300ohm 1% 0.125W"
+      (at 88.9 171.45 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+      (at 83.82 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "ERJ-6RQFR30V"
+      (at 83.82 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 83.82 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://industrial.panasonic.com/ww/products/pt/current-sensing-chip-resistors/models/ERJ6RQFR30V"
+      (at 83.82 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R523")
+          (unit 1))))
+    (pin "1"
+      (uuid "264a6003-8103-51ac-9f08-b5ba9c52c632"))
+    (pin "2"
+      (uuid "07cbd70e-b1f5-539a-b848-f805090398bc")))
+  (symbol
+    (lib_id "Device:R")
+    (at 22.86 229.87 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "37beb0bd-29cb-5089-9251-e9cdfa4cd66b")
+    (property "Reference" "R526"
+      (at 27.94 228.6 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10k"
+      (at 27.94 231.14 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 22.86 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 22.86 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 22.86 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 22.86 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R526")
+          (unit 1))))
+    (pin "1"
+      (uuid "57b1fc66-2a06-50e2-ab33-994b25f9b8f1"))
+    (pin "2"
+      (uuid "7705513d-7c4f-5607-a21f-871ec021449c")))
+  (wire
+    (pts
+      (xy 22.86 226.06)
+      (xy 22.86 214.63))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b2cc2267-6584-5419-a489-347ad3ef9651"))
+  (global_label "SPOT1_CTRL"
+    (shape passive)
+    (at 22.86 214.63 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a4271cbf-f2a6-546e-a115-523189f41fd7")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 22.86 214.63 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 22.86 233.68)
+      (xy 22.86 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1bb7f624-cfe5-5920-96c1-5bd2db2b4aff"))
+  (global_label "GND"
+    (shape passive)
+    (at 22.86 241.3 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c9a1d3ab-21bd-5514-ac9c-323ac9d96224")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 22.86 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:L")
+    (at 114.3 224.79 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "b0a3482c-f634-53d1-8a64-86f4a65d891c")
+    (property "Reference" "L502"
+      (at 119.38 223.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "220uH +/-20%, .6A RMS .7A saturation"
+      (at 119.38 226.06 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "ELF:L_Bourns_SRN6045"
+      (at 114.3 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "SRN6045-221M"
+      (at 114.3 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 114.3 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/SRN6045.pdf"
+      (at 114.3 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "L502")
+          (unit 1))))
+    (pin "1"
+      (uuid "fe232551-7315-5f6c-ac06-c69e4fa1781f"))
+    (pin "2"
+      (uuid "82aba325-82b3-55e9-8398-78bcd7a785e7")))
+  (wire
+    (pts
+      (xy 114.3 220.98)
+      (xy 114.3 207.01))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "552d838a-9304-57c0-8aed-376a7eb6ab65"))
+  (global_label "SPOT1_LED_MINUS"
+    (shape passive)
+    (at 114.3 207.01 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "28270337-718e-5736-be9b-db1ca21cc3d8")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 114.3 207.01 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:D_Schottky")
+    (at 134.62 199.39 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "fd8083c5-0029-5b71-8a03-24e33542150d")
+    (property "Reference" "D502"
+      (at 134.62 191.77 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "60V 1A flyback Schottky"
+      (at 134.62 194.31 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Diode_SMD:D_SMA"
+      (at 134.62 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "B160-13-F"
+      (at 134.62 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 134.62 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.diodes.com/datasheet/download/B130.pdf"
+      (at 134.62 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "D502")
+          (unit 1))))
+    (pin "1"
+      (uuid "fd2e60f8-fa15-590b-b9d2-c7579b688678"))
+    (pin "2"
+      (uuid "416257a0-80f2-5182-88f8-9774146b0f3c")))
+  (symbol
+    (lib_id "Device:C")
+    (at 22.86 175.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "e3d9895b-0aa7-5e45-8cb2-db0e4e7ea874")
+    (property "Reference" "C519"
+      (at 27.94 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10uF 50V X7R"
+      (at 27.94 176.53 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+      (at 22.86 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM32ER71H106KA12L"
+      (at 22.86 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 22.86 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-04A.pdf"
+      (at 22.86 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "C519")
+          (unit 1))))
+    (pin "1"
+      (uuid "8becbf29-0aff-5dd1-ba10-f021cdbb338c"))
+    (pin "2"
+      (uuid "d2d9f8d8-c0d3-5d1b-b37f-514e6d0e0b32")))
+  (wire
+    (pts
+      (xy 22.86 171.45)
+      (xy 22.86 161.29))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a8925aca-8ae6-5a5a-b551-7a84d17723b9"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 22.86 161.29 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "9d46b839-0fbc-550e-afdd-920dc534b75d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 22.86 161.29 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 22.86 179.07)
+      (xy 22.86 186.69))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fee036a6-dc40-5b25-8301-64ce09cfc396"))
+  (global_label "GND"
+    (shape passive)
+    (at 22.86 186.69 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4d70333c-bd0b-5a87-ab39-a36646509dea")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 22.86 186.69 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 45.72 175.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "62913110-e7b7-5c0d-8866-2e7f716af09a")
+    (property "Reference" "C520"
+      (at 50.8 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10uF 50V X7R"
+      (at 50.8 176.53 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+      (at 45.72 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM32ER71H106KA12L"
+      (at 45.72 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 45.72 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-04A.pdf"
+      (at 45.72 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "C520")
+          (unit 1))))
+    (pin "1"
+      (uuid "b36b6b84-6e8b-5cf5-bc79-be2608502be2"))
+    (pin "2"
+      (uuid "3a4bb166-697c-567a-8c79-55d2e95a881f")))
+  (wire
+    (pts
+      (xy 45.72 171.45)
+      (xy 45.72 161.29))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "86c24d55-ecd7-5bce-a1c0-09d4b6a4467d"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 45.72 161.29 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "53a3f340-f30e-50b3-9b4e-889005e5cc42")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 45.72 161.29 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 45.72 179.07)
+      (xy 45.72 186.69))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6b631a24-2ef8-5a46-8bf7-59bfcfd3b56e"))
+  (global_label "GND"
+    (shape passive)
+    (at 45.72 186.69 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b71d2d53-eb85-553d-8a36-df858eb6c25b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 45.72 186.69 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Driver_LED:AL8860WT")
+    (at 172.72 200.66 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "7dfb1fcd-a67f-58b6-a2aa-cb3dd57f445e")
+    (property "Reference" "U8"
+      (at 185.42 185.42 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "333mA spotlight CC driver"
+      (at 185.42 187.96 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Package_TO_SOT_SMD:TSOT-23-5"
+      (at 172.72 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "AL8860WT-7"
+      (at 172.72 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 172.72 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.diodes.com/datasheet/download/AL8860.pdf"
+      (at 172.72 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "U8")
+          (unit 1))))
+    (pin "1"
+      (uuid "e46fbaea-74f6-52f6-80ee-f9e6c2eaa5b8"))
+    (pin "2"
+      (uuid "e25ec444-80d4-5edb-ab76-2e478d4aa35a"))
+    (pin "3"
+      (uuid "b7050328-3b8b-5599-a01d-cd7bc73373f0"))
+    (pin "4"
+      (uuid "4fdd9d17-47f3-5280-b9d2-633b0c7833e5"))
+    (pin "5"
+      (uuid "f55300a7-d62d-567b-a924-7bfb4c8ee13b")))
+  (wire
+    (pts
+      (xy 172.72 208.28)
+      (xy 172.72 215.9))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a05161c9-57c1-5f05-a3d0-c017548e0fd6"))
+  (global_label "GND"
+    (shape passive)
+    (at 172.72 215.9 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2e36a06b-99ec-5277-890d-966fe3ee37c6")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 172.72 215.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 162.56 198.12)
+      (xy 151.13 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d3497a8a-beb8-5a07-a06e-045d283720d2"))
+  (global_label "SPOT2_CTRL"
+    (shape passive)
+    (at 151.13 198.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2c9da33d-f2dc-53f5-a43d-16d4d2bdc013")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 151.13 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 213.36 170.18 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "30597aea-554c-5422-bbd1-c46468f80ea3")
+    (property "Reference" "R524"
+      (at 218.44 168.91 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "0.300ohm 1% 0.125W"
+      (at 218.44 171.45 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+      (at 213.36 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "ERJ-6RQFR30V"
+      (at 213.36 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 213.36 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://industrial.panasonic.com/ww/products/pt/current-sensing-chip-resistors/models/ERJ6RQFR30V"
+      (at 213.36 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R524")
+          (unit 1))))
+    (pin "1"
+      (uuid "d638863c-5f06-5597-aa9e-55139a509adc"))
+    (pin "2"
+      (uuid "c2f996e0-9e55-5880-93bd-d301c816286b")))
+  (symbol
+    (lib_id "Device:R")
+    (at 152.4 229.87 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f4da3f22-249a-5935-af07-50f66c95aa98")
+    (property "Reference" "R527"
+      (at 157.48 228.6 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10k"
+      (at 157.48 231.14 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 152.4 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 152.4 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 152.4 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 152.4 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R527")
+          (unit 1))))
+    (pin "1"
+      (uuid "2cbd59e5-f49e-5e66-aa04-8b3c9e5414f8"))
+    (pin "2"
+      (uuid "0c4bd0b1-aecc-5b05-8294-63865792ce8d")))
+  (wire
+    (pts
+      (xy 152.4 226.06)
+      (xy 152.4 214.63))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "825a4499-e8f1-5583-9774-2816a371da2c"))
+  (global_label "SPOT2_CTRL"
+    (shape passive)
+    (at 152.4 214.63 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "117562b2-5ab7-5e51-b09e-e17db25d3a9d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 152.4 214.63 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 152.4 233.68)
+      (xy 152.4 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9cda410e-a9c3-5813-9709-f72130eb111a"))
+  (global_label "GND"
+    (shape passive)
+    (at 152.4 241.3 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "bfe258fc-7789-5667-8514-26dd47491695")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 152.4 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:L")
+    (at 243.84 224.79 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "ebed6249-ea96-5b68-b40e-0da6f7a0d22a")
+    (property "Reference" "L503"
+      (at 248.92 223.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "220uH +/-20%, .6A RMS .7A saturation"
+      (at 248.92 226.06 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "ELF:L_Bourns_SRN6045"
+      (at 243.84 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "SRN6045-221M"
+      (at 243.84 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 243.84 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/SRN6045.pdf"
+      (at 243.84 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "L503")
+          (unit 1))))
+    (pin "1"
+      (uuid "7dfbc783-3bab-5fa5-8326-5dc695420df5"))
+    (pin "2"
+      (uuid "b5f863bb-b400-5a3e-a405-8fd08c172e4f")))
+  (wire
+    (pts
+      (xy 243.84 220.98)
+      (xy 243.84 207.01))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ecea88a3-31f8-54ad-a76d-cd78bba12da1"))
+  (global_label "SPOT2_LED_MINUS"
+    (shape passive)
+    (at 243.84 207.01 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2a1351bd-b984-5fb7-8d50-44675266715d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 243.84 207.01 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:D_Schottky")
+    (at 264.16 199.39 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "c6a15c8a-d107-5a6d-97b9-5ba339d5822c")
+    (property "Reference" "D503"
+      (at 264.16 191.77 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "60V 1A flyback Schottky"
+      (at 264.16 194.31 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Diode_SMD:D_SMA"
+      (at 264.16 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "B160-13-F"
+      (at 264.16 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 264.16 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.diodes.com/datasheet/download/B130.pdf"
+      (at 264.16 199.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "D503")
+          (unit 1))))
+    (pin "1"
+      (uuid "70660e54-c4f3-5f9b-b3cf-ad32b4352e2b"))
+    (pin "2"
+      (uuid "dd21bf49-a9e1-5503-b77e-0949bf9b123f")))
+  (symbol
+    (lib_id "Device:C")
+    (at 152.4 175.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "d8baa73c-0eea-5017-98c6-5f079991f0ac")
+    (property "Reference" "C521"
+      (at 157.48 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10uF 50V X7R"
+      (at 157.48 176.53 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+      (at 152.4 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM32ER71H106KA12L"
+      (at 152.4 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 152.4 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-04A.pdf"
+      (at 152.4 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "C521")
+          (unit 1))))
+    (pin "1"
+      (uuid "118aa896-c5b1-5803-9d88-2f6377b1e2c0"))
+    (pin "2"
+      (uuid "20926b34-9bda-59e5-909e-d572e3287bbf")))
+  (wire
+    (pts
+      (xy 152.4 171.45)
+      (xy 152.4 161.29))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4bc7c4c6-d2bf-56d5-9d2d-4aa34e710201"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 152.4 161.29 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "cfae5cd9-f255-5f1e-8795-4bb6847f8633")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 152.4 161.29 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 152.4 179.07)
+      (xy 152.4 186.69))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8aae8ba0-d52d-56fd-b4f3-f284ad37da5c"))
+  (global_label "GND"
+    (shape passive)
+    (at 152.4 186.69 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "65676778-7c66-5733-a1df-5692ee8a37e3")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 152.4 186.69 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 175.26 175.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "e55183ad-a080-5ae2-9b7e-68487662f462")
+    (property "Reference" "C522"
+      (at 180.34 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10uF 50V X7R"
+      (at 180.34 176.53 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+      (at 175.26 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM32ER71H106KA12L"
+      (at 175.26 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 175.26 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-04A.pdf"
+      (at 175.26 175.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "C522")
+          (unit 1))))
+    (pin "1"
+      (uuid "2393151c-30f7-5c4f-bc90-60363359f0a8"))
+    (pin "2"
+      (uuid "fb534c2d-456d-5701-8f32-0a4290ee216e")))
+  (wire
+    (pts
+      (xy 175.26 171.45)
+      (xy 175.26 161.29))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fdab6cab-0aca-5ce0-94b8-e4ad47853be1"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 175.26 161.29 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b248ace9-101d-59c5-a528-fb51ccdb4d96")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 175.26 161.29 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 175.26 179.07)
+      (xy 175.26 186.69))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "87b96eb6-2273-51db-997f-e11b7cdc80a9"))
+  (global_label "GND"
+    (shape passive)
+    (at 175.26 186.69 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "235d6583-b5d3-53d7-b667-0346f9d4aaaa")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 175.26 186.69 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Driver_LED:AL8860WT")
+    (at 302.26 200.66 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2be0ea25-5fdd-5ab9-a3da-95c64ced5c95")
+    (property "Reference" "U9"
+      (at 314.96 185.42 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "333mA spotlight CC driver"
+      (at 314.96 187.96 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Package_TO_SOT_SMD:TSOT-23-5"
+      (at 302.26 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "AL8860WT-7"
+      (at 302.26 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 302.26 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.diodes.com/datasheet/download/AL8860.pdf"
+      (at 302.26 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "U9")
+          (unit 1))))
+    (pin "1"
+      (uuid "8c9b9d4e-ed7b-5232-a358-b5b331655c31"))
+    (pin "2"
+      (uuid "5793ae1a-1864-5b16-bed1-279e98f4b8fb"))
+    (pin "3"
+      (uuid "7164d233-41dd-5c2e-b313-06c9fef989b7"))
+    (pin "4"
+      (uuid "46f9c97f-2f30-5ebb-90b7-eb3d9441e93e"))
+    (pin "5"
+      (uuid "028911fb-0158-5cff-8cec-c92f315814dd")))
+  (wire
+    (pts
+      (xy 302.26 208.28)
+      (xy 302.26 215.9))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e29e2e5d-7350-51ef-b896-da6c88c086f8"))
+  (global_label "GND"
+    (shape passive)
+    (at 302.26 215.9 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8e1c3232-1cc7-56a1-b74b-975c46f79887")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 302.26 215.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 292.1 198.12)
+      (xy 280.67 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "3d943105-d8c7-53b8-af73-8ec5325d814b"))
+  (global_label "SPOT3_CTRL"
+    (shape passive)
+    (at 280.67 198.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "de74e54b-6f45-5879-a152-e56a52ee39de")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 280.67 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 342.9 170.18 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "10bf8501-9507-5dba-9fbf-20682bac4b0e")
+    (property "Reference" "R525"
+      (at 347.98 168.91 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "0.300ohm 1% 0.125W"
+      (at 347.98 171.45 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+      (at 342.9 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "ERJ-6RQFR30V"
+      (at 342.9 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 342.9 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://industrial.panasonic.com/ww/products/pt/current-sensing-chip-resistors/models/ERJ6RQFR30V"
+      (at 342.9 170.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R525")
+          (unit 1))))
+    (pin "1"
+      (uuid "d8d22404-a839-51d0-8f88-725b3aa65045"))
+    (pin "2"
+      (uuid "14b0ce30-c7bd-52c0-8e7e-22d2097d4aa7")))
+  (symbol
+    (lib_id "Device:R")
+    (at 281.94 229.87 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2e14066c-c904-5d4b-9f2f-694efd618c47")
+    (property "Reference" "R528"
+      (at 287.02 228.6 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10k"
+      (at 287.02 231.14 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 281.94 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 281.94 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 281.94 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 281.94 229.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "R528")
+          (unit 1))))
+    (pin "1"
+      (uuid "cf79a784-eabf-53b6-b902-7a1a4addc665"))
+    (pin "2"
+      (uuid "7ed0a518-6fea-52cc-8108-0ad0e2bc0a1f")))
+  (wire
+    (pts
+      (xy 281.94 226.06)
+      (xy 281.94 214.63))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fdb28cff-5db6-5825-9536-3c0d2fe95566"))
+  (global_label "SPOT3_CTRL"
+    (shape passive)
+    (at 281.94 214.63 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "de258a5e-124b-5bd8-afa1-853fb6212ed2")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 281.94 214.63 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 281.94 233.68)
+      (xy 281.94 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "441167a9-cd88-5bda-bb80-ebc1db335770"))
+  (global_label "GND"
+    (shape passive)
+    (at 281.94 241.3 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "6c3f5d00-db32-5299-857b-edfc6e33fca9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 281.94 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:L")
+    (at 373.38 224.79 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "80024a4f-8fdd-58d3-950f-7f05357dbf96")
+    (property "Reference" "L504"
+      (at 378.46 223.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "220uH +/-20%, .6A RMS .7A saturation"
+      (at 378.46 226.06 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "ELF:L_Bourns_SRN6045"
+      (at 373.38 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "SRN6045-221M"
+      (at 373.38 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 373.38 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/SRN6045.pdf"
+      (at 373.38 224.79 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/ead6f891-c194-50ac-9fcc-1c2451f85dcc"
+          (reference "L504")
+          (unit 1))))
+    (pin "1"
+      (uuid "ee400344-aea6-586e-9004-aedfee88c2fd"))
+    (pin "2"
+      (uuid "1d460d32-3fa4-5280-b17f-f5c67fec4c03")))
+  (wire
+    (pts
+      (xy 373.38 220.98)
+      (xy 373.38 207.01))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "61e20753-3fd7-5afd-91d9-84e8c74bce7a"))
+  (global_label "SPOT3_LED_MINUS"
+    (shape passive)
+    (at 373.38 207.01 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a1bc8e41-7102-5660-b59b-a99f8d856b50")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 373.38 207.01 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 101.6 63.5)
+      (xy 327.66 63.5))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "214397bb-c449-5549-b5af-fe2152dd8029"))
+  (wire
+    (pts
+      (xy 327.66 63.5)
+      (xy 327.66 80.01))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fd24f9ff-e7a8-5cce-948c-e8e19994a8f2"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 327.66 63.5 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2efca561-6d77-5674-b752-2fbd7da646b9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 327.66 63.5 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 83.82 173.99)
+      (xy 83.82 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "18794387-e942-5b87-8d3b-a7b1ded7c790"))
+  (wire
+    (pts
+      (xy 83.82 198.12)
+      (xy 53.34 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5ba838b2-58bb-5f57-be0e-2bd8162a0eb3"))
+  (global_label "SPOT1_LED_PLUS"
+    (shape passive)
+    (at 83.82 198.12 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b529ad4b-5d51-52ce-b2ea-179c6f909203")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 83.82 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 53.34 203.2)
+      (xy 53.34 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "38cb7b21-17b5-5239-a83e-1f780b3b28f8"))
+  (wire
+    (pts
+      (xy 53.34 242.57)
+      (xy 114.3 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "442efba8-59ea-592e-b2f7-71e9ed42ae65"))
+  (wire
+    (pts
+      (xy 114.3 242.57)
+      (xy 114.3 228.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "628f20f3-5311-508b-9b0c-9387d66baf20"))
+  (global_label "SPOT1_SW"
+    (shape passive)
+    (at 53.34 242.57 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "1ca12918-e546-5cac-8518-cadf857948ef")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 53.34 242.57 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 114.3 242.57)
+      (xy 138.43 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c7387c23-8319-5af7-a096-8b898ca82217"))
+  (wire
+    (pts
+      (xy 138.43 242.57)
+      (xy 138.43 199.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8aeb3502-8aad-5381-b99c-f009218f2071"))
+  (wire
+    (pts
+      (xy 83.82 166.37)
+      (xy 130.81 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "420601fe-5476-5583-a991-a91cca3c993d"))
+  (wire
+    (pts
+      (xy 130.81 166.37)
+      (xy 130.81 199.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "86e47f85-2810-5ce6-91b8-ca4e0db9c528"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 130.81 166.37 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b4cad4ee-c4ef-527c-b744-c29dad39ecbe")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 130.81 166.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 83.82 166.37)
+      (xy 43.18 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8a02ed0b-1775-52b7-8ece-f31485e4de7c"))
+  (wire
+    (pts
+      (xy 43.18 166.37)
+      (xy 43.18 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "55b81c38-ba6a-51ac-a113-a3e5b70be5c1"))
+  (wire
+    (pts
+      (xy 213.36 173.99)
+      (xy 213.36 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "12b3fb2c-ec02-5d1a-819f-16f13a76f27d"))
+  (wire
+    (pts
+      (xy 213.36 198.12)
+      (xy 182.88 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "461f04e2-787c-57d2-979b-cb41baecd8ed"))
+  (global_label "SPOT2_LED_PLUS"
+    (shape passive)
+    (at 213.36 198.12 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e331d0d9-010c-58c5-92f3-d33874e6412b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 213.36 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 182.88 203.2)
+      (xy 182.88 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "bb5ee545-cac1-5082-8867-60ffee946579"))
+  (wire
+    (pts
+      (xy 182.88 242.57)
+      (xy 243.84 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "cc20f7db-a774-5ca7-a877-a7a9af0f9d59"))
+  (wire
+    (pts
+      (xy 243.84 242.57)
+      (xy 243.84 228.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d81fb0bf-be63-56ea-8f9b-50ef07102f01"))
+  (global_label "SPOT2_SW"
+    (shape passive)
+    (at 182.88 242.57 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "92b7878d-771b-556d-9290-6493f9ff9cb2")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 182.88 242.57 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 243.84 242.57)
+      (xy 267.97 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4bd7055d-2859-5b87-975c-77c7e58ff55f"))
+  (wire
+    (pts
+      (xy 267.97 242.57)
+      (xy 267.97 199.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "04801f81-bd45-54ed-8cef-dfcba8783ec6"))
+  (wire
+    (pts
+      (xy 213.36 166.37)
+      (xy 260.35 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "76137ae6-9a50-56b9-ab02-1263b36f159c"))
+  (wire
+    (pts
+      (xy 260.35 166.37)
+      (xy 260.35 199.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a2e8550f-23b1-57ae-beb2-23fc880c7854"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 260.35 166.37 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d10b5ad9-7f73-5359-92cb-a9b065ba9f68")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 260.35 166.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 213.36 166.37)
+      (xy 172.72 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "956d6947-f400-59b1-8bf8-912aaf2ded02"))
+  (wire
+    (pts
+      (xy 172.72 166.37)
+      (xy 172.72 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5f24ecef-e89a-5b4c-a72b-1f2e6c2af65d"))
+  (wire
+    (pts
+      (xy 342.9 173.99)
+      (xy 342.9 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "bcc46184-0695-58f1-b5af-b5350db72fa1"))
+  (wire
+    (pts
+      (xy 342.9 198.12)
+      (xy 312.42 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0efd341f-c425-5a16-865c-fd87547c06d8"))
+  (global_label "SPOT3_LED_PLUS"
+    (shape passive)
+    (at 342.9 198.12 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7379d289-d997-5b16-b621-a1d19d971261")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 342.9 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 312.42 203.2)
+      (xy 312.42 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6c04cc01-0d9c-57f4-b1e5-215ce8ad42ae"))
+  (wire
+    (pts
+      (xy 312.42 242.57)
+      (xy 373.38 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e0fcfff6-f400-5a57-88f0-a77cadd4ae6a"))
+  (wire
+    (pts
+      (xy 373.38 242.57)
+      (xy 373.38 228.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9c483f58-4995-5484-846a-a7b3d06d0371"))
+  (global_label "SPOT3_SW"
+    (shape passive)
+    (at 312.42 242.57 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e204fe9c-5c22-5905-b7af-5fcadd7e7fdf")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 312.42 242.57 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 342.9 166.37)
+      (xy 302.26 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2f92f3ea-40cc-5d7e-a921-119c7fb564c2"))
+  (wire
+    (pts
+      (xy 302.26 166.37)
+      (xy 302.26 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ea1b9d58-7288-5924-85ac-0a411f8c97c6"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 302.26 166.37 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "009ec47f-7044-5b65-aa8f-05dad1a3e720")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 302.26 166.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (junction
+    (at 114.3 242.57)
+    (diameter 0)
+    (color 0 0 0 0)
+    (uuid "18af3cfb-f4c8-51cc-a4f9-cb8148713843"))
+  (junction
+    (at 243.84 242.57)
+    (diameter 0)
+    (color 0 0 0 0)
+    (uuid "88603875-fab0-522d-b21a-0efb906afc7f"))
+  (text "SPOT 1"
+    (at 20.32 15.24 0)
+    (effects
+      (font
+        (size 2.54 2.54))
+      (justify left top))
+    (uuid "36cf7831-c5ee-5f7a-8b5a-da4ce8ad37eb"))
+  (text "INDEPENDENT SPOT SUPPLY INHIBIT / 0.494 A NOMINAL"
+    (at 20.32 27.94 0)
+    (effects
+      (font
+        (size 1.8 1.8))
+      (justify left top))
+    (uuid "9ed06d16-d1bd-5c54-b7ef-576d2016eabb"))
+  (text "SPOT_RTN belongs to U14: do not join it to GND. Stored charge remains after inhibition."
+    (at 20.32 134.62 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "4e7299d4-2ef5-5659-83ed-c1be95476f4a"))
+  (text "SPOT 1 / 333 mA nominal"
+    (at 22.86 149.86 0)
+    (effects
+      (font
+        (size 1.5 1.5))
+      (justify left top))
+    (uuid "ec72f3e8-2d66-5e21-87b4-6fe35f6ae5bb"))
+  (text "Paired LED output -> J9 / spot_2"
+    (at 22.86 247.65 0)
+    (effects
+      (font
+        (size 1.05 1.05))
+      (justify left top))
+    (uuid "2d57dd88-5c15-58bf-b331-ee3015495fe4"))
+  (text "SPOT 2 / 333 mA nominal"
+    (at 152.4 149.86 0)
+    (effects
+      (font
+        (size 1.5 1.5))
+      (justify left top))
+    (uuid "8d183cbd-96cf-562f-b5de-6029d6bcd08a"))
+  (text "Paired LED output -> J10 / spot_2"
+    (at 152.4 247.65 0)
+    (effects
+      (font
+        (size 1.05 1.05))
+      (justify left top))
+    (uuid "5c650f0b-170e-5a16-ba2c-50ad66457cfc"))
+  (text "SPOT 3 / 333 mA nominal"
+    (at 281.94 149.86 0)
+    (effects
+      (font
+        (size 1.5 1.5))
+      (justify left top))
+    (uuid "957735ba-6fa7-579b-b4bb-d2ae9e064672"))
+  (text "Paired LED output -> J11 / spot_2"
+    (at 281.94 247.65 0)
+    (effects
+      (font
+        (size 1.05 1.05))
+      (justify left top))
+    (uuid "05732e7b-6506-5014-be16-4f043e6145f9"))
+  (text "CH3 diode/input capacitors continue on spot_2."
+    (at 233.68 139.7 0)
+    (effects
+      (font
+        (size 1.05 1.05))
+      (justify left top))
+    (uuid "2afbb7b6-c1a7-51fe-adc3-2898829972c5"))
+  (embedded_fonts no))

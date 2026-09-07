@@ -1,0 +1,1619 @@
+(kicad_sch
+  (version 20250114)
+  (generator "engineered-lighting")
+  (generator_version "0.2")
+  (uuid "f56a644a-f622-5a5f-90d2-a3e7b0d554ed")
+  (paper "A3")
+  (title_block
+    (title "Monitor Expansion")
+    (date "2026-09-06")
+    (rev "A draft")
+    (company "Engineered Lighting")
+    (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
+  (lib_symbols
+    (symbol "Sensor_Temperature:TMP112xxDRL"
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (symbol "TMP112xxDRL_0_1"
+        (rectangle
+          (start -7.62 7.62)
+          (end 7.62 -7.62)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background))))
+      (symbol "TMP112xxDRL_1_1"
+        (polyline
+          (pts
+            (xy 2.413 1.905)
+            (xy 2.413 -1.27))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 2.413 1.905)
+            (xy 3.048 1.905))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 2.413 1.27)
+            (xy 3.048 1.27))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 2.413 0.635)
+            (xy 3.048 0.635))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 2.413 0)
+            (xy 3.048 0))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 2.413 -0.635)
+            (xy 3.048 -0.635))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start 2.413 1.905)
+          (mid 3.048 2.5373)
+          (end 3.683 1.905)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (circle
+          (center 3.048 -3.81)
+          (radius 1.27)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline)))
+        (polyline
+          (pts
+            (xy 3.683 1.905)
+            (xy 3.683 -1.27))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 3.683 -3.175)
+          (end 2.413 -1.27)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline)))
+        (pin input line
+          (at -10.16 2.54 0)
+          (length 2.54)
+          (name "SCL"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin power_in line
+          (at 0 -10.16 90)
+          (length 2.54)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin open_collector line
+          (at 10.16 5.08 180)
+          (length 2.54)
+          (name "ALERT"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin input line
+          (at -10.16 -2.54 0)
+          (length 2.54)
+          (name "ADD0"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin power_in line
+          (at 0 10.16 270)
+          (length 2.54)
+          (name "V+"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at -10.16 5.08 0)
+          (length 2.54)
+          (name "SDA"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "6"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no)
+      (property "Reference" "U"
+        (at -2.54 10.795 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify right)))
+      (property "Value" "TMP112xxDRL"
+        (at -2.54 8.89 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify right)))
+      (property "Footprint" "Package_TO_SOT_SMD:SOT-563"
+        (at 1.27 -8.89 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tmp112.pdf"
+        (at 1.27 -11.43 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Description" "Digital Temperature Sensor with I2C/SMBus/Two-wire Interface, 12 bits, ±1°C, one-shot conversion, alert, nist traceable, SOT-563"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "digital temperature sensor i2c smbus two-wire nist"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "SOT?563*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27)))))
+    (symbol "Device:C"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.254))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "C"
+        (at 0.635 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "C"
+        (at 0.635 -2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" ""
+        (at 0.9652 -3.81 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Unpolarized capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "cap capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "C_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "C_0_1"
+        (polyline
+          (pts
+            (xy -2.032 0.762)
+            (xy 2.032 0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -2.032 -0.762)
+            (xy 2.032 -0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "C_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Connector_Generic:Conn_01x07"
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "J"
+        (at 0 10.16 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "Conn_01x07"
+        (at 0 -10.16 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "connector"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "Connector*:*_1x??_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "Conn_01x07_1_1"
+        (rectangle
+          (start -1.27 8.89)
+          (end 1.27 -8.89)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background)))
+        (rectangle
+          (start -1.27 7.747)
+          (end 0 7.493)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 5.207)
+          (end 0 4.953)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 2.667)
+          (end 0 2.413)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 0.127)
+          (end 0 -0.127)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -2.413)
+          (end 0 -2.667)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -4.953)
+          (end 0 -5.207)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -7.493)
+          (end 0 -7.747)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (pin passive line
+          (at -5.08 7.62 0)
+          (length 3.81)
+          (name "Pin_1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 5.08 0)
+          (length 3.81)
+          (name "Pin_2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 2.54 0)
+          (length 3.81)
+          (name "Pin_3"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 0 0)
+          (length 3.81)
+          (name "Pin_4"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -2.54 0)
+          (length 3.81)
+          (name "Pin_5"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -5.08 0)
+          (length 3.81)
+          (name "Pin_6"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "6"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -7.62 0)
+          (length 3.81)
+          (name "Pin_7"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "7"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Connector:TestPoint"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.762)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "TP"
+        (at 0 6.858 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "TestPoint"
+        (at 0 5.08 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 5.08 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 5.08 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "test point"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "test point tp"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "Pin* Test*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "TestPoint_0_1"
+        (circle
+          (center 0 3.302)
+          (radius 0.762)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "TestPoint_1_1"
+        (pin passive line
+          (at 0 0 90)
+          (length 2.54)
+          (name "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Mechanical:MountingHole"
+      (pin_names
+        (offset 1.016))
+      (exclude_from_sim no)
+      (in_bom no)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "H"
+        (at 0 5.08 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "MountingHole"
+        (at 0 3.175 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Mounting Hole without connection"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "mounting hole"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "MountingHole*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "MountingHole_0_1"
+        (circle
+          (center 0 0)
+          (radius 1.27)
+          (stroke
+            (width 1.27)
+            (type default))
+          (fill
+            (type none))))
+      (embedded_fonts no)))
+  (symbol
+    (lib_id "Sensor_Temperature:TMP112xxDRL")
+    (at 55.88 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "e52ebfce-f114-5573-8639-7c6c9aaa4198")
+    (property "Reference" "U20"
+      (at 68.58 43.18 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "TMP112AIDRLR"
+      (at 68.58 45.72 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-563"
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "TMP112AIDRLR"
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Texas Instruments"
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tmp112.pdf"
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "U20")
+          (unit 1))))
+    (pin "1"
+      (uuid "94e0ec05-88f9-5976-9dcc-c36987fc5dee"))
+    (pin "2"
+      (uuid "c32c59a6-fbb3-503b-a7a1-25d9357b1bd4"))
+    (pin "3"
+      (uuid "e39f8202-fca7-50c7-9b02-51efb9ec704a"))
+    (pin "4"
+      (uuid "1f700e52-7168-5e1f-a44f-d3801b4b8f79"))
+    (pin "5"
+      (uuid "8b888d12-710b-5e3c-889a-fa574e01fb42"))
+    (pin "6"
+      (uuid "78bf8194-6bfa-56df-8f9d-a07ece260319")))
+  (wire
+    (pts
+      (xy 45.72 58.42)
+      (xy 35.56 58.42))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "480f8d1d-05c5-5325-a927-c7e2c16f20dd"))
+  (global_label "I2C_SCL"
+    (shape passive)
+    (at 35.56 58.42 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "1c56e287-b4b8-5e00-baec-0db48eeccc2f")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 35.56 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 55.88 71.12)
+      (xy 55.88 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c39f5c50-63e9-595d-b271-befbb931b0af"))
+  (global_label "GND"
+    (shape passive)
+    (at 55.88 78.74 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "102d9ffc-2b22-5d22-9618-18ee791884ad")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (no_connect
+    (at 66.04 55.88)
+    (uuid "195b49e4-a50a-511d-8e04-773f0a349a75"))
+  (wire
+    (pts
+      (xy 45.72 63.5)
+      (xy 38.1 63.5))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1ce8977c-f3e2-59d1-9fb2-87ac4d75b394"))
+  (global_label "GND"
+    (shape passive)
+    (at 38.1 63.5 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "6ba502e1-a536-5f53-bbd4-7200d004b095")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 38.1 63.5 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 55.88 50.8)
+      (xy 55.88 43.18))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d5e48a33-2956-5d20-9b2d-0e5bf09acee0"))
+  (global_label "+3V3"
+    (shape passive)
+    (at 55.88 43.18 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "9327cf3f-f52d-5c5f-8528-45e6a93ba7bc")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 45.72 55.88)
+      (xy 35.56 55.88))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "743e2a14-0c6d-566d-910c-05c2a939ff57"))
+  (global_label "I2C_SDA"
+    (shape passive)
+    (at 35.56 55.88 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "179dd2e6-9a59-5567-97b7-834d4ae86e20")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 35.56 55.88 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 119.38 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "bcc46b07-f017-5b62-9ca6-3b5029f1b685")
+    (property "Reference" "C46"
+      (at 124.46 59.69 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "100n"
+      (at 124.46 62.23 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM188R72A104KA35D"
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Murata"
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.murata.com/products/productdetail?partno=GRM188R72A104KA35%23"
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "C46")
+          (unit 1))))
+    (pin "1"
+      (uuid "4af7db7c-bde9-5422-b647-0fcb8d62e36c"))
+    (pin "2"
+      (uuid "eb9a84d6-d6bf-5824-92fe-04912b785749")))
+  (wire
+    (pts
+      (xy 119.38 57.15)
+      (xy 119.38 49.53))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6d819365-cb71-5583-9545-c13989fbc1af"))
+  (global_label "+3V3"
+    (shape passive)
+    (at 119.38 49.53 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "968af356-4c26-5e7b-9e2f-b0dce5127558")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 119.38 49.53 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 119.38 64.77)
+      (xy 119.38 72.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b4462781-05f8-58fe-af3a-68d961008201"))
+  (global_label "GND"
+    (shape passive)
+    (at 119.38 72.39 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2a632d90-66c8-5701-bd44-7236e0358602")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 119.38 72.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x07")
+    (at 182.88 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "72913da2-295e-5937-8b32-e5617fc0e6c1")
+    (property "Reference" "J18"
+      (at 182.88 44.45 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "GPIO EXPANSION 3V3"
+      (at 182.88 46.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELF:Expansion_SolderPads_1x07_P1p27mm"
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "J18")
+          (unit 1))))
+    (pin "1"
+      (uuid "673a3a3f-3ded-5d34-a8cf-efa0e772526a"))
+    (pin "2"
+      (uuid "83aee29b-2f19-5122-882d-70e056ff6c30"))
+    (pin "3"
+      (uuid "5856d919-1e4d-5331-8c0d-45393e03b0a9"))
+    (pin "4"
+      (uuid "848dd827-5a79-5dbe-a2f7-37e55ea1c5d4"))
+    (pin "5"
+      (uuid "1cceda93-1e4b-5f52-b383-3831f3b8fd43"))
+    (pin "6"
+      (uuid "761515ad-5ad2-58a6-b186-392e02031842"))
+    (pin "7"
+      (uuid "f1ae57cf-4b22-5046-bb2a-c15c86badf70")))
+  (wire
+    (pts
+      (xy 177.8 53.34)
+      (xy 170.18 53.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "59aa3c41-e8c6-56d0-80a4-37fd23bda321"))
+  (global_label "+3V3"
+    (shape passive)
+    (at 170.18 53.34 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e9b828e3-5d10-547b-8a1a-336f6ebe35b7")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 170.18 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 177.8 55.88)
+      (xy 170.18 55.88))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "bbd694b7-d857-5c14-9802-0ff31c3db72e"))
+  (global_label "GND"
+    (shape passive)
+    (at 170.18 55.88 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "fcebe3c8-78a9-5b3a-9df3-18f59a931980")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 170.18 55.88 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 177.8 58.42)
+      (xy 168.91 58.42))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "109e890b-d7d3-54ba-a243-c59a79aa5fbe"))
+  (global_label "GPIO19"
+    (shape passive)
+    (at 168.91 58.42 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "dac550f3-ad83-557c-8d58-d15445afc32c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 168.91 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 177.8 60.96)
+      (xy 168.91 60.96))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "07510c6c-d1bb-5027-9af3-567be2fb6905"))
+  (global_label "GPIO20"
+    (shape passive)
+    (at 168.91 60.96 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "5530cb28-715f-5c4d-872c-392c5f687eea")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 168.91 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 177.8 63.5)
+      (xy 168.91 63.5))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "86374e66-66f7-5ea0-8bc7-21415d89ef89"))
+  (global_label "GPIO21"
+    (shape passive)
+    (at 168.91 63.5 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "43cdabf4-7040-58b4-8ea2-1ac3ba6ce058")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 168.91 63.5 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 177.8 66.04)
+      (xy 168.91 66.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2941b135-4c5a-53ab-99a6-e34cd0280c7a"))
+  (global_label "GPIO22"
+    (shape passive)
+    (at 168.91 66.04 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "05f379ba-234b-5892-bb52-bec230d27de9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 168.91 66.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 177.8 68.58)
+      (xy 168.91 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "83e6bc5b-2edf-57f3-8165-042f80685347"))
+  (global_label "GPIO23"
+    (shape passive)
+    (at 168.91 68.58 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "588a2349-a5c1-5ec9-a2cf-0927610804c7")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 168.91 68.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 246.38 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "c5c7215a-dda8-5d04-b969-f77f11b2eefb")
+    (property "Reference" "TP13"
+      (at 246.38 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "GPIO4 STRAP"
+      (at 246.38 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "TP13")
+          (unit 1))))
+    (pin "1"
+      (uuid "e98e3afb-2a88-5157-a6a6-c6a1e8d123ee")))
+  (wire
+    (pts
+      (xy 246.38 60.96)
+      (xy 246.38 72.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d88c6955-ebb5-5b94-93af-59920b430638"))
+  (global_label "GPIO4_STRAP"
+    (shape passive)
+    (at 246.38 72.39 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "57b097b9-d9ea-5079-b9c9-f3aea679e472")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 246.38 72.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 309.88 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "1fd0b6d1-ac75-51d2-8c0d-c201c961af60")
+    (property "Reference" "TP14"
+      (at 309.88 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "GPIO5 STRAP"
+      (at 309.88 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "TP14")
+          (unit 1))))
+    (pin "1"
+      (uuid "ce88f391-2fa6-5ec6-8382-6b94f0852c42")))
+  (wire
+    (pts
+      (xy 309.88 60.96)
+      (xy 309.88 72.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "29519df2-71eb-5e0d-84f7-206532203669"))
+  (global_label "GPIO5_STRAP"
+    (shape passive)
+    (at 309.88 72.39 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "85e6d7d5-07b5-5aac-bec9-efd596215d18")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 309.88 72.39 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 373.38 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "fd3c6e1b-3b4f-54a1-b8fe-ebd53a64665c")
+    (property "Reference" "TP15"
+      (at 373.38 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "GPIO15 STRAP"
+      (at 373.38 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "TP15")
+          (unit 1))))
+    (pin "1"
+      (uuid "5ffa2c86-9d99-521e-b172-7f7967dfbf8f")))
+  (wire
+    (pts
+      (xy 373.38 60.96)
+      (xy 373.38 73.66))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c8cab413-8df3-5b73-9a6c-d20a281d7d39"))
+  (global_label "GPIO15_STRAP"
+    (shape passive)
+    (at 373.38 73.66 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7deb5b4a-0b9f-5ac9-9279-1302ecb217f1")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 373.38 73.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Mechanical:MountingHole")
+    (at 55.88 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "730fce17-d563-56e9-bdbf-16c8415a4985")
+    (property "Reference" "H1"
+      (at 55.88 91.44 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "M3 / 3.2mm NPTH"
+      (at 55.88 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "H1")
+          (unit 1)))))
+  (symbol
+    (lib_id "Mechanical:MountingHole")
+    (at 119.38 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "926542a2-3b84-5e9b-b038-600c3a351607")
+    (property "Reference" "H2"
+      (at 119.38 91.44 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "M3 / 3.2mm NPTH"
+      (at 119.38 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "H2")
+          (unit 1)))))
+  (symbol
+    (lib_id "Mechanical:MountingHole")
+    (at 182.88 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "a0c7bb2c-ebb9-5bba-9dca-675e4bdca053")
+    (property "Reference" "H3"
+      (at 182.88 91.44 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "M3 / 3.2mm NPTH"
+      (at 182.88 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "H3")
+          (unit 1)))))
+  (symbol
+    (lib_id "Mechanical:MountingHole")
+    (at 246.38 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "8cfc8688-4aca-5ec6-985a-24f19425253c")
+    (property "Reference" "H4"
+      (at 246.38 91.44 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "M3 / 3.2mm NPTH"
+      (at 246.38 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "PCB FEATURE"
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "PCB"
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/f56a644a-f622-5a5f-90d2-a3e7b0d554ed"
+          (reference "H4")
+          (unit 1)))))
+  (text "MONITOR EXPANSION"
+    (at 20.32 15.24 0)
+    (effects
+      (font
+        (size 2.54 2.54))
+      (justify left top))
+    (uuid "dd6bf449-9fc5-59bb-96aa-67b38259f0ab"))
+  (embedded_fonts no))

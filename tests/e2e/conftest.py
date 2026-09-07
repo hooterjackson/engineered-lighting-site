@@ -8,6 +8,7 @@ import os
 import pathlib
 import socket
 import subprocess
+import sys
 import time
 
 import pytest
@@ -26,7 +27,9 @@ def site_server():
     except OSError:
         pass
     proc = subprocess.Popen(
-        ["python3", "-m", "http.server", str(PORT), "--bind", "127.0.0.1",
+        # sys.executable, not "python3": the interpreter running the tests is the
+        # one that serves the site, on every platform.
+        [sys.executable, "-m", "http.server", str(PORT), "--bind", "127.0.0.1",
          "--directory", str(SITE)],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )

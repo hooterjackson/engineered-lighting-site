@@ -1,0 +1,6 @@
+# Published PCB assets are byte-exact copies of hash-verified design sources.
+# core.autocrlf=true would rewrite CRLF -> LF on commit and break every SHA-256
+# in provenance.json / downloads/manifest.json on a fresh (Linux CI) checkout.
+* -text
+*.zip binary
+*.pdf binary

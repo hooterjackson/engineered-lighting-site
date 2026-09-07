@@ -26,6 +26,7 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/pcb.css
 
 # The PNG fallbacks stay in the repo but out of the built site (SVGs are used).
 exclude_docs: |
@@ -62,6 +63,7 @@ markdown_extensions:
 extra_javascript:
   - js/checklist.js
   - js/lightbox.js
+  - js/pcb-viewer.js
 
 validation:
   omitted_files: warn

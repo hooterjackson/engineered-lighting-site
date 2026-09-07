@@ -16,9 +16,11 @@ mkdocs serve
 Every push to `main` builds with `--strict` and deploys to GitHub Pages via
 [`.github/workflows/publish.yml`](.github/workflows/publish.yml).
 
-Adding a chapter: drop `08-whatever.md` (numeric prefix, H1 title, optional
+Adding a chapter: drop `09-whatever.md` (numeric prefix, H1 title, optional
 `title:` front matter for the sidebar) into `docs/` — the nav picks it up
-automatically; no config edits needed.
+automatically; no config edits needed. A chapter that belongs in a titled
+sidebar group is listed explicitly in `docs/.pages` above its `...` catch-all;
+anything unlisted lands after the last group.
 
 Chapter `- [ ]` checklists are interactive on the site (state in the
 reader's browser, keyed by page slug + item position) — reordering or

@@ -13,11 +13,11 @@ hide:
 
 We're building the robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head (smart CAN servo motors, absolute encoders, no homing dance) carrying a high-CRI 3-up LED spot, living alongside the fixture's tunable-white ambient zones, exposed to Home Assistant as ordinary entities *and* aimed autonomously by a camera-driven perception stack — following people, lighting task surfaces and books, pointing at art when idle, never sweeping across eyes.
 
-This eight-document series takes it from research through a working bench prototype to the system architecture — and into the first hand-built fixture — with everything adversarially reviewed and every purchase specified.
+This nine-document series takes it from research through a working bench prototype to the system architecture, into the first hand-built fixture, and on to the integrated circuit board that replaces the hand-built stack — with everything adversarially reviewed and every purchase specified.
 
 *This is our internal engineering notebook, published openly — hardware assumptions (a CUDA GPU box for Docs [5](05-teach-it-to-aim.md)–[7](07-building-the-software.md), an existing Home Assistant install) are ours.*
 
-<p class="el-hero__meta"><span>July 2026</span><span>8 documents</span><span>$745–1085 end to end</span><span>Current phase · bench bring-up</span></p>
+<p class="el-hero__meta"><span>July–September 2026</span><span>9 documents</span><span>$745–1085 end to end</span><span>Current phase · bench bring-up</span></p>
 
 </div>
 
@@ -29,9 +29,9 @@ This eight-document series takes it from research through a working bench protot
 
     ---
 
-    A pan/tilt head you can't hear: smart CAN actuators, absolute encoders, a balanced high-CRI LED payload — researched, chosen, bench-built, and finally hand-soldered into a fixture that screws into a lamp socket.
+    A pan/tilt head you can't hear: smart CAN actuators, absolute encoders, a balanced high-CRI LED payload — researched, chosen, bench-built, hand-soldered into a fixture that screws into a lamp socket, and then drawn as one integrated circuit board.
 
-    [:octicons-arrow-right-24: Docs 1–4 · 8](01-how-we-got-here.md)
+    [:octicons-arrow-right-24: Docs 1–4 · 8–9](01-how-we-got-here.md)
 
 -   :material-eye:{ .lg .middle } **The aiming intelligence**
 
@@ -79,10 +79,11 @@ Below each badge the pattern repeats: a **schematic** carries the idea, then an 
 | 6 | [The Message Contract](06-message-contract.md) | The one page every component obeys: topics, schemas, units, watchdogs, and the dual-control architecture (HA entities + autonomy without fights). *When docs disagree, Doc 6 wins* | nothing |
 | 7 | [Building the Software](07-building-the-software.md) | The code: pinned stack, repo layout, hardware-free testing (replay cameras, simulated fixtures), deployment, firmware growth path, licensing gates | nothing |
 | 8 | [Build the Fixture](08-build-the-fixture.md) | Six wiring steps from breadboard to a hand-soldered fixture that screws into a lamp socket — stacked protoboards, a wiring map, and a diagram per step | ~$105–120 |
+| 9 | [Understand the PCB](09-understand-the-pcb.md) | The integrated LIGHT v0.1 board: an interactive viewer of the real eight-layer PCB, all 269 features explained from their own nets, the 19-sheet schematic, the exact parts list and the KiCad sources. Designed and quoted — not built, not powered | nothing yet |
 
 Each build doc travels with connector-level companions — [3c](03c-prove-the-bus.md) · [3a](03a-wire-the-bench.md) · [3b](03b-print-the-frame.md) for the gimbal, [4a](04a-wire-the-zones.md) · [4b](04b-wire-the-spotlight.md) for the bench — the pages that hold the parts in your hands. The sidebar groups them in build order.
 
-**Reading paths:** *Building this weekend?* → [Doc 3](03-build-the-gimbal.md), then [4](04-full-fixture-bench.md) (skim their concepts sections; Docs [1](01-how-we-got-here.md)–[2](02-choosing-the-motors.md) optional background). *Understanding the choices?* → [1](01-how-we-got-here.md) → [2](02-choosing-the-motors.md), then skim [5](05-teach-it-to-aim.md). *Writing the software?* → [6](06-message-contract.md) → [7](07-building-the-software.md), with [5](05-teach-it-to-aim.md) as the spec. *Making it permanent?* → [8](08-build-the-fixture.md), once [4](04-full-fixture-bench.md)'s checklist passes.
+**Reading paths:** *Building this weekend?* → [Doc 3](03-build-the-gimbal.md), then [4](04-full-fixture-bench.md) (skim their concepts sections; Docs [1](01-how-we-got-here.md)–[2](02-choosing-the-motors.md) optional background). *Understanding the choices?* → [1](01-how-we-got-here.md) → [2](02-choosing-the-motors.md), then skim [5](05-teach-it-to-aim.md). *Writing the software?* → [6](06-message-contract.md) → [7](07-building-the-software.md), with [5](05-teach-it-to-aim.md) as the spec. *Making it permanent?* → [8](08-build-the-fixture.md), once [4](04-full-fixture-bench.md)'s checklist passes. *Understanding the real PCB?* → [9](09-understand-the-pcb.md), which explains the integrated board part by part.
 
 ---
 
