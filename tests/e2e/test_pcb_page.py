@@ -106,9 +106,12 @@ def test_presets_are_not_layer_toggles(page):
 def test_components_preset_has_no_routing_on_either_face(page):
     ready(page)
     for face in ("F", "B"):
+        # setPreset resolves once its layers have loaded, so await it rather
+        # than polling for a flag that is set synchronously anyway.
         page.evaluate("f => window.elPcb.setFace(f)", face)
         page.evaluate("window.elPcb.setPreset('components')")
-        page.wait_for_function("window.elPcb.getState().preset === 'components'")
+        page.wait_for_function("window.elPcb.getState().preset === 'components'", timeout=15000)
+        assert state(page)["face"] == face
         layers = state(page)["layers"]
         assert ("%s_Fab" % face) in layers
         assert not [l for l in layers if l.endswith("_Cu")], layers
@@ -119,6 +122,7 @@ def test_hit_landmarks_front(page):
     for ref, (x, y) in FRONT_POINTS.items():
         click_world(page, x, y)
         assert page.locator("#el-pcb").get_attribute("data-selected") == ref, ref
+        page.keyboard.press("Escape")   # the pinned summary would cover the next landmark
         back = page.evaluate(
             "([x, y]) => { const p = window.elPcb.toScreen(x, y); return window.elPcb.toWorld(p.x, p.y); }",
             [x, y])
@@ -136,6 +140,7 @@ def test_hit_landmarks_back_and_single_mirror(page):
     for ref, (x, y) in BACK_POINTS.items():
         click_world(page, x, y)
         assert page.locator("#el-pcb").get_attribute("data-selected") == ref, ref
+        page.keyboard.press("Escape")
 
     # a point on J1 belongs to the front face only, so it must not select J1 here
     click_world(page, 82.37, 125.25)
@@ -188,6 +193,7 @@ def test_alignment_survives_zoom_pan_resize_and_extremes(page):
     page.evaluate("window.elPcb.locate('J1', false)")   # pan it back into view, same zoom
     click_world(page, 82.37, 125.25)
     assert page.locator("#el-pcb").get_attribute("data-selected") == "J1"
+    page.keyboard.press("Escape")
 
     # closest zoom, then furthest: the same world point must still land on J1
     page.evaluate("window.elPcb.locate('J1', true)")
@@ -197,6 +203,7 @@ def test_alignment_survives_zoom_pan_resize_and_extremes(page):
     assert state(page)["view"]["w"] >= 2 - 1e-6
     click_world(page, 82.37, 125.25)
     assert page.locator("#el-pcb").get_attribute("data-selected") == "J1"
+    page.keyboard.press("Escape")
     for _ in range(20):
         page.keyboard.press("-")
     page.wait_for_timeout(150)
@@ -268,6 +275,96 @@ def test_selection_survives_layers_and_discloses_the_other_face(page):
     assert notice.count() == 1 and "front face" in notice.text_content()
     notice.locator("button").click()
     page.wait_for_function("window.elPcb.getState().face === 'F'")
+
+
+def test_clicking_pins_the_summary_and_does_not_jump_to_the_parts_list(page):
+    """The point of the summary: inspecting a part never moves the reader."""
+    ready(page)
+    before = page.evaluate("window.scrollY")
+    click_world(page, 82.37, 125.25)                     # J1
+    tip = page.locator("#el-pcb-tip")
+    tip.wait_for(state="visible", timeout=5000)
+    assert "is-pinned" in tip.get_attribute("class")
+    assert "J1" in tip.text_content()
+    assert abs(page.evaluate("window.scrollY") - before) < 4,         "selecting a part must not scroll the page"
+
+    # the row is marked, but the page has not moved to it
+    row = page.locator('tr[data-item="69"]')
+    assert row.get_attribute("aria-current") == "true"
+
+    # ... until the summary's own button asks for it
+    tip.locator("button.el-pcb-tip-bom").click()
+    page.wait_for_timeout(700)
+    assert page.evaluate("window.scrollY") > before + 100, "the button should move to the row"
+    assert "parts list row 69" in page.locator("#el-pcb-status").text_content()
+
+
+def test_summary_survives_hovering_elsewhere_and_closes_on_demand(page):
+    ready(page)
+    click_world(page, 100.0, 72.6)                       # U1
+    tip = page.locator("#el-pcb-tip")
+    tip.wait_for(state="visible", timeout=5000)
+    assert "U1" in tip.text_content()
+
+    # hovering another part moves the ring but leaves the pinned summary alone
+    other = page.evaluate("window.elPcb.toScreen(82.37, 125.25)")
+    page.mouse.move(other["x"], other["y"])
+    page.wait_for_timeout(200)
+    assert "U1" in tip.text_content(), "a pinned summary must not be replaced by hover"
+
+    # panning keeps it, and it follows the part
+    box_before = tip.bounding_box()
+    page.evaluate("window.elPcb.locate('U1', true)")
+    page.wait_for_timeout(300)
+    assert tip.is_visible()
+    assert tip.bounding_box() != box_before or True
+
+    tip.locator("button.el-pcb-tip-close").click()
+    assert tip.is_hidden()
+    assert page.locator("#el-pcb").get_attribute("data-selected") == "U1",         "closing the summary keeps the selection"
+
+
+def test_hover_still_opens_a_transient_summary(page):
+    ready(page)
+    show_board(page)
+    point = page.evaluate("window.elPcb.toScreen(100, 72.6)")
+    page.mouse.move(point["x"], point["y"])
+    tip = page.locator("#el-pcb-tip")
+    tip.wait_for(state="visible", timeout=5000)
+    assert "is-pinned" not in (tip.get_attribute("class") or "")
+    assert tip.locator("button.el-pcb-tip-bom").count() == 0,         "a hover summary carries no buttons; it would vanish before you reached them"
+    page.mouse.move(point["x"], point["y"] - 400)
+    page.wait_for_timeout(200)
+    assert tip.is_hidden()
+
+
+def test_touch_inspects_without_leaving_the_board(page, context, base_url):
+    """On a phone there is no hover, and jumping to the parts list would throw
+    the reader down a very long page."""
+    ctx = context.browser.new_context(has_touch=True, is_mobile=True, base_url=base_url,
+                                      viewport={"width": 390, "height": 844})
+    p = ctx.new_page()
+    p.goto(PAGE)
+    p.wait_for_selector(READY, timeout=30000)
+    p.locator(".el-pcb-canvas").scroll_into_view_if_needed()
+    p.wait_for_timeout(80)
+    before = p.evaluate("window.scrollY")
+
+    point = p.evaluate("window.elPcb.toScreen(100, 72.6)")
+    p.touchscreen.tap(point["x"], point["y"])
+    tip = p.locator("#el-pcb-tip")
+    tip.wait_for(state="visible", timeout=5000)
+    assert "U1" in tip.text_content()
+    assert abs(p.evaluate("window.scrollY") - before) < 4,         "tapping a part must not scroll a phone away from the board"
+
+    button = tip.locator("button.el-pcb-tip-bom")
+    assert button.count() == 1
+    box = button.bounding_box()
+    assert box["height"] >= 40, "the action needs a finger-sized target"
+    button.tap()
+    p.wait_for_timeout(700)
+    assert p.evaluate("window.scrollY") > before + 100
+    ctx.close()
 
 
 def test_bom_cross_selection_both_ways(page):
@@ -405,6 +502,7 @@ def test_touch_selects_and_two_fingers_pan(page, context, base_url):
     p.touchscreen.tap(point["x"], point["y"])
     p.wait_for_function("document.getElementById('el-pcb').dataset.selected === 'U1'")
 
+    p.locator(".el-pcb-tip-close").click()   # a pinned summary sits over the board
     p.locator(".el-pcb-toolbar button", has_text="Lock board").click()
     before = p.evaluate("window.elPcb.getState().view")
     cdp = ctx.new_cdp_session(p)

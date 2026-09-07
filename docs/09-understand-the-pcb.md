@@ -75,7 +75,7 @@ does on this net. The schematic, the parts list and the actual KiCad files are a
 ## The board { #the-board }
 
 Start with **U1** at the top — the radio module, the part that overhangs the flat edge. Then find
-**J1** on the left, where the 24 V supply lands. Click any part to read what it does; use **Flip
+**J1** on the left, where the 24 V supply lands. Hover or tap any part to see what it does; use **Flip
 face** to see the underside, where the power section and the big capacitor live. The reference
 labels here are the same ones used in the schematic and in the parts list.
 
@@ -105,12 +105,21 @@ labels here are the same ones used in the schematic and in the parts list.
     really are. Turning the board over mirrors the whole geometry once about the board's centre line,
     so what you see is the physical back face, not a mirror image of the front.
 
+    **Inspecting a part.** Hovering one opens a short summary. Clicking or tapping it *pins* that
+    summary, so it stays put and gains its own buttons: jump to the part's row in the parts list, open
+    its schematic sheet, or drop to the full explanation. Nothing moves the page until you press one of
+    those buttons — which is what makes this usable on a phone, where there is no hover and where the
+    parts list is a long way down. The pinned summary closes with its **×**, with <kbd>Esc</kbd>, or by
+    tapping bare board; the selection itself survives all three.
+
     **Getting around:** drag to pan, scroll or pinch to zoom, double-click to zoom in. The toolbar has
     zoom, fit and flip buttons for anyone not using a mouse. With the viewer focused, the arrow keys
     pan, <kbd>+</kbd> and <kbd>-</kbd> zoom, <kbd>0</kbd> fits the board and <kbd>f</kbd> flips it. The
     search box finds any of the 269 features by reference, name, value, part number or net — that is
-    the fastest route on a phone, and the keyboard-friendly one. <kbd>Esc</kbd> closes the tooltip or
-    the search list without losing your selection.
+    the fastest route on a phone, and the keyboard-friendly one.
+
+    On a phone, one finger scrolls the page as usual and two fingers pan and zoom the board. If you
+    would rather drag the board with one finger, press **Lock board for panning**.
 
 ## How the circuit works
 
@@ -283,8 +292,9 @@ drawing when making harnesses.
 ## The parts list { #bom }
 
 One row is one exact part **and** footprint, so the same part number can appear on more than one row
-where the land pattern differs. Selecting a part on the board highlights its row; **Locate all** on a
-row highlights every place that part goes.
+where the land pattern differs. Selecting a part on the board marks its row here without moving the
+page — use **Show in parts list** in the part's summary to actually jump to it. Going the other way,
+**Locate all** on a row highlights every place that part goes on the board.
 
 **Per board** is the count for one PCB. **For two boards** doubles it, because PCBWay was asked to
 populate two of the five quoted boards — the other three would arrive bare. Bare pads, test points,
