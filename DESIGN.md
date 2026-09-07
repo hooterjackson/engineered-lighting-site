@@ -6,7 +6,9 @@ The interface is the room; the content is what the light falls on.
 
 Files: `mkdocs.yml` (palette/font/logo config) · `docs/stylesheets/extra.css` (tokens
 at the top, everything else consumes them) · `docs/assets/el-logo.svg` + `el-favicon.svg`
-· hero markup in `docs/index.md`. No theme fork, no JS, no build-chain additions.
+· hero markup in `docs/index.md`. No theme fork, no build-chain additions. JavaScript
+is confined to `docs/js/` — checklist, lightbox, and Doc 9's PCB viewer — each scoped
+to the page that needs it.
 
 ---
 

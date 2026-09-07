@@ -110,11 +110,16 @@ def test_agent_prompt_copy_button(page, context):
 
 def test_screenshots(page):
     SCREENS.mkdir(parents=True, exist_ok=True)
-    pages = (("landing", "/"), ("doc3", "/03-build-the-gimbal/"),
-             ("checklist", "/bom-checklist/"))
-    for name, path in pages:
+    # (name, path, selector to wait for) - pages that build themselves need a
+    # readiness signal rather than a fixed pause.
+    pages = (("landing", "/", None), ("doc3", "/03-build-the-gimbal/", None),
+             ("checklist", "/bom-checklist/", None),
+             ("pcb", "/09-understand-the-pcb/", '#el-pcb[data-state="ready"]'))
+    for name, path, wait_for in pages:
         for width, height in ((390, 844), (1280, 800)):
             page.set_viewport_size({"width": width, "height": height})
             page.goto(path)
+            if wait_for:
+                page.wait_for_selector(wait_for, timeout=20000)
             page.wait_for_timeout(250)
             page.screenshot(path=str(SCREENS / f"{name}-{width}.png"))

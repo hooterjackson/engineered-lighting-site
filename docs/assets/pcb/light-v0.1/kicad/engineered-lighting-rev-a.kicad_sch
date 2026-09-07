@@ -1,0 +1,696 @@
+(kicad_sch
+  (version 20250114)
+  (generator "engineered-lighting")
+  (generator_version "0.2")
+  (uuid "964013ac-cca6-5de7-b648-d598a25a58e0")
+  (paper "A3")
+  (title_block
+    (title "Integrated lighting controller")
+    (date "2026-09-06")
+    (rev "A draft")
+    (company "Engineered Lighting")
+    (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
+  (lib_symbols)
+  (text "76.2 mm envelope / eight copper layers / factory SMD assembly\nFunctional energy and data map - electrical nets are on the child sheets."
+    (at 20.32 17.78 0)
+    (effects
+      (font
+        (size 1.5 1.5))
+      (justify left top))
+    (uuid "5aba0254-125a-5e85-aaa6-1509277750d5"))
+  (rectangle
+    (start 20.32 43.18)
+    (end 68.58 63.5)
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "949aed34-f0bf-5784-907d-99dddc3148de"))
+  (text "J1 / external 24 V\nUSB: interface bias only"
+    (at 22.86 45.72 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "2dcad1f3-b03c-525f-b75e-a1a57f25a13d"))
+  (rectangle
+    (start 83.82 43.18)
+    (end 152.4 63.5)
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "d4faf506-9d53-553c-8404-95e0bca277ec"))
+  (text "F1 / Q500 / U12\nFuse, reverse block, eFuse"
+    (at 86.36 45.72 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "fb8e9083-de82-5239-bd5f-d15e76dd17fe"))
+  (rectangle
+    (start 170.18 43.18)
+    (end 223.52 63.5)
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "94bc83a5-7bc6-5ecb-bb53-5123e8e5e66e"))
+  (text "V24_BUS + bulk\nU501 pulse clamp"
+    (at 172.72 45.72 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "5b59651a-ac18-533a-94d7-a73bca02c154"))
+  (rectangle
+    (start 274.32 38.1)
+    (end 386.08 58.42)
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "57919357-6e17-54be-9f0c-35527d0a0941"))
+  (text "F4-F10 -> 7 ambient zones\n21 MOSFET sinks / common +24 V"
+    (at 276.86 40.64 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "b1e13d9a-89e4-5e15-aee0-1d2ffc60be1e"))
+  (rectangle
+    (start 274.32 68.58)
+    (end 386.08 88.9)
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "8da564ff-dd13-518f-8ad2-c845d7045310"))
+  (text "U14 -> V24_SPOT -> 3 x AL8860\nU500 clamp / three paired LED outputs"
+    (at 276.86 71.12 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "28bf3ed3-71cc-5bdc-b6bc-757751fd0f1d"))
+  (rectangle
+    (start 274.32 99.06)
+    (end 386.08 119.38)
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "020ea028-69aa-54f8-8a39-0350c318dcbc"))
+  (text "F2/F3 -> 2 CAN motors\nJ16 external brake / bus port"
+    (at 276.86 101.6 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "9073674a-d48a-558d-a2ae-4a2bf12abc30"))
+  (rectangle
+    (start 170.18 88.9)
+    (end 246.38 119.38)
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "984779ca-86c8-591d-b101-e56d39b34e72"))
+  (text "F11 -> U10 5 V -> U11 3.3 V\nESP32-C6 / PCA9685 / CAN logic\nU13 switches gate pullup bias"
+    (at 172.72 91.44 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "9d7755af-782b-5bda-bb6a-10f2a1e33fca"))
+  (polyline
+    (pts
+      (xy 68.58 53.34)
+      (xy 83.82 53.34))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "8b918766-d8b0-568f-a528-554d408a38a9"))
+  (polyline
+    (pts
+      (xy 81.532864 54.444812)
+      (xy 83.82 53.34)
+      (xy 81.532864 52.235188))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "88a77ec8-c199-5ca6-8291-cddab3712b5e"))
+  (polyline
+    (pts
+      (xy 152.4 53.34)
+      (xy 170.18 53.34))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "9c1063c8-3492-53f2-8828-e9656c2df96a"))
+  (polyline
+    (pts
+      (xy 167.892864 54.444812)
+      (xy 170.18 53.34)
+      (xy 167.892864 52.235188))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "4ee4a019-027f-50e0-9970-c7c68e32f83f"))
+  (polyline
+    (pts
+      (xy 223.52 53.34)
+      (xy 256.54 53.34)
+      (xy 256.54 48.26)
+      (xy 274.32 48.26))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "43bf5691-d16e-59e7-b36a-e9d9b5a55ff7"))
+  (polyline
+    (pts
+      (xy 272.032864 49.364812)
+      (xy 274.32 48.26)
+      (xy 272.032864 47.155188))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "556a8a65-7e8d-55d5-a51b-2d739b429206"))
+  (polyline
+    (pts
+      (xy 223.52 53.34)
+      (xy 256.54 53.34)
+      (xy 256.54 78.74)
+      (xy 274.32 78.74))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "7a917d43-a4bd-5d94-a9ba-f73d99153a8f"))
+  (polyline
+    (pts
+      (xy 272.032864 79.844812)
+      (xy 274.32 78.74)
+      (xy 272.032864 77.635188))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "9772a10c-f31a-502f-88aa-64521b0f48d3"))
+  (polyline
+    (pts
+      (xy 223.52 53.34)
+      (xy 256.54 53.34)
+      (xy 256.54 109.22)
+      (xy 274.32 109.22))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "8123d633-c532-5ab5-927a-7fe94afe2783"))
+  (polyline
+    (pts
+      (xy 272.032864 110.324812)
+      (xy 274.32 109.22)
+      (xy 272.032864 108.115188))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "850462cf-c510-5a23-9fed-4159cc0e1417"))
+  (polyline
+    (pts
+      (xy 196.85 63.5)
+      (xy 196.85 88.9))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "14c13e28-2a86-5841-85a8-b344f2ce1b42"))
+  (polyline
+    (pts
+      (xy 195.745188 86.612864)
+      (xy 196.85 88.9)
+      (xy 197.954812 86.612864))
+    (stroke
+      (width 0.254)
+      (type default))
+    (fill
+      (type none))
+    (uuid "6fceada5-d353-585b-9a1e-1cdeadaec0fa"))
+  (text "DATA / CONTROL\nGPIO2/3 I2C -> U2 0x40 / U3 0x41 -> 21 PWM sinks\nGPIO10/11/18 -> 3 spotlight PWM; GPIO6/7 -> CAN\nGPIO0 AND ARM AND READY -> SAFE\nTMP112 0x48; J18 GPIO19-23 / 3V3\nStrap probes: GPIO4/5/15; USB12/13; UART16/17"
+    (at 20.32 83.82 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "2d8126b9-34ce-595b-8179-f5b4230db49d"))
+  (text "Prototype only: source/current/thermal/RF and motor-energy tests remain pending.\nOpen ARM = lighting inhibited. Motor stopping/holding is a separate function."
+    (at 20.32 134.62 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "b9f249a1-eb8d-5442-b049-7719a9b9cb52"))
+  (sheet
+    (at 25.4 158.75)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "615aa081-91d8-5a6e-af81-5f311e742ca4")
+    (property "Sheetname" "controller"
+      (at 25.4 157.48 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "controller.kicad_sch"
+      (at 25.4 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "2")))))
+  (sheet
+    (at 119.38 158.75)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "deb5947f-8a5b-5aa6-9670-7048a73b2932")
+    (property "Sheetname" "power_sequence"
+      (at 119.38 157.48 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "power_sequence.kicad_sch"
+      (at 119.38 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "3")))))
+  (sheet
+    (at 213.36 158.75)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "57c6826e-e4c0-5dd6-b1cc-4749dd8aa51f")
+    (property "Sheetname" "can"
+      (at 213.36 157.48 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "can.kicad_sch"
+      (at 213.36 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "4")))))
+  (sheet
+    (at 307.34 158.75)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "038f9e63-1f07-55f2-a4fe-996d4235f7ca")
+    (property "Sheetname" "usb"
+      (at 307.34 157.48 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "usb.kicad_sch"
+      (at 307.34 173.99 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "5")))))
+  (sheet
+    (at 25.4 182.88)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "e7859855-4ffe-5b3c-ac87-738e0b081303")
+    (property "Sheetname" "pwm"
+      (at 25.4 181.61 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "pwm.kicad_sch"
+      (at 25.4 198.12 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "6")))))
+  (sheet
+    (at 119.38 182.88)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "5ff23d2b-ccbd-5c4e-8f47-def758dc135b")
+    (property "Sheetname" "zone_1"
+      (at 119.38 181.61 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "zone_1.kicad_sch"
+      (at 119.38 198.12 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "7")))))
+  (sheet
+    (at 213.36 182.88)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "16e0645a-d01c-537d-b79a-89b78cc7a2ad")
+    (property "Sheetname" "zone_2"
+      (at 213.36 181.61 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "zone_2.kicad_sch"
+      (at 213.36 198.12 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "8")))))
+  (sheet
+    (at 307.34 182.88)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "f237fede-54a9-5735-a1a3-36511eec617e")
+    (property "Sheetname" "zone_3"
+      (at 307.34 181.61 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "zone_3.kicad_sch"
+      (at 307.34 198.12 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "9")))))
+  (sheet
+    (at 25.4 207.01)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "c668187b-f9d2-5e7c-b444-b328c4c1002d")
+    (property "Sheetname" "zone_4"
+      (at 25.4 205.74 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "zone_4.kicad_sch"
+      (at 25.4 222.25 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "10")))))
+  (sheet
+    (at 119.38 207.01)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "65601d02-576b-5971-ab65-5ba7362ea97b")
+    (property "Sheetname" "zone_5"
+      (at 119.38 205.74 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "zone_5.kicad_sch"
+      (at 119.38 222.25 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "11")))))
+  (sheet
+    (at 213.36 207.01)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "7570a9f7-157b-5037-9d43-6eba1bc9ff74")
+    (property "Sheetname" "zone_6"
+      (at 213.36 205.74 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "zone_6.kicad_sch"
+      (at 213.36 222.25 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "12")))))
+  (sheet
+    (at 307.34 207.01)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "21774ad9-88b5-5d93-913e-bd87611ce224")
+    (property "Sheetname" "zone_7"
+      (at 307.34 205.74 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "zone_7.kicad_sch"
+      (at 307.34 222.25 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "13")))))
+  (sheet
+    (at 25.4 231.14)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "4b91a597-0b55-558d-8757-e00b4ed73846")
+    (property "Sheetname" "test"
+      (at 25.4 229.87 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "test.kicad_sch"
+      (at 25.4 246.38 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "14")))))
+  (sheet
+    (at 119.38 231.14)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "64836c2a-2390-5533-a5d0-55558d3de122")
+    (property "Sheetname" "power_1"
+      (at 119.38 229.87 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "power_1.kicad_sch"
+      (at 119.38 246.38 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "15")))))
+  (sheet
+    (at 213.36 231.14)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "f9c43108-138c-5dab-a42f-565455651681")
+    (property "Sheetname" "power_2"
+      (at 213.36 229.87 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "power_2.kicad_sch"
+      (at 213.36 246.38 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "16")))))
+  (sheet
+    (at 307.34 231.14)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "ead6f891-c194-50ac-9fcc-1c2451f85dcc")
+    (property "Sheetname" "spot_1"
+      (at 307.34 229.87 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "spot_1.kicad_sch"
+      (at 307.34 246.38 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "17")))))
+  (sheet
+    (at 25.4 255.27)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "7d811806-cdea-579b-88fd-298c7067c42f")
+    (property "Sheetname" "spot_2"
+      (at 25.4 254.0 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "spot_2.kicad_sch"
+      (at 25.4 270.51 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "18")))))
+  (sheet
+    (at 119.38 255.27)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "f56a644a-f622-5a5f-90d2-a3e7b0d554ed")
+    (property "Sheetname" "monitor_expansion"
+      (at 119.38 254.0 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "monitor_expansion.kicad_sch"
+      (at 119.38 270.51 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "19")))))
+  (sheet_instances
+    (path "/"
+      (page "1")))
+  (embedded_fonts no))

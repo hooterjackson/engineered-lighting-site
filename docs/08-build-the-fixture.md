@@ -439,6 +439,17 @@ top is exactly what this step needs it to provide.)
 - [ ] 30-minute soak, everything on: ULNs warm-not-hot, star heatsink warm, IRM case warm-not-hot, no reboots in the logs
 - [ ] Worst-case 24 V current recorded — compare against the ~60 W budget
 
+## What comes after this build — the integrated PCB
+
+This chapter's stacked protoboards are the last hand-wired version of the fixture. The same architecture
+has since been drawn as one eight-layer circuit board: 21 discrete MOSFET channels instead of the ULN
+arrays, three independent constant-current spotlight drivers instead of one shared board, and a protected
+24 V supply with an electronic breaker, a supervisor and a physical ARM interlock.
+
+[Doc 9](09-understand-the-pcb.md) explains that board part by part, with an interactive viewer of the real
+layout. It has been designed and quoted; no board has been built or powered, and nothing in this chapter
+depends on it.
+
 ## Risk register
 
 - **Protoboard joints under vibration** — the gimbal shakes its own house.

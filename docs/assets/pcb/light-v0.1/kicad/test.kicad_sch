@@ -1,0 +1,1569 @@
+(kicad_sch
+  (version 20250114)
+  (generator "engineered-lighting")
+  (generator_version "0.2")
+  (uuid "4b91a597-0b55-558d-8757-e00b4ed73846")
+  (paper "A3")
+  (title_block
+    (title "Test")
+    (date "2026-09-06")
+    (rev "A draft")
+    (company "Engineered Lighting")
+    (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
+  (lib_symbols
+    (symbol "Connector:TestPoint"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.762)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "TP"
+        (at 0 6.858 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "TestPoint"
+        (at 0 5.08 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 5.08 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 5.08 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "test point"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "test point tp"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "Pin* Test*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "TestPoint_0_1"
+        (circle
+          (center 0 3.302)
+          (radius 0.762)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "TestPoint_1_1"
+        (pin passive line
+          (at 0 0 90)
+          (length 2.54)
+          (name "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "power:PWR_FLAG"
+      (power global)
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "#FLG"
+        (at 0 1.905 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "PWR_FLAG"
+        (at 0 3.81 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Special symbol for telling ERC where power comes from"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "flag power"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "PWR_FLAG_0_0"
+        (pin power_out line
+          (at 0 0 90)
+          (length 0)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (symbol "PWR_FLAG_0_1"
+        (polyline
+          (pts
+            (xy 0 0)
+            (xy 0 1.27)
+            (xy -1.016 1.905)
+            (xy 0 2.54)
+            (xy 1.016 1.905)
+            (xy 0 1.27))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (embedded_fonts no)))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 55.88 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "b07bfee9-5649-512d-8bf1-81d2c75ebe8a")
+    (property "Reference" "TP1"
+      (at 55.88 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "GND"
+      (at 55.88 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 55.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP1")
+          (unit 1))))
+    (pin "1"
+      (uuid "d87af14c-0a13-5d05-bc8f-9d346c42de51")))
+  (wire
+    (pts
+      (xy 55.88 60.96)
+      (xy 55.88 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "685e10f0-3a8b-5f82-982a-ed13544943f8"))
+  (global_label "GND"
+    (shape passive)
+    (at 55.88 68.58 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "5ee754d4-d02a-50df-8dd4-6c48ee369d83")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 68.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 119.38 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "0b0de163-728d-57be-8ab2-906685527b73")
+    (property "Reference" "TP2"
+      (at 119.38 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "VIN24_RAW"
+      (at 119.38 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELF:TestPoint_Pad_D1mm_NoComponentCourtyard"
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 119.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP2")
+          (unit 1))))
+    (pin "1"
+      (uuid "571290eb-730c-5b8d-96fe-c8efdbdec520")))
+  (wire
+    (pts
+      (xy 119.38 60.96)
+      (xy 119.38 71.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ea168e19-0d25-557a-acc3-2c6496b5ef69"))
+  (global_label "VIN24_RAW"
+    (shape passive)
+    (at 119.38 71.12 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2622d164-517d-5241-b998-37b925296b30")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 119.38 71.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 182.88 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "ed6ee406-9fb1-53d1-8819-5f91eabe3e8f")
+    (property "Reference" "TP3"
+      (at 182.88 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "V24_BUS"
+      (at 182.88 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 182.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP3")
+          (unit 1))))
+    (pin "1"
+      (uuid "f6d11e29-5c73-575b-a2cb-48d8f36b4885")))
+  (wire
+    (pts
+      (xy 182.88 60.96)
+      (xy 182.88 71.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6c002b23-c0bf-55bd-b5b8-f969eb032597"))
+  (global_label "V24_BUS"
+    (shape passive)
+    (at 182.88 71.12 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "39cb6374-9f39-5a62-b372-870c0f95578a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 182.88 71.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 246.38 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "6c318f2e-9b91-5740-834c-0b6b989fd418")
+    (property "Reference" "TP4"
+      (at 246.38 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "+5V"
+      (at 246.38 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 246.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP4")
+          (unit 1))))
+    (pin "1"
+      (uuid "3005e371-d8e4-57dc-981a-7c8f6f6ba5d1")))
+  (wire
+    (pts
+      (xy 246.38 60.96)
+      (xy 246.38 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "912f9dfa-0320-5705-b3f0-bfedc4b5227f"))
+  (global_label "+5V"
+    (shape passive)
+    (at 246.38 68.58 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "6679af17-086c-55c5-8dd9-ee926bf09f0c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 246.38 68.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 309.88 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "de3adf84-6f71-54af-b436-a5b5901d9cea")
+    (property "Reference" "TP5"
+      (at 309.88 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "+3V3"
+      (at 309.88 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 309.88 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP5")
+          (unit 1))))
+    (pin "1"
+      (uuid "75edf360-e94a-51f7-be5f-5e45f52ec0e2")))
+  (wire
+    (pts
+      (xy 309.88 60.96)
+      (xy 309.88 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "87e2a4fe-b05a-5dd4-93c2-c0bd975d6159"))
+  (global_label "+3V3"
+    (shape passive)
+    (at 309.88 68.58 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "15c188a2-5f51-51c9-9071-d33c8889bfb5")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 309.88 68.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 373.38 60.96 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "7cf11451-7002-55b4-99dd-7c32d48e3217")
+    (property "Reference" "TP6"
+      (at 373.38 53.34 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "GATE_BIAS"
+      (at 373.38 55.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 373.38 60.96 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP6")
+          (unit 1))))
+    (pin "1"
+      (uuid "198f6cfd-8ca6-5e92-8394-cd391c0d153e")))
+  (wire
+    (pts
+      (xy 373.38 60.96)
+      (xy 373.38 71.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6aa3b410-8704-57ab-9b6a-1754180deee0"))
+  (global_label "GATE_BIAS"
+    (shape passive)
+    (at 373.38 71.12 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a275a9dd-a0bf-5c6a-a22c-41b35f623ebd")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 373.38 71.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 55.88 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "323591cd-ceb6-579e-a701-a0190fb22fd6")
+    (property "Reference" "TP7"
+      (at 55.88 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "LIGHT_ENABLE_SAFE"
+      (at 55.88 96.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 55.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP7")
+          (unit 1))))
+    (pin "1"
+      (uuid "c5e8193c-045e-55aa-a65c-189b345f3f5c")))
+  (wire
+    (pts
+      (xy 55.88 101.6)
+      (xy 55.88 116.84))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "707dadca-1109-56b9-824c-078a0b2910bb"))
+  (global_label "LIGHT_ENABLE_SAFE"
+    (shape passive)
+    (at 55.88 116.84 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e467ddd0-3fba-55d4-b5e9-9b4c047e53dc")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 116.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 119.38 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "fbdcee5e-a790-5f62-803a-743dc4caab03")
+    (property "Reference" "TP8"
+      (at 119.38 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "EFUSE_RESET_N"
+      (at 119.38 96.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 119.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP8")
+          (unit 1))))
+    (pin "1"
+      (uuid "e8a32fea-1284-52d1-b8de-cc05f1a1e051")))
+  (wire
+    (pts
+      (xy 119.38 101.6)
+      (xy 119.38 114.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "413bd3c7-b00d-5d46-b981-4e747105e548"))
+  (global_label "EFUSE_RESET_N"
+    (shape passive)
+    (at 119.38 114.3 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "631fbe79-4c9e-58fc-903c-636e0fb50ff0")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 119.38 114.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 182.88 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "455d6e68-e561-5b09-9a94-5ce3914014ef")
+    (property "Reference" "TP9"
+      (at 182.88 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "V24_SPOT"
+      (at 182.88 96.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 182.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP9")
+          (unit 1))))
+    (pin "1"
+      (uuid "71b0d5c5-cc9e-5a98-95f1-ed5c5788bbe1")))
+  (wire
+    (pts
+      (xy 182.88 101.6)
+      (xy 182.88 111.76))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "998c55c9-6f2f-5525-b260-a6042a0d13a3"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 182.88 111.76 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "fc90e83b-0486-5a96-880d-aed27da832e6")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 182.88 111.76 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 246.38 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "ac80b7dc-20bc-5a98-abb0-39907d9777d1")
+    (property "Reference" "TP10"
+      (at 246.38 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "I2C_SDA"
+      (at 246.38 96.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 246.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP10")
+          (unit 1))))
+    (pin "1"
+      (uuid "70325160-d637-5523-9b56-f3f7f9312586")))
+  (wire
+    (pts
+      (xy 246.38 101.6)
+      (xy 246.38 111.76))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "02604d4d-b564-5b38-9ab5-5a3772775902"))
+  (global_label "I2C_SDA"
+    (shape passive)
+    (at 246.38 111.76 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "ab449a05-27b7-50dd-a6d1-68acfe30a0fd")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 246.38 111.76 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 309.88 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "c9d341c2-e23f-5e3d-9636-58842dd0629c")
+    (property "Reference" "TP11"
+      (at 309.88 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "I2C_SCL"
+      (at 309.88 96.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 309.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 309.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 309.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 309.88 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP11")
+          (unit 1))))
+    (pin "1"
+      (uuid "05df021f-73fb-5b75-8075-9fcf1ceb9c8a")))
+  (wire
+    (pts
+      (xy 309.88 101.6)
+      (xy 309.88 111.76))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a46f2396-0853-5318-b931-2e69212818e9"))
+  (global_label "I2C_SCL"
+    (shape passive)
+    (at 309.88 111.76 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "3bbc5451-99a0-57ef-aed5-82a21e04898e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 309.88 111.76 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector:TestPoint")
+    (at 373.38 101.6 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp yes)
+    (uuid "62aafa3c-af66-5a1b-8475-e4939169431d")
+    (property "Reference" "TP12"
+      (at 373.38 93.98 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PCA_OE"
+      (at 373.38 96.52 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+      (at 373.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 373.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 373.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 373.38 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "TP12")
+          (unit 1))))
+    (pin "1"
+      (uuid "e47b6658-94c6-52d0-a920-b3e6fcaf8fdb")))
+  (wire
+    (pts
+      (xy 373.38 101.6)
+      (xy 373.38 110.49))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "42d9285e-9a24-54cc-8e38-0cb58ab8db2b"))
+  (global_label "PCA_OE"
+    (shape passive)
+    (at 373.38 110.49 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d44fa535-747f-5846-85c4-96c24ede184a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 373.38 110.49 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "power:PWR_FLAG")
+    (at 55.88 142.24 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board no)
+    (dnp no)
+    (uuid "d10f1c7b-719d-592f-b286-ac0aef80927a")
+    (property "Reference" "#FLG001"
+      (at 55.88 134.62 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PWR_FLAG"
+      (at 55.88 137.16 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" ""
+      (at 55.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 55.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 55.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 55.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "#FLG001")
+          (unit 1))))
+    (pin "1"
+      (uuid "b1b523cb-5815-57e6-a590-77d00bff8794")))
+  (wire
+    (pts
+      (xy 55.88 142.24)
+      (xy 55.88 149.86))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "38abd87f-f69e-5f01-ba2c-e99c3937c306"))
+  (global_label "GND"
+    (shape passive)
+    (at 55.88 149.86 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "aef2cfaa-597e-5fd2-9e70-9092192a4a8e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 149.86 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "power:PWR_FLAG")
+    (at 119.38 142.24 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board no)
+    (dnp no)
+    (uuid "283805bd-55e2-5996-b64c-e6d181b8d0af")
+    (property "Reference" "#FLG002"
+      (at 119.38 134.62 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PWR_FLAG"
+      (at 119.38 137.16 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" ""
+      (at 119.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 119.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 119.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 119.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "#FLG002")
+          (unit 1))))
+    (pin "1"
+      (uuid "80df448c-4cd4-5e8c-9865-97aa2c47e323")))
+  (wire
+    (pts
+      (xy 119.38 142.24)
+      (xy 119.38 153.67))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f7d4a632-996b-5603-9630-4e27dbb27cc0"))
+  (global_label "VIN24_FUSED"
+    (shape passive)
+    (at 119.38 153.67 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "88cc469d-f1ea-534a-940b-fe2eee3642c4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 119.38 153.67 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "power:PWR_FLAG")
+    (at 182.88 142.24 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board no)
+    (dnp no)
+    (uuid "c743e07e-caf3-5877-a7bd-7ffcded6d448")
+    (property "Reference" "#FLG003"
+      (at 182.88 134.62 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PWR_FLAG"
+      (at 182.88 137.16 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" ""
+      (at 182.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 182.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 182.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 182.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "#FLG003")
+          (unit 1))))
+    (pin "1"
+      (uuid "ae14e8b6-e803-5a1b-85e8-748964348ce9")))
+  (wire
+    (pts
+      (xy 182.88 142.24)
+      (xy 182.88 152.4))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "39a1acaf-0a25-50ca-87f3-bb7a111ae99e"))
+  (global_label "VIN24_RPP"
+    (shape passive)
+    (at 182.88 152.4 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "cf42334f-f784-5145-b78c-571d2e67ab08")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 182.88 152.4 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "power:PWR_FLAG")
+    (at 246.38 142.24 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board no)
+    (dnp no)
+    (uuid "08bd9de2-a8c6-583c-9211-b9643fb3af64")
+    (property "Reference" "#FLG004"
+      (at 246.38 134.62 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PWR_FLAG"
+      (at 246.38 137.16 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" ""
+      (at 246.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 246.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 246.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 246.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "#FLG004")
+          (unit 1))))
+    (pin "1"
+      (uuid "88de77f3-077c-51cc-acb2-ed1bfde4dd8d")))
+  (wire
+    (pts
+      (xy 246.38 142.24)
+      (xy 246.38 152.4))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "134acf0d-6214-53f1-852e-a17e21462a2f"))
+  (global_label "V24_LOGIC"
+    (shape passive)
+    (at 246.38 152.4 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "368eaf15-ae70-5a9b-a6d2-1614f20cd5a9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 246.38 152.4 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "power:PWR_FLAG")
+    (at 309.88 142.24 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board no)
+    (dnp no)
+    (uuid "d1a1bf18-d909-530b-bef5-40443ecb2787")
+    (property "Reference" "#FLG005"
+      (at 309.88 134.62 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PWR_FLAG"
+      (at 309.88 137.16 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" ""
+      (at 309.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 309.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 309.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 309.88 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "#FLG005")
+          (unit 1))))
+    (pin "1"
+      (uuid "6558f6a1-be5b-5d52-b86a-efcb83ef6d1a")))
+  (wire
+    (pts
+      (xy 309.88 142.24)
+      (xy 309.88 149.86))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c03d9e3d-5618-53fa-823f-e0f61e209d09"))
+  (global_label "+5V"
+    (shape passive)
+    (at 309.88 149.86 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "323aa2b7-731e-5c41-a58b-c703c9ecc1a4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 309.88 149.86 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "power:PWR_FLAG")
+    (at 373.38 142.24 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board no)
+    (dnp no)
+    (uuid "4de1578e-0117-560f-9f5e-15ea3522c888")
+    (property "Reference" "#FLG006"
+      (at 373.38 134.62 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PWR_FLAG"
+      (at 373.38 137.16 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" ""
+      (at 373.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 373.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 373.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 373.38 142.24 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "#FLG006")
+          (unit 1))))
+    (pin "1"
+      (uuid "7a883d1d-9c42-500a-9519-4fbdb88fcd65")))
+  (wire
+    (pts
+      (xy 373.38 142.24)
+      (xy 373.38 149.86))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4c324833-b4e8-5c82-9d9b-ab87fe2fe8f2"))
+  (global_label "+3V3"
+    (shape passive)
+    (at 373.38 149.86 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "31e582ce-89fd-51b3-af10-0b81e5f00e61")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 373.38 149.86 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "power:PWR_FLAG")
+    (at 55.88 182.88 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board no)
+    (dnp no)
+    (uuid "efeffc09-8eb4-5cd5-9bfb-10b623e51e4b")
+    (property "Reference" "#FLG007"
+      (at 55.88 175.26 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "PWR_FLAG"
+      (at 55.88 177.8 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" ""
+      (at 55.88 182.88 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" ""
+      (at 55.88 182.88 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" ""
+      (at 55.88 182.88 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 55.88 182.88 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/4b91a597-0b55-558d-8757-e00b4ed73846"
+          (reference "#FLG007")
+          (unit 1))))
+    (pin "1"
+      (uuid "b1ce9391-953c-5f6e-9aae-8579e154a7a3")))
+  (wire
+    (pts
+      (xy 55.88 182.88)
+      (xy 55.88 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a6ad84b8-8dfa-558d-8489-eab672c7e051"))
+  (global_label "USB_VBUS"
+    (shape passive)
+    (at 55.88 193.04 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "842a2bdf-f0d8-5f54-8b68-4d1c9412b32a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 55.88 193.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (text "TEST"
+    (at 20.32 15.24 0)
+    (effects
+      (font
+        (size 2.54 2.54))
+      (justify left top))
+    (uuid "6e0f6f1e-90d0-56bb-a765-09102c0143ec"))
+  (text "COPPER TEST POINTS / POWER-FLAG ANNOTATIONS\nPhysical ARM must remain open during first power checks."
+    (at 20.32 27.94 0)
+    (effects
+      (font
+        (size 1.5 1.5))
+      (justify left top))
+    (uuid "cefa0847-26de-5211-9f04-299621ce57ce"))
+  (embedded_fonts no))
