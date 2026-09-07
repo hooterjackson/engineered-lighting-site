@@ -1735,6 +1735,12 @@
     }
   }
 
+  /* Doc 10's flex viewer is a simpler instance of the same idea, so it borrows
+     the pan/zoom core and the DOM helpers rather than copying them. */
+  window.elPcbKit = {
+    PanZoom: PanZoom, el: el, svg: svg, fetchJSON: fetchJSON, fetchSVG: fetchSVG, byRef: byRef
+  };
+
   function initAll() {
     var root = document.getElementById("el-pcb");
     if (!root || root.dataset.init) return;

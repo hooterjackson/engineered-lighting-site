@@ -1,0 +1,44 @@
+# FLEX v0.2 - engineering review
+
+Three editable, routed passive designs are complete. Native ERC/DRC and pin parity, independent wiring oracle, and exported CAM track/pad/drill comparisons pass. This is a **quotation package, not a production release or physical qualification**.
+
+| Sensitivity case | Worst LED strip supply loss | Gimbal motor loop | Each spotlight pair |
+| --- | ---: | ---: | ---: |
+| nominal model | 0.342 V | 0.094 V | 0.091 V |
+| hot/thin screening | 0.583 V | 0.137 V | 0.133 V |
+| high-resistance joints sensitivity | 0.903 V | 0.137 V | 0.133 V |
+
+These LED values include the modeled strip through-rails and solder contacts, but exclude controller and external cable/connector drops. The 3% of 24 V wiring budget is 0.72 V for the WHOLE path, not just these flexes. Exact assumptions and every zone/rail result are in electrical-analysis.json. Do not treat high contact resistance as acceptable; measure loaded voltage and repair joints. Temperatures are inputs, not thermal predictions. Check copper loss and actual bonded temperature during first powered tests.
+
+## Mounting construction selected for the prototype
+
+Both cylinder bands use two copper layers, 35 um nominal finished each (request 30 um minimum), adhesiveless PI core where available, PI/adhesive coverlay both sides, 0.15 mm target finished flexible thickness excluding mounting tape. A possible buildup is 25 um PI core + 2x35 um copper + 2x25 um coverlay/adhesive = 145 um nominal; the factory must confirm its real stack and tolerances before manufacture. Local 0.20 mm PI stiffener on the BACK of the upper input tab only, between y=-11 and -5 mm; it must end before the tab bend/root. No stiffeners on cylinder strips/fingers. ENIG finish, yellow coverlay and black silk for readable labels. F.Mask/B.Mask exports are positive coverlay OPENINGS, not conventional liquid solder mask instructions; no paste/stencil or component assembly.
+
+Select 3M VHB 4611 (1.1 mm nominal) under the 6.4 mm bands, trimmed to stop 0.7 mm before the finger roots. This raises the band near the measured 1.1 mm strip-pad height and avoids a sharp step; it never goes beneath LED strip bodies. Confirm adhesion to actual cured PI coverlay and aluminum on a coupon. No safety insulation rating is credited to the adhesive: intact PI and coverlay, supported joints and final insulation keep copper off metal.
+
+**Fit hold:** The 4611 datasheet gives typical thickness tolerance +/-10%; this alone can create 0.346 mm registration drift over a half-turn, beyond our nominal 0.30 mm pad-to-pad lateral copper margin. The measured 0.7 mm strip also does not specify its actual copper neutral radius or faceted shape. Print the supplied template at 100%, check its 100 mm ruler, and dry-fit all pad positions on the actual compressed stack. If alignment misses, measure that mounted stack and regenerate the pitch/length; do not stretch the circuit or approve fabrication. This is a known fit sensitivity, not a passed physical test.
+
+Flat zone order is Z4,Z5,Z6,Z1,Z2,Z3. The seam is between Z3/Z4; the upper input tab is between Z6/Z1. This moves the seam away from the common connection area, letting one contiguous tab feed three zones in each direction. Z1-Z3 are fed at S1; Z4-Z6 at S4 to shorten traces. Bottom bridges remain S1-S2 and S3-S4; top bridges remain S2-S3. Unused top endpoints carry isolated solder/probe lands, explicitly NC in the bare-flex schematic; assembled strip rails connect them. All four rails are parallel-load interconnects, never a 96 V series string. Six fused +24V feeds remain separate.
+
+## Solder and install
+
+1. Check the actual cut segment unpowered: matching +24V/W/N/C labels must conduct end-to-end. Measure the approximately 1.8 mm bare pad and verify no component encroaches on the proposed joint.
+2. Print and wrap the template. Outside view is authoritative: +24V/W/N/C across each strip. Lower artwork already points its fingers upward; do not mirror it to imitate the upper board. Verify every pad and zone before bonding.
+3. Make a supported sample lap joint. Flex copper is 0.9x1.0 mm, with a 0.3 mm plated solder-through hole and 0.8x0.9 mm coverlay window. Nominal land spans 0.2..1.2 mm from strip cut edge; 0.6 mm strip toe remains beyond copper. Support the finger, pre-tin lightly and verify both interfaces wet without bridging. A plated hole is solder access/anchoring, not a connector socket.
+4. Keep foam on band backs only; keep the last 0.7 mm near roots unbonded. Form gently with no crease or repeated bend at vias, solder lands or stiffener edges. Leave the upper tab supported and use wire pigtails to main J2-J7. Its final wire lengths are set during assembly.
+5. The gimbal ribbon is one copper layer, 0.10 mm target finished thickness excluding 0.20 mm PI bank stiffeners and their adhesive. Both outer faces are insulating except top solder windows. Use 3M 467MP transfer adhesive on its insulated back after testing adhesion; leave bank support and end wires strain-relieved. Do not order a second copper layer because KiCad displays empty B.Cu.
+6. Keep gimbal J1; shorten only at marked lines. Remove burrs, check every pair for shorts, inspect the cut edge and insulate it. All moving joints use wire service loops. Pin 1/2 are motor +24V/GND, 3/4 CAN H/L, 5..10 three separate LED +/- pairs. Preserve motor-side duplicate power contacts; verify actual cavity labels. The passive ribbon has no active components or factory-fitted connectors.
+7. Before power, compare the delivered netlist and all pairwise isolation. After connecting strips, expect 24 isolated zone rails; use a suitable low-voltage continuity test rather than a high-voltage insulation tester across populated LEDs. Confirm no rail reaches aluminum. Power one zone at a time, then measure full-load voltage drop, current, temperature and motor/CAN behavior. A schematic check is not these physical tests.
+
+## Manufacturer review / release conditions
+
+Quote TWO of each design for two complete fixtures; report MOQ and surplus explicitly. These are bare passive flex circuits; no LEDs, drivers, connectors, solder stencil or assembly to add. Request 100% electrical open/short test, handling/panelization plan, 35 um nominal / 30 um minimum finished copper, via barrel plating, actual stack, coverlay thickness/registration, finished feature/outline tolerances, ENIG, pad support and stiffener geometry. Via lands are 0.40 mm with 0.20 mm drills; LED overlap holes are 0.30 mm. Gimbal has no holes. The small 0.05 mm coverlay overlap and individual 1.4 mm fingers require explicit factory review. Any coverlay enlargement or minimum-web change must preserve inter-pad isolation and support; recheck geometry first. The nominal 0.15 mm finger fillets must remain rounded; no sharp slot-root substitution. Tolerance requests: outline/profile +/-0.10 mm, pad position/registration +/-0.05 mm, nominal coverlay opening alignment +/-0.025 mm where 0.05 mm capture is used; factory must report achievable values and any required redesign, not silently substitute.
+
+No production, purchasing or payment until the fit coupon/template and manufacturing changes are reviewed and the exact order/total approved. First prototypes still need the physical checks above; repeated-motion flex qualification is not claimed.
+
+## Sources checked 2026-09-07
+
+- PCBWay flex form and offered options: https://www.pcbway.com/flexible.aspx (material, copper, holes, coverlay, stiffeners, thickness excluding tape/stiffener; not acceptance of this design).
+- 3M VHB 4611 September 2024 technical data: https://multimedia.3m.com/mws/media/2366513O/3M-VHB-Tape-Specialty-Tape-4611.pdf?pif=000352 (1.1 mm nominal, typical +/-10% thickness).
+- All Flex design guide: https://www.allflexinc.com/wp-content/uploads/2023/04/AFS-AllFlex-Circuit-Design-Guide.pdf (flex-specific pad support, bend/transition and construction guidance; not cycle qualification).
+- Retained Valent X specification and tape installation guide in reference/flex-interconnects; actual strip labels/measurements from user govern this solder interface.

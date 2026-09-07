@@ -31,6 +31,9 @@ RE_VIEWBOX = re.compile(r'viewBox="([^"]+)"')
 RE_WIDTH = re.compile(r'width="([^"]+)"')
 RE_HEIGHT = re.compile(r'height="([^"]+)"')
 RE_COLOUR = re.compile(r"\b(fill|stroke):#[0-9A-Fa-f]{6}")
+# A CAM rendering colours each element with an attribute, not a style.
+RE_COLOUR_ATTR = re.compile(r'\b(fill|stroke)="#[0-9A-Fa-f]{6}"')
+RE_BG_STYLE = re.compile(r'\s*style="background-color:[^"]*"')
 RE_TEXT = re.compile(r"\s*<text\b[^>]*\bopacity=\"0\"[^>]*>.*?</text>", re.S)
 RE_ANY_TEXT = re.compile(r"<text\b", re.S)
 RE_STROKED = re.compile(r"<g class=\"stroked-text\">\s*<desc>([^<]*)</desc>")
@@ -62,13 +65,19 @@ def _body(source):
     return source[tag.end():end]
 
 
-def prepare(source, refs=(), recolour=True, normalise_mask=False, extra_attrs=None):
+def prepare(source, refs=(), recolour=True, normalise_mask=False, extra_attrs=None,
+            wrap_transform=None, view_box=None):
     """Return (svg_text, stats). `refs` is the set of references whose stroked
-    text labels should be tagged with data-ref on this sheet or layer."""
-    refs = set(refs)
-    view_box, width, height = _root_attrs(source)
+    text labels should be tagged with data-ref on this sheet or layer.
 
-    text = RE_PROLOG.sub("", source)
+    `wrap_transform` puts the whole body inside one extra group, which is how
+    a CAM rendering is moved into the native-millimetre frame the rest of a
+    viewer works in. `view_box` overrides the declared frame to match."""
+    refs = set(refs)
+    view_box_declared, width, height = _root_attrs(source)
+
+    text = RE_BG_STYLE.sub("", source)
+    text = RE_PROLOG.sub("", text)
     text = RE_DOCTYPE.sub("", text)
     text = RE_TITLE.sub("", text)
 
@@ -90,21 +99,30 @@ def prepare(source, refs=(), recolour=True, normalise_mask=False, extra_attrs=No
     body = RE_EMPTY_IDENTITY.sub("", body)
     if recolour:
         body = RE_COLOUR.sub(r"\1:currentColor", body)
+        body = RE_COLOUR_ATTR.sub(r'\1="currentColor"', body)
     if normalise_mask:
         body = RE_MASK_OPACITY.sub("fill-opacity:1.0000", body)
+
+    if wrap_transform:
+        body = '<g transform="%s">%s</g>' % (wrap_transform, body)
+    if view_box:
+        view_box_out = view_box
+        width = height = None
+    else:
+        view_box_out = view_box_declared
 
     attrs = ['xmlns="%s"' % SVG_NS]
     if width:
         attrs.append('width="%s"' % width)
     if height:
         attrs.append('height="%s"' % height)
-    attrs.append('viewBox="%s"' % view_box)
+    attrs.append('viewBox="%s"' % view_box_out)
     for key, value in (extra_attrs or {}).items():
         attrs.append('%s="%s"' % (key, value))
 
     out = "<svg %s>%s</svg>\n" % (" ".join(attrs), body)
     stats = {
-        "view_box": view_box,
+        "view_box": view_box_out,
         "data_ref_tags": tagged["count"],
         "data_ref_unique": len(tagged["refs"]),
         "tagged_refs": sorted(tagged["refs"]),
@@ -127,7 +145,7 @@ def census(svg_text):
     return tags, paths
 
 
-def verify(source, result):
+def verify(source, result, added_groups=0):
     """Raise unless `result` has the same geometry as `source`.
 
     Only <text>, <desc>, <title> and one empty identity <g> may disappear.
@@ -148,7 +166,7 @@ def verify(source, result):
     for name, count in src_tags.items():
         after = out_tags.get(name, 0)
         if name in droppable:
-            if after > count:
+            if after > count + (added_groups if name == "g" else 0):
                 raise AssertionError("%s count grew: %d -> %d" % (name, count, after))
             continue
         if after != count:
@@ -157,7 +175,7 @@ def verify(source, result):
         if name not in src_tags:
             raise AssertionError("new element type %s appeared" % name)
 
-    dropped_groups = src_tags.get("g", 0) - out_tags.get("g", 0)
+    dropped_groups = src_tags.get("g", 0) + added_groups - out_tags.get("g", 0)
     if dropped_groups not in (0, 1):
         raise AssertionError("unexpected number of dropped groups: %d" % dropped_groups)
     if out_tags.get("text", 0):

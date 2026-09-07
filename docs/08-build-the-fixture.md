@@ -439,7 +439,7 @@ top is exactly what this step needs it to provide.)
 - [ ] 30-minute soak, everything on: ULNs warm-not-hot, star heatsink warm, IRM case warm-not-hot, no reboots in the logs
 - [ ] Worst-case 24 V current recorded — compare against the ~60 W budget
 
-## What comes after this build — the integrated PCB
+## What comes after this build — the integrated PCB and the flex circuits
 
 This chapter's stacked protoboards are the last hand-wired version of the fixture. The same architecture
 has since been drawn as one eight-layer circuit board: 21 discrete MOSFET channels instead of the ULN
@@ -449,6 +449,11 @@ arrays, three independent constant-current spotlight drivers instead of one shar
 [Doc 9](09-understand-the-pcb.md) explains that board part by part, with an interactive viewer of the real
 layout. It has been designed and quoted; no board has been built or powered, and nothing in this chapter
 depends on it.
+
+The wire this chapter cuts and strips by hand has been drawn too. Three passive flexible circuits carry
+the zone feeds up the arm and around the cylinder in place of loose conductors, and
+[Doc 10](10-the-flex-circuits.md) covers them. They are quoted and unbuilt as well, so the hand wiring
+here remains the only version that exists.
 
 ## Risk register
 

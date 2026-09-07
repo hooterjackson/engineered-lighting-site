@@ -1,0 +1,101 @@
+{
+  "status": "PASS_DIGITAL_QUOTE_CHECKS",
+  "pcb_sha256": "a5acd2a0ca0a0134b26fcce2757d164a1250080bb73f65dd778f97ea8f821d2f",
+  "ERC_violations": 0,
+  "DRC_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "independent_pin_oracle": "PASS",
+  "pads": 120,
+  "CAM_pad_flashes": 240,
+  "CAM_native_tracks": 144,
+  "CAM_drills": 216,
+  "CAM_outline_endpoint_degree_2_within_0p1um": true,
+  "CAM_outline_max_endpoint_gap_mm": 7.000000000090267e-05,
+  "cut_checks": [],
+  "fabrication_layers": {
+    "led-upper-v0.2-B_Cu.gbr": {
+      "objects": 312,
+      "bounds_mm": [
+        [
+          20.726898000000002,
+          -47.7
+        ],
+        [
+          344.241657,
+          -31.7
+        ]
+      ]
+    },
+    "led-upper-v0.2-B_Mask.gbr": {
+      "objects": 120,
+      "bounds_mm": [
+        [
+          20.776898000000003,
+          -47.650000000000006
+        ],
+        [
+          344.19165699999996,
+          -31.75
+        ]
+      ]
+    },
+    "led-upper-v0.2-Edge_Cuts.gbr": {
+      "objects": 784,
+      "bounds_mm": [
+        [
+          19.985,
+          -47.91505
+        ],
+        [
+          344.98360000645334,
+          -27.984977999999998
+        ]
+      ]
+    },
+    "led-upper-v0.2-F_Cu.gbr": {
+      "objects": 264,
+      "bounds_mm": [
+        [
+          20.726898000000002,
+          -47.7
+        ],
+        [
+          344.241657,
+          -31.7
+        ]
+      ]
+    },
+    "led-upper-v0.2-F_Mask.gbr": {
+      "objects": 120,
+      "bounds_mm": [
+        [
+          20.776898000000003,
+          -47.650000000000006
+        ],
+        [
+          344.19165699999996,
+          -31.75
+        ]
+      ]
+    },
+    "led-upper-v0.2-F_Silkscreen.gbr": {
+      "objects": 1970,
+      "bounds_mm": [
+        [
+          22.838749,
+          -46.173855
+        ],
+        [
+          342.167902,
+          -29.21619
+        ]
+      ]
+    }
+  },
+  "physical_copper_layers": 2,
+  "limitations": [
+    "Factory stackup, coverlay registration, pad process and tolerances require review.",
+    "Physical fit, solderability, temperature, CAN/motor behavior and assembled insulation are not proven by CAD."
+  ]
+}

@@ -114,7 +114,8 @@ def test_screenshots(page):
     # readiness signal rather than a fixed pause.
     pages = (("landing", "/", None), ("doc3", "/03-build-the-gimbal/", None),
              ("checklist", "/bom-checklist/", None),
-             ("pcb", "/09-understand-the-pcb/", '#el-pcb[data-state="ready"]'))
+             ("pcb", "/09-understand-the-pcb/", '#el-pcb[data-state="ready"]'),
+             ("flex", "/10-the-flex-circuits/", '#el-flex[data-state="ready"]'))
     for name, path, wait_for in pages:
         for width, height in ((390, 844), (1280, 800)):
             page.set_viewport_size({"width": width, "height": height})

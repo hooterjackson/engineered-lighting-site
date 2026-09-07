@@ -65,12 +65,15 @@ def test_nav_footer_and_last_entry(page):
     page.goto(PAGE)
     prev = page.locator(".md-footer__link--prev .md-ellipsis")
     assert "Build the Fixture" in prev.first.text_content()
-    assert page.locator(".md-footer__link--next").count() == 0, "Doc 9 must be the last page"
+    nxt9 = page.locator(".md-footer__link--next .md-ellipsis")
+    assert "Flex Circuits" in nxt9.first.text_content(), "Doc 10 follows Doc 9"
     page.goto("/08-build-the-fixture/")
     nxt = page.locator(".md-footer__link--next .md-ellipsis")
     assert "Understand the PCB" in nxt.first.text_content()
     last = page.locator(".md-nav--primary > .md-nav__list > .md-nav__item").last
-    assert "Understand the PCB" in last.text_content()
+    text = last.text_content()
+    assert "Understand the boards" in text
+    assert "Understand the PCB" in text and "The Flex Circuits" in text
 
 
 def test_registration_and_default_view(page):

@@ -42,8 +42,9 @@ does on this net. The schematic, the parts list and the actual KiCad files are a
     results in [what has been checked](#validation), along with the longer list of what has not.
     A clean CAD check means the files pass specific rules. It is not a measurement.
 
-    The three passive flex interconnects sketched for the arm and cylinder are **separate, unfinished
-    work**. They are not layers of this board and have not been submitted anywhere.
+    The three passive flex interconnects for the arm and cylinder are **separate circuits**, not layers
+    of this board. They have since been routed and checked — [Doc 10](10-the-flex-circuits.md) covers
+    them — and they have not been submitted or ordered either.
 
 ??? info "Words this chapter uses — open this if any of them are new"
 
@@ -1303,6 +1304,7 @@ applying power.
 
 ## Related reading
 
+- [Doc 10 · The Flex Circuits](10-the-flex-circuits.md) — the manufactured wiring that plugs into this board's connectors.
 - [Doc 8 · Build the Fixture](08-build-the-fixture.md) — the hand-soldered stage this board replaces.
 - [Doc 4 · Build the Full Fixture Bench](04-full-fixture-bench.md) — where the architecture was proven.
 - [Doc 6 · The Message Contract](06-message-contract.md) — the interface every part of the system obeys.

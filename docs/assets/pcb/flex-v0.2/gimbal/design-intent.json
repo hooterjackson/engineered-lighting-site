@@ -1,0 +1,140 @@
+{
+  "status": "ROUTED_DIGITALLY_VERIFIED_QUOTE_REVIEW_NOT_PRODUCTION_RELEASED",
+  "physical_copper_layers": 1,
+  "empty_editor_layer": "B.Cu; never order a second copper layer from this editor declaration",
+  "length_mm": 152.4,
+  "width_mm": 9.2,
+  "finished_flex_thickness_target_mm": 0.1,
+  "nominal_copper_um": 35,
+  "cut_lengths_mm": [
+    25.4,
+    50.8,
+    76.2,
+    101.6,
+    127.0,
+    152.4
+  ],
+  "retained_input_reference": "J1",
+  "pad_length_mm": 3,
+  "edge_margin_mm": 0.35,
+  "lane_gap_mm": 0.2,
+  "lanes": [
+    {
+      "pin": "1",
+      "net": "V24_MOTOR2",
+      "width_mm": 1.2,
+      "y_mm": 0.95
+    },
+    {
+      "pin": "2",
+      "net": "GND",
+      "width_mm": 1.2,
+      "y_mm": 2.35
+    },
+    {
+      "pin": "3",
+      "net": "CAN_H",
+      "width_mm": 0.5,
+      "y_mm": 3.4
+    },
+    {
+      "pin": "4",
+      "net": "CAN_L",
+      "width_mm": 0.5,
+      "y_mm": 4.1
+    },
+    {
+      "pin": "5",
+      "net": "SPOT1_LED_PLUS",
+      "width_mm": 0.55,
+      "y_mm": 4.825
+    },
+    {
+      "pin": "6",
+      "net": "SPOT1_LED_MINUS",
+      "width_mm": 0.55,
+      "y_mm": 5.575
+    },
+    {
+      "pin": "7",
+      "net": "SPOT2_LED_PLUS",
+      "width_mm": 0.55,
+      "y_mm": 6.325
+    },
+    {
+      "pin": "8",
+      "net": "SPOT2_LED_MINUS",
+      "width_mm": 0.55,
+      "y_mm": 7.075
+    },
+    {
+      "pin": "9",
+      "net": "SPOT3_LED_PLUS",
+      "width_mm": 0.55,
+      "y_mm": 7.825
+    },
+    {
+      "pin": "10",
+      "net": "SPOT3_LED_MINUS",
+      "width_mm": 0.55,
+      "y_mm": 8.575000000000001
+    }
+  ],
+  "termination_banks": [
+    [
+      "J1",
+      3.0,
+      null
+    ],
+    [
+      "J2",
+      23.0,
+      25.4
+    ],
+    [
+      "J3",
+      48.4,
+      50.8
+    ],
+    [
+      "J4",
+      73.79999999999998,
+      76.2
+    ],
+    [
+      "J5",
+      99.19999999999999,
+      101.6
+    ],
+    [
+      "J6",
+      124.6,
+      127.0
+    ],
+    [
+      "J7",
+      149.99999999999997,
+      152.4
+    ]
+  ],
+  "components_to_purchase": [],
+  "assumptions": {
+    "motor_dc_A": 0.75,
+    "spot_each_A": 0.3333333333333333,
+    "currents_measured": false,
+    "pcb_joint_motion": "none; ordinary wires at ends",
+    "connector_footprints": "not in this narrow ribbon draft"
+  },
+  "pending": [
+    "factory stack/coverlay/adhesive and copper minimum acceptance",
+    "cut-edge treatment and solder-pad support trial",
+    "short harness CAN signal and motor transient tests",
+    "bonded temperature measurements",
+    "optional wider connector ends decision"
+  ],
+  "name": "gimbal-static-v0.2",
+  "coverlay_overlap_mm": 0.05,
+  "stiffener": "0.20 mm PI plus adhesive on B under each solder bank, local X=center +/-2 mm, full ribbon width; no stiffener across marked cuts",
+  "native_pcb_sha256": "7136c5c343da3194c0ada81330edd99336b3078152bb8f1ce47f5da158f2287d",
+  "current_source": "This folder supersedes flex-drafts for quote geometry; physical fit/factory acceptance remain pending."
+}

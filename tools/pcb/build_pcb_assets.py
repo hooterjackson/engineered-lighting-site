@@ -29,13 +29,16 @@ import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import flex  # noqa: E402
 import svgprep  # noqa: E402
 import teaching  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 DOCS = REPO / "docs"
 ASSETS = DOCS / "assets" / "pcb" / "light-v0.1"
+FLEX_ASSETS = DOCS / "assets" / "pcb" / "flex-v0.2"
 PAGE = DOCS / "09-understand-the-pcb.md"
+FLEX_PAGE = DOCS / "10-the-flex-circuits.md"
 
 PCB_SHA = "c046202efa3896d59d12bf19f55ed48b3a6c77532aac199a3a1e9a993e449310"
 ZIP_SHA = "029f02282a4500ad541a31513062dc8ef4b7426aef1c0547d51f07ee4b459d8d"
@@ -785,11 +788,53 @@ def build(handoff):
     print("build complete: %s" % ASSETS)
 
 
+def build_flex(review):
+    index = flex.build(review, FLEX_ASSETS, write_json, write_text, write_bytes, header)
+    print("flex: %d designs, %d pads, %d layer renderings"
+          % (len(index["boards"]), index["totals"]["pads"],
+             sum(len(b["layers"]) for b in index["boards"])))
+    scan(verbose=True)
+    render()
+    return index
+
+
+def check_flex():
+    if not (FLEX_ASSETS / "index.json").exists():
+        return
+    index = read_json(FLEX_ASSETS / "index.json")
+    prov = read_json(FLEX_ASSETS / "provenance.json")
+    if len(index["boards"]) != 3:
+        sys.exit("the flex set should have three designs")
+    for board in index["boards"]:
+        recorded = prov["designs"][board["id"]]
+        if recorded["pcb_sha256"] != board["pcb_sha256"]:
+            sys.exit("%s: hash disagreement between index and provenance" % board["id"])
+        for layer in board["layers"]:
+            path = FLEX_ASSETS / layer["file"]
+            if not path.exists() or sha256(path) != layer["sha256"]:
+                sys.exit("%s: layer missing or changed: %s" % (board["id"], layer["file"]))
+        for entry in board["files"]:
+            path = FLEX_ASSETS / board["id"] / entry["file"]
+            if not path.exists() or sha256(path) != entry["sha256"]:
+                sys.exit("%s: source missing or changed: %s" % (board["id"], entry["file"]))
+        if board["fabrication"]:
+            path = FLEX_ASSETS / board["fabrication"]["file"]
+            if not path.exists() or sha256(path) != board["fabrication"]["sha256"]:
+                sys.exit("%s: fabrication archive changed" % board["id"])
+        if not board["pads"]:
+            sys.exit("%s: no pads recorded" % board["id"])
+    for name in flex.NEVER_PUBLISH:
+        if list(FLEX_ASSETS.rglob(name)):
+            sys.exit("a withheld file was published: %s" % name)
+    print("flex check passed: 3 designs, hashes and layer renderings all agree")
+
+
 # --------------------------------------------------------------------------- scanner
 def scan(verbose=False):
     problems = []
     checked = 0
-    for path in sorted(ASSETS.rglob("*")):
+    roots = [ASSETS] + ([FLEX_ASSETS] if FLEX_ASSETS.exists() else [])
+    for path in sorted(q for root in roots for q in root.rglob("*")):
         if not path.is_file():
             continue
         checked += 1
@@ -804,10 +849,13 @@ def scan(verbose=False):
             for pattern, what in FORBIDDEN_EVERYWHERE + FORBIDDEN_IN_ASSETS:
                 if re.search(pattern, text):
                     problems.append("%s contains %s (/%s/)" % (name, what, pattern))
-    page = PAGE.read_text(encoding="utf-8") if PAGE.exists() else ""
-    for pattern, what in FORBIDDEN_EVERYWHERE:
-        if re.search(pattern, page):
-            problems.append("the chapter contains %s (/%s/)" % (what, pattern))
+    for page_path in (PAGE, FLEX_PAGE):
+        if not page_path.exists():
+            continue
+        page = page_path.read_text(encoding="utf-8")
+        for pattern, what in FORBIDDEN_EVERYWHERE:
+            if re.search(pattern, page):
+                problems.append("%s contains %s (/%s/)" % (page_path.name, what, pattern))
     if problems:
         for p in problems:
             print("FORBIDDEN: %s" % p, file=sys.stderr)
@@ -965,30 +1013,124 @@ def blocks():
     return out
 
 
-def render(check_only=False):
-    if not PAGE.exists():
-        print("chapter not written yet; skipping block render")
-        return True
-    page = PAGE.read_text(encoding="utf-8")
-    generated = blocks()
+def flex_blocks():
+    """Static blocks for Doc 10, readable without JavaScript."""
+    index = read_json(FLEX_ASSETS / "index.json")
+    out = {}
+
+    rows = []
+    for b in index["boards"]:
+        rows.append([
+            esc(b["title"]), "<code>%s</code>" % esc(b["design"]),
+            "%.1f &times; %.1f mm" % (b["size_mm"][0], b["size_mm"][1]),
+            "%d" % b["copper_layers"], "%d" % len(b["pads"]), esc(b["what"]),
+        ])
+    out["flex-boards"] = _table(
+        ["Circuit", "Design", "Size", "Copper layers", "Solder pads", "What it does"], rows)
+
+    parts = ['<div class="el-pcb-index">']
+    for b in index["boards"]:
+        parts.append("<details>")
+        parts.append('<summary>%s <span class="el-pcb-count">%d pads</span></summary>'
+                     % (esc(b["title"]), len(b["pads"])))
+        rows = []
+        for pad in b["pads"]:
+            carries = pad["net"] or ((pad["rail"] + " rail") if pad["rail"] else "unnamed in the bare circuit")
+            rows.append((
+                [esc(pad["ref"]), esc(pad["pin"]), esc(carries), esc(pad["role"] or ""),
+                 "%.2f, %.2f" % (pad["xy"][0], pad["xy"][1])],
+                ' data-flex-row="%s:%s:%s"' % (b["id"], esc(pad["ref"]), esc(pad["pin"]))))
+        parts.append(_table(["Reference", "Pin", "Carries", "Role", "Position (mm)"], rows))
+        parts.append("</details>")
+    parts.append("</div>")
+    out["flex-connections"] = "\n".join(parts)
+
+    rows = []
+    for case in index["electrical"]["cases"]:
+        rows.append([
+            esc(case["name"]),
+            "%.3f V" % case.get("worst_LED_drop_V", 0),
+            "%.3f V" % case.get("gimbal_motor_loop_drop_V", 0),
+            "%.3f V" % case.get("gimbal_LED_loop_drop_V", 0),
+            "%d &deg;C" % case.get("assumed_copper_temperature_C", 0),
+            "%d &micro;m" % case.get("copper_um", 0),
+        ])
+    out["flex-electrical"] = _table(
+        ["Sensitivity case", "Worst LED strip supply loss", "Gimbal motor loop",
+         "Each spotlight pair", "Assumed copper temperature", "Assumed copper"], rows)
+
+    rows = []
+    for b in index["boards"]:
+        c = b["checks"]
+        rows.append([
+            esc(b["title"]), "%d" % c["erc"], "%d" % c["drc"], "%d" % c["unconnected"],
+            "%d" % c["parity"], esc(c["pin_oracle"]),
+            "%d / %d" % (c["pads"], c["cam_pad_flashes"]),
+            "%d" % c["cam_tracks"], "%d" % c["cam_drills"],
+        ])
+    out["flex-validation"] = _table(
+        ["Circuit", "ERC", "DRC", "Unconnected", "Parity", "Pin oracle",
+         "Pads / CAM flashes", "CAM tracks", "CAM drills"], rows)
+
+    rows = []
+    for b in index["boards"]:
+        for entry in b["files"]:
+            rows.append([
+                esc(b["title"]), esc(entry["file"].split("/")[-1]), human_bytes(entry["bytes"]),
+                "<code>%s</code>" % entry["sha256"][:12],
+                '<a href="../assets/pcb/flex-v0.2/%s/%s">download</a>' % (b["id"], entry["file"]),
+            ])
+        if b["fabrication"]:
+            rows.append([
+                esc(b["title"]), "fabrication archive (Gerbers, drills, maps)",
+                human_bytes(b["fabrication"]["bytes"]),
+                "<code>%s</code>" % b["fabrication"]["sha256"][:12],
+                '<a href="../assets/pcb/flex-v0.2/%s">download</a>' % b["fabrication"]["file"],
+            ])
+    for shared, label in (("fit-templates-A3.pdf", "Fit templates (print at 100 %)"),
+                          ("ENGINEERING-NOTES.txt", "Engineering notes (Markdown source)")):
+        path = FLEX_ASSETS / shared
+        rows.append(["All three", esc(label), human_bytes(path.stat().st_size),
+                     "<code>%s</code>" % sha256(path)[:12],
+                     '<a href="../assets/pcb/flex-v0.2/%s">download</a>' % shared])
+    out["flex-downloads"] = _table(
+        ["Circuit", "File", "Size", "SHA-256 (first 12)", "Download"], rows)
+    return out
+
+
+def _render_page(page_path, generated, check_only):
+    if not page_path.exists():
+        print("%s not written yet; skipping its blocks" % page_path.name)
+        return 0
+    page = page_path.read_text(encoding="utf-8")
     updated = page
     for name, body in sorted(generated.items()):
         start, end = MARK % (name, "start"), MARK % (name, "end")
         pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.S)
         if not pattern.search(updated):
-            sys.exit("chapter is missing the %s block markers" % name)
+            sys.exit("%s is missing the %s block markers" % (page_path.name, name))
         updated = pattern.sub(lambda _m, s=start, b=body, e=end: "%s\n\n%s\n\n%s" % (s, b, e), updated)
     if check_only:
         if updated != page:
-            sys.exit("generated blocks in the chapter are out of date -- run: "
-                     "python tools/pcb/build_pcb_assets.py render")
-        print("generated page blocks match the published data")
-        return True
+            sys.exit("generated blocks in %s are out of date -- run: "
+                     "python tools/pcb/build_pcb_assets.py render" % page_path.name)
+        return len(generated)
     if updated != page:
-        write_text(PAGE, updated)
-        print("chapter blocks regenerated (%d)" % len(generated))
+        write_text(page_path, updated)
+        print("%s: %d blocks regenerated" % (page_path.name, len(generated)))
     else:
-        print("chapter blocks already up to date (%d)" % len(generated))
+        print("%s: %d blocks already up to date" % (page_path.name, len(generated)))
+    return len(generated)
+
+
+def render(check_only=False):
+    total = 0
+    if (ASSETS / "board.json").exists():
+        total += _render_page(PAGE, blocks(), check_only)
+    if (FLEX_ASSETS / "index.json").exists():
+        total += _render_page(FLEX_PAGE, flex_blocks(), check_only)
+    if check_only:
+        print("generated page blocks match the published data (%d)" % total)
     return True
 
 
@@ -1052,6 +1194,7 @@ def check():
     if sorted(prov["through_features"]) != ["H1", "H2", "H3", "H4", "J14"]:
         sys.exit("through-feature set drifted")
 
+    check_flex()
     scan()
     render(check_only=True)
     print("check passed: hashes, counts, manifest, scanner and generated blocks all agree")
@@ -1062,11 +1205,15 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("mode", choices=("build", "render", "check"))
     ap.add_argument("--handoff", help="path to the handoff folder (build only)")
+    ap.add_argument("--flex", help="path to the FLEX v0.2 review folder (build only)")
     args = ap.parse_args()
     if args.mode == "build":
-        if not args.handoff:
-            sys.exit("build needs --handoff")
-        build(args.handoff)
+        if not args.handoff and not args.flex:
+            sys.exit("build needs --handoff, --flex, or both")
+        if args.handoff:
+            build(args.handoff)
+        if args.flex:
+            build_flex(args.flex)
     elif args.mode == "render":
         render()
     else:

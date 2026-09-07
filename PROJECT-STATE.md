@@ -26,7 +26,7 @@ at the end of every working session.*
 > a ruling or current bench evidence in `gimbal-bench`, the ruling wins and the
 > stale side gets an item.
 
-**Last updated:** 2026-09-07 (Doc 9: the LIGHT v0.1 PCB learning page) — *the last edit to **this file**, not to the repo.
+**Last updated:** 2026-09-07 (Doc 10: the FLEX v0.2 circuits, the pull_request CI trigger, the pinnable board tooltip) — *the last edit to **this file**, not to the repo.
 `git log -1` is the repo's real state; this file lags it by design.*
 
 ## What this project is
@@ -34,7 +34,7 @@ at the end of every working session.*
 The robotic spotlight for the Engineered Lighting fixture: a silent pan/tilt head
 (smart CAN servo actuators, absolute encoders) carrying a high-CRI 3-up LED spot,
 exposed to Home Assistant as ordinary entities AND autonomously aimed by a
-camera-driven perception stack. Full context lives in the 9-doc series in `docs/`,
+camera-driven perception stack. Full context lives in the 10-doc series in `docs/`,
 published at **https://engineering.engineered.lighting/** (this repo, MkDocs
 Material, deployed via GitHub Actions).
 
@@ -391,6 +391,80 @@ Build with the global interpreter, test with `.venv/Scripts/python.exe -m pytest
 4. Doc 9 hides its table of contents so the board and its detail panel fit side by
    side at 1280 px, as `bom-checklist.md` already does.
 
-**Deployment: NOT performed.** All work is on branch `doc9-understand-the-pcb`.
-Pushing to `main` auto-deploys via `.github/workflows/publish.yml`, so publication
-waits on explicit approval.
+**Deployment.** Approved and performed the same day: branch pushed, pull request
+1 merged with a merge commit (`77cdafa`), CI green, and the chapter is live at
+https://engineering.engineered.lighting/09-understand-the-pcb/. The hash chain was
+re-verified against files fetched back from the published site.
+
+### 2026-09-07 (later) — Doc 10: the FLEX v0.2 circuits, a branch gate, and a board tooltip that stays put
+
+Three separate pieces of work, in the order they were asked for.
+
+**A `pull_request` trigger on the publish workflow.** The pull request for Doc 9
+showed no checks at all, because `.github/workflows/publish.yml` only ran on pushes
+to `main`. It now also runs on `pull_request` against `main`, so a branch is
+validated *before* it lands rather than after. The `deploy` job carries
+`if: github.event_name != 'pull_request'`, so a pull request can build and test but
+can never publish, and `concurrency` is keyed by `github.ref` so a branch's run does
+not cancel `main`'s. The social-card step still fails on CI for want of `cffi`; that
+is pre-existing on `main` and unrelated.
+
+**Doc 10 — `docs/10-the-flex-circuits.md`.** Three passive flexible circuits, from
+their own KiCad sources, each governed by its own hash:
+
+| Circuit | Design | Copper | Pads | `.kicad_pcb` SHA-256 (first 8) |
+|---|---|---|---|---|
+| Arm ribbon | `gimbal-static-v0.2` | 1 layer | 70 | `7136c5c3` |
+| Upper cylinder band | `led-upper-v0.2` | 2 layers | 120 | `a5acd2a0` |
+| Lower cylinder band | `led-lower-v0.2` | 2 layers | 96 | `21db9dba` |
+
+`tools/pcb/flex.py` (invoked as `build_pcb_assets.py --flex`) verifies each hash,
+renders 16 layer plots, extracts all 286 pads from the connection tables, publishes
+the native sources and builds deterministic fabrication ZIPs. 53 files, 2.5 MB.
+
+The one genuinely hard part was registration. KiCad plots these layers in a CAM
+frame, not in board millimetres, so the pad coordinates from the connection table
+would have landed somewhere plausible but wrong on top of them. `_frame()` parses
+the `translate(A B) scale(1 -1) translate(C D)` wrapper KiCad emits and derives
+`displayed_y = native_y − (D − B)`; `svgprep.prepare()` grew `wrap_transform` and
+`view_box` parameters to apply it. `test_pads_are_drawn_on_the_copper` checks the
+result the only way that means anything: it measures the rendered `F_Cu` bounding
+box in the browser and asserts every one of the 286 markers falls inside it, on all
+three boards.
+
+One asset needed renaming. The review folder's `ENGINEERING-NOTES.md` is
+Markdown, and anything ending `.md` under `docs/` is a chapter as far as MkDocs is
+concerned — it was rendered as a page and awesome-pages appended it to the nav
+*after* Doc 10. It is published as `ENGINEERING-NOTES.txt` instead; the bytes and
+therefore the hash `34a74c6a3252` are unchanged. `test_no_asset_is_paged_by_mkdocs`
+guards the whole `docs/assets` tree against a repeat.
+
+`docs/js/flex-viewer.js` reuses the Doc 9 viewer through `window.elPcbKit`, a small
+export of `PanZoom` and the DOM helpers. Two things it needed that Doc 9 did not:
+these circuits are up to sixteen times longer than they are wide, so fitting the
+whole length draws an unreadable hairline — the default view fills the frame with
+the circuit's *height* and the reader pans along it, with a "Whole circuit" button
+for the overview. And the layer cache originally stored `true` rather than the
+markup, so returning to a board you had already visited rendered nothing; it now
+caches `innerHTML`.
+
+The page states its numbers honestly: the 0.346 mm worst-case alignment hold against
+a 0.30 mm requirement is a computed margin, not a passed physical test, and nothing
+has been submitted, ordered or paid for.
+
+**A tooltip you can inspect without being moved.** Clicking a component on the Doc 9
+board used to jump the page straight to that part's parts-list row, which on a phone
+meant you could never look at a part without losing the board. Hover and click now
+both open the same summary; clicking *pins* it, with a close button, and the jump to
+the parts list is a button inside the summary. Hovering elsewhere no longer disturbs
+a pinned summary, `markBOM` no longer scrolls, and `jumpToRow` does the scrolling and
+announces it. Four tests cover the new behaviour, including a touch-only path that
+asserts the page does not scroll on tap.
+
+**Sitewide.** `docs/.pages`, `mkdocs.yml`, both document maps, the "ten-document"
+phrasing, the `10 documents` hero chip, both reading paths, Doc 9's related reading
+and Doc 8's forward-looking section. Doc 10 hides its table of contents for the same
+reason Doc 9 does.
+
+**Checks.** `mkdocs build --strict` twice with no warnings; `pytest tests/e2e -q`
+green including 12 new flex tests; the asset scanner clean over both asset roots.
