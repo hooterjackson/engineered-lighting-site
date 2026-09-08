@@ -26,9 +26,11 @@ nav:
       - 07-building-the-software.md
   - Make it permanent:
       - 08-build-the-fixture.md
-  # Doc 9 is the integrated SMD PCB, the design stage after Doc 8's hand-soldered
-  # protoboards. It closes the reading sequence, so it gets its own group and stays
-  # last; awesome-pages' "..." must remain after it.
-  - Understand the PCB:
+  # Docs 9 and 10 are the manufactured hardware: the integrated SMD board that
+  # replaces Doc 8's hand-soldered protoboards, and the flexible circuits that
+  # replace the wire between them. They close the reading sequence, so the group
+  # stays last; awesome-pages' "..." must remain after it.
+  - Understand the boards:
       - 09-understand-the-pcb.md
+      - 10-the-flex-circuits.md
   - ...

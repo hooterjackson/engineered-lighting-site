@@ -1,0 +1,8 @@
+region,face,x_min_mm,x_max_mm,y_min_KiCad_mm,y_max_KiCad_mm,PI_thickness_mm,adhesive
+J1,B,21.0,25.0,20,29.2,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"
+J2,B,41.0,45.0,20,29.2,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"
+J3,B,66.4,70.4,20,29.2,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"
+J4,B,91.79999999999998,95.79999999999998,20,29.2,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"
+J5,B,117.19999999999999,121.19999999999999,20,29.2,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"
+J6,B,142.6,146.6,20,29.2,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"
+J7,B,167.99999999999997,171.99999999999997,20,29.2,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"

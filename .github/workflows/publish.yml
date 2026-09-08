@@ -3,6 +3,11 @@ name: publish site
 on:
   push:
     branches: [main]
+  # Validate a branch before it reaches main. Only the test and cad jobs run
+  # here; deploy is gated on the event below, so a pull request can never
+  # publish.
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 # Fresh personal-account repos get a read-only GITHUB_TOKEN by default;
@@ -11,8 +16,9 @@ permissions:
   contents: write
 
 # Overlapping runs would race force-pushes to gh-pages; newest push wins.
+# Keyed by ref so a pull request's run cannot cancel main's deploy.
 concurrency:
-  group: publish-site
+  group: publish-site-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -67,6 +73,8 @@ jobs:
 
   deploy:
     needs: test
+    # Never from a pull request: publishing is a push to main or a manual run.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

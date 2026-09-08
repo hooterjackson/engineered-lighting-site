@@ -106,6 +106,7 @@
       self.frame = null;
       var v = self.view;
       self.root.setAttribute("viewBox", v.x + " " + v.y + " " + v.w + " " + v.h);
+      if (self.onApply) self.onApply();
     });
   };
 
@@ -298,6 +299,7 @@
     var state = {
       face: "F", preset: "components", inner: "In1_Cu",
       layers: {}, hover: null, selected: null, group: [],
+      tipRef: null, tipPinned: false,
       autoFit: true, reduced: reduced, lockPan: false
     };
     var data = {};
@@ -421,13 +423,17 @@
       buildSynthetic();
       buildHits();
 
-      ui.tip = el("div", { id: "el-pcb-tip", class: "el-pcb-tip", role: "tooltip", hidden: "hidden" }, canvas);
+      ui.tip = el("div", {
+        id: "el-pcb-tip", class: "el-pcb-tip", role: "dialog",
+        "aria-label": "Part summary", "aria-modal": "false", hidden: "hidden"
+      }, canvas);
       ui.status = el("p", { id: "el-pcb-status", class: "el-pcb-status", role: "status" }, canvas);
       ui.status.setAttribute("aria-live", "polite");
       el("p", {
         id: "el-pcb-keys", class: "el-pcb-visually-hidden",
         text: "Board viewer. Arrow keys pan, plus and minus zoom, zero fits the board, " +
-              "f flips to the other face. Use the search box below to find a part by name."
+              "f flips to the other face. Use the search box below to find a part by name. " +
+              "Selecting a part opens a summary with a button that jumps to its row in the parts list."
       }, canvas);
 
       var side = el("div", { class: "el-pcb-side" }, stage);
@@ -439,6 +445,7 @@
 
       pz = new PanZoom(ui.svg, frame.fit.slice(), { reduced: reduced });
       pz.frameNode = ui.hitG;
+      pz.onApply = repositionTip;
       hits = new HitIndex(data.board.components);
       store = new LayerStore(base, ui.layers, null);
 
@@ -775,17 +782,43 @@
       }, ui.rings);
     }
 
+    /* The tooltip is the primary way to inspect a part, on every input device.
+       Hovering opens it; clicking or tapping pins it so its buttons can be
+       reached -- which is what makes this work on a phone, where there is no
+       hover and where jumping straight to the parts list would throw the
+       reader down the page. */
     function setHover(ref, clientPoint) {
       state.hover = ref;
       drawRings();
-      if (!ref) { ui.tip.hidden = true; return; }
-      showTip(ref, clientPoint);
+      if (state.tipPinned) return;          // a pinned summary stays put
+      if (!ref) { hideTip(); return; }
+      showTip(ref, clientPoint, false);
     }
 
-    function showTip(ref, clientPoint) {
+    function hideTip() {
+      ui.tip.hidden = true;
+      state.tipRef = null;
+      state.tipPinned = false;
+    }
+
+    function showTip(ref, clientPoint, pinned) {
       var c = data.comp[ref], t = data.teach.components[ref];
       if (!c || !t) return;
+      state.tipRef = ref;
+      state.tipPinned = !!pinned;
       ui.tip.innerHTML = "";
+      ui.tip.classList.toggle("is-pinned", !!pinned);
+
+      if (pinned) {
+        var close = el("button", {
+          type: "button", class: "el-pcb-tip-close", "aria-label": "Close this summary", text: "×"
+        }, ui.tip);
+        close.addEventListener("click", function () {
+          hideTip();
+          ui.canvas.focus({ preventScroll: true });
+        });
+      }
+
       el("strong", { text: ref + " · " + t.name }, ui.tip);
       var meta = [c.value, c.mpn].filter(Boolean).join(" · ");
       if (meta) el("span", { class: "el-pcb-tip-meta", text: meta }, ui.tip);
@@ -795,8 +828,45 @@
       }, ui.tip);
       el("span", { class: "el-pcb-tip-here", text: "Here: " + firstSentence(t.here) }, ui.tip);
       el("span", { class: "el-pcb-tip-how", text: "How: " + firstSentence(t.how) }, ui.tip);
+
+      if (pinned) {
+        var actions = el("div", { class: "el-pcb-tip-actions" }, ui.tip);
+        if (c.bom) {
+          var bom = el("button", {
+            type: "button", class: "el-pcb-btn el-pcb-tip-bom",
+            "data-act": "bom", text: "Show in parts list"
+          }, actions);
+          bom.addEventListener("click", function () { jumpToRow(c.bom); });
+        } else {
+          el("span", {
+            class: "el-pcb-tip-meta el-pcb-tip-nobom",
+            text: "made with the PCB — not in the parts list"
+          }, actions);
+        }
+        var sheet = el("button", {
+          type: "button", class: "el-pcb-btn el-pcb-tip-sheet",
+          "data-act": "sheet", text: "Show on sheet " + c.sheet
+        }, actions);
+        sheet.addEventListener("click", function () { showOnSheet(ref); });
+        var more = el("button", {
+          type: "button", class: "el-pcb-btn el-pcb-tip-more",
+          "data-act": "detail", text: "Full explanation"
+        }, actions);
+        more.addEventListener("click", function () {
+          ui.detail.scrollIntoView({ block: "nearest", behavior: state.reduced ? "auto" : "smooth" });
+          var h = ui.detail.querySelector("h3");
+          if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+        });
+      }
+
       ui.tip.hidden = false;
       placeTip(c.bbox, clientPoint);
+    }
+
+    function repositionTip() {
+      if (ui.tip.hidden || !state.tipRef) return;
+      var c = data.comp[state.tipRef];
+      if (c) placeTip(c.bbox, null);
     }
 
     function firstSentence(text) {
@@ -841,13 +911,15 @@
       ui.tip.style.top = (chosen.y - stage.top) + "px";
     }
 
-    function select(ref, reason) {
+    function select(ref, reason, opts) {
+      opts = opts || {};
       if (ref && !data.comp[ref]) { say("There is no part called " + ref + " on this board."); return; }
       state.selected = ref;
       root.dataset.selected = ref || "";
       if (!ref) {
         state.group = [];
         clearDetail();
+        hideTip();
         drawRings();
         markBOM(null);
         setHash();
@@ -864,8 +936,16 @@
       renderDetail(ref);
       markBOM(c.bom);
       setHash();
+      if (opts.tip !== false) {
+        showTip(ref, opts.point || null, true);
+        if (opts.focusTip) {
+          var first = ui.tip.querySelector("button:not(.el-pcb-tip-close)");
+          if (first) first.focus({ preventScroll: true });
+        }
+      }
       var msg = ref + ", " + data.teach.components[ref].name + ".";
       if (switched) msg += " Switched to the " + faceWord(c.side) + " face to show it.";
+      if (c.bom) msg += " Use “Show in parts list” to jump to row " + c.bom + ".";
       if (reason) msg += " " + reason;
       say(msg);
     }
@@ -1115,7 +1195,7 @@
           if (ui.active) {
             e.preventDefault();
             var ref = ui.active.dataset.ref;
-            select(ref); locate(ref, true); closeList();
+            select(ref, null, { focusTip: true }); locate(ref, true); closeList();
           }
         } else if (e.key === "Escape") {
           if (!ui.list.classList.contains("is-open")) return;
@@ -1233,7 +1313,8 @@
           if (!tr.querySelector(".el-pcb-rowmark")) {
             el("span", { class: "el-pcb-rowmark", text: "selected" }, tr.cells[0]);
           }
-          tr.scrollIntoView({ block: "nearest" });
+          // Deliberately no scrollIntoView: selecting a part must never move the
+          // reader away from the board. The summary's button does that on request.
         } else {
           tr.removeAttribute("aria-current");
           var mark = tr.querySelector(".el-pcb-rowmark");
@@ -1247,6 +1328,9 @@
       if (!tr) return;
       markBOM(item);
       tr.scrollIntoView({ block: "center", behavior: state.reduced ? "auto" : "smooth" });
+      var first = tr.querySelector(".el-pcb-ref");
+      if (first) { first.setAttribute("tabindex", "-1"); first.focus({ preventScroll: true }); }
+      say("Moved to parts list row " + item + ".");
     }
 
     function enhanceRefs(scope) {
@@ -1284,6 +1368,7 @@
       var dragging = false, moved = false, last = null, pointers = {}, pinch = null;
 
       canvas.addEventListener("pointerdown", function (e) {
+        if (inTip(e)) return;             // the summary sits over the board
         pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
         var ids = Object.keys(pointers);
         if (ids.length === 2) {
@@ -1296,6 +1381,7 @@
       });
 
       canvas.addEventListener("pointermove", function (e) {
+        if (inTip(e) && !dragging) return;
         if (pointers[e.pointerId]) { pointers[e.pointerId] = { x: e.clientX, y: e.clientY }; }
         var ids = Object.keys(pointers);
         if (ids.length === 2 && pinch) {
@@ -1304,7 +1390,7 @@
           state.autoFit = false;
           pz.zoomAt(factor, now.cx, now.cy);
           pinch = now;
-          ui.tip.hidden = true;
+          if (!state.tipPinned) hideTip();
           return;
         }
         if (dragging) {
@@ -1315,7 +1401,7 @@
             var v = pz.view;
             state.autoFit = false;
             pz.panBy(-dx * v.w / box.width, -dy * v.h / box.height);
-            ui.tip.hidden = true;
+            if (!state.tipPinned) hideTip();
           }
           last = { x: e.clientX, y: e.clientY };
           return;
@@ -1341,7 +1427,18 @@
           var mmPerPx = pz.view.w / box.width;
           hit = hits.nearest(p.x, p.y, state.face, TAP_SLOP * mmPerPx);
         }
-        if (hit) { select(hit.ref); canvas.focus({ preventScroll: true }); }
+        if (hit) {
+          select(hit.ref, null, { point: { x: e.clientX, y: e.clientY } });
+          canvas.focus({ preventScroll: true });
+        } else {
+          hideTip();
+          state.hover = null;
+          drawRings();
+        }
+      }
+
+      function inTip(e) {
+        return !!(e.target && e.target.closest && e.target.closest(".el-pcb-tip"));
       }
       canvas.addEventListener("pointerup", end);
       canvas.addEventListener("pointercancel", function (e) {
@@ -1392,7 +1489,7 @@
           case "-": case "_": pz.zoomBy(1.25); state.autoFit = false; break;
           case "0": pz.fit(); state.autoFit = true; break;
           case "f": case "F": setFace(state.face === "F" ? "B" : "F", true); break;
-          case "Escape": setHover(null); break;
+          case "Escape": hideTip(); state.hover = null; drawRings(); break;
           default: handled = false;
         }
         if (handled) e.preventDefault();
@@ -1637,6 +1734,12 @@
       };
     }
   }
+
+  /* Doc 10's flex viewer is a simpler instance of the same idea, so it borrows
+     the pan/zoom core and the DOM helpers rather than copying them. */
+  window.elPcbKit = {
+    PanZoom: PanZoom, el: el, svg: svg, fetchJSON: fetchJSON, fetchSVG: fetchSVG, byRef: byRef
+  };
 
   function initAll() {
     var root = document.getElementById("el-pcb");

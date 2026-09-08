@@ -408,6 +408,15 @@ def test_generated_blocks_and_raw_links(board, bom, sch):
 
 @pytest.mark.skipif(not (SITE / "09-understand-the-pcb" / "index.html").exists(),
                     reason="run mkdocs build first")
+def test_no_asset_is_paged_by_mkdocs():
+    """A published asset ending .md is not a download, it is a chapter: MkDocs
+    renders it and awesome-pages appends it to the nav after the last real
+    chapter. The flex engineering notes arrived that way and are published .txt."""
+    strays = sorted(p.relative_to(REPO).as_posix()
+                    for p in (REPO / "docs" / "assets").rglob("*.md"))
+    assert not strays, strays
+
+
 def test_built_page_and_footer():
     page = (SITE / "09-understand-the-pcb" / "index.html").read_text(encoding="utf-8")
     assert 'id="el-pcb"' in page and 'data-state="nojs"' in page
@@ -417,4 +426,7 @@ def test_built_page_and_footer():
     assert nxt and "Understand the PCB" in nxt.group(1)
     prev = re.search(r'md-footer__link--prev.*?md-ellipsis">([^<]+)<', page, re.S)
     assert prev and "Build the Fixture" in prev.group(1)
-    assert "md-footer__link--next" not in page, "Doc 9 must be the last page"
+    nxt9 = re.search(r'md-footer__link--next.*?md-ellipsis">([^<]+)<', page, re.S)
+    assert nxt9 and "Flex Circuits" in nxt9.group(1), "Doc 10 follows Doc 9"
+    flex = (SITE / "10-the-flex-circuits" / "index.html").read_text(encoding="utf-8")
+    assert "md-footer__link--next" not in flex, "Doc 10 must be the last page"
