@@ -297,7 +297,7 @@
     root.dataset.state = "loading";
 
     var state = {
-      face: "F", preset: "components", inner: "In1_Cu",
+      face: "F", preset: "components", inner: "In1_Cu", appearance: "material",
       layers: {}, hover: null, selected: null, group: [],
       tipRef: null, tipPinned: false,
       autoFit: true, reduced: reduced, lockPan: false
@@ -389,6 +389,23 @@
         }), "In1_Cu", function (v) { setInner(v); });
       ui.innerWrap.wrap.hidden = true;
 
+      root.dataset.appearance = state.appearance;
+      segment(bar, "Appearance", "el-pcb-appearance", [
+        { value: "material", label: "Board materials" },
+        { value: "diagram", label: "Engineering colors" }
+      ], state.appearance, function (value) {
+        state.appearance = value;
+        root.dataset.appearance = value;
+        if (state.preset !== "custom") applyPreset(state.preset, true);
+        else setCaption();
+      });
+      var refs = el("label", { class: "el-pcb-check" }, bar);
+      var refToggle = el("input", { type: "checkbox", name: "el-pcb-references" }, refs);
+      refs.classList.add("el-pcb-reference-control");
+      el("span", { text: "Assembly references" }, refs);
+      refToggle.addEventListener("change", function () {
+        root.classList.toggle("el-pcb-show-references", refToggle.checked);
+      });
       buildLayerMenu(bar);
       buildButtons(bar);
       ui.legend = el("ul", { class: "el-pcb-legend" }, bar);
@@ -408,6 +425,12 @@
         class: "el-pcb-svg", preserveAspectRatio: "xMidYMid meet",
         "aria-hidden": "true", focusable: "false"
       }, canvas);
+      var defs = svg("defs", {}, ui.svg);
+      [["el-pcb-metal", [["0%", "#646e79"], ["24%", "#dce2e8"], ["43%", "#ffffff"], ["52%", "#a7b1bd"], ["100%", "#e6ebef"]]],
+       ["el-pcb-shield", [["0%", "#707983"], ["35%", "#cbd0d5"], ["48%", "#edf0f2"], ["100%", "#929ca6"]]]].forEach(function (spec) {
+        var grad=svg("linearGradient", {id:spec[0], x1:"0%", y1:"0%", x2:"100%", y2:"65%"}, defs);
+        spec[1].forEach(function (stop) {svg("stop", {offset:stop[0], "stop-color":stop[1]}, grad);});
+      });
       ui.mirror = svg("g", { class: "el-pcb-mirror" }, ui.svg);
       var board = svg("g", { class: "el-pcb-board" }, ui.mirror);
       svg("path", { class: "el-pcb-silhouette", d: frame.silhouette_path }, board);
@@ -420,6 +443,8 @@
       data.board.layers.forEach(function (l) {
         svg("g", { class: "el-pcb-layer", "data-layer": l.id, style: "display:none" }, ui.layers);
       });
+      ui.bodies = svg("g", { class: "el-pcb-bodies" }, ui.mirror);
+      ui.mirror.insertBefore(ui.bodies, ui.path);
       buildSynthetic();
       buildHits();
 
@@ -448,6 +473,16 @@
       pz.onApply = repositionTip;
       hits = new HitIndex(data.board.components);
       store = new LayerStore(base, ui.layers, null);
+      var loadLayer = store.load.bind(store);
+      store.load = function (layer) {
+        return loadLayer(layer).then(function (group) {
+          if (/_Fab$/.test(layer.id) && !group.dataset.materialPrepared) {
+            prepareBodies(group, layer.side || layer.id.charAt(0));
+            group.dataset.materialPrepared = "true";
+          }
+          return group;
+        });
+      };
 
       wirePointer(canvas);
       wireKeys(canvas);
@@ -580,6 +615,89 @@
       });
     }
 
+
+    // Appearance only: recover closed contours from real fabrication outlines.
+    // Never invent a bounding-box body if a contour cannot be resolved.
+    function prepareBodies(group, side) {
+      var seen = {};
+      group.querySelectorAll(".stroked-text[data-ref]").forEach(function (label) {
+        var ref = label.dataset.ref;
+        if (seen[ref]) label.classList.add("el-pcb-duplicate-reference");
+        seen[ref] = true;
+      });
+      var contours = [], edges = [], graph = {};
+      function key(pt) { return pt.map(function (x) { return x.toFixed(4); }).join(","); }
+      group.querySelectorAll("path").forEach(function (path) {
+        if (path.closest(".stroked-text")) return;
+        var d = path.getAttribute("d") || "";
+        if (/[a-kno-wy]/i.test(d.replace(/[MLZ]/g, ""))) return;
+        var nums = d.match(/[-+]?(?:\d*\.)?\d+/g) || [];
+        var points = [];
+        for (var i=0; i+1<nums.length; i+=2) points.push([+nums[i], +nums[i+1]]);
+        if (points.length < 2) return;
+        if (/Z/i.test(d) || (points.length > 2 && key(points[0]) === key(points[points.length-1]))) {
+          contours.push(points); return;
+        }
+        if (points.length !== 2) return;
+        var index = edges.length; edges.push(points);
+        points.forEach(function (pt) { var k=key(pt); (graph[k] || (graph[k]=[])).push(index); });
+      });
+      var used = {};
+      edges.forEach(function (edge, start) {
+        if (used[start]) return;
+        var points=[edge[0]], current=start, pt=edge[1], chain=[start], closed=false;
+        while (chain.length <= edges.length) {
+          points.push(pt);
+          if (key(pt) === key(points[0])) { closed=true; break; }
+          var links=graph[key(pt)] || [];
+          if (links.length !== 2) break;
+          var next=links[0] === current ? links[1] : links[0];
+          if (chain.indexOf(next) >= 0 || used[next]) break;
+          chain.push(next); current=next;
+          var pair=edges[next]; pt=key(pair[0]) === key(pt) ? pair[1] : pair[0];
+        }
+        chain.forEach(function (i) { used[i]=true; });
+        if (closed && points.length>3) contours.push(points);
+      });
+      var bodies = {};
+      contours.forEach(function (points) {
+        var xs=points.map(function (p) {return p[0];}), ys=points.map(function (p) {return p[1];});
+        var x=Math.min.apply(null,xs), y=Math.min.apply(null,ys);
+        var w=Math.max.apply(null,xs)-x, h=Math.max.apply(null,ys)-y;
+        if (w<.15 || h<.15) return;
+        var candidates=data.board.components.filter(function (c) {
+          var b=c.bbox;
+          return c.side===side && !c.feature && x>=b[0]-.03 && y>=b[1]-.03 &&
+            x+w<=b[0]+b[2]+.03 && y+h<=b[1]+b[3]+.03;
+        }).sort(function (a,b) {
+          return Math.hypot(a.xy[0]-x-w/2,a.xy[1]-y-h/2)-Math.hypot(b.xy[0]-x-w/2,b.xy[1]-y-h/2);
+        });
+        if (!candidates.length) return;
+        var c=candidates[0];
+        if (!bodies[c.ref] || w*h>bodies[c.ref].area) bodies[c.ref]={c:c,points:points,area:w*h};
+      });
+      var face = svg("g", { "data-side": side }, ui.bodies);
+      // U1 outline is on User.Eco2, not F.Fab, in native revision 9c42ff8d.
+      // 18 x 25.5 mm body; 6 mm antenna section. No invented antenna trace geometry.
+      var module=data.board.components.find(function(c) {return c.ref==="U1" && c.mpn==="ESP32-C6-WROOM-1-N8";});
+      var moduleRevision = "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096";
+      if (side==="F" && data.board.pcb_sha256===moduleRevision && module && module.xy[0]===100 && module.xy[1]===72.6) {
+        var mod=svg("g", {class:"el-pcb-module", "data-ref":"U1"}, face);
+        svg("rect", {x:91,y:56.85,width:18,height:25.5,rx:.12,fill:"#18241e",stroke:"#626b5c","stroke-width":.12},mod);
+        svg("rect", {x:91.25,y:63.1,width:17.5,height:19,rx:.4,fill:"url(#el-pcb-shield)",stroke:"#68737b","stroke-width":.16},mod);
+        svg("text", {x:100,y:75,"text-anchor":"middle","font-size":1.1,fill:"#354047",text:"ESP32-C6"},mod);
+        svg("text", {x:100,y:60.4,"text-anchor":"middle","font-size":.8,fill:"#b5b9a4",text:"ANTENNA"},mod);
+        svg("title", {text:"U1: native mechanical outline and antenna extent; shield finish is illustrative, not a 3D model"},mod);
+      }
+      Object.keys(bodies).forEach(function (ref) {
+        var b=bodies[ref], family=(ref.match(/^[A-Za-z]+/) || [""])[0];
+        var material=family==="C" ? "ceramic" : family==="J" ? "connector" : family==="L" ? "inductor" : family==="F" ? "fuse" : "package";
+        var node=svg("path", { d:"M"+b.points.map(function (p) {return p.join(",");}).join(" L")+" Z",
+          class:"el-pcb-body el-pcb-body-"+material, "data-ref":ref }, face);
+        svg("title", {text:ref+": footprint outline with illustrative material color; not a 3D model"}, node);
+      });
+    }
+
     function buildHits() {
       data.board.components.forEach(function (c) {
         var g = svg("g", {
@@ -658,10 +776,10 @@
     function presetLayers(name, face) {
       var f = face === "F" ? "F" : "B";
       if (name === "components") {
-        return ["Edge_Cuts", f + "_Fab", "Lands", "Holes"];
+        return ["Edge_Cuts", f + "_Fab", "Lands", "Holes"].concat(state.appearance === "material" ? [f + "_Silkscreen"] : []);
       }
       if (name === "outer") {
-        return ["Edge_Cuts", f + "_Fab", "Lands", "Holes", f + "_Cu"];
+        return ["Edge_Cuts", f + "_Fab", "Lands", "Holes", f + "_Cu"].concat(state.appearance === "material" ? [f + "_Silkscreen"] : []);
       }
       return ["Edge_Cuts", "Holes", "Lands", state.inner];
     }
@@ -690,7 +808,7 @@
     function captionFor(name) {
       if (name === "components") {
         return "Assembly-outline view: real positions, body outlines and land shapes from the board's own " +
-               "data, with reference labels. Not a photograph and not a 3D model.";
+               "data. Select a component to read its reference and explanation.";
       }
       if (name === "outer") {
         return "The same outlines with the " + faceWord(state.face) +
@@ -706,7 +824,9 @@
     }
 
     function setCaption() {
-      ui.caption.textContent = captionFor(state.preset);
+      ui.caption.textContent = captionFor(state.preset) + (state.appearance === "material" ?
+        " Board materials: black substrate, white production silkscreen, silver-colored lands and colored footprint bodies. Materials are illustrative, not a photograph or 3D model. Outer traces are shown through the mask for learning." :
+        " Engineering colors retain the layer palette. Assembly references are optional; duplicate references are suppressed.");
     }
 
     function updateLegend() {
@@ -1725,7 +1845,7 @@
         showSheet: function (n, ref) { return loadSheet(n, ref || null); },
         getState: function () {
           return {
-            face: state.face, preset: state.preset, selected: state.selected,
+            face: state.face, preset: state.preset, appearance: state.appearance, selected: state.selected,
             layers: Object.keys(state.layers).filter(function (k) { return state.layers[k]; }).sort(),
             view: pz.view, fit: data.board.frame.fit, sheet: ui.sheetN || null,
             reducedMotion: !!state.reduced, group: state.group.slice()

@@ -549,3 +549,27 @@ CAD/SVG whitespace is deliberately preserved under the byte-exact asset policy.
 All 161 staged asset files (including .gitattributes) matched their worktree bytes;
 the main board reports `attr/-text` and both changed board blobs hash to the values
 above. Every previously published lower/gimbal asset matched its existing Git blob.
+
+
+## 2026-09-08 — PCB material appearance and reference cleanup
+
+Added a Board materials / Engineering colors appearance control to Doc 9.
+Material mode uses black substrate, white actual silkscreen, silver-colored pads,
+and family-colored bodies recovered from closed native fabrication contours.
+Unresolved contours remain outlines: no invented bounding-box component bodies.
+These are illustrative 2D materials, explicitly not component 3D models or an
+as-built photograph. Layer inspection and front/back interaction remain available.
+Duplicate fabrication reference groups are suppressed at runtime, and assembly
+references are off by default; the production silk stays authoritative in the
+material view. Native sources, published hashes and all generated assets remain
+unchanged. The ESP32 mechanical outline was checked directly against U1 User.Eco2
+(18 x 25.5 mm, with a 6 mm antenna section). This annotation is guarded by the
+exact current board hash; a changed board does not inherit these coordinates.
+The shield and finishes are illustrative. The transparent canvas, black mask and
+metallic pad gradients were visually inspected in the local preview.
+
+**Validation.** Generator hash/scanner checks and two strict MkDocs builds pass.
+The full browser/data suite passes: **70 tests**, including reference deduplication,
+material switching, native module overhang and refusal to reuse that annotation
+for a different board hash. No hardware sources or manufacturing files are
+changed by this presentation update.

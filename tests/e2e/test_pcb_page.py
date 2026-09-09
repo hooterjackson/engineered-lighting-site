@@ -87,7 +87,7 @@ def test_registration_and_default_view(page):
     assert "LIGHT v0.2" in head and "9c42ff8d" in head
     s = state(page)
     assert s["face"] == "F" and s["preset"] == "components"
-    assert set(s["layers"]) == {"Edge_Cuts", "F_Fab", "Lands", "Holes"}
+    assert set(s["layers"]) == {"Edge_Cuts", "F_Fab", "Lands", "Holes", "F_Silkscreen"}
     assert "assembly-outline" in page.locator(".el-pcb-caption").text_content().lower()
 
 
@@ -617,3 +617,32 @@ def test_pcb_screenshots(page):
     page.evaluate("window.elPcb.select('J1')")
     page.wait_for_timeout(400)
     page.locator("#el-pcb").screenshot(path=str(SCREENS / "pcb-390.png"))
+
+
+def test_material_appearance_and_native_module_overhang(page):
+    ready(page)
+    assert state(page)["appearance"] == "material"
+    assert page.locator(".el-pcb-body").count() > 50
+    module = page.locator(".el-pcb-module")
+    assert module.is_visible()
+    assert module.locator("rect").first.get_attribute("y") == "56.85"
+    assert page.locator('.el-pcb-land').first.evaluate("e => getComputedStyle(e).fill").find("el-pcb-metal") >= 0
+    assert not page.locator('input[name="el-pcb-references"]').is_visible()
+    page.locator('input[name="el-pcb-appearance"][value="diagram"]').check()
+    assert not module.is_visible()
+    page.locator('input[name="el-pcb-references"]').check()
+    refs = page.locator('.el-pcb-layer[data-layer="F_Fab"] .stroked-text[data-ref]').evaluate_all("es => es.filter(e => getComputedStyle(e).display !== 'none').map(e => e.dataset.ref)")
+    assert len(refs) == len(set(refs))
+
+
+def test_revision_specific_module_outline_does_not_leak_to_other_boards(page):
+    def unknown_revision(route):
+        response = route.fetch()
+        board = response.json()
+        board["pcb_sha256"] = "0" * 64
+        route.fulfill(response=response, json=board)
+
+    page.route("**/light-v0.1/board.json", unknown_revision)
+    ready(page)
+    assert page.locator(".el-pcb-body").count() > 50
+    assert page.locator(".el-pcb-module").count() == 0
