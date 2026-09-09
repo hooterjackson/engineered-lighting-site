@@ -7,8 +7,8 @@ revision claims. JSON, native filenames and download manifests identify revision
 
 ## Current inputs (8 September 2026)
 
-- Main: `handoff/claude-pcb-learning-2026-09-08` in the separate hardware repository.
-  LIGHT v0.2, PCB `9c42ff8d`, 264 features, 243 fitted parts, 73 BOM rows,
+- Main: `handoff/claude-pcb-learning-cbb8d9fc` in the separate hardware repository.
+  LIGHT v0.2, PCB `cbb8d9fc`, 262 features, 241 fitted parts, 71 BOM rows,
   20 schematic sheets.
 - Flex: `deliverables/FLEX-mixed-2026-09-08-review` in that repository.
   Upper v0.3 `0af25f8f`; unchanged lower v0.2 `21db9dba` and gimbal v0.2
@@ -99,3 +99,5 @@ Preview with the `els-site` configuration in `.claude/launch.json`.
   reports `attr/-text`, and hash the staged/committed blob, not only the worktree.
 - Work on a branch and open a PR against main. CI validates PRs; only a main push
   deploys. Review approval and merging belong to the owner.
+
+The branded successor is cut with `scripts/package_branded_learning.py`. It preserves the original electrical-baseline hashes in evidence, exports current native layer views, and leaves all flex input bytes unchanged.

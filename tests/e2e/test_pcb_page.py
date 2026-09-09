@@ -78,13 +78,13 @@ def test_nav_footer_and_last_entry(page):
 
 def test_registration_and_default_view(page):
     ready(page)
-    assert page.locator(".el-pcb-hit[data-ref]").count() == 264
+    assert page.locator(".el-pcb-hit[data-ref]").count() == 262
     assert page.locator('.el-pcb-hit[data-side="F"]').count() == 123
-    assert page.locator('.el-pcb-hit[data-side="B"]').count() == 141
+    assert page.locator('.el-pcb-hit[data-side="B"]').count() == 139
     assert page.locator(".el-pcb-hit[data-through]").count() == 5
-    assert page.locator("#el-pcb-list [role=option]").count() == 264
+    assert page.locator("#el-pcb-list [role=option]").count() == 262
     head = page.locator(".el-pcb-head").text_content()
-    assert "LIGHT v0.2" in head and "9c42ff8d" in head
+    assert "LIGHT v0.2" in head and "cbb8d9fc" in head
     s = state(page)
     assert s["face"] == "F" and s["preset"] == "components"
     assert set(s["layers"]) == {"Edge_Cuts", "F_Fab", "Lands", "Holes", "F_Silkscreen"}
@@ -372,7 +372,7 @@ def test_touch_inspects_without_leaving_the_board(page, context, base_url):
 
 def test_bom_cross_selection_both_ways(page):
     ready(page)
-    assert page.locator("tr[data-item]").count() == 73
+    assert page.locator("tr[data-item]").count() == 71
     page.evaluate("window.elPcb.select('R101')")
     row = page.locator('tr[data-item="25"]')
     assert row.get_attribute("aria-current") == "true"
@@ -546,7 +546,7 @@ def test_page_works_without_javascript(context, base_url):
     p = ctx.new_page()
     p.goto(PAGE)
     assert p.locator(".el-pcb-fallback").is_visible()
-    assert p.locator("tr[data-item]").count() == 73
+    assert p.locator("tr[data-item]").count() == 71
     assert p.locator(".el-sch-fallback").is_visible()
     links = p.eval_on_selector_all(
         ".el-pcb-fallback a[href], .el-sch-fallback a[href]", "els => els.map(e => e.href)")

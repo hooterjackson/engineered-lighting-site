@@ -122,12 +122,8 @@ CONNECTORS = {
            "Molex 2005280300, bottom-contact Front Flip, 30 contacts at 1 mm pitch. Upper flex J100 inserts directly; total insertion thickness 0.30 +/-0.05 mm. No solder on the fingers."),
     "J8": ("back", "mates downward, out of the back face", "ambient zone 7 (the bottom ring)",
            "JST GH 4-way vertical BM04B-GHS-TBT, mating GHR-04V-S"),
-    "J9": ("back", "mates downward, out of the back face", "spotlight LED pair 1",
-           "JST GH 2-way vertical BM02B-GHS-TBT, mating GHR-02V-S"),
-    "J10": ("back", "mates downward, out of the back face", "spotlight LED pair 2",
-            "JST GH 2-way vertical BM02B-GHS-TBT, mating GHR-02V-S"),
-    "J11": ("back", "mates downward, out of the back face", "spotlight LED pair 3",
-            "JST GH 2-way vertical BM02B-GHS-TBT, mating GHR-02V-S"),
+    "J9": ("back", "mates downward beside the tilt harness", "all three independent spotlight LED pairs",
+           "JST GH 6-way vertical BM06B-GHS-TBT, mating GHR-06V-S; pins 1/2, 3/4 and 5/6 are separate channel pairs"),
     "J12": ("back", "mates downward, out of the back face", "motor 1: 24 V, ground and the CAN pair",
             "JST PA BM04B-PASS-TFT, mating PAP-04V-S with SPHD-001T-P0.5 contacts; AWG22 for the power leads, "
             "CAN_H and CAN_L kept as a twisted pair"),
@@ -173,6 +169,7 @@ PACKAGES = {
         "16 mm can electrolytic on provisional engineering-derived lands",
     "ELF:Enclosure_F1": "surface-mount fuse clips",
     "ELF:Enclosure_J1": "Phoenix PTSM top-entry spring terminal",
+    "EL:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Vertical": "JST GH six-contact vertical socket",
     "ELF:Enclosure_J10": "JST GH 2-way vertical socket (silkscreen variant)",
     "ELF:Enclosure_J16": "Molex Pico-Lock 2-way socket",
     "ELF:Enclosure_J17": "JST PH 2-way vertical socket",
@@ -367,7 +364,7 @@ for _r in ("U14", "U500", "D501", "R515", "R516", "R517", "R518", "R519", "R520"
     CIRCUIT_OF[_r] = "spot_supply"
 
 CAD_CHECK = ("ERC, DRC, board-to-schematic parity and 163-net continuity all ran clean on this exact "
-             "layout (9c42ff8d).")
+             "layout (cbb8d9fc).")
 
 
 def zone_of(channel):
@@ -447,8 +444,8 @@ def classify(ref, comp):
 
 SPOT_GROUPS = {
     1: ("U7", "R523", "L502", "D502", "R526", "J9", "C519", "C520"),
-    2: ("U8", "R524", "L503", "D503", "R527", "J10", "C521", "C522"),
-    3: ("U9", "R525", "L504", "D504", "R528", "J11", "C523", "C524"),
+    2: ("U8", "R524", "L503", "D503", "R527", "J9", "C521", "C522"),
+    3: ("U9", "R525", "L504", "D504", "R528", "J9", "C523", "C524"),
 }
 
 
@@ -670,9 +667,18 @@ def build_entry(ref, comp):
             entry["claims"] = [{"kind": "documented", "evidence": "cad-checked",
                                 "text": "Every branch is fed through its own fuse: %s reaches %s only through this "
                                         "part." % (source, branch),
-                                "basis": "163-net continuity check on 9c42ff8d"}]
+                                "basis": "80195efd electrical-baseline continuity check, preserved by cbb8d9fc silkscreen-only parity"}]
         entry["open"] = ["How this fuse coordinates with a real fault, and whether the branch wiring survives one, "
                          "has not been tested on hardware."]
+        return entry
+
+    if ref == "J9":
+        entry.update(name="Three-channel spotlight connector", circuit="spot",
+            here="One six-contact plug carries all three spotlight LED pairs: " + _contacts(pins) + ". It sits beside the separate J13 tilt connection, so their wires leave toward the same arm harness.",
+            how="Pins 1/2, 3/4 and 5/6 serve channels 1, 2 and 3. A shared plastic housing does not join the circuits: each LED-minus returns to its own driver inductor, never to ground or another channel.",
+            related=["U7", "U8", "U9", "L502", "L503", "L504", "J13"],
+            claims=[{"kind":"documented", "evidence":"cad-checked", "text":"Six independent contacts replace the three former two-contact sockets. J10 and J11 are absent.", "basis":"Current native J9 pins and schematic parity"}],
+            open=["The crimped wire harness, service loop across pan rotation and physical connector clearance still need bench verification."])
         return entry
 
     if family in ("spot_driver", "spot_sense", "spot_inductor", "spot_diode",

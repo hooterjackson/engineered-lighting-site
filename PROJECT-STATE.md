@@ -573,3 +573,39 @@ The full browser/data suite passes: **70 tests**, including reference deduplicat
 material switching, native module overhang and refusal to reuse that annotation
 for a different board hash. No hardware sources or manufacturing files are
 changed by this presentation update.
+
+
+## 2026-09-08 — Grouped arm connectors and branded board snapshot
+
+Doc 9 now consumes the deliberately cut cbb8d9fc learning handoff. Governing main
+PCB SHA256: cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb.
+The current native project, 20 schematic sheets, BOM, placement, layer views,
+assembly drawings and fabrication reference agree: 262 features, 241 fitted
+parts and 71 BOM rows. J9 is the six-contact spotlight connector beside the
+separate J13 tilt harness; J10/J11 are removed and J12 pan remains separate.
+Teaching explains the independent LED returns and the external pan service loop.
+The back artwork contains the orbit logo, wordmark, website and Kahn quotation.
+
+The black substrate, transparent canvas, white production silk, metallic pads,
+colored component bodies and engineering-color alternative are preserved. The
+hash guard for the unchanged U1 mechanical depiction is bound to the new board.
+This remains an illustrative 2D view, not a photograph or full component model.
+
+Electrical baseline 80195efd retains its original evidence attribution. Current
+branding DRC and native/export preservation are separate records. Historical
+analogue/thermal results were not relabeled as current. Submission prose states
+the latest main package is prepared but not yet submitted, the unchanged gimbal
+has a PCBWay inquiry, and upper/lower flex inquiries await a custom-stack route.
+No hardware has been powered or production released.
+
+All three flex design asset directories remain byte-exact; only the shared flex
+index/provenance link to the new main hash changes. Doc 10 explains the updated
+main-to-arm connection without inventing a new flex revision. No chapter was
+added or removed, so navigation and document counts retain their existing shape.
+
+Validation: two deterministic asset builds, render/check and two strict MkDocs
+builds passed. All 71 tests passed, including material styling, module hash guard,
+front/back and flex registration, and the new six-contact pin-map regression.
+Front/back screenshots were reviewed; the configured els-site preview is served
+locally. Publication scanner and source-byte checks remain enabled. Work stays
+on the existing material-view review branch; no deployment or merge performed.

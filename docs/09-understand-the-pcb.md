@@ -1,6 +1,6 @@
 ---
 title: 9 · Understand the PCB
-description: "The integrated LIGHT v0.2 board, part by part: an interactive viewer of the real eight-layer PCB, all 264 features explained from their own nets, the 20-sheet schematic, the exact parts list and the KiCad sources."
+description: "The integrated LIGHT v0.2 board, part by part: an interactive viewer of the real eight-layer PCB, all 262 features explained from their own nets, the 20-sheet schematic, the exact parts list and the KiCad sources."
 hide:
   - toc
 ---
@@ -32,21 +32,36 @@ does on this net. The schematic, the parts list and the actual KiCad files are a
 
 !!! warning "Status as of 8 September 2026 — designed, not built"
 
-    PCBWay has been asked to **quote five fabricated boards, two of them fully assembled with all 243
-    purchased parts and three supplied bare**. No payment, procurement or production release has been authorized, and the assembly
-    process, stencil and via treatment and any factory substitutions are not approved.
+    This page shows the latest **grouped arm connectors and branding** revision, `cbb8d9fc`,
+    prepared for replacement quotation with **241 fitted parts per assembled board**. Earlier main
+    revisions were submitted to PCBWay and JLCPCB; this current main package has not yet been submitted.
+    No payment, procurement or production release is authorized. Supplier stack, stencil, via treatment,
+    final capacitor installation and substitutions remain open.
 
-    **No LIGHT v0.2 board has ever been powered, and no firmware has been built or flashed.** The
-    current source has hash-bound electrical-rule, design-rule, parity, physical connectivity and independent
-    native-to-CAM checks. Historical simulation and copper-solver results are not rerun results for this layout. See the
-    results in [what has been checked](#validation), along with the longer list of what has not.
-    A clean CAD check means the files pass specific rules. It is not a measurement.
+    **No LIGHT v0.2 PCB has been powered.** Current DRC and native/export preservation checks bind the
+    branded board to the electrically reviewed `80195efd` baseline. That baseline has ERC, pin-parity,
+    connectivity and independent CAM evidence. Those checks are not physical tests or a new simulation.
 
-    The three passive flex interconnects for the arm and cylinder are **separate circuits**, not layers
-    of this board. They have since been routed and checked — [Doc 10](10-the-flex-circuits.md) covers
-    them. JLCPCB received the main and all three flex designs for engineering quotation. The latest PCBWay
-    main fabrication and assembly inquiries are under review; formal flex entries await a compatible custom
-    stack. **No payment or production release** has been authorized.
+    [Doc 10](10-the-flex-circuits.md) covers the unchanged three flex circuits. The static gimbal has
+    a PCBWay inquiry; upper and lower LED flexes still await a compatible custom-stack submission route.
+    Their geometry and hashes have not been revised for this update.
+
+## What changed in this revision
+
+The three two-pin spotlight sockets became **one six-pin J9** beside the separate **J13 tilt**
+connection. Pins **1/2, 3/4 and 5/6** carry spotlight channels 1, 2 and 3. Their LED-minus wires remain
+independent driver returns: sharing a connector does not make them ground. **J12 pan** remains a
+separate edge connection because its cable terminates at the pan motor.
+
+Wires link J9 and J13 to the static arm flex. The wire service loop must accommodate pan motion of
+180 degrees each way; the static flex itself is not qualified as a repeatedly bending hinge.
+
+The underside now carries the small orbit logo, **engineered lighting**, the website and the Louis
+Kahn quotation. This branding changed only back silkscreen. Black substrate, white ink, metallic
+pads and the overhanging ESP32 depiction remain illustrative viewer materials, not an as-built photo.
+
+The revision sequence is `9c42ff8d` (central LED interface), `80195efd` (grouped arm connectors), then
+`cbb8d9fc` (back-side branding). The upper insertion tail and lower/gimbal boards are unchanged.
 
 ??? info "Words this chapter uses — open this if any of them are new"
 
@@ -117,7 +132,7 @@ labels here are the same ones used in the schematic and in the parts list.
     **Getting around:** drag to pan, scroll or pinch to zoom, double-click to zoom in. The toolbar has
     zoom, fit and flip buttons for anyone not using a mouse. With the viewer focused, the arrow keys
     pan, <kbd>+</kbd> and <kbd>-</kbd> zoom, <kbd>0</kbd> fits the board and <kbd>f</kbd> flips it. The
-    search box finds any of the 264 features by reference, name, value, part number or net — that is
+    search box finds any of the 262 features by reference, name, value, part number or net — that is
     the fastest route on a phone, and the keyboard-friendly one.
 
     On a phone, one finger scrolls the page as usual and two fingers pan and zoom the board. If you
@@ -126,7 +141,7 @@ labels here are the same ones used in the schematic and in the parts list.
 ## What changed in this revision { #revision-history }
 
 The first published layout was LIGHT v0.1 (`c046202e`). This page now shows LIGHT
-v0.2 (`9c42ff8d`), paired with upper flex v0.3 (`0af25f8f`). Lower flex and the
+v0.2 (`cbb8d9fc`), paired with upper flex v0.3 (`0af25f8f`). Lower flex and the
 static arm ribbon remain v0.2: their native board bytes did not change.
 
 Six radial LED sockets have become **one locking Molex 2005280300 at J2**, on the
@@ -149,10 +164,10 @@ The earlier audit corrections are included too: U5 is now **74HCS08PWJ** with
 Schmitt inputs, R526–R528 are **910 Ω**, and C504 has a provisional custom land
 without paste. Its one-reflow limit requires final factory installation. These
 changes explain why old timing or power calculations cannot simply acquire the
-new board hash. The source now has 264 features, 243 fitted packages, 73 BOM rows
+new board hash. The source now has 262 features, 241 fitted packages, 71 BOM rows
 and 20 schematic sheets, including the shared interface sheet.
 
-Flip to the back to see the white **ENGINEERED LIGHTING / LIGHT v0.2** branding.
+Flip to the back to see the white orbit logo, **engineered lighting**, website and quotation.
 The black-and-white finish is a fabrication request, not a photo of a built board.
 
 ## How the circuit works
@@ -304,9 +319,7 @@ drawing when making harnesses.
 <tr data-pcb-row="J1"><td><span class="el-pcb-ref" data-pcb-ref="J1">J1</span></td><td>the only power inlet: 24 V from the external supply</td><td>front</td><td>mates upward, out of the front face</td><td>1 = VIN24_RAW, 2 = GND</td><td>Phoenix 1771091 top-entry spring terminal -- wires go straight in, there is no mating plug. 0.5 mm2 / AWG20 conductors, 6 mm strip length.</td></tr>
 <tr data-pcb-row="J2"><td><span class="el-pcb-ref" data-pcb-ref="J2">J2</span></td><td>all six radial zones, separately fused</td><td>front</td><td>locking direct-insertion tail, gold facing the main board</td><td>1 = ZONE4_24V, 2 = ZONE4_24V, 3 = ZONE4_W, 4 = ZONE4_N, 5 = ZONE4_C, 6 = ZONE5_24V, 7 = ZONE5_24V, 8 = ZONE5_W, 9 = ZONE5_N, 10 = ZONE5_C, 11 = ZONE6_24V, 12 = ZONE6_24V, 13 = ZONE6_W, 14 = ZONE6_N, 15 = ZONE6_C, 16 = ZONE1_24V, 17 = ZONE1_24V, 18 = ZONE1_W, 19 = ZONE1_N, 20 = ZONE1_C, 21 = ZONE2_24V, 22 = ZONE2_24V, 23 = ZONE2_W, 24 = ZONE2_N, 25 = ZONE2_C, 26 = ZONE3_24V, 27 = ZONE3_24V, 28 = ZONE3_W, 29 = ZONE3_N, 30 = ZONE3_C</td><td>Molex 2005280300, bottom-contact Front Flip, 30 contacts at 1 mm pitch. Upper flex J100 inserts directly; total insertion thickness 0.30 +/-0.05 mm. No solder on the fingers.</td></tr>
 <tr data-pcb-row="J8"><td><span class="el-pcb-ref" data-pcb-ref="J8">J8</span></td><td>ambient zone 7 (the bottom ring)</td><td>back</td><td>mates downward, out of the back face</td><td>1 = ZONE7_24V, 2 = ZONE7_W, 3 = ZONE7_N, 4 = ZONE7_C</td><td>JST GH 4-way vertical BM04B-GHS-TBT, mating GHR-04V-S</td></tr>
-<tr data-pcb-row="J9"><td><span class="el-pcb-ref" data-pcb-ref="J9">J9</span></td><td>spotlight LED pair 1</td><td>back</td><td>mates downward, out of the back face</td><td>1 = SPOT1_LED_PLUS, 2 = SPOT1_LED_MINUS</td><td>JST GH 2-way vertical BM02B-GHS-TBT, mating GHR-02V-S</td></tr>
-<tr data-pcb-row="J10"><td><span class="el-pcb-ref" data-pcb-ref="J10">J10</span></td><td>spotlight LED pair 2</td><td>back</td><td>mates downward, out of the back face</td><td>1 = SPOT2_LED_PLUS, 2 = SPOT2_LED_MINUS</td><td>JST GH 2-way vertical BM02B-GHS-TBT, mating GHR-02V-S</td></tr>
-<tr data-pcb-row="J11"><td><span class="el-pcb-ref" data-pcb-ref="J11">J11</span></td><td>spotlight LED pair 3</td><td>back</td><td>mates downward, out of the back face</td><td>1 = SPOT3_LED_PLUS, 2 = SPOT3_LED_MINUS</td><td>JST GH 2-way vertical BM02B-GHS-TBT, mating GHR-02V-S</td></tr>
+<tr data-pcb-row="J9"><td><span class="el-pcb-ref" data-pcb-ref="J9">J9</span></td><td>all three independent spotlight LED pairs</td><td>back</td><td>mates downward beside the tilt harness</td><td>1 = SPOT1_LED_PLUS, 2 = SPOT1_LED_MINUS, 3 = SPOT2_LED_PLUS, 4 = SPOT2_LED_MINUS, 5 = SPOT3_LED_PLUS, 6 = SPOT3_LED_MINUS</td><td>JST GH 6-way vertical BM06B-GHS-TBT, mating GHR-06V-S; pins 1/2, 3/4 and 5/6 are separate channel pairs</td></tr>
 <tr data-pcb-row="J12"><td><span class="el-pcb-ref" data-pcb-ref="J12">J12</span></td><td>motor 1: 24 V, ground and the CAN pair</td><td>back</td><td>mates downward, out of the back face</td><td>1 = V24_MOTOR1, 2 = GND, 3 = CAN_H, 4 = CAN_L</td><td>JST PA BM04B-PASS-TFT, mating PAP-04V-S with SPHD-001T-P0.5 contacts; AWG22 for the power leads, CAN_H and CAN_L kept as a twisted pair</td></tr>
 <tr data-pcb-row="J13"><td><span class="el-pcb-ref" data-pcb-ref="J13">J13</span></td><td>motor 2: 24 V, ground and the CAN pair</td><td>back</td><td>mates downward, out of the back face</td><td>1 = V24_MOTOR2, 2 = GND, 3 = CAN_H, 4 = CAN_L</td><td>JST PA BM04B-PASS-TFT, mating PAP-04V-S with SPHD-001T-P0.5 contacts; AWG22 for the power leads, CAN_H and CAN_L kept as a twisted pair</td></tr>
 <tr data-pcb-row="J14"><td><span class="el-pcb-ref" data-pcb-ref="J14">J14</span></td><td>USB-C for programming and serial, alongside external 24 V</td><td>front</td><td>mates sideways, into the front-face edge</td><td>A1, A12, B1, B12 and the shell = GND; A4, A9, B4, B9 = USB_VBUS; A5 = USB_CC1; B5 = USB_CC2; A6, B6 = USB_DP_HOST; A7, B7 = USB_DM_HOST; A8, B8 unused</td><td>GCT USB4105-GF-A: 16 contacts plus four soldered through-hole shield stakes</td></tr>
@@ -408,10 +421,8 @@ status: *quote only, exact source, quantity and process not confirmed*.
 <tr data-item="67"><td>67</td><td><span class="el-pcb-ref" data-pcb-ref="J1">J1</span></td><td>1</td><td>2</td><td>24V INPUT</td><td>1771091</td><td>Phoenix PTSM top-entry spring terminal</td><td>Phoenix 1771091: upward SMD spring terminal; 6 A IEC rating, 0.5 mm2 / AWG20 PSU leads recommended, 6 mm strip; harness strain relief required. Exact availability and solder process require factory confirmation. <span class="el-pcb-note-update">Update: This terminal takes stripped wire directly; there is no mating plug to order.</span></td><td><a href="https://www.phoenixcontact.com/en-us/products/printed-circuit-board-terminal-ptsm-05-2-25-v-smd-r44-1771091">datasheet</a></td></tr>
 <tr data-item="68"><td>68</td><td><span class="el-pcb-ref" data-pcb-ref="J16">J16</span></td><td>1</td><td>2</td><td>24V INPUT / BRAKE / BUS</td><td>2053380002</td><td>Molex Pico-Lock 2-way socket</td><td>2-circuit input/brake;6.5A at20AWG fully loaded under specified rise; thermal/harness limits apply</td><td><a href="https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/productspecificationpdf/205/205341/2053410000-PS-000.pdf">datasheet</a></td></tr>
 <tr data-item="69"><td>69</td><td><span class="el-pcb-ref" data-pcb-ref="J12">J12</span> <span class="el-pcb-ref" data-pcb-ref="J13">J13</span></td><td>2</td><td>4</td><td>MOTOR 1</td><td>BM04B-PASS-TFT(LF)(SN)</td><td>JST PA 4-way vertical socket (2 mm pitch)</td><td>JST PA vertical SMD, no boss, TFT pickup packaging. Public PA drawing pp4/11; custom land geometry reviewed. 3 A with AWG22 rating; initial motor supply envelope 0.75 A each. Confirm mating housing/crimps and contact-1 orientation.</td><td><a href="https://www.jst-mfg.com/product/pdf/eng/ePA-F.pdf">datasheet</a></td></tr>
-<tr data-item="70"><td>70</td><td><span class="el-pcb-ref" data-pcb-ref="J9">J9</span></td><td>1</td><td>2</td><td>SPOT 1</td><td>BM02B-GHS-TBT(LF)(SN)</td><td>JST GH 2-way vertical socket (silkscreen variant)</td><td>JST GH vertical SMD 2-contact spotlight output. Contact 1 LED+, contact 2 LED- (isolated return, not GND).</td><td><a href="https://www.jst-mfg.com/product/pdf/eng/eGH.pdf">datasheet</a></td></tr>
-<tr data-item="71"><td>71</td><td><span class="el-pcb-ref" data-pcb-ref="J10">J10</span></td><td>1</td><td>2</td><td>SPOT 1</td><td>BM02B-GHS-TBT(LF)(SN)</td><td>JST GH 2-way vertical socket (silkscreen variant)</td><td>JST GH vertical SMD 2-contact spotlight output. Contact 1 LED+, contact 2 LED- (isolated return, not GND).</td><td><a href="https://www.jst-mfg.com/product/pdf/eng/eGH.pdf">datasheet</a></td></tr>
-<tr data-item="72"><td>72</td><td><span class="el-pcb-ref" data-pcb-ref="J11">J11</span></td><td>1</td><td>2</td><td>SPOT 1</td><td>BM02B-GHS-TBT(LF)(SN)</td><td>JST GH 2-way vertical socket</td><td>JST GH vertical SMD 2-contact spotlight output. Contact 1 LED+, contact 2 LED- (isolated return, not GND).</td><td><a href="https://www.jst-mfg.com/product/pdf/eng/eGH.pdf">datasheet</a></td></tr>
-<tr data-item="73"><td>73</td><td><span class="el-pcb-ref" data-pcb-ref="J2">J2</span></td><td>1</td><td>2</td><td>2005280300 / 6-ZONE FLEX</td><td>2005280300</td><td>Molex 30-contact 1 mm locking flex socket</td><td>30 contacts; 1 mm pitch; bottom contact / Front Flip. Do not wash. Maximum two reflows; connector faces upward in second reflow. Preserve actuator access. Mate B-side gold flex fingers, total insertion thickness 0.30 +/-0.05 mm.</td><td><a href="https://www.molex.com/en-us/products/part-detail/2005280300">datasheet</a></td></tr>
+<tr data-item="70"><td>70</td><td><span class="el-pcb-ref" data-pcb-ref="J9">J9</span></td><td>1</td><td>2</td><td>SPOTLIGHT 3 PAIRS</td><td>BM06B-GHS-TBT(LF)(SN)</td><td>JST GH six-contact vertical socket</td><td>Six independent contacts: 1/2 SPOT1 +/-, 3/4 SPOT2 +/-, 5/6 SPOT3 +/-. No LED return or positive is merged. Vertical mating axis on underside; match GHR-06V-S housing and SSHL-002T-P0.2 contacts, AWG26 for rated 1 A. Keep wire service-loop strain off connector and flex pads.</td><td><a href="https://www.jst-mfg.com/product/pdf/eng/eGH.pdf">datasheet</a></td></tr>
+<tr data-item="71"><td>71</td><td><span class="el-pcb-ref" data-pcb-ref="J2">J2</span></td><td>1</td><td>2</td><td>2005280300 / 6-ZONE FLEX</td><td>2005280300</td><td>Molex 30-contact 1 mm locking flex socket</td><td>30 contacts; 1 mm pitch; bottom contact / Front Flip. Do not wash. Maximum two reflows; connector faces upward in second reflow. Preserve actuator access. Mate B-side gold flex fingers, total insertion thickness 0.30 +/-0.05 mm.</td><td><a href="https://www.molex.com/en-us/products/part-detail/2005280300">datasheet</a></td></tr>
 </tbody></table></div>
 
 <!-- el-pcb:generated bom end -->
@@ -528,7 +539,7 @@ other 19 sheets. Selecting a part on the board offers its sheet.
 <tr><td>15</td><td>Power 1</td><td>31</td><td><a href="../assets/pcb/light-v0.1/schematic/engineered-lighting-rev-a-power_1.svg">open the drawing</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_1.kicad_sch">power_1.kicad_sch</a></td><td>Power, part 1: the input protection chain and the branch fuses.</td></tr>
 <tr><td>16</td><td>Power 2</td><td>24</td><td><a href="../assets/pcb/light-v0.1/schematic/engineered-lighting-rev-a-power_2.svg">open the drawing</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_2.kicad_sch">power_2.kicad_sch</a></td><td>Power, part 2: the 24 V input terminal and the two switching converters.</td></tr>
 <tr><td>17</td><td>Spot 1</td><td>30</td><td><a href="../assets/pcb/light-v0.1/schematic/engineered-lighting-rev-a-spot_1.svg">open the drawing</a></td><td><a href="../assets/pcb/light-v0.1/kicad/spot_1.kicad_sch">spot_1.kicad_sch</a></td><td>Spotlight, part 1: the gated supply and the three constant-current driver cells.</td></tr>
-<tr><td>18</td><td>Spot 2</td><td>7</td><td><a href="../assets/pcb/light-v0.1/schematic/engineered-lighting-rev-a-spot_2.svg">open the drawing</a></td><td><a href="../assets/pcb/light-v0.1/kicad/spot_2.kicad_sch">spot_2.kicad_sch</a></td><td>Spotlight, part 2: the driver outputs and their connectors.</td></tr>
+<tr><td>18</td><td>Spot 2</td><td>5</td><td><a href="../assets/pcb/light-v0.1/schematic/engineered-lighting-rev-a-spot_2.svg">open the drawing</a></td><td><a href="../assets/pcb/light-v0.1/kicad/spot_2.kicad_sch">spot_2.kicad_sch</a></td><td>Spotlight, part 2: the driver outputs and their connectors.</td></tr>
 <tr><td>19</td><td>Monitor Expansion</td><td>10</td><td><a href="../assets/pcb/light-v0.1/schematic/engineered-lighting-rev-a-monitor_expansion.svg">open the drawing</a></td><td><a href="../assets/pcb/light-v0.1/kicad/monitor_expansion.kicad_sch">monitor_expansion.kicad_sch</a></td><td>Monitoring and expansion: the temperature sensor, the expansion pads, the boot-strap probes and the mounting holes.</td></tr>
 <tr><td>20</td><td>Central six-zone LED flex interface</td><td>1</td><td><a href="../assets/pcb/light-v0.1/schematic/engineered-lighting-rev-a-central_led_interface.svg">open the drawing</a></td><td><a href="../assets/pcb/light-v0.1/kicad/central_led_interface.kicad_sch">central_led_interface.kicad_sch</a></td><td>One locking 30-contact interface for the six radial zones; paired positive contacts keep each fused zone separate.</td></tr>
 </tbody></table></div>
@@ -542,7 +553,7 @@ other 19 sheets. Selecting a part on the board offers its sheet.
     interface sheet says *LIGHT v0.2 candidate*, dated 8 September. The full hash in
     [provenance](#provenance), rather than a retained drawing title, identifies this snapshot.
 
-## All 264 features, by circuit family { #parts-index }
+## All 262 features, by circuit family { #parts-index }
 
 Every physical feature on the board, grouped by what it does. This index works without JavaScript,
 and it is what the search box searches.
@@ -682,7 +693,7 @@ and it is what the search box searches.
 <th>Reference</th><th>What it is</th><th>Value</th><th>Part number</th><th>Face</th><th>Sheet</th><th>Parts list</th>
 </tr></thead>
 <tbody>
-<tr><td><span class="el-pcb-ref" data-pcb-ref="J2">J2</span></td><td>Six-zone locking flex interface</td><td>2005280300 / 6-ZONE FLEX</td><td>2005280300</td><td>front</td><td>20</td><td>row 73</td></tr>
+<tr><td><span class="el-pcb-ref" data-pcb-ref="J2">J2</span></td><td>Six-zone locking flex interface</td><td>2005280300 / 6-ZONE FLEX</td><td>2005280300</td><td>front</td><td>20</td><td>row 71</td></tr>
 <tr><td><span class="el-pcb-ref" data-pcb-ref="J8">J8</span></td><td>Ambient zone 7 connector</td><td>ZONE 7</td><td>BM04B-GHS-TBT(LF)(SN)</td><td>back</td><td>13</td><td>row 26</td></tr>
 </tbody></table></div>
 </details>
@@ -1060,16 +1071,14 @@ and it is what the search box searches.
 </tbody></table></div>
 </details>
 <details>
-<summary>Spotlight output connector <span class="el-pcb-count">3</span></summary>
+<summary>Spotlight output connector <span class="el-pcb-count">1</span></summary>
 <div class="el-pcb-scroll">
 <table class="el-pcb-table">
 <thead><tr>
 <th>Reference</th><th>What it is</th><th>Value</th><th>Part number</th><th>Face</th><th>Sheet</th><th>Parts list</th>
 </tr></thead>
 <tbody>
-<tr><td><span class="el-pcb-ref" data-pcb-ref="J9">J9</span></td><td>Spotlight 1 output</td><td>SPOT 1</td><td>BM02B-GHS-TBT(LF)(SN)</td><td>back</td><td>18</td><td>row 70</td></tr>
-<tr><td><span class="el-pcb-ref" data-pcb-ref="J10">J10</span></td><td>Spotlight 2 output</td><td>SPOT 2</td><td>BM02B-GHS-TBT(LF)(SN)</td><td>back</td><td>18</td><td>row 71</td></tr>
-<tr><td><span class="el-pcb-ref" data-pcb-ref="J11">J11</span></td><td>Spotlight 3 output</td><td>SPOT 3</td><td>BM02B-GHS-TBT(LF)(SN)</td><td>back</td><td>18</td><td>row 72</td></tr>
+<tr><td><span class="el-pcb-ref" data-pcb-ref="J9">J9</span></td><td>Three-channel spotlight connector</td><td>SPOTLIGHT 3 PAIRS</td><td>BM06B-GHS-TBT(LF)(SN)</td><td>back</td><td>18</td><td>row 70</td></tr>
 </tbody></table></div>
 </details>
 <details>
@@ -1136,40 +1145,40 @@ The `.kicad_prl` file, which holds personal editor state, is deliberately not pu
 <th>File</th><th>Format</th><th>Revision</th><th>Size</th><th>SHA-256 (first 12)</th><th>View in browser</th><th>Download</th><th>Notes</th>
 </tr></thead>
 <tbody>
-<tr><td>Complete KiCad project (everything below, plus libraries)</td><td>ZIP archive</td><td>9c42ff8d</td><td>1.5 MB</td><td><code>f1d951e8f33f</code></td><td></td><td><a href="../assets/pcb/light-v0.1/downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip">download</a></td><td>Extract the whole archive together and open the project file. The root schematic depends on the 19 child sheets, and the custom symbol and footprint libraries only exist inside this archive.</td></tr>
-<tr><td>KiCad project settings</td><td>KiCad project</td><td>9c42ff8d</td><td>29 kB</td><td><code>9196f0c1be38</code></td><td></td><td><a href="../assets/pcb/light-v0.1/kicad/engineered-lighting-rev-a.kicad_pro">download</a></td><td>Opens the project in KiCad.</td></tr>
-<tr><td>PCB layout (the board itself)</td><td>KiCad board</td><td>9c42ff8d</td><td>6.0 MB</td><td><code>9c42ff8df4a3</code></td><td><a href="#the-board">open in the board viewer</a></td><td><a href="../assets/pcb/light-v0.1/kicad/engineered-lighting-rev-a.kicad_pcb">download</a></td><td>The physical layout this page's board viewer is generated from.</td></tr>
-<tr><td>Root schematic sheet</td><td>KiCad schematic</td><td>9c42ff8d</td><td>18 kB</td><td><code>f4d0c51d47c9</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/engineered-lighting-rev-a.kicad_sch">download</a></td><td>The root sheet on its own is not the whole design: it links to 19 child sheets, and without them it will not open completely.</td></tr>
-<tr><td>Parts list (BOM)</td><td>CSV (UTF-8 with byte-order mark)</td><td>9c42ff8d</td><td>32 kB</td><td><code>bc68c0a014eb</code></td><td><a href="#bom">read the table above</a></td><td><a href="../assets/pcb/light-v0.1/downloads/LIGHT-v0.2-9c42ff8d-bom.csv">download</a></td><td>The exact part selection for this layout: 73 rows, 243 packages per board.</td></tr>
-<tr><td>Complete schematic (20 pages)</td><td>PDF</td><td>9c42ff8d</td><td>720 kB</td><td><code>724d2bafbbdb</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/downloads/schematic.pdf">download</a></td><td>One page per sheet, in the same order as the sheet chooser above.</td></tr>
-<tr><td>Assembly drawing, front</td><td>SVG drawing</td><td>9c42ff8d</td><td>595 kB</td><td><code>384011ee40ae</code></td><td><a href="#assembly-references">see the drawings below</a></td><td><a href="../assets/pcb/light-v0.1/assembly/assembly-top.svg">download</a></td><td>Component outlines and reference labels for the front face.</td></tr>
-<tr><td>Assembly drawing, back</td><td>SVG drawing</td><td>9c42ff8d</td><td>819 kB</td><td><code>d9a30e7340c5</code></td><td><a href="#assembly-references">see the drawings below</a></td><td><a href="../assets/pcb/light-v0.1/assembly/assembly-bottom.svg">download</a></td><td>Component outlines and reference labels for the back face. KiCad plots this one mirrored, as you would see it looking at the back of the board.</td></tr>
-<tr><td>Fabrication reference (Gerbers, drills, IPC-D-356)</td><td>ZIP archive</td><td>9c42ff8d</td><td>967 kB</td><td><code>bb4829fd56d0</code></td><td></td><td><a href="../assets/pcb/light-v0.1/fabrication/LIGHT-v0.2-9c42ff8d-fabrication-reference.zip">download</a></td><td>Manufacturing outputs of the same source. Not a fabrication release, and not where a beginner edits the design.</td></tr>
-<tr><td>Drill map, plated holes</td><td>SVG drawing</td><td>9c42ff8d</td><td>163 kB</td><td><code>ef325d4a2d64</code></td><td><a href="#fabrication">see the advanced section</a></td><td><a href="../assets/pcb/light-v0.1/fabrication/engineered-lighting-rev-a-PTH-drl_map.svg">download</a></td><td>Every plated hole, by size.</td></tr>
-<tr><td>Drill map, unplated holes</td><td>SVG drawing</td><td>9c42ff8d</td><td>47 kB</td><td><code>d306d18eba5d</code></td><td><a href="#fabrication">see the advanced section</a></td><td><a href="../assets/pcb/light-v0.1/fabrication/engineered-lighting-rev-a-NPTH-drl_map.svg">download</a></td><td>The unplated holes: the four M3 mounts and the two USB locating pegs.</td></tr>
-<tr><td>Board outline drawing</td><td>SVG drawing</td><td>9c42ff8d</td><td>1008 bytes</td><td><code>133d5a0de548</code></td><td><a href="#fabrication">see the advanced section</a></td><td><a href="../assets/pcb/light-v0.1/fabrication/outline-mm.svg">download</a></td><td>The current cut line in a millimetre SVG frame; no dimension annotations.</td></tr>
-<tr><td>Drill report</td><td>Text</td><td>9c42ff8d</td><td>352 bytes</td><td><code>e8d3b4c8d8a3</code></td><td></td><td><a href="../assets/pcb/light-v0.1/fabrication/drill-report.txt">download</a></td><td>Hole counts for this export; six are unplated mounting/locator holes.</td></tr>
-<tr><td>Schematic sheet 2: Controller</td><td>KiCad schematic</td><td>9c42ff8d</td><td>111 kB</td><td><code>b797f7f753b9</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/controller.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 3: Power Sequence</td><td>KiCad schematic</td><td>9c42ff8d</td><td>28 kB</td><td><code>9959d9f02d9e</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_sequence.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 4: Can</td><td>KiCad schematic</td><td>9c42ff8d</td><td>55 kB</td><td><code>b4647849bdc7</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/can.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 5: Usb</td><td>KiCad schematic</td><td>9c42ff8d</td><td>87 kB</td><td><code>1bcb7af753db</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/usb.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 6: Pwm</td><td>KiCad schematic</td><td>9c42ff8d</td><td>55 kB</td><td><code>23eb28335661</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/pwm.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 7: Zone 1</td><td>KiCad schematic</td><td>9c42ff8d</td><td>41 kB</td><td><code>779fac8d76a5</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_1.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 8: Zone 2</td><td>KiCad schematic</td><td>9c42ff8d</td><td>41 kB</td><td><code>76a134a3ba34</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_2.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 9: Zone 3</td><td>KiCad schematic</td><td>9c42ff8d</td><td>41 kB</td><td><code>0e5407daf5be</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_3.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 10: Zone 4</td><td>KiCad schematic</td><td>9c42ff8d</td><td>41 kB</td><td><code>aa0d86d7eec8</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_4.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 11: Zone 5</td><td>KiCad schematic</td><td>9c42ff8d</td><td>41 kB</td><td><code>dff4e2bb0726</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_5.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 12: Zone 6</td><td>KiCad schematic</td><td>9c42ff8d</td><td>41 kB</td><td><code>5566a943be99</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_6.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 13: Zone 7</td><td>KiCad schematic</td><td>9c42ff8d</td><td>44 kB</td><td><code>b2f5d4f31296</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_7.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 14: Test</td><td>KiCad schematic</td><td>9c42ff8d</td><td>39 kB</td><td><code>66d5ab6e2c36</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/test.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 15: Power 1</td><td>KiCad schematic</td><td>9c42ff8d</td><td>117 kB</td><td><code>68c45d514fe4</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_1.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 16: Power 2</td><td>KiCad schematic</td><td>9c42ff8d</td><td>99 kB</td><td><code>29fc09860d14</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_2.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 17: Spot 1</td><td>KiCad schematic</td><td>9c42ff8d</td><td>104 kB</td><td><code>e72381cb9abf</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/spot_1.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 18: Spot 2</td><td>KiCad schematic</td><td>9c42ff8d</td><td>33 kB</td><td><code>1c878a38f2cd</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/spot_2.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 19: Monitor Expansion</td><td>KiCad schematic</td><td>9c42ff8d</td><td>41 kB</td><td><code>4f4b5d0c2e76</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/monitor_expansion.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Schematic sheet 20: Central six-zone LED flex interface</td><td>KiCad schematic</td><td>9c42ff8d</td><td>37 kB</td><td><code>3c11b0b947c8</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/central_led_interface.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
-<tr><td>Component placement, both sides</td><td>CSV</td><td>9c42ff8d</td><td>20 kB</td><td><code>6bd3e19862a7</code></td><td></td><td><a href="../assets/pcb/light-v0.1/downloads/positions-all.csv">download</a></td><td>Exact factory placement data; common top-view coordinates on both sides. No second mirror.</td></tr>
-<tr><td>current-checks.json</td><td>JSON</td><td>9c42ff8d / 0af25f8f</td><td>4 kB</td><td><code>187f624117dc</code></td><td></td><td><a href="../assets/pcb/light-v0.1/history/current-checks.json">download</a></td><td>Revision-bound evidence: read each source hash and scope; historical results are not current simulations.</td></tr>
+<tr><td>Complete KiCad project (everything below, plus libraries)</td><td>ZIP archive</td><td>cbb8d9fc</td><td>1.5 MB</td><td><code>b8af46039d91</code></td><td></td><td><a href="../assets/pcb/light-v0.1/downloads/LIGHT-v0.2-cbb8d9fc-KiCad-project.zip">download</a></td><td>Extract the whole archive together and open the project file. The root schematic depends on the 19 child sheets, and the custom symbol and footprint libraries only exist inside this archive.</td></tr>
+<tr><td>KiCad project settings</td><td>KiCad project</td><td>cbb8d9fc</td><td>29 kB</td><td><code>8649760bbe1c</code></td><td></td><td><a href="../assets/pcb/light-v0.1/kicad/engineered-lighting-rev-a.kicad_pro">download</a></td><td>Opens the project in KiCad.</td></tr>
+<tr><td>PCB layout (the board itself)</td><td>KiCad board</td><td>cbb8d9fc</td><td>6.1 MB</td><td><code>cbb8d9fc060c</code></td><td><a href="#the-board">open in the board viewer</a></td><td><a href="../assets/pcb/light-v0.1/kicad/engineered-lighting-rev-a.kicad_pcb">download</a></td><td>The physical layout this page's board viewer is generated from.</td></tr>
+<tr><td>Root schematic sheet</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>18 kB</td><td><code>f4d0c51d47c9</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/engineered-lighting-rev-a.kicad_sch">download</a></td><td>The root sheet on its own is not the whole design: it links to 19 child sheets, and without them it will not open completely.</td></tr>
+<tr><td>Parts list (BOM)</td><td>CSV (UTF-8 with byte-order mark)</td><td>cbb8d9fc</td><td>33 kB</td><td><code>be0bb641b64e</code></td><td><a href="#bom">read the table above</a></td><td><a href="../assets/pcb/light-v0.1/downloads/LIGHT-v0.2-cbb8d9fc-bom.csv">download</a></td><td>The exact part selection for this layout: 71 rows, 241 packages per board.</td></tr>
+<tr><td>Complete schematic (20 pages)</td><td>PDF</td><td>cbb8d9fc</td><td>718 kB</td><td><code>22ce254aa3b6</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/downloads/schematic.pdf">download</a></td><td>One page per sheet, in the same order as the sheet chooser above.</td></tr>
+<tr><td>Assembly drawing, front</td><td>SVG drawing</td><td>cbb8d9fc</td><td>595 kB</td><td><code>ec19cb8def9e</code></td><td><a href="#assembly-references">see the drawings below</a></td><td><a href="../assets/pcb/light-v0.1/assembly/assembly-top.svg">download</a></td><td>Component outlines and reference labels for the front face.</td></tr>
+<tr><td>Assembly drawing, back</td><td>SVG drawing</td><td>cbb8d9fc</td><td>863 kB</td><td><code>503ee3785161</code></td><td><a href="#assembly-references">see the drawings below</a></td><td><a href="../assets/pcb/light-v0.1/assembly/assembly-bottom.svg">download</a></td><td>Component outlines and reference labels for the back face. KiCad plots this one mirrored, as you would see it looking at the back of the board.</td></tr>
+<tr><td>Fabrication reference (Gerbers, drills, IPC-D-356)</td><td>ZIP archive</td><td>cbb8d9fc</td><td>1001 kB</td><td><code>c8c4290f366a</code></td><td></td><td><a href="../assets/pcb/light-v0.1/fabrication/LIGHT-v0.2-cbb8d9fc-fabrication-reference.zip">download</a></td><td>Manufacturing outputs of the same source. Not a fabrication release, and not where a beginner edits the design.</td></tr>
+<tr><td>Drill map, plated holes</td><td>SVG drawing</td><td>cbb8d9fc</td><td>165 kB</td><td><code>757858f50efc</code></td><td><a href="#fabrication">see the advanced section</a></td><td><a href="../assets/pcb/light-v0.1/fabrication/engineered-lighting-rev-a-PTH-drl_map.svg">download</a></td><td>Every plated hole, by size.</td></tr>
+<tr><td>Drill map, unplated holes</td><td>SVG drawing</td><td>cbb8d9fc</td><td>47 kB</td><td><code>893454921f12</code></td><td><a href="#fabrication">see the advanced section</a></td><td><a href="../assets/pcb/light-v0.1/fabrication/engineered-lighting-rev-a-NPTH-drl_map.svg">download</a></td><td>The unplated holes: the four M3 mounts and the two USB locating pegs.</td></tr>
+<tr><td>Board outline drawing</td><td>SVG drawing</td><td>cbb8d9fc</td><td>1008 bytes</td><td><code>133d5a0de548</code></td><td><a href="#fabrication">see the advanced section</a></td><td><a href="../assets/pcb/light-v0.1/fabrication/outline-mm.svg">download</a></td><td>The current cut line in a millimetre SVG frame; no dimension annotations.</td></tr>
+<tr><td>Drill report</td><td>Text</td><td>cbb8d9fc</td><td>307 bytes</td><td><code>a7ef33047477</code></td><td></td><td><a href="../assets/pcb/light-v0.1/fabrication/drill-report.txt">download</a></td><td>Hole counts for this export; six are unplated mounting/locator holes.</td></tr>
+<tr><td>Schematic sheet 2: Controller</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>111 kB</td><td><code>b797f7f753b9</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/controller.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 3: Power Sequence</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>28 kB</td><td><code>9959d9f02d9e</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_sequence.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 4: Can</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>55 kB</td><td><code>b4647849bdc7</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/can.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 5: Usb</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>87 kB</td><td><code>1bcb7af753db</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/usb.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 6: Pwm</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>55 kB</td><td><code>23eb28335661</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/pwm.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 7: Zone 1</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>41 kB</td><td><code>779fac8d76a5</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_1.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 8: Zone 2</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>41 kB</td><td><code>76a134a3ba34</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_2.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 9: Zone 3</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>41 kB</td><td><code>0e5407daf5be</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_3.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 10: Zone 4</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>41 kB</td><td><code>aa0d86d7eec8</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_4.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 11: Zone 5</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>41 kB</td><td><code>dff4e2bb0726</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_5.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 12: Zone 6</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>41 kB</td><td><code>5566a943be99</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_6.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 13: Zone 7</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>44 kB</td><td><code>b2f5d4f31296</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/zone_7.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 14: Test</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>39 kB</td><td><code>66d5ab6e2c36</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/test.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 15: Power 1</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>117 kB</td><td><code>68c45d514fe4</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_1.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 16: Power 2</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>99 kB</td><td><code>29fc09860d14</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/power_2.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 17: Spot 1</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>108 kB</td><td><code>3c6777d0558a</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/spot_1.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 18: Spot 2</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>37 kB</td><td><code>20593035a0a7</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/spot_2.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 19: Monitor Expansion</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>41 kB</td><td><code>4f4b5d0c2e76</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/monitor_expansion.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Schematic sheet 20: Central six-zone LED flex interface</td><td>KiCad schematic</td><td>cbb8d9fc</td><td>37 kB</td><td><code>3c11b0b947c8</code></td><td><a href="#schematic">open in the sheet browser</a></td><td><a href="../assets/pcb/light-v0.1/kicad/central_led_interface.kicad_sch">download</a></td><td>One child sheet. Single sheet files do not carry the project's symbol and footprint libraries -- only the complete archive does.</td></tr>
+<tr><td>Component placement, both sides</td><td>CSV</td><td>cbb8d9fc</td><td>20 kB</td><td><code>51579ea014cd</code></td><td></td><td><a href="../assets/pcb/light-v0.1/downloads/positions-all.csv">download</a></td><td>Exact factory placement data; common top-view coordinates on both sides. No second mirror.</td></tr>
+<tr><td>current-checks.json</td><td>JSON</td><td>cbb8d9fc / 0af25f8f</td><td>4 kB</td><td><code>99e7fc5bb72b</code></td><td></td><td><a href="../assets/pcb/light-v0.1/history/current-checks.json">download</a></td><td>Revision-bound evidence: read each source hash and scope; historical results are not current simulations.</td></tr>
 <tr><td>teaching-v0.1.json</td><td>JSON</td><td>Historical c046202e / earlier</td><td>374 kB</td><td><code>a358647e40b7</code></td><td></td><td><a href="../assets/pcb/light-v0.1/history/teaching-v0.1.json">download</a></td><td>Revision-bound evidence: read each source hash and scope; historical results are not current simulations.</td></tr>
 </tbody></table></div>
 
@@ -1181,7 +1190,7 @@ Everything on this page is derived from one board file:
 
 ```text
 engineered-lighting-rev-a.kicad_pcb
-SHA-256  9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096
+SHA-256  cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb
 ```
 
 The layer plots and schematic sheets were exported from that file with KiCad 10.0.3 and published
@@ -1232,7 +1241,7 @@ cases are not continuous operating ratings.
 ## What has been checked — and what has not { #validation }
 
 The current digital checks below bind to the exact downloadable board hashes. They were completed for
-the accepted quote candidate; this documentation refresh verified their 773-file acceptance manifest.
+the electrical baseline; the current snapshot verifies all packaged hashes and records the separate silkscreen-only preservation evidence.
 The new viewer export adds identity, geometry and schematic-sheet checks. No hardware simulation was
 rerun merely to update this page, and no result is a physical measurement.
 
@@ -1244,13 +1253,12 @@ rerun merely to update this page, and no result is a physical measurement.
 <th>Check</th><th>Result on this revision</th><th>What ran it</th>
 </tr></thead>
 <tbody>
-<tr><td>Electrical and design rules</td><td>0 ERC, DRC, unconnected or schematic-parity violations on the final source</td><td>hash-bound FINAL-NATIVE-CHECKS record</td></tr>
-<tr><td>Board / schematic / BOM parity</td><td>264 features; 243 fitted components; 73 BOM rows; 786 logical pins, 757 assigned and 29 intentional no-connects; 883 physical pad objects</td><td>main-parity.json on 9c42ff8d</td></tr>
-<tr><td>Physical copper connectivity</td><td>All named assigned nets pass physical-pad connectivity; seeded missing-copper control rejected</td><td>main-connectivity.json on 9c42ff8d</td></tr>
-<tr><td>Independent CAM comparison</td><td>12 copper/mask/paste films and 850 drill objects compared against native geometry; seeded CAM errors rejected</td><td>FINAL-CAM-RECEIPT bound to 9c42ff8d</td></tr>
-<tr><td>Mating interface</td><td>30 contacts implement 24 distinct rails; main J2 and upper J100 preserve zone and contact orientation</td><td>matched interface audits bound to both current PCB hashes</td></tr>
-<tr><td>Native change scope</td><td>Approved relocations and In2 exceptions audited; four M3 holes and other ports retained</td><td>NATIVE-SCOPE-AUDIT and approved changes</td></tr>
-<tr><td>Return-reference review</td><td>A 1.465544 mm PWM03 crossing of the inherited In3 PCA_OE slot remains a prototype noise-validation item</td><td>RETURN-REFERENCE-CLOSEOUT; not an EMI qualification</td></tr>
+<tr><td>Current branding delta</td><td>Zero current DRC/unconnected items; all non-back-silkscreen native objects identical to electrical baseline 80195efd</td><td>cbb8d9fc branding verification</td></tr>
+<tr><td>Board / schematic / BOM parity</td><td>262 features; 241 fitted components; 71 BOM rows; 786 logical pins, 757 assigned and 29 no-connects; 879 physical pad objects</td><td>80195efd baseline parity plus current read-only exporter identity checks</td></tr>
+<tr><td>Electrical rules and physical connectivity</td><td>Baseline ERC and physical-pad connectivity passed, including rejected seeded missing copper; preserved exactly by the branding delta</td><td>80195efd FINAL-NATIVE-CHECKS; not a new analogue simulation</td></tr>
+<tr><td>Manufacturing export comparison</td><td>Current 14 non-back-silkscreen films and both drill files match baseline; baseline independent CAM compared 12 films and 868 drills</td><td>Fresh cbb8d9fc exports and 80195efd CAM checks</td></tr>
+<tr><td>Arm connector change</td><td>J9 combines three independent LED pairs; J10/J11 removed. J13 tilt and J12 pan remain separate. No returns are joined</td><td>Current native schematic, six J9 contacts and matched placement data</td></tr>
+<tr><td>Central LED interface preserved</td><td>J2 and the upper tail are unchanged from the reviewed 30-contact interface</td><td>Native preservation; physical mating is unmeasured</td></tr>
 </tbody></table></div>
 
 <!-- el-pcb:generated validation-passed end -->

@@ -13,6 +13,11 @@ connectors reach — six ambient zones around a cylinder, three spotlight pairs,
 been wire, cut and stripped and soldered by hand, one conductor at a time. These three flexible
 circuits replace most of that with something a factory makes to a drawing.
 
+The latest main board groups all three spotlight pairs in **J9**, beside **J13 tilt**. Ordinary wires
+connect those plugs to the unchanged static arm ribbon; **J12 pan** terminates separately. The wire
+loop across the pan joint must accommodate 180 degrees in each direction. This is not a dynamic-flex
+qualification. The six spotlight conductors remain separate, including their three LED-minus returns.
+
 They are **passive**: copper, insulating film and solder pads. No components, no connectors fitted, no
 firmware. That is the point. A flex circuit is a wiring harness that can be checked before it is
 built, and reproduced identically the next time.
@@ -38,13 +43,14 @@ built, and reproduced identically the next time.
     independent pin-and-topology oracle, and a comparison of the exported manufacturing data against
     the native design. Those results are in the table under [what has been checked](#flex-validation).
 
-    **Submitted to JLCPCB for engineering quotation; no payment or production release.** The latest
-    PCBWay flex entries still await a compatible custom-stack submission route. The request is two of each
+    **Submitted to JLCPCB for engineering quotation; no payment or production release.** The unchanged static gimbal now has a PCBWay inquiry; the upper and lower LED flexes
+    still await a compatible custom-stack submission route. The request is two of each
     circuit, six passive circuits in total, for two fixture prototypes. The manufacturer has not
     accepted the stack-up, coverlay, stiffeners or tolerances, and there has been **no physical
     qualification of any kind**: no fit coupon, no solder sample, no bend or motion testing.
 
-    Main LIGHT v0.2 and upper flex v0.3 changed together; lower and gimbal remain byte-identical v0.2.
+    The central-interface main and upper flex v0.3 originally changed together. The later grouped-arm
+    and branding changes affect only the main board; all three flex files remain byte-identical.
     One continuing fit risk affects whether these
     can be ordered at all, and it has its own section: [the alignment hold](#fit-hold).
 

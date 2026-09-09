@@ -677,10 +677,10 @@
         if (!bodies[c.ref] || w*h>bodies[c.ref].area) bodies[c.ref]={c:c,points:points,area:w*h};
       });
       var face = svg("g", { "data-side": side }, ui.bodies);
-      // U1 outline is on User.Eco2, not F.Fab, in native revision 9c42ff8d.
+      // U1 outline is on User.Eco2, not F.Fab, in native revision cbb8d9fc.
       // 18 x 25.5 mm body; 6 mm antenna section. No invented antenna trace geometry.
       var module=data.board.components.find(function(c) {return c.ref==="U1" && c.mpn==="ESP32-C6-WROOM-1-N8";});
-      var moduleRevision = "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096";
+      var moduleRevision = "cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb";
       if (side==="F" && data.board.pcb_sha256===moduleRevision && module && module.xy[0]===100 && module.xy[1]===72.6) {
         var mod=svg("g", {class:"el-pcb-module", "data-ref":"U1"}, face);
         svg("rect", {x:91,y:56.85,width:18,height:25.5,rx:.12,fill:"#18241e",stroke:"#626b5c","stroke-width":.12},mod);
