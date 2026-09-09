@@ -1,7 +1,7 @@
 /* Doc 10 flex-circuit viewer.
  *
  * Simpler than the board viewer: three passive circuits, no faces, no presets,
- * no parts to buy. What matters here is where each solder pad is and what rail
+ * no parts to buy. What matters here is where each pad or insertion contact is and what rail
  * it carries, so the pads are the interactive objects.
  *
  * Shares the pan/zoom core and DOM helpers with pcb-viewer.js through
@@ -55,7 +55,7 @@
     /* ---------------------------------------------------------------- DOM */
     function build() {
       var head = el("div", { class: "el-pcb-head" }, root);
-      el("h3", { class: "el-pcb-title", text: "FLEX v0.2 — three passive circuits" }, head);
+      el("h3", { class: "el-pcb-title", text: "Upper v0.3 · lower and arm v0.2" }, head);
       ui.headNote = el("p", { class: "el-pcb-prov" }, head);
 
       var bar = el("div", { class: "el-pcb-toolbar", role: "toolbar" }, root);
@@ -146,7 +146,7 @@
         board.size_mm[0].toFixed(1) + " × " + board.size_mm[1].toFixed(1) + " mm";
       ui.caption.textContent = board.what +
         " The copper and coverlay shown are this circuit's own manufacturing layers; the small markers " +
-        "are the solder pads listed in its connection table, not their exact outlines.";
+        "are the pads and insertion contacts listed in its connection table, not their exact outlines.";
 
       ui.layers.innerHTML = "";
       ui.layerBox.querySelectorAll("label").forEach(function (n) { n.remove(); });
@@ -168,11 +168,12 @@
       fitHeight();
 
       var wanted = board.layers.filter(function (l) {
-        return l.id === "Edge_Cuts" || l.id === "F_Cu" || l.id === "F_Silkscreen";
+        return l.id === "Edge_Cuts" || l.id === "F_Cu" || l.id === "F_Silkscreen" ||
+          (id === "upper" && l.id === "B_Cu");
       });
       return Promise.all(wanted.map(function (l) { return toggleLayer(l.id, true); }))
         .then(function () {
-          say(board.title + ": " + board.pads.length + " solder pads. Drag sideways to run along "
+          say(board.title + ": " + board.pads.length + " pads / contacts. Drag sideways to run along "
               + "the circuit, or press Whole circuit to see its full length.");
           runSearch();
         });
@@ -189,8 +190,16 @@
       var h = frame[3] * 1.15;
       var w = h * aspect;
       if (w >= frame[2]) { pz.fit(); return; }
+      // The new tall upper tail is the teaching focus; starting at the band's
+      // left edge would show mostly empty space and hide its actual plug.
+      var insertion = board.pads.filter(function (p) { return p.ref === "J100"; });
+      var left = frame[0];
+      if (insertion.length) {
+        var centre = insertion.reduce(function (sum, p) { return sum + p.xy[0]; }, 0) / insertion.length;
+        left = centre - w / 2;
+      }
       pz.set({
-        x: frame[0] - (w - frame[2]) / 2 > frame[0] ? frame[0] : frame[0],
+        x: left,
         y: frame[1] - (h - frame[3]) / 2,
         w: w, h: h
       });

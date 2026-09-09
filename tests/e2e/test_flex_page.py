@@ -22,10 +22,10 @@ READY = '#el-flex[data-state="ready"]'
 
 BOARD_SHA = {
     "gimbal": "7136c5c343da3194c0ada81330edd99336b3078152bb8f1ce47f5da158f2287d",
-    "upper": "a5acd2a0ca0a0134b26fcce2757d164a1250080bb73f65dd778f97ea8f821d2f",
+    "upper": "0af25f8f72fb999db1bad16a8d59541a02c4eb95f838ada6dd6abadba8fe058d",
     "lower": "21db9dba94c6b4fd992e7c361f79d360b84270ea8c3a89099156e5972f7d6379",
 }
-PAD_COUNT = {"gimbal": 70, "upper": 120, "lower": 96}
+PAD_COUNT = {"gimbal": 70, "upper": 126, "lower": 96}
 
 
 def sha256(path):
@@ -45,7 +45,7 @@ def index():
 
 def test_three_designs_with_their_own_hashes(index):
     assert len(index["boards"]) == 3
-    assert index["totals"]["pads"] == 286
+    assert index["totals"]["pads"] == 292
     for board in index["boards"]:
         assert board["pcb_sha256"] == BOARD_SHA[board["id"]], board["id"]
         assert len(board["pads"]) == PAD_COUNT[board["id"]], board["id"]
@@ -110,7 +110,7 @@ def test_generated_blocks_cover_every_pad(index):
         assert page.count("<!-- el-pcb:generated %s start -->" % name) == 1, name
         assert page.count("<!-- el-pcb:generated %s end -->" % name) == 1, name
     rows = re.findall(r'data-flex-row="([^"]+)"', page)
-    assert len(rows) == 286
+    assert len(rows) == 292
     for board in index["boards"]:
         for pad in board["pads"]:
             key = "%s:%s:%s" % (board["id"], pad["ref"], pad["pin"])
@@ -119,7 +119,8 @@ def test_generated_blocks_cover_every_pad(index):
     assert "0.346" in page and "0.30 mm" in page, "the alignment hold must state its numbers"
     # normalise wrapping and emphasis before looking for the honest statements
     flat = re.sub(r"[*\s]+", " ", page).lower()
-    assert "nothing has been submitted, ordered or paid for" in flat
+    assert "submitted to jlcpcb for engineering quotation" in flat
+    assert "no payment or production release" in flat
     assert "no physical qualification of any kind" in flat
     assert "not a passed physical test" in flat
 
@@ -156,7 +157,7 @@ def test_viewer_loads_and_switches_between_circuits(page):
     assert page.locator(".el-flex-pad").count() == 70
     assert set(s["layers"]) == {"Edge_Cuts", "F_Cu", "F_Silkscreen"}
 
-    for board, pads in (("upper", 120), ("lower", 96)):
+    for board, pads in (("upper", 126), ("lower", 96)):
         page.evaluate("b => window.elFlex.setBoard(b)", board)
         page.wait_for_function("n => window.elFlex.getState().pads === n", arg=pads, timeout=15000)
         assert page.locator(".el-flex-pad").count() == pads
@@ -173,6 +174,8 @@ def test_pads_are_drawn_on_the_copper(page):
     for board in ("gimbal", "upper", "lower"):
         page.evaluate("b => window.elFlex.setBoard(b)", board)
         page.wait_for_function("b => window.elFlex.getState().board === b", arg=board, timeout=15000)
+        if board == "upper":
+            page.evaluate("window.elFlex.toggleLayer('B_Cu', true)")
         page.wait_for_timeout(700)
         result = page.evaluate("""() => {
             const cu = document.querySelector('.el-pcb-layer[data-layer="F_Cu"]');
@@ -183,8 +186,10 @@ def test_pads_are_drawn_on_the_copper(page):
             let inside = 0;
             for (const p of pads) {
                 const x = +p.getAttribute('cx'), y = +p.getAttribute('cy');
-                if (x >= bb.x - 0.5 && x <= bb.x + bb.width + 0.5 &&
-                    y >= bb.y - 0.5 && y <= bb.y + bb.height + 0.5) inside++;
+                const isTail = p.getAttribute('data-ref') === 'J100';
+                const box = isTail ? document.querySelector('.el-pcb-layer[data-layer="B_Cu"]').getBBox() : bb;
+                if (x >= box.x - 0.5 && x <= box.x + box.width + 0.5 &&
+                    y >= box.y - 0.5 && y <= box.y + box.height + 0.5) inside++;
             }
             return {total: pads.length, inside: inside};
         }""")
@@ -249,7 +254,7 @@ def test_flex_page_works_without_javascript(context, base_url):
     p = ctx.new_page()
     p.goto(PAGE)
     assert p.locator(".el-flex-fallback").is_visible()
-    assert p.locator("[data-flex-row]").count() == 286
+    assert p.locator("[data-flex-row]").count() == 292
     ctx.close()
 
 
@@ -270,3 +275,19 @@ def test_flex_screenshots(page):
     page.evaluate("window.elFlex.select(0)")
     page.wait_for_timeout(500)
     page.locator("#el-flex").screenshot(path=str(screens / "flex-gimbal-1400.png"))
+
+
+def test_upper_defaults_to_visible_insertion_tail(page):
+    ready(page)
+    page.evaluate("window.elFlex.setBoard('upper')")
+    page.wait_for_timeout(500)
+    assert "B_Cu" in state(page)["layers"]
+    assert page.evaluate("""() => {
+        const canvas = document.querySelector('.el-flex-canvas').getBoundingClientRect();
+        const pads = [...document.querySelectorAll('.el-flex-pad[data-ref="J100"]')];
+        return pads.length === 30 && pads.every(p => {
+            const b = p.getBoundingClientRect();
+            return b.left >= canvas.left && b.right <= canvas.right &&
+                   b.top >= canvas.top && b.bottom <= canvas.bottom;
+        });
+    }""")

@@ -24,9 +24,9 @@ ASSETS = REPO / "docs" / "assets" / "pcb" / "light-v0.1"
 PAGE = REPO / "docs" / "09-understand-the-pcb.md"
 SITE = REPO / "site"
 
-PCB_SHA = "c046202efa3896d59d12bf19f55ed48b3a6c77532aac199a3a1e9a993e449310"
-ZIP_SHA = "029f02282a4500ad541a31513062dc8ef4b7426aef1c0547d51f07ee4b459d8d"
-CSV_SHA = "d9308529a10ce194e19765466474dc2ceda12c8e35fa6eeddf06806462911756"
+PCB_SHA = "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096"
+ZIP_SHA = "f1d951e8f33f9e5be32175db56f0178e411f9a84790a5d5482a12b299fd9c83c"
+CSV_SHA = "bc68c0a014eb14df9d72fb7faa314a8f2d71d6a5e29d4b1c3ffe6551eb33b681"
 
 LANDMARKS = {
     "J1": ("F", [84.5, 126.5], -90.0, 16),
@@ -95,7 +95,7 @@ def test_hash_chain(bom):
     assert sha256(ASSETS / "kicad/engineered-lighting-rev-a.kicad_pcb") == PCB_SHA, (
         "the published board file no longer hashes to the governing revision - if this fails after a "
         "fresh clone, docs/assets/pcb/.gitattributes is missing or wrong")
-    zpath = ASSETS / "downloads/LIGHT-v0.1-c046202e-KiCad-project.zip"
+    zpath = ASSETS / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
     assert sha256(zpath) == ZIP_SHA
     csv = ASSETS / bom["csv_file"]
     assert sha256(csv) == CSV_SHA
@@ -107,11 +107,11 @@ def test_hash_chain(bom):
 
 
 def test_project_zip_contents():
-    zpath = ASSETS / "downloads/LIGHT-v0.1-c046202e-KiCad-project.zip"
+    zpath = ASSETS / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
     with zipfile.ZipFile(zpath) as zf:
         names = zf.namelist()
     assert len(names) == 62, names
-    assert sum(1 for n in names if n.endswith(".kicad_sch")) == 19
+    assert sum(1 for n in names if n.endswith(".kicad_sch")) == 20
     assert sum(1 for n in names if n.endswith(".kicad_sym")) == 15
     for required in ("engineered-lighting-rev-a.kicad_pro", "engineered-lighting-rev-a.kicad_pcb",
                      "engineered-lighting-rev-a.kicad_dru", "fp-lib-table", "sym-lib-table",
@@ -133,7 +133,7 @@ def test_manifest_and_layers_resolve(board, sch):
     for layer in board["layers"]:
         path = ASSETS / layer["file"]
         assert path.exists() and sha256(path) == layer["sha256"], layer["id"]
-    assert len(sch["sheets"]) == 19
+    assert len(sch["sheets"]) == 20
     for sheet in sch["sheets"]:
         path = ASSETS / sheet["file"]
         assert path.exists() and sha256(path) == sheet["sha256"], sheet["n"]
@@ -141,17 +141,17 @@ def test_manifest_and_layers_resolve(board, sch):
 
 def test_board_census(board):
     comps = {c["ref"]: c for c in board["components"]}
-    assert len(comps) == 269
-    assert board["sides"] == {"F": 127, "B": 142}
-    assert sum(1 for c in comps.values() if c["side"] == "F") == 127
+    assert len(comps) == 264
+    assert board["sides"] == {"F": 123, "B": 141}
+    assert sum(1 for c in comps.values() if c["side"] == "F") == 123
     assert len(board["features"]) == 21
-    assert sum(1 for c in comps.values() if not c["feature"]) == 248
+    assert sum(1 for c in comps.values() if not c["feature"]) == 243
     assert len(board["nets"]) == 163
     assert not [n for n in board["nets"] if n.startswith("unconnected-")]
     nc = sum(1 for c in comps.values() for v in c["pins"].values() if v is None)
     assert nc == 29
     pads = [p for c in comps.values() for p in c["pads"]]
-    assert len(pads) == 887
+    assert len(pads) == 883
     assert sum(1 for p in pads if p.get("paste")) == 18
 
     assert sorted(r for r, c in comps.items() if c["through"]) == ["H1", "H2", "H3", "H4", "J14"]
@@ -243,10 +243,10 @@ def test_layers_are_themeable_and_labelled(board):
 
 def test_bom_join(board, bom, teach):
     comps = {c["ref"]: c for c in board["components"]}
-    assert bom["totals"] == {"rows": 74, "per_board": 248, "two_boards": 496, "features": 21}
-    assert len(bom["rows"]) == 74
-    assert sum(r["qty"] for r in bom["rows"]) == 248
-    assert [r["item"] for r in bom["rows"]] == list(range(1, 75))
+    assert bom["totals"] == {"rows": 73, "per_board": 243, "two_boards": 486, "features": 21}
+    assert len(bom["rows"]) == 73
+    assert sum(r["qty"] for r in bom["rows"]) == 243
+    assert [r["item"] for r in bom["rows"]] == list(range(1, 74))
     purchased = {r for r, c in comps.items() if not c["feature"]}
     assert set(bom["ref_to_item"]) == purchased
     for row in bom["rows"]:
@@ -262,8 +262,9 @@ def test_bom_join(board, bom, teach):
     same_mpn = {}
     for row in bom["rows"]:
         same_mpn.setdefault(row["mpn"], []).append(row["item"])
-    assert sorted(same_mpn["SM04B-GHS-TB(LF)(SN)"]) == [23, 26, 27]
-    assert sorted(same_mpn["BM02B-GHS-TBT(LF)(SN)"]) == [72, 73, 74]
+    assert "SM04B-GHS-TB(LF)(SN)" not in same_mpn
+    assert same_mpn["2005280300"] == [73]
+    assert sorted(same_mpn["BM02B-GHS-TBT(LF)(SN)"]) == [70, 71, 72]
 
     updated = {ref for u in bom["note_updates"] for ref in u["refs"]}
     assert {"C3", "C512"} <= updated
@@ -338,9 +339,9 @@ def test_channel_map_matches_the_board(board, teach):
 
 def test_schematic_index(board, sch):
     comps = {c["ref"]: c for c in board["components"]}
-    assert len(sch["ref_to_sheet"]) == 269
+    assert len(sch["ref_to_sheet"]) == 264
     assert set(sch["ref_to_sheet"]) == set(comps)
-    assert set(sch["ref_to_sheet"].values()) <= set(range(2, 20))
+    assert set(sch["ref_to_sheet"].values()) <= set(range(2, 21))
     counts = {}
     for sheet in sch["sheets"]:
         counts[sheet["n"]] = len(sheet["refs"])
@@ -351,7 +352,7 @@ def test_schematic_index(board, sch):
         for ref in sheet["refs"]:
             assert comps[ref]["sheet"] == sheet["n"], ref
     assert counts[1] == 0
-    assert sum(counts.values()) == 269
+    assert sum(counts.values()) == 264
 
 
 def test_nothing_private_is_published():
@@ -383,8 +384,8 @@ def test_generated_blocks_and_raw_links(board, bom, sch):
                  "downloads", "validation-passed", "validation-open"):
         assert page.count("<!-- el-pcb:generated %s start -->" % name) == 1, name
         assert page.count("<!-- el-pcb:generated %s end -->" % name) == 1, name
-    assert len(re.findall(r'data-item="\d+"', page)) == 74
-    assert len(re.findall(r'data-pcb-row="', page)) == 18
+    assert len(re.findall(r'data-item="\d+"', page)) == 73
+    assert len(re.findall(r'data-pcb-row="', page)) == 13
     channel_block = page.split("<!-- el-pcb:generated channels start -->")[1] \
                         .split("<!-- el-pcb:generated channels end -->")[0]
     assert channel_block.count("<tr") == 22, "21 channel rows plus one header row"
@@ -430,3 +431,38 @@ def test_built_page_and_footer():
     assert nxt9 and "Flex Circuits" in nxt9.group(1), "Doc 10 follows Doc 9"
     flex = (SITE / "10-the-flex-circuits" / "index.html").read_text(encoding="utf-8")
     assert "md-footer__link--next" not in flex, "Doc 10 must be the last page"
+
+
+def test_central_connector_matches_upper_insertion_contacts():
+    """Independent interface contract: six separate positive rails, not a common bus."""
+    main = next(c for c in load("board.json")["components"] if c["ref"] == "J2")
+    flex = json.loads((ASSETS.parent / "flex-v0.2/index.json").read_text(encoding="utf-8"))
+    upper = next(b for b in flex["boards"] if b["design"] == "led-upper-v0.3")
+    contacts = [p for p in upper["pads"] if p["ref"] == "J100"]
+    expected = {}
+    for group, zone in enumerate((4, 5, 6, 1, 2, 3)):
+        for offset, rail in enumerate(("24V", "24V", "W", "N", "C"), 1):
+            expected[str(group * 5 + offset)] = "ZONE%d_%s" % (zone, rail)
+    assert main["pins"] == expected
+    assert {p["pin"]: p["net"] for p in contacts} == expected
+    assert len(contacts) == 30 and len(set(expected.values())) == 24
+    assert all(p["copper_layer"] == "B_Cu" for p in contacts)
+    assert not {"J3", "J4", "J5", "J6", "J7"} & {c["ref"] for c in load("board.json")["components"]}
+
+
+def test_historical_claims_have_downloadable_revision_bound_evidence():
+    data = load("teaching.json")
+    entries = data["components"]
+    for entry in entries.values():
+        for claim in entry["claims"]:
+            if claim["evidence"] == "simulated-historical":
+                source = ASSETS / claim["source_file"]
+                assert source.is_file()
+                assert claim["bound_to"] in source.read_text(encoding="utf-8")
+                assert claim["bound_to"] != PCB_SHA
+
+
+def test_prose_full_board_identity_matches_download():
+    page = PAGE.read_text(encoding="utf-8")
+    assert "SHA-256  " + PCB_SHA in page
+    assert "other 18 sheets" not in page

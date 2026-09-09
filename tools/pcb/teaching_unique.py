@@ -1,11 +1,11 @@
-"""Hand-written teaching entries for the named parts on LIGHT v0.1.
+"""Hand-written teaching entries for the named parts on LIGHT v0.2.
 
 Everything a template cannot say generically lives here: the integrated
 circuits, the connectors with their own stories, the discrete power parts and
 the four capacitors whose job is timing rather than decoupling.
 
 Every claim carries a kind (documented / inference / open) and an evidence
-class. 'measured' is never used: no LIGHT v0.1 board has been powered.
+class. 'measured' is never used: no LIGHT v0.2 board has been powered.
 
 Field contract per reference:
     name     short plain-language name
@@ -1109,3 +1109,11 @@ UNIQUE = {
         "open": ["ARM gates lighting only. It does not remove motor power."],
     },
 }
+
+# Revision-specific changes: pin roles are still checked by the data builder.
+UNIQUE["U5"]["name"] = "Schmitt-input spotlight permission gate"
+UNIQUE["U5"]["here"] = "The Nexperia 74HCS08PWJ gates SPOT1_PWM, SPOT2_PWM and SPOT3_PWM with LIGHT_ENABLE_SAFE to drive the three spotlight CTRL paths. Its fourth gate ANDs LIGHT_ENABLE and ARM into LIGHT_REQUEST_ARMED. This replaces the earlier logic part; the three output pull-downs are now 910 ohm."
+UNIQUE["U5"]["how"] = "Each AND gate requires both the spotlight request and the shared safety permission. Schmitt inputs provide hysteresis for a changing input level; they do not establish glitch-free power sequencing or a tested falling-edge waveform."
+UNIQUE["U5"]["claims"] = [{"kind":"documented","evidence":CAD,"text":"Exact selection is 74HCS08PWJ with 910 ohm R526/R527/R528; logical pin parity passes on the final revision.","basis":"Current BOM, schematic and native pin parity"}]
+UNIQUE["U5"]["open"] = ["Hardware timing, supply sequencing and off-state behavior remain unmeasured."]
+UNIQUE["C504"]["assembly"] = ["AFK108M50P44T-F has a provisional custom land and intentionally no paste aperture. It permits one reflow: the factory must approve and perform final installation without exposing it to both board passes."]

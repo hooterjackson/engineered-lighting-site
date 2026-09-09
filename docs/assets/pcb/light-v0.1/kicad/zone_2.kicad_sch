@@ -6,8 +6,8 @@
   (paper "A3")
   (title_block
     (title "Zone 2")
-    (date "2026-09-06")
-    (rev "A draft")
+    (date "2026-09-08")
+    (rev "LIGHT v0.2 candidate")
     (company "Engineered Lighting")
     (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
   (lib_symbols
@@ -467,150 +467,6 @@
               (font
                 (size 1.27 1.27))))))
       (embedded_fonts no)))
-  (symbol
-    (lib_id "Connector_Generic:Conn_01x04")
-    (at 360.68 63.5 0)
-    (unit 1)
-    (exclude_from_sim yes)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (uuid "0324a1fe-8a01-5da5-b7f7-9f99382367d2")
-    (property "Reference" "J3"
-      (at 360.68 50.8 0.0)
-      (effects
-        (font
-          (size 1.0 1.0))))
-    (property "Value" "ZONE 2"
-      (at 360.68 53.34 0.0)
-      (effects
-        (font
-          (size 1.0 1.0))))
-    (property "Footprint" "Connector_JST:JST_GH_SM04B-GHS-TB_1x04-1MP_P1.25mm_Horizontal"
-      (at 360.68 63.5 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0))))
-    (property "MPN" "SM04B-GHS-TB(LF)(SN)"
-      (at 360.68 63.5 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0))))
-    (property "Manufacturer" "JST"
-      (at 360.68 63.5 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0))))
-    (property "Datasheet" ""
-      (at 360.68 63.5 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0))))
-    (instances
-      (project "engineered-lighting-rev-a"
-        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/16e0645a-d01c-537d-b79a-89b78cc7a2ad"
-          (reference "J3")
-          (unit 1))))
-    (pin "1"
-      (uuid "cea457d5-7058-503c-b882-55c29e4cca27"))
-    (pin "2"
-      (uuid "1febf446-7d57-54b5-a1e3-d8f8fc9ce1c8"))
-    (pin "3"
-      (uuid "4671709a-2528-5620-9c70-58f06efb2047"))
-    (pin "4"
-      (uuid "1c0c30fe-d0da-598b-b61a-2a1fedafd7a1")))
-  (wire
-    (pts
-      (xy 355.6 60.96)
-      (xy 345.44 60.96))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "31fc0529-cf39-53a3-a567-ca2e4fc9e84f"))
-  (global_label "ZONE2_24V"
-    (shape passive)
-    (at 345.44 60.96 0.0)
-    (effects
-      (font
-        (size 0.9 0.9))
-      (justify left))
-    (uuid "ee4fabce-f503-5a96-ba84-dc7fa18fc74b")
-    (property "Intersheetrefs" "${INTERSHEET_REFS}"
-      (at 345.44 60.96 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0)))))
-  (wire
-    (pts
-      (xy 355.6 63.5)
-      (xy 345.44 63.5))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "4b828fc7-045f-5487-a926-33724fe71c99"))
-  (global_label "ZONE2_W"
-    (shape passive)
-    (at 345.44 63.5 0.0)
-    (effects
-      (font
-        (size 0.9 0.9))
-      (justify left))
-    (uuid "2ea14799-19b5-5aa9-9c9d-c13762a36dc3")
-    (property "Intersheetrefs" "${INTERSHEET_REFS}"
-      (at 345.44 63.5 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0)))))
-  (wire
-    (pts
-      (xy 355.6 66.04)
-      (xy 345.44 66.04))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "13270762-dce7-5d4a-85f9-78878598a4db"))
-  (global_label "ZONE2_N"
-    (shape passive)
-    (at 345.44 66.04 0.0)
-    (effects
-      (font
-        (size 0.9 0.9))
-      (justify left))
-    (uuid "a3660253-a141-5539-9d2a-690e37457de4")
-    (property "Intersheetrefs" "${INTERSHEET_REFS}"
-      (at 345.44 66.04 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0)))))
-  (wire
-    (pts
-      (xy 355.6 68.58)
-      (xy 345.44 68.58))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "eb22b863-895a-50e5-8418-9e10a1c1949e"))
-  (global_label "ZONE2_C"
-    (shape passive)
-    (at 345.44 68.58 0.0)
-    (effects
-      (font
-        (size 0.9 0.9))
-      (justify left))
-    (uuid "9ce02402-a79a-5018-8fc0-9c72feb4d373")
-    (property "Intersheetrefs" "${INTERSHEET_REFS}"
-      (at 345.44 68.58 0.0)
-      (hide yes)
-      (effects
-        (font
-          (size 1.0 1.0)))))
   (symbol
     (lib_id "EL:AO3422")
     (at 96.52 139.7 0)
@@ -1725,7 +1581,7 @@
         (size 2.54 2.54))
       (justify left top))
     (uuid "7c75d34e-b807-5ff1-bca6-dcfdd3143dd2"))
-  (text "24 V common positive; three independent low-side sinks.\nConnector poles: 1 = fused +24 V, 2 = W, 3 = N, 4 = C."
+  (text "24 V common positive; three independent low-side sinks.\nCentral J2 on central_led_interface: +24 V pins 21/22; W 23; N 24; C 25."
     (at 20.32 27.94 0)
     (effects
       (font

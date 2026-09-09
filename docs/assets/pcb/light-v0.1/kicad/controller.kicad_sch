@@ -994,7 +994,7 @@
               (font
                 (size 1.27 1.27))))))
       (embedded_fonts no))
-    (symbol "EL:SN74LVC08A"
+    (symbol "EL:74HCS08"
       (pin_names
         (offset 0.8))
       (exclude_from_sim no)
@@ -1005,12 +1005,12 @@
         (effects
           (font
             (size 1.27 1.27))))
-      (property "Value" "SN74LVC08A"
+      (property "Value" "74HCS08"
         (at 0 -15.239999999999998 0)
         (effects
           (font
             (size 1.27 1.27))))
-      (symbol "SN74LVC08A_0_1"
+      (symbol "74HCS08_0_1"
         (rectangle
           (start -12.7 12.7)
           (end 12.7 -12.7)
@@ -1019,7 +1019,7 @@
             (type default))
           (fill
             (type background))))
-      (symbol "SN74LVC08A_1_1"
+      (symbol "74HCS08_1_1"
         (pin input line
           (at -17.78 10.16 0)
           (length 5.08)
@@ -3792,7 +3792,7 @@
         (font
           (size 1.0 1.0)))))
   (symbol
-    (lib_id "EL:SN74LVC08A")
+    (lib_id "EL:74HCS08")
     (at 121.92 238.76 0)
     (unit 1)
     (exclude_from_sim yes)
@@ -3805,7 +3805,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Value" "SN74LVC08APWR"
+    (property "Value" "74HCS08PWJ"
       (at 142.24 220.98 0.0)
       (effects
         (font
@@ -3816,19 +3816,19 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "MPN" "SN74LVC08APWR"
+    (property "MPN" "74HCS08PWJ"
       (at 121.92 238.76 0.0)
       (hide yes)
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" "Texas Instruments"
+    (property "Manufacturer" "Nexperia"
       (at 121.92 238.76 0.0)
       (hide yes)
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf"
+    (property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/74HCS08.pdf"
       (at 121.92 238.76 0.0)
       (hide yes)
       (effects

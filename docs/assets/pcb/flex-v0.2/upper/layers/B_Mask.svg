@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="18.985 26.985 326.999 21.93" data-layer="B_Mask"><g transform="translate(0 75.9)">
-  <g transform="translate(18.985 -26.985) scale(1 -1) translate(-18.985 48.915)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18.985 3.985 326.999 44.93" data-layer="B_Mask"><g transform="translate(0 52.9)">
+  <g transform="translate(18.985 -3.985) scale(1 -1) translate(-18.985 48.915)">
+    <path d="M 166.984 -5.0 L 197.984 -5.0 L 197.984 -8.5 L 166.984 -8.5 L 166.984 -5.0" fill="currentColor"/>
     <path d="M 48.1109 -47.53 L 48.6709 -47.53 L 48.6709 -46.87 L 48.1109 -46.87 L 48.1109 -47.53" fill="currentColor"/>
     <circle cx="48.1109" cy="-47.53" r="0.12" fill="currentColor"/>
     <circle cx="48.6709" cy="-47.53" r="0.12" fill="currentColor"/>
@@ -144,10 +145,6 @@
     <rect x="207.671" y="-47.32" width="0.66" height="0.24" transform="rotate(90.0 208.001 -47.2)" fill="currentColor"/>
     <rect x="207.441" y="-46.99" width="0.56" height="0.24" transform="rotate(180.0 207.721 -46.87)" fill="currentColor"/>
     <rect x="207.111" y="-47.32" width="0.66" height="0.24" transform="rotate(-90.0 207.441 -47.2)" fill="currentColor"/>
-    <path d="M 164.234 -33.925 L 164.234 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 166.284 -33.925 L 166.284 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 167.934 -33.925 L 167.934 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 169.084 -33.925 L 169.084 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
     <path d="M 225.002 -47.53 L 225.562 -47.53 L 225.562 -46.87 L 225.002 -46.87 L 225.002 -47.53" fill="currentColor"/>
     <circle cx="225.002" cy="-47.53" r="0.12" fill="currentColor"/>
     <circle cx="225.562" cy="-47.53" r="0.12" fill="currentColor"/>
@@ -400,6 +397,36 @@
     <rect x="44.3871" y="-47.32" width="0.66" height="0.24" transform="rotate(90.0 44.7171 -47.2)" fill="currentColor"/>
     <rect x="44.1571" y="-46.99" width="0.56" height="0.24" transform="rotate(180.0 44.4371 -46.87)" fill="currentColor"/>
     <rect x="43.8271" y="-47.32" width="0.66" height="0.24" transform="rotate(-90.0 44.1571 -47.2)" fill="currentColor"/>
+    <rect x="167.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="168.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="169.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="170.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="171.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="172.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="173.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="174.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="175.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="176.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="177.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="178.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="179.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="180.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="181.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="182.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="183.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="184.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="185.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="186.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="187.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="188.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="189.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="190.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="191.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="192.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="193.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="194.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="195.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="196.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
     <path d="M 252.216 -47.53 L 252.776 -47.53 L 252.776 -46.87 L 252.216 -46.87 L 252.216 -47.53" fill="currentColor"/>
     <circle cx="252.216" cy="-47.53" r="0.12" fill="currentColor"/>
     <circle cx="252.776" cy="-47.53" r="0.12" fill="currentColor"/>
@@ -472,18 +499,6 @@
     <rect x="343.742" y="-47.32" width="0.66" height="0.24" transform="rotate(90.0 344.072 -47.2)" fill="currentColor"/>
     <rect x="343.512" y="-46.99" width="0.56" height="0.24" transform="rotate(180.0 343.792 -46.87)" fill="currentColor"/>
     <rect x="343.182" y="-47.32" width="0.66" height="0.24" transform="rotate(-90.0 343.512 -47.2)" fill="currentColor"/>
-    <path d="M 170.234 -33.925 L 170.234 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 172.284 -33.925 L 172.284 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 174.384 -33.925 L 174.384 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 175.534 -33.925 L 175.534 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 183.734 -33.925 L 183.734 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 185.084 -33.925 L 185.084 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 187.134 -33.925 L 187.134 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 188.284 -33.925 L 188.284 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 189.434 -33.925 L 189.434 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 190.584 -33.925 L 190.584 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 192.684 -33.925 L 192.684 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 194.734 -33.925 L 194.734 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
     <path d="M 61.718 -47.53 L 62.278 -47.53 L 62.278 -46.87 L 61.718 -46.87 L 61.718 -47.53" fill="currentColor"/>
     <circle cx="61.718" cy="-47.53" r="0.12" fill="currentColor"/>
     <circle cx="62.278" cy="-47.53" r="0.12" fill="currentColor"/>
@@ -844,10 +859,6 @@
     <rect x="302.921" y="-47.32" width="0.66" height="0.24" transform="rotate(90.0 303.251 -47.2)" fill="currentColor"/>
     <rect x="302.691" y="-46.99" width="0.56" height="0.24" transform="rotate(180.0 302.971 -46.87)" fill="currentColor"/>
     <rect x="302.361" y="-47.32" width="0.66" height="0.24" transform="rotate(-90.0 302.691 -47.2)" fill="currentColor"/>
-    <path d="M 195.884 -33.925 L 195.884 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 197.034 -33.925 L 197.034 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 198.684 -33.925 L 198.684 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 200.734 -33.925 L 200.734 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
     <path d="M 129.753 -47.53 L 130.313 -47.53 L 130.313 -46.87 L 129.753 -46.87 L 129.753 -47.53" fill="currentColor"/>
     <circle cx="129.753" cy="-47.53" r="0.12" fill="currentColor"/>
     <circle cx="130.313" cy="-47.53" r="0.12" fill="currentColor"/>
@@ -884,9 +895,5 @@
     <rect x="139.636" y="-47.32" width="0.66" height="0.24" transform="rotate(90.0 139.966 -47.2)" fill="currentColor"/>
     <rect x="139.406" y="-46.99" width="0.56" height="0.24" transform="rotate(180.0 139.686 -46.87)" fill="currentColor"/>
     <rect x="139.076" y="-47.32" width="0.66" height="0.24" transform="rotate(-90.0 139.406 -47.2)" fill="currentColor"/>
-    <path d="M 176.684 -33.925 L 176.684 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 177.834 -33.925 L 177.834 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 179.884 -33.925 L 179.884 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
-    <path d="M 181.234 -33.925 L 181.234 -32.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.65"/>
   </g>
 </g></svg>

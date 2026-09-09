@@ -1812,7 +1812,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Nexperia"
       (at 116.84 119.38 0.0)
       (hide yes)
       (effects
@@ -1932,7 +1932,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 30.48 152.4 0.0)
       (hide yes)
       (effects
@@ -2028,7 +2028,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 35.56 66.04 0.0)
       (hide yes)
       (effects
@@ -2102,7 +2102,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 35.56 229.87 0.0)
       (hide yes)
       (effects
@@ -2198,7 +2198,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 106.68 229.87 0.0)
       (hide yes)
       (effects
@@ -2294,7 +2294,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 177.8 229.87 0.0)
       (hide yes)
       (effects
@@ -2390,7 +2390,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 248.92 229.87 0.0)
       (hide yes)
       (effects
@@ -2486,7 +2486,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 320.04 229.87 0.0)
       (hide yes)
       (effects
@@ -2582,7 +2582,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 35.56 248.92 0.0)
       (hide yes)
       (effects
@@ -2678,7 +2678,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 106.68 248.92 0.0)
       (hide yes)
       (effects
@@ -2774,7 +2774,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 177.8 248.92 0.0)
       (hide yes)
       (effects
@@ -2870,7 +2870,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 248.92 248.92 0.0)
       (hide yes)
       (effects
@@ -2966,7 +2966,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Littelfuse"
       (at 320.04 248.92 0.0)
       (hide yes)
       (effects
@@ -3064,7 +3064,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 78.74 152.4 0.0)
       (hide yes)
       (effects
@@ -3162,7 +3162,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 127.0 152.4 0.0)
       (hide yes)
       (effects
@@ -3260,7 +3260,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 175.26 152.4 0.0)
       (hide yes)
       (effects
@@ -3358,7 +3358,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 223.52 152.4 0.0)
       (hide yes)
       (effects
@@ -3456,7 +3456,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 271.78 152.4 0.0)
       (hide yes)
       (effects
@@ -3554,7 +3554,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 320.04 152.4 0.0)
       (hide yes)
       (effects
@@ -3652,7 +3652,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 368.3 152.4 0.0)
       (hide yes)
       (effects
@@ -3750,7 +3750,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 30.48 195.58 0.0)
       (hide yes)
       (effects
@@ -3848,7 +3848,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 78.74 195.58 0.0)
       (hide yes)
       (effects
@@ -3946,7 +3946,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 127.0 195.58 0.0)
       (hide yes)
       (effects
@@ -4044,7 +4044,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 175.26 195.58 0.0)
       (hide yes)
       (effects
@@ -4142,7 +4142,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "TDK"
       (at 223.52 195.58 0.0)
       (hide yes)
       (effects
@@ -4240,7 +4240,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 271.78 195.58 0.0)
       (hide yes)
       (effects
@@ -4338,7 +4338,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 320.04 195.58 0.0)
       (hide yes)
       (effects
@@ -4436,7 +4436,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Cornell Dubilier / Knowles"
       (at 353.06 71.12 0.0)
       (hide yes)
       (effects
@@ -4512,7 +4512,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 368.3 195.58 0.0)
       (hide yes)
       (effects

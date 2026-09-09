@@ -468,3 +468,84 @@ reason Doc 9 does.
 
 **Checks.** `mkdocs build --strict` twice with no warnings; `pytest tests/e2e -q`
 green including 12 new flex tests; the asset scanner clean over both asset roots.
+
+
+### 2026-09-08 - Docs 9/10 refreshed from the central LED revision
+
+**Ground truth before site edits.** The accepted hardware cut, not the autorouting
+experiments, supplied main LIGHT v0.2 and upper flex v0.3. All 773 entries in the
+hardware FINAL-DIGITAL-ACCEPTANCE manifest rehashed without a mismatch. Accepted
+manufacturing packages already existed; the missing piece was the site's handoff
+and flex-review contract, not an absence of final board files.
+
+| Board | Published native SHA-256 | Change |
+|---|---|---|
+| Main LIGHT v0.2 | `9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096` | New central J2 interface and reviewed routing/assembly corrections |
+| Upper flex v0.3 | `0af25f8f72fb999db1bad16a8d59541a02c4eb95f838ada6dd6abadba8fe058d` | Full insertion tail with 30 back-side contacts |
+| Lower flex v0.2 | `21db9dba94c6b4fd992e7c361f79d360b84270ea8c3a89099156e5972f7d6379` | Unchanged |
+| Static gimbal v0.2 | `7136c5c343da3194c0ada81330edd99336b3078152bb8f1ce47f5da158f2287d` | Unchanged |
+
+**Snapshot contracts.** The hardware repository now has
+`handoff/claude-pcb-learning-2026-09-08` (196 manifest entries) and
+`deliverables/FLEX-mixed-2026-09-08-review` (192 entries). Adapted versions of the
+original viewer exporter, handoff packager and flex checker preserve their folder
+shapes. The site verifies every manifest entry before derivation. It remains
+read-only against both snapshots. Stable asset URL roots retain their old names;
+revision fields and download filenames identify the actual new boards.
+
+**What the chapters teach now.** J2 replaces six radial sockets with one Molex
+30-contact interface. Zone order is 4,5,6,1,2,3, each +,+,W,N,C: twenty-four distinct
+rails, with no joining of the six fused positives. The upper tail itself is the
+plug, gold on the back and support on the front, with a 0.30 +/-0.05 mm total
+insertion stack. Its full 42.9 mm outline remains. The main has 264 features,
+243 fitted packages, 73 BOM rows and 20 schematic sheets. Four M3 holes, USB,
+remaining ports and the branding are retained. Prose covers the In2 signal
+exceptions, inherited In3 slot/PWM03 return-reference risk, U5 Schmitt replacement,
+910-ohm CTRL pull-downs and C504's final factory installation.
+
+**Evidence boundaries.** Current native/parity/physical-connectivity/CAM receipts
+are hash-bound to the accepted revision; the site refresh does not claim to have
+rerun those main engineering analyses. The upper snapshot's native ERC/DRC, parity,
+endpoint oracle and standalone CAM checks were rerun: 126 pads, 222 copper flashes,
+252 tracks and 192 drills. Installed strip connectivity remains conditional on
+real strip through-rails. Historical per-part calculations link to the byte-exact
+archived teaching record containing their original revision hashes. The current
+tail/contact resistance screen is downloadable and deliberately excludes a
+full-loop thermal qualification. The 0.346 mm alignment risk against 0.30 mm
+remains. The old A3 PDF is explicitly historical because its upper tail is obsolete;
+the current upper 1:1 SVG and insertion drawing are supplied instead.
+
+**Publication.** Native sources, 20-sheet schematic/PDF, current placement CSV,
+BOM, fabrication reference, complete upper native project and custom footprints
+are linked. No generated marker content was hand-edited. No chapter was added or
+removed, so sidebar/maps/counts/reading paths require no structural changes.
+The lower and gimbal asset directories are byte-identical to main's prior commit.
+The quotation status distinguishes submitted requests from payment or production
+release; neither these PCBs nor their flex circuits have been made or powered.
+
+**Viewer and maintenance.** The main header now derives its short hash from the
+loaded data. The upper viewer opens on the insertion tail with B_Cu visible.
+Its registration test checks J100 against back copper and all other markers
+against front copper, retaining the original geometric tolerance. New tests cover
+the exact paired main/flex pinmap, downloadable historical evidence, the full
+prose hash and visible insertion contacts. `tools/pcb/README.md` documents both
+contracts, explicit publishing rules, evidence vocabulary and the regeneration loop.
+
+**Corrections to the incoming brief.** The final hardware packages existed outside
+the older site-input folders. Flex hashes are self-described, but DESIGNS still
+hard-codes directory names and required a v0.3 update. The old main builder checked
+three governing hashes, not every input; full snapshot manifest verification is
+now explicit. The workflow runs one strict build in the PR test job; its other
+strict build is in the deploy job, which is skipped for PRs. Local validation
+still runs the requested two strict builds. Work is on a branch for review;
+merging and production release remain the owner's decisions.
+
+**Validation.** Two asset builds were byte-identical across 163 generated asset/page files;
+`render` and `check` passed for all fourteen blocks. Two strict MkDocs builds had
+zero MkDocs warnings. The full suite passed: **68 tests**. The scanner inspected
+160 published files and every ZIP member. The configured `els-site` preview and
+browser screenshots were reviewed. Source/prose whitespace checks passed; original
+CAD/SVG whitespace is deliberately preserved under the byte-exact asset policy.
+All 161 staged asset files (including .gitattributes) matched their worktree bytes;
+the main board reports `attr/-text` and both changed board blobs hash to the values
+above. Every previously published lower/gimbal asset matched its existing Git blob.

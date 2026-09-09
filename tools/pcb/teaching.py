@@ -1,4 +1,4 @@
-"""Circuit-specific teaching content for every feature on LIGHT v0.1.
+"""Circuit-specific teaching content for every feature on LIGHT v0.2.
 
 Nothing here is generic. Each entry is built from the component's actual pins
 and nets in board.json, from the reviewed fact tables below (firmware channel
@@ -8,7 +8,7 @@ table against board.json and fails on any disagreement, so this file cannot
 drift away from the design it describes.
 
 Evidence vocabulary (see VOCAB): no claim about this PCB may ever be labelled
-'measured' -- no LIGHT v0.1 board has been powered.
+'measured' -- no LIGHT v0.2 board has been powered.
 """
 
 import re
@@ -26,12 +26,12 @@ VOCAB = {
         "cad-checked": "checked by a CAD rule run on this exact layout (ERC, DRC, parity, net continuity, drill/land, mechanical)",
         "modelled-current": "a calculation or solver run against this exact layout, under stated assumptions",
         "simulated-historical": "a simulation bound to an earlier board revision; kept for its reasoning, not relabelled as current",
-        "measured": "never used on this page -- no LIGHT v0.1 board has been powered",
+        "measured": "never used on this page -- no LIGHT v0.2 board has been powered",
     },
 }
 
 LEGEND = (
-    "Nothing on this page is a measurement of this PCB. No LIGHT v0.1 board has been "
+    "Nothing on this page is a measurement of this PCB. No LIGHT v0.2 board has been "
     "powered, and no firmware has been built or flashed. A clean CAD check means the "
     "files pass specific design rules; it neither replaces measurements nor proves the "
     "circuit works."
@@ -101,7 +101,14 @@ CHANNELS = {
 }
 REMAPPED = {18, 20}
 COLOURS = {0: ("warm", "W"), 1: ("neutral", "N"), 2: ("cool", "C")}
-ZONE_CONN = {1: "J2", 2: "J3", 3: "J4", 4: "J5", 5: "J6", 6: "J7", 7: "J8"}
+ZONE_CONN = {1: "J2", 2: "J2", 3: "J2", 4: "J2", 5: "J2", 6: "J2", 7: "J8"}
+
+def positive_contact(zone):
+    return 1 if zone == 7 else [4,5,6,1,2,3].index(zone)*5+1
+
+def channel_contact(channel):
+    zone=(channel-1)//3+1
+    return (channel-1)%3 + (2 if zone==7 else positive_contact(zone)+2)
 ZONE_FUSE = {1: "F4", 2: "F5", 3: "F6", 4: "F7", 5: "F8", 6: "F9", 7: "F10"}
 
 # ref -> (face, mating direction, plain function, mating hardware)
@@ -111,18 +118,8 @@ CONNECTORS = {
            "the only power inlet: 24 V from the external supply",
            "Phoenix 1771091 top-entry spring terminal -- wires go straight in, there is no mating plug. "
            "0.5 mm2 / AWG20 conductors, 6 mm strip length."),
-    "J2": ("front", "side-entry across the front face", "ambient zone 1 (radial strip)",
-           "JST GH 4-way, mating GHR-04V-S with SSHL-002T-P0.2 contacts"),
-    "J3": ("front", "side-entry across the front face", "ambient zone 2 (radial strip)",
-           "JST GH 4-way, mating GHR-04V-S with SSHL-002T-P0.2 contacts"),
-    "J4": ("front", "side-entry across the front face", "ambient zone 3 (radial strip)",
-           "JST GH 4-way, mating GHR-04V-S with SSHL-002T-P0.2 contacts"),
-    "J5": ("front", "side-entry across the front face", "ambient zone 4 (radial strip)",
-           "JST GH 4-way, mating GHR-04V-S with SSHL-002T-P0.2 contacts"),
-    "J6": ("front", "side-entry across the front face", "ambient zone 5 (radial strip)",
-           "JST GH 4-way, mating GHR-04V-S with SSHL-002T-P0.2 contacts"),
-    "J7": ("front", "side-entry across the front face", "ambient zone 6 (radial strip)",
-           "JST GH 4-way, mating GHR-04V-S with SSHL-002T-P0.2 contacts"),
+    "J2": ("front", "locking direct-insertion tail, gold facing the main board", "all six radial zones, separately fused",
+           "Molex 2005280300, bottom-contact Front Flip, 30 contacts at 1 mm pitch. Upper flex J100 inserts directly; total insertion thickness 0.30 +/-0.05 mm. No solder on the fingers."),
     "J8": ("back", "mates downward, out of the back face", "ambient zone 7 (the bottom ring)",
            "JST GH 4-way vertical BM04B-GHS-TBT, mating GHR-04V-S"),
     "J9": ("back", "mates downward, out of the back face", "spotlight LED pair 1",
@@ -154,6 +151,8 @@ CONNECTORS = {
 
 # footprint -> plain-language package description
 PACKAGES = {
+    "ELF:Molex_2005280300_30P_Central_LED": "Molex 30-contact 1 mm locking flex socket",
+    "ELF:CP_CDE_AFK_CaseP_D16_H17_Provisional": "16 mm diameter aluminium capacitor; provisional custom land",
     "Button_Switch_SMD:SW_SPST_TL3305A": "surface-mount tactile button",
     "Capacitor_SMD:C_0603_1608Metric": "0603 chip capacitor (1.6 x 0.8 mm)",
     "Capacitor_SMD:C_0805_2012Metric": "0805 chip capacitor (2.0 x 1.25 mm)",
@@ -368,7 +367,7 @@ for _r in ("U14", "U500", "D501", "R515", "R516", "R517", "R518", "R519", "R520"
     CIRCUIT_OF[_r] = "spot_supply"
 
 CAD_CHECK = ("ERC, DRC, board-to-schematic parity and 163-net continuity all ran clean on this exact "
-             "layout (c046202e).")
+             "layout (9c42ff8d).")
 
 
 def zone_of(channel):
@@ -483,13 +482,13 @@ def build_entry(ref, comp):
         cname, cletter = colour_of(n)
         dev, led, pin = CHANNELS[n]
         drain = pins["3"]
-        contact = (n - 1) % 3 + 2
+        contact = channel_contact(n)
         entry.update(
             name="Zone %d %s channel switch" % (z, cname),
             circuit="ambient",
             group={"zone": z, "colour": cname, "channel": n},
             here=("The low-side switch for the %s white LEDs in ambient zone %d. Its drain is %s, which leaves "
-                  "the board on %s contact %d; the strip's positive end arrives on contact 1 from ZONE%d_24V "
+                  "the board on %s contact %d; the strip's positive end arrives on its zone-specific positive contact(s) from ZONE%d_24V "
                   "through fuse %s. Turning this transistor on completes that circuit to ground, which is why "
                   "%s is a switched return rather than a ground wire."
                   % (cname, z, drain, ZONE_CONN[z], contact, z, ZONE_FUSE[z], drain)),
@@ -594,6 +593,15 @@ def build_entry(ref, comp):
         ]
         return entry
 
+    if family == "zone_connector" and ref == "J2":
+        entry.update(name="Six-zone locking flex interface", circuit="ambient",
+            here="J2 carries all six radial LED zones through one insertion tail. ZONE1_24V through ZONE6_24V stay separately fused; each zone has two positive contacts and W/N/C switched returns. J3 through J7 no longer exist on this revision.",
+            how="The flexible board itself is the cable end: its back gold fingers slide into a bottom-contact locking socket. Thirty contacts carry twenty-four distinct rails because the positive contact is doubled for each zone. The six zone positives are not joined together.",
+            related=["F4","F5","F6","F7","F8","F9"],
+            assembly=["Molex 2005280300: do not wash; maximum two reflows with connector upward in second pass. Preserve actuator access."],
+            claims=[{"kind":"documented","evidence":"cad-checked","text":"Zone order along the tail is 4, 5, 6, 1, 2, 3; each five-contact group is +,+,W,N,C.","basis":"Current main J2 pins and matched upper J100 contract"}],
+            open=["Actual insertion fit, final total tail thickness, plating and factory process remain unqualified."])
+        return entry
     if family == "zone_connector":
         z = [k for k, v in ZONE_CONN.items() if v == ref][0]
         _face, direction, _function, mating = CONNECTORS[ref]
@@ -662,7 +670,7 @@ def build_entry(ref, comp):
             entry["claims"] = [{"kind": "documented", "evidence": "cad-checked",
                                 "text": "Every branch is fed through its own fuse: %s reaches %s only through this "
                                         "part." % (source, branch),
-                                "basis": "163-net continuity check on c046202e"}]
+                                "basis": "163-net continuity check on 9c42ff8d"}]
         entry["open"] = ["How this fuse coordinates with a real fault, and whether the branch wiring survives one, "
                          "has not been tested on hardware."]
         return entry
