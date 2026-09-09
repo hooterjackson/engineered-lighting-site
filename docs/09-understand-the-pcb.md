@@ -46,7 +46,7 @@ does on this net. The schematic, the parts list and the actual KiCad files are a
     a PCBWay inquiry; upper and lower LED flexes still await a compatible custom-stack submission route.
     Their geometry and hashes have not been revised for this update.
 
-## What changed in this revision
+## Latest changes: arm connectors and branding
 
 The three two-pin spotlight sockets became **one six-pin J9** beside the separate **J13 tilt**
 connection. Pins **1/2, 3/4 and 5/6** carry spotlight channels 1, 2 and 3. Their LED-minus wires remain
@@ -138,7 +138,7 @@ labels here are the same ones used in the schematic and in the parts list.
     On a phone, one finger scrolls the page as usual and two fingers pan and zoom the board. If you
     would rather drag the board with one finger, press **Lock board for panning**.
 
-## What changed in this revision { #revision-history }
+## Earlier changes: the central LED interface { #revision-history }
 
 The first published layout was LIGHT v0.1 (`c046202e`). This page now shows LIGHT
 v0.2 (`cbb8d9fc`), paired with upper flex v0.3 (`0af25f8f`). Lower flex and the
