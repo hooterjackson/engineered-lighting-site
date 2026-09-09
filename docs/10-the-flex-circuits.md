@@ -37,14 +37,15 @@ built, and reproduced identically the next time.
 
 <!-- el-pcb:generated flex-boards end -->
 
-!!! warning "Status as of 8 September 2026 — routed and checked, not ordered"
+!!! warning "Status as of 8 September 2026 — submitted for quotation, not built"
 
     All three designs pass native electrical-rule and design-rule checks, schematic parity, an
     independent pin-and-topology oracle, and a comparison of the exported manufacturing data against
     the native design. Those results are in the table under [what has been checked](#flex-validation).
 
-    **Submitted to JLCPCB for engineering quotation; no payment or production release.** The unchanged static gimbal now has a PCBWay inquiry; the upper and lower LED flexes
-    still await a compatible custom-stack submission route. The request is two of each
+    **Submitted to JLCPCB for engineering quotation; no payment or production release.** All three now also have
+    separate PCBWay inquiries. The submitted special requirements preserve the specified 1 oz copper;
+    the website copper, upper-tail support and contact-finish placeholders require engineering correction. The request is two of each
     circuit, six passive circuits in total, for two fixture prototypes. The manufacturer has not
     accepted the stack-up, coverlay, stiffeners or tolerances, and there has been **no physical
     qualification of any kind**: no fit coupon, no solder sample, no bend or motion testing.

@@ -33,8 +33,9 @@ does on this net. The schematic, the parts list and the actual KiCad files are a
 !!! warning "Status as of 8 September 2026 — designed, not built"
 
     This page shows the latest **grouped arm connectors and branding** revision, `cbb8d9fc`,
-    prepared for replacement quotation with **241 fitted parts per assembled board**. Earlier main
-    revisions were submitted to PCBWay and JLCPCB; this current main package has not yet been submitted.
+    submitted to PCBWay for quotation and engineering review with **241 fitted parts per assembled board**.
+    The request is five fabricated main boards: **two fully assembled on both sides with sourced
+    components**, and three supplied bare. Earlier main revisions were also submitted to JLCPCB.
     No payment, procurement or production release is authorized. Supplier stack, stencil, via treatment,
     final capacitor installation and substitutions remain open.
 
@@ -43,7 +44,9 @@ does on this net. The schematic, the parts list and the actual KiCad files are a
     connectivity and independent CAM evidence. Those checks are not physical tests or a new simulation.
 
     [Doc 10](10-the-flex-circuits.md) covers the unchanged three flex circuits. The static gimbal has
-    a PCBWay inquiry; upper and lower LED flexes still await a compatible custom-stack submission route.
+    a PCBWay inquiry, as do the upper and lower LED flexes: two of each for two fixture prototypes.
+    The quote-form copper and upper-tail support/finish placeholders require engineering correction;
+    they do not change the specified construction. Assembly inspection settings also await correction.
     Their geometry and hashes have not been revised for this update.
 
 ## Latest changes: arm connectors and branding

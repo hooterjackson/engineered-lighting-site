@@ -168,7 +168,7 @@ def build(review, assets, write_json, write_text, write_bytes, header):
         "revision": "Upper v0.3; lower and gimbal v0.2",
         "status": ("Three routed passive circuits. Native ERC, DRC, schematic parity, an independent pin "
                    "oracle and CAM comparisons pass within their recorded scope. The boards have not been "
-                   "physically qualified. All three were submitted to JLCPCB for engineering quotation; PCBWay flex inquiries await a compatible custom stack. No payment or production release."),
+                   "physically qualified. All three were submitted to JLCPCB for engineering quotation and now have PCBWay inquiries. Supplier stack, copper, contact finish and stiffener requirements remain under review. No payment or production release."),
         "boards": boards,
         "totals": {
             "designs": 3,

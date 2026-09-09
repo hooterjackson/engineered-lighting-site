@@ -609,3 +609,19 @@ front/back and flex registration, and the new six-contact pin-map regression.
 Front/back screenshots were reviewed; the configured els-site preview is served
 locally. Publication scanner and source-byte checks remain enabled. Work stays
 on the existing material-view review branch; no deployment or merge performed.
+
+
+## 2026-09-08 — Completed quotation submissions and authorized publication
+
+Updated both hardware chapters and generated status metadata against the completed
+submission receipt. The latest cbb8d9fc main and all three unchanged flex designs
+now have PCBWay inquiries. The request is five main boards, two fully assembled
+with 241 parts each and three bare, plus two of each flex. Supplier copper,
+upper-tail construction and assembly-inspection corrections remain open; quotation
+submission does not authorize payment, procurement or production. Earlier JLCPCB
+main submissions are not represented as this latest revision.
+
+Native revision hashes, evidence attribution, realistic viewer styling and all
+three flex design snapshots are preserved. No chapter or navigation changes.
+The owner explicitly requested publication, superseding the earlier PR-only hold.
+Validation and deployment results are recorded in the associated pull request.

@@ -48,11 +48,11 @@ REVISION = "LIGHT v0.2 — grouped arm connectors and branding"
 SCHEMA = "el-pcb/1"
 GENERATED = "2026-09-08"
 
-SCOPE = ("As of 8 September 2026, this branded main revision is prepared for a replacement quotation, "
-    "not yet submitted. Earlier main revisions were submitted to PCBWay and JLCPCB. The unchanged static "
-    "gimbal has a PCBWay inquiry; upper/lower flex inquiries await a compatible custom stack. Two complete "
-    "factory assemblies with 241 fitted parts each are requested. No payment, procurement or production "
-    "release has been authorized; supplier processes remain unapproved.")
+SCOPE = ("As of 8 September 2026, this branded main revision and all three flex circuits have been "
+    "submitted to PCBWay for quotation and engineering review. Earlier main revisions were submitted "
+    "to JLCPCB. Five main boards are requested, with two fully assembled with 241 fitted parts each "
+    "and three supplied bare, plus two of each passive flex circuit. No payment, procurement or "
+    "production release has been authorized. Supplier construction and inspection corrections remain open.")
 
 LAYERS = [
     # id, KiCad name, kind, side, z, label, plain-language note
