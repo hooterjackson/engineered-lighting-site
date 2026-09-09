@@ -875,3 +875,49 @@
   .el-flex-canvas { height: min(42vh, 20rem); }
   .el-flex-layers { max-width: none; }
 }
+
+
+/* Material appearance is an illustrative treatment of unchanged CAD geometry. */
+#el-pcb[data-appearance="material"] {
+  --el-pcb-board: #101215;
+  --el-pcb-edge: #727980;
+  --el-pcb-land: #ced4dc;
+  --el-pcb-silk: #f4f5f2;
+  --el-pcb-fab: #7c8790;
+  --el-pcb-cu-f: #b87543;
+  --el-pcb-cu-b: #b87543;
+}
+#el-pcb .el-pcb-layer[data-layer$="_Fab"] .stroked-text { display: none; }
+#el-pcb.el-pcb-show-references .el-pcb-layer[data-layer$="_Fab"] .stroked-text[data-ref] { display: inline; }
+#el-pcb.el-pcb-show-references .el-pcb-layer[data-layer$="_Fab"] .el-pcb-duplicate-reference[data-ref] { display: none; }
+.el-pcb-bodies { display: none; pointer-events: none; }
+#el-pcb[data-appearance="material"][data-preset="components"] .el-pcb-bodies,
+#el-pcb[data-appearance="material"][data-preset="outer"] .el-pcb-bodies { display: inline; }
+#el-pcb .el-pcb-bodies [data-side="B"] { display: none; }
+#el-pcb[data-face="B"] .el-pcb-bodies [data-side="B"] { display: inline; }
+#el-pcb[data-face="B"] .el-pcb-bodies [data-side="F"] { display: none; }
+.el-pcb-body { fill: #282d34; stroke: #65717c; stroke-width: .08; stroke-linejoin: round; }
+.el-pcb-body-ceramic { fill: #9c7851; stroke: #d4b487; }
+.el-pcb-body-connector { fill: #383e46; stroke: #a5afb8; }
+.el-pcb-body-inductor { fill: #46515a; stroke: #89979f; }
+.el-pcb-body-fuse { fill: #d7d3bd; stroke: #9e9a87; }
+#el-pcb[data-appearance="material"] .el-pcb-land { fill-opacity: 1; }
+#el-pcb[data-appearance="material"][data-preset="outer"] .el-pcb-layer[data-layer="F_Cu"],
+#el-pcb[data-appearance="material"][data-preset="outer"] .el-pcb-layer[data-layer="B_Cu"] { opacity: .38; }
+/* Hide fabrication labels in material mode; production silkscreen is authoritative.
+   Optional assembly references belong in the engineering appearance. */
+#el-pcb[data-appearance="material"] .el-pcb-layer[data-layer$="_Fab"] { opacity: .35; }
+#el-pcb[data-appearance="material"] .el-pcb-layer[data-layer$="_Fab"] .stroked-text { display: none; }
+
+/* Realistic 2D appearance: material cues without changing CAD placement. */
+#el-pcb[data-appearance="material"] { --el-pcb-board:#080a0c; }
+#el-pcb[data-appearance="material"] .el-pcb-canvas { background:transparent; }
+#el-pcb[data-appearance="material"] .el-pcb-silhouette { fill:#080a0c; stroke:#555d65; filter:drop-shadow(0px 1px 1.2px #0007); }
+#el-pcb[data-appearance="material"] .el-pcb-hole { fill:var(--md-default-bg-color); }
+#el-pcb[data-appearance="material"] .el-pcb-land { fill:url(#el-pcb-metal); stroke:#87929c; stroke-width:.035; }
+#el-pcb[data-appearance="material"] .el-pcb-body { fill:#202226; stroke:#53585e; }
+#el-pcb[data-appearance="material"] .el-pcb-body-ceramic { fill:#ad8d66; stroke:#d3bc98; }
+#el-pcb[data-appearance="material"] .el-pcb-body-connector { fill:#24272b; stroke:#737a81; }
+#el-pcb[data-appearance="material"] .el-pcb-body-inductor { fill:#3d4144; stroke:#686b70; }
+#el-pcb[data-appearance="material"] .el-pcb-body-fuse { fill:#d7d0bb; stroke:#9b947f; }
+#el-pcb[data-appearance="material"] .el-pcb-reference-control { display:none; }

@@ -24,9 +24,9 @@ ASSETS = REPO / "docs" / "assets" / "pcb" / "light-v0.1"
 PAGE = REPO / "docs" / "09-understand-the-pcb.md"
 SITE = REPO / "site"
 
-PCB_SHA = "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096"
-ZIP_SHA = "f1d951e8f33f9e5be32175db56f0178e411f9a84790a5d5482a12b299fd9c83c"
-CSV_SHA = "bc68c0a014eb14df9d72fb7faa314a8f2d71d6a5e29d4b1c3ffe6551eb33b681"
+PCB_SHA = "cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb"
+ZIP_SHA = "b8af46039d91d6fba399add139964047aa11f38d9ec4e6b16c14d5016aba0409"
+CSV_SHA = "be0bb641b64e468e1b3f81a90f2c7ffc2de5d578d69865ab15ccb2351b7d45a8"
 
 LANDMARKS = {
     "J1": ("F", [84.5, 126.5], -90.0, 16),
@@ -95,7 +95,7 @@ def test_hash_chain(bom):
     assert sha256(ASSETS / "kicad/engineered-lighting-rev-a.kicad_pcb") == PCB_SHA, (
         "the published board file no longer hashes to the governing revision - if this fails after a "
         "fresh clone, docs/assets/pcb/.gitattributes is missing or wrong")
-    zpath = ASSETS / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
+    zpath = ASSETS / "downloads/LIGHT-v0.2-cbb8d9fc-KiCad-project.zip"
     assert sha256(zpath) == ZIP_SHA
     csv = ASSETS / bom["csv_file"]
     assert sha256(csv) == CSV_SHA
@@ -107,10 +107,10 @@ def test_hash_chain(bom):
 
 
 def test_project_zip_contents():
-    zpath = ASSETS / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
+    zpath = ASSETS / "downloads/LIGHT-v0.2-cbb8d9fc-KiCad-project.zip"
     with zipfile.ZipFile(zpath) as zf:
         names = zf.namelist()
-    assert len(names) == 62, names
+    assert len(names) == 63, names
     assert sum(1 for n in names if n.endswith(".kicad_sch")) == 20
     assert sum(1 for n in names if n.endswith(".kicad_sym")) == 15
     for required in ("engineered-lighting-rev-a.kicad_pro", "engineered-lighting-rev-a.kicad_pcb",
@@ -141,17 +141,17 @@ def test_manifest_and_layers_resolve(board, sch):
 
 def test_board_census(board):
     comps = {c["ref"]: c for c in board["components"]}
-    assert len(comps) == 264
-    assert board["sides"] == {"F": 123, "B": 141}
+    assert len(comps) == 262
+    assert board["sides"] == {"F": 123, "B": 139}
     assert sum(1 for c in comps.values() if c["side"] == "F") == 123
     assert len(board["features"]) == 21
-    assert sum(1 for c in comps.values() if not c["feature"]) == 243
+    assert sum(1 for c in comps.values() if not c["feature"]) == 241
     assert len(board["nets"]) == 163
     assert not [n for n in board["nets"] if n.startswith("unconnected-")]
     nc = sum(1 for c in comps.values() for v in c["pins"].values() if v is None)
     assert nc == 29
     pads = [p for c in comps.values() for p in c["pads"]]
-    assert len(pads) == 883
+    assert len(pads) == 879
     assert sum(1 for p in pads if p.get("paste")) == 18
 
     assert sorted(r for r, c in comps.items() if c["through"]) == ["H1", "H2", "H3", "H4", "J14"]
@@ -243,10 +243,10 @@ def test_layers_are_themeable_and_labelled(board):
 
 def test_bom_join(board, bom, teach):
     comps = {c["ref"]: c for c in board["components"]}
-    assert bom["totals"] == {"rows": 73, "per_board": 243, "two_boards": 486, "features": 21}
-    assert len(bom["rows"]) == 73
-    assert sum(r["qty"] for r in bom["rows"]) == 243
-    assert [r["item"] for r in bom["rows"]] == list(range(1, 74))
+    assert bom["totals"] == {"rows": 71, "per_board": 241, "two_boards": 482, "features": 21}
+    assert len(bom["rows"]) == 71
+    assert sum(r["qty"] for r in bom["rows"]) == 241
+    assert [r["item"] for r in bom["rows"]] == list(range(1, 72))
     purchased = {r for r, c in comps.items() if not c["feature"]}
     assert set(bom["ref_to_item"]) == purchased
     for row in bom["rows"]:
@@ -263,8 +263,9 @@ def test_bom_join(board, bom, teach):
     for row in bom["rows"]:
         same_mpn.setdefault(row["mpn"], []).append(row["item"])
     assert "SM04B-GHS-TB(LF)(SN)" not in same_mpn
-    assert same_mpn["2005280300"] == [73]
-    assert sorted(same_mpn["BM02B-GHS-TBT(LF)(SN)"]) == [70, 71, 72]
+    assert same_mpn["2005280300"] == [71]
+    assert "BM02B-GHS-TBT(LF)(SN)" not in same_mpn
+    assert same_mpn["BM06B-GHS-TBT(LF)(SN)"] == [70]
 
     updated = {ref for u in bom["note_updates"] for ref in u["refs"]}
     assert {"C3", "C512"} <= updated
@@ -339,7 +340,7 @@ def test_channel_map_matches_the_board(board, teach):
 
 def test_schematic_index(board, sch):
     comps = {c["ref"]: c for c in board["components"]}
-    assert len(sch["ref_to_sheet"]) == 264
+    assert len(sch["ref_to_sheet"]) == 262
     assert set(sch["ref_to_sheet"]) == set(comps)
     assert set(sch["ref_to_sheet"].values()) <= set(range(2, 21))
     counts = {}
@@ -352,7 +353,7 @@ def test_schematic_index(board, sch):
         for ref in sheet["refs"]:
             assert comps[ref]["sheet"] == sheet["n"], ref
     assert counts[1] == 0
-    assert sum(counts.values()) == 264
+    assert sum(counts.values()) == 262
 
 
 def test_nothing_private_is_published():
@@ -384,8 +385,8 @@ def test_generated_blocks_and_raw_links(board, bom, sch):
                  "downloads", "validation-passed", "validation-open"):
         assert page.count("<!-- el-pcb:generated %s start -->" % name) == 1, name
         assert page.count("<!-- el-pcb:generated %s end -->" % name) == 1, name
-    assert len(re.findall(r'data-item="\d+"', page)) == 73
-    assert len(re.findall(r'data-pcb-row="', page)) == 13
+    assert len(re.findall(r'data-item="\d+"', page)) == 71
+    assert len(re.findall(r'data-pcb-row="', page)) == 11
     channel_block = page.split("<!-- el-pcb:generated channels start -->")[1] \
                         .split("<!-- el-pcb:generated channels end -->")[0]
     assert channel_block.count("<tr") == 22, "21 channel rows plus one header row"
@@ -466,3 +467,12 @@ def test_prose_full_board_identity_matches_download():
     page = PAGE.read_text(encoding="utf-8")
     assert "SHA-256  " + PCB_SHA in page
     assert "other 18 sheets" not in page
+
+
+def test_grouped_arm_connector_revision(board, teach):
+    comps = {c["ref"]: c for c in board["components"]}
+    assert "J10" not in comps and "J11" not in comps
+    assert comps["J9"]["mpn"] == "BM06B-GHS-TBT(LF)(SN)"
+    assert comps["J9"]["pins"] == {"1":"SPOT1_LED_PLUS", "2":"SPOT1_LED_MINUS", "3":"SPOT2_LED_PLUS", "4":"SPOT2_LED_MINUS", "5":"SPOT3_LED_PLUS", "6":"SPOT3_LED_MINUS"}
+    assert comps["J9"]["side"] == comps["J13"]["side"] == "B"
+    assert "J12" in comps

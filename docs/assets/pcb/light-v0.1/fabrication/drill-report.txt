@@ -1,11 +1,2 @@
-LIGHT v0.2 drill inventory from the exact accepted Excellon files.
-Board SHA-256: 9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096
-850 total drill objects verified by independent native/CAM comparison.
-engineered-lighting-rev-a-NPTH.drl
-T1C0.650
-T2C3.200
-engineered-lighting-rev-a-PTH.drl
-T1C0.200
-T2C0.200
-T3C0.300
-T4C0.600
+Current board cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb
+868 drill objects: fresh Excellon is identical to the independently compared electrical baseline 80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958. Branding changes only back silkscreen. No physical inspection.

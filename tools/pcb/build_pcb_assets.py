@@ -40,18 +40,19 @@ FLEX_ASSETS = DOCS / "assets" / "pcb" / "flex-v0.2"
 PAGE = DOCS / "09-understand-the-pcb.md"
 FLEX_PAGE = DOCS / "10-the-flex-circuits.md"
 
-PCB_SHA = "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096"
-ZIP_SHA = "f1d951e8f33f9e5be32175db56f0178e411f9a84790a5d5482a12b299fd9c83c"
-CSV_SHA = "bc68c0a014eb14df9d72fb7faa314a8f2d71d6a5e29d4b1c3ffe6551eb33b681"
-SHORT = "9c42ff8d"
-REVISION = "LIGHT v0.2 — central LED interface"
+PCB_SHA = "cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb"
+ZIP_SHA = "b8af46039d91d6fba399add139964047aa11f38d9ec4e6b16c14d5016aba0409"
+CSV_SHA = "be0bb641b64e468e1b3f81a90f2c7ffc2de5d578d69865ab15ccb2351b7d45a8"
+SHORT = "cbb8d9fc"
+REVISION = "LIGHT v0.2 — grouped arm connectors and branding"
 SCHEMA = "el-pcb/1"
 GENERATED = "2026-09-08"
 
-SCOPE = ("As of 8 September 2026, the main board is submitted for PCBWay engineering quotation, "
-    "and JLCPCB has received the main and all three flex designs for quotation. Two complete factory "
-    "assemblies with 243 fitted parts each are requested. No payment, procurement or production release "
-    "has been authorized; supplier stack, assembly processes and substitutions remain unapproved.")
+SCOPE = ("As of 8 September 2026, this branded main revision and all three flex circuits have been "
+    "submitted to PCBWay for quotation and engineering review. Earlier main revisions were submitted "
+    "to JLCPCB. Five main boards are requested, with two fully assembled with 241 fitted parts each "
+    "and three supplied bare, plus two of each passive flex circuit. No payment, procurement or "
+    "production release has been authorized. Supplier construction and inspection corrections remain open.")
 
 LAYERS = [
     # id, KiCad name, kind, side, z, label, plain-language note
@@ -104,7 +105,7 @@ SHEET_PLAIN = {
     16: ("Power, part 2: the 24 V input terminal and the two switching converters.", ["J1", "U10", "U11"]),
     17: ("Spotlight, part 1: the gated supply and the three constant-current driver cells.",
          ["U14", "U7", "U8", "U9"]),
-    18: ("Spotlight, part 2: the driver outputs and their connectors.", ["J9", "J10", "J11"]),
+    18: ("Spotlight, part 2: the driver outputs and their connectors.", ["J9"]),
     19: ("Monitoring and expansion: the temperature sensor, the expansion pads, the boot-strap probes and the "
          "mounting holes.", ["U20", "J18", "H1"]),
 }
@@ -114,14 +115,14 @@ for _n in range(7, 13):
     SHEET_PLAIN[_n] = ("Ambient zone %d low-side W/N/C switches; outputs now reach the shared J2 interface on sheet 20." % (_n-6), ["Q1%02d" % (1+3*(_n-7)), "J2"])
 
 VALIDATION_PASSED = [
-    ("Electrical and design rules", "0 ERC, DRC, unconnected or schematic-parity violations on the final source", "hash-bound FINAL-NATIVE-CHECKS record"),
-    ("Board / schematic / BOM parity", "264 features; 243 fitted components; 73 BOM rows; 786 logical pins, 757 assigned and 29 intentional no-connects; 883 physical pad objects", "main-parity.json on 9c42ff8d"),
-    ("Physical copper connectivity", "All named assigned nets pass physical-pad connectivity; seeded missing-copper control rejected", "main-connectivity.json on 9c42ff8d"),
-    ("Independent CAM comparison", "12 copper/mask/paste films and 850 drill objects compared against native geometry; seeded CAM errors rejected", "FINAL-CAM-RECEIPT bound to 9c42ff8d"),
-    ("Mating interface", "30 contacts implement 24 distinct rails; main J2 and upper J100 preserve zone and contact orientation", "matched interface audits bound to both current PCB hashes"),
-    ("Native change scope", "Approved relocations and In2 exceptions audited; four M3 holes and other ports retained", "NATIVE-SCOPE-AUDIT and approved changes"),
-    ("Return-reference review", "A 1.465544 mm PWM03 crossing of the inherited In3 PCA_OE slot remains a prototype noise-validation item", "RETURN-REFERENCE-CLOSEOUT; not an EMI qualification"),
+    ("Current branding delta", "Zero current DRC/unconnected items; all non-back-silkscreen native objects identical to electrical baseline 80195efd", "cbb8d9fc branding verification"),
+    ("Board / schematic / BOM parity", "262 features; 241 fitted components; 71 BOM rows; 786 logical pins, 757 assigned and 29 no-connects; 879 physical pad objects", "80195efd baseline parity plus current read-only exporter identity checks"),
+    ("Electrical rules and physical connectivity", "Baseline ERC and physical-pad connectivity passed, including rejected seeded missing copper; preserved exactly by the branding delta", "80195efd FINAL-NATIVE-CHECKS; not a new analogue simulation"),
+    ("Manufacturing export comparison", "Current 14 non-back-silkscreen films and both drill files match baseline; baseline independent CAM compared 12 films and 868 drills", "Fresh cbb8d9fc exports and 80195efd CAM checks"),
+    ("Arm connector change", "J9 combines three independent LED pairs; J10/J11 removed. J13 tilt and J12 pan remain separate. No returns are joined", "Current native schematic, six J9 contacts and matched placement data"),
+    ("Central LED interface preserved", "J2 and the upper tail are unchanged from the reviewed 30-contact interface", "Native preservation; physical mating is unmeasured"),
 ]
+
 
 VALIDATION_NOT_DONE = [
     "No board has been powered. There is no measurement of any kind on this revision.",
@@ -283,7 +284,7 @@ def build(handoff):
         sys.exit("handoff folder not found: %s" % H)
 
     src_pcb = H / "hardware-current/hardware/rev-a/engineered-lighting-rev-a.kicad_pcb"
-    src_zip = H / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
+    src_zip = H / "downloads/LIGHT-v0.2-cbb8d9fc-KiCad-project.zip"
     src_csv = H / "hardware-current/manufacturing/quote_bom.csv"
     for path, want, what in ((src_pcb, PCB_SHA, "governing PCB"),
                              (src_zip, ZIP_SHA, "KiCad project ZIP"),
@@ -308,7 +309,7 @@ def build(handoff):
     provenance = {"sources": {}, "layers": {}, "schematic": {}, "census": {}, "notes": []}
     provenance["sources"] = {
         "engineered-lighting-rev-a.kicad_pcb": {"sha256": PCB_SHA, "bytes": src_pcb.stat().st_size},
-        "LIGHT-v0.2-9c42ff8d-KiCad-project.zip": {"sha256": ZIP_SHA, "bytes": src_zip.stat().st_size},
+        "LIGHT-v0.2-cbb8d9fc-KiCad-project.zip": {"sha256": ZIP_SHA, "bytes": src_zip.stat().st_size},
         "quote_bom.csv": {"sha256": CSV_SHA, "bytes": src_csv.stat().st_size,
                           "encoding": "UTF-8 with byte-order mark"},
         "handoff_folder": H.name,
@@ -513,7 +514,7 @@ def build(handoff):
             "source": r_["Primary source"], "source_context": r_["Source revision / context"],
             "evidence_url": r_["Sourcing evidence URL"], "sides": sides,
         })
-    if total != 243 or len(rows) != 73:
+    if total != 241 or len(rows) != 71:
         sys.exit("BOM totals wrong: %d rows, %d packages" % (len(rows), total))
 
     note_updates = [
@@ -531,8 +532,8 @@ def build(handoff):
     bom.update({
         "csv_sha256": CSV_SHA,
         "csv_file": "downloads/LIGHT-v0.2-%s-bom.csv" % SHORT,
-        "totals": {"rows": 73, "per_board": 243, "two_boards": 486, "features": len(features)},
-        "status": SCOPE + " This is the exact part selection that matches the 9c42ff8d layout. No stock or "
+        "totals": {"rows": 71, "per_board": 241, "two_boards": 482, "features": len(features)},
+        "status": SCOPE + " This is the exact part selection that matches the cbb8d9fc layout. No stock or "
                           "price is claimed here.",
         "order_status_note": "Every row of the source CSV carries the same order status: "
                              "\"QUOTE ONLY - exact source/quantity/process not confirmed\".",
@@ -727,7 +728,7 @@ def build(handoff):
              member="engineered-lighting-rev-a.kicad_sch"),
         item("bom-csv", "Parts list (BOM)", "downloads/LIGHT-v0.2-%s-bom.csv" % SHORT,
              "CSV (UTF-8 with byte-order mark)", "bom", "bom",
-             "The exact part selection for this layout: 73 rows, 243 packages per board."),
+             "The exact part selection for this layout: 71 rows, 241 packages per board."),
         item("schematic-pdf", "Complete schematic (20 pages)", "downloads/schematic.pdf", "PDF", "schematic",
              "schematic", "One page per sheet, in the same order as the sheet chooser above."),
         item("assembly-top", "Assembly drawing, front", "assembly/assembly-top.svg", "SVG drawing", "assembly",
@@ -764,14 +765,14 @@ def build(handoff):
         if entry["id"] == "history-teaching-v0.1":
             entry["revision_label"] = "Historical c046202e / earlier"
         elif entry["id"] == "history-current-checks":
-            entry["revision_label"] = "9c42ff8d / 0af25f8f"
+            entry["revision_label"] = "cbb8d9fc / 0af25f8f"
     manifest["items"] = items
     write_json(ASSETS / "downloads/manifest.json", manifest)
 
     # ---- provenance -------------------------------------------------------
     provenance["census"] = {
         "components": len(components), "front": len(by_side["F"]), "back": len(by_side["B"]),
-        "purchased": 243, "features": len(features), "bom_rows": 73,
+        "purchased": 241, "features": len(features), "bom_rows": 71,
         "assigned_nets": len(nets), "explicit_no_connect_pins":
             sum(1 for c in board_src["components"] for v in c["pins"].values() if v is None),
         "pads": sum(len(c["pads"]) for c in components),
@@ -1181,7 +1182,7 @@ def check():
     if sha256(pcb) != PCB_SHA:
         sys.exit("the published .kicad_pcb no longer hashes to the governing revision "
                  "(line-ending normalisation is the usual cause -- check docs/assets/pcb/.gitattributes)")
-    zpath = ASSETS / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
+    zpath = ASSETS / "downloads/LIGHT-v0.2-cbb8d9fc-KiCad-project.zip"
     if sha256(zpath) != ZIP_SHA:
         sys.exit("the published project ZIP has changed")
     csv_path = ASSETS / bom["csv_file"]
@@ -1208,12 +1209,12 @@ def check():
         sys.exit("a .kicad_prl was published")
 
     census = prov["census"]
-    if len(board["components"]) != 264 or census["components"] != 264:
-        sys.exit("component census is not 264")
-    if sum(bom["totals"][k] for k in ("per_board",)) != 243 or bom["totals"]["rows"] != 73:
+    if len(board["components"]) != 262 or census["components"] != 262:
+        sys.exit("component census is not 262")
+    if sum(bom["totals"][k] for k in ("per_board",)) != 241 or bom["totals"]["rows"] != 71:
         sys.exit("BOM totals drifted")
-    if len(teach["components"]) != 264:
-        sys.exit("teaching content does not cover all 264 references")
+    if len(teach["components"]) != 262:
+        sys.exit("teaching content does not cover all 262 references")
     for ref, e in teach["components"].items():
         for c in e["claims"]:
             if c["evidence"] == "measured":

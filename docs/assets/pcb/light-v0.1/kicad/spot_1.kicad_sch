@@ -4167,7 +4167,7 @@
         (size 1.5 1.5))
       (justify left top))
     (uuid "ec72f3e8-2d66-5e21-87b4-6fe35f6ae5bb"))
-  (text "Paired LED output -> J9 / spot_2"
+  (text "Paired LED output -> J9 pins 1/2 / spot_2"
     (at 22.86 247.65 0)
     (effects
       (font
@@ -4181,7 +4181,7 @@
         (size 1.5 1.5))
       (justify left top))
     (uuid "8d183cbd-96cf-562f-b5de-6029d6bcd08a"))
-  (text "Paired LED output -> J10 / spot_2"
+  (text "Paired LED output -> J9 pins 3/4 / spot_2"
     (at 152.4 247.65 0)
     (effects
       (font
@@ -4195,7 +4195,7 @@
         (size 1.5 1.5))
       (justify left top))
     (uuid "957735ba-6fa7-579b-b4bb-d2ae9e064672"))
-  (text "Paired LED output -> J11 / spot_2"
+  (text "Paired LED output -> J9 pins 5/6 / spot_2"
     (at 281.94 247.65 0)
     (effects
       (font

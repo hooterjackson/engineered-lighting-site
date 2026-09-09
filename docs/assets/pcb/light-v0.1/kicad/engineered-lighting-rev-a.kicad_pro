@@ -264,7 +264,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "power-transfers-integrated.kicad_pro",
+    "filename": "engineered-lighting-rev-a.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -1223,8 +1223,8 @@
     "legacy_lib_list": [],
     "top_level_sheets": [
       {
-        "filename": "critical-merged.kicad_sch",
-        "name": "critical-merged",
+        "filename": "engineered-lighting-rev-a.kicad_sch",
+        "name": "engineered-lighting-rev-a",
         "uuid": "00000000-0000-0000-0000-000000000000"
       }
     ]

@@ -78,16 +78,16 @@ def test_nav_footer_and_last_entry(page):
 
 def test_registration_and_default_view(page):
     ready(page)
-    assert page.locator(".el-pcb-hit[data-ref]").count() == 264
+    assert page.locator(".el-pcb-hit[data-ref]").count() == 262
     assert page.locator('.el-pcb-hit[data-side="F"]').count() == 123
-    assert page.locator('.el-pcb-hit[data-side="B"]').count() == 141
+    assert page.locator('.el-pcb-hit[data-side="B"]').count() == 139
     assert page.locator(".el-pcb-hit[data-through]").count() == 5
-    assert page.locator("#el-pcb-list [role=option]").count() == 264
+    assert page.locator("#el-pcb-list [role=option]").count() == 262
     head = page.locator(".el-pcb-head").text_content()
-    assert "LIGHT v0.2" in head and "9c42ff8d" in head
+    assert "LIGHT v0.2" in head and "cbb8d9fc" in head
     s = state(page)
     assert s["face"] == "F" and s["preset"] == "components"
-    assert set(s["layers"]) == {"Edge_Cuts", "F_Fab", "Lands", "Holes"}
+    assert set(s["layers"]) == {"Edge_Cuts", "F_Fab", "Lands", "Holes", "F_Silkscreen"}
     assert "assembly-outline" in page.locator(".el-pcb-caption").text_content().lower()
 
 
@@ -372,7 +372,7 @@ def test_touch_inspects_without_leaving_the_board(page, context, base_url):
 
 def test_bom_cross_selection_both_ways(page):
     ready(page)
-    assert page.locator("tr[data-item]").count() == 73
+    assert page.locator("tr[data-item]").count() == 71
     page.evaluate("window.elPcb.select('R101')")
     row = page.locator('tr[data-item="25"]')
     assert row.get_attribute("aria-current") == "true"
@@ -546,7 +546,7 @@ def test_page_works_without_javascript(context, base_url):
     p = ctx.new_page()
     p.goto(PAGE)
     assert p.locator(".el-pcb-fallback").is_visible()
-    assert p.locator("tr[data-item]").count() == 73
+    assert p.locator("tr[data-item]").count() == 71
     assert p.locator(".el-sch-fallback").is_visible()
     links = p.eval_on_selector_all(
         ".el-pcb-fallback a[href], .el-sch-fallback a[href]", "els => els.map(e => e.href)")
@@ -617,3 +617,32 @@ def test_pcb_screenshots(page):
     page.evaluate("window.elPcb.select('J1')")
     page.wait_for_timeout(400)
     page.locator("#el-pcb").screenshot(path=str(SCREENS / "pcb-390.png"))
+
+
+def test_material_appearance_and_native_module_overhang(page):
+    ready(page)
+    assert state(page)["appearance"] == "material"
+    assert page.locator(".el-pcb-body").count() > 50
+    module = page.locator(".el-pcb-module")
+    assert module.is_visible()
+    assert module.locator("rect").first.get_attribute("y") == "56.85"
+    assert page.locator('.el-pcb-land').first.evaluate("e => getComputedStyle(e).fill").find("el-pcb-metal") >= 0
+    assert not page.locator('input[name="el-pcb-references"]').is_visible()
+    page.locator('input[name="el-pcb-appearance"][value="diagram"]').check()
+    assert not module.is_visible()
+    page.locator('input[name="el-pcb-references"]').check()
+    refs = page.locator('.el-pcb-layer[data-layer="F_Fab"] .stroked-text[data-ref]').evaluate_all("es => es.filter(e => getComputedStyle(e).display !== 'none').map(e => e.dataset.ref)")
+    assert len(refs) == len(set(refs))
+
+
+def test_revision_specific_module_outline_does_not_leak_to_other_boards(page):
+    def unknown_revision(route):
+        response = route.fetch()
+        board = response.json()
+        board["pcb_sha256"] = "0" * 64
+        route.fulfill(response=response, json=board)
+
+    page.route("**/light-v0.1/board.json", unknown_revision)
+    ready(page)
+    assert page.locator(".el-pcb-body").count() > 50
+    assert page.locator(".el-pcb-module").count() == 0
