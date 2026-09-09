@@ -8,7 +8,7 @@ hide:
 # Doc 10 · The Flex Circuits — Wiring That Is Manufactured, Not Cut
 
 **Engineered Lighting prototype series · September 2026**
-The main board in [Doc 9](09-understand-the-pcb.md) has 18 connectors on it. Everything those
+The main board in [Doc 9](09-understand-the-pcb.md) now consolidates six radial LED sockets into one locking interface. Everything its
 connectors reach — six ambient zones around a cylinder, three spotlight pairs, two motors — has so far
 been wire, cut and stripped and soldered by hand, one conductor at a time. These three flexible
 circuits replace most of that with something a factory makes to a drawing.
@@ -22,28 +22,30 @@ built, and reproduced identically the next time.
 <div class="el-pcb-scroll">
 <table class="el-pcb-table">
 <thead><tr>
-<th>Circuit</th><th>Design</th><th>Size</th><th>Copper layers</th><th>Solder pads</th><th>What it does</th>
+<th>Circuit</th><th>Design</th><th>Size</th><th>Copper layers</th><th>Pads / contacts</th><th>What it does</th>
 </tr></thead>
 <tbody>
 <tr><td>Arm ribbon</td><td><code>gimbal-static-v0.2</code></td><td>152.4 &times; 9.2 mm</td><td>1</td><td>70</td><td>Carries motor power, the CAN pair and three spotlight pairs along the arm. Static: it does not flex in service, and ordinary wires cross the moving joints.</td></tr>
-<tr><td>Upper cylinder band</td><td><code>led-upper-v0.2</code></td><td>325.0 &times; 21.9 mm</td><td>2</td><td>120</td><td>Feeds the upper half of the tunable-white ring: six zones, four rails each, soldered directly to the LED strip ends.</td></tr>
-<tr><td>Lower cylinder band</td><td><code>led-lower-v0.2</code></td><td>325.0 &times; 9.9 mm</td><td>2</td><td>96</td><td>The mirrored lower band, feeding the same six zones from the other side.</td></tr>
+<tr><td>Upper cylinder band</td><td><code>led-upper-v0.3</code></td><td>325.0 &times; 42.9 mm</td><td>2</td><td>126</td><td>Connects main J2 directly through a 30-contact insertion tail to six separately fused zones; 96 lands solder to strip ends.</td></tr>
+<tr><td>Lower cylinder band</td><td><code>led-lower-v0.2</code></td><td>325.0 &times; 7.9 mm</td><td>2</td><td>96</td><td>The mirrored lower band, feeding the same six zones from the other side.</td></tr>
 </tbody></table></div>
 
 <!-- el-pcb:generated flex-boards end -->
 
-!!! warning "Status as of 7 September 2026 — routed and checked, not ordered"
+!!! warning "Status as of 8 September 2026 — routed and checked, not ordered"
 
     All three designs pass native electrical-rule and design-rule checks, schematic parity, an
     independent pin-and-topology oracle, and a comparison of the exported manufacturing data against
     the native design. Those results are in the table under [what has been checked](#flex-validation).
 
-    **Nothing has been submitted, ordered or paid for.** The quotation package asks for two of each
+    **Submitted to JLCPCB for engineering quotation; no payment or production release.** The latest
+    PCBWay flex entries still await a compatible custom-stack submission route. The request is two of each
     circuit, six passive circuits in total, for two fixture prototypes. The manufacturer has not
     accepted the stack-up, coverlay, stiffeners or tolerances, and there has been **no physical
     qualification of any kind**: no fit coupon, no solder sample, no bend or motion testing.
 
-    The main board is unchanged by this work. There is one open fit risk that decides whether these
+    Main LIGHT v0.2 and upper flex v0.3 changed together; lower and gimbal remain byte-identical v0.2.
+    One continuing fit risk affects whether these
     can be ordered at all, and it has its own section: [the alignment hold](#fit-hold).
 
 ??? info "Words this chapter uses — open this if any of them are new"
@@ -54,7 +56,7 @@ built, and reproduced identically the next time.
     | **Polyimide (PI)** | The plastic film these are built on. Tough, heat-resistant, and the reason a flex can be soldered at all. |
     | **Coverlay** | The insulating film bonded over the copper, doing the job a solder mask does on a rigid board. Its artwork describes the **openings**, not the covering. |
     | **Adhesiveless core** | A film with the copper bonded directly to it, without a glue layer. Thinner and better behaved when bent. |
-    | **Stiffener** | A local patch of extra material bonded to the back where the circuit must *not* flex — under a soldered joint, for example. |
+    | **Stiffener** | A local patch of extra material bonded where the circuit must *not* flex — under a soldered joint, for example. |
     | **ENIG** | Electroless nickel, immersion gold: a flat, solderable, non-tarnishing finish. |
     | **Rail** | One conductor carrying one thing. Here: `+24V`, and the three white channels `W`, `N` and `C`. |
     | **Developed length** | The length a wrapped band must be cut to so that it fits once curved. Longer than the cylinder's diameter suggests, and sensitive to what it wraps over. |
@@ -112,7 +114,39 @@ Where a band meets an LED strip, the copper finger overlaps the strip's own end 
 1 mm, with a 0.3 mm plated hole through the joint for solder access and anchoring. That hole is not a
 connector socket.
 
-## The alignment hold — the one thing that decides this order { #fit-hold }
+### The tail is the plug { #insertion-tail }
+
+Upper v0.3 (`0af25f8f`) replaces the v0.2 wire-solder tab. The **gold fingers on
+the back face slide directly into main J2**; they are not pads for soldering wires.
+The rigid main remains inside the cylinder while the flexible band wraps around
+it. Keep the tail long enough to reach and bend gently: the overall upper board
+height is 42.9 mm, including 35 mm above the band's upper edge. Do not crease the
+stiffened insertion section or shorten it based on the old solder-pad picture.
+
+The connector uses thirty 1 mm-pitch contacts, grouped in zone order
+**4, 5, 6, 1, 2, 3**, with **+,+,W,N,C** in each group. The front stiffener is
+opposite the back gold contacts. The required **0.30 ±0.05 mm is the total**
+insertion thickness, including copper, film, plating, adhesive and support.
+Finger gold requires at least 0.10 µm over nickel; ordinary 2 microinch ENIG is
+not the same specification. Exact tip exposure, coverlay and stack need supplier
+review. These are fabrication requirements, not measured dimensions.
+
+The 96 strip-end lands and retained band routes did not change. Some outer strip
+lands still look isolated when only the upper flex is viewed: the intended path
+continues through matching rails inside the real strip, into a lower-band bridge
+and up the next strip. The independent installed-CAM model reaches all 192 strip
+ends on the correct 24 rails **only if those real through-rails exist**. Check them
+unpowered; net labels alone cannot prove the assembled path.
+
+An isolated current-tail/contact screen predicts a worst loop drop of **[0.1044 V](assets/pcb/flex-v0.2/tail-resistance-screen.json)**
+under assumed 85 °C copper, 30 µm copper thickness, reduced conductor widths and
+the stated connector resistance. It excludes the rest of the LED circuit and
+does not predict heating. The 0.60 A positive / 0.20 A channel cases are stress
+screens, not continuous operating ratings. Initial commissioning remains at most
+0.50 A RMS per radial zone with local fuse air at most 85 °C, subject to measured
+loads and PWM duty limits. Actual temperatures and currents are unknown.
+
+## The alignment hold — still a fabrication gate { #fit-hold }
 
 !!! trap "Print the template and dry-fit before anything is fabricated"
 
@@ -125,16 +159,19 @@ connector socket.
     assembly error is added. The measured strip is also 0.7 mm thick without a specified copper
     neutral radius or facet shape, so the real mounted curve is not established.
 
-    So: print `fit-templates-A3.pdf` at 100 %, check its 100 mm ruler with a real ruler, and dry-fit
+    Use the current upper **template-1-to-1.svg** from the downloads at actual size and check its scale.
+    The retained A3 PDF is **historical v0.2**: its upper-tail drawing is obsolete and cannot qualify
+    the new insertion fit. Its unchanged lower/arm portions remain reference material. Dry-fit
     every pad position on the actual compressed stack. **If the alignment misses, measure that stack
     and regenerate the geometry — do not stretch the circuit, and do not approve fabrication.** This
     is a known sensitivity, not a passed physical test.
 
 ## What the copper loses { #electrical }
 
-Every number below is a **calculation** from the routed geometry under stated assumptions, not a
-measurement. The LED figures include the modelled strip through-rails and the solder contacts, and
-exclude the controller and any external cable or connector drop.
+The full-path table below is **historical**, calculated with upper v0.2 (`a5acd2a0`), not the new
+insertion tail. The lower and arm geometry has not changed. Keep these earlier sensitivity results
+for their reasoning; do not use their full-loop totals to qualify the current assembly. They include
+assumed strip through-rails and joints, exclude the controller and external cabling, and are not measurements.
 
 <!-- el-pcb:generated flex-electrical start -->
 
@@ -144,16 +181,16 @@ exclude the controller and any external cable or connector drop.
 <th>Sensitivity case</th><th>Worst LED strip supply loss</th><th>Gimbal motor loop</th><th>Each spotlight pair</th><th>Assumed copper temperature</th><th>Assumed copper</th>
 </tr></thead>
 <tbody>
-<tr><td>nominal model</td><td>0.342 V</td><td>0.094 V</td><td>0.091 V</td><td>20 &deg;C</td><td>35 &micro;m</td></tr>
-<tr><td>hot/thin screening</td><td>0.583 V</td><td>0.137 V</td><td>0.133 V</td><td>85 &deg;C</td><td>30 &micro;m</td></tr>
-<tr><td>high-resistance joints sensitivity</td><td>0.903 V</td><td>0.137 V</td><td>0.133 V</td><td>85 &deg;C</td><td>30 &micro;m</td></tr>
+<tr><td>Historical upper v0.2: nominal model</td><td>0.342 V</td><td>0.094 V</td><td>0.091 V</td><td>20 &deg;C</td><td>35 &micro;m</td></tr>
+<tr><td>Historical upper v0.2: hot/thin screening</td><td>0.583 V</td><td>0.137 V</td><td>0.133 V</td><td>85 &deg;C</td><td>30 &micro;m</td></tr>
+<tr><td>Historical upper v0.2: high-resistance joints sensitivity</td><td>0.903 V</td><td>0.137 V</td><td>0.133 V</td><td>85 &deg;C</td><td>30 &micro;m</td></tr>
 </tbody></table></div>
 
 <!-- el-pcb:generated flex-electrical end -->
 
 The project's wiring budget is 3 % of 24 V, which is **0.72 V for the whole path** — not just for
-these circuits. The nominal case sits comfortably inside it; the high-resistance-joint sensitivity
-does not, which is the point of including it. A bad solder joint is a repair, not a tolerance to
+these circuits. The historical nominal case was inside it; the historical high-resistance-joint sensitivity
+was not, which is the point of including it. A bad solder joint is a repair, not a tolerance to
 design around: measure the loaded voltage and fix the joint.
 
 Temperatures in that table are **inputs**, not predictions. Copper loss and actual bonded temperature
@@ -161,8 +198,8 @@ have to be checked during the first powered tests.
 
 ## Building and installing them { #install }
 
-The full procedure is in the engineering notes linked below. The parts that most affect whether this
-works:
+The engineering notes linked below summarize the current construction and open checks. The steps
+that most affect whether this works:
 
 - **Check the cut segment unpowered first.** Matching `+24V` / `W` / `N` / `C` labels must conduct end
   to end, and no component may encroach on the joint.
@@ -179,7 +216,7 @@ works:
 
 ## Every pad, and what it carries { #connections }
 
-Each row is one solder pad. Selecting a pad in the viewer marks its row here; the summary's button
+Each row is one strip/ribbon solder pad or one of the thirty J100 insertion contacts. Selecting a pad in the viewer marks its row here; the summary's button
 scrolls to it.
 
 <!-- el-pcb:generated flex-connections start -->
@@ -266,133 +303,139 @@ scrolls to it.
 </tbody></table></div>
 </details>
 <details>
-<summary>Upper cylinder band <span class="el-pcb-count">120 pads</span></summary>
+<summary>Upper cylinder band <span class="el-pcb-count">126 pads</span></summary>
 <div class="el-pcb-scroll">
 <table class="el-pcb-table">
 <thead><tr>
 <th>Reference</th><th>Pin</th><th>Carries</th><th>Role</th><th>Position (mm)</th>
 </tr></thead>
 <tbody>
-<tr data-flex-row="upper:J41:1"><td>J41</td><td>1</td><td>24V rail</td><td>strip solder overlap</td><td>21.18, 47.20</td></tr>
-<tr data-flex-row="upper:J41:2"><td>J41</td><td>2</td><td>W rail</td><td>strip solder overlap</td><td>23.21, 47.20</td></tr>
-<tr data-flex-row="upper:J41:3"><td>J41</td><td>3</td><td>N rail</td><td>strip solder overlap</td><td>28.80, 47.20</td></tr>
-<tr data-flex-row="upper:J41:4"><td>J41</td><td>4</td><td>C rail</td><td>strip solder overlap</td><td>30.83, 47.20</td></tr>
-<tr data-flex-row="upper:J42:1"><td>J42</td><td>1</td><td>Z4_T23_24V</td><td>strip solder overlap</td><td>34.78, 47.20</td></tr>
-<tr data-flex-row="upper:J42:2"><td>J42</td><td>2</td><td>Z4_T23_W</td><td>strip solder overlap</td><td>36.82, 47.20</td></tr>
-<tr data-flex-row="upper:J42:3"><td>J42</td><td>3</td><td>Z4_T23_N</td><td>strip solder overlap</td><td>42.40, 47.20</td></tr>
-<tr data-flex-row="upper:J42:4"><td>J42</td><td>4</td><td>Z4_T23_C</td><td>strip solder overlap</td><td>44.44, 47.20</td></tr>
 <tr data-flex-row="upper:J43:1"><td>J43</td><td>1</td><td>Z4_T23_24V</td><td>strip solder overlap</td><td>48.39, 47.20</td></tr>
 <tr data-flex-row="upper:J43:2"><td>J43</td><td>2</td><td>Z4_T23_W</td><td>strip solder overlap</td><td>50.42, 47.20</td></tr>
 <tr data-flex-row="upper:J43:3"><td>J43</td><td>3</td><td>Z4_T23_N</td><td>strip solder overlap</td><td>56.01, 47.20</td></tr>
 <tr data-flex-row="upper:J43:4"><td>J43</td><td>4</td><td>Z4_T23_C</td><td>strip solder overlap</td><td>58.04, 47.20</td></tr>
-<tr data-flex-row="upper:J44:1"><td>J44</td><td>1</td><td>ZONE4_24V</td><td>strip solder overlap</td><td>62.00, 47.20</td></tr>
-<tr data-flex-row="upper:J44:2"><td>J44</td><td>2</td><td>ZONE4_W</td><td>strip solder overlap</td><td>64.03, 47.20</td></tr>
-<tr data-flex-row="upper:J44:3"><td>J44</td><td>3</td><td>ZONE4_N</td><td>strip solder overlap</td><td>69.62, 47.20</td></tr>
-<tr data-flex-row="upper:J44:4"><td>J44</td><td>4</td><td>ZONE4_C</td><td>strip solder overlap</td><td>71.65, 47.20</td></tr>
-<tr data-flex-row="upper:J51:1"><td>J51</td><td>1</td><td>24V rail</td><td>strip solder overlap</td><td>75.61, 47.20</td></tr>
-<tr data-flex-row="upper:J51:2"><td>J51</td><td>2</td><td>W rail</td><td>strip solder overlap</td><td>77.64, 47.20</td></tr>
-<tr data-flex-row="upper:J51:3"><td>J51</td><td>3</td><td>N rail</td><td>strip solder overlap</td><td>83.23, 47.20</td></tr>
-<tr data-flex-row="upper:J51:4"><td>J51</td><td>4</td><td>C rail</td><td>strip solder overlap</td><td>85.26, 47.20</td></tr>
-<tr data-flex-row="upper:J52:1"><td>J52</td><td>1</td><td>Z5_T23_24V</td><td>strip solder overlap</td><td>89.21, 47.20</td></tr>
-<tr data-flex-row="upper:J52:2"><td>J52</td><td>2</td><td>Z5_T23_W</td><td>strip solder overlap</td><td>91.24, 47.20</td></tr>
-<tr data-flex-row="upper:J52:3"><td>J52</td><td>3</td><td>Z5_T23_N</td><td>strip solder overlap</td><td>96.83, 47.20</td></tr>
-<tr data-flex-row="upper:J52:4"><td>J52</td><td>4</td><td>Z5_T23_C</td><td>strip solder overlap</td><td>98.87, 47.20</td></tr>
-<tr data-flex-row="upper:J53:1"><td>J53</td><td>1</td><td>Z5_T23_24V</td><td>strip solder overlap</td><td>102.82, 47.20</td></tr>
-<tr data-flex-row="upper:J53:2"><td>J53</td><td>2</td><td>Z5_T23_W</td><td>strip solder overlap</td><td>104.85, 47.20</td></tr>
-<tr data-flex-row="upper:J53:3"><td>J53</td><td>3</td><td>Z5_T23_N</td><td>strip solder overlap</td><td>110.44, 47.20</td></tr>
-<tr data-flex-row="upper:J53:4"><td>J53</td><td>4</td><td>Z5_T23_C</td><td>strip solder overlap</td><td>112.47, 47.20</td></tr>
-<tr data-flex-row="upper:J54:1"><td>J54</td><td>1</td><td>ZONE5_24V</td><td>strip solder overlap</td><td>116.43, 47.20</td></tr>
-<tr data-flex-row="upper:J54:2"><td>J54</td><td>2</td><td>ZONE5_W</td><td>strip solder overlap</td><td>118.46, 47.20</td></tr>
-<tr data-flex-row="upper:J54:3"><td>J54</td><td>3</td><td>ZONE5_N</td><td>strip solder overlap</td><td>124.05, 47.20</td></tr>
-<tr data-flex-row="upper:J54:4"><td>J54</td><td>4</td><td>ZONE5_C</td><td>strip solder overlap</td><td>126.08, 47.20</td></tr>
-<tr data-flex-row="upper:J61:1"><td>J61</td><td>1</td><td>24V rail</td><td>strip solder overlap</td><td>130.03, 47.20</td></tr>
-<tr data-flex-row="upper:J61:2"><td>J61</td><td>2</td><td>W rail</td><td>strip solder overlap</td><td>132.07, 47.20</td></tr>
-<tr data-flex-row="upper:J61:3"><td>J61</td><td>3</td><td>N rail</td><td>strip solder overlap</td><td>137.65, 47.20</td></tr>
-<tr data-flex-row="upper:J61:4"><td>J61</td><td>4</td><td>C rail</td><td>strip solder overlap</td><td>139.69, 47.20</td></tr>
-<tr data-flex-row="upper:J62:1"><td>J62</td><td>1</td><td>Z6_T23_24V</td><td>strip solder overlap</td><td>143.64, 47.20</td></tr>
-<tr data-flex-row="upper:J62:2"><td>J62</td><td>2</td><td>Z6_T23_W</td><td>strip solder overlap</td><td>145.67, 47.20</td></tr>
-<tr data-flex-row="upper:J62:3"><td>J62</td><td>3</td><td>Z6_T23_N</td><td>strip solder overlap</td><td>151.26, 47.20</td></tr>
-<tr data-flex-row="upper:J62:4"><td>J62</td><td>4</td><td>Z6_T23_C</td><td>strip solder overlap</td><td>153.29, 47.20</td></tr>
-<tr data-flex-row="upper:J63:1"><td>J63</td><td>1</td><td>Z6_T23_24V</td><td>strip solder overlap</td><td>157.25, 47.20</td></tr>
-<tr data-flex-row="upper:J63:2"><td>J63</td><td>2</td><td>Z6_T23_W</td><td>strip solder overlap</td><td>159.28, 47.20</td></tr>
-<tr data-flex-row="upper:J63:3"><td>J63</td><td>3</td><td>Z6_T23_N</td><td>strip solder overlap</td><td>164.87, 47.20</td></tr>
-<tr data-flex-row="upper:J63:4"><td>J63</td><td>4</td><td>Z6_T23_C</td><td>strip solder overlap</td><td>166.90, 47.20</td></tr>
 <tr data-flex-row="upper:J64:1"><td>J64</td><td>1</td><td>ZONE6_24V</td><td>strip solder overlap</td><td>170.85, 47.20</td></tr>
 <tr data-flex-row="upper:J64:2"><td>J64</td><td>2</td><td>ZONE6_W</td><td>strip solder overlap</td><td>172.89, 47.20</td></tr>
 <tr data-flex-row="upper:J64:3"><td>J64</td><td>3</td><td>ZONE6_N</td><td>strip solder overlap</td><td>178.48, 47.20</td></tr>
 <tr data-flex-row="upper:J64:4"><td>J64</td><td>4</td><td>ZONE6_C</td><td>strip solder overlap</td><td>180.51, 47.20</td></tr>
-<tr data-flex-row="upper:J11:1"><td>J11</td><td>1</td><td>ZONE1_24V</td><td>strip solder overlap</td><td>184.46, 47.20</td></tr>
-<tr data-flex-row="upper:J11:2"><td>J11</td><td>2</td><td>ZONE1_W</td><td>strip solder overlap</td><td>186.49, 47.20</td></tr>
-<tr data-flex-row="upper:J11:3"><td>J11</td><td>3</td><td>ZONE1_N</td><td>strip solder overlap</td><td>192.08, 47.20</td></tr>
-<tr data-flex-row="upper:J11:4"><td>J11</td><td>4</td><td>ZONE1_C</td><td>strip solder overlap</td><td>194.11, 47.20</td></tr>
+<tr data-flex-row="upper:J41:1"><td>J41</td><td>1</td><td>unconnected-(J41-Pin_1-Pad1)</td><td>strip solder overlap</td><td>21.18, 47.20</td></tr>
+<tr data-flex-row="upper:J41:2"><td>J41</td><td>2</td><td>unconnected-(J41-Pin_2-Pad2)</td><td>strip solder overlap</td><td>23.21, 47.20</td></tr>
+<tr data-flex-row="upper:J41:3"><td>J41</td><td>3</td><td>unconnected-(J41-Pin_3-Pad3)</td><td>strip solder overlap</td><td>28.80, 47.20</td></tr>
+<tr data-flex-row="upper:J41:4"><td>J41</td><td>4</td><td>unconnected-(J41-Pin_4-Pad4)</td><td>strip solder overlap</td><td>30.83, 47.20</td></tr>
 <tr data-flex-row="upper:J12:1"><td>J12</td><td>1</td><td>Z1_T23_24V</td><td>strip solder overlap</td><td>198.07, 47.20</td></tr>
 <tr data-flex-row="upper:J12:2"><td>J12</td><td>2</td><td>Z1_T23_W</td><td>strip solder overlap</td><td>200.10, 47.20</td></tr>
 <tr data-flex-row="upper:J12:3"><td>J12</td><td>3</td><td>Z1_T23_N</td><td>strip solder overlap</td><td>205.69, 47.20</td></tr>
 <tr data-flex-row="upper:J12:4"><td>J12</td><td>4</td><td>Z1_T23_C</td><td>strip solder overlap</td><td>207.72, 47.20</td></tr>
-<tr data-flex-row="upper:J13:1"><td>J13</td><td>1</td><td>Z1_T23_24V</td><td>strip solder overlap</td><td>211.68, 47.20</td></tr>
-<tr data-flex-row="upper:J13:2"><td>J13</td><td>2</td><td>Z1_T23_W</td><td>strip solder overlap</td><td>213.71, 47.20</td></tr>
-<tr data-flex-row="upper:J13:3"><td>J13</td><td>3</td><td>Z1_T23_N</td><td>strip solder overlap</td><td>219.30, 47.20</td></tr>
-<tr data-flex-row="upper:J13:4"><td>J13</td><td>4</td><td>Z1_T23_C</td><td>strip solder overlap</td><td>221.33, 47.20</td></tr>
-<tr data-flex-row="upper:J14:1"><td>J14</td><td>1</td><td>24V rail</td><td>strip solder overlap</td><td>225.28, 47.20</td></tr>
-<tr data-flex-row="upper:J14:2"><td>J14</td><td>2</td><td>W rail</td><td>strip solder overlap</td><td>227.31, 47.20</td></tr>
-<tr data-flex-row="upper:J14:3"><td>J14</td><td>3</td><td>N rail</td><td>strip solder overlap</td><td>232.90, 47.20</td></tr>
-<tr data-flex-row="upper:J14:4"><td>J14</td><td>4</td><td>C rail</td><td>strip solder overlap</td><td>234.94, 47.20</td></tr>
+<tr data-flex-row="upper:J14:1"><td>J14</td><td>1</td><td>unconnected-(J14-Pin_1-Pad1)</td><td>strip solder overlap</td><td>225.28, 47.20</td></tr>
+<tr data-flex-row="upper:J14:2"><td>J14</td><td>2</td><td>unconnected-(J14-Pin_2-Pad2)</td><td>strip solder overlap</td><td>227.31, 47.20</td></tr>
+<tr data-flex-row="upper:J14:3"><td>J14</td><td>3</td><td>unconnected-(J14-Pin_3-Pad3)</td><td>strip solder overlap</td><td>232.90, 47.20</td></tr>
+<tr data-flex-row="upper:J14:4"><td>J14</td><td>4</td><td>unconnected-(J14-Pin_4-Pad4)</td><td>strip solder overlap</td><td>234.94, 47.20</td></tr>
 <tr data-flex-row="upper:J21:1"><td>J21</td><td>1</td><td>ZONE2_24V</td><td>strip solder overlap</td><td>238.89, 47.20</td></tr>
 <tr data-flex-row="upper:J21:2"><td>J21</td><td>2</td><td>ZONE2_W</td><td>strip solder overlap</td><td>240.92, 47.20</td></tr>
 <tr data-flex-row="upper:J21:3"><td>J21</td><td>3</td><td>ZONE2_N</td><td>strip solder overlap</td><td>246.51, 47.20</td></tr>
 <tr data-flex-row="upper:J21:4"><td>J21</td><td>4</td><td>ZONE2_C</td><td>strip solder overlap</td><td>248.54, 47.20</td></tr>
+<tr data-flex-row="upper:J51:1"><td>J51</td><td>1</td><td>unconnected-(J51-Pin_1-Pad1)</td><td>strip solder overlap</td><td>75.61, 47.20</td></tr>
+<tr data-flex-row="upper:J51:2"><td>J51</td><td>2</td><td>unconnected-(J51-Pin_2-Pad2)</td><td>strip solder overlap</td><td>77.64, 47.20</td></tr>
+<tr data-flex-row="upper:J51:3"><td>J51</td><td>3</td><td>unconnected-(J51-Pin_3-Pad3)</td><td>strip solder overlap</td><td>83.23, 47.20</td></tr>
+<tr data-flex-row="upper:J51:4"><td>J51</td><td>4</td><td>unconnected-(J51-Pin_4-Pad4)</td><td>strip solder overlap</td><td>85.26, 47.20</td></tr>
+<tr data-flex-row="upper:J52:1"><td>J52</td><td>1</td><td>Z5_T23_24V</td><td>strip solder overlap</td><td>89.21, 47.20</td></tr>
+<tr data-flex-row="upper:J52:2"><td>J52</td><td>2</td><td>Z5_T23_W</td><td>strip solder overlap</td><td>91.24, 47.20</td></tr>
+<tr data-flex-row="upper:J52:3"><td>J52</td><td>3</td><td>Z5_T23_N</td><td>strip solder overlap</td><td>96.83, 47.20</td></tr>
+<tr data-flex-row="upper:J52:4"><td>J52</td><td>4</td><td>Z5_T23_C</td><td>strip solder overlap</td><td>98.87, 47.20</td></tr>
+<tr data-flex-row="upper:J11:1"><td>J11</td><td>1</td><td>ZONE1_24V</td><td>strip solder overlap</td><td>184.46, 47.20</td></tr>
+<tr data-flex-row="upper:J11:2"><td>J11</td><td>2</td><td>ZONE1_W</td><td>strip solder overlap</td><td>186.49, 47.20</td></tr>
+<tr data-flex-row="upper:J11:3"><td>J11</td><td>3</td><td>ZONE1_N</td><td>strip solder overlap</td><td>192.08, 47.20</td></tr>
+<tr data-flex-row="upper:J11:4"><td>J11</td><td>4</td><td>ZONE1_C</td><td>strip solder overlap</td><td>194.11, 47.20</td></tr>
+<tr data-flex-row="upper:J54:1"><td>J54</td><td>1</td><td>ZONE5_24V</td><td>strip solder overlap</td><td>116.43, 47.20</td></tr>
+<tr data-flex-row="upper:J54:2"><td>J54</td><td>2</td><td>ZONE5_W</td><td>strip solder overlap</td><td>118.46, 47.20</td></tr>
+<tr data-flex-row="upper:J54:3"><td>J54</td><td>3</td><td>ZONE5_N</td><td>strip solder overlap</td><td>124.05, 47.20</td></tr>
+<tr data-flex-row="upper:J54:4"><td>J54</td><td>4</td><td>ZONE5_C</td><td>strip solder overlap</td><td>126.08, 47.20</td></tr>
+<tr data-flex-row="upper:J42:1"><td>J42</td><td>1</td><td>Z4_T23_24V</td><td>strip solder overlap</td><td>34.78, 47.20</td></tr>
+<tr data-flex-row="upper:J42:2"><td>J42</td><td>2</td><td>Z4_T23_W</td><td>strip solder overlap</td><td>36.82, 47.20</td></tr>
+<tr data-flex-row="upper:J42:3"><td>J42</td><td>3</td><td>Z4_T23_N</td><td>strip solder overlap</td><td>42.40, 47.20</td></tr>
+<tr data-flex-row="upper:J42:4"><td>J42</td><td>4</td><td>Z4_T23_C</td><td>strip solder overlap</td><td>44.44, 47.20</td></tr>
+<tr data-flex-row="upper:J100:1"><td>J100</td><td>1</td><td>ZONE4_24V</td><td>B-side insertion contact; no solder</td><td>167.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:2"><td>J100</td><td>2</td><td>ZONE4_24V</td><td>B-side insertion contact; no solder</td><td>168.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:3"><td>J100</td><td>3</td><td>ZONE4_W</td><td>B-side insertion contact; no solder</td><td>169.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:4"><td>J100</td><td>4</td><td>ZONE4_N</td><td>B-side insertion contact; no solder</td><td>170.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:5"><td>J100</td><td>5</td><td>ZONE4_C</td><td>B-side insertion contact; no solder</td><td>171.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:6"><td>J100</td><td>6</td><td>ZONE5_24V</td><td>B-side insertion contact; no solder</td><td>172.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:7"><td>J100</td><td>7</td><td>ZONE5_24V</td><td>B-side insertion contact; no solder</td><td>173.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:8"><td>J100</td><td>8</td><td>ZONE5_W</td><td>B-side insertion contact; no solder</td><td>174.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:9"><td>J100</td><td>9</td><td>ZONE5_N</td><td>B-side insertion contact; no solder</td><td>175.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:10"><td>J100</td><td>10</td><td>ZONE5_C</td><td>B-side insertion contact; no solder</td><td>176.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:11"><td>J100</td><td>11</td><td>ZONE6_24V</td><td>B-side insertion contact; no solder</td><td>177.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:12"><td>J100</td><td>12</td><td>ZONE6_24V</td><td>B-side insertion contact; no solder</td><td>178.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:13"><td>J100</td><td>13</td><td>ZONE6_W</td><td>B-side insertion contact; no solder</td><td>179.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:14"><td>J100</td><td>14</td><td>ZONE6_N</td><td>B-side insertion contact; no solder</td><td>180.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:15"><td>J100</td><td>15</td><td>ZONE6_C</td><td>B-side insertion contact; no solder</td><td>181.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:16"><td>J100</td><td>16</td><td>ZONE1_24V</td><td>B-side insertion contact; no solder</td><td>182.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:17"><td>J100</td><td>17</td><td>ZONE1_24V</td><td>B-side insertion contact; no solder</td><td>183.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:18"><td>J100</td><td>18</td><td>ZONE1_W</td><td>B-side insertion contact; no solder</td><td>184.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:19"><td>J100</td><td>19</td><td>ZONE1_N</td><td>B-side insertion contact; no solder</td><td>185.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:20"><td>J100</td><td>20</td><td>ZONE1_C</td><td>B-side insertion contact; no solder</td><td>186.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:21"><td>J100</td><td>21</td><td>ZONE2_24V</td><td>B-side insertion contact; no solder</td><td>187.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:22"><td>J100</td><td>22</td><td>ZONE2_24V</td><td>B-side insertion contact; no solder</td><td>188.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:23"><td>J100</td><td>23</td><td>ZONE2_W</td><td>B-side insertion contact; no solder</td><td>189.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:24"><td>J100</td><td>24</td><td>ZONE2_N</td><td>B-side insertion contact; no solder</td><td>190.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:25"><td>J100</td><td>25</td><td>ZONE2_C</td><td>B-side insertion contact; no solder</td><td>191.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:26"><td>J100</td><td>26</td><td>ZONE3_24V</td><td>B-side insertion contact; no solder</td><td>192.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:27"><td>J100</td><td>27</td><td>ZONE3_24V</td><td>B-side insertion contact; no solder</td><td>193.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:28"><td>J100</td><td>28</td><td>ZONE3_W</td><td>B-side insertion contact; no solder</td><td>194.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:29"><td>J100</td><td>29</td><td>ZONE3_N</td><td>B-side insertion contact; no solder</td><td>195.98, 6.75</td></tr>
+<tr data-flex-row="upper:J100:30"><td>J100</td><td>30</td><td>ZONE3_C</td><td>B-side insertion contact; no solder</td><td>196.98, 6.75</td></tr>
 <tr data-flex-row="upper:J22:1"><td>J22</td><td>1</td><td>Z2_T23_24V</td><td>strip solder overlap</td><td>252.50, 47.20</td></tr>
 <tr data-flex-row="upper:J22:2"><td>J22</td><td>2</td><td>Z2_T23_W</td><td>strip solder overlap</td><td>254.53, 47.20</td></tr>
 <tr data-flex-row="upper:J22:3"><td>J22</td><td>3</td><td>Z2_T23_N</td><td>strip solder overlap</td><td>260.12, 47.20</td></tr>
 <tr data-flex-row="upper:J22:4"><td>J22</td><td>4</td><td>Z2_T23_C</td><td>strip solder overlap</td><td>262.15, 47.20</td></tr>
-<tr data-flex-row="upper:J23:1"><td>J23</td><td>1</td><td>Z2_T23_24V</td><td>strip solder overlap</td><td>266.10, 47.20</td></tr>
-<tr data-flex-row="upper:J23:2"><td>J23</td><td>2</td><td>Z2_T23_W</td><td>strip solder overlap</td><td>268.14, 47.20</td></tr>
-<tr data-flex-row="upper:J23:3"><td>J23</td><td>3</td><td>Z2_T23_N</td><td>strip solder overlap</td><td>273.72, 47.20</td></tr>
-<tr data-flex-row="upper:J23:4"><td>J23</td><td>4</td><td>Z2_T23_C</td><td>strip solder overlap</td><td>275.76, 47.20</td></tr>
-<tr data-flex-row="upper:J24:1"><td>J24</td><td>1</td><td>24V rail</td><td>strip solder overlap</td><td>279.71, 47.20</td></tr>
-<tr data-flex-row="upper:J24:2"><td>J24</td><td>2</td><td>W rail</td><td>strip solder overlap</td><td>281.74, 47.20</td></tr>
-<tr data-flex-row="upper:J24:3"><td>J24</td><td>3</td><td>N rail</td><td>strip solder overlap</td><td>287.33, 47.20</td></tr>
-<tr data-flex-row="upper:J24:4"><td>J24</td><td>4</td><td>C rail</td><td>strip solder overlap</td><td>289.36, 47.20</td></tr>
-<tr data-flex-row="upper:J31:1"><td>J31</td><td>1</td><td>ZONE3_24V</td><td>strip solder overlap</td><td>293.32, 47.20</td></tr>
-<tr data-flex-row="upper:J31:2"><td>J31</td><td>2</td><td>ZONE3_W</td><td>strip solder overlap</td><td>295.35, 47.20</td></tr>
-<tr data-flex-row="upper:J31:3"><td>J31</td><td>3</td><td>ZONE3_N</td><td>strip solder overlap</td><td>300.94, 47.20</td></tr>
-<tr data-flex-row="upper:J31:4"><td>J31</td><td>4</td><td>ZONE3_C</td><td>strip solder overlap</td><td>302.97, 47.20</td></tr>
+<tr data-flex-row="upper:J34:1"><td>J34</td><td>1</td><td>unconnected-(J34-Pin_1-Pad1)</td><td>strip solder overlap</td><td>334.14, 47.20</td></tr>
+<tr data-flex-row="upper:J34:2"><td>J34</td><td>2</td><td>unconnected-(J34-Pin_2-Pad2)</td><td>strip solder overlap</td><td>336.17, 47.20</td></tr>
+<tr data-flex-row="upper:J34:3"><td>J34</td><td>3</td><td>unconnected-(J34-Pin_3-Pad3)</td><td>strip solder overlap</td><td>341.76, 47.20</td></tr>
+<tr data-flex-row="upper:J34:4"><td>J34</td><td>4</td><td>unconnected-(J34-Pin_4-Pad4)</td><td>strip solder overlap</td><td>343.79, 47.20</td></tr>
+<tr data-flex-row="upper:J44:1"><td>J44</td><td>1</td><td>ZONE4_24V</td><td>strip solder overlap</td><td>62.00, 47.20</td></tr>
+<tr data-flex-row="upper:J44:2"><td>J44</td><td>2</td><td>ZONE4_W</td><td>strip solder overlap</td><td>64.03, 47.20</td></tr>
+<tr data-flex-row="upper:J44:3"><td>J44</td><td>3</td><td>ZONE4_N</td><td>strip solder overlap</td><td>69.62, 47.20</td></tr>
+<tr data-flex-row="upper:J44:4"><td>J44</td><td>4</td><td>ZONE4_C</td><td>strip solder overlap</td><td>71.65, 47.20</td></tr>
 <tr data-flex-row="upper:J32:1"><td>J32</td><td>1</td><td>Z3_T23_24V</td><td>strip solder overlap</td><td>306.92, 47.20</td></tr>
 <tr data-flex-row="upper:J32:2"><td>J32</td><td>2</td><td>Z3_T23_W</td><td>strip solder overlap</td><td>308.96, 47.20</td></tr>
 <tr data-flex-row="upper:J32:3"><td>J32</td><td>3</td><td>Z3_T23_N</td><td>strip solder overlap</td><td>314.55, 47.20</td></tr>
 <tr data-flex-row="upper:J32:4"><td>J32</td><td>4</td><td>Z3_T23_C</td><td>strip solder overlap</td><td>316.58, 47.20</td></tr>
+<tr data-flex-row="upper:J53:1"><td>J53</td><td>1</td><td>Z5_T23_24V</td><td>strip solder overlap</td><td>102.82, 47.20</td></tr>
+<tr data-flex-row="upper:J53:2"><td>J53</td><td>2</td><td>Z5_T23_W</td><td>strip solder overlap</td><td>104.85, 47.20</td></tr>
+<tr data-flex-row="upper:J53:3"><td>J53</td><td>3</td><td>Z5_T23_N</td><td>strip solder overlap</td><td>110.44, 47.20</td></tr>
+<tr data-flex-row="upper:J53:4"><td>J53</td><td>4</td><td>Z5_T23_C</td><td>strip solder overlap</td><td>112.47, 47.20</td></tr>
+<tr data-flex-row="upper:J23:1"><td>J23</td><td>1</td><td>Z2_T23_24V</td><td>strip solder overlap</td><td>266.10, 47.20</td></tr>
+<tr data-flex-row="upper:J23:2"><td>J23</td><td>2</td><td>Z2_T23_W</td><td>strip solder overlap</td><td>268.14, 47.20</td></tr>
+<tr data-flex-row="upper:J23:3"><td>J23</td><td>3</td><td>Z2_T23_N</td><td>strip solder overlap</td><td>273.72, 47.20</td></tr>
+<tr data-flex-row="upper:J23:4"><td>J23</td><td>4</td><td>Z2_T23_C</td><td>strip solder overlap</td><td>275.76, 47.20</td></tr>
+<tr data-flex-row="upper:J62:1"><td>J62</td><td>1</td><td>Z6_T23_24V</td><td>strip solder overlap</td><td>143.64, 47.20</td></tr>
+<tr data-flex-row="upper:J62:2"><td>J62</td><td>2</td><td>Z6_T23_W</td><td>strip solder overlap</td><td>145.67, 47.20</td></tr>
+<tr data-flex-row="upper:J62:3"><td>J62</td><td>3</td><td>Z6_T23_N</td><td>strip solder overlap</td><td>151.26, 47.20</td></tr>
+<tr data-flex-row="upper:J62:4"><td>J62</td><td>4</td><td>Z6_T23_C</td><td>strip solder overlap</td><td>153.29, 47.20</td></tr>
+<tr data-flex-row="upper:J24:1"><td>J24</td><td>1</td><td>unconnected-(J24-Pin_1-Pad1)</td><td>strip solder overlap</td><td>279.71, 47.20</td></tr>
+<tr data-flex-row="upper:J24:2"><td>J24</td><td>2</td><td>unconnected-(J24-Pin_2-Pad2)</td><td>strip solder overlap</td><td>281.74, 47.20</td></tr>
+<tr data-flex-row="upper:J24:3"><td>J24</td><td>3</td><td>unconnected-(J24-Pin_3-Pad3)</td><td>strip solder overlap</td><td>287.33, 47.20</td></tr>
+<tr data-flex-row="upper:J24:4"><td>J24</td><td>4</td><td>unconnected-(J24-Pin_4-Pad4)</td><td>strip solder overlap</td><td>289.36, 47.20</td></tr>
+<tr data-flex-row="upper:J63:1"><td>J63</td><td>1</td><td>Z6_T23_24V</td><td>strip solder overlap</td><td>157.25, 47.20</td></tr>
+<tr data-flex-row="upper:J63:2"><td>J63</td><td>2</td><td>Z6_T23_W</td><td>strip solder overlap</td><td>159.28, 47.20</td></tr>
+<tr data-flex-row="upper:J63:3"><td>J63</td><td>3</td><td>Z6_T23_N</td><td>strip solder overlap</td><td>164.87, 47.20</td></tr>
+<tr data-flex-row="upper:J63:4"><td>J63</td><td>4</td><td>Z6_T23_C</td><td>strip solder overlap</td><td>166.90, 47.20</td></tr>
 <tr data-flex-row="upper:J33:1"><td>J33</td><td>1</td><td>Z3_T23_24V</td><td>strip solder overlap</td><td>320.53, 47.20</td></tr>
 <tr data-flex-row="upper:J33:2"><td>J33</td><td>2</td><td>Z3_T23_W</td><td>strip solder overlap</td><td>322.56, 47.20</td></tr>
 <tr data-flex-row="upper:J33:3"><td>J33</td><td>3</td><td>Z3_T23_N</td><td>strip solder overlap</td><td>328.15, 47.20</td></tr>
 <tr data-flex-row="upper:J33:4"><td>J33</td><td>4</td><td>Z3_T23_C</td><td>strip solder overlap</td><td>330.18, 47.20</td></tr>
-<tr data-flex-row="upper:J34:1"><td>J34</td><td>1</td><td>24V rail</td><td>strip solder overlap</td><td>334.14, 47.20</td></tr>
-<tr data-flex-row="upper:J34:2"><td>J34</td><td>2</td><td>W rail</td><td>strip solder overlap</td><td>336.17, 47.20</td></tr>
-<tr data-flex-row="upper:J34:3"><td>J34</td><td>3</td><td>N rail</td><td>strip solder overlap</td><td>341.76, 47.20</td></tr>
-<tr data-flex-row="upper:J34:4"><td>J34</td><td>4</td><td>C rail</td><td>strip solder overlap</td><td>343.79, 47.20</td></tr>
-<tr data-flex-row="upper:J10:1"><td>J10</td><td>1</td><td>ZONE1_24V</td><td>controller input</td><td>183.73, 33.00</td></tr>
-<tr data-flex-row="upper:J10:2"><td>J10</td><td>2</td><td>ZONE1_W</td><td>controller input</td><td>185.08, 33.00</td></tr>
-<tr data-flex-row="upper:J10:3"><td>J10</td><td>3</td><td>ZONE1_N</td><td>controller input</td><td>187.13, 33.00</td></tr>
-<tr data-flex-row="upper:J10:4"><td>J10</td><td>4</td><td>ZONE1_C</td><td>controller input</td><td>188.28, 33.00</td></tr>
-<tr data-flex-row="upper:J20:1"><td>J20</td><td>1</td><td>ZONE2_24V</td><td>controller input</td><td>189.43, 33.00</td></tr>
-<tr data-flex-row="upper:J20:2"><td>J20</td><td>2</td><td>ZONE2_W</td><td>controller input</td><td>190.58, 33.00</td></tr>
-<tr data-flex-row="upper:J20:3"><td>J20</td><td>3</td><td>ZONE2_N</td><td>controller input</td><td>192.68, 33.00</td></tr>
-<tr data-flex-row="upper:J20:4"><td>J20</td><td>4</td><td>ZONE2_C</td><td>controller input</td><td>194.73, 33.00</td></tr>
-<tr data-flex-row="upper:J30:1"><td>J30</td><td>1</td><td>ZONE3_24V</td><td>controller input</td><td>195.88, 33.00</td></tr>
-<tr data-flex-row="upper:J30:2"><td>J30</td><td>2</td><td>ZONE3_W</td><td>controller input</td><td>197.03, 33.00</td></tr>
-<tr data-flex-row="upper:J30:3"><td>J30</td><td>3</td><td>ZONE3_N</td><td>controller input</td><td>198.68, 33.00</td></tr>
-<tr data-flex-row="upper:J30:4"><td>J30</td><td>4</td><td>ZONE3_C</td><td>controller input</td><td>200.73, 33.00</td></tr>
-<tr data-flex-row="upper:J60:1"><td>J60</td><td>1</td><td>ZONE6_24V</td><td>controller input</td><td>176.68, 33.00</td></tr>
-<tr data-flex-row="upper:J60:2"><td>J60</td><td>2</td><td>ZONE6_W</td><td>controller input</td><td>177.83, 33.00</td></tr>
-<tr data-flex-row="upper:J60:3"><td>J60</td><td>3</td><td>ZONE6_N</td><td>controller input</td><td>179.88, 33.00</td></tr>
-<tr data-flex-row="upper:J60:4"><td>J60</td><td>4</td><td>ZONE6_C</td><td>controller input</td><td>181.23, 33.00</td></tr>
-<tr data-flex-row="upper:J50:1"><td>J50</td><td>1</td><td>ZONE5_24V</td><td>controller input</td><td>170.23, 33.00</td></tr>
-<tr data-flex-row="upper:J50:2"><td>J50</td><td>2</td><td>ZONE5_W</td><td>controller input</td><td>172.28, 33.00</td></tr>
-<tr data-flex-row="upper:J50:3"><td>J50</td><td>3</td><td>ZONE5_N</td><td>controller input</td><td>174.38, 33.00</td></tr>
-<tr data-flex-row="upper:J50:4"><td>J50</td><td>4</td><td>ZONE5_C</td><td>controller input</td><td>175.53, 33.00</td></tr>
-<tr data-flex-row="upper:J40:1"><td>J40</td><td>1</td><td>ZONE4_24V</td><td>controller input</td><td>164.23, 33.00</td></tr>
-<tr data-flex-row="upper:J40:2"><td>J40</td><td>2</td><td>ZONE4_W</td><td>controller input</td><td>166.28, 33.00</td></tr>
-<tr data-flex-row="upper:J40:3"><td>J40</td><td>3</td><td>ZONE4_N</td><td>controller input</td><td>167.93, 33.00</td></tr>
-<tr data-flex-row="upper:J40:4"><td>J40</td><td>4</td><td>ZONE4_C</td><td>controller input</td><td>169.08, 33.00</td></tr>
+<tr data-flex-row="upper:J13:1"><td>J13</td><td>1</td><td>Z1_T23_24V</td><td>strip solder overlap</td><td>211.68, 47.20</td></tr>
+<tr data-flex-row="upper:J13:2"><td>J13</td><td>2</td><td>Z1_T23_W</td><td>strip solder overlap</td><td>213.71, 47.20</td></tr>
+<tr data-flex-row="upper:J13:3"><td>J13</td><td>3</td><td>Z1_T23_N</td><td>strip solder overlap</td><td>219.30, 47.20</td></tr>
+<tr data-flex-row="upper:J13:4"><td>J13</td><td>4</td><td>Z1_T23_C</td><td>strip solder overlap</td><td>221.33, 47.20</td></tr>
+<tr data-flex-row="upper:J31:1"><td>J31</td><td>1</td><td>ZONE3_24V</td><td>strip solder overlap</td><td>293.32, 47.20</td></tr>
+<tr data-flex-row="upper:J31:2"><td>J31</td><td>2</td><td>ZONE3_W</td><td>strip solder overlap</td><td>295.35, 47.20</td></tr>
+<tr data-flex-row="upper:J31:3"><td>J31</td><td>3</td><td>ZONE3_N</td><td>strip solder overlap</td><td>300.94, 47.20</td></tr>
+<tr data-flex-row="upper:J31:4"><td>J31</td><td>4</td><td>ZONE3_C</td><td>strip solder overlap</td><td>302.97, 47.20</td></tr>
+<tr data-flex-row="upper:J61:1"><td>J61</td><td>1</td><td>unconnected-(J61-Pin_1-Pad1)</td><td>strip solder overlap</td><td>130.03, 47.20</td></tr>
+<tr data-flex-row="upper:J61:2"><td>J61</td><td>2</td><td>unconnected-(J61-Pin_2-Pad2)</td><td>strip solder overlap</td><td>132.07, 47.20</td></tr>
+<tr data-flex-row="upper:J61:3"><td>J61</td><td>3</td><td>unconnected-(J61-Pin_3-Pad3)</td><td>strip solder overlap</td><td>137.65, 47.20</td></tr>
+<tr data-flex-row="upper:J61:4"><td>J61</td><td>4</td><td>unconnected-(J61-Pin_4-Pad4)</td><td>strip solder overlap</td><td>139.69, 47.20</td></tr>
 </tbody></table></div>
 </details>
 <details>
@@ -516,15 +559,16 @@ scrolls to it.
 </tr></thead>
 <tbody>
 <tr><td>Arm ribbon</td><td>0</td><td>0</td><td>0</td><td>0</td><td>PASS</td><td>70 / 70</td><td>10</td><td>0</td></tr>
-<tr><td>Upper cylinder band</td><td>0</td><td>0</td><td>0</td><td>0</td><td>PASS</td><td>120 / 240</td><td>144</td><td>216</td></tr>
+<tr><td>Upper cylinder band</td><td>0</td><td>0</td><td>0</td><td>0</td><td>PASS</td><td>126 / 222</td><td>252</td><td>192</td></tr>
 <tr><td>Lower cylinder band</td><td>0</td><td>0</td><td>0</td><td>0</td><td>PASS</td><td>96 / 192</td><td>144</td><td>192</td></tr>
 </tbody></table></div>
 
 <!-- el-pcb:generated flex-validation end -->
 
 Each of those ran against the routed design. "Pads / CAM flashes" compares the native design against
-the exported manufacturing data: the two cylinder bands show twice as many flashes as pads because
-each terminal appears on both copper layers.
+the exported manufacturing data. The lower band has 96 two-sided lands and 192 flashes. The new
+upper has 96 two-sided strip lands plus 30 **back-only** insertion contacts: 126 pads and 222 copper
+flashes. The viewer and its registration test use the actual copper side for those thirty contacts.
 
 None of the following has been done:
 
@@ -542,7 +586,8 @@ None of the following has been done:
 ## Downloads { #flex-downloads }
 
 Native KiCad sources, the connection tables, the construction drawings and the manufacturing archives.
-The fit templates are the file to print first.
+Use the current upper insertion drawing and actual-size SVG template first. The A3 PDF is retained
+only as a labelled historical reference; its old upper tail is not the current outline.
 
 <!-- el-pcb:generated flex-downloads start -->
 
@@ -563,17 +608,44 @@ The fit templates are the file to print first.
 <tr><td>Arm ribbon</td><td>construction.svg</td><td>8 kB</td><td><code>c8e4610622c3</code></td><td><a href="../assets/pcb/flex-v0.2/gimbal/construction.svg">download</a></td></tr>
 <tr><td>Arm ribbon</td><td>overview.svg</td><td>12 kB</td><td><code>6091172d0e5a</code></td><td><a href="../assets/pcb/flex-v0.2/gimbal/overview.svg">download</a></td></tr>
 <tr><td>Arm ribbon</td><td>fabrication archive (Gerbers, drills, maps)</td><td>7 kB</td><td><code>39804422f9dc</code></td><td><a href="../assets/pcb/flex-v0.2/gimbal/FLEX-v0.2-gimbal-fabrication.zip">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>led-upper-v0.2.kicad_pcb</td><td>280 kB</td><td><code>a5acd2a0ca0a</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/led-upper-v0.2.kicad_pcb">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>led-upper-v0.2.kicad_sch</td><td>89 kB</td><td><code>7989e8d74584</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/led-upper-v0.2.kicad_sch">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>led-upper-v0.2.kicad_pro</td><td>595 bytes</td><td><code>fd016441b542</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/led-upper-v0.2.kicad_pro">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>led-upper-v0.3.kicad_pcb</td><td>292 kB</td><td><code>0af25f8f72fb</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/led-upper-v0.3.kicad_pcb">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>led-upper-v0.3.kicad_sch</td><td>105 kB</td><td><code>444302c3b7c2</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/led-upper-v0.3.kicad_sch">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>led-upper-v0.3.kicad_pro</td><td>9 kB</td><td><code>48649b473816</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/led-upper-v0.3.kicad_pro">download</a></td></tr>
 <tr><td>Upper cylinder band</td><td>fp-lib-table</td><td>133 bytes</td><td><code>a347ee4b351d</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/fp-lib-table">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>connection-table.csv</td><td>10 kB</td><td><code>fb8ed506c006</code></td><td><a href="../assets/pcb/flex-v0.2/upper/connection-table.csv">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>stiffener-regions.csv</td><td>214 bytes</td><td><code>ba515f030ede</code></td><td><a href="../assets/pcb/flex-v0.2/upper/stiffener-regions.csv">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>design-intent.json</td><td>74 kB</td><td><code>a68b8288869e</code></td><td><a href="../assets/pcb/flex-v0.2/upper/design-intent.json">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>verification.json</td><td>2 kB</td><td><code>446840a8a56d</code></td><td><a href="../assets/pcb/flex-v0.2/upper/verification.json">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>construction.svg</td><td>12 kB</td><td><code>ca6e9cf4c31c</code></td><td><a href="../assets/pcb/flex-v0.2/upper/construction.svg">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>overview.svg</td><td>49 kB</td><td><code>8d4553452406</code></td><td><a href="../assets/pcb/flex-v0.2/upper/overview.svg">download</a></td></tr>
-<tr><td>Upper cylinder band</td><td>fabrication archive (Gerbers, drills, maps)</td><td>60 kB</td><td><code>60a993a307c0</code></td><td><a href="../assets/pcb/flex-v0.2/upper/FLEX-v0.2-upper-fabrication.zip">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>connection-table.csv</td><td>8 kB</td><td><code>71203eb69de1</code></td><td><a href="../assets/pcb/flex-v0.2/upper/connection-table.csv">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>stiffener-regions.csv</td><td>169 bytes</td><td><code>f66766c13ecb</code></td><td><a href="../assets/pcb/flex-v0.2/upper/stiffener-regions.csv">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>design-intent.json</td><td>125 kB</td><td><code>46f93887face</code></td><td><a href="../assets/pcb/flex-v0.2/upper/design-intent.json">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>verification.json</td><td>2 kB</td><td><code>712510f6a3d0</code></td><td><a href="../assets/pcb/flex-v0.2/upper/verification.json">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>insertion-drawing.svg</td><td>19 kB</td><td><code>b1fa13bb2e6e</code></td><td><a href="../assets/pcb/flex-v0.2/upper/insertion-drawing.svg">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>template-1-to-1.svg</td><td>54 kB</td><td><code>2d3fbf2c9c41</code></td><td><a href="../assets/pcb/flex-v0.2/upper/template-1-to-1.svg">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J100-pin-map.csv</td><td>1000 bytes</td><td><code>dc771ec84b33</code></td><td><a href="../assets/pcb/flex-v0.2/upper/J100-pin-map.csv">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J100_FPC30_BottomContacts.kicad_mod</td><td>7 kB</td><td><code>817b137589b8</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J100_FPC30_BottomContacts.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J11_Solder4.kicad_mod</td><td>2 kB</td><td><code>d73bcea3a092</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J11_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J12_Solder4.kicad_mod</td><td>2 kB</td><td><code>cf86ac5d1d7f</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J12_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J13_Solder4.kicad_mod</td><td>2 kB</td><td><code>df856b8b5084</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J13_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J14_Solder4.kicad_mod</td><td>2 kB</td><td><code>7005f5608e9c</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J14_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J21_Solder4.kicad_mod</td><td>2 kB</td><td><code>dd015cb845db</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J21_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J22_Solder4.kicad_mod</td><td>2 kB</td><td><code>fc0b9c78bb50</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J22_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J23_Solder4.kicad_mod</td><td>2 kB</td><td><code>ab7e579640c3</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J23_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J24_Solder4.kicad_mod</td><td>2 kB</td><td><code>6e227cbef29d</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J24_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J31_Solder4.kicad_mod</td><td>2 kB</td><td><code>d3fb900ae237</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J31_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J32_Solder4.kicad_mod</td><td>2 kB</td><td><code>b1a463026f84</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J32_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J33_Solder4.kicad_mod</td><td>2 kB</td><td><code>2b629c1f9019</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J33_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J34_Solder4.kicad_mod</td><td>2 kB</td><td><code>f5165a31c6c7</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J34_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J41_Solder4.kicad_mod</td><td>2 kB</td><td><code>b8f3080dc557</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J41_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J42_Solder4.kicad_mod</td><td>2 kB</td><td><code>9cd0a3ac81e3</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J42_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J43_Solder4.kicad_mod</td><td>2 kB</td><td><code>20a7b988ac29</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J43_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J44_Solder4.kicad_mod</td><td>2 kB</td><td><code>47e436c0c672</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J44_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J51_Solder4.kicad_mod</td><td>2 kB</td><td><code>f85cea63eee6</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J51_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J52_Solder4.kicad_mod</td><td>2 kB</td><td><code>f8c4963ec030</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J52_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J53_Solder4.kicad_mod</td><td>2 kB</td><td><code>6ca4678b07d5</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J53_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J54_Solder4.kicad_mod</td><td>2 kB</td><td><code>d43f88342e77</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J54_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J61_Solder4.kicad_mod</td><td>2 kB</td><td><code>7462e5d1cb9e</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J61_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J62_Solder4.kicad_mod</td><td>2 kB</td><td><code>c46b413b839d</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J62_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J63_Solder4.kicad_mod</td><td>2 kB</td><td><code>cea0ef06a98e</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J63_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>J64_Solder4.kicad_mod</td><td>2 kB</td><td><code>345d9708db2d</code></td><td><a href="../assets/pcb/flex-v0.2/upper/kicad/ELFlex.pretty/J64_Solder4.kicad_mod">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>FLEX-v0.3-upper-KiCad-project.zip</td><td>92 kB</td><td><code>f5f6adc194ca</code></td><td><a href="../assets/pcb/flex-v0.2/upper/FLEX-v0.3-upper-KiCad-project.zip">download</a></td></tr>
+<tr><td>Upper cylinder band</td><td>fabrication archive (Gerbers, drills, maps)</td><td>60 kB</td><td><code>243b050e5e1d</code></td><td><a href="../assets/pcb/flex-v0.2/upper/FLEX-v0.3-upper-fabrication.zip">download</a></td></tr>
 <tr><td>Lower cylinder band</td><td>led-lower-v0.2.kicad_pcb</td><td>260 kB</td><td><code>21db9dba94c6</code></td><td><a href="../assets/pcb/flex-v0.2/lower/kicad/led-lower-v0.2.kicad_pcb">download</a></td></tr>
 <tr><td>Lower cylinder band</td><td>led-lower-v0.2.kicad_sch</td><td>80 kB</td><td><code>af6adde4732b</code></td><td><a href="../assets/pcb/flex-v0.2/lower/kicad/led-lower-v0.2.kicad_sch">download</a></td></tr>
 <tr><td>Lower cylinder band</td><td>led-lower-v0.2.kicad_pro</td><td>595 bytes</td><td><code>fd016441b542</code></td><td><a href="../assets/pcb/flex-v0.2/lower/kicad/led-lower-v0.2.kicad_pro">download</a></td></tr>
@@ -585,26 +657,26 @@ The fit templates are the file to print first.
 <tr><td>Lower cylinder band</td><td>construction.svg</td><td>10 kB</td><td><code>14a1b38779ee</code></td><td><a href="../assets/pcb/flex-v0.2/lower/construction.svg">download</a></td></tr>
 <tr><td>Lower cylinder band</td><td>overview.svg</td><td>45 kB</td><td><code>819b82cf5a53</code></td><td><a href="../assets/pcb/flex-v0.2/lower/overview.svg">download</a></td></tr>
 <tr><td>Lower cylinder band</td><td>fabrication archive (Gerbers, drills, maps)</td><td>56 kB</td><td><code>7683f432a580</code></td><td><a href="../assets/pcb/flex-v0.2/lower/FLEX-v0.2-lower-fabrication.zip">download</a></td></tr>
-<tr><td>All three</td><td>Fit templates (print at 100 %)</td><td>16 kB</td><td><code>a62821483bfb</code></td><td><a href="../assets/pcb/flex-v0.2/fit-templates-A3.pdf">download</a></td></tr>
-<tr><td>All three</td><td>Engineering notes (Markdown source)</td><td>8 kB</td><td><code>34a74c6a3252</code></td><td><a href="../assets/pcb/flex-v0.2/ENGINEERING-NOTES.txt">download</a></td></tr>
+<tr><td>All three</td><td>Historical v0.2 fit templates: upper tail obsolete; use current upper SVG</td><td>16 kB</td><td><code>a62821483bfb</code></td><td><a href="../assets/pcb/flex-v0.2/fit-templates-A3.pdf">download</a></td></tr>
+<tr><td>All three</td><td>Engineering notes (Markdown source)</td><td>2 kB</td><td><code>d1d7c7d5ae44</code></td><td><a href="../assets/pcb/flex-v0.2/ENGINEERING-NOTES.txt">download</a></td></tr>
 </tbody></table></div>
 
 <!-- el-pcb:generated flex-downloads end -->
 
 The per-circuit fabrication reviews sent to the manufacturer are deliberately **not** published here:
-they carry vendor correspondence details. Everything they say about construction is in the engineering
-notes above.
+they carry vendor correspondence details. Public construction requirements are summarized in the engineering
+notes and per-design intent files above. These downloads do not replace supplier process review.
 
 ## How this fits the rest of the fixture
 
 | This circuit | Replaces | Connects to |
 |---|---|---|
 | Arm ribbon | Ten hand-cut wires along the arm | Motor 2 power, the CAN pair and three spotlight pairs |
-| Upper cylinder band | Hand-soldered strip tails, upper half | Six zone feeds from [Doc 9](09-understand-the-pcb.md)'s `J2`–`J8` |
+| Upper cylinder band | Hand-soldered strip tails, upper half | Six separately fused zone feeds through main `J2` and upper `J100` |
 | Lower cylinder band | Hand-soldered strip tails, lower half | The same six zones from below |
 
-The main board is unchanged. [Doc 9](09-understand-the-pcb.md)'s connector pinmaps are the interface
-these were checked against, and that check passed for `J2`–`J7`, `J9`–`J11` and `J13`.
+The new main `J2` and upper `J100` are a matched pair. [Doc 9](09-understand-the-pcb.md) supplies
+their current pin map; `J9`–`J11` and `J13` retain the spotlight/arm interfaces.
 
 ## Risk register
 

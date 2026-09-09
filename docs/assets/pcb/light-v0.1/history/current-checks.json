@@ -1,0 +1,67 @@
+{
+  "FINAL-NATIVE-CHECKS.json": {
+    "source_sha256": "7fe3d26f6bada5a209553633e67639eaaf2daa727f4a3b06798de7d5ea99dc57",
+    "board_sha256": "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096",
+    "status": "PASS_ALL_NATIVE_GATES",
+    "scope": "Derived publication summary; source report is identified by SHA-256 in the hardware acceptance manifest. This summary is not raw solver output."
+  },
+  "main-parity.json": {
+    "source_sha256": "219bfcfa8d572d909e234b814207dd1160dd037f6a6d604e4559c36cb4535598",
+    "board_sha256": "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096",
+    "status": "PASS_LOGICAL_PARITY",
+    "scope": "Derived publication summary; source report is identified by SHA-256 in the hardware acceptance manifest. This summary is not raw solver output.",
+    "result": {
+      "manifest_physical_components": 264,
+      "xml_components": 264,
+      "pcb_components": 264,
+      "logical_pins": 786,
+      "assigned_logical_pins": 757,
+      "explicit_no_connect_pins": 29,
+      "physical_pad_objects": 883,
+      "electrical_physical_pad_checks": 837,
+      "physical_only_pad_objects": 46,
+      "duplicate_pad_groups": 12,
+      "xml_nets": 192,
+      "pcb_nonempty_nets": 192,
+      "error_count": 0
+    }
+  },
+  "main-connectivity.json": {
+    "source_sha256": "a96d9a8874cb417d98b28fe594f8726eba6ccd475ea590b17f7d77b9552e5ddc",
+    "board_sha256": "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096",
+    "status": "PASS",
+    "scope": "Derived publication summary; source report is identified by SHA-256 in the hardware acceptance manifest. This summary is not raw solver output."
+  },
+  "FINAL-CAM-RECEIPT.json": {
+    "source_sha256": "69f9e19f602b63787b1832ef4fbf838a09ccc26561ceafe38fa0bf9d505aedac",
+    "board_sha256": "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096",
+    "status": "PASS_FINAL_NATIVE_CAM_RECEIPT",
+    "scope": "Derived publication summary; source report is identified by SHA-256 in the hardware acceptance manifest. This summary is not raw solver output.",
+    "result": {
+      "comparison_layers": 12,
+      "drill_count": 850,
+      "geometric_bound_mm": 0.0021,
+      "max_drill_axis_error_mm": 0.0005000000000023874,
+      "all_original_mutation_controls_pass": true,
+      "qualified_cutin_negative_controls": 4
+    }
+  },
+  "RETURN-REFERENCE-CLOSEOUT.json": {
+    "source_sha256": "07fe65fc151feaa589cc933114117765fc0a790cb6cdd9c86eb0a8afeb037cc8",
+    "board_sha256": "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096",
+    "status": "ACCEPTED_FOR_PROTOTYPE_QUOTE_WITH_DECLARED_EMI_LIMITS",
+    "scope": "Derived publication summary; source report is identified by SHA-256 in the hardware acceptance manifest. This summary is not raw solver output."
+  },
+  "native-verification.json": {
+    "source_sha256": "584acd495ae27334735879e33e8d8603968638339c36a0e51e98ea969d68fd34",
+    "board_sha256": "0af25f8f72fb999db1bad16a8d59541a02c4eb95f838ada6dd6abadba8fe058d",
+    "status": "PASS_NATIVE_EXPORT_CHECKS",
+    "scope": "Derived publication summary; source report is identified by SHA-256 in the hardware acceptance manifest. This summary is not raw solver output."
+  },
+  "tail-resistance-screen.json": {
+    "source_sha256": "6d3fa1ace27b71adbe0c3332a4058758e62caf51334198140edc782340eb419f",
+    "board_sha256": "0af25f8f72fb999db1bad16a8d59541a02c4eb95f838ada6dd6abadba8fe058d",
+    "status": "PASS_RESISTANCE_SCREEN_NOT_THERMAL_PROOF",
+    "scope": "Derived publication summary; source report is identified by SHA-256 in the hardware acceptance manifest. This summary is not raw solver output."
+  }
+}

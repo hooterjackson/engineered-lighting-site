@@ -674,7 +674,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Diodes Incorporated"
       (at 175.26 180.34 0.0)
       (hide yes)
       (effects
@@ -772,7 +772,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 43.18 180.34 0.0)
       (hide yes)
       (effects
@@ -848,7 +848,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 96.52 180.34 0.0)
       (hide yes)
       (effects

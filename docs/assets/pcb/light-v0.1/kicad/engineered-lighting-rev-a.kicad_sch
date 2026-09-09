@@ -6,8 +6,8 @@
   (paper "A3")
   (title_block
     (title "Integrated lighting controller")
-    (date "2026-09-06")
-    (rev "A draft")
+    (date "2026-09-08")
+    (rev "LIGHT v0.2 candidate")
     (company "Engineered Lighting")
     (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
   (lib_symbols)
@@ -693,4 +693,27 @@
   (sheet_instances
     (path "/"
       (page "1")))
-  (embedded_fonts no))
+  (embedded_fonts no)
+  (sheet
+    (at 213.36 255.27)
+    (size 81.28 13.97)
+    (stroke
+      (width 0)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "a2d2e31e-282c-588a-8c32-ff91ce0ad575")
+    (property "Sheetname" "central_led_interface"
+      (at 213.36 254.0 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Sheetfile" "central_led_interface.kicad_sch"
+      (at 213.36 270.51 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0"
+          (page "20"))))))

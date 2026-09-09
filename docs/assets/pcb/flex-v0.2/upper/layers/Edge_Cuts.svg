@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="18.985 26.985 326.999 21.93" data-layer="Edge_Cuts"><g transform="translate(0 75.9)">
-  <g transform="translate(18.985 -26.985) scale(1 -1) translate(-18.985 48.915)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18.985 3.985 326.999 44.93" data-layer="Edge_Cuts"><g transform="translate(0 52.9)">
+  <g transform="translate(18.985 -3.985) scale(1 -1) translate(-18.985 48.915)">
     <path d="M 20.0 -40.15 A 0.15 0.15 0 0 0 20.15 -40.0" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
     <path d="M 20.0 -46.25 L 20.0 -40.15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 20.15 -40.0 L 163.084 -40.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
@@ -340,10 +340,11 @@
     <path d="M 159.979 -46.55 L 159.979 -47.75" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 159.979 -46.55 A 0.150012 0.150012 0 0 0 160.129 -46.4" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
     <path d="M 159.979 -47.75 A 0.149988 0.149988 0 0 0 159.829 -47.9" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
-    <path d="M 163.234 -28.15 A 0.150022 0.150022 0 0 0 163.384 -28.0" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 163.234 -33.1231 A 0.999922 0.999922 0 0 0 163.264 -32.8806" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 163.234 -35.0 L 163.234 -33.1231" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 163.234 -39.85 A 0.149978 0.149978 0 0 0 163.084 -40.0" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
-    <path d="M 163.234 -39.85 L 163.234 -28.15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
-    <path d="M 163.384 -28.0 L 201.584 -28.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
+    <path d="M 163.234 -39.85 L 163.234 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
+    <path d="M 163.264 -32.8806 L 166.954 -18.1194" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 164.018 -46.4 L 160.129 -46.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 164.018 -46.4 A 0.15 0.15 0 0 0 164.168 -46.55" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
     <path d="M 164.168 -47.75 L 164.168 -46.55" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
@@ -356,6 +357,10 @@
     <path d="M 166.05 -46.4 A 0.1499 0.1499 0 0 0 166.2 -46.55" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
     <path d="M 166.2 -47.75 L 166.2 -46.55" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 166.35 -47.9 A 0.15 0.15 0 0 0 166.2 -47.75" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 166.984 -5.3 A 0.300022 0.300022 0 0 0 167.284 -4.99998" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 166.984 -17.8769 A 0.999778 0.999778 0 0 0 166.954 -18.1194" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 166.984 -17.8769 L 166.984 -5.3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
+    <path d="M 167.284 -5.0 L 197.684 -5.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 167.45 -47.9 L 166.35 -47.9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 167.6 -46.55 L 167.6 -47.75" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 167.6 -46.55 A 0.149944 0.149944 0 0 0 167.75 -46.4001" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
@@ -428,6 +433,10 @@
     <path d="M 197.218 -46.4 A 0.15 0.15 0 0 0 197.368 -46.55" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
     <path d="M 197.368 -47.75 L 197.368 -46.55" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 197.518 -47.9 A 0.15 0.15 0 0 0 197.368 -47.75" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 197.684 -5.0 A 0.3 0.3 0 0 0 197.984 -5.3" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 197.984 -5.3 L 197.984 -17.8769" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
+    <path d="M 198.014 -18.1194 A 0.999826 0.999826 0 0 0 197.984 -17.8769" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 198.014 -18.1194 L 201.704 -32.8806" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 198.618 -47.9 L 197.518 -47.9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 198.768 -46.55 L 198.768 -47.75" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 198.768 -46.55 A 0.15 0.15 0 0 0 198.918 -46.4" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
@@ -440,8 +449,8 @@
     <path d="M 200.8 -46.55 L 200.8 -47.75" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 200.8 -46.55 A 0.149942 0.149942 0 0 0 200.95 -46.4001" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
     <path d="M 200.8 -47.75 A 0.149958 0.149958 0 0 0 200.65 -47.9" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
-    <path d="M 201.584 -28.0 A 0.15 0.15 0 0 0 201.734 -28.15" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
-    <path d="M 201.734 -28.15 L 201.734 -39.85" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
+    <path d="M 201.704 -32.8806 A 1.00007 1.00007 0 0 0 201.734 -33.1231" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
+    <path d="M 201.734 -33.1231 L 201.734 -35.0 L 201.734 -39.85" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 201.884 -40.0 A 0.15 0.15 0 0 0 201.734 -39.85" fill="none" stroke="currentColor" stroke-width="0.03" stroke-linecap="round"/>
     <path d="M 201.884 -40.0 L 344.819 -40.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>
     <path d="M 204.839 -46.4 L 200.95 -46.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.03"/>

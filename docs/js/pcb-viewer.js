@@ -363,7 +363,7 @@
       el("h3", { class: "el-pcb-title", text: data.board.revision }, head);
       var prov = el("p", { class: "el-pcb-prov" }, head);
       prov.appendChild(document.createTextNode("PCB "));
-      var link = el("a", { href: "#provenance", class: "el-pcb-hash", text: "c046202e" }, prov);
+      var link = el("a", { href: "#provenance", class: "el-pcb-hash", text: data.board.pcb_sha256.slice(0, 8) }, prov);
       link.title = data.board.pcb_sha256;
       ui.faceBadge = el("span", { class: "el-pcb-badge" }, prov);
 

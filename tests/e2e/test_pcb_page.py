@@ -78,13 +78,13 @@ def test_nav_footer_and_last_entry(page):
 
 def test_registration_and_default_view(page):
     ready(page)
-    assert page.locator(".el-pcb-hit[data-ref]").count() == 269
-    assert page.locator('.el-pcb-hit[data-side="F"]').count() == 127
-    assert page.locator('.el-pcb-hit[data-side="B"]').count() == 142
+    assert page.locator(".el-pcb-hit[data-ref]").count() == 264
+    assert page.locator('.el-pcb-hit[data-side="F"]').count() == 123
+    assert page.locator('.el-pcb-hit[data-side="B"]').count() == 141
     assert page.locator(".el-pcb-hit[data-through]").count() == 5
-    assert page.locator("#el-pcb-list [role=option]").count() == 269
+    assert page.locator("#el-pcb-list [role=option]").count() == 264
     head = page.locator(".el-pcb-head").text_content()
-    assert "LIGHT v0.1" in head and "c046202e" in head
+    assert "LIGHT v0.2" in head and "9c42ff8d" in head
     s = state(page)
     assert s["face"] == "F" and s["preset"] == "components"
     assert set(s["layers"]) == {"Edge_Cuts", "F_Fab", "Lands", "Holes"}
@@ -260,7 +260,7 @@ def test_keyboard_parity_through_the_finder(page):
 
     page.evaluate("window.elPcb.select('J1')")
     detail = page.locator("#el-pcb-detail").text_content()
-    for want in ("VIN24_RAW", "row 69", "Power 2"):
+    for want in ("VIN24_RAW", "row 67", "Power 2"):
         assert want in detail, want
 
 
@@ -292,14 +292,14 @@ def test_clicking_pins_the_summary_and_does_not_jump_to_the_parts_list(page):
     assert abs(page.evaluate("window.scrollY") - before) < 4,         "selecting a part must not scroll the page"
 
     # the row is marked, but the page has not moved to it
-    row = page.locator('tr[data-item="69"]')
+    row = page.locator('tr[data-item="67"]')
     assert row.get_attribute("aria-current") == "true"
 
     # ... until the summary's own button asks for it
     tip.locator("button.el-pcb-tip-bom").click()
     page.wait_for_timeout(700)
     assert page.evaluate("window.scrollY") > before + 100, "the button should move to the row"
-    assert "parts list row 69" in page.locator("#el-pcb-status").text_content()
+    assert "parts list row 67" in page.locator("#el-pcb-status").text_content()
 
 
 def test_summary_survives_hovering_elsewhere_and_closes_on_demand(page):
@@ -372,7 +372,7 @@ def test_touch_inspects_without_leaving_the_board(page, context, base_url):
 
 def test_bom_cross_selection_both_ways(page):
     ready(page)
-    assert page.locator("tr[data-item]").count() == 74
+    assert page.locator("tr[data-item]").count() == 73
     page.evaluate("window.elPcb.select('R101')")
     row = page.locator('tr[data-item="25"]')
     assert row.get_attribute("aria-current") == "true"
@@ -395,7 +395,7 @@ def test_bom_cross_selection_both_ways(page):
 
 def test_schematic_browser(page):
     ready(page)
-    assert page.locator("#el-sch-pick option").count() == 19
+    assert page.locator("#el-sch-pick option").count() == 20
     page.select_option("#el-sch-pick", "7")
     page.wait_for_selector('.el-sch-sheet [data-ref="Q101"]', timeout=15000)
     assert page.locator(".el-sch-svg").get_attribute("viewBox").startswith("0 0 419.989")
@@ -546,7 +546,7 @@ def test_page_works_without_javascript(context, base_url):
     p = ctx.new_page()
     p.goto(PAGE)
     assert p.locator(".el-pcb-fallback").is_visible()
-    assert p.locator("tr[data-item]").count() == 74
+    assert p.locator("tr[data-item]").count() == 73
     assert p.locator(".el-sch-fallback").is_visible()
     links = p.eval_on_selector_all(
         ".el-pcb-fallback a[href], .el-sch-fallback a[href]", "els => els.map(e => e.href)")

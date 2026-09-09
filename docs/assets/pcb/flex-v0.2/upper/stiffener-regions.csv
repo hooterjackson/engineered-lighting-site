@@ -1,2 +1,2 @@
-region,face,x_min_mm,x_max_mm,y_min_KiCad_mm,y_max_KiCad_mm,PI_thickness_mm,adhesive
-input tab,B,163.23427817032945,201.73427817032956,29,35,0.2,"factory to specify, target 0.05 mm; excluded from flex thickness"
+region,side,x_min_native_mm,x_max_native_mm,y_min_native_mm,y_max_native_mm,total_finished_insertion_mm,total_tolerance_mm
+J100,F,166.984278,197.984278,5,11,0.30,0.05

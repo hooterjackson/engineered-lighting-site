@@ -1576,7 +1576,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Bourns"
       (at 144.78 73.66 0.0)
       (hide yes)
       (effects
@@ -1630,7 +1630,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 35.56 71.12 0.0)
       (hide yes)
       (effects
@@ -1728,7 +1728,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "TDK"
       (at 121.92 43.18 0.0)
       (hide yes)
       (effects
@@ -1826,7 +1826,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "TDK"
       (at 43.18 111.76 0.0)
       (hide yes)
       (effects
@@ -1924,7 +1924,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 68.58 111.76 0.0)
       (hide yes)
       (effects
@@ -2022,7 +2022,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 177.8 96.52 0.0)
       (hide yes)
       (effects
@@ -2098,7 +2098,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 203.2 96.52 0.0)
       (hide yes)
       (effects
@@ -2174,7 +2174,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 154.94 137.16 0.0)
       (hide yes)
       (effects
@@ -2250,7 +2250,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 154.94 167.64 0.0)
       (hide yes)
       (effects
@@ -2326,7 +2326,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 35.56 149.86 0.0)
       (hide yes)
       (effects
@@ -2664,7 +2664,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Bourns"
       (at 342.9 68.58 0.0)
       (hide yes)
       (effects
@@ -2816,7 +2816,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 375.92 99.06 0.0)
       (hide yes)
       (effects
@@ -2892,7 +2892,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Yageo"
       (at 241.3 137.16 0.0)
       (hide yes)
       (effects
@@ -3261,7 +3261,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 68.58 205.74 0.0)
       (hide yes)
       (effects
@@ -3359,7 +3359,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Murata"
       (at 180.34 205.74 0.0)
       (hide yes)
       (effects
@@ -3455,7 +3455,7 @@
       (effects
         (font
           (size 1.0 1.0))))
-    (property "Manufacturer" ""
+    (property "Manufacturer" "Diodes Incorporated"
       (at 246.38 228.6 0.0)
       (hide yes)
       (effects

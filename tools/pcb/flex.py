@@ -1,4 +1,4 @@
-"""Build the published assets for Doc 10, the three FLEX v0.2 circuits.
+"""Build the published assets for Doc 10, the upper v0.3 and unchanged lower/arm v0.2 circuits.
 
 The flex review package has the same shape as the main board's: per-design
 KiCad sources, CAM renderings of each manufacturing layer, a connection table,
@@ -25,9 +25,8 @@ DESIGNS = [
     ("gimbal-static-v0.2", "Arm ribbon", "gimbal",
      "Carries motor power, the CAN pair and three spotlight pairs along the arm. "
      "Static: it does not flex in service, and ordinary wires cross the moving joints.", 1),
-    ("led-upper-v0.2", "Upper cylinder band", "upper",
-     "Feeds the upper half of the tunable-white ring: six zones, four rails each, "
-     "soldered directly to the LED strip ends.", 2),
+    ("led-upper-v0.3", "Upper cylinder band", "upper",
+     "Connects main J2 directly through a 30-contact insertion tail to six separately fused zones; 96 lands solder to strip ends.", 2),
     ("led-lower-v0.2", "Lower cylinder band", "lower",
      "The mirrored lower band, feeding the same six zones from the other side.", 2),
 ]
@@ -166,10 +165,10 @@ def build(review, assets, write_json, write_text, write_bytes, header):
 
     index = header()
     index.update({
-        "revision": "FLEX v0.2",
+        "revision": "Upper v0.3; lower and gimbal v0.2",
         "status": ("Three routed passive circuits. Native ERC, DRC, schematic parity, an independent pin "
-                   "oracle and CAM comparisons all pass. This is a quotation package: it has not been "
-                   "submitted, ordered or physically qualified."),
+                   "oracle and CAM comparisons pass within their recorded scope. The boards have not been "
+                   "physically qualified. All three were submitted to JLCPCB for engineering quotation; PCBWay flex inquiries await a compatible custom stack. No payment or production release."),
         "boards": boards,
         "totals": {
             "designs": 3,
@@ -202,14 +201,20 @@ def build(review, assets, write_json, write_text, write_bytes, header):
     # are copied verbatim instead, so the file downloads and its hash still
     # matches the review folder's original.
     for name, published in (("fit-templates-A3.pdf", "fit-templates-A3.pdf"),
-                            ("ENGINEERING-NOTES.md", "ENGINEERING-NOTES.txt")):
+                            ("ENGINEERING-NOTES.md", "ENGINEERING-NOTES.txt"),
+                            ("tail-resistance-screen.json", "tail-resistance-screen.json")):
         shutil.copyfile(review / name, assets / published)
+    index["shared_files"] = [
+        {"file": name, "sha256": _sha(assets / name), "bytes": (assets / name).stat().st_size}
+        for name in ("fit-templates-A3.pdf", "ENGINEERING-NOTES.txt", "tail-resistance-screen.json")
+    ]
+    write_json(assets / "index.json", index)
     return index
 
 
 def _size(intent, frame):
     if "length_mm" in intent:
-        return [intent["length_mm"], intent.get("width_mm", frame[3])]
+        return [intent["length_mm"], intent.get("overall_y_mm", intent.get("width_mm", frame[3]))]
     return [round(frame[2], 3), round(frame[3], 3)]
 
 
@@ -218,7 +223,7 @@ def _intent(intent, design):
     out = {
         "status": intent.get("status", ""),
         "copper_layers": intent.get("physical_copper_layers"),
-        "finished_thickness_mm": intent.get("finished_flex_thickness_target_mm"),
+        "finished_thickness_mm": intent.get("finished_flex_thickness_target_mm", intent.get("finished_flex_target_mm")),
         "copper_um": intent.get("nominal_copper_um"),
     }
     for key in ("empty_editor_layer", "cut_lengths_mm", "retained_input_reference",
@@ -247,6 +252,7 @@ def _pads(table, design):
             "net": (r.get("net") or "").strip(),
             "rail": (r.get("rail") or "").strip(),
             "role": (r.get("role") or "").strip(),
+            "copper_layer": "B_Cu" if r["reference"] == "J100" else "F_Cu",
             "xy": [round(float(x), 4), round(float(y), 4)],
         })
     return pads
@@ -278,7 +284,8 @@ def _native_sources(src, out, design, write_bytes):
         files.append({"file": "kicad/%s" % name, "bytes": path.stat().st_size,
                       "sha256": _sha(out / "kicad" / name)})
     for name in ("connection-table.csv", "stiffener-regions.csv", "design-intent.json",
-                 "verification.json", "construction.svg", "overview.svg"):
+                 "verification.json", "construction.svg", "overview.svg", "insertion-drawing.svg",
+                 "template-1-to-1.svg", "J100-pin-map.csv"):
         path = src / name
         if not path.exists():
             path = src / "view" / name
@@ -286,6 +293,23 @@ def _native_sources(src, out, design, write_bytes):
             continue
         write_bytes(out / name, path.read_bytes())
         files.append({"file": name, "bytes": path.stat().st_size, "sha256": _sha(out / name)})
+    if design == "led-upper-v0.3":
+        # The new insertion footprint is local to this project; the native board
+        # embeds geometry, but editing needs its library too.
+        for path in sorted((src / "ELFlex.pretty").glob("*.kicad_mod")):
+            rel = "kicad/ELFlex.pretty/" + path.name
+            write_bytes(out / rel, path.read_bytes())
+            files.append({"file": rel, "bytes": path.stat().st_size, "sha256": _sha(path)})
+        dest = out / "FLEX-v0.3-upper-KiCad-project.zip"
+        with zipfile.ZipFile(dest, "w", zipfile.ZIP_DEFLATED) as archive:
+            for path in sorted((out / "kicad").rglob("*")):
+                if not path.is_file():
+                    continue
+                info = zipfile.ZipInfo(path.relative_to(out / "kicad").as_posix(), (1980,1,1,0,0,0))
+                info.compress_type = zipfile.ZIP_DEFLATED
+                info.external_attr = 0o644 << 16
+                archive.writestr(info, path.read_bytes())
+        files.append({"file": dest.name, "bytes": dest.stat().st_size, "sha256": _sha(dest)})
     return files
 
 
@@ -309,8 +333,10 @@ def _fabrication_zip(src, out, design, short, pcb_sha, write_bytes):
         "This is a reference for reading the circuit, not a fabrication release. Nothing here has\n"
         "been ordered, and no price, quantity or vendor correspondence is included.\n" % (design, pcb_sha)
     )
+    if short == "upper":
+        readme = readme.replace("FLEX v0.2", "Upper flex v0.3")
     members.append(("README.txt", readme.encode("utf-8")))
-    dest = out / ("FLEX-v0.2-%s-fabrication.zip" % short)
+    dest = out / ("FLEX-%s-%s-fabrication.zip" % ("v0.3" if short == "upper" else "v0.2", short))
     dest.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(dest, "w", zipfile.ZIP_DEFLATED) as zf:
         for name, data in sorted(members):
@@ -318,5 +344,5 @@ def _fabrication_zip(src, out, design, short, pcb_sha, write_bytes):
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o644 << 16
             zf.writestr(info, data)
-    return {"file": "%s/FLEX-v0.2-%s-fabrication.zip" % (short, short),
+    return {"file": "%s/FLEX-%s-%s-fabrication.zip" % (short, "v0.3" if short == "upper" else "v0.2", short),
             "bytes": dest.stat().st_size, "sha256": _sha(dest)}

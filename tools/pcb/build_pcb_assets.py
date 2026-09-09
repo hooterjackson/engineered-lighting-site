@@ -40,29 +40,28 @@ FLEX_ASSETS = DOCS / "assets" / "pcb" / "flex-v0.2"
 PAGE = DOCS / "09-understand-the-pcb.md"
 FLEX_PAGE = DOCS / "10-the-flex-circuits.md"
 
-PCB_SHA = "c046202efa3896d59d12bf19f55ed48b3a6c77532aac199a3a1e9a993e449310"
-ZIP_SHA = "029f02282a4500ad541a31513062dc8ef4b7426aef1c0547d51f07ee4b459d8d"
-CSV_SHA = "d9308529a10ce194e19765466474dc2ceda12c8e35fa6eeddf06806462911756"
-SHORT = "c046202e"
-REVISION = "LIGHT v0.1 — enclosure revision"
+PCB_SHA = "9c42ff8df4a3ef58ac7f16b248242f106f784dc73b5744aa6eeb2591ec120096"
+ZIP_SHA = "f1d951e8f33f9e5be32175db56f0178e411f9a84790a5d5482a12b299fd9c83c"
+CSV_SHA = "bc68c0a014eb14df9d72fb7faa314a8f2d71d6a5e29d4b1c3ffe6551eb33b681"
+SHORT = "9c42ff8d"
+REVISION = "LIGHT v0.2 — central LED interface"
 SCHEMA = "el-pcb/1"
-GENERATED = "2026-09-07"
+GENERATED = "2026-09-08"
 
-SCOPE = (
-    "As of 7 September 2026, PCBWay has been asked to quote five fabricated boards, two of them fully "
-    "assembled with all 248 purchased parts and three supplied bare. Nothing has been paid or authorised, "
-    "and the assembly process, stencil and via treatment and any factory substitutions are not approved."
-)
+SCOPE = ("As of 8 September 2026, the main board is submitted for PCBWay engineering quotation, "
+    "and JLCPCB has received the main and all three flex designs for quotation. Two complete factory "
+    "assemblies with 243 fitted parts each are requested. No payment, procurement or production release "
+    "has been authorized; supplier stack, assembly processes and substitutions remain unapproved.")
 
 LAYERS = [
     # id, KiCad name, kind, side, z, label, plain-language note
     ("Edge_Cuts", "Edge.Cuts", "edge", None, 0, "Board outline",
      "the shape the board is cut to, including the flat under the antenna"),
-    ("In6_Cu", "In6.Cu", "copper", None, 1, "Inner copper 6 (In6.Cu)", "a ground layer"),
+    ("In6_Cu", "In6.Cu", "copper", None, 1, "Inner copper 6 (In6.Cu)", "ground reference; inspect inherited interruptions"),
     ("In5_Cu", "In5.Cu", "copper", None, 2, "Inner copper 5 (In5.Cu)", "signals and protected branches"),
     ("In4_Cu", "In4.Cu", "copper", None, 3, "Inner copper 4 (In4.Cu)", "signals"),
-    ("In3_Cu", "In3.Cu", "copper", None, 4, "Inner copper 3 (In3.Cu)", "a ground layer"),
-    ("In2_Cu", "In2.Cu", "copper", None, 5, "Inner copper 2 (In2.Cu)", "24 V distribution"),
+    ("In3_Cu", "In3.Cu", "copper", None, 4, "Inner copper 3 (In3.Cu)", "ground reference; inspect inherited interruptions"),
+    ("In2_Cu", "In2.Cu", "copper", None, 5, "Inner copper 2 (In2.Cu)", "24 V distribution plus reviewed signal routes"),
     ("In1_Cu", "In1.Cu", "copper", None, 6, "Inner copper 1 (In1.Cu)", "the ground reference under the outer layer"),
     ("B_Cu", "B.Cu", "copper", "B", 7, "Back copper (B.Cu)", "components, signals and local power on the back"),
     ("F_Cu", "F.Cu", "copper", "F", 8, "Front copper (F.Cu)", "components, signals and local power on the front"),
@@ -83,7 +82,7 @@ LAYERS = [
 ]
 
 SHEET_PLAIN = {
-    1: ("The hierarchy map. It has no components of its own -- each box is one of the other 18 sheets, "
+    1: ("The hierarchy map. It has no components of its own -- each box is one of the other 19 sheets, "
         "labelled with its file name.", ["Start here to see how the design is divided"]),
     2: ("The controller: the radio module, its reset and boot circuitry, the UART service port and the ARM "
         "input.", ["U1", "S1", "S2", "J17"]),
@@ -110,52 +109,41 @@ SHEET_PLAIN = {
          "mounting holes.", ["U20", "J18", "H1"]),
 }
 
+SHEET_PLAIN[20] = ("One locking 30-contact interface for the six radial zones; paired positive contacts keep each fused zone separate.", ["J2", "F4", "F9"])
+for _n in range(7, 13):
+    SHEET_PLAIN[_n] = ("Ambient zone %d low-side W/N/C switches; outputs now reach the shared J2 interface on sheet 20." % (_n-6), ["Q1%02d" % (1+3*(_n-7)), "J2"])
+
 VALIDATION_PASSED = [
-    ("Electrical rules (ERC)", "0 violations across all 19 schematic sheets", "KiCad 10.0.3 on this schematic"),
-    ("Design rules (DRC)", "0 violations, 0 unconnected items, 0 parity errors", "KiCad 10.0.3 on this layout"),
-    ("Board / schematic parity", "269 components in the manifest, the netlist export and the PCB; 780 logical "
-     "pins, 751 assigned and 29 explicitly unconnected; 887 physical pad objects", "parity report"),
-    ("Net continuity", "each of the 163 assigned nets forms exactly one connected island of copper",
-     "mechanical audit"),
-    ("Drill and solder lands", "795 holes and 852 solder-land faces screened; 0 unexpected overlaps, 76 "
-     "intentional ones (the USB shield stakes and the exposed pads)", "drill/solder-land audit"),
-    ("Mechanical and mounting", "8 copper layers in a 76.2 mm envelope; all four M3 holes keep their 8 mm "
-     "reserve clear of pads and courtyards on both faces", "mechanical audit"),
-    ("USB ground coverage", "the sampled ground projection under all four USB data routes had no uncovered "
-     "sample points", "mechanical audit"),
-    ("Antenna keepout", "no tracks, vias or copper pours under the module's antenna on any of the eight layers",
-     "mechanical audit"),
-    ("Silkscreen variants", "the eight silk-adapted footprints keep electrically identical lands, within 2 nm",
-     "silk variant audit"),
-    ("Parts list", "269 component instances, 248 purchased, 74 exact part-and-footprint rows, 21 excluded PCB "
-     "features; no missing footprints or unassigned pads", "BOM audit"),
-    ("Copper resistance", "43 power and return nets solved across 7 load states. At a modelled 4 A input the "
-     "input copper drop is 59.68 mV nominal and 85.66 mV in the thin/hot sensitivity case; distribution copper "
-     "loss is 0.2972 W and 0.4265 W. This excludes components, connector contacts and the spotlight lead "
-     "models, and it is not a thermal result", "DC solver on this layout"),
+    ("Electrical and design rules", "0 ERC, DRC, unconnected or schematic-parity violations on the final source", "hash-bound FINAL-NATIVE-CHECKS record"),
+    ("Board / schematic / BOM parity", "264 features; 243 fitted components; 73 BOM rows; 786 logical pins, 757 assigned and 29 intentional no-connects; 883 physical pad objects", "main-parity.json on 9c42ff8d"),
+    ("Physical copper connectivity", "All named assigned nets pass physical-pad connectivity; seeded missing-copper control rejected", "main-connectivity.json on 9c42ff8d"),
+    ("Independent CAM comparison", "12 copper/mask/paste films and 850 drill objects compared against native geometry; seeded CAM errors rejected", "FINAL-CAM-RECEIPT bound to 9c42ff8d"),
+    ("Mating interface", "30 contacts implement 24 distinct rails; main J2 and upper J100 preserve zone and contact orientation", "matched interface audits bound to both current PCB hashes"),
+    ("Native change scope", "Approved relocations and In2 exceptions audited; four M3 holes and other ports retained", "NATIVE-SCOPE-AUDIT and approved changes"),
+    ("Return-reference review", "A 1.465544 mm PWM03 crossing of the inherited In3 PCA_OE slot remains a prototype noise-validation item", "RETURN-REFERENCE-CLOSEOUT; not an EMI qualification"),
 ]
 
 VALIDATION_NOT_DONE = [
     "No board has been powered. There is no measurement of any kind on this revision.",
     "No firmware has been built or flashed. The channel map is an integration contract, not code.",
     "The factory stack-up, finished thickness, copper weight and plating are not accepted yet.",
-    "The 90 Ohm USB differential geometry is a request to the factory. Thirteen modelled cases on the native "
-    "geometry spread from 71 to 114 Ohm.",
+    "The 90 Ohm USB differential geometry is a request to the factory. Historical modelled cases on earlier native "
+    "geometry are not a current-board impedance guarantee.",
     "No USB certification, enumeration test or electrostatic-discharge test.",
     "The coupled startup of the two switching converters was never qualified; the vendor model would not run.",
     "Real falling-edge timing, reset recovery and inhibit behaviour are hardware observations not yet made.",
     "No EMC, radio or in-enclosure antenna measurement.",
     "Motor regeneration has no qualified path. Nothing on this board is a brake.",
-    "No enclosed-temperature measurement, and no completed mesh-convergence study behind the copper solve.",
+    "No enclosed-temperature measurement or full-board thermal simulation on this revision. Historical copper-solver totals are not current results.",
     "Actual strip and motor currents are unmeasured; the load model is conditional arithmetic.",
-    "Iron-only solderability has not been established, and no assembly process has been approved.",
+    "C504 final factory installation and the no-wash J2 assembly sequence need supplier approval.",
 ]
 
 FORBIDDEN_EVERYWHERE = [
     (r"[A-Za-z]:[\\/]Users[\\/]", "a Windows user path"),
     (r"/Users/", "a home directory path"),
     (r"Marcelo", "the author's name"),
-    (r"W1144574AS7C1", "a vendor message id"),
+    (r"(?:W\d{7,}[A-Z0-9]*|T-\d+C\d+W\d+[A-Z]*)", "a vendor inquiry id"),
     (r"ParentId", "a vendor message id"),
     (r"website_quote_quantity", "quote quantities"),
     (r"purchased_quantity", "quote quantities"),
@@ -275,13 +263,27 @@ def check_pad_geometry(components):
 
 
 # --------------------------------------------------------------------------- build
+def verify_snapshot(folder):
+    """Check every deliberately cut source byte before deriving any public file."""
+    root = Path(folder).resolve()
+    manifest = read_json(root / "MANIFEST.json")
+    for entry in manifest["files"]:
+        path = (root / entry["path"]).resolve()
+        if not path.is_relative_to(root) or not path.is_file():
+            sys.exit("invalid snapshot member: " + entry["path"])
+        if sha256(path) != entry["sha256"] or path.stat().st_size != entry["bytes"]:
+            sys.exit("snapshot hash/size mismatch: " + entry["path"])
+    print("snapshot manifest verified: %d files" % len(manifest["files"]))
+
+
 def build(handoff):
+    verify_snapshot(handoff)
     H = Path(handoff)
     if not H.is_dir():
         sys.exit("handoff folder not found: %s" % H)
 
     src_pcb = H / "hardware-current/hardware/rev-a/engineered-lighting-rev-a.kicad_pcb"
-    src_zip = H / "downloads/LIGHT-v0.1-c046202e-KiCad-project.zip"
+    src_zip = H / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
     src_csv = H / "hardware-current/manufacturing/quote_bom.csv"
     for path, want, what in ((src_pcb, PCB_SHA, "governing PCB"),
                              (src_zip, ZIP_SHA, "KiCad project ZIP"),
@@ -306,7 +308,7 @@ def build(handoff):
     provenance = {"sources": {}, "layers": {}, "schematic": {}, "census": {}, "notes": []}
     provenance["sources"] = {
         "engineered-lighting-rev-a.kicad_pcb": {"sha256": PCB_SHA, "bytes": src_pcb.stat().st_size},
-        "LIGHT-v0.1-c046202e-KiCad-project.zip": {"sha256": ZIP_SHA, "bytes": src_zip.stat().st_size},
+        "LIGHT-v0.2-9c42ff8d-KiCad-project.zip": {"sha256": ZIP_SHA, "bytes": src_zip.stat().st_size},
         "quote_bom.csv": {"sha256": CSV_SHA, "bytes": src_csv.stat().st_size,
                           "encoding": "UTF-8 with byte-order mark"},
         "handoff_folder": H.name,
@@ -435,7 +437,7 @@ def build(handoff):
     if sorted(through_set) != ["H1", "H2", "H3", "H4", "J14"]:
         sys.exit("unexpected through-feature set: %s" % sorted(through_set))
     custom_pads = check_pad_geometry(components)
-    print("pad geometry verified: 887 outlines reproduce their exported boxes, "
+    print("pad geometry verified: current native outlines reproduce their exported boxes, "
           "rotation sign confirmed against J12 and J13")
     union = [min(xs0), min(ys0), max(xs1) - min(xs0), max(ys1) - min(ys0)]
     fit_x0 = min(union[0], 200 - (union[0] + union[2]), outline[0])
@@ -511,12 +513,12 @@ def build(handoff):
             "source": r_["Primary source"], "source_context": r_["Source revision / context"],
             "evidence_url": r_["Sourcing evidence URL"], "sides": sides,
         })
-    if total != 248 or len(rows) != 74:
+    if total != 243 or len(rows) != 73:
         sys.exit("BOM totals wrong: %d rows, %d packages" % (len(rows), total))
 
     note_updates = [
         {"refs": ["C3", "C512"],
-         "text": "The row's note still asks for DC-bias characterisation. For these two references that work was "
+         "text": "Historical screen recorded with LIGHT v0.1 (c046202e), not rerun for this layout. The row's note still asks for DC-bias characterisation. For these two references that work was "
                  "completed: both were changed to a 22 uF 25 V X7R in a 1210 package after a capacitance review, "
                  "and the screens passed on characterised sample data plus an engineering reserve. The other "
                  "references on this row were not part of that screen.",
@@ -528,9 +530,9 @@ def build(handoff):
     bom = header()
     bom.update({
         "csv_sha256": CSV_SHA,
-        "csv_file": "downloads/LIGHT-v0.1-%s-bom.csv" % SHORT,
-        "totals": {"rows": 74, "per_board": 248, "two_boards": 496, "features": len(features)},
-        "status": SCOPE + " This is the exact part selection that matches the c046202e layout. No stock or "
+        "csv_file": "downloads/LIGHT-v0.2-%s-bom.csv" % SHORT,
+        "totals": {"rows": 73, "per_board": 243, "two_boards": 486, "features": len(features)},
+        "status": SCOPE + " This is the exact part selection that matches the 9c42ff8d layout. No stock or "
                           "price is claimed here.",
         "order_status_note": "Every row of the source CSV carries the same order status: "
                              "\"QUOTE ONLY - exact source/quantity/process not confirmed\".",
@@ -549,6 +551,15 @@ def build(handoff):
     for c in components:
         ref = c["ref"]
         e = teaching.build_entry(ref, src_by_ref[ref])
+        import copy
+        e = copy.deepcopy(e)
+        for claim in e["claims"]:
+            if claim["evidence"] == "modelled-current":
+                claim.update(evidence="simulated-historical", bound_to="c046202efa3896d59d12bf19f55ed48b3a6c77532aac199a3a1e9a993e449310", source_file="history/teaching-v0.1.json")
+                claim["text"] = "Historical calculation recorded on LIGHT v0.1; not rerun for this layout. " + claim["text"]
+        for claim in e["claims"]:
+            if claim["evidence"] == "simulated-historical":
+                claim["source_file"] = "history/teaching-v0.1.json"
         e["sheet"] = c["sheet"]
         e["bom"] = c["bom"]
         e["nets"] = [{"pin": p, "net": n, "role": ("no connect (intentional)" if n is None else "")}
@@ -620,7 +631,7 @@ def build(handoff):
     index.update({"frame": {"viewBox": [0, 0, 419.9890, 297.0022]}, "sheets": sheets,
                   "ref_to_sheet": ref_to_sheet})
     write_json(ASSETS / "schematic/index.json", index)
-    print("19 schematic sheets prepared and indexed")
+    print("20 schematic sheets prepared and indexed")
 
     # ---- native sources ---------------------------------------------------
     zip_members = {}
@@ -645,8 +656,8 @@ def build(handoff):
     for sub in ("downloads", "assembly", "fabrication"):
         (ASSETS / sub).mkdir(parents=True, exist_ok=True)
     shutil.copyfile(src_zip, ASSETS / "downloads" / src_zip.name)
-    shutil.copyfile(src_csv, ASSETS / "downloads" / ("LIGHT-v0.1-%s-bom.csv" % SHORT))
-    for rel in ("light-v0.1-review.pdf", "schematic.pdf"):
+    shutil.copyfile(src_csv, ASSETS / "downloads" / ("LIGHT-v0.2-%s-bom.csv" % SHORT))
+    for rel in ("schematic.pdf",):
         shutil.copyfile(H / "hardware-current/reports" / rel, ASSETS / "downloads" / rel)
     for rel in ("assembly-top.svg", "assembly-bottom.svg"):
         shutil.copyfile(H / "hardware-current/reports" / rel, ASSETS / "assembly" / rel)
@@ -655,16 +666,16 @@ def build(handoff):
                 "outline-mm.svg", "drill-report.txt"):
         shutil.copyfile(fabdir / "drawings" / rel, ASSETS / "fabrication" / rel)
 
-    fab_zip = ASSETS / "fabrication" / ("LIGHT-v0.1-%s-fabrication-reference.zip" % SHORT)
+    fab_zip = ASSETS / "fabrication" / ("LIGHT-v0.2-%s-fabrication-reference.zip" % SHORT)
     fab_zip.parent.mkdir(parents=True, exist_ok=True)
     readme = (
-        "LIGHT v0.1 fabrication reference (revision %s)\n"
+        "LIGHT v0.2 fabrication reference (revision %s)\n"
         "PCB SHA-256: %s\n\n"
         "These are manufacturing outputs generated from the same design source published beside them:\n"
         "Gerber artwork, Excellon drill files, the job file, an IPC-D-356 netlist and the drill drawings.\n\n"
         "They are a reference for reading the board, not a fabrication release. No quote, price, quantity or\n"
         "vendor correspondence is included. The .gbrjob finish and revision fields are KiCad defaults.\n"
-        "Nothing here has been ordered or approved for production.\n" % (SHORT, PCB_SHA)
+        "Submitted for quotation only; no production release.\n" % (SHORT, PCB_SHA)
     )
     members = []
     for p in sorted((fabdir / "gerbers").glob("*")):
@@ -680,6 +691,9 @@ def build(handoff):
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o644 << 16
             zf.writestr(info, data)
+
+    shutil.copytree(H / "public-history", ASSETS / "history", dirs_exist_ok=True)
+    shutil.copyfile(H / "hardware-current/manufacturing/positions-all.csv", ASSETS / "downloads/positions-all.csv")
 
     # ---- downloads manifest ----------------------------------------------
     def item(idx, label, rel, fmt, group, view, note, member=None, predates=False):
@@ -698,7 +712,7 @@ def build(handoff):
         item("project-zip", "Complete KiCad project (everything below, plus libraries)",
              "downloads/%s" % src_zip.name, "ZIP archive", "kicad", None,
              "Extract the whole archive together and open the project file. The root schematic depends on the "
-             "18 child sheets, and the custom symbol and footprint libraries only exist inside this archive."),
+             "19 child sheets, and the custom symbol and footprint libraries only exist inside this archive."),
         item("kicad-pro", "KiCad project settings", "kicad/engineered-lighting-rev-a.kicad_pro",
              "KiCad project", "kicad", None, "Opens the project in KiCad.",
              member="engineered-lighting-rev-a.kicad_pro"),
@@ -708,24 +722,21 @@ def build(handoff):
              member="engineered-lighting-rev-a.kicad_pcb"),
         item("kicad-sch", "Root schematic sheet", "kicad/engineered-lighting-rev-a.kicad_sch",
              "KiCad schematic", "schematic", "schematic",
-             "The root sheet on its own is not the whole design: it links to 18 child sheets, and without them "
+             "The root sheet on its own is not the whole design: it links to 19 child sheets, and without them "
              "it will not open completely.",
              member="engineered-lighting-rev-a.kicad_sch"),
-        item("bom-csv", "Parts list (BOM)", "downloads/LIGHT-v0.1-%s-bom.csv" % SHORT,
+        item("bom-csv", "Parts list (BOM)", "downloads/LIGHT-v0.2-%s-bom.csv" % SHORT,
              "CSV (UTF-8 with byte-order mark)", "bom", "bom",
-             "The exact part selection for this layout: 74 rows, 248 packages per board."),
-        item("review-pdf", "Four-page design review", "downloads/light-v0.1-review.pdf", "PDF", "review",
-             "assembly", "An engineering review of this revision. Its own scope line says it is not a "
-                         "fabrication release.", predates=True),
-        item("schematic-pdf", "Complete schematic (19 pages)", "downloads/schematic.pdf", "PDF", "schematic",
-             "schematic", "One page per sheet, in the same order as the sheet chooser above.", predates=True),
+             "The exact part selection for this layout: 73 rows, 243 packages per board."),
+        item("schematic-pdf", "Complete schematic (20 pages)", "downloads/schematic.pdf", "PDF", "schematic",
+             "schematic", "One page per sheet, in the same order as the sheet chooser above."),
         item("assembly-top", "Assembly drawing, front", "assembly/assembly-top.svg", "SVG drawing", "assembly",
              "assembly", "Component outlines and reference labels for the front face."),
         item("assembly-bottom", "Assembly drawing, back", "assembly/assembly-bottom.svg", "SVG drawing",
              "assembly", "assembly", "Component outlines and reference labels for the back face. KiCad plots "
                                      "this one mirrored, as you would see it looking at the back of the board."),
         item("fab-zip", "Fabrication reference (Gerbers, drills, IPC-D-356)",
-             "fabrication/LIGHT-v0.1-%s-fabrication-reference.zip" % SHORT, "ZIP archive", "fabrication", None,
+             "fabrication/LIGHT-v0.2-%s-fabrication-reference.zip" % SHORT, "ZIP archive", "fabrication", None,
              "Manufacturing outputs of the same source. Not a fabrication release, and not where a beginner "
              "edits the design."),
         item("drill-pth", "Drill map, plated holes", "fabrication/engineered-lighting-rev-a-PTH-drl_map.svg",
@@ -734,9 +745,9 @@ def build(handoff):
              "SVG drawing", "fabrication", "fabrication",
              "The unplated holes: the four M3 mounts and the two USB locating pegs."),
         item("outline", "Board outline drawing", "fabrication/outline-mm.svg", "SVG drawing", "fabrication",
-             "fabrication", "The cut line with dimensions, in millimetres."),
+             "fabrication", "The current cut line in a millimetre SVG frame; no dimension annotations."),
         item("drill-report", "Drill report", "fabrication/drill-report.txt", "Text", "fabrication", None,
-             "Hole counts by diameter: 789 plated and 6 unplated."),
+             "Hole counts for this export; six are unplated mounting/locator holes."),
     ]
     for n, sheet in enumerate(sheets):
         if sheet["n"] == 1:
@@ -746,18 +757,26 @@ def build(handoff):
                           "One child sheet. Single sheet files do not carry the project's symbol and footprint "
                           "libraries -- only the complete archive does.",
                           member=sheet["native"]))
+    items.append(item("placement-csv", "Component placement, both sides", "downloads/positions-all.csv", "CSV", "bom", None, "Exact factory placement data; common top-view coordinates on both sides. No second mirror."))
+    for history in sorted((ASSETS / "history").glob("*")):
+        items.append(item("history-" + history.stem, history.name, "history/" + history.name, "JSON" if history.suffix == ".json" else "Text", "review", None, "Revision-bound evidence: read each source hash and scope; historical results are not current simulations."))
+    for entry in items:
+        if entry["id"] == "history-teaching-v0.1":
+            entry["revision_label"] = "Historical c046202e / earlier"
+        elif entry["id"] == "history-current-checks":
+            entry["revision_label"] = "9c42ff8d / 0af25f8f"
     manifest["items"] = items
     write_json(ASSETS / "downloads/manifest.json", manifest)
 
     # ---- provenance -------------------------------------------------------
     provenance["census"] = {
         "components": len(components), "front": len(by_side["F"]), "back": len(by_side["B"]),
-        "purchased": 248, "features": len(features), "bom_rows": 74,
+        "purchased": 243, "features": len(features), "bom_rows": 73,
         "assigned_nets": len(nets), "explicit_no_connect_pins":
             sum(1 for c in board_src["components"] for v in c["pins"].values() if v is None),
         "pads": sum(len(c["pads"]) for c in components),
         "paste_only_pads": sum(c["paste_only_pads"] for c in components),
-        "schematic_sheets": 19,
+        "schematic_sheets": 20,
     }
     provenance["through_features"] = sorted(through_set)
     provenance["pad_geometry_rule"] = (
@@ -775,7 +794,7 @@ def build(handoff):
     provenance["notes"] = [
         "Layer plots keep their geometry exactly: only the XML prolog, title, description, invisible text and "
         "one empty group are removed, and colours are replaced with currentColor so the page can theme them.",
-        "Datasheet and sourcing links are reproduced as recorded in the BOM CSV on 2026-09-06. They were not "
+        "Datasheet and sourcing links are reproduced from the current quote BOM, including inherited records. They were not "
         "re-checked when this page was built.",
         "Historical simulations keep their own board hashes and are never relabelled as current.",
     ]
@@ -783,12 +802,14 @@ def build(handoff):
     prov.update(provenance)
     write_json(ASSETS / "provenance.json", prov)
 
+    shutil.copytree(H / "public-history", ASSETS / "history", dirs_exist_ok=True)
     scan(verbose=True)
     render()
     print("build complete: %s" % ASSETS)
 
 
 def build_flex(review):
+    verify_snapshot(review)
     index = flex.build(review, FLEX_ASSETS, write_json, write_text, write_bytes, header)
     print("flex: %d designs, %d pads, %d layer renderings"
           % (len(index["boards"]), index["totals"]["pads"],
@@ -823,6 +844,10 @@ def check_flex():
                 sys.exit("%s: fabrication archive changed" % board["id"])
         if not board["pads"]:
             sys.exit("%s: no pads recorded" % board["id"])
+    for entry in index["shared_files"]:
+        path = FLEX_ASSETS / entry["file"]
+        if not path.is_file() or sha256(path) != entry["sha256"] or path.stat().st_size != entry["bytes"]:
+            sys.exit("flex shared reference changed: " + entry["file"])
     for name in flex.NEVER_PUBLISH:
         if list(FLEX_ASSETS.rglob(name)):
             sys.exit("a withheld file was published: %s" % name)
@@ -845,6 +870,8 @@ def scan(verbose=False):
                 for name in zf.namelist():
                     blobs.append(("%s!%s" % (path.name, name), zf.read(name)))
         for name, blob in blobs:
+            if any(part.endswith("-backups") for part in name.split("/")) or name.endswith((".kicad_prl", "fp-info-cache", "FABRICATION-REVIEW.txt", "netlist.xml")):
+                problems.append(name + " is a forbidden publication member")
             text = blob.decode("latin-1")
             for pattern, what in FORBIDDEN_EVERYWHERE + FORBIDDEN_IN_ASSETS:
                 if re.search(pattern, text):
@@ -916,7 +943,7 @@ def blocks():
         z = teaching.zone_of(n)
         cname, cletter = teaching.colour_of(n)
         conn = teaching.ZONE_CONN[z]
-        contact = (n - 1) % 3 + 2
+        contact = teaching.channel_contact(n)
         mark = " (remapped)" if n in teaching.REMAPPED else ""
         rows.append([str(n), "Zone %d %s" % (z, cname), "%s output %d%s" % (dev, led, mark), str(pin),
                      _ref("R1%02d" % n), _ref("Q1%02d" % n),
@@ -997,7 +1024,7 @@ def blocks():
             view = '<a href="#assembly-references">see the drawings below</a>'
         elif it["view"] == "fabrication":
             view = '<a href="#fabrication">see the advanced section</a>'
-        rows.append([esc(it["label"]), esc(it["format"]), SHORT, human_bytes(it["bytes"]),
+        rows.append([esc(it["label"]), esc(it["format"]), esc(it.get("revision_label", SHORT)), human_bytes(it["bytes"]),
                      '<code>%s</code>' % it["sha256"][:12], view,
                      '<a href="../assets/pcb/light-v0.1/%s">download</a>' % it["file"], note])
     out["downloads"] = _table(
@@ -1026,7 +1053,7 @@ def flex_blocks():
             "%d" % b["copper_layers"], "%d" % len(b["pads"]), esc(b["what"]),
         ])
     out["flex-boards"] = _table(
-        ["Circuit", "Design", "Size", "Copper layers", "Solder pads", "What it does"], rows)
+        ["Circuit", "Design", "Size", "Copper layers", "Pads / contacts", "What it does"], rows)
 
     parts = ['<div class="el-pcb-index">']
     for b in index["boards"]:
@@ -1087,7 +1114,7 @@ def flex_blocks():
                 "<code>%s</code>" % b["fabrication"]["sha256"][:12],
                 '<a href="../assets/pcb/flex-v0.2/%s">download</a>' % b["fabrication"]["file"],
             ])
-    for shared, label in (("fit-templates-A3.pdf", "Fit templates (print at 100 %)"),
+    for shared, label in (("fit-templates-A3.pdf", "Historical v0.2 fit templates: upper tail obsolete; use current upper SVG"),
                           ("ENGINEERING-NOTES.txt", "Engineering notes (Markdown source)")):
         path = FLEX_ASSETS / shared
         rows.append(["All three", esc(label), human_bytes(path.stat().st_size),
@@ -1154,7 +1181,7 @@ def check():
     if sha256(pcb) != PCB_SHA:
         sys.exit("the published .kicad_pcb no longer hashes to the governing revision "
                  "(line-ending normalisation is the usual cause -- check docs/assets/pcb/.gitattributes)")
-    zpath = ASSETS / "downloads/LIGHT-v0.1-c046202e-KiCad-project.zip"
+    zpath = ASSETS / "downloads/LIGHT-v0.2-9c42ff8d-KiCad-project.zip"
     if sha256(zpath) != ZIP_SHA:
         sys.exit("the published project ZIP has changed")
     csv_path = ASSETS / bom["csv_file"]
@@ -1181,12 +1208,12 @@ def check():
         sys.exit("a .kicad_prl was published")
 
     census = prov["census"]
-    if len(board["components"]) != 269 or census["components"] != 269:
-        sys.exit("component census is not 269")
-    if sum(bom["totals"][k] for k in ("per_board",)) != 248 or bom["totals"]["rows"] != 74:
+    if len(board["components"]) != 264 or census["components"] != 264:
+        sys.exit("component census is not 264")
+    if sum(bom["totals"][k] for k in ("per_board",)) != 243 or bom["totals"]["rows"] != 73:
         sys.exit("BOM totals drifted")
-    if len(teach["components"]) != 269:
-        sys.exit("teaching content does not cover all 269 references")
+    if len(teach["components"]) != 264:
+        sys.exit("teaching content does not cover all 264 references")
     for ref, e in teach["components"].items():
         for c in e["claims"]:
             if c["evidence"] == "measured":
