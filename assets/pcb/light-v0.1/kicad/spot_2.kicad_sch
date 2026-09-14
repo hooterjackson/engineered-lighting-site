@@ -1,0 +1,1429 @@
+(kicad_sch
+  (version 20250114)
+  (generator "engineered-lighting")
+  (generator_version "0.2")
+  (uuid "7d811806-cdea-579b-88fd-298c7067c42f")
+  (paper "A3")
+  (title_block
+    (title "Spot 2")
+    (date "2026-09-06")
+    (rev "A draft")
+    (company "Engineered Lighting")
+    (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
+  (lib_symbols
+    (symbol "Device:D_Schottky"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "D"
+        (at 0 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "D_Schottky"
+        (at 0 -2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Schottky diode"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "diode Schottky"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "D_Schottky_0_1"
+        (polyline
+          (pts
+            (xy -1.905 0.635)
+            (xy -1.905 1.27)
+            (xy -1.27 1.27)
+            (xy -1.27 -1.27)
+            (xy -0.635 -1.27)
+            (xy -0.635 -0.635))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 1.27 1.27)
+            (xy 1.27 -1.27)
+            (xy -1.27 0)
+            (xy 1.27 1.27))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 1.27 0)
+            (xy -1.27 0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "D_Schottky_1_1"
+        (pin passive line
+          (at -3.81 0 0)
+          (length 2.54)
+          (name "K"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 3.81 0 180)
+          (length 2.54)
+          (name "A"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Device:C"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.254))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "C"
+        (at 0.635 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "C"
+        (at 0.635 -2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" ""
+        (at 0.9652 -3.81 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Unpolarized capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "cap capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "C_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "C_0_1"
+        (polyline
+          (pts
+            (xy -2.032 0.762)
+            (xy 2.032 0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -2.032 -0.762)
+            (xy 2.032 -0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "C_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Power_Protection:TVS2700DRV"
+      (pin_names
+        (offset 0)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (symbol "TVS2700DRV_0_0"
+        (rectangle
+          (start -11.43 2.54)
+          (end -5.08 -2.54)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -8.255 2.54)
+            (xy -8.255 3.81)
+            (xy 0 3.81))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -8.255 -2.54)
+            (xy -8.255 -3.81)
+            (xy 0 -3.81))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0 1.27)
+            (xy -1.778 1.27))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (text "Det &"
+          (at -8.255 0.635 0)
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (text "Drv"
+          (at -8.255 -1.27 0)
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (symbol "TVS2700DRV_0_1"
+        (rectangle
+          (start -12.065 5.08)
+          (end 2.54 -5.08)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background)))
+        (polyline
+          (pts
+            (xy -2.286 1.397)
+            (xy -2.286 -1.524))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -2.286 0)
+            (xy -5.08 0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -1.778 1.778)
+            (xy -1.778 -1.778))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (circle
+          (center -0.889 0)
+          (radius 2.794)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -0.127 -1.27)
+            (xy -1.143 -1.651)
+            (xy -1.143 -0.889)
+            (xy -0.127 -1.27))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type outline)))
+        (polyline
+          (pts
+            (xy 0 5.08)
+            (xy 0 2.54))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0 2.54)
+            (xy 0 1.27))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0 -2.54)
+            (xy 0 -5.08))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0 -2.54)
+            (xy 0 -1.27)
+            (xy -1.778 -1.27))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "TVS2700DRV_1_1"
+        (pin power_in line
+          (at 0 -7.62 90)
+          (length 2.54)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -7.62 90)
+          (length 2.54)
+          (hide yes)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -7.62 90)
+          (length 2.54)
+          (hide yes)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 7.62 270)
+          (length 2.54)
+          (name "IN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 7.62 270)
+          (length 2.54)
+          (hide yes)
+          (name "IN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 7.62 270)
+          (length 2.54)
+          (hide yes)
+          (name "IN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "6"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -7.62 90)
+          (length 2.54)
+          (hide yes)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "7"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no)
+      (property "Reference" "U"
+        (at 2.54 1.27 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "TVS2700DRV"
+        (at 2.54 -1.27 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm"
+        (at 5.08 -8.89 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tvs2700.pdf"
+        (at -2.54 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Flat-Clamp Surge Protection Device. 27Vrwm, WSON-6"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "EMI, ESD, TVS protection transient"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "WSON*1EP*2x2mm*P0.65mm*EP1x1.6mm*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27)))))
+    (symbol "Connector_Generic:Conn_01x02"
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "J"
+        (at 0 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "Conn_01x02"
+        (at 0 -5.08 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "connector"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "Connector*:*_1x??_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "Conn_01x02_1_1"
+        (rectangle
+          (start -1.27 1.27)
+          (end 1.27 -3.81)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background)))
+        (rectangle
+          (start -1.27 0.127)
+          (end 0 -0.127)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -2.413)
+          (end 0 -2.667)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (pin passive line
+          (at -5.08 0 0)
+          (length 3.81)
+          (name "Pin_1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -2.54 0)
+          (length 3.81)
+          (name "Pin_2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Connector_Generic:Conn_01x06"
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "J"
+        (at 0 7.62 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "Conn_01x06"
+        (at 0 -10.16 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "connector"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "Connector*:*_1x??_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "Conn_01x06_1_1"
+        (rectangle
+          (start -1.27 6.35)
+          (end 1.27 -8.89)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background)))
+        (rectangle
+          (start -1.27 5.207)
+          (end 0 4.953)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 2.667)
+          (end 0 2.413)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 0.127)
+          (end 0 -0.127)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -2.413)
+          (end 0 -2.667)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -4.953)
+          (end 0 -5.207)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -7.493)
+          (end 0 -7.747)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (pin passive line
+          (at -5.08 5.08 0)
+          (length 3.81)
+          (name "Pin_1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 2.54 0)
+          (length 3.81)
+          (name "Pin_2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 0 0)
+          (length 3.81)
+          (name "Pin_3"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -2.54 0)
+          (length 3.81)
+          (name "Pin_4"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -5.08 0)
+          (length 3.81)
+          (name "Pin_5"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -7.62 0)
+          (length 3.81)
+          (name "Pin_6"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "6"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no)))
+  (symbol
+    (lib_id "Device:D_Schottky")
+    (at 175.26 180.34 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "733848be-6a1d-520e-909e-20faad2782d4")
+    (property "Reference" "D504"
+      (at 175.26 172.72 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "60V 1A flyback Schottky"
+      (at 175.26 175.26 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Diode_SMD:D_SMA"
+      (at 175.26 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "B160-13-F"
+      (at 175.26 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Diodes Incorporated"
+      (at 175.26 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.diodes.com/datasheet/download/B130.pdf"
+      (at 175.26 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/7d811806-cdea-579b-88fd-298c7067c42f"
+          (reference "D504")
+          (unit 1))))
+    (pin "1"
+      (uuid "b65def32-0d56-5188-9bc9-ece7659f6337"))
+    (pin "2"
+      (uuid "e3e48f36-77fc-52cb-9aa9-7ea3c5f5c2f3")))
+  (wire
+    (pts
+      (xy 171.45 180.34)
+      (xy 161.29 180.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0029561e-c066-5a8f-9229-e945209908f6"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 161.29 180.34 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "cc185734-cb1d-5ecb-a31d-13a987a0f77b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 161.29 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 179.07 180.34)
+      (xy 189.23 180.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b04b4dd3-6a67-52eb-b757-aab5366a4863"))
+  (global_label "SPOT3_SW"
+    (shape passive)
+    (at 189.23 180.34 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0bbe7462-4b86-5dd2-9301-9bf6e0b5d80d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 189.23 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 43.18 180.34 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "5a6776e6-8a35-53a0-b654-7a6c55dbd510")
+    (property "Reference" "C523"
+      (at 48.26 179.07 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10uF 50V X7R"
+      (at 48.26 181.61 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+      (at 43.18 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM32ER71H106KA12L"
+      (at 43.18 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Murata"
+      (at 43.18 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-04A.pdf"
+      (at 43.18 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/7d811806-cdea-579b-88fd-298c7067c42f"
+          (reference "C523")
+          (unit 1))))
+    (pin "1"
+      (uuid "d07f15ca-3ceb-5c54-af15-adc879ec7244"))
+    (pin "2"
+      (uuid "a1949695-0f8d-5ad1-b326-752065271a73")))
+  (wire
+    (pts
+      (xy 43.18 184.15)
+      (xy 43.18 191.77))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e1372d72-3528-5a01-94ea-df6a9d7eb10e"))
+  (global_label "GND"
+    (shape passive)
+    (at 43.18 191.77 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "25ce28be-afbb-5de6-bb33-ebcea0169587")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 43.18 191.77 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 96.52 180.34 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "0f2e7c2e-f30a-5d75-977f-ca0d4d51e26b")
+    (property "Reference" "C524"
+      (at 101.6 179.07 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10uF 50V X7R"
+      (at 101.6 181.61 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+      (at 96.52 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM32ER71H106KA12L"
+      (at 96.52 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Murata"
+      (at 96.52 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-04A.pdf"
+      (at 96.52 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/7d811806-cdea-579b-88fd-298c7067c42f"
+          (reference "C524")
+          (unit 1))))
+    (pin "1"
+      (uuid "b32166c5-2578-5af7-9c63-5111bde2e43c"))
+    (pin "2"
+      (uuid "98a9fa85-8cdd-557f-aab1-115625dfb1e8")))
+  (wire
+    (pts
+      (xy 96.52 184.15)
+      (xy 96.52 191.77))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e7ca31f5-60a2-5993-a95f-dffc5c89a7f4"))
+  (global_label "GND"
+    (shape passive)
+    (at 96.52 191.77 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "456a4ed6-0bd3-5dc6-859f-41e1879bcdcd")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 96.52 191.77 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Power_Protection:TVS2700DRV")
+    (at 292.1 180.34 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "b9779270-e156-5473-90ef-ec56e3340047")
+    (property "Reference" "U500"
+      (at 301.9425 165.1 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "27V flat-clamp transient protector"
+      (at 301.9425 167.64 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias"
+      (at 292.1 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "TVS2700DRVR"
+      (at 292.1 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Texas Instruments"
+      (at 292.1 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tvs2700.pdf"
+      (at 292.1 180.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/7d811806-cdea-579b-88fd-298c7067c42f"
+          (reference "U500")
+          (unit 1))))
+    (pin "1"
+      (uuid "3013f5af-1d19-50c5-a76c-f31b43e20130"))
+    (pin "2"
+      (uuid "8cfcbc06-70e9-58e1-be4f-0f73d4658cc5"))
+    (pin "3"
+      (uuid "e3447bca-d0dd-5f83-a65b-a170fae19408"))
+    (pin "4"
+      (uuid "1c084cad-0047-5acb-afeb-00d7f75573d7"))
+    (pin "5"
+      (uuid "3df182e8-b380-57c5-838e-dd600d7bacf2"))
+    (pin "6"
+      (uuid "dace96fd-ed60-5964-96b6-2d868120a58f"))
+    (pin "7"
+      (uuid "bc7c5f88-032b-52ae-96df-28ccf0959311")))
+  (wire
+    (pts
+      (xy 292.1 187.96)
+      (xy 292.1 195.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0c1a068c-17c9-5277-af3d-e444b81bc770"))
+  (global_label "GND"
+    (shape passive)
+    (at 292.1 195.58 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "91295e38-9ed0-50a3-b7f0-f86b7e715a2b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 292.1 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 292.1 172.72)
+      (xy 292.1 162.56))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "706a04d4-098c-5a87-88be-d24eabb8f040"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 292.1 162.56 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "ae46e027-b4df-5ede-8d8a-3f4d2039d6cc")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 292.1 162.56 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 43.18 176.53)
+      (xy 96.52 176.53))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "48be0735-dbb4-56ca-9868-9ebd2bb62d26"))
+  (global_label "V24_SPOT"
+    (shape passive)
+    (at 96.52 176.53 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "3b66e15e-ef50-5bac-9658-33afb474f9ed")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 96.52 176.53 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (text "SPOT 2"
+    (at 20.32 15.24 0)
+    (effects
+      (font
+        (size 2.54 2.54))
+      (justify left top))
+    (uuid "7964324c-7570-5b1b-9abf-3942f4b249d0"))
+  (text "J9: 1/2 = SPOT1 +/-, 3/4 = SPOT2 +/-, 5/6 = SPOT3 +/-.\nAll three LED pairs remain independent; LED- is not GND.\nThe wire service loop reaches the static arm flex; J13 separately carries tilt power and CAN."
+    (at 20.32 27.94 0)
+    (effects
+      (font
+        (size 1.5 1.5))
+      (justify left top))
+    (uuid "1cd4cc28-ea5e-5be1-b72b-79c3c1ca2b03"))
+  (text "CH3 current loop continuation from U9 on spot_1"
+    (at 20.32 132.08 0)
+    (effects
+      (font
+        (size 1.8 1.8))
+      (justify left top))
+    (uuid "5493b5b2-bebc-5abe-97a2-38b16fc0ce82"))
+  (text "U500 local spotlight-rail shunt clamp.\nPulse limits do not establish continuous braking."
+    (at 241.3 228.6 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "c7fbdc4f-badf-594a-adc2-d2110c3df887"))
+  (embedded_fonts no)
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x06")
+    (at 76.2 81.28 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "d479fec1-7406-555c-a925-0248ae16ad3a")
+    (property "Reference" "J9"
+      (at 76.2 66.04 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "SPOTLIGHT 3 PAIRS"
+      (at 76.2 68.58 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "EL:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Vertical"
+      (at 76.2 81.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "BM06B-GHS-TBT(LF)(SN)"
+      (at 76.2 81.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "JST"
+      (at 76.2 81.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.jst-mfg.com/product/pdf/eng/eGH.pdf"
+      (at 76.2 81.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/7d811806-cdea-579b-88fd-298c7067c42f"
+          (reference "J9")
+          (unit 1))))
+    (pin "1"
+      (uuid "c3740fff-6680-52ef-8423-c4a92992f919"))
+    (pin "2"
+      (uuid "2d403ec8-815c-5626-9bc0-71445aae7e93"))
+    (pin "3"
+      (uuid "70ae3571-8578-51f9-849f-a37598dd1d83"))
+    (pin "4"
+      (uuid "545e6da7-6df6-5029-9ef7-81e68bf2dd43"))
+    (pin "5"
+      (uuid "f9f783fd-4c87-53eb-9bc0-aa903f8ca7fe"))
+    (pin "6"
+      (uuid "ee1f922d-a351-5ac6-bf42-938f01924c90")))
+  (wire
+    (pts
+      (xy 71.12 76.2)
+      (xy 57.15 76.2))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "dd92f289-e904-5b82-9077-3ac17c567ea8"))
+  (global_label "SPOT1_LED_PLUS"
+    (shape passive)
+    (at 57.15 76.2 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0c91df28-89da-53df-93e8-b938ab071014")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 57.15 76.2 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 71.12 78.74)
+      (xy 57.15 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "05f4bf81-3313-5394-b930-b48ccdf0255b"))
+  (global_label "SPOT1_LED_MINUS"
+    (shape passive)
+    (at 57.15 78.74 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f99c1c7f-2ab1-5896-83f6-13c751d11c2f")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 57.15 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 71.12 81.28)
+      (xy 57.15 81.28))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "655591a5-614a-559e-9315-c6d0cb5026f0"))
+  (global_label "SPOT2_LED_PLUS"
+    (shape passive)
+    (at 57.15 81.28 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2b9bbf2b-7307-532a-8bc7-efb4ede6f489")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 57.15 81.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 71.12 83.82)
+      (xy 57.15 83.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fd0ccdf3-9b72-522d-a605-2f9a15334186"))
+  (global_label "SPOT2_LED_MINUS"
+    (shape passive)
+    (at 57.15 83.82 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0325b0e0-ae14-52ba-b7a2-86b9d692d15f")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 57.15 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 71.12 86.36)
+      (xy 57.15 86.36))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f74c5f33-33a5-5f4b-9bf5-338e485957a6"))
+  (global_label "SPOT3_LED_PLUS"
+    (shape passive)
+    (at 57.15 86.36 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b71dd003-0f27-5698-b46d-ced2ca1bcb97")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 57.15 86.36 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 71.12 88.9)
+      (xy 57.15 88.9))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "de527cc8-2af1-5372-8a64-8b63b7baed95"))
+  (global_label "SPOT3_LED_MINUS"
+    (shape passive)
+    (at 57.15 88.9 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "19dfd429-1676-5698-84b8-a2c112b52acb")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 57.15 88.9 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))))

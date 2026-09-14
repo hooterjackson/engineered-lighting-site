@@ -1,0 +1,2 @@
+Current board cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb
+868 drill objects: fresh Excellon is identical to the independently compared electrical baseline 80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958. Branding changes only back silkscreen. No physical inspection.

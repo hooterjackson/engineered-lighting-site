@@ -1,0 +1,110 @@
+<svg viewBox="0 0 1000 760" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="760" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · The fan-out — seven zones, four chips, one boundary</text>
+  <text x="30" y="57" font-size="12" fill="#555">Each ribbon is one zone's three signals, always in warm / neutral / cool order — and colored by the hub that feeds it.</text>
+
+  <rect x="30" y="70" width="316" height="24" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="12"/>
+  <text x="188" y="86" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">ORDER MATTERS: wire zone by zone — never chip by chip</text>
+
+  <!-- legend -->
+  <line x1="600" y1="90" x2="640" y2="90" stroke="#c47a00" stroke-width="5"/>
+  <text x="648" y="94" font-size="9.5" fill="#555">= from hub #1</text>
+  <line x1="760" y1="90" x2="800" y2="90" stroke="#0e8a7a" stroke-width="5"/>
+  <text x="808" y="94" font-size="9.5" fill="#555">= from hub #2</text>
+
+  <!-- hub 1: zones 1-5 -->
+  <rect x="40" y="110" width="270" height="330" fill="#fdf6ec" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="56" y="136" font-size="13" font-weight="bold" fill="#223">PCA9685 #1 · 0x40</text>
+  <text x="56" y="154" font-size="9.5" fill="#556">A0 open · 15 of 16 channels used</text>
+  <g font-size="11" fill="#223">
+    <text x="56" y="174">zone 1 · ch 0 · 1 · 2</text>
+    <text x="56" y="234">zone 2 · ch 3 · 4 · 5</text>
+    <text x="56" y="294">zone 3 · ch 6 · 7 · 8</text>
+    <text x="56" y="354">zone 4 · ch 9 · 10 · 11</text>
+    <text x="56" y="414">zone 5 · ch 12 · 13 · 14</text>
+  </g>
+
+  <!-- hub 2: zones 6-7 -->
+  <rect x="40" y="460" width="270" height="136" fill="#fdf6ec" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="56" y="486" font-size="13" font-weight="bold" fill="#223">PCA9685 #2 · 0x41</text>
+  <text x="56" y="504" font-size="9.5" fill="#556">A0 bridged · 6 of 16 channels used</text>
+  <g font-size="11" fill="#223">
+    <text x="56" y="532">zone 6 · ch 0 · 1 · 2</text>
+    <text x="56" y="574">zone 7 · ch 3 · 4 · 5</text>
+  </g>
+
+  <!-- the hub boundary -->
+  <line x1="30" y1="449" x2="970" y2="449" stroke="#c33" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="350" y="443" font-size="10.5" font-weight="bold" fill="#8a1c1c">THE HUB BOUNDARY — only chip 3 crosses it</text>
+
+  <!-- ribbons at band centers -->
+  <g stroke-width="5" fill="none">
+    <line x1="310" y1="170" x2="700" y2="170" stroke="#c47a00"/>
+    <line x1="310" y1="230" x2="700" y2="230" stroke="#c47a00"/>
+    <line x1="310" y1="290" x2="700" y2="290" stroke="#c47a00"/>
+    <line x1="310" y1="350" x2="700" y2="350" stroke="#c47a00"/>
+    <line x1="310" y1="410" x2="700" y2="410" stroke="#c47a00"/>
+    <line x1="310" y1="528" x2="700" y2="528" stroke="#0e8a7a"/>
+    <line x1="310" y1="570" x2="700" y2="570" stroke="#0e8a7a"/>
+  </g>
+  <g font-size="9" fill="#666" text-anchor="middle">
+    <text x="505" y="163">×3</text>
+    <text x="505" y="223">×3</text>
+    <text x="505" y="283">×3</text>
+    <text x="505" y="343">×3</text>
+    <text x="505" y="403">×3</text>
+    <text x="505" y="521">×3</text>
+    <text x="505" y="563">×3</text>
+  </g>
+
+  <!-- chip 1: zones 1-2 -->
+  <rect x="700" y="142" width="270" height="108" fill="#eefaf1" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="714" y="160" font-size="11.5" font-weight="bold" fill="#223">ULN2803A · chip 1</text>
+  <text x="714" y="174" font-size="9.5" fill="#3f7c55">IN 1·2·3 ← zone 1 → OUT 18·17·16</text>
+  <text x="714" y="234" font-size="9.5" fill="#3f7c55">IN 4·5·6 ← zone 2 → OUT 15·14·13</text>
+
+  <!-- chip 2: zones 3-4 -->
+  <rect x="700" y="262" width="270" height="108" fill="#eefaf1" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="714" y="280" font-size="11.5" font-weight="bold" fill="#223">ULN2803A · chip 2</text>
+  <text x="714" y="294" font-size="9.5" fill="#3f7c55">IN 1·2·3 ← zone 3 → OUT 18·17·16</text>
+  <text x="714" y="354" font-size="9.5" fill="#3f7c55">IN 4·5·6 ← zone 4 → OUT 15·14·13</text>
+
+  <!-- chip 3: zones 5-6, straddling the boundary -->
+  <rect x="700" y="382" width="270" height="162" fill="#fffbe8" stroke="#c9a227" stroke-width="2.5" rx="8"/>
+  <text x="714" y="400" font-size="11.5" font-weight="bold" fill="#8a1c1c">ULN2803A · chip 3 — FED BY BOTH</text>
+  <text x="714" y="414" font-size="9.5" font-weight="bold" fill="#8a5a00">IN 1·2·3 ← zone 5 · hub #1 → OUT 18·17·16</text>
+  <text x="714" y="532" font-size="9.5" font-weight="bold" fill="#0e6a5e">IN 4·5·6 ← zone 6 · hub #2 → OUT 15·14·13</text>
+
+  <!-- the boundary, visibly passing through chip 3 -->
+  <line x1="706" y1="449" x2="964" y2="449" stroke="#c33" stroke-width="2" stroke-dasharray="8 5" opacity="0.55"/>
+  <text x="835" y="472" font-size="9" font-style="italic" text-anchor="middle" fill="#8a6a2f">the boundary runs through this one chip</text>
+
+  <!-- chip 4: zone 7 -->
+  <rect x="700" y="552" width="270" height="60" fill="#eefaf1" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="714" y="566" font-size="11.5" font-weight="bold" fill="#223">ULN2803A · chip 4</text>
+  <text x="714" y="581" font-size="9.5" fill="#3f7c55">IN 1·2·3 ← zone 7 → OUT 18·17·16</text>
+  <text x="714" y="598" font-size="9" fill="#8a8a8a">IN 4–8 spare · p9 → star · p10 n/c</text>
+
+  <!-- callouts -->
+  <rect x="40" y="626" width="560" height="88" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="52" y="646" font-size="10" font-weight="bold" fill="#8a1c1c">CHIP 3 IS WHY YOU WIRE ZONE BY ZONE, NEVER CHIP BY CHIP</text>
+  <g font-size="9.5" fill="#7c2a2a">
+    <text x="52" y="665">Chips 1, 2 and 4 take both their zones from one hub; chip 3 takes zone 5 from hub #1</text>
+    <text x="52" y="680">and zone 6 from hub #2. Wire chip-by-chip and you reach for the wrong board exactly</text>
+    <text x="52" y="695">once — CP13 passes, CP14 fails, and the missing wire sits between two healthy parts.</text>
+  </g>
+
+  <rect x="620" y="626" width="350" height="88" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="6"/>
+  <text x="632" y="646" font-size="10" font-weight="bold" fill="#333">TAKE ONLY THE PWM PIN</text>
+  <g font-size="9.5" fill="#444">
+    <text x="632" y="665">Each hub channel is three holes — GND, V+, PWM.</text>
+    <text x="632" y="680">Every signal in every ribbon here comes off the</text>
+    <text x="632" y="695">PWM hole, and nothing else on the channel.</text>
+  </g>
+
+  <!-- the 24 V lane, kept separate -->
+  <line x1="40" y1="734" x2="960" y2="734" stroke="#d62828" stroke-width="4"/>
+  <text x="40" y="726" font-size="10" font-weight="bold" fill="#8a1c1c">+24 V BUS (WAGO)</text>
+  <text x="960" y="726" font-size="10" font-weight="bold" text-anchor="end" fill="#8a1c1c">→ tape +24 V · all 7 zones</text>
+  <text x="500" y="753" font-size="10" text-anchor="middle" fill="#7c2a2a">The tape's +24 V never enters a hub or a chip — only each zone's three negatives are switched.</text>
+</svg>

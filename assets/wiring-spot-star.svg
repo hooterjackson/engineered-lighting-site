@@ -1,0 +1,101 @@
+<svg viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="640" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4b · The star — three lamps on one plate</text>
+  <text x="30" y="57" font-size="12" fill="#555">Each die is electrically its own lamp with its own ± pads. Which die is warm, cool, or amber is learned by lighting it — never by eye.</text>
+
+  <!-- star body -->
+  <g transform="translate(300,330)">
+    <!-- castellation tabs -->
+    <g fill="#f4f4f0" stroke="#334" stroke-width="1.5">
+      <rect x="-28" y="-212" width="56" height="34" rx="6" transform="rotate(0)"/>
+      <rect x="-28" y="-212" width="56" height="34" rx="6" transform="rotate(60)"/>
+      <rect x="-28" y="-212" width="56" height="34" rx="6" transform="rotate(120)"/>
+      <rect x="-28" y="-212" width="56" height="34" rx="6" transform="rotate(180)"/>
+      <rect x="-28" y="-212" width="56" height="34" rx="6" transform="rotate(240)"/>
+      <rect x="-28" y="-212" width="56" height="34" rx="6" transform="rotate(300)"/>
+    </g>
+    <circle r="190" fill="#f4f4f0" stroke="#334" stroke-width="1.5"/>
+    <circle r="16" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+    <circle cx="0" cy="-160" r="9" fill="#ffffff" stroke="#333" stroke-width="1.2"/>
+    <circle cx="-139" cy="80" r="9" fill="#ffffff" stroke="#333" stroke-width="1.2"/>
+    <circle cx="139" cy="80" r="9" fill="#ffffff" stroke="#333" stroke-width="1.2"/>
+
+    <!-- dies at upper-left, upper-right, bottom -->
+    <g>
+      <g transform="translate(-95,-55)">
+        <rect x="-30" y="-30" width="60" height="60" fill="#e8e8e4" stroke="#555" stroke-width="1.5"/>
+        <circle r="20" fill="#f0e0a0" stroke="#c0a860"/>
+      </g>
+      <g transform="translate(95,-55)">
+        <rect x="-30" y="-30" width="60" height="60" fill="#e8e8e4" stroke="#555" stroke-width="1.5"/>
+        <circle r="20" fill="#f0e0a0" stroke="#c0a860"/>
+      </g>
+      <g transform="translate(0,110)">
+        <rect x="-30" y="-30" width="60" height="60" fill="#e8e8e4" stroke="#555" stroke-width="1.5"/>
+        <circle r="20" fill="#f0e0a0" stroke="#c0a860"/>
+      </g>
+    </g>
+
+    <!-- pad pairs: top, lower-left, lower-right — ringed in CHANNEL colors -->
+    <g fill="#d9c98a" stroke="#8a6a2f" stroke-width="1.2">
+      <rect x="-34" y="-142" width="26" height="26"/>
+      <rect x="8"  y="-142" width="26" height="26"/>
+      <rect x="-152" y="-18" width="26" height="26"/>
+      <rect x="-152" y="24"  width="26" height="26"/>
+      <rect x="126" y="-18" width="26" height="26"/>
+      <rect x="126" y="24"  width="26" height="26"/>
+    </g>
+    <g font-size="15" font-weight="bold" fill="#223">
+      <text x="-21" y="-167" text-anchor="middle">+</text>
+      <text x="21"  y="-167" text-anchor="middle">−</text>
+      <text x="-166" y="0" text-anchor="end">+</text>
+      <text x="-166" y="42" text-anchor="end">−</text>
+      <text x="166" y="0" text-anchor="start">+</text>
+      <text x="166" y="42" text-anchor="start">−</text>
+    </g>
+    <ellipse cx="0" cy="-129" rx="58" ry="28" fill="none" stroke="#c47a00" stroke-width="3.5"/>
+    <ellipse cx="-139" cy="16" rx="30" ry="52" fill="none" stroke="#7a7a7a" stroke-width="3.5"/>
+    <ellipse cx="139" cy="16" rx="30" ry="52" fill="none" stroke="#2e86c1" stroke-width="3.5"/>
+  </g>
+
+  <text x="300" y="586" font-size="11" text-anchor="middle" fill="#556">ring colors = driver channels 1 · 2 · 3, wired at S4 —</text>
+  <text x="300" y="601" font-size="11" text-anchor="middle" fill="#556">the die colors (warm / cool / amber) get their names at S8</text>
+
+  <!-- callouts -->
+  <rect x="620" y="90" width="350" height="106" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="6"/>
+  <text x="632" y="111" font-size="10" font-weight="bold" fill="#333">THREE LAMPS, ONE PLATE</text>
+  <g font-size="9.5" fill="#444">
+    <text x="632" y="130">Each die connects to its own ± pair and to nothing</text>
+    <text x="632" y="145">else on the star — which is what lets one driver</text>
+    <text x="632" y="160">channel own one die. Most stock 3-ups are series-</text>
+    <text x="632" y="175">wired and cannot do this; yours can.</text>
+  </g>
+
+  <rect x="620" y="212" width="350" height="106" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="632" y="233" font-size="10" font-weight="bold" fill="#6b5200">POLARITY LIVES IN THE PRINT (S2)</text>
+  <g font-size="9.5" fill="#514000">
+    <text x="632" y="252">The + and − beside each pair are the authority —</text>
+    <text x="632" y="267">the marks drawn here are illustrative. Read YOUR</text>
+    <text x="632" y="282">star's print and write each pair's polarity on a</text>
+    <text x="632" y="297">tape flag before any wire is made.</text>
+  </g>
+
+  <rect x="620" y="334" width="350" height="106" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="6"/>
+  <text x="632" y="355" font-size="10" font-weight="bold" fill="#333">THE DIODE-MODE GLOW</text>
+  <g font-size="9.5" fill="#444">
+    <text x="632" y="374">Meter on diode mode, red probe on the printed + :</text>
+    <text x="632" y="389">many meters make the die glow faintly — naming its</text>
+    <text x="632" y="404">color and proving its polarity before any supply.</text>
+    <text x="632" y="419">OL both ways = the meter tops out. The print rules.</text>
+  </g>
+
+  <rect x="620" y="456" width="350" height="120" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="632" y="477" font-size="10" font-weight="bold" fill="#8a1c1c">NEVER BARE, NEVER THE BUS</text>
+  <g font-size="9.5" fill="#7c2a2a">
+    <text x="632" y="496">Heatsink first (S1): the star dissipates ~3 W into a</text>
+    <text x="632" y="511">coin-sized plate and cooks itself bare in under a</text>
+    <text x="632" y="526">minute. And 24 V never touches these pads — the</text>
+    <text x="632" y="541">driver stands between the bus and the star, always.</text>
+  </g>
+  <text x="632" y="563" font-size="9.5" font-weight="bold" fill="#8a1c1c">Aimed at the wall. It is painfully bright.</text>
+</svg>

@@ -1,0 +1,92 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · Hop 1 — the PCA9685: sixteen dimmers on two wires</text>
+  <text x="30" y="56" font-size="12" fill="#555">One order over I2C and the chip holds the level by itself. It answers at 0x40 — unless the A0 jumper says 0x41.</text>
+
+  <rect x="30" y="66" width="356" height="24" fill="#fffbe8" stroke="#c9a227" stroke-width="1.5" rx="12"/>
+  <text x="208" y="82" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#6b5200">DIRECTION: the board's two ends are MIRRORED — read YOUR end's silkscreen</text>
+
+  <!-- ESP32 -->
+  <rect x="50" y="110" width="170" height="210" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="135" y="134" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">ESP32-C6</text>
+  <g font-size="11" fill="#223" text-anchor="end">
+    <text x="212" y="164">3V3</text>
+    <text x="212" y="204">GND</text>
+    <text x="212" y="244">GPIO2</text>
+    <text x="212" y="284">GPIO3</text>
+  </g>
+  <text x="135" y="308" font-size="9" text-anchor="middle" fill="#556">the ONE I2C master, the ONE 3V3 source</text>
+
+  <!-- PCA9685 -->
+  <rect x="380" y="100" width="280" height="290" fill="#fdf6ec" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="520" y="126" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">PCA9685</text>
+  <g font-size="11" fill="#223">
+    <text x="390" y="164">VCC</text>
+    <text x="390" y="204">GND</text>
+    <text x="390" y="244">SDA</text>
+    <text x="390" y="284">SCL</text>
+    <text x="652" y="164" text-anchor="end">LED0</text>
+    <text x="652" y="204" text-anchor="end">LED1</text>
+    <text x="652" y="244" text-anchor="end">LED2</text>
+    <text x="652" y="284" text-anchor="end">LED3–15</text>
+  </g>
+  <text x="520" y="318" font-size="10" text-anchor="middle" fill="#8a6a2f">holds all 16 levels steady on its own —</text>
+  <text x="520" y="332" font-size="10" text-anchor="middle" fill="#8a6a2f">told once, it never needs reminding</text>
+
+  <!-- wires in -->
+  <line x1="220" y1="160" x2="380" y2="160" stroke="#7b2d8b" stroke-width="3"/>
+  <text x="300" y="152" font-size="10" fill="#7b2d8b" text-anchor="middle">3.3 V</text>
+  <line x1="220" y1="200" x2="380" y2="200" stroke="#222" stroke-width="3"/>
+  <line x1="220" y1="240" x2="380" y2="240" stroke="#1d6fd6" stroke-width="3"/>
+  <text x="300" y="234" font-size="10" fill="#1d6fd6" text-anchor="middle">SDA (data)</text>
+  <line x1="220" y1="280" x2="380" y2="280" stroke="#0e8a7a" stroke-width="3"/>
+  <text x="300" y="296" font-size="10" fill="#0e8a7a" text-anchor="middle">SCL (clock)</text>
+
+  <!-- VCC trap -->
+  <rect x="680" y="80" width="290" height="58" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="692" y="100" font-size="11" font-weight="bold" fill="#8a1c1c">VCC gets 3.3 V — NEVER 5 V</text>
+  <text x="692" y="116" font-size="10" fill="#7c2a2a">at 5 V the logic threshold climbs past the C6</text>
+  <text x="692" y="130" font-size="10" fill="#7c2a2a">and I2C fails silently — the maddening kind</text>
+
+  <!-- V+ crossed out -->
+  <line x1="480" y1="100" x2="480" y2="72" stroke="#999" stroke-width="3"/>
+  <text x="480" y="64" font-size="10" text-anchor="middle" fill="#555">V+</text>
+  <line x1="468" y1="76" x2="492" y2="96" stroke="#c33" stroke-width="3"/>
+  <line x1="492" y1="76" x2="468" y2="96" stroke="#c33" stroke-width="3"/>
+  <text x="560" y="80" font-size="9" fill="#8a1c1c">V+ (servo power): stays unconnected</text>
+
+  <!-- LED outs -->
+  <g stroke-width="3" fill="none">
+    <line x1="660" y1="160" x2="740" y2="160" stroke="#c47a00"/>
+    <line x1="660" y1="200" x2="740" y2="200" stroke="#7a7a7a"/>
+    <line x1="660" y1="240" x2="740" y2="240" stroke="#2e86c1"/>
+  </g>
+  <text x="748" y="164" font-size="10" fill="#6b4c12">→ ULN IN1 (hop 2)</text>
+  <text x="748" y="204" font-size="10" fill="#6b4c12">→ ULN IN2</text>
+  <text x="748" y="244" font-size="10" fill="#6b4c12">→ ULN IN3</text>
+  <text x="748" y="284" font-size="10" fill="#8a8a8a">13 more dimmers waiting</text>
+
+  <!-- OE note -->
+  <text x="390" y="374" font-size="10" fill="#223">OE</text>
+  <rect x="680" y="330" width="290" height="60" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="692" y="350" font-size="10" font-weight="bold" fill="#6b5200">OE must sit LOW</text>
+  <text x="692" y="366" font-size="9.5" fill="#514000">genuine Adafruit: a pulldown already holds it there</text>
+  <text x="692" y="380" font-size="9.5" fill="#514000">clone: verify — floating OE plays dead, I2C scan looks fine</text>
+  <line x1="410" y1="370" x2="680" y2="358" stroke="#c9a227" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- A0 jumper -->
+  <rect x="484" y="396" width="14" height="10" fill="#d9a441" stroke="#8a6a2f"/>
+  <rect x="504" y="396" width="14" height="10" fill="#d9a441" stroke="#8a6a2f"/>
+  <text x="470" y="405" font-size="10" text-anchor="end" fill="#223">A0</text>
+  <circle cx="501" cy="401" r="18" fill="none" stroke="#c33" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="540" y="405" font-size="10" fill="#6b4c12">open = 0x40 (board #1) · solder-bridged = 0x41 (board #2)</text>
+
+  <!-- address trap -->
+  <rect x="50" y="440" width="920" height="90" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="64" y="462" font-size="11" font-weight="bold" fill="#8a1c1c">AN UNBRIDGED BOARD #2 IS A SECOND 0x40 — NOT A MISSING 0x41</text>
+  <g font-size="10" fill="#7c2a2a">
+    <text x="64" y="482">Skip the jumper and board #2 answers at 0x40 alongside board #1 — the traffic meant for the zones that already work gets corrupted by the newcomer.</text>
+    <text x="64" y="498">The failure reads backwards: you added zones 6–7 and zones 1–5 started glitching.</text>
+    <text x="64" y="516">Bridge A0 with everything unpowered, BEFORE the board's SDA/SCL ever touch the bus.</text>
+  </g>
+</svg>

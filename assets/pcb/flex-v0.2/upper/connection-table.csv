@@ -1,0 +1,127 @@
+reference,pin,rail,net,native_x_mm,native_y_mm,role
+J43,1,24V,Z4_T23_24V,48.390945,47.2,strip solder overlap
+J43,2,W,Z4_T23_W,50.423203,47.2,strip solder overlap
+J43,3,N,Z4_T23_N,56.011912,47.2,strip solder overlap
+J43,4,C,Z4_T23_C,58.04417,47.2,strip solder overlap
+J64,1,24V,ZONE6_24V,170.854153,47.2,strip solder overlap
+J64,2,W,ZONE6_W,172.886411,47.2,strip solder overlap
+J64,3,N,ZONE6_N,178.475121,47.2,strip solder overlap
+J64,4,C,ZONE6_C,180.507379,47.2,strip solder overlap
+J41,1,24V,unconnected-(J41-Pin_1-Pad1),21.176898,47.2,strip solder overlap
+J41,2,W,unconnected-(J41-Pin_2-Pad2),23.209156,47.2,strip solder overlap
+J41,3,N,unconnected-(J41-Pin_3-Pad3),28.797866,47.2,strip solder overlap
+J41,4,C,unconnected-(J41-Pin_4-Pad4),30.830124,47.2,strip solder overlap
+J12,1,24V,Z1_T23_24V,198.0682,47.2,strip solder overlap
+J12,2,W,Z1_T23_W,200.100458,47.2,strip solder overlap
+J12,3,N,Z1_T23_N,205.689167,47.2,strip solder overlap
+J12,4,C,Z1_T23_C,207.721425,47.2,strip solder overlap
+J14,1,24V,unconnected-(J14-Pin_1-Pad1),225.282246,47.2,strip solder overlap
+J14,2,W,unconnected-(J14-Pin_2-Pad2),227.314504,47.2,strip solder overlap
+J14,3,N,unconnected-(J14-Pin_3-Pad3),232.903214,47.2,strip solder overlap
+J14,4,C,unconnected-(J14-Pin_4-Pad4),234.935472,47.2,strip solder overlap
+J21,1,24V,ZONE2_24V,238.889269,47.2,strip solder overlap
+J21,2,W,ZONE2_W,240.921527,47.2,strip solder overlap
+J21,3,N,ZONE2_N,246.510237,47.2,strip solder overlap
+J21,4,C,ZONE2_C,248.542495,47.2,strip solder overlap
+J51,1,24V,unconnected-(J51-Pin_1-Pad1),75.604991,47.2,strip solder overlap
+J51,2,W,unconnected-(J51-Pin_2-Pad2),77.637249,47.2,strip solder overlap
+J51,3,N,unconnected-(J51-Pin_3-Pad3),83.225959,47.2,strip solder overlap
+J51,4,C,unconnected-(J51-Pin_4-Pad4),85.258217,47.2,strip solder overlap
+J52,1,24V,Z5_T23_24V,89.212014,47.2,strip solder overlap
+J52,2,W,Z5_T23_W,91.244272,47.2,strip solder overlap
+J52,3,N,Z5_T23_N,96.832982,47.2,strip solder overlap
+J52,4,C,Z5_T23_C,98.86524,47.2,strip solder overlap
+J11,1,24V,ZONE1_24V,184.461176,47.2,strip solder overlap
+J11,2,W,ZONE1_W,186.493434,47.2,strip solder overlap
+J11,3,N,ZONE1_N,192.082144,47.2,strip solder overlap
+J11,4,C,ZONE1_C,194.114402,47.2,strip solder overlap
+J54,1,24V,ZONE5_24V,116.42606,47.2,strip solder overlap
+J54,2,W,ZONE5_W,118.458319,47.2,strip solder overlap
+J54,3,N,ZONE5_N,124.047028,47.2,strip solder overlap
+J54,4,C,ZONE5_C,126.079286,47.2,strip solder overlap
+J42,1,24V,Z4_T23_24V,34.783921,47.2,strip solder overlap
+J42,2,W,Z4_T23_W,36.816179,47.2,strip solder overlap
+J42,3,N,Z4_T23_N,42.404889,47.2,strip solder overlap
+J42,4,C,Z4_T23_C,44.437147,47.2,strip solder overlap
+J100,1,24V,ZONE4_24V,167.984278,6.75,B-side insertion contact; no solder
+J100,2,24V,ZONE4_24V,168.984278,6.75,B-side insertion contact; no solder
+J100,3,W,ZONE4_W,169.984278,6.75,B-side insertion contact; no solder
+J100,4,N,ZONE4_N,170.984278,6.75,B-side insertion contact; no solder
+J100,5,C,ZONE4_C,171.984278,6.75,B-side insertion contact; no solder
+J100,6,24V,ZONE5_24V,172.984278,6.75,B-side insertion contact; no solder
+J100,7,24V,ZONE5_24V,173.984278,6.75,B-side insertion contact; no solder
+J100,8,W,ZONE5_W,174.984278,6.75,B-side insertion contact; no solder
+J100,9,N,ZONE5_N,175.984278,6.75,B-side insertion contact; no solder
+J100,10,C,ZONE5_C,176.984278,6.75,B-side insertion contact; no solder
+J100,11,24V,ZONE6_24V,177.984278,6.75,B-side insertion contact; no solder
+J100,12,24V,ZONE6_24V,178.984278,6.75,B-side insertion contact; no solder
+J100,13,W,ZONE6_W,179.984278,6.75,B-side insertion contact; no solder
+J100,14,N,ZONE6_N,180.984278,6.75,B-side insertion contact; no solder
+J100,15,C,ZONE6_C,181.984278,6.75,B-side insertion contact; no solder
+J100,16,24V,ZONE1_24V,182.984278,6.75,B-side insertion contact; no solder
+J100,17,24V,ZONE1_24V,183.984278,6.75,B-side insertion contact; no solder
+J100,18,W,ZONE1_W,184.984278,6.75,B-side insertion contact; no solder
+J100,19,N,ZONE1_N,185.984278,6.75,B-side insertion contact; no solder
+J100,20,C,ZONE1_C,186.984278,6.75,B-side insertion contact; no solder
+J100,21,24V,ZONE2_24V,187.984278,6.75,B-side insertion contact; no solder
+J100,22,24V,ZONE2_24V,188.984278,6.75,B-side insertion contact; no solder
+J100,23,W,ZONE2_W,189.984278,6.75,B-side insertion contact; no solder
+J100,24,N,ZONE2_N,190.984278,6.75,B-side insertion contact; no solder
+J100,25,C,ZONE2_C,191.984278,6.75,B-side insertion contact; no solder
+J100,26,24V,ZONE3_24V,192.984278,6.75,B-side insertion contact; no solder
+J100,27,24V,ZONE3_24V,193.984278,6.75,B-side insertion contact; no solder
+J100,28,W,ZONE3_W,194.984278,6.75,B-side insertion contact; no solder
+J100,29,N,ZONE3_N,195.984278,6.75,B-side insertion contact; no solder
+J100,30,C,ZONE3_C,196.984278,6.75,B-side insertion contact; no solder
+J22,1,24V,Z2_T23_24V,252.496292,47.2,strip solder overlap
+J22,2,W,Z2_T23_W,254.52855,47.2,strip solder overlap
+J22,3,N,Z2_T23_N,260.11726,47.2,strip solder overlap
+J22,4,C,Z2_T23_C,262.149518,47.2,strip solder overlap
+J34,1,24V,unconnected-(J34-Pin_1-Pad1),334.138431,47.2,strip solder overlap
+J34,2,W,unconnected-(J34-Pin_2-Pad2),336.170689,47.2,strip solder overlap
+J34,3,N,unconnected-(J34-Pin_3-Pad3),341.759399,47.2,strip solder overlap
+J34,4,C,unconnected-(J34-Pin_4-Pad4),343.791657,47.2,strip solder overlap
+J44,1,24V,ZONE4_24V,61.997968,47.2,strip solder overlap
+J44,2,W,ZONE4_W,64.030226,47.2,strip solder overlap
+J44,3,N,ZONE4_N,69.618935,47.2,strip solder overlap
+J44,4,C,ZONE4_C,71.651194,47.2,strip solder overlap
+J32,1,24V,Z3_T23_24V,306.924385,47.2,strip solder overlap
+J32,2,W,Z3_T23_W,308.956643,47.2,strip solder overlap
+J32,3,N,Z3_T23_N,314.545353,47.2,strip solder overlap
+J32,4,C,Z3_T23_C,316.577611,47.2,strip solder overlap
+J53,1,24V,Z5_T23_24V,102.819037,47.2,strip solder overlap
+J53,2,W,Z5_T23_W,104.851295,47.2,strip solder overlap
+J53,3,N,Z5_T23_N,110.440005,47.2,strip solder overlap
+J53,4,C,Z5_T23_C,112.472263,47.2,strip solder overlap
+J23,1,24V,Z2_T23_24V,266.103315,47.2,strip solder overlap
+J23,2,W,Z2_T23_W,268.135574,47.2,strip solder overlap
+J23,3,N,Z2_T23_N,273.724283,47.2,strip solder overlap
+J23,4,C,Z2_T23_C,275.756541,47.2,strip solder overlap
+J62,1,24V,Z6_T23_24V,143.640107,47.2,strip solder overlap
+J62,2,W,Z6_T23_W,145.672365,47.2,strip solder overlap
+J62,3,N,Z6_T23_N,151.261075,47.2,strip solder overlap
+J62,4,C,Z6_T23_C,153.293333,47.2,strip solder overlap
+J24,1,24V,unconnected-(J24-Pin_1-Pad1),279.710339,47.2,strip solder overlap
+J24,2,W,unconnected-(J24-Pin_2-Pad2),281.742597,47.2,strip solder overlap
+J24,3,N,unconnected-(J24-Pin_3-Pad3),287.331306,47.2,strip solder overlap
+J24,4,C,unconnected-(J24-Pin_4-Pad4),289.363564,47.2,strip solder overlap
+J63,1,24V,Z6_T23_24V,157.24713,47.2,strip solder overlap
+J63,2,W,Z6_T23_W,159.279388,47.2,strip solder overlap
+J63,3,N,Z6_T23_N,164.868098,47.2,strip solder overlap
+J63,4,C,Z6_T23_C,166.900356,47.2,strip solder overlap
+J33,1,24V,Z3_T23_24V,320.531408,47.2,strip solder overlap
+J33,2,W,Z3_T23_W,322.563666,47.2,strip solder overlap
+J33,3,N,Z3_T23_N,328.152376,47.2,strip solder overlap
+J33,4,C,Z3_T23_C,330.184634,47.2,strip solder overlap
+J13,1,24V,Z1_T23_24V,211.675223,47.2,strip solder overlap
+J13,2,W,Z1_T23_W,213.707481,47.2,strip solder overlap
+J13,3,N,Z1_T23_N,219.29619,47.2,strip solder overlap
+J13,4,C,Z1_T23_C,221.328449,47.2,strip solder overlap
+J31,1,24V,ZONE3_24V,293.317362,47.2,strip solder overlap
+J31,2,W,ZONE3_W,295.34962,47.2,strip solder overlap
+J31,3,N,ZONE3_N,300.93833,47.2,strip solder overlap
+J31,4,C,ZONE3_C,302.970588,47.2,strip solder overlap
+J61,1,24V,unconnected-(J61-Pin_1-Pad1),130.033084,47.2,strip solder overlap
+J61,2,W,unconnected-(J61-Pin_2-Pad2),132.065342,47.2,strip solder overlap
+J61,3,N,unconnected-(J61-Pin_3-Pad3),137.654051,47.2,strip solder overlap
+J61,4,C,unconnected-(J61-Pin_4-Pad4),139.686309,47.2,strip solder overlap

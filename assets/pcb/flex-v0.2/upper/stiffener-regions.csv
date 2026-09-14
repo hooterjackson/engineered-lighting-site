@@ -1,0 +1,2 @@
+region,side,x_min_native_mm,x_max_native_mm,y_min_native_mm,y_max_native_mm,total_finished_insertion_mm,total_tolerance_mm
+J100,F,166.984278,197.984278,5,11,0.30,0.05
