@@ -66,7 +66,9 @@ def test_nav_footer_and_last_entry(page):
     prev = page.locator(".md-footer__link--prev .md-ellipsis")
     assert "Build the Fixture" in prev.first.text_content()
     nxt9 = page.locator(".md-footer__link--next .md-ellipsis")
-    assert "Flex Circuits" in nxt9.first.text_content(), "Doc 10 follows Doc 9"
+    assert "PCB Build Shopping List" in nxt9.first.text_content(), "Doc 9a follows Doc 9"
+    page.goto("/09a-pcb-build-bom/")
+    assert "Flex Circuits" in page.locator(".md-footer__link--next .md-ellipsis").first.text_content()
     page.goto("/08-build-the-fixture/")
     nxt = page.locator(".md-footer__link--next .md-ellipsis")
     assert "Understand the PCB" in nxt.first.text_content()

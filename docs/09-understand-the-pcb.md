@@ -8,6 +8,11 @@ hide:
 # Doc 9 · Understand the PCB — LIGHT v0.2, the Integrated Board
 
 **Engineered Lighting prototype series · September 2026**
+
+[Open the PCB build shopping checklist →](09a-pcb-build-bom.md){ .md-button }
+
+Order the remaining parts for two fixtures: motors, optics, diffuser, mounting supplies and exact cable-side connectors. Check off purchases as you order; selection notes identify the items still needing a fit or specification decision.
+
 Everything the bench proved and [Doc 8](08-build-the-fixture.md) hand-soldered has been drawn as one
 circuit board: a 76.2 × 75.1 mm disc with a flat under the antenna, eight copper layers, and parts on
 both faces. One ESP32-C6 module, two PWM expanders, 21 ambient channels, three constant-current
@@ -328,7 +333,7 @@ drawing when making harnesses.
 <tr data-pcb-row="J14"><td><span class="el-pcb-ref" data-pcb-ref="J14">J14</span></td><td>USB-C for programming and serial, alongside external 24 V</td><td>front</td><td>mates sideways, into the front-face edge</td><td>A1, A12, B1, B12 and the shell = GND; A4, A9, B4, B9 = USB_VBUS; A5 = USB_CC1; B5 = USB_CC2; A6, B6 = USB_DP_HOST; A7, B7 = USB_DM_HOST; A8, B8 unused</td><td>GCT USB4105-GF-A: 16 contacts plus four soldered through-hole shield stakes</td></tr>
 <tr data-pcb-row="J15"><td><span class="el-pcb-ref" data-pcb-ref="J15">J15</span></td><td>3.3 V UART service port</td><td>front</td><td>side-entry across the front face</td><td>1 = +3V3, 2 = GND, 3 = UART_TX, 4 = UART_RX</td><td>JST SH 4-way SM04B-SRSS-TB -- deliberately a different size from the GH ambient ports so a strip cable cannot be plugged in here</td></tr>
 <tr data-pcb-row="J16"><td><span class="el-pcb-ref" data-pcb-ref="J16">J16</span></td><td>a tap on the protected bus for a separately designed brake</td><td>front</td><td>side-entry across the front face</td><td>1 = V24_BUS, 2 = GND</td><td>Molex Pico-Lock 2053380002</td></tr>
-<tr data-pcb-row="J17"><td><span class="el-pcb-ref" data-pcb-ref="J17">J17</span></td><td>the physical ARM switch</td><td>front</td><td>side-entry across the front face</td><td>1 = +3V3, 2 = ARM</td><td>JST PH 2-way B2B-PH-SM4-TB, mating PHR-2 with SPH-002T-P0.5S -- ships open, which means disarmed</td></tr>
+<tr data-pcb-row="J17"><td><span class="el-pcb-ref" data-pcb-ref="J17">J17</span></td><td>the physical ARM switch</td><td>front</td><td>vertical mating from the front face</td><td>1 = +3V3, 2 = ARM</td><td>JST PH 2-way B2B-PH-SM4-TB, mating PHR-2 with SPH-002T-P0.5S -- ships open, which means disarmed</td></tr>
 <tr data-pcb-row="J18"><td><span class="el-pcb-ref" data-pcb-ref="J18">J18</span></td><td>five spare GPIOs plus 3.3 V and ground</td><td>back</td><td>bare pads on the back face; no header is fitted</td><td>1 = +3V3, 2 = GND, 3 = GPIO19, 4 = GPIO20, 5 = GPIO21, 6 = GPIO22, 7 = GPIO23</td><td>no connector: 0.85 mm solder lands on 1.27 mm pitch</td></tr>
 </tbody></table></div>
 

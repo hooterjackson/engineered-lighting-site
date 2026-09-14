@@ -429,7 +429,10 @@ def test_built_page_and_footer():
     prev = re.search(r'md-footer__link--prev.*?md-ellipsis">([^<]+)<', page, re.S)
     assert prev and "Build the Fixture" in prev.group(1)
     nxt9 = re.search(r'md-footer__link--next.*?md-ellipsis">([^<]+)<', page, re.S)
-    assert nxt9 and "Flex Circuits" in nxt9.group(1), "Doc 10 follows Doc 9"
+    assert nxt9 and "PCB Build Shopping List" in nxt9.group(1), "Doc 9a follows Doc 9"
+    shopping = (SITE / "09a-pcb-build-bom" / "index.html").read_text(encoding="utf-8")
+    nxt9a = re.search(r'md-footer__link--next.*?md-ellipsis">([^<]+)<', shopping, re.S)
+    assert nxt9a and "Flex Circuits" in nxt9a.group(1), "Doc 10 follows Doc 9a"
     flex = (SITE / "10-the-flex-circuits" / "index.html").read_text(encoding="utf-8")
     assert "md-footer__link--next" not in flex, "Doc 10 must be the last page"
 

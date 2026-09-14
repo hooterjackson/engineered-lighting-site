@@ -32,5 +32,6 @@ nav:
   # stays last; awesome-pages' "..." must remain after it.
   - Understand the boards:
       - 09-understand-the-pcb.md
+      - 09a-pcb-build-bom.md
       - 10-the-flex-circuits.md
   - ...

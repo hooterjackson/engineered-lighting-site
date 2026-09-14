@@ -7,7 +7,9 @@ hide:
 
 # Bill of Materials — interactive checklist
 
-Every purchase in the series, in one list. Check items off as you order — state persists in your browser (nothing leaves your device). The LIGHT v0.1 PCB's parts list — the BoM PCBWay was asked to quote for assembly, not an order — lives in [Doc 9](09-understand-the-pcb.md) and is deliberately not a shopping checklist. The full "Notes / traps" for each part live in the chapter BoM tables: [Doc 3](03-build-the-gimbal.md), [Doc 4](04-full-fixture-bench.md), [Doc 5](05-teach-it-to-aim.md), [Doc 8](08-build-the-fixture.md).
+This checklist covers the earlier bench, perception and hand-wired fixture stages. Check items off as you order — state persists in your browser (nothing leaves your device). The full "Notes / traps" for each part live in the chapter BoM tables: [Doc 3](03-build-the-gimbal.md), [Doc 4](04-full-fixture-bench.md), [Doc 5](05-teach-it-to-aim.md), [Doc 8](08-build-the-fixture.md).
+
+**Building the latest LIGHT v0.2 PCB prototype?** Use the [PCB build shopping checklist](09a-pcb-build-bom.md) for two fixtures. Its saved progress is separate: the PCB replaces many modules and wiring parts below. The factory-fitted component BOM remains in [Doc 9](09-understand-the-pcb.md).
 
 !!! note "Prices verified July 2026"
     All prices in the series were verified in July 2026 — **re-check live prices when ordering**. This is the docs' own pre-purchase-recheck rule (see [Doc 7's risk register](07-building-the-software.md)).

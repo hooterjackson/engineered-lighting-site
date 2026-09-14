@@ -8,6 +8,11 @@ hide:
 # Doc 10 · The Flex Circuits — Wiring That Is Manufactured, Not Cut
 
 **Engineered Lighting prototype series · September 2026**
+
+[PCB build shopping checklist →](09a-pcb-build-bom.md){ .md-button }
+
+The checklist includes the two user-applied mounting adhesives, mating plugs and wires needed alongside these manufactured flexes.
+
 The main board in [Doc 9](09-understand-the-pcb.md) now consolidates six radial LED sockets into one locking interface. Everything its
 connectors reach — six ambient zones around a cylinder, three spotlight pairs, two motors — has so far
 been wire, cut and stripped and soldered by hand, one conductor at a time. These three flexible

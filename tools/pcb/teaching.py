@@ -138,7 +138,7 @@ CONNECTORS = {
             "cable cannot be plugged in here"),
     "J16": ("front", "side-entry across the front face",
             "a tap on the protected bus for a separately designed brake", "Molex Pico-Lock 2053380002"),
-    "J17": ("front", "side-entry across the front face", "the physical ARM switch",
+    "J17": ("front", "vertical mating from the front face", "the physical ARM switch",
             "JST PH 2-way B2B-PH-SM4-TB, mating PHR-2 with SPH-002T-P0.5S -- ships open, which means disarmed"),
     "J18": ("back", "bare pads on the back face; no header is fitted",
             "five spare GPIOs plus 3.3 V and ground",
