@@ -53,7 +53,7 @@ The [manufacturer model page](https://www.myactuator.com/l-5005-details) maps **
 | Working temperature | −20 to 55 °C | The 120 °C demagnetization value is not a safe operating target |
 | Driver / control | MC100; current, speed and position loops; S-curve listed | Behavior depends on installed firmware and settings |
 
-Some older distributor catalogs list **0.001° control precision**. The current manufacturer sheet lists **0.01°**. Record the revision and resolve conflicts with the manufacturer; do not choose the finer number by preference. Neither is the same quantity as encoder resolution.
+[An older distributor catalog](https://a2v.fr/brushless/moteur-brushless-pancake-rmd-l-5005.php) lists **0.001° control precision**. The current manufacturer sheet lists **0.01°**. Record the revision and resolve conflicts with the manufacturer; do not choose the finer number by preference. Neither is the same quantity as encoder resolution.
 
 ## Match the documentation to the unit
 
@@ -61,7 +61,7 @@ Keep **product/winding identity**, **driver hardware generation**, **motor firmw
 
 The [L-series download hub](https://www.myactuator.com/downloads-lseries) links **Motor Motion Protocol V4.2-250208.pdf**, labelled for **V3 driver**, and **MC Series Brushless Servo Driver Manual-240611.pdf**. The [setup-software hub](https://www.myactuator.com/downloads-setupsoftware) lists **L5005 under Setup Software V3.0**. X-series V4/V4.1 downloads and protocol V4.4 are separate; a larger version number is not an L5005 upgrade instruction.
 
-Protocol V4.2 changed PID transactions to **indexed floating-point gains**; its history dates that change **28 May 2024**. Older examples use packed byte-sized gains. A successful angle read does not validate a library's parameter writes. The setup GUI's older gain scaling also differs from the newer protocol format.
+Protocol V4.2 changed PID transactions to **indexed floating-point gains**; its history dates that change **28 May 2024**. Older examples use packed byte-sized gains. The vendor SDK240913 package still includes that legacy byte-gain layout, so its gain-write functions are not a verified match for current L V4.2 indexed floats. A successful angle read does not validate a library's parameter writes. The setup GUI's older gain scaling also differs from the newer protocol format.
 
 The [vendor-hosted SDK240913 package](https://www.myactuator.com/_files/archives/cab28a_ff037359c635421b87128c3bfb2059d2.zip?dn=SDK-240913.zip) contains the **2b-t/myactuator_rmd** project and a ROS companion. Its README describes an **X-series** driver. Use it as an implementation reference, checking every required transaction against the installed L-series protocol. Vendor hosting does not guarantee every command is compatible.
 
@@ -119,14 +119,14 @@ Repeated resets or enable retries are not a reliability strategy. The [PCB docum
 
 ### Host timeouts and CAN recovery
 
-**Conditional lead:** if the actual controller is ESPHome, inspect [API](https://esphome.io/components/api/), [MQTT](https://esphome.io/components/mqtt/) and [Wi-Fi](https://esphome.io/components/wifi/) reboot policies. Their current documentation describes default **15-minute** connection-loss reboot timeouts. An enabled API without a connecting client can cause periodic reboots. A release near 15 minutes points to this layer, not a 3-second motor watchdog. This does not establish that the bench runs ESPHome; define offline behavior before changing recovery settings.
+**Conditional lead:** if the actual controller is ESPHome, inspect [API](https://esphome.io/components/api/), [MQTT](https://esphome.io/components/mqtt/) and [Wi-Fi](https://esphome.io/components/wifi/) reboot policies. Their current documentation describes default **15-minute** reboot timeouts when the corresponding API client, MQTT broker or Wi-Fi connection is absent. Only enabled components and the compiled settings apply; Wi-Fi AP mode is excluded. An enabled API without a connecting client can cause periodic reboots. A release near 15 minutes makes this layer worth checking alongside the 3-second motor watchdog. This does not establish that the bench runs ESPHome; define offline behavior before changing recovery settings.
 
 The ESP32-C6 is not categorically limited to power-cycle recovery from CAN bus-off: [ESP-IDF v5.1.4 documents software recovery](https://docs.espressif.com/projects/esp-idf/en/v5.1.4/esp32c6/api-reference/peripherals/twai.html). APIs/state transitions depend on driver version, and a particular bench sketch may lack recovery. Clear or reject stale motion targets before returning to service. [Linux SocketCAN documentation](https://docs.kernel.org/networking/can.html) covers adapter error frames, counters and recovery.
 
 ## Practical diagnostic order
 
 1. **Record identity and baseline.** Capture labels, driver/firmware date, protocol revision, CAN/reply IDs, bitrate, host source commit, adapter firmware and active-reply setting. Read gains, planners, limits, zero offsets, current limits and watchdog using a verified path. Mark settings without demonstrated readback; do not claim a complete backup.
-2. **Observe one supported motor without configuration changes.** Capture stationary holding and a safely reproducible symptom with monotonic CAN timestamps. Correlate hold loss with gaps near 3 seconds, voltage changes, uptime resets or host restarts.
+2. **Observe one supported motor without configuration changes.** Use the existing approved current-limited supply and known safe travel. Capture two minutes of stationary holding and a safely reproducible symptom with monotonic CAN timestamps. Correlate hold loss with gaps near 3 seconds, voltage changes, uptime resets or host restarts.
 3. **Prove supply and physical bus.** With power removed, verify about 60 Ω across the completed pair: two 120 Ω end terminators. Check actual termination in every device, twisted pair, short stubs, hardware-appropriate reference connection and duplicate IDs. Measure voltage at the motor through start/reversal/hold. Distinguish DC bus current from winding/torque current; retain the wiring and PCB commissioning limits. [Doc 3c](03c-prove-the-bus.md) covers the independent bus proof.
 4. **Separate trajectory effects.** Compare a single bounded move with streamed targets using identical travel, load and limits. Only after baseline capture should a qualified operator compare documented planner modes or adjust a gain, with saved settings and rollback.
 5. **Test holding and recovery separately.** Compare normal idle polling, application disconnect with embedded polling continuing, and supported communication loss. Determine required recovery state transitions and a fresh bounded target. Startup needs fresh telemetry, valid zero/limits and deliberate motion authorization. Stored multi-turn state cannot measure turns made while unpowered.
