@@ -22,9 +22,13 @@ The full build shopping list (wiring, supply, tools) lives in **[Doc 3](03-build
     The RMD-L-4005 sold out at every retail channel in July 2026 — temporarily; it's an
     active product line, not discontinued. The build moved to its in-stock sibling, the
     **RMD-L-5005** ($107.50, [Dings Motion USA](https://www.dingsmotionusa.com/rmd-l-5005)),
-    a zero-code swap: same 18-bit absolute encoder, 12–24 V, CAN at 1 Mbps, Motion
-    Protocol V4.2, direct drive, and command set. The decision journey below is the
-    historical record and still reads "4005" — the reasoning is unchanged.
+    a direct-drive substitute using the same host-control approach, subject to
+    matching driver and firmware. The current L5005 sheet (251029) lists a **14-bit
+    magnetic encoder** and **0.01° control precision**; the older 18-bit statements
+    below belong to the historical 4005 decision and must not be applied to the 5005.
+    See the [L5005 control and tuning reference](rmd-l5005-control-and-tuning.md)
+    for model/version distinctions, current manuals and proposed diagnostic tests.
+    The decision journey below remains the historical record and still reads "4005".
 
     | | L-4005 | L-4010 | L-4015 | L-5005 |
     |---|---|---|---|---|
@@ -32,7 +36,7 @@ The full build shopping list (wiring, supply, tools) lives in **[Doc 3](03-build
     | Body length | 23 mm | ~28 mm* | ~33 mm* | ~24 mm |
     | Mass | 65 g | ~85 g* | ~105 g* | 92 g |
     | Peak torque | 25 N·cm | 33 N·cm | ~45–50 N·cm* | 42 N·cm |
-    | Everything else | identical — same encoder, voltage, CAN/RS485, V4.2 protocol, direct drive | | | |
+    | Compatibility | Direct-drive family; verify encoder, driver, firmware and protocol for the actual model rather than assuming all siblings are identical | | | |
 
     *Estimates — the 4015's spec sheet is published only as an image; confirm exact
     figures with Dings.*
@@ -52,7 +56,7 @@ Everything else evaluated — bare motors + DIY control stacks, hobby servos, dr
 
 - **BLDC (brushless motor):** three coils of wire pushing a ring of magnets. No contacts to wear, no gears — silent by construction. But it's "dumb": something must energize the right coils at the right moments.
 - **FOC (field-oriented control):** the math that drives a BLDC smoothly — steering the magnetic field continuously instead of in steps. FOC done well = silky, silent motion; FOC done badly = buzzing and vibration. Tuning FOC yourself is the hard part of DIY.
-- **Absolute encoder:** a magnetic angle sensor on the shaft that knows the position instantly at power-on. The RMD-L's is 18-bit ≈ 0.001° resolution — about 170× finer than we need. One honest limit: it's **single-turn** — it knows the angle *within* one revolution but can't count full turns made while unpowered (irrelevant if the frame has hard stops, which ours will).
+- **Absolute encoder:** a magnetic angle sensor on the shaft that knows the position instantly at power-on. Feedback depends on model/revision: the current L5005 sheet lists 14-bit, about 0.022° per count. Command increments, catalog control precision and installed repeatability are different quantities ([reference](rmd-l5005-control-and-tuning.md#command-resolution-telemetry-and-beam-placement)). One honest limit: it's **single-turn** — it knows the angle *within* one revolution but can't count full turns made while unpowered (irrelevant if the frame has hard stops, which ours will).
 - **Integrated smart actuator:** motor + encoder + FOC controller + firmware sealed in one unit, commanded over a digital bus. You skip motor drivers, encoder mounting, and control-loop tuning entirely. This category is why round 1's plan died.
 - **CAN bus:** a rugged two-wire network from the automotive world. Every device has an address; messages are 8-byte packets; wiring is one twisted pair shared by all devices. Our ESP32-C6 has a CAN controller on-chip (Espressif calls it TWAI).
 - **KV rating:** motor speed per volt. High-KV motors (drone racing) are wound to spin fast; gimbal motors are low-KV, wound for smooth torque at near-zero speed. Same size, opposite personalities — why cheap tiny drone motors can't do this job.
@@ -81,7 +85,7 @@ Everything else evaluated — bare motors + DIY control stacks, hobby servos, dr
 
 **Why the RMD-L-4005 wins, in product terms:** each axis becomes a *part* instead of a project. The fixture always knows where the beam points (absolute encoder → no homing dance, survives power loss). Torque headroom (25 N·cm peak vs 8.83 worst-case unbalanced) makes head balancing good-practice rather than mandatory. And the electronics shrink: the ESP32-C6 already has CAN on-chip, so the whole motion subsystem needs one $2 transceiver chip — no motion co-processor, no driver boards, no encoder wiring.
 
-**The trade-offs, honestly:** the control loop is a black box (if it whines at hold, you can't retune it — that's the first bench measurement in [Doc 3](03-build-the-gimbal.md)); it's ~5 mm fatter than the smallest bare motors; it's a Chinese vendor with a US distributor; and at production volume you'd cost-down to your own driver on the fixture PCB — the RMD-L is the prototype accelerant and the behavioral reference for that later design.
+**The trade-offs, honestly:** the control implementation is proprietary, but current L-series documentation exposes version-sensitive loop gains (record the factory baseline before any tuning; [reference](rmd-l5005-control-and-tuning.md#gain-adjustment-and-calibration)). Hold noise remains a first bench measurement in [Doc 3](03-build-the-gimbal.md); it's ~5 mm fatter than the smallest bare motors; it's a Chinese vendor with a US distributor; and at production volume you'd cost-down to your own driver on the fixture PCB — the RMD-L is the prototype accelerant and the behavioral reference for that later design.
 
 **5. Reality checks from adjacent worlds.** FPV drone gimbals (Caddx GM2: 30 g, $70, PWM/UART, even natively supported by ArduPilot autopilots) prove the control patterns but are motored for 5–20 g cameras — a payload class too small for our head. And architectural lighting already has a patented motorized recessed spotlight line (**Forma MOTOLUX**, ±40° dual-axis, DMX/Casambi — patent US 11215345): the category exists commercially, validating the concept and requiring a freedom-to-operate review before our commercial fixture.
 
@@ -89,7 +93,7 @@ Everything else evaluated — bare motors + DIY control stacks, hobby servos, dr
 
 ## Risks carried forward
 
-- **Hold-state whine** is the one unknown that matters: a statically held BLDC can whine at some operating points, and the RMD's sealed loop can't be retuned. [Doc 3](03-build-the-gimbal.md), stage 5 measures it before anything else depends on it.
+- **Hold-state whine** is the one unknown that matters: a statically held BLDC can whine at some operating points. Published L-series gain adjustment is version-sensitive and does not guarantee a quiet result ([reference](rmd-l5005-control-and-tuning.md#gain-adjustment-and-calibration)). [Doc 3](03-build-the-gimbal.md), stage 5 measures it before anything else depends on it.
 - **Speed vs. silence:** follow-me needs 54–80°/s pan on close passes ([Doc 5](05-teach-it-to-aim.md)'s math); noise at those speeds is unmeasured — same stage-5 bench item.
 - **Protocol drift:** older stock has shipped with older protocol docs — trust the PDF in the box over any byte layout written here.
 - **Patents:** Forma (motorized recessed fixtures) and Position Imaging US 12,190,542 (beam self-calibration, see [Doc 5](05-teach-it-to-aim.md)) — counsel review before commercialization.
