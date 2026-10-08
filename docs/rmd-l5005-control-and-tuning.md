@@ -50,10 +50,10 @@ The [manufacturer model page](https://www.myactuator.com/l-5005-details) maps **
 | Listed control precision | 0.01° | Catalog specification; not measured installed accuracy or repeatability |
 | Torque constant / pole pairs | 0.08 Nm/A / 14 | Confirm current convention; retain factory motor constants |
 | CAN bitrate | 1 Mbit/s | Distinct from application target-update rate |
-| Working temperature | −20 to 55 °C | The 120 °C demagnetization value is not a safe operating target |
+| Working temperature | −20 to 55 °C (251029 PDF) | The 120 °C demagnetization value is not a safe operating target |
 | Driver / control | MC100; current, speed and position loops; S-curve listed | Behavior depends on installed firmware and settings |
 
-[An older distributor catalog](https://a2v.fr/brushless/moteur-brushless-pancake-rmd-l-5005.php) lists **0.001° control precision**. The current manufacturer sheet lists **0.01°**. Record the revision and resolve conflicts with the manufacturer; do not choose the finer number by preference. Neither is the same quantity as encoder resolution.
+**Specification conflicts:** the 251029 parameter PDF used above lists **−20 to 55 °C**, while the undated Technical Parameters image on the [live manufacturer model page](https://www.myactuator.com/l-5005-details), checked 8 October 2026, lists **−20 to 80 °C**. [An older distributor catalog](https://a2v.fr/brushless/moteur-brushless-pancake-rmd-l-5005.php) lists **0.001° control precision**, while the current manufacturer PDF lists **0.01°**. Record the document revision and resolve these differences with the manufacturer before relying on a limit. The wider web-image temperature range is not evidence of continuous holding suitability; neither precision value is the same quantity as encoder resolution.
 
 ## Match the documentation to the unit
 
