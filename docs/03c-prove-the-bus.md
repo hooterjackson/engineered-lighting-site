@@ -25,7 +25,9 @@ just longer.
 CAN transmitters demand an audience. Every frame must be acknowledged by at least one other node
 in the same instant it's sent; a transmitter alone on the bus reads back silence, counts it as an
 error, and retries — the error counters climb until the controller takes itself off the bus, and
-this chip doesn't come back without a power cycle. That's also why the bench firmware boots
+the bench sketch's documented recovery is a power cycle. The ESP32-C6 driver also
+supports software bus-off recovery, but that requires an implemented state machine;
+see the [version-scoped reference](rmd-l5005-control-and-tuning.md#host-timeouts-and-can-recovery). That's also why the bench firmware boots
 **SAFE** and transmits nothing until armed: an armed board with no listener isn't dangerous,
 but it *is* self-wedging.
 
