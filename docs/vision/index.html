@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vision · Engineered Lighting</title>
+<meta name="description" content="Engineered Lighting vision: contextual lighting first, then ambient computing.">
+<link rel="icon" href="../assets/el-favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site/site.css">
+<link rel="stylesheet" href="../assets/site/vision.css">
+<script src="../assets/site/js/vision.js" defer></script>
+</head>
+<body>
+<main id="top" class="vision">
+  <div aria-hidden="true" data-atmosphere class="atmos">
+    <div class="atmos__base"></div>
+    <div data-light-field data-trigger="ideal-experience" class="field field--lit-a"></div>
+    <div data-light-field data-trigger="ambient-interfaces" class="field field--steel"></div>
+    <div data-light-field data-trigger="flows" class="field field--lit-b"></div>
+    <div data-light-field data-trigger="hardware" class="field field--steel"></div>
+    <div data-light-field data-trigger="film-wood" class="field field--wood"></div>
+    <div class="atmos__grain"></div>
+  </div>
+  <div class="v-content">
+
+  <header class="page-head">
+    <a href="../#den" class="back-link"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 8H3M7.25 3.75 3 8l4.25 4.25" stroke="currentColor" stroke-width="1.5"></path></svg>Engineering</a>
+    <nav aria-label="Site" class="site-nav">
+      <a href="./" aria-current="page">Vision</a>
+      <a href="../hardware/">Hardware</a>
+      <a href="../software/">Software</a>
+    </nav>
+  </header>
+
+  <h1 class="vh">Engineered Lighting vision</h1>
+  <figure id="film-carpet" aria-labelledby="cap-carpet" class="film film--lead">
+    <div class="film__frame">
+      <video data-film="carpet" data-src="../assets/site/films/carpet-web-60.mp4" poster="../assets/site/films/carpet-poster.jpg" preload="none" loop muted playsinline aria-label="Concept render: projected text on a carpet reads Light 1 understands how you live" class="film__video"></video>
+    </div>
+    <figcaption class="film__cap">
+      <span class="film__text">
+        <span class="label">Experience study · carpet · Blender concept render</span>
+        <span id="cap-carpet" class="film__desc">Light settling on the floor of a lived-in room: the contextual layer, where the work starts. Lighting that adapts to everyday life comes before it carries any information.</span>
+      </span>
+      <button type="button" data-film="carpet" aria-label="Play the carpet concept render" class="film__toggle">Play film</button>
+    </figcaption>
+  </figure>
+
+
+  <div class="col col--intro">
+    <span class="label label--meta">Vision · internal engineering document</span>
+    <div class="note">
+      <span class="label">Reading this document</span>
+      <p class="note__p">Lighting is the entry point into ambient computing. Contextual lighting comes first; projected information and interaction follow as the underlying capabilities mature. The current Home app is a development and operating tool, not the consumer product. The goal is minimal routine app interaction: physical controls, gestures, voice, and eventually projected surfaces.</p>
+      <p class="note__p note__p--dim">This page is the vision. Where the build stands today lives in the <a href="../hardware/">hardware notebook</a> and the <a href="../software/">software pages</a>. The films are Blender concept renders of the intended experience, not recordings of working fixtures.</p>
+    </div>
+  </div>
+
+  <nav id="contents" aria-labelledby="contents-h" class="col toc">
+    <h2 id="contents-h" class="toc__h">Contents</h2>
+    <ol class="toc__list">
+      <li><a href="#good-lighting"><span class="toc__n">01</span><span>What is good lighting?</span></a></li>
+      <li><a href="#ideal-experience"><span class="toc__n">02</span><span>The ideal home lighting experience</span></a></li>
+      <li><a href="#beyond-lighting"><span class="toc__n">03</span><span>Beyond lighting: a new computing paradigm</span></a></li>
+      <li><a href="#ambient-interfaces"><span class="toc__n">04</span><span>Defining ambient interfaces</span></a></li>
+      <li><a href="#os"><span class="toc__n">05</span><span>Building an OS from scratch</span></a></li>
+      <li><a href="#architecture"><span class="toc__n">06</span><span>High-level architecture overview</span></a></li>
+      <li><a href="#flows"><span class="toc__n">07</span><span>Example flows</span></a></li>
+      <li><a href="#hardware"><span class="toc__n">08</span><span>The hardware that enables this vision</span></a></li>
+      <li><a href="#next-prototype"><span class="toc__n">09</span><span>The next version of the hardware prototype</span></a></li>
+    </ol>
+  </nav>
+
+  <div class="col col--essay">
+    <p class="lead">Lighting is underestimated in terms of its impact on our lives. It enhances our mood, well-being, and productivity, significantly elevating the aesthetic appeal and perceived value of our spaces. Simply put, good lighting creates a good vibe—and a good vibe is often underappreciated. Thoughtful lighting makes us happier, and our spaces more beautiful. Although we intrinsically value it, no company has effectively offered this considered approach to lighting as a complete product.</p>
+    <p>The challenge is that good lighting is highly contextual. For example, a gallery benefits from carefully placed track lighting that highlights artwork. A cozy movie night calls for soft, warm lighting gently diffused off the walls. Conversely, a workspace demands cool, direct lighting to maintain productivity. Thus, home lighting must be dynamic and adaptable to various contexts and moods.</p>
+    <p>Yet achieving truly dynamic lighting today is essentially impossible. The ideal lighting experience requires multiple specialized fixtures—lamps for warmth, recessed lights for brightness, track lights for directional focus. Even if one manages to overcome the complexity and expense of installing these fixtures, another significant challenge arises: the hardware and software are typically developed independently, leading to fragmented solutions.</p>
+    <p>There <em>are</em> companies that produce both fixtures and associated software—usually basic smartphone apps for controlling RGB colors and brightness. (I hope this doesn't need to be said—but we aren't here to talk about RGB LEDs; we are talking about creating beautiful lighting experiences that look like a director of photography composed them for an Architectural Digest shoot.)</p>
+    <p>These limited apps typically restrict users to the company's own ecosystem, immediately limiting their appeal and usability. Consequently, users are forced to integrate their systems with broader smart home platforms like Google Home, HomeKit, or, for the particularly ambitious, Home Assistant. Upon navigating to these platforms, users discover that they must also install an array of sensors to enable basic automations. Subsequently, users need almost college-level logic skills to program brittle, hard-coded if-then statements, which inevitably break down when anything unscripted occurs. In short, this is precisely why achieving genuinely good lighting today remains impossible.</p>
+    <p>Most lighting companies sell individual bulbs or fixtures, leaving users to navigate installation and configuration themselves. However, if Jobs and Ive were creating a lighting product, they wouldn't simply sell a bulb—they would craft a complete, intentional, and holistic lighting experience.</p>
+    <p>My research is focused precisely on developing this kind of holistic lighting solution. Imagine if lighting just worked—intuitively adjusting itself based on your activities, without manual input or complex setups. This solution involves dynamic and adaptable hardware combined with intelligent software, creating a seamless experience in which lighting perfectly aligns with the human context of the space at any given moment.</p>
+    <div class="questions">
+      <span class="label">Two key questions guiding my research</span>
+      <ol class="numlist numlist--q">
+        <li class="num num--strong"><span class="num__n">01</span><span>Can a single, versatile fixture (or set of fixtures) effectively replicate dozens of unique lighting scenes, replacing multiple specialized fixtures?</span></li>
+        <li class="num num--strong"><span class="num__n">02</span><span>By being vertically integrated—controlling both the hardware and the software—and leveraging cutting-edge technology like AI, can we automatically create highly personalized lighting scenes and seamlessly manage transitions between them?</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <section id="good-lighting" aria-labelledby="good-lighting-h" class="col sec">
+    <span class="label label--meta">01</span>
+    <h2 id="good-lighting-h">What is good lighting?</h2>
+    <p>Good lighting is contextual: it depends on how you are using your space. The right lighting for working is not the same as the right lighting for relaxing, which is not the same as the right lighting for eating, which is not the same as the right lighting for entertaining, and so on. When working, you might prefer cool, direct light. When relaxing, you likely prefer warm, diffuse light. Put simply—good lighting should adapt to your needs.</p>
+    <p>Yet today, achieving this kind of dynamic lighting is annoying. Homes rely on a mix of fixtures—lamps for warmth, recessed lights for brightness, track lights for directional focus—each serving a specific function. If you want to make your home “smart,” you need to install sensors and manually configure rigid automations using platforms like HomeKit or Home Assistant. This process is unintuitive and time-consuming. As a result, very few people actually go through the trouble—despite nearly everyone wanting better lighting.</p>
+    <blockquote class="quote">
+      <p class="quote__text"><span data-q-step="0" class="q-step">But what if lighting simply worked?</span> <span data-q-step="1" class="q-step q-step--dim">What if your home could intuitively adjust its lighting based on how you use the space, without requiring manual input or complex setup?</span></p>
+    </blockquote>
+  </section>
+
+  <section id="ideal-experience" aria-labelledby="ideal-experience-h" class="col sec">
+    <span class="label label--meta">02</span>
+    <h2 id="ideal-experience-h">The ideal home lighting experience</h2>
+    <p>Imagine installing a lighting system that self-calibrates upon setup, requiring no further configuration. You simply live your life, and the lighting adapts seamlessly:</p>
+    <ul class="rules">
+      <li>You sit down for dinner, and the lights gradually adjust to provide natural illumination on the table while casting a warm glow throughout the room.</li>
+      <li>When it’s time for a movie night, you settle onto the couch, and the lighting shifts—soft, warm light bouncing off the walls at 10% luminosity, creating the perfect ambiance.</li>
+      <li>You hang a new painting, and without any manual intervention, the home recognizes it as artwork and casts a precisely framed beam of natural light, as if it were displayed in a museum.</li>
+      <li>When you start working, the lighting transitions to provide cool, direct light that enhances focus.</li>
+      <li>Playing a board game? The scene adjusts again, ensuring optimal visibility. If someone gets up to grab a drink from the bar, a delicate glow follows them, illuminating the area just enough for them to pour a glass of whiskey.</li>
+    </ul>
+    <blockquote class="quote">
+      <p class="quote__text quote__text--xl">The lights feel alive, responding fluidly to human presence and activity.</p>
+    </blockquote>
+  </section>
+
+
+  <section id="beyond-lighting" aria-labelledby="beyond-lighting-h" class="col sec">
+    <span class="label label--meta">03</span>
+    <h2 id="beyond-lighting-h">Beyond lighting: a new computing paradigm</h2>
+    <p>Why stop at just lighting? Once you have a system that dynamically manipulates light, where do the boundaries end?</p>
+    <ul class="rules">
+      <li>Want to check the time? A digital clock subtly appears on the wall.</li>
+      <li>Curious about the weather? The forecast is projected onto a nearby surface.</li>
+      <li>Heading out for work? Real-time traffic updates appear on the door.</li>
+      <li>Cooking? A recipe is projected onto the countertop, hands-free and always in view.</li>
+    </ul>
+    <p>Consumer computing has long been defined by screens—the way information is delivered to our eyes. But what if, even for just 1% of the time, you didn’t need to reach for your phone? What if a simple query like “When was Lincoln born?” displayed the answer on the nearest surface?</p>
+    <p>This could be a seismic shift in consumer computing—not as a replacement for screens, but as a new category in the way we interact with information. It’s about creating a new layer of contextual computing, where information is delivered in a way that feels organic, integrated into the environment rather than confined to a device.</p>
+    <p>This is the true vision of ambient computing—the world teased to us by sci-fi, from <em>Minority Report</em> to <em>Star Wars</em>.</p>
+    <blockquote class="quote">
+      <p class="quote__text quote__text--xl">A world where light isn’t just illumination—it’s information.</p>
+    </blockquote>
+  </section>
+
+  <figure id="film-wall" aria-labelledby="cap-wall" class="film">
+    <div class="film__frame">
+      <video data-film="wall" data-src="../assets/site/films/wall-web-60.mp4" poster="../assets/site/films/wall-poster.jpg" preload="none" loop muted playsinline aria-label="Concept render: projected text on a wall reads Projecting light where you need it" class="film__video"></video>
+    </div>
+    <figcaption class="film__cap">
+      <span class="film__text">
+        <span class="label">Experience study · wall · Blender concept render</span>
+        <span id="cap-wall" class="film__desc">Light and type directed onto a wall, the surface the clock and the forecast above would use. The same beam that lights the room places information where it is useful.</span>
+      </span>
+      <button type="button" data-film="wall" aria-label="Play the wall concept render" class="film__toggle">Play film</button>
+    </figcaption>
+  </figure>
+
+  <section id="ambient-interfaces" aria-labelledby="ambient-interfaces-h" class="col sec">
+    <span class="label label--meta">04</span>
+    <h2 id="ambient-interfaces-h">Defining ambient interfaces</h2>
+    <p>What do these ambient interfaces look like?</p>
+    <p>The key to success in ambient computing is not competing directly with traditional consumer display technology. The more you try to replicate the capabilities of high-contrast, high-resolution consumer screens, the more you set yourself up for failure. Projected interfaces are not designed to match the vibrancy and contrast of OLED or LED displays, particularly in spaces with ambient light. Instead of trying to replicate these screens, we should embrace what projected interfaces do best—providing low friction, contextual information without the need for constant device interaction.</p>
+    <p>What does it mean to compete with consumer display technology? If you attempt to project full-color interfaces in a well-lit space, contrast diminishes, making the experience look cheap. This is why the opportunity lies in defining a new paradigm for ambient computing—one that leverages the unique strengths of projection rather than forcing it into an existing mold.</p>
+    <p>Our vision centers on projected white-light interfaces: a design language that embraces simplicity, elegance, and functionality. These interfaces are flat, cohesive, and distinct from conventional consumer computing. Rather than mimicking high-resolution screens, they take inspiration from the clarity of well-designed physical signage, the subtlety of shadow and light, and the timeless appeal of minimalism. The result is a system that feels intentional, sophisticated, and seamlessly integrated into everyday life—an ambient computing experience that is both beautiful and uniquely its own.</p>
+  </section>
+
+  <figure id="film-steel" aria-labelledby="cap-steel" class="film">
+    <div class="film__frame">
+      <video data-film="steel" data-src="../assets/site/films/steel-web-60.mp4" poster="../assets/site/films/steel-poster.jpg" preload="none" loop muted playsinline aria-label="Concept render: projected text on a steel surface beside a cup reads and adapts as life unfolds" class="film__video"></video>
+    </div>
+    <figcaption class="film__cap">
+      <span class="film__text">
+        <span class="label">Experience study · steel · Blender concept render</span>
+        <span id="cap-steel" class="film__desc">White-light type on a work surface beside an everyday object: the flat, signage-like language this section argues for, rather than a screen's colour and contrast. How people interact with it directly is still a design question.</span>
+      </span>
+      <button type="button" data-film="steel" aria-label="Play the steel concept render" class="film__toggle">Play film</button>
+    </figcaption>
+  </figure>
+
+  <section id="os" aria-labelledby="os-h" class="col sec">
+    <span class="label label--meta">05</span>
+    <h2 id="os-h">Building an OS from scratch: creating a fully functional system at launch</h2>
+    <p>Consumer expectations have evolved—today, launching a new device with only a handful of core functionalities is no longer enough. Users will expect a fully realized operating system that supports a wide range of capabilities, much like a smartphone— likely expecting every ‘app’ aside from those that enable content consumption (As every user will already have a TV). When I refer to "apps," I use the term broadly to encompass features and functionalities that shape the user experience.</p>
+    <p>So how do we create an operating system that feels complete from day one? The key is dynamically generating an infinite number of "apps," ensuring that any expected functionality is available immediately. To achieve this, we can leverage a transformer-based AI model—specifically, a multimodal model capable of:</p>
+    <div id="input-output" class="io">
+      <div class="panel">
+        <h3 class="panel__h">Two forms of input</h3>
+        <p class="panel__p"><strong>1. Passive</strong> – Observing and understanding human context</p>
+        <p class="panel__p"><strong>2. Active</strong> – Responding to inquiries and requests</p>
+      </div>
+      <div class="panel">
+        <h3 class="panel__h">Two forms of output</h3>
+        <p class="panel__p"><strong>1. Updating the state of the home</strong> – Adjusting light scenes and other connected devices</p>
+        <p class="panel__p"><strong>2. ‘Ambient Computing’</strong> – Translating information-seeking requests into front-end interfaces that always maintain a cohesive design language, delivering bespoke, elegant, and functional UI</p>
+      </div>
+    </div>
+    <p>That may sound abstract, so let’s break down what this means in practical terms and how to build it.</p>
+
+    <h3 id="home-assistant">Leveraging Home Assistant as the state model</h3>
+    <p>At the core of this system is Home Assistant, an open-source smart home platform that will serve as the state model for all sensors and devices in the home. Home Assistant provides real-time data on everything from motion sensors to lighting states, allowing our system to both interpret and modify the environment dynamically. By integrating Home Assistant, the system gains a reliable interface for controlling and responding to smart home inputs.</p>
+
+    <h3 id="prompt-chaining">Building a system of prompt chaining</h3>
+    <p>Beyond simply integrating with the home, what we’re really building is a dynamic chain of prompts—a structured workflow where different AI-generated responses are strung together to create rich, interactive experiences. I’ve been looking into a platform named <a href="https://github.com/danielmiessler/fabric">Fabric</a>, which provides an intuitive tool for linking multiple prompts (which they call "fabrics") into complex, yet easily configurable workflows.</p>
+    <p>Effectively, the system functions as a series of prompts and confidence checks, ensuring that interactions remain smooth, relevant, and personalized. By structuring the OS around dynamic prompts rather than static pre-built apps, we create an infinitely extensible framework where new functionalities can emerge in real time, tailored to the user's needs and the context of the home environment.</p>
+    <p>This is the foundation of our OS—a system that doesn’t require a traditional "app store" but instead builds interfaces on demand, translating any request into an elegant, projected UI that seamlessly integrates into the ambient computing experience.</p>
+  </section>
+
+  <section id="architecture" aria-labelledby="architecture-h" class="col sec">
+    <span class="label label--meta">06</span>
+    <h2 id="architecture-h">High-level architecture overview</h2>
+    <ol class="layers">
+      <li class="layer">
+        <span class="layer__n">01</span>
+        <div class="layer__body">
+          <span class="layer__title">Sensors &amp; Environment Layer</span>
+          <ul class="layer__points">
+            <li>Collects data from cameras, motion/occupancy sensors, temperature sensors, contact switches (doors/windows), and any other smart devices.</li>
+            <li>Publishes events to an Event Bus in real time.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">02</span>
+        <div class="layer__body">
+          <span class="layer__title">Home Assistant (State Model &amp; Communication Intermediary)</span>
+          <ul class="layer__points">
+            <li>Maintains a unified view of device states and sensor data.</li>
+            <li>Receives command updates (e.g., “set brightness to 20% in LivingRoom”) and executes them.</li>
+            <li>Exposes an API or event-based interface (e.g., MQTT or WebSocket) to higher-level modules.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">03</span>
+        <div class="layer__body">
+          <span class="layer__title">Core AI Services</span>
+          <div class="layer__subs">
+            <div class="sub">
+              <span class="sub__title">Vision Model (Local Inference)</span>
+              <ul class="sub__points">
+                <li>Runs on edge hardware (e.g., NVIDIA Jetson) to detect activities or context from video feeds.</li>
+                <li>Sends structured events (e.g., “User is sitting on the couch,” “User is cooking,” “No occupants detected”) to the Event Bus.</li>
+                <li>Respects privacy by avoiding cloud streaming of raw video.</li>
+              </ul>
+            </div>
+            <div class="sub">
+              <span class="sub__title">Request Type Model (Natural Language Understanding)</span>
+              <ul class="sub__points">
+                <li>Classifies user utterances into environment-related requests (“Dim the lights”), information-seeking (“How do I make a martini?”), or mixed intent.</li>
+                <li>Potentially includes an intent extractor and entity recognizer for more fine-grained control (e.g., “LivingRoom,” “Movie mode,” “Alice’s preference”).</li>
+              </ul>
+            </div>
+            <div class="sub">
+              <span class="sub__title">Knowledge Graph / Contextual Store (Optional)</span>
+              <ul class="sub__points">
+                <li>Maintains structured knowledge about the home (rooms, devices, user preferences) and potentially external knowledge (recipes, time-of-day usage patterns, etc.).</li>
+                <li>Provides quick lookups to minimize repeated LLM calls.</li>
+              </ul>
+            </div>
+            <div class="sub">
+              <span class="sub__title">Intuition Model (LLM or Rules + LLM)</span>
+              <ul class="sub__points">
+                <li>Suggests environment state changes based on the user’s activity or request.</li>
+                <li>Could be partly rule-based (e.g., “If user is watching a movie, set brightness to 20%”) and partly LLM-driven for more nuanced recommendations.</li>
+                <li>Considers context from the Knowledge Graph and Preferences/Profiles.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">04</span>
+        <div class="layer__body">
+          <span class="layer__title">Preferences &amp; Profile Manager</span>
+          <ul class="layer__points">
+            <li>Stores user- or household-level overrides (e.g., user likes brighter lights than normal, or user is extremely sensitive to overhead lighting).</li>
+            <li>Exposes these preferences to the Intuition Model and the Validation module.</li>
+            <li>Could be updated automatically when users frequently override recommended settings.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">05</span>
+        <div class="layer__body">
+          <span class="layer__title">Validation &amp; Contextual Overrides</span>
+          <ul class="layer__points">
+            <li>Replaces a simple confidence check with a multi-factor analysis.</li>
+            <li>Input includes: proposed change from Intuition Model; current Home Assistant states (e.g., lights are already at 25% brightness); preferences &amp; profiles (e.g., user consistently overrides bright settings after 10pm); time-of-day / location-based triggers (e.g., after sunset, or if occupant is in bed).</li>
+            <li>Produces a final recommended action (or no action), plus a confidence score or reason codes for auditing.</li>
+            <li>Allows for special overrides (party mode, guests present, child-friendly settings, etc.).</li>
+          </ul>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">06</span>
+        <div class="layer__body">
+          <span class="layer__title">Orchestrator &amp; Event Bus</span>
+          <ul class="layer__points">
+            <li>Coordinates the flow of data and commands among the Vision Model, NLU, Intuition Model, Preferences Manager, and Home Assistant.</li>
+            <li>Manages concurrency (e.g., prevents conflicting lighting commands if two different triggers fire simultaneously).</li>
+            <li>Could queue or batch updates if the system is under heavy load.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">07</span>
+        <div class="layer__body">
+          <span class="layer__title">Feedback Loop &amp; Learning</span>
+          <ul class="layer__points">
+            <li>Logs all final decisions and user responses (e.g., user accepted, user manually overrode the system).</li>
+            <li>Periodically retrains or fine-tunes AI models with anonymized usage data, or updates preference rules automatically.</li>
+            <li>Helps the system evolve to better match real user behavior.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">08</span>
+        <div class="layer__body">
+          <span class="layer__title">Information Retrieval &amp; Summarization</span>
+          <ul class="layer__points">
+            <li>When the Request Type Model identifies an information-seeking query (“How do I make a martini?”), the system calls an LLM or knowledge source.</li>
+            <li>Summarizes the response in a concise format.</li>
+            <li>Passes the final output to an Ambient UI Renderer for user consumption.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="layer">
+        <span class="layer__n">09</span>
+        <div class="layer__body">
+          <span class="layer__title">Ambient UI Renderer</span>
+          <ul class="layer__points">
+            <li>Generates cohesive projected interfaces or minimal UI elements.</li>
+            <li>Ensures a consistent white-light, flat-design aesthetic across all projected data (light states, recipe instructions, short messages).</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="flows" aria-labelledby="flows-h" class="col sec">
+    <span class="label label--meta">07</span>
+    <h2 id="flows-h">Example flows</h2>
+    <div id="flow-a" class="flow">
+      <h3 class="flow__h"><span class="flow__letter">A</span>Passive environment adjustment</h3>
+      <ol class="flow__steps">
+        <li><span class="flow__n">1</span><span class="flow__body"><span>Vision Model detects “User is lying on the couch.”</span></span></li>
+        <li><span class="flow__n">2</span><span class="flow__body"><span>Event Bus publishes “PassiveTrigger.Activity:LyingOnCouch.”</span></span></li>
+        <li><span class="flow__n">3</span><span class="flow__body"><span>Orchestrator calls Intuition Model with context: “User lying on couch in LivingRoom. No other occupants.”</span></span></li>
+        <li><span class="flow__n">4</span><span class="flow__body"><span>Intuition Model outputs recommended YAML:</span><pre>LivingRoom:
+  brightness: 20%
+  color: warm white</pre></span></li>
+        <li><span class="flow__n">5</span><span class="flow__body"><span>Validation &amp; Contextual Overrides checks user’s “Alice” preference for relaxing, current time (10pm), sees no conflict, sets confidence to 90%.</span></span></li>
+        <li><span class="flow__n">6</span><span class="flow__body"><span>If above threshold, Orchestrator sends command to Home Assistant → adjusts lights.</span></span></li>
+        <li><span class="flow__n">7</span><span class="flow__body"><span>Log outcome in Feedback Loop.</span></span></li>
+      </ol>
+    </div>
+    <div id="flow-b" class="flow">
+      <h3 class="flow__h"><span class="flow__letter">B</span>Active user-initiated change</h3>
+      <ol class="flow__steps">
+        <li><span class="flow__n">1</span><span class="flow__body"><span>User says, “I want movie mode in the living room.”</span></span></li>
+        <li><span class="flow__n">2</span><span class="flow__body"><span>Request Type Model: “Environment-related.”</span></span></li>
+        <li><span class="flow__n">3</span><span class="flow__body"><span>Intuition Model: “Movie mode → brightness: 15%, color: warm white.”</span></span></li>
+        <li><span class="flow__n">4</span><span class="flow__body"><span>Validation &amp; Contextual Overrides: Looks at time (9pm), user’s preference (Bob likes 10% brightness), final sets brightness to 10%, confidence 95%.</span></span></li>
+        <li><span class="flow__n">5</span><span class="flow__body"><span>Orchestrator → Home Assistant updates lighting.</span></span></li>
+        <li><span class="flow__n">6</span><span class="flow__body"><span>Feedback Loop logs acceptance.</span></span></li>
+      </ol>
+    </div>
+    <div id="flow-c" class="flow">
+      <h3 class="flow__h"><span class="flow__letter">C</span>Mixed intent</h3>
+      <ol class="flow__steps">
+        <li><span class="flow__n">1</span><span class="flow__body"><span>User says, “I’m having dinner with guests; dim the living room and show me a recipe for carbonara.”</span></span></li>
+        <li><span class="flow__n">2</span><span class="flow__body"><span>Request Type Model: “Mixed.” Splits into environment + information requests.</span></span></li>
+        <li><span class="flow__n">3</span><span class="flow__body"><span>Intuition Model handles environment: recommends 30% brightness, warm color.</span></span></li>
+        <li><span class="flow__n">4</span><span class="flow__body"><span>Validation &amp; Contextual Overrides adjusts if preferences or context.</span></span></li>
+        <li><span class="flow__n">5</span><span class="flow__body"><span>Information Retrieval &amp; Summarization retrieves a quick carbonara recipe.</span></span></li>
+        <li><span class="flow__n">6</span><span class="flow__body"><span>Ambient UI Renderer: Projects or displays the recipe + sets lights.</span></span></li>
+        <li><span class="flow__n">7</span><span class="flow__body"><span>Feedback Loop logs results.</span></span></li>
+      </ol>
+    </div>
+    <div id="flow-d" class="flow">
+      <h3 class="flow__h"><span class="flow__letter">D</span>Information-seeking only</h3>
+      <ol class="flow__steps">
+        <li><span class="flow__n">1</span><span class="flow__body"><span>User asks: “What’s the weather forecast?”</span></span></li>
+        <li><span class="flow__n">2</span><span class="flow__body"><span>Request Type Model: “Information-seeking.”</span></span></li>
+        <li><span class="flow__n">3</span><span class="flow__body"><span>Information Retrieval &amp; Summarization: “Sunny, 75°F, no rain.”</span></span></li>
+        <li><span class="flow__n">4</span><span class="flow__body"><span>Ambient UI Renderer: Projects small weather widget in the living room.</span></span></li>
+        <li><span class="flow__n">5</span><span class="flow__body"><span>Feedback Loop logs usage.</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="hardware" aria-labelledby="hardware-h" class="col sec">
+    <span class="label label--meta">08</span>
+    <h2 id="hardware-h">The hardware that enables this vision</h2>
+    <p>To project interfaces, we need the ability to control and manipulate millions of tiny points of light with precision. At first glance, this might seem like an insurmountable challenge—but humanity has already solved this problem. The technology is called Digital Light Processing (DLP), and it has been widely used in everything from home theater projectors to the digital projectors found in movie theaters.</p>
+    <p>At the core of DLP technology is the Digital Micromirror Device (DMD) chip, a marvel of modern engineering fabricated using similar techniques to microprocessors. DMD chips contain millions of microscopic mirrors, each capable of tilting on or off to reflect light, effectively creating a high-resolution projection. This allows projections to function much like OLED displays, where individual pixels can be turned completely on or off to create crisp, high-contrast images.</p>
+    <p>The challenge with traditional projectors, however, is that they are optimized for full-color RGB output, designed for displaying images and video rather than producing high-quality, natural lighting for a home environment. This is where our innovation comes in: while the DMD chip controls the projection itself, the light engine that supplies the illumination is a separate component. By replacing the standard RGB light engine with a tunable white light source, we can create a projection system designed specifically for ambient computing.</p>
+    <p>Tunable white light refers to the ability to adjust both the warmth and coolness of white light, enabling a spectrum of color temperatures that can shift to match different environments and needs. By integrating this capability into our projection system, we can achieve a much brighter, cleaner, and more visually comfortable experience—one that is purpose-built for ambient computing rather than retrofitted from existing display technology. This approach allows us to leverage the best qualities of DLP projection while designing for an entirely new use case: a seamless, elegant, and dynamic ambient computing experience.</p>
+  </section>
+
+  <section id="next-prototype" aria-labelledby="next-prototype-h" class="col sec">
+    <span class="label label--meta">09</span>
+    <h2 id="next-prototype-h">The next version of the hardware prototype</h2>
+    <p>When exploring how to achieve 360-degree projection, I initially went deep into the rabbit hole—researching and even attempting to design a GRIN (Gradient-Index) lens. GRIN lenses manipulate light through a gradual change in the refractive index, enabling complex optical behavior without traditional curved surfaces. My goal was to create a distortion-free projection system capable of seamlessly covering an entire space.</p>
+    <p>After discussing this idea with an optomechanical expert friend of mine — someone who prototypes hardware for major tech companies—he grounded me in reality. He explained that manufacturing a custom GRIN lens  would cost hundreds of thousands of dollars, and even then, the results would likely be flawed. Instead, he gave me invaluable advice:</p>
+    <blockquote class="quote">
+      <p class="quote__text">"Come up with the dumbest, most dead-simple idea to achieve the same result."</p>
+      <span class="label">An optomechanical expert friend</span>
+    </blockquote>
+    <p>That’s when it hit me: instead of a single complex lens, why not just mount multiple projectors radially in a circle, each covering a different direction… Simple…Effective….</p>
+    <p>For the next iteration of the prototype, I will use eight Texas Instruments DLP2000EVM projectors, arranged in a radial configuration to provide full 360-degree coverage. These projectors will serve two purposes:</p>
+    <ol class="numlist">
+      <li class="num"><span class="num__n">01</span><span><strong>Projecting interfaces</strong> – Delivering ambient computing visuals throughout the space.</span></li>
+      <li class="num"><span class="num__n">02</span><span><strong>Acting as dynamic spotlights</strong> – Traditional gallery and museum lighting relies on barn doors to shape light precisely within the frames of a painting. With the DMD chip inside a DLP projector, we can achieve the same precision dynamically—whether it’s illuminating artwork, a cutting board, or any other focal point.</span></li>
+    </ol>
+    <p>While this version of the prototype will still rely on standard projector light engines (meaning light quality will remain suboptimal), future iterations will replace these with tunable white light sources optimized for home environments.</p>
+
+    <h3 id="led-strips">Adding tunable white LED strips</h3>
+    <p>Between each projector, tunable white LED strips will be mounted radially, allowing fine control over light temperature and intensity. Each strip can be dimmed or disabled independently to create specific lighting effects. For example, during a movie night, the system could turn off inward-facing LEDs while keeping outward-facing ones active, allowing soft, warm light to reflect off the walls without disrupting the immersive experience.</p>
+
+    <h3 id="communication">System architecture and communication</h3>
+    <p>The projectors will communicate with an onboard computer via Ethernet using a small onboard gigabit switch. Given the number of projectors, leveraging IP-based communication will be the most scalable and reliable approach. The current computing platform I’m designing around is the NVIDIA Jetson, which offers the necessary processing power while supporting future AI-driven enhancements.</p>
+
+    <h3 id="power">Powering the system</h3>
+    <p>Powering this setup is no small feat. The prototype will include a 24V 340W AC/DC power adapter—a staggering amount of power, roughly equivalent to a small gaming PC. According to my calculations, this is the minimum required to run all projectors simultaneously. The system will also integrate the necessary power components to step down 24V to the various voltage levels needed by different hardware components.</p>
+
+    <h3 id="future">Future additions</h3>
+    <p>A critical next step will be incorporating an onboard camera, though initially, the camera will be an external module. In future iterations, it will be fully integrated to enable more advanced interaction and automation features.</p>
+    <p class="closing">This prototype represents the first major step toward a truly dynamic and intuitive ambient computing system—leveraging projected interfaces, intelligent lighting, and adaptable interaction in a way that has never been done before.</p>
+  </section>
+
+  <figure id="film-wood" aria-labelledby="cap-wood" class="film">
+    <div class="film__frame">
+      <video data-film="wood" data-src="../assets/site/films/wood-web-60.mp4" poster="../assets/site/films/wood-poster.jpg" preload="none" loop muted playsinline aria-label="Concept render: projected text on a wood floor reads Bringing computing into the world around you" class="film__video"></video>
+    </div>
+    <figcaption class="film__cap">
+      <span class="film__text">
+        <span class="label">Experience study · wood · Blender concept render</span>
+        <span id="cap-wood" class="film__desc">The longer-term aim: computing carried by the room's own surfaces. Projection and gesture are not built or commissioned; the prototype above is the first step toward them.</span>
+      </span>
+      <button type="button" data-film="wood" aria-label="Play the wood concept render" class="film__toggle">Play film</button>
+    </figcaption>
+  </figure>
+
+  <nav aria-label="Continue" class="col continue">
+    <a href="../hardware/" class="btn btn--primary"><span>Hardware notebook</span><span aria-hidden="true">→</span></a>
+    <a href="../software/" class="btn btn--ghost"><span>Software</span><span aria-hidden="true" class="btn__arrow">→</span></a>
+    <a href="#top" class="btn btn--quiet"><span>Back to top</span><span aria-hidden="true">↑</span></a>
+  </nav>
+
+  <footer class="site-foot site-foot--vision">
+    <span>Engineered lighting · vision</span>
+    <span>Films: Blender concept renders, v3 · not footage of working hardware</span>
+  </footer>
+
+  <a href="#contents" class="toc-pill">Contents</a>
+  </div>
+</main>
+</body>
+</html>
