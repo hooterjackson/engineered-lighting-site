@@ -625,3 +625,59 @@ Native revision hashes, evidence attribution, realistic viewer styling and all
 three flex design snapshots are preserved. No chapter or navigation changes.
 The owner explicitly requested publication, superseding the earlier PR-only hold.
 Validation and deployment results are recorded in the associated pull request.
+
+
+## 2026-11-02 — The four-page front: Home, Vision, Hardware, Software
+
+**What landed (branch `claude/vibrant-hermann-c2a4da`, not pushed).** The site root is
+no longer the Material landing. Four standalone static pages, built from the owner's
+Claude Design handoff (`Engineering.engineered.lighting.zip`, README as the spec), now
+sit at `/`, `/vision/`, `/hardware/` and `/software/` (`docs/index.html`,
+`docs/<page>/index.html`). MkDocs copies them through untouched. The old landing moved
+to `docs/notebook.md` (`/notebook/`), still first in the sidebar; every chapter URL is
+unchanged. Shared assets live in `docs/assets/site/` (see README, "The front pages").
+
+- **Home.** The design's `opening-journey.js` and `den-hero.js`, ported with only
+  boundary edits (self-hosted three.js r160, module-relative asset URLs, scan parts
+  from `large-assets.json`); their maths, constants and timings are byte-identical.
+  `?intro=0` and reduced motion skip the opening before first paint.
+- **Vision.** Generated once from `Vision.dc.html` with styles mapped to classes, so
+  the owner's copy is byte-exact; films lazy-load and autoplay muted; the diagonal
+  light/shadow sweep flips text instead of using panels.
+- **Hardware.** The repo's own Doc 9 viewer (newer than the handoff's snapshot),
+  board-only, with the glass panel framed beside the board so nothing covers it.
+- **Software.** Written from the Home architecture (Simple view, A14 ladder, repo
+  notes, decision register), not from the mock-up: four Hue bulbs under
+  `den_lighting` work today; no engineered spotlight is installed; den, Qwen and
+  backend development paused since 2026-10-25; the sofa look test is written on an
+  unmerged Home branch and not yet run; none of the 29 owner decisions is applied
+  (ten answered in a first pass, the rest parked). Every part carries Works today /
+  Partly built / Not built yet.
+
+**Binaries (owner's go-ahead 2026-11-02).** Apartment clouds and the four films with
+posters come from the landing-demo-site `public/` folder (hash-checked; the joined
+cloud matches its recorded SHA-256). `victoria-den.bin` is a **rebuild** from pack
+`local-2026-10-15-den-view-r1-v4` by `tools/site/den_scan.py`; it registers with
+den-hero's fixtures and paths. About 73 MB of repo growth, in two separate commits.
+
+**Drawings and privacy.** Software shows four drawings, each exported by the
+architecture session on request and checked by eye before placing: the A14
+build-ladder drawing, the title block with its key (without its photo note), the
+Simple view and sheet A1. The owner OK'd people and camera frames on 2026-11-02; faces
+are blurred and AI-edited pictures tagged as built. The owner's rule is that no place
+name for the apartment appears on the site, so the exports drop or neutralise every
+such label (for A1 only in the export; the architecture's own sources and pages are
+unchanged), and a test guards it. The architecture page itself is not hosted, so
+`/software/architecture/` does not exist and the drawings link only to their own
+image files. No claude.ai link anywhere; a test guards that too.
+
+**Checks.** Two `mkdocs build --strict` runs clean. `pytest tests/e2e` adds
+`test_front_pages.py`: every front page at 390/768/1440/1920 with and without reduced
+motion, no console errors, no sideways scroll, chapter URLs intact, fallbacks, film
+laziness, sweep inversion, board controls, Software's honesty rules, and guards.
+
+**Open, for the owner:** Home-tool screenshots to supply; whether to host the full
+architecture page (it would need the same place-name pass); whether the films are
+the v3 renders; whether the rebuilt den scan is fine to publish; first-load size on a
+phone (~42 MB desktop cloud + 11.5 MB den). Push, PR and deploy wait for the owner's
+word.

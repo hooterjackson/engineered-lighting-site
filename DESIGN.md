@@ -166,6 +166,20 @@ the product's whole promise in three shapes. `el-logo.svg` (transparent, for the
 header) and `el-favicon.svg` (on a charcoal tile, bolder geometry for 16px). Both pure
 SVG, no text; the wordmark stays typographic.
 
+## 6a · The front pages (Home, Vision, Hardware, Software)
+
+Since November 2026 the site opens on four standalone pages built from the owner's
+Claude Design handoff (`docs/index.html`, `docs/{vision,hardware,software}/`). They
+follow the **Engineered Lighting design system**, not this notebook identity: pure
+white and `#A1A1A1` type, `#0072F5` links and focus rings, an ice dot only for
+"live" chrome, IBM Plex Sans 400/500/600 and Plex Mono 400 self-hosted as WOFF2,
+glass panels (`rgba(0,0,0,.35)`, 1px `.12` border, backdrop blur), radius 0 except
+pills. Tokens sit at the top of `docs/assets/site/site.css`; each page has its own
+stylesheet. The chapters keep everything above. The two meet only at links: the
+front pages link into chapters, and Material's logo links back to `/`. Their
+JavaScript lives in `docs/assets/site/js/`, separate from the notebook's
+`docs/js/`, which Hardware reuses for the Doc 9 board viewer.
+
 ## 7 · Verified constraints & flagged conflicts
 
 **Verified:** 21 token pairs contrast-checked programmatically — every text/interactive

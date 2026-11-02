@@ -23,7 +23,9 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest became 26.04, where the pinned Playwright (1.60)
+    # refuses to install Chromium. Move together with a Playwright upgrade.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,7 +42,9 @@ jobs:
         run: |
           printf '# Doc 99 · Test chapter\n\nAuto-nav check.\n' > docs/99-test.md
           mkdocs build -q
-          grep -q "99-test" site/index.html
+          # site/index.html is the standalone front page; any Material page
+          # carries the full nav.
+          grep -q "99-test" site/notebook/index.html
           rm docs/99-test.md
       - run: mkdocs build --strict
       - run: playwright install --with-deps chromium
@@ -75,7 +79,8 @@ jobs:
     needs: test
     # Never from a pull request: publishing is a push to main or a manual run.
     if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    # Same image as the test job, so the build that deploys is the build that passed.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Configure git identity for gh-deploy

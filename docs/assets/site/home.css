@@ -1,0 +1,99 @@
+/* Home (/): the scroll-driven opening (opening-journey.js), then the den
+   section (den-hero.js) with the wordmark and three doors. */
+
+/* ---- 1a. Opening journey: a sticky stage inside a 600svh scroll section ---- */
+.opening { display: none; position: relative; height: 600svh; }
+[data-intro="on"] .opening { display: block; }
+.skip-pill {
+  position: fixed; z-index: 6; right: var(--gutter); bottom: 28px;
+  display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px;
+  font-family: var(--mono); font-size: 11px; line-height: 1.2; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92); background: var(--glass); border: 1px solid var(--edge);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.skip-pill:hover { background: rgba(255, 255, 255, 0.08); }
+.skip-pill span { color: var(--fg-3); }
+.opening__stage { position: sticky; top: 0; z-index: 3; height: 100svh; overflow: hidden; pointer-events: none; }
+.opening__backdrop { position: absolute; inset: 0; background: #000000; }
+.opening__scene { position: absolute; inset: 0; transform-origin: center; will-change: transform; }
+.opening__canvas, .opening__labels { position: absolute; inset: 0; }
+.opening__labels { overflow: hidden; }
+.opening__vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8) 100%); }
+.opening__overlay { position: absolute; inset: 0; visibility: hidden; }
+.opening__note, .opening__hint {
+  position: absolute; bottom: 34px; font-family: var(--mono); line-height: 1.4;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-2);
+}
+.opening__note { left: var(--gutter); opacity: 0; font-size: 10px; }
+.opening__hint { left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 11px; }
+
+/* ---- 1b. Den section ---- */
+.overview { position: relative; z-index: 2; background: #000000; }
+[data-intro="on"] .overview { margin-top: -100svh; }
+.den {
+  position: relative; min-height: 100svh; overflow: hidden; background: #000000;
+  display: flex; flex-direction: column; justify-content: space-between; gap: clamp(32px, 5vh, 64px);
+  padding: 28px var(--gutter) clamp(24px, 3.5vw, 48px);
+}
+.den__scene { position: absolute; inset: 0; opacity: 0.85; }
+.den__labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.den__head { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px 16px; }
+.den__head .site-nav { margin-left: auto; }
+.hud {
+  display: inline-flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 999px;
+  font-family: var(--mono); font-size: 11px; line-height: 1.2; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92); background: var(--glass); border: 1px solid var(--edge);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.hud__dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ice); box-shadow: var(--ice-glow); }
+.hud__clock { color: var(--fg-3); }
+.den__mark { position: relative; z-index: 2; display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 24px); pointer-events: none; }
+/* home.js and the opening set the slot's opacity inline (0 until the wordmark docks). */
+.wordmark { display: block; width: min(100%, 1240px); aspect-ratio: 8.984; opacity: 0; pointer-events: auto; }
+
+/* ---- Doors: glass panels, each a single link ---- */
+.doors { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.door {
+  position: relative; display: flex; flex-direction: column; height: 100%; color: var(--fg-0);
+  background-color: var(--glass); border: 1px solid var(--edge); border-radius: 0;
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  transition: background-color 220ms var(--ease), border-color 220ms var(--ease);
+  --door-rule: var(--line); --door-open: rgba(255, 255, 255, 0.72);
+}
+.door:hover, .door:focus-visible { opacity: 1; background-color: rgba(255, 255, 255, 0.06); border-color: var(--edge-hover); --door-rule: rgba(255, 255, 255, 0.16); --door-open: #FFFFFF; }
+.door:active { background-color: rgba(255, 255, 255, 0.04); box-shadow: inset 0 1px 12px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
+.door__top {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 24px 0;
+  font-family: var(--mono); font-size: 11px; line-height: 1.4; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.door__label { color: rgba(255, 255, 255, 0.92); }
+.door__path { color: var(--fg-3); letter-spacing: 0.08em; text-transform: none; }
+.door__main { flex: 1; display: flex; gap: 24px; align-items: flex-start; padding: 22px 24px 24px; }
+.door__copy { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.door__headline { font-weight: 500; font-size: clamp(22px, 2vw, 28px); line-height: 1.15; letter-spacing: -0.015em; color: var(--fg-0); text-wrap: balance; }
+.door__desc { margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--fg-2); max-width: 46ch; text-wrap: pretty; }
+.door__facts { margin-top: 20px; font-family: var(--mono); font-size: 11px; line-height: 1.4; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-3); }
+/* A 4:3 thumbnail on the right at >= 1100px, when one is supplied. */
+.door__media { display: none; flex: none; position: relative; width: clamp(148px, 13vw, 188px); aspect-ratio: 4 / 3; background: #000000; border: 1px solid var(--line); }
+@media (min-width: 1100px) { .door__media { display: block; } }
+.door__open {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 24px 16px;
+  border-top: 1px solid var(--door-rule); transition: border-color 220ms var(--ease);
+  font-weight: 500; font-size: 15px; line-height: 1.4; color: var(--door-open);
+}
+.door__open span { transition: color 220ms var(--ease); }
+.door__open svg { flex: none; transition: transform 220ms var(--ease), color 220ms var(--ease); }
+.door:hover .door__open svg, .door:focus-visible .door__open svg { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .door:hover .door__open svg, .door:focus-visible .door__open svg { transform: none; }
+}
+
+/* ---- The idea ---- */
+.idea { padding: clamp(72px, 6.5vw, 96px) var(--gutter) 0; }
+.idea__head { padding-bottom: 16px; }
+.idea__head h2 { margin: 0; font-family: var(--mono); font-weight: 400; font-size: 11px; line-height: 1.4; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
+.idea__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 0 32px; }
+.idea__item { display: flex; flex-direction: column; gap: 12px; padding: 22px 0 26px; border-top: 1px solid var(--edge); }
+.idea__n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--fg-3); }
+.idea__item h3 { margin: 0; font-weight: 500; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.12; letter-spacing: -0.015em; color: var(--fg-0); text-wrap: balance; }
+.idea__item p { margin: 0; max-width: 420px; font-size: 15px; line-height: 1.55; color: var(--fg-2); text-wrap: pretty; }

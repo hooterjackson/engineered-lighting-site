@@ -112,7 +112,8 @@ def test_screenshots(page):
     SCREENS.mkdir(parents=True, exist_ok=True)
     # (name, path, selector to wait for) - pages that build themselves need a
     # readiness signal rather than a fixed pause.
-    pages = (("landing", "/", None), ("doc3", "/03-build-the-gimbal/", None),
+    # The front pages have their own, wider screenshot pass in test_front_pages.py.
+    pages = (("notebook", "/notebook/", None), ("doc3", "/03-build-the-gimbal/", None),
              ("checklist", "/bom-checklist/", None),
              ("pcb", "/09-understand-the-pcb/", '#el-pcb[data-state="ready"]'),
              ("flex", "/10-the-flex-circuits/", '#el-flex[data-state="ready"]'))

@@ -1,0 +1,6 @@
+# Binary assets for the front pages: never rewrite line endings.
+*.bin -text
+*.mp4 -text
+*.jpg -text
+*.png -text
+*.woff2 -text

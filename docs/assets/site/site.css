@@ -1,0 +1,119 @@
+/* Engineered Lighting front pages (Home, Vision, Hardware, Software).
+   Shared tokens, fonts, nav and footer. These pages are standalone static HTML:
+   Material's CSS and JS never load on them. Tokens come from the Engineered
+   Lighting design system (colors_and_type.css in the design handoff); each page
+   adds its own stylesheet on top. */
+
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/IBMPlexSans-Regular.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/IBMPlexSans-Medium.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/IBMPlexMono-Regular.woff2") format("woff2"); }
+
+:root {
+  --field: #000000;
+  --panel-1: #0A0A0A;
+  --panel-2: #111111;
+  --fg-0: #FFFFFF;
+  --fg-1: #EDEDED;
+  --fg-2: #A1A1A1;           /* body */
+  --fg-3: #8F8F8F;           /* metadata, 6.4:1 on black */
+  --line: rgba(255, 255, 255, 0.08);
+  --edge: rgba(255, 255, 255, 0.12);
+  --edge-hover: rgba(255, 255, 255, 0.24);
+  --link: #0072F5;
+  --ice: #B8D8FF;
+  --ice-glow: 0 0 10px rgba(184, 216, 255, 0.6);
+  --glass: rgba(0, 0, 0, 0.35);
+  --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --gutter: clamp(20px, 3.9vw, 56px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--field); color: var(--fg-0); }
+body {
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { opacity: 0.8; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 1px solid var(--link); outline-offset: 2px; }
+:focus:not(:focus-visible) { outline: none; }
+button { font: inherit; }
+
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Chrome labels: Plex Mono 11px, uppercase, .14em. */
+.chrome, .label, .back-link, .site-nav {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.label { color: var(--fg-2); }
+.label--meta { color: var(--fg-3); }
+
+/* ---- Nav on Vision / Hardware / Software: back link + plain mono tabs ---- */
+.page-head {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+  gap: 12px 24px; padding: 28px var(--gutter) 0;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+  line-height: 1.2; color: var(--fg-2);
+}
+.back-link:hover { color: var(--fg-0); }
+.site-nav { display: flex; align-items: center; gap: 20px; line-height: 1.2; }
+.site-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--fg-2); }
+.site-nav a:hover { color: var(--fg-0); }
+.site-nav a[aria-current="page"] {
+  color: var(--fg-0); padding-bottom: 3px; border-bottom: 1px solid var(--fg-0);
+}
+
+/* ---- Nav on Home: the liquid-glass pill ---- */
+.site-nav--pill {
+  gap: 6px; padding: 4px; border-radius: 999px;
+  background: var(--glass); border: 1px solid var(--edge);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.site-nav--pill a {
+  padding: 6px 10px; border-radius: 999px; color: rgba(255, 255, 255, 0.85);
+}
+.site-nav--pill a:hover { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.85); opacity: 1; }
+
+/* ---- Footer ---- */
+.site-foot {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px;
+  padding: clamp(64px, 5.5vw, 80px) var(--gutter) 28px;
+  font-family: var(--mono); font-size: 10px; line-height: 1.4; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--fg-3);
+}
+
+/* ---- Pill buttons and links ---- */
+.btn {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 10px 18px;
+  border-radius: 999px; font-family: var(--sans); font-weight: 500; font-size: 15px; line-height: 1.2;
+}
+.btn--primary { color: #000000; background: var(--fg-0); }
+.btn--primary:hover { opacity: 0.9; }
+.btn--ghost { color: var(--fg-0); border: 1px solid var(--edge-hover); }
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+.btn--quiet { color: var(--fg-2); }
+.btn--quiet:hover { color: var(--fg-0); }
+.btn__arrow { color: var(--fg-2); }
+
+/* ---- Owner-supplied image slots. Every slot carries data-slot; diagram slots
+   also carry data-privacy ("private" until the owner says otherwise, or
+   "public-candidate"). Swap a slot for an <img> once the file is approved. ---- */
+.slot {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;
+  padding: 16px; background: var(--panel-1); border: 1px dashed rgba(255, 255, 255, 0.16);
+  font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: 0.08em; color: var(--fg-3);
+}
+.slot__tag { text-transform: uppercase; letter-spacing: 0.14em; color: var(--fg-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
