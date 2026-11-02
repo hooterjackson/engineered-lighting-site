@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Software · Engineered Lighting</title>
+<meta name="description" content="How the system is meant to see a room, decide on light and learn, what runs in the den today, and the build ladder in between.">
+<link rel="icon" href="../assets/el-favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site/site.css">
+<link rel="stylesheet" href="../assets/site/software.css">
+</head>
+<body>
+<!--
+  Sources (owner's Home architecture, revision B, generated 2026-10-30; facts as of
+  2026-11-02): the Simple view (eight steps and their marks), the build ladder on
+  sheet A14, the repo notes on what exists, and the decision register.
+  Imagery rule: the architecture drawings contain camera frames from the owner's
+  apartment and stay private until the owner says otherwise. Every place a drawing
+  would appear is a slot with data-slot="diagram" and data-privacy; data-src is the
+  intended image and data-href the intended link target. Nothing here links the
+  private architecture page.
+-->
+<main class="sw">
+
+  <header class="page-head">
+    <a href="../#den" class="back-link"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 8H3M7.25 3.75 3 8l4.25 4.25" stroke="currentColor" stroke-width="1.5"></path></svg>Engineering</a>
+    <nav aria-label="Site" class="site-nav">
+      <a href="../vision/">Vision</a>
+      <a href="../hardware/">Hardware</a>
+      <a href="./" aria-current="page">Software</a>
+    </nav>
+  </header>
+
+  <section class="sw-intro" aria-label="Introduction">
+    <h1>The perception and decision loop.</h1>
+    <p class="sw-lede">How the system is meant to see a room, decide on light for each person, check the result and learn, and how much of that runs today. Every part on this page carries one of three marks, and nothing here is promised beyond its mark.</p>
+    <ul class="key" aria-label="What the marks mean">
+      <li><span class="mark mark--works">Works today</span><span>runs in the den now</span></li>
+      <li><span class="mark mark--partly">Partly built</span><span>some of it exists</span></li>
+      <li><span class="mark mark--not">Not built yet</span><span>designed only</span></li>
+    </ul>
+    <p class="label label--meta">Status as of 2 November 2026</p>
+  </section>
+
+  <section id="today" class="sw-sec" aria-labelledby="today-h">
+    <div class="sw-head">
+      <h2 id="today-h">Running today</h2>
+      <span class="label label--meta">What exists · source on GitHub</span>
+    </div>
+    <div class="today">
+      <div class="today__text">
+        <p><span class="mark mark--works">Works today</span></p>
+        <p>The den's lights are four Hue bulbs run by <code>den_lighting</code>, a Home Assistant integration. They switch on when someone is in the room and off 120 seconds after it empties, dim to a warm, low scene while a Steam game runs, and hold any bulb someone changes by hand.</p>
+        <p>A camera and its “is anyone here?” check also run in the den. Everything else on this page is partly built or not built yet.</p>
+        <p>No engineered spotlight is installed. The moving spotlight and its fixture are still bench and board work: see <a href="../hardware/">Hardware</a>.</p>
+        <p class="today__pause">Development of the den, the Qwen vision model and the backend has been paused since 25 October 2026.</p>
+      </div>
+      <ul class="repos" aria-label="Repositories">
+        <li><a href="https://github.com/hooterjackson/HomeApp" target="_blank" rel="noopener"><span class="repo__main"><span class="repo__name">Home app</span><span class="repo__slug">hooterjackson/HomeApp</span><span class="repo__desc">Self-hosted chat client for Home Assistant: local LLM, tool calls and device actions, voice, live GPU and model metrics.</span></span><span class="repo__vis">Public<span aria-hidden="true">↗</span></span></a></li>
+        <li><a href="https://github.com/hooterjackson/engineered-lighting-card" target="_blank" rel="noopener"><span class="repo__main"><span class="repo__name">Lovelace card</span><span class="repo__slug">hooterjackson/engineered-lighting-card</span><span class="repo__desc">Custom Home Assistant card: camera feeds, world-model overlays, Jetson and LattePanda metrics.</span></span><span class="repo__vis">Public<span aria-hidden="true">↗</span></span></a></li>
+        <li><a href="https://github.com/hooterjackson/gimbal-bench" target="_blank" rel="noopener"><span class="repo__main"><span class="repo__name">Gimbal bench</span><span class="repo__slug">hooterjackson/gimbal-bench</span><span class="repo__desc">Bench and commissioning console for the robotic spotlight: ESP32-C6 firmware, RMD-L-5005 CAN tooling, local control UI.</span></span><span class="repo__vis">Private<span aria-hidden="true">↗</span></span></a></li>
+        <li><a href="https://github.com/hooterjackson/engineered-lighting-site" target="_blank" rel="noopener"><span class="repo__main"><span class="repo__name">Engineering notebook</span><span class="repo__slug">hooterjackson/engineered-lighting-site</span><span class="repo__desc">Source for engineering.engineered.lighting: runbooks, the PCB chapter and this site.</span></span><span class="repo__vis">Public<span aria-hidden="true">↗</span></span></a></li>
+      </ul>
+    </div>
+    <!-- Home tool screenshots: the owner supplies these (no camera frames). -->
+    <div class="shots">
+      <figure class="shot">
+        <div class="slot slot--shot" data-slot="screenshot" data-slot-id="sw-shot-home"><span class="slot__tag">Screenshot to come</span><span>Home app chat window</span></div>
+        <figcaption class="label">Home app · chat, tool calls, device actions</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="slot slot--shot" data-slot="screenshot" data-slot-id="sw-shot-den"><span class="slot__tag">Screenshot to come</span><span>Home tool den view: lit scan and virtual fixtures</span></div>
+        <figcaption class="label">Home tool · den model and virtual fixtures</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="slot slot--shot" data-slot="screenshot" data-slot-id="sw-shot-card"><span class="slot__tag">Screenshot to come</span><span>Home Assistant card, without camera frames</span></div>
+        <figcaption class="label">Lovelace card · Home Assistant dashboard</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="how" class="sw-sec" aria-labelledby="how-h">
+    <div class="sw-head">
+      <h2 id="how-h">How it works</h2>
+      <span class="label label--meta">Simple view · eight steps in a loop</span>
+    </div>
+    <p class="sw-p">The loop watches the room, works out what light each person needs, gives each of them that light, checks the result and learns. Then the camera sees the room in its new light, and it goes round again. It is being built in a den in Victoria.</p>
+    <ol class="steps">
+      <li class="step">
+        <span class="step__n">01</span>
+        <h3>See the room</h3>
+        <p>A camera watches the room. The rest of the system stays asleep until someone walks in.</p>
+        <p class="step__today"><span class="mark mark--works">Works today</span><span>The camera and its “is anyone here?” check run in the den.</span></p>
+      </li>
+      <li class="step">
+        <span class="step__n">02</span>
+        <h3>Spot people and things</h3>
+        <p>It finds each person’s body and hands, and things like a knife or a book.</p>
+        <p class="step__today"><span class="mark mark--partly">Partly built</span><span>The software exists and has been tried out in the den, but is switched off for now.</span></p>
+      </li>
+      <li class="step">
+        <span class="step__n">03</span>
+        <h3>Follow each person</h3>
+        <p>It marks where each person is on a map of the room and keeps track of each one separately. No names needed: people are A and B.</p>
+        <p class="step__today"><span class="mark mark--partly">Partly built</span><span>It can roughly place one person, in the same switched-off software. Keeping people apart is still to come.</span></p>
+      </li>
+      <li class="step">
+        <span class="step__n">04</span>
+        <h3>Understand what each needs</h3>
+        <p>It works out what light each person needs: bright and focused for chopping, soft and steady for reading.</p>
+        <p class="step__today"><span class="mark mark--partly">Partly built</span><span>An AI describes the whole room every few seconds. Working out each person’s needs is still to come.</span></p>
+      </li>
+      <li class="step">
+        <span class="step__n">05</span>
+        <h3>Plan the light</h3>
+        <p>It turns those needs into one plan that also looks good, worked out around any light set by hand, and tries it on a 3D copy of the room before changing a real light.</p>
+        <p class="step__today"><span class="mark mark--partly">Partly built</span><span>Simple fixed rules, tried only on pretend lights on a screen.</span></p>
+      </li>
+      <li class="step">
+        <span class="step__n">06</span>
+        <h3>Change the lights</h3>
+        <p>It tells the lights what to do, changing them gently. A light someone changed is never changed back by an old plan, and the others carry on.</p>
+        <p class="step__today"><span class="mark mark--partly">Partly built</span><span>Four ordinary smart bulbs in the den switch on and off with the room, dim warm while a game runs, and hold a bulb someone changed. The planned spotlights exist only on screen.</span></p>
+      </li>
+      <li class="step">
+        <span class="step__n">07</span>
+        <h3>Check the result</h3>
+        <p>It looks again: did the light land on the surfaces where it should? If not, it adjusts. Glare in someone’s eyes is predicted, not measured.</p>
+        <p class="step__today"><span class="mark mark--not">Not built yet</span><span>Nothing checks the result yet.</span></p>
+      </li>
+      <li class="step">
+        <span class="step__n">08</span>
+        <h3>Learn from you</h3>
+        <p>When someone turns a light up or down, it keeps planning around that setting and learns what they like for next time.</p>
+        <p class="step__today"><span class="mark mark--partly">Partly built</span><span>The bulbs notice a change by hand and hold that bulb until two minutes after the room empties or it was last touched, whichever is later, or during a game until the game ends. Learning from it is still to come.</span></p>
+      </li>
+    </ol>
+    <p class="loop-back"><span aria-hidden="true">↺</span> Back to step 1: the camera sees the room in its new light.</p>
+    <ul class="notes">
+      <li><strong>Two people, two lights: the goal.</strong> A bright pool for one person and a soft glow for the other, at the same time. Today, two or more people in the den get ordinary room light.</li>
+      <li><strong>No names needed.</strong> It is designed to tell people apart as anonymous A and B, without knowing who anyone is. Naming someone would be their choice.</li>
+    </ul>
+    <figure class="diagram">
+      <div class="slot slot--diagram" data-slot="diagram" data-privacy="private" data-src="diagrams/03-simple-view-dark.png" data-href="/software/architecture/#simple"><span class="slot__tag">Drawing not published yet</span><span>The Simple view sheet. It contains camera frames from the owner's apartment.</span></div>
+    </figure>
+  </section>
+
+  <section id="ladder" class="sw-sec" aria-labelledby="ladder-h">
+    <div class="sw-head">
+      <h2 id="ladder-h">The build ladder</h2>
+      <span class="label label--meta">Sheet A14 · the order to build</span>
+    </div>
+    <p class="sw-p">Each rung builds one part into today's loop, behind a gate written before the rung starts. The numbers in the gates are targets set before the work, not measured results.</p>
+    <ol class="rungs">
+      <li class="rung"><span class="rung__n">R</span><span class="rung__name">Recording capability</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">Keep single-person den sessions with checked capture timing, cutting any stretch with a second person in view. Waits on the owner's decision about what may be kept.</span></li>
+      <li class="rung"><span class="rung__n">0</span><span class="rung__name">Record and replay</span><span class="mark mark--partly">Partly built</span><span class="rung__gate">Keep what today's loop writes, and replay every logged decision to the same scene.</span></li>
+      <li class="rung"><span class="rung__n">N1</span><span class="rung__name">A single-person reference</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">A labelled reference for one person, labelled blind to a protocol fixed before labelling starts.</span></li>
+      <li class="rung"><span class="rung__n">N2</span><span class="rung__name">Need on one person, offline</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">An offline verdict, feasible, not feasible or insufficient, on whether one person's need can be read. Changes nothing in the loop.</span></li>
+      <li class="rung"><span class="rung__n">1</span><span class="rung__name">Camera registration</span><span class="mark mark--partly">Partly built</span><span class="rung__gate">Tie the camera to the room scan: three control pairs and two checks, all within 5 cm.</span></li>
+      <li class="rung"><span class="rung__n">2</span><span class="rung__name">Observations in the room frame</span><span class="mark mark--partly">Partly built</span><span class="rung__gate">Every observation carries its time, room position, uncertainty and freshness.</span></li>
+      <li class="rung"><span class="rung__n">3</span><span class="rung__name">Tracks, from geometry</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">Follow each person with no silent identity swaps.</span></li>
+      <li class="rung"><span class="rung__n">4</span><span class="rung__name">A two-person gold set</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">Labelled two-person evenings to test the tracks against.</span></li>
+      <li class="rung"><span class="rung__n">5</span><span class="rung__name">Person bundles</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">Each person's evidence gathered in one place, and marked unsafe whenever two people cross.</span></li>
+      <li class="rung"><span class="rung__n">6</span><span class="rung__name">Person need</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">Each person's working area and need: area within 15 cm median, onset within 3 s median.</span></li>
+      <li class="rung"><span class="rung__n">7</span><span class="rung__name">Measure light</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">Measure the room's light with a calibrated camera, checked against a light meter.</span></li>
+      <li class="rung"><span class="rung__n">8</span><span class="rung__name">Light model</span><span class="mark mark--partly">Partly built</span><span class="rung__gate">Predict the light a scene makes: median error 8%, 90th percentile 19%.</span></li>
+      <li class="rung"><span class="rung__n">9</span><span class="rung__name">Coordinator v0</span><span class="mark mark--partly">Partly built</span><span class="rung__gate">One plan for the room, replayed against real evenings, each decision in under 100 ms.</span></li>
+      <li class="rung"><span class="rung__n">10</span><span class="rung__name">Verify</span><span class="mark mark--not">Not built yet</span><span class="rung__gate">Check the light landed: within ±15%, on at least 85% of attempts.</span></li>
+      <li class="rung"><span class="rung__n">11</span><span class="rung__name">Hand the bulbs to the coordinator</span><span class="mark mark--partly">Partly built</span><span class="rung__gate">Only if it needs fewer corrections by hand per occupied hour than today's <code>den_lighting</code>.</span></li>
+      <li class="rung"><span class="rung__n">12</span><span class="rung__name">Correction attribution</span><span class="mark mark--partly">Partly built</span><span class="rung__gate">When someone corrects a light, work out which part of the loop got it wrong.</span></li>
+    </ol>
+    <figure class="diagram">
+      <div class="slot slot--diagram" data-slot="diagram" data-privacy="public-candidate" data-src="diagrams/04-build-ladder-dark.png" data-href="/software/architecture/#sheet-a14"><span class="slot__tag">Drawing to come</span><span>The build ladder sheet, as drawn.</span></div>
+    </figure>
+  </section>
+
+  <section id="next" class="sw-sec" aria-labelledby="next-h">
+    <div class="sw-head">
+      <h2 id="next-h">What's next</h2>
+      <span class="label label--meta">Proposed · not started</span>
+    </div>
+    <div class="next">
+      <div class="next__item">
+        <span class="mark mark--not">Not built yet</span>
+        <h3>The sofa look test</h3>
+        <p>The proposed next step is an offline test with one question: can today's den camera and Qwen prompt tell reading a paper book apart from using a phone, holding a closed book, or resting on the sofa? It would run on staged recordings, change no lights, and wait on none of the open decisions.</p>
+      </div>
+      <div class="next__item">
+        <span class="label">Owner decisions</span>
+        <h3>29 decisions are parked</h3>
+        <p>The architecture lists 29 policy decisions for the owner, from how long a hand-set light is held to what recordings may be kept. All of them are parked and none is selected, so nothing that depends on one can start.</p>
+      </div>
+    </div>
+    <figure class="diagram">
+      <div class="slot slot--diagram" data-slot="diagram" data-privacy="public-candidate" data-src="diagrams/07-title-block-dark.png" data-href="/software/architecture/"><span class="slot__tag">Drawing to come</span><span>How to read the sheets: the title block and key.</span></div>
+    </figure>
+  </section>
+
+  <section id="parts" class="sw-sec" aria-labelledby="parts-h">
+    <div class="sw-head">
+      <h2 id="parts-h">Every part</h2>
+      <span class="label label--meta">Detailed view · sheets A1–A14</span>
+    </div>
+    <p class="sw-p">The architecture is drawn on fourteen sheets. They contain camera frames from the owner's apartment (faces blurred, AI-edited pictures tagged), so they are not published yet.</p>
+    <ol class="sheets">
+      <li><span class="sheet__id">A1</span><span>One closed loop between people and light</span></li>
+      <li><span class="sheet__id">A2</span><span>What runs each part, on which machine, how fast</span></li>
+      <li><span class="sheet__id">A3</span><span>Seventeen records carry everything between stages</span></li>
+      <li><span class="sheet__id">A4</span><span>Forty seconds in the den, through every component and into every record</span></li>
+      <li><span class="sheet__id">A5</span><span>From pixels to one track per person, with the doubt kept</span></li>
+      <li><span class="sheet__id">A6</span><span>Today one Qwen call describes the whole room; the proposal reads each person</span></li>
+      <li><span class="sheet__id">A7</span><span>Each person is a handful of need variables</span></li>
+      <li><span class="sheet__id">A8</span><span>Qwen teaches a small per-person student</span></li>
+      <li><span class="sheet__id">A9</span><span>Measure the light, predict it, choose by objective, then check what landed</span></li>
+      <li><span class="sheet__id">A10</span><span>Beauty is authored once, in perceptual terms, and solved for in every room</span></li>
+      <li><span class="sheet__id">A11</span><span>A correction says the light was wrong; the logged decision says which link broke</span></li>
+      <li><span class="sheet__id">A12</span><span>The owner sets the room's numbers by hand today</span></li>
+      <li><span class="sheet__id">A13</span><span>Score the light people live with, then find the link that failed</span></li>
+      <li><span class="sheet__id">A14</span><span>Eight problems, what each costs, and the order to build</span></li>
+    </ol>
+    <figure class="diagram">
+      <div class="slot slot--diagram" data-slot="diagram" data-privacy="private" data-src="diagrams/01-a1-overview-dark.png" data-href="/software/architecture/#ov-h"><span class="slot__tag">Drawing not published yet</span><span>Sheet A1, the whole loop on one sheet. It contains camera frames from the owner's apartment.</span></div>
+    </figure>
+  </section>
+
+  <section id="chapters" class="sw-sec" aria-labelledby="chapters-h">
+    <div class="sw-head">
+      <h2 id="chapters-h">Earlier plans in the notebook</h2>
+      <span class="label label--meta">Written for the spotlight · plans, not running code</span>
+    </div>
+    <div class="chapters">
+      <a class="runbook" href="../05-teach-it-to-aim/"><span class="runbook__n">05</span><span class="runbook__text"><span class="runbook__title">Teach it to aim</span><span class="runbook__desc">The perception plan for the spotlight: cameras, ground-plane tracking and beam self-calibration.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+      <a class="runbook" href="../06-message-contract/"><span class="runbook__n">06</span><span class="runbook__text"><span class="runbook__title">The message contract</span><span class="runbook__desc">Topics, schemas, units and watchdogs that every component is meant to obey.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+      <a class="runbook" href="../07-building-the-software/"><span class="runbook__n">07</span><span class="runbook__text"><span class="runbook__title">Building the software</span><span class="runbook__desc">The planned stack, repo layout and hardware-free testing.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <span>Engineered lighting · software</span>
+    <span>Status from the architecture of 30 October 2026 · not a live feed</span>
+  </footer>
+</main>
+</body>
+</html>
