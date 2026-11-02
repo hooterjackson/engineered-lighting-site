@@ -188,7 +188,15 @@ What it is for is the vendor's Windows configuration GUI: setting the CAN ID, tu
 
     Brace the probe or use a hooked test lead. Slipping across a 1.25 mm pitch connector shorts two pins together, which is its own way to end the afternoon.
 
-One further caution: the configuration software version that lists the L-5005 (Setup Software V4.0) connects over **USB-CAN**, not serial. The only tool with a documented serial path is the older GUI 2.1, whose manual is written for the X series. So this board may not be sufficient on its own for an L-series motor — try it, but expect the CAN adapter to be the reliable path.
+**Configuration-tool applicability update (8 October 2026):** the current
+[manufacturer setup table](https://www.myactuator.com/downloads-setupsoftware) and
+[Dings software page](https://www.dingsmotionusa.com/software-download) list **L5005
+under Setup Software V3.0**, not V4.0. Match the tool, interface, driver and installed
+firmware; the included UART board alone does not establish compatibility. The
+[RMD L5005 control and tuning reference](rmd-l5005-control-and-tuning.md#match-the-documentation-to-the-unit)
+links the current V3 package and explains gain-format, calibration and protocol
+limits. Record settings before changes; do not infer an L-series firmware upgrade
+from an X-series download.
 
 ---
 

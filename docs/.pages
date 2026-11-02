@@ -5,6 +5,8 @@ nav:
   - Understand the choices:
       - 01-how-we-got-here.md
       - 02-choosing-the-motors.md
+      - rmd-l5005-control-and-tuning.md
+      - rmd-l5005-community-sources.md
   # Inside each build section the sidebar follows BUILD order, not letter
   # order: 3c's bus proof happens between stage 2 and stage 3. The letters
   # are accession order (3a and 3b were published first) and never change

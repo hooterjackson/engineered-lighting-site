@@ -222,6 +222,11 @@ The session: type `r` — **any reply is the win** (proves wiring, transceiver, 
 
 ## Stage 5 — Characterize (the measurements everything depends on)
 
+The [RMD L5005 control and tuning reference](rmd-l5005-control-and-tuning.md) collects
+current manufacturer manuals, model/firmware distinctions, community evidence and a
+diagnostic order for rough movement or lost hold. Its proposed tests have not been
+verified on the present unit; record the baseline before changing settings.
+
 !!! agent-prompt "🤖 Give this to your agent"
 
     ```text
@@ -251,7 +256,7 @@ The session: type `r` — **any reply is the win** (proves wiring, transceiver, 
 
     *[How to run this prompt →](00b-ai-native-workflow.md)*
 
-- **Noise** (phone dB app — pick one and stick with it so stage-10 numbers compare, e.g. NIOSH SLM on iOS or Sound Meter on Android; 30 cm distance): at hold, and during moves at **10 / 30 / 60 / 90 °/s**. Quiet room ≈ 30–40 dB. Two verdicts ride on this: whine *at hold* (the sealed loop can't be retuned — this is the RMD bet's one risk), and the speed where motion becomes audible — **follow-me needs 54–80°/s on close passes** ([Doc 5](05-teach-it-to-aim.md)), so the fast rows decide whether tracking stays silent or gets speed-capped.
+- **Noise** (phone dB app — pick one and stick with it so stage-10 numbers compare, e.g. NIOSH SLM on iOS or Sound Meter on Android; 30 cm distance): at hold, and during moves at **10 / 30 / 60 / 90 °/s**. Quiet room ≈ 30–40 dB. Two verdicts ride on this: whine *at hold* (published loop gains are version-sensitive; [the reference](rmd-l5005-control-and-tuning.md#gain-adjustment-and-calibration) explains the limits of tuning), and the speed where motion becomes audible — **follow-me needs 54–80°/s on close passes** ([Doc 5](05-teach-it-to-aim.md)), so the fast rows decide whether tracking stays silent or gets speed-capped.
 - **Hold current** (supply ammeter): unloaded, then with ~100 g hung 4 cm off-axis — previews why the balanced head matters.
 - **Warmth** after 30 min holding: warm fine; too-hot-to-touch is thermal-budget data.
 - **Resolution feel:** step `a10.00 → a10.50 → a10.05` with a flashlight taped on; watch the wall (0.05° ≈ 2 mm at 2.4 m).
