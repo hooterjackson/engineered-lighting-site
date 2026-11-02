@@ -212,6 +212,12 @@ def test_software_keeps_its_honesty_rules(page):
         "Works today"] + ["Partly built"] * 5 + ["Not built yet", "Partly built"]
     assert page.locator('[data-privacy="private"] img').count() == 0, "private drawing published"
     assert page.locator('a[href*="/software/architecture"]').count() == 0, "architecture page is not hosted"
+    drawings = page.locator(".diagram img")
+    assert drawings.count() >= 1
+    for i in range(drawings.count()):
+        drawings.nth(i).scroll_into_view_if_needed()
+        drawings.nth(i).evaluate("img => img.complete || new Promise(r => img.onload = img.onerror = r)")
+        assert drawings.nth(i).evaluate("img => img.naturalWidth") > 0, "a published drawing is missing"
 
 
 # ---------------------------------------------------------------- guards

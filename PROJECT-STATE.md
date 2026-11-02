@@ -649,9 +649,10 @@ unchanged. Shared assets live in `docs/assets/site/` (see README, "The front pag
 - **Software.** Written from the Home architecture (Simple view, A14 ladder, repo
   notes, decision register), not from the mock-up: four Hue bulbs under
   `den_lighting` work today; no engineered spotlight is installed; den, Qwen and
-  backend development paused since 2026-10-25; sofa look test proposed, not built;
-  29 owner decisions parked. Every part carries Works today / Partly built / Not
-  built yet.
+  backend development paused since 2026-10-25; the sofa look test is written on an
+  unmerged Home branch and not yet run; none of the 29 owner decisions is applied
+  (ten answered in a first pass, the rest parked). Every part carries Works today /
+  Partly built / Not built yet.
 
 **Binaries (owner's go-ahead 2026-11-02).** Apartment clouds and the four films with
 posters come from the landing-demo-site `public/` folder (hash-checked; the joined
@@ -663,13 +664,19 @@ den-hero's fixtures and paths. About 73 MB of repo growth, in two separate commi
 (people, faces blurred) and AI edits, so neither is hosted and `/software/architecture/`
 does not exist. Every place a drawing would go is a slot with `data-privacy`
 (`private` or `public-candidate`). No claude.ai link anywhere; a test guards it.
+The one drawing published is the A14 build-ladder drawing, a people-free export made
+by the architecture session on request (`software-ladder-drawing-dark.png`, no
+camera frames). Its title-block export is held back because its photo note names the
+owner's apartment's neighbourhood; the Simple view and A1 have no people-free
+variant yet. A people-free build of the whole architecture page is feasible (a
+build flag swapping photos for placeholders, plus a prose pass) but not built.
 
 **Checks.** Two `mkdocs build --strict` runs clean. `pytest tests/e2e` adds
 `test_front_pages.py`: every front page at 390/768/1440/1920 with and without reduced
 motion, no console errors, no sideways scroll, chapter URLs intact, fallbacks, film
 laziness, sweep inversion, board controls, Software's honesty rules, and guards.
 
-**Open, for the owner:** diagram PNGs and Home-tool screenshots to supply; which
-drawings may go public; whether the films are the v3 renders; whether the rebuilt den
-scan is fine to publish; first-load size on a phone (~42 MB desktop cloud + 11.5 MB
+**Open, for the owner:** Home-tool screenshots to supply; whether the title block
+may go public and whether to commission the people-free architecture build; whether
+the films are the v3 renders; whether the rebuilt den scan is fine to publish; first-load size on a phone (~42 MB desktop cloud + 11.5 MB
 den). Push, PR and deploy wait for the owner's word.

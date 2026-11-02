@@ -66,8 +66,10 @@
 
 /* Diagrams: full content width, framed like photographs of drawings.
    Until an image is approved the frame is a slim, marked slot. */
-.diagram { margin: 0; }
-.diagram img { display: block; width: 100%; height: auto; border: 1px solid var(--edge); }
+.diagram { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.diagram a { display: block; }
+.diagram a:hover { opacity: 1; }
+.diagram img { display: block; width: 100%; height: auto; background: #000000; border: 1px solid var(--edge); }
 .slot--diagram { flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; gap: 6px 16px; }
 
 /* Build ladder */
