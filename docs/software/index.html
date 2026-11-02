@@ -14,11 +14,12 @@
   Sources (owner's Home architecture, revision B, generated 2026-10-30; facts as of
   2026-11-02): the Simple view (eight steps and their marks), the build ladder on
   sheet A14, the repo notes on what exists, and the decision register.
-  Imagery rule: the architecture drawings contain camera frames from the owner's
-  apartment and stay private until the owner says otherwise. Every place a drawing
-  would appear is a slot with data-slot="diagram" and data-privacy; data-src is the
-  intended image and data-href the intended link target. Nothing here links the
-  private architecture page.
+  Imagery: the drawings are exports from the architecture build. The owner OK'd
+  people and camera frames on 2026-11-02; faces are blurred, AI-edited pictures are
+  tagged, and no place name for the owner's apartment appears on this page. The
+  architecture page itself is not hosted, so the drawings link only to their own
+  image files; each figure's comment names its future link target. Nothing here
+  links the private architecture page.
 -->
 <main class="sw">
 
@@ -213,7 +214,7 @@
       <h2 id="parts-h">Every part</h2>
       <span class="label label--meta">Detailed view · sheets A1–A14</span>
     </div>
-    <p class="sw-p">The architecture is drawn on fourteen sheets. They contain camera frames from the owner's apartment (faces blurred, AI-edited pictures tagged), so they are not published yet.</p>
+    <p class="sw-p">The architecture is drawn on fourteen sheets. Sheet A1, the whole loop on one sheet, is below. The others are not published yet, apart from the build-ladder drawing from A14 above.</p>
     <ol class="sheets">
       <li><span class="sheet__id">A1</span><span>One closed loop between people and light</span></li>
       <li><span class="sheet__id">A2</span><span>What runs each part, on which machine, how fast</span></li>
@@ -230,8 +231,13 @@
       <li><span class="sheet__id">A13</span><span>Score the light people live with, then find the link that failed</span></li>
       <li><span class="sheet__id">A14</span><span>Eight problems, what each costs, and the order to build</span></li>
     </ol>
-    <figure class="diagram">
-      <div class="slot slot--diagram" data-slot="diagram" data-privacy="private" data-src="diagrams/01-a1-overview-dark.png" data-href="/software/architecture/#ov-h"><span class="slot__tag">Drawing not published yet</span><span>Sheet A1, the whole loop on one sheet. It contains camera frames from the owner's apartment.</span></div>
+    <!-- Sheet A1 as drawn, with its photos (owner's go-ahead for people and camera
+         frames, 2026-11-02; faces blurred, three AI edits tagged; place names in its
+         labels replaced with neutral ones for this export only). Link target once the
+         architecture page is hosted: /software/architecture/#ov-h -->
+    <figure class="diagram" data-privacy="owner-approved">
+      <a href="../assets/site/diagrams/software-a1-overview-dark.png" aria-label="Open sheet A1 at full size"><img src="../assets/site/diagrams/software-a1-overview-dark.png" width="2536" height="4392" loading="lazy" alt="Sheet A1 as drawn: the whole loop on one sheet. Perception runs along the top from the room's cameras to a separate person state for A and for B, the light side runs back along the bottom through the coordinator, actuation and verify, and slow loops for calibration, teaching, learning and evaluation sit underneath. Each box has a picture of what it handles; faces are blurred and three pictures are tagged AI-edited."></a>
+      <figcaption class="label">Sheet A1 · the whole loop on one sheet, as drawn · photos from the owner's apartment; the den appears only as a scan · faces blurred, AI-edited pictures tagged</figcaption>
     </figure>
   </section>
 

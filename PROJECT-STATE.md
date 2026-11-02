@@ -660,23 +660,24 @@ cloud matches its recorded SHA-256). `victoria-den.bin` is a **rebuild** from pa
 `local-2026-10-15-den-view-r1-v4` by `tools/site/den_scan.py`; it registers with
 den-hero's fixtures and paths. About 73 MB of repo growth, in two separate commits.
 
-**Privacy.** The architecture HTML and overview SVG embed apartment camera frames
-(people, faces blurred) and AI edits, so neither is hosted and `/software/architecture/`
-does not exist. Every place a drawing would go is a slot with `data-privacy`
-(`private` or `public-candidate`). No claude.ai link anywhere; a test guards it.
-Two drawings are published, both people-free exports made by the architecture
-session on request: the A14 build-ladder drawing (`software-ladder-drawing-dark.png`)
-and the title block with its key (`software-titleblock-nophotos-dark.png`),
-re-exported at the owner's request without its photo note, which named the owner's
-neighbourhood. The Simple view and A1 have no people-free variant yet. A people-free build of the whole architecture page is feasible (a
-build flag swapping photos for placeholders, plus a prose pass) but not built.
+**Drawings and privacy.** Software shows four drawings, each exported by the
+architecture session on request and checked by eye before placing: the A14
+build-ladder drawing, the title block with its key (without its photo note), the
+Simple view and sheet A1. The owner OK'd people and camera frames on 2026-11-02; faces
+are blurred and AI-edited pictures tagged as built. The owner's rule is that no place
+name for the apartment appears on the site, so the exports drop or neutralise every
+such label (for A1 only in the export; the architecture's own sources and pages are
+unchanged), and a test guards it. The architecture page itself is not hosted, so
+`/software/architecture/` does not exist and the drawings link only to their own
+image files. No claude.ai link anywhere; a test guards that too.
 
 **Checks.** Two `mkdocs build --strict` runs clean. `pytest tests/e2e` adds
 `test_front_pages.py`: every front page at 390/768/1440/1920 with and without reduced
 motion, no console errors, no sideways scroll, chapter URLs intact, fallbacks, film
 laziness, sweep inversion, board controls, Software's honesty rules, and guards.
 
-**Open, for the owner:** Home-tool screenshots to supply; whether to commission the
-people-free architecture build; whether
-the films are the v3 renders; whether the rebuilt den scan is fine to publish; first-load size on a phone (~42 MB desktop cloud + 11.5 MB
-den). Push, PR and deploy wait for the owner's word.
+**Open, for the owner:** Home-tool screenshots to supply; whether to host the full
+architecture page (it would need the same place-name pass); whether the films are
+the v3 renders; whether the rebuilt den scan is fine to publish; first-load size on a
+phone (~42 MB desktop cloud + 11.5 MB den). Push, PR and deploy wait for the owner's
+word.

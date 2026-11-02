@@ -230,7 +230,11 @@ def test_no_prototype_files_or_private_links_ship():
     front = [SITE / "index.html"] + [SITE / d / "index.html" for d in ("vision", "hardware", "software")]
     front += [p for p in (SITE / "assets" / "site").rglob("*") if p.suffix in (".html", ".js", ".css", ".json")]
     for p in front:
-        assert "claude.ai" not in p.read_text(encoding="utf-8", errors="ignore"), f"{p} links claude.ai"
+        text = p.read_text(encoding="utf-8", errors="ignore")
+        assert "claude.ai" not in text, f"{p} links claude.ai"
+        # The owner's rule: the apartment's place name never appears on the site.
+        for place in ("Echo Park", "Los Angeles"):
+            assert place not in text, f"{p} names {place}"
 
 
 def test_large_asset_manifest_matches_the_files():
