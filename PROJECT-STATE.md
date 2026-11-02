@@ -681,3 +681,39 @@ architecture page (it would need the same place-name pass); whether the films ar
 the v3 renders; whether the rebuilt den scan is fine to publish; first-load size on a
 phone (~42 MB desktop cloud + 11.5 MB den). Push, PR and deploy wait for the owner's
 word.
+
+
+## 2026-11-02 — Home opening: density-aware thinning of the desktop cloud (prototype)
+
+**Why.** A WebGPU audit (owner's question) found the API isn't the bottleneck: the
+opening makes 4–7 draw calls of static buffers, with 0.1–0.4 ms of JS a frame. Almost
+all GPU time is one draw, the 2.6 M-point desktop apartment cloud, which as the camera
+pulls back piles thousands of additive points onto each pixel of an already-white room
+(up to ~9 ms a frame on an RTX 4090 in the zoom-out). WebGPU can't help with that: it
+has no sized points, so a port would draw each one as two triangles.
+
+**What changed (branch `claude/thin-opening-cloud`, not pushed).** This is the first
+deliberate change to the ported `opening-journey.js` maths, and it touches the desktop
+apartment cloud only:
+- At load, each point gets its 0.2-unit grid cell's point count.
+- The vertex shader estimates how many points from that cell land on one pixel at
+  the current depth. Past 64 it keeps an even, stable share of the cell's points and
+  divides their brightness by the same fraction, so the additive sum holds. The share
+  never drops below 5%.
+- Sparse cells, the room's soft haze, keep every point until the room is a few pixels
+  wide.
+- Phones keep the design's own draw-range thinning. Every other point set uses an
+  unchanged shader.
+
+**Measured** (RTX 4090, 1440×900, cloud draw alone, original vs prototype run
+alternately):
+- Unchanged up to p=0.4.
+- 2.85 → 1.25 ms at p=0.55, 3.89 → 1.15 ms at p=0.6, and 4.75 → 0.4–0.6 ms from p=0.7.
+- At 3× zoom, screenshots at p=0.4–0.6 look like the original, haze included. Total
+  light on screen is within 0.2%. A uniform-thinning try that didn't track density
+  turned the haze into specks and was dropped.
+- Cost: cell counting adds ~30 ms to the main thread once at load (~120 ms with the
+  CPU slowed 4×), plus 5 MB of GPU memory.
+- Not measured on integrated GPUs or Macs.
+
+**Checks.** `mkdocs build --strict` clean, `pytest tests/e2e` 96 passed.
