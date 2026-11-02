@@ -1,0 +1,84 @@
+{
+  "current_board_sha256": "cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb",
+  "electrical_baseline_sha256": "80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958",
+  "branding": {
+    "status": "PASS_SILK_ONLY_NATIVE_REVIEW",
+    "baseline_sha256": "80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958",
+    "branded_sha256": "cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb",
+    "all_non_back_silkscreen_top_level_objects_unchanged": true,
+    "drc_violations": 0,
+    "unconnected_items": 0,
+    "new_artwork_vs_existing_obstacles_at_0p2mm": "PASS_CONSERVATIVE_BOUNDING_BOX_SCREEN",
+    "physical_print_test": false,
+    "uploaded": false,
+    "production_release": false
+  },
+  "fresh_export_parity": {
+    "status": "PASS_FRESH_EXPORT_PARITY",
+    "native_sha256": "cbb8d9fc060c7f2b3e6b27b096a5728e789e816102ddba393c69e91020144abb",
+    "baseline_native_sha256": "80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958",
+    "non_back_silk_film_and_drill_parity": {
+      "engineered-lighting-rev-a-B_Cu.gbr": true,
+      "engineered-lighting-rev-a-B_Mask.gbr": true,
+      "engineered-lighting-rev-a-B_Paste.gbr": true,
+      "engineered-lighting-rev-a-Edge_Cuts.gbr": true,
+      "engineered-lighting-rev-a-F_Cu.gbr": true,
+      "engineered-lighting-rev-a-F_Mask.gbr": true,
+      "engineered-lighting-rev-a-F_Paste.gbr": true,
+      "engineered-lighting-rev-a-F_Silkscreen.gbr": true,
+      "engineered-lighting-rev-a-In1_Cu.gbr": true,
+      "engineered-lighting-rev-a-In2_Cu.gbr": true,
+      "engineered-lighting-rev-a-In3_Cu.gbr": true,
+      "engineered-lighting-rev-a-In4_Cu.gbr": true,
+      "engineered-lighting-rev-a-In5_Cu.gbr": true,
+      "engineered-lighting-rev-a-In6_Cu.gbr": true,
+      "engineered-lighting-rev-a-NPTH.drl": true,
+      "engineered-lighting-rev-a-PTH.drl": true
+    },
+    "qualified_ipc_sha256": "b4f0b67a983ee50b40bc01a5a9450750f0e1ad7e2c444fa2ea75159031c41bd7",
+    "only_changed_manufacturing_layer": "B.Silkscreen",
+    "production_release": false
+  },
+  "physical_measurements": false,
+  "scope": "Native silkscreen-only preservation and fresh DRC/export parity on current board. ERC, pin parity, physical connectivity and independent CAM checks below ran on identical electrical baseline 80195efd; no new analogue or thermal simulation is claimed.",
+  "baseline_checks": {
+    "FINAL-NATIVE-CHECKS.json": {
+      "source_sha256": "462eb17b195584d8e103b2c1ee597f0d217f3621f38025a876a55be74bfcfb2c",
+      "board_sha256": "80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958",
+      "status": "PASS_ALL_NATIVE_GATES",
+      "summary": {}
+    },
+    "main-parity.json": {
+      "source_sha256": "1bf1e3fc9cb8f8391fc2f7662c5d64a818d7810a13cc7e21c139ba8d0046dc16",
+      "board_sha256": "80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958",
+      "status": "PASS_LOGICAL_PARITY",
+      "summary": {
+        "manifest_physical_components": 262,
+        "xml_components": 262,
+        "pcb_components": 262,
+        "logical_pins": 786,
+        "assigned_logical_pins": 757,
+        "explicit_no_connect_pins": 29,
+        "physical_pad_objects": 879,
+        "electrical_physical_pad_checks": 837,
+        "physical_only_pad_objects": 42,
+        "duplicate_pad_groups": 12,
+        "xml_nets": 192,
+        "pcb_nonempty_nets": 192,
+        "error_count": 0
+      }
+    },
+    "main-connectivity.json": {
+      "source_sha256": "23d0aa171bb03d43730cc9d01cb479d4291eba2275513b8bafe2e7cad2645df6",
+      "board_sha256": "80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958",
+      "status": null,
+      "summary": {}
+    },
+    "IPC356-ROOT-ACCEPTANCE.json": {
+      "source_sha256": "79ba1ede249007af984e4116df20936e09f49fe57b8e1e0e4fcf055d8d0bf649",
+      "board_sha256": "80195efd4e08157d8bc64d08c70a84c45f8aff5d4f8d6fb31fbb2f623022d958",
+      "status": "ACCEPTED_MINIMAL_CURRENT_IPC_REPAIR_FOR_QUOTE_ONLY",
+      "summary": {}
+    }
+  }
+}

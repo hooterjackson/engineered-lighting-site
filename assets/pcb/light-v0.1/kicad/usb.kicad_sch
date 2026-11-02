@@ -1,0 +1,3430 @@
+(kicad_sch
+  (version 20250114)
+  (generator "engineered-lighting")
+  (generator_version "0.2")
+  (uuid "038f9e63-1f07-55f2-a4fe-996d4235f7ca")
+  (paper "A3")
+  (title_block
+    (title "Usb")
+    (date "2026-09-06")
+    (rev "A draft")
+    (company "Engineered Lighting")
+    (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
+  (lib_symbols
+    (symbol "Connector:USB_C_Receptacle_USB2.0_16P"
+      (pin_names
+        (offset 1.016))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "J"
+        (at 0 22.225 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "USB_C_Receptacle_USB2.0_16P"
+        (at 0 19.685 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 3.81 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" "https://www.usb.org/sites/default/files/documents/usb_type-c.zip"
+        (at 3.81 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "USB 2.0-only 16P Type-C Receptacle connector"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "usb universal serial bus type-C USB2.0"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "USB*C*Receptacle*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "USB_C_Receptacle_USB2.0_16P_0_0"
+        (rectangle
+          (start -0.254 -17.78)
+          (end 0.254 -16.764)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 15.494)
+          (end 9.144 14.986)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 10.414)
+          (end 9.144 9.906)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 7.874)
+          (end 9.144 7.366)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 2.794)
+          (end 9.144 2.286)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 0.254)
+          (end 9.144 -0.254)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 -2.286)
+          (end 9.144 -2.794)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 -4.826)
+          (end 9.144 -5.334)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 -12.446)
+          (end 9.144 -12.954)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start 10.16 -14.986)
+          (end 9.144 -15.494)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "USB_C_Receptacle_USB2.0_16P_0_1"
+        (rectangle
+          (start -10.16 17.78)
+          (end 10.16 -17.78)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background)))
+        (polyline
+          (pts
+            (xy -8.89 -3.81)
+            (xy -8.89 3.81))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -7.62 -3.81)
+          (end -6.35 3.81)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline)))
+        (arc
+          (start -7.62 3.81)
+          (mid -6.985 4.4423)
+          (end -6.35 3.81)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start -7.62 3.81)
+          (mid -6.985 4.4423)
+          (end -6.35 3.81)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline)))
+        (arc
+          (start -8.89 3.81)
+          (mid -6.985 5.7067)
+          (end -5.08 3.81)
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start -5.08 -3.81)
+          (mid -6.985 -5.7067)
+          (end -8.89 -3.81)
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start -6.35 -3.81)
+          (mid -6.985 -4.4423)
+          (end -7.62 -3.81)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start -6.35 -3.81)
+          (mid -6.985 -4.4423)
+          (end -7.62 -3.81)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline)))
+        (polyline
+          (pts
+            (xy -5.08 3.81)
+            (xy -5.08 -3.81))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (circle
+          (center -2.54 1.143)
+          (radius 0.635)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline)))
+        (polyline
+          (pts
+            (xy -1.27 4.318)
+            (xy 0 6.858)
+            (xy 1.27 4.318)
+            (xy -1.27 4.318))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline)))
+        (polyline
+          (pts
+            (xy 0 -2.032)
+            (xy 2.54 0.508)
+            (xy 2.54 1.778))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0 -3.302)
+            (xy -2.54 -0.762)
+            (xy -2.54 0.508))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0 -5.842)
+            (xy 0 4.318))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (circle
+          (center 0 -5.842)
+          (radius 1.27)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type outline)))
+        (rectangle
+          (start 1.905 1.778)
+          (end 3.175 3.048)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type outline))))
+      (symbol "USB_C_Receptacle_USB2.0_16P_1_1"
+        (pin passive line
+          (at 0 -22.86 90)
+          (length 5.08)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 15.24 15.24 180)
+          (length 5.08)
+          (name "VBUS"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 10.16 180)
+          (length 5.08)
+          (name "CC1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 -2.54 180)
+          (length 5.08)
+          (name "D+"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A6"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 2.54 180)
+          (length 5.08)
+          (name "D-"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A7"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 -12.7 180)
+          (length 5.08)
+          (name "SBU1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A8"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 15.24 15.24 180)
+          (length 5.08)
+          (hide yes)
+          (name "VBUS"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A9"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -22.86 90)
+          (length 5.08)
+          (hide yes)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "A12"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -22.86 90)
+          (length 5.08)
+          (hide yes)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 15.24 15.24 180)
+          (length 5.08)
+          (hide yes)
+          (name "VBUS"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 7.62 180)
+          (length 5.08)
+          (name "CC2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 -5.08 180)
+          (length 5.08)
+          (name "D+"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B6"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 0 180)
+          (length 5.08)
+          (name "D-"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B7"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin bidirectional line
+          (at 15.24 -15.24 180)
+          (length 5.08)
+          (name "SBU2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B8"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 15.24 15.24 180)
+          (length 5.08)
+          (hide yes)
+          (name "VBUS"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B9"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -22.86 90)
+          (length 5.08)
+          (hide yes)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "B12"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -7.62 -22.86 90)
+          (length 5.08)
+          (name "SHIELD"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "SH"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Device:R"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "R"
+        (at 2.032 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "R"
+        (at 0 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at -1.778 0 90)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Resistor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "R res resistor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "R_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "R_0_1"
+        (rectangle
+          (start -1.016 -2.54)
+          (end 1.016 2.54)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "R_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 1.27)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "EL:ESDS302"
+      (pin_names
+        (offset 0.8))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "U"
+        (at 0 7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "ESDS302"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "ESDS302_0_1"
+        (rectangle
+          (start -12.7 5.08)
+          (end 12.7 -5.08)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background))))
+      (symbol "ESDS302_1_1"
+        (pin no_connect line
+          (at -17.78 2.54 0)
+          (length 5.08)
+          (name "NC"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "1"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin power_in line
+          (at -17.78 0.0 0)
+          (length 5.08)
+          (name "GND"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "2"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin no_connect line
+          (at -17.78 -2.54 0)
+          (length 5.08)
+          (name "NC"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "3"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin passive line
+          (at 17.78 2.54 180)
+          (length 5.08)
+          (name "IO_DM"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "4"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin passive line
+          (at 17.78 0.0 180)
+          (length 5.08)
+          (name "IO_DP"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "5"
+            (effects
+              (font
+                (size 1.0 1.0)))))))
+    (symbol "Device:C"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.254))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "C"
+        (at 0.635 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "C"
+        (at 0.635 -2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" ""
+        (at 0.9652 -3.81 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Unpolarized capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "cap capacitor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "C_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "C_0_1"
+        (polyline
+          (pts
+            (xy -2.032 0.762)
+            (xy 2.032 0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -2.032 -0.762)
+            (xy 2.032 -0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "C_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 2.794)
+          (name ""
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Device:D_TVS"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "D"
+        (at 0 2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "D_TVS"
+        (at 0 -2.54 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Bidirectional transient-voltage-suppression diode"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "diode TVS thyrector"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "D_TVS_0_1"
+        (polyline
+          (pts
+            (xy -2.54 1.27)
+            (xy -2.54 -1.27)
+            (xy 2.54 1.27)
+            (xy 2.54 -1.27)
+            (xy -2.54 1.27))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0.508 1.27)
+            (xy 0 1.27)
+            (xy 0 -1.27)
+            (xy -0.508 -1.27))
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 1.27 0)
+            (xy -1.27 0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "D_TVS_1_1"
+        (pin passive line
+          (at -3.81 0 0)
+          (length 2.54)
+          (name "A1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 3.81 0 180)
+          (length 2.54)
+          (name "A2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+    (symbol "Transistor_BJT:MMBT3904"
+      (pin_names
+        (offset 0)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (symbol "MMBT3904_0_1"
+        (polyline
+          (pts
+            (xy -2.54 0)
+            (xy 0.635 0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0.635 1.905)
+            (xy 0.635 -1.905))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (circle
+          (center 1.27 0)
+          (radius 2.8194)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "MMBT3904_1_1"
+        (polyline
+          (pts
+            (xy 0.635 0.635)
+            (xy 2.54 2.54))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0.635 -0.635)
+            (xy 2.54 -2.54))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 1.27 -1.778)
+            (xy 1.778 -1.27)
+            (xy 2.286 -2.286)
+            (xy 1.27 -1.778))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type outline)))
+        (pin input line
+          (at -5.08 0 0)
+          (length 2.54)
+          (name "B"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 2.54 -5.08 90)
+          (length 2.54)
+          (name "E"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 2.54 5.08 270)
+          (length 2.54)
+          (name "C"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no)
+      (property "Reference" "Q"
+        (at 5.08 1.905 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "MMBT3904"
+        (at 5.08 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+        (at 5.08 -1.905 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27)
+            (italic yes))
+          (justify left)))
+      (property "Datasheet" "https://www.onsemi.com/pdf/datasheet/pzt3904-d.pdf"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "NPN Transistor"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "SOT?23*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27)))))
+    (symbol "EL:TMUXHS221F"
+      (pin_names
+        (offset 0.8))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "U"
+        (at 0 11.43 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "TMUXHS221F"
+        (at 0 -11.43 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "TMUXHS221F_0_1"
+        (rectangle
+          (start -12.7 8.89)
+          (end 12.7 -8.89)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background))))
+      (symbol "TMUXHS221F_1_1"
+        (pin power_in line
+          (at -17.78 6.3500000000000005 0)
+          (length 5.08)
+          (name "GND"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "3"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin bidirectional line
+          (at -17.78 3.8100000000000005 0)
+          (length 5.08)
+          (name "D2_N"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "6"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin bidirectional line
+          (at -17.78 1.2700000000000005 0)
+          (length 5.08)
+          (name "D2_P"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "7"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin input line
+          (at -17.78 -1.2699999999999996 0)
+          (length 5.08)
+          (name "OE_N"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "8"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin power_in line
+          (at -17.78 -3.8099999999999996 0)
+          (length 5.08)
+          (name "VCC"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "9"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin input line
+          (at -17.78 -6.349999999999999 0)
+          (length 5.08)
+          (name "SEL"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "10"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin bidirectional line
+          (at 17.78 6.3500000000000005 180)
+          (length 5.08)
+          (name "D_P"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "1"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin bidirectional line
+          (at 17.78 3.8100000000000005 180)
+          (length 5.08)
+          (name "D_N"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "2"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin bidirectional line
+          (at 17.78 1.2700000000000005 180)
+          (length 5.08)
+          (name "D1_N"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "4"
+            (effects
+              (font
+                (size 1.0 1.0)))))
+        (pin bidirectional line
+          (at 17.78 -1.2699999999999996 180)
+          (length 5.08)
+          (name "D1_P"
+            (effects
+              (font
+                (size 1.0 1.0))))
+          (number "5"
+            (effects
+              (font
+                (size 1.0 1.0))))))))
+  (symbol
+    (lib_id "Connector:USB_C_Receptacle_USB2.0_16P")
+    (at 60.96 93.98 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "09a4ca58-7018-5dfc-a220-c177765bf8bb")
+    (property "Reference" "J14"
+      (at 60.96 66.04 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "USB DATA /24V REQUIRED"
+      (at 60.96 68.58 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal"
+      (at 60.96 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "USB4105-GF-A"
+      (at 60.96 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "GCT"
+      (at 60.96 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 60.96 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "J14")
+          (unit 1))))
+    (pin "A1"
+      (uuid "70a4a7c7-8161-5d3e-9cd9-9d6b8ef7d474"))
+    (pin "A4"
+      (uuid "2784c688-c53e-521c-b2ae-532a52d52731"))
+    (pin "A5"
+      (uuid "2c421b09-7685-5e83-a508-666020c09d5b"))
+    (pin "A6"
+      (uuid "03688687-449c-5deb-aa32-32b501179b62"))
+    (pin "A7"
+      (uuid "d496f6b2-de4a-515f-98b7-fe0c8669fec1"))
+    (pin "A8"
+      (uuid "3df7a1e5-1418-54f9-84cd-03672cd347f2"))
+    (pin "A9"
+      (uuid "e64183c1-3f60-5729-af3e-1fed179f66a9"))
+    (pin "A12"
+      (uuid "93ad7acc-102a-52a2-a3d6-ffd71407d1a9"))
+    (pin "B1"
+      (uuid "1014b6c0-ed2b-556b-9fe3-4103efed7a37"))
+    (pin "B4"
+      (uuid "1cbcd224-e37d-5f4d-974f-7e7c91a1e3db"))
+    (pin "B5"
+      (uuid "57fb7152-b398-50a6-9bdd-8442174ee66b"))
+    (pin "B6"
+      (uuid "5beb6d09-d435-55fa-8d3b-9cb1b10945ac"))
+    (pin "B7"
+      (uuid "92879aa7-2097-58b9-a04e-70350efac96e"))
+    (pin "B8"
+      (uuid "302f986b-b5ba-57c0-b370-5a950bcbdfe9"))
+    (pin "B9"
+      (uuid "c19307f8-5a88-54d2-b095-97ebbcd09154"))
+    (pin "B12"
+      (uuid "cf9c6dde-10df-5914-acc8-a0f6369c6a6e"))
+    (pin "SH"
+      (uuid "9bf8249b-6d75-5cb9-af90-e50cd80cb735")))
+  (wire
+    (pts
+      (xy 60.96 116.84)
+      (xy 60.96 124.46))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0c65c385-5b2c-55b5-836b-f5678e1d605c"))
+  (global_label "GND"
+    (shape passive)
+    (at 60.96 124.46 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a49b26bc-bc7f-5077-a2a6-cddb89198880")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 60.96 124.46 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 76.2 78.74)
+      (xy 86.36 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "152de725-1207-5026-a51e-e2024b500f41"))
+  (global_label "USB_VBUS"
+    (shape passive)
+    (at 86.36 78.74 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "29f39edf-3023-53b6-bac5-c6e3f916dd07")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 86.36 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 76.2 83.82)
+      (xy 86.36 83.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "3a177a39-9e0e-57cf-a64c-bdcdef7bda53"))
+  (global_label "USB_CC1"
+    (shape passive)
+    (at 86.36 83.82 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "cb6d4bd8-bea4-5068-a759-e299054e89ee")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 86.36 83.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (no_connect
+    (at 76.2 106.68)
+    (uuid "d6ce4cb1-fc22-50bc-a85d-b00bc2cfb628"))
+  (wire
+    (pts
+      (xy 76.2 86.36)
+      (xy 86.36 86.36))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2852b583-e5ba-544e-b33b-87145d41b138"))
+  (global_label "USB_CC2"
+    (shape passive)
+    (at 86.36 86.36 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "54ea0877-f2fd-5334-9878-40988566755d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 86.36 86.36 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 76.2 99.06)
+      (xy 87.63 99.06))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "47233334-50b3-5476-a071-d845a1377ebb"))
+  (global_label "USB_DP_HOST"
+    (shape passive)
+    (at 87.63 99.06 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7abfbbc3-3150-5683-a10b-9691a22ca1ac")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 87.63 99.06 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 76.2 93.98)
+      (xy 87.63 93.98))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2e40a37d-b11f-5b49-917b-be99b1504ad5"))
+  (global_label "USB_DM_HOST"
+    (shape passive)
+    (at 87.63 93.98 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "296192d2-ef60-5c40-b613-ea55fb434d26")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 87.63 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (no_connect
+    (at 76.2 109.22)
+    (uuid "5c678a40-52e5-52d6-8feb-d68ffb47faa9"))
+  (wire
+    (pts
+      (xy 53.34 116.84)
+      (xy 53.34 124.46))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0ae9d601-e6a9-5b7a-a055-6f3c17738491"))
+  (global_label "GND"
+    (shape passive)
+    (at 53.34 124.46 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "405e2628-2132-54f0-957a-2c37d2dba1cc")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 53.34 124.46 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 40.64 157.48 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "75891bd8-9c11-5537-8e4d-e3c76b3309d9")
+    (property "Reference" "R30"
+      (at 45.72 156.21 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "5.1k"
+      (at 45.72 158.75 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 40.64 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-075K1L"
+      (at 40.64 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 40.64 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 40.64 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R30")
+          (unit 1))))
+    (pin "1"
+      (uuid "bfec9f58-43bd-5528-b6a9-25aba2fa9d2c"))
+    (pin "2"
+      (uuid "2e2978a0-a2b0-57fa-a619-71e917c146a0")))
+  (wire
+    (pts
+      (xy 40.64 153.67)
+      (xy 40.64 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ad022cfe-1172-59f8-87b6-d2d581c57e08"))
+  (global_label "USB_CC1"
+    (shape passive)
+    (at 40.64 143.51 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "053a2f77-9ffe-534a-830f-35c81e376aaf")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 40.64 143.51 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 40.64 161.29)
+      (xy 40.64 168.91))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "30a329c2-bfc7-5199-9087-c24d23aab45f"))
+  (global_label "GND"
+    (shape passive)
+    (at 40.64 168.91 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d02dd2b2-64ee-55ce-b0ff-c9365423b83d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 40.64 168.91 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 86.36 157.48 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f050a305-25bb-502f-b181-1842d6ae4ba1")
+    (property "Reference" "R31"
+      (at 91.44 156.21 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "5.1k"
+      (at 91.44 158.75 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 86.36 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-075K1L"
+      (at 86.36 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 86.36 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 86.36 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R31")
+          (unit 1))))
+    (pin "1"
+      (uuid "c910b09e-ac33-50f9-9e11-803472a42e49"))
+    (pin "2"
+      (uuid "265480b2-66b0-5c31-b204-244b45ddcc61")))
+  (wire
+    (pts
+      (xy 86.36 153.67)
+      (xy 86.36 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "972461c1-852f-5b2c-a63d-411e02b3e608"))
+  (global_label "USB_CC2"
+    (shape passive)
+    (at 86.36 143.51 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "985f6d09-3981-5f53-be03-dac556300964")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 86.36 143.51 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 86.36 161.29)
+      (xy 86.36 168.91))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "913f63e1-bb75-5a7c-9cfa-6b489eb09296"))
+  (global_label "GND"
+    (shape passive)
+    (at 86.36 168.91 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b0244be8-ce43-5238-bd4a-9b7c90d472d5")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 86.36 168.91 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 345.44 78.74 90)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "d7be421c-fb5a-56c5-9acb-cea792a874e3")
+    (property "Reference" "R32"
+      (at 345.44 70.104 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "0"
+      (at 345.44 72.644 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 345.44 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603JR-070RL"
+      (at 345.44 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 345.44 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 345.44 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R32")
+          (unit 1))))
+    (pin "1"
+      (uuid "e8875c9e-25ee-5997-9160-c1fc14b28e14"))
+    (pin "2"
+      (uuid "bdff0a19-b687-51b5-8099-51e93e0a76bf")))
+  (wire
+    (pts
+      (xy 349.25 78.74)
+      (xy 360.68 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "eff554df-497d-5653-879a-c61068d3b578"))
+  (global_label "USB_DM_MCU"
+    (shape passive)
+    (at 360.68 78.74 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8a437968-c868-5714-8970-4d433217d2d9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 360.68 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 345.44 58.42 90)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "92c4e181-9879-5596-ae7c-ed0a077630c1")
+    (property "Reference" "R33"
+      (at 345.44 49.784 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "0"
+      (at 345.44 52.324 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 345.44 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603JR-070RL"
+      (at 345.44 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 345.44 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 345.44 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R33")
+          (unit 1))))
+    (pin "1"
+      (uuid "2cae648e-d26d-5765-a40f-82aa2be7ca74"))
+    (pin "2"
+      (uuid "ef6e7a76-6909-5ab2-9c58-24d468d3b687")))
+  (wire
+    (pts
+      (xy 349.25 58.42)
+      (xy 360.68 58.42))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c2ad8cfc-668c-56a8-b754-ae88906a1edc"))
+  (global_label "USB_DP_MCU"
+    (shape passive)
+    (at 360.68 58.42 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2b57ab56-9a22-54de-9db0-4c0d2e0031ce")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 360.68 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "EL:ESDS302")
+    (at 172.72 53.34 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1eb10aa6-823d-5ee6-83d8-5bc3fd789d6f")
+    (property "Reference" "U15"
+      (at 193.04 40.64 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "ESDS302"
+      (at 193.04 43.18 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+      (at 172.72 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "ESDS302DBVR"
+      (at 172.72 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Texas Instruments"
+      (at 172.72 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/esds302.pdf"
+      (at 172.72 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "U15")
+          (unit 1))))
+    (pin "1"
+      (uuid "bbb8ff13-5fed-5a49-a495-d43f37818334"))
+    (pin "2"
+      (uuid "771d69e1-89e3-5217-a8c3-0012627b17e5"))
+    (pin "3"
+      (uuid "18a7a9f5-b019-5795-b2c4-a0e38d2e7074"))
+    (pin "4"
+      (uuid "84e7e6e1-4e52-5655-82a3-d59809dfbc70"))
+    (pin "5"
+      (uuid "03f0a256-b1b4-5a3d-9bff-a2fda56af3d0")))
+  (no_connect
+    (at 154.94 50.8)
+    (uuid "a42822ee-ee46-56b6-ba27-6cb55b824eb7"))
+  (wire
+    (pts
+      (xy 154.94 53.34)
+      (xy 147.32 53.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9d684b0e-6209-5021-8c04-c145511ca52b"))
+  (global_label "GND"
+    (shape passive)
+    (at 147.32 53.34 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d037165d-1aa2-553e-83f7-4fa38b6b842d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 147.32 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (no_connect
+    (at 154.94 55.88)
+    (uuid "1ae1ccf8-0b21-5207-a60c-ee11186cf1c5"))
+  (wire
+    (pts
+      (xy 190.5 50.8)
+      (xy 201.93 50.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "da373c43-298e-5d5a-9be6-6c2178dd6084"))
+  (global_label "USB_DM_HOST"
+    (shape passive)
+    (at 201.93 50.8 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "3f0e5fc2-821c-5da1-9699-d27a2dd935a3")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 201.93 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 190.5 53.34)
+      (xy 201.93 53.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1dc5b3c7-404a-5f1e-b4d5-5523c6680793"))
+  (global_label "USB_DP_HOST"
+    (shape passive)
+    (at 201.93 53.34 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "36424c4c-300c-5ce5-8810-839037aaaaaf")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 201.93 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 101.6 43.18 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "0a50aafc-70fa-5e24-a35a-90f07e198953")
+    (property "Reference" "C30"
+      (at 106.68 41.91 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "100n"
+      (at 106.68 44.45 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 101.6 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM188R72A104KA35D"
+      (at 101.6 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Murata"
+      (at 101.6 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 101.6 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "C30")
+          (unit 1))))
+    (pin "1"
+      (uuid "3b0c5922-ed51-53c7-ae14-4e9dd36ed655"))
+    (pin "2"
+      (uuid "efd17198-e9cb-5f8f-837b-e023193b1bce")))
+  (wire
+    (pts
+      (xy 101.6 46.99)
+      (xy 101.6 54.61))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ba7e85b4-aaef-5a3c-8ac4-9c88a36bda39"))
+  (global_label "GND"
+    (shape passive)
+    (at 101.6 54.61 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c9506f6f-4780-5a06-afb9-1003aa5d4d88")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 101.6 54.61 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:C")
+    (at 281.94 45.72 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "7d9f43c5-001e-5b04-b6f3-906ac552975a")
+    (property "Reference" "C31"
+      (at 287.02 44.45 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "100n"
+      (at 287.02 46.99 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 281.94 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "GRM188R72A104KA35D"
+      (at 281.94 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Murata"
+      (at 281.94 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 281.94 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "C31")
+          (unit 1))))
+    (pin "1"
+      (uuid "f76ef7e2-e7a7-5d52-b0df-227810eff9ea"))
+    (pin "2"
+      (uuid "e66fcdfa-349c-5157-b6da-0420b76ae035")))
+  (wire
+    (pts
+      (xy 281.94 41.91)
+      (xy 281.94 31.75))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "7be68c0e-882e-52fe-9266-41f878cd1437"))
+  (global_label "USB_VBUS"
+    (shape passive)
+    (at 281.94 31.75 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "47aecefd-3cbd-5fba-b734-898efd5a35a2")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 281.94 31.75 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 281.94 49.53)
+      (xy 281.94 57.15))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "87dfe6cc-0677-5c00-b329-cb6ac52fe953"))
+  (global_label "GND"
+    (shape passive)
+    (at 281.94 57.15 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "9c28ec58-f461-5250-82e3-5545f775b694")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 281.94 57.15 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:D_TVS")
+    (at 137.16 43.18 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "02ab3d74-c989-565e-b02d-438f03f96bc3")
+    (property "Reference" "D30"
+      (at 137.16 35.56 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "TPD1E10B06DYAR"
+      (at 137.16 38.1 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Diode_SMD:D_SOD-523"
+      (at 137.16 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "TPD1E10B06DYAR"
+      (at 137.16 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Texas Instruments"
+      (at 137.16 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd1e10b06.pdf"
+      (at 137.16 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "D30")
+          (unit 1))))
+    (pin "1"
+      (uuid "e60b152e-3ce1-5fd5-a275-490f955da4be"))
+    (pin "2"
+      (uuid "e4898b88-c01e-5c41-a632-3fedee4291ee")))
+  (wire
+    (pts
+      (xy 140.97 43.18)
+      (xy 148.59 43.18))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "dea3739f-f0d0-53b7-9b95-3721c7ff2f38"))
+  (global_label "GND"
+    (shape passive)
+    (at 148.59 43.18 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "006289b3-eb2c-5c38-b180-c05dd2eebab7")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 148.59 43.18 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 50.8 208.28 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "db156a1e-8d23-5247-b65b-f37904eb0900")
+    (property "Reference" "R34"
+      (at 55.88 207.01 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "100k"
+      (at 55.88 209.55 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 50.8 208.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-07100KL"
+      (at 50.8 208.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 50.8 208.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 50.8 208.28 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R34")
+          (unit 1))))
+    (pin "1"
+      (uuid "e306cd1d-3cbf-5863-a1e7-8123bd4a7d8e"))
+    (pin "2"
+      (uuid "0725f661-23d1-5c22-ae1a-658d7ccd9997")))
+  (wire
+    (pts
+      (xy 50.8 204.47)
+      (xy 50.8 194.31))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b15ef38d-febc-5690-b5fa-287ae554e580"))
+  (global_label "USB_VBUS"
+    (shape passive)
+    (at 50.8 194.31 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "1db708f3-4f96-545d-b94c-5dab8f27bf0e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 50.8 194.31 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 50.8 246.38 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "492132f5-1a8d-5315-8443-8baf4246dc35")
+    (property "Reference" "R35"
+      (at 55.88 245.11 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "100k"
+      (at 55.88 247.65 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 50.8 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-07100KL"
+      (at 50.8 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 50.8 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 50.8 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R35")
+          (unit 1))))
+    (pin "1"
+      (uuid "4393bfa2-f763-56db-97c2-1001fd98a7ab"))
+    (pin "2"
+      (uuid "14014202-f1f9-5b7d-ad51-901fac4308eb")))
+  (wire
+    (pts
+      (xy 50.8 250.19)
+      (xy 50.8 257.81))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "05d50932-d24b-5e83-b509-cef60a63068d"))
+  (global_label "GND"
+    (shape passive)
+    (at 50.8 257.81 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "51da82cb-1571-51e7-a176-3eefef04faec")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 50.8 257.81 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 330.2 203.2 90)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "b8dacac6-a7fb-5a96-b7b2-4424c078af1d")
+    (property "Reference" "R36"
+      (at 330.2 194.564 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "10k"
+      (at 330.2 197.104 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 330.2 203.2 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 330.2 203.2 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 330.2 203.2 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 330.2 203.2 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R36")
+          (unit 1))))
+    (pin "1"
+      (uuid "a37e9f5e-3ab1-54b5-8433-d3cf6abe39e7"))
+    (pin "2"
+      (uuid "9a63506a-5c1e-5a43-a119-1d3d0010e113")))
+  (wire
+    (pts
+      (xy 334.01 203.2)
+      (xy 341.63 203.2))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e2c3f8a3-6ef5-5887-928c-ed1f5de7db60"))
+  (global_label "+3V3"
+    (shape passive)
+    (at 341.63 203.2 180.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "92653ddf-d490-5b9d-8ebd-1e8d5d9e0bae")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 341.63 203.2 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Transistor_BJT:MMBT3904")
+    (at 289.56 246.38 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "00827302-bd04-5e2d-8d37-9a59aaf9af9a")
+    (property "Reference" "Q30"
+      (at 289.56 233.68 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "MMBT3904"
+      (at 289.56 236.22 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+      (at 289.56 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "MMBT3904-7-F"
+      (at 289.56 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Diodes Incorporated"
+      (at 289.56 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" ""
+      (at 289.56 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "Q30")
+          (unit 1))))
+    (pin "1"
+      (uuid "7081b24b-e345-5101-803d-8368830f4361"))
+    (pin "2"
+      (uuid "f9dd5759-6226-5387-9a36-3f218fc5362f"))
+    (pin "3"
+      (uuid "61463d7f-9ea4-5e44-81cb-052d86310544")))
+  (wire
+    (pts
+      (xy 292.1 251.46)
+      (xy 292.1 259.08))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6716cedb-9ea9-50e1-91c1-936aa5b6356a"))
+  (global_label "GND"
+    (shape passive)
+    (at 292.1 259.08 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "15beee67-41bb-59ec-b2ac-9416edf73d3d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 292.1 259.08 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "EL:TMUXHS221F")
+    (at 243.84 106.68 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1503028b-4a92-5458-b60d-07c543377c6e")
+    (property "Reference" "U17"
+      (at 264.16 90.17 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "TMUXHS221F"
+      (at 264.16 92.71 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELF:TI_RSW0010A_UQFN10_1p4x1p8_TMUXHS221F"
+      (at 243.84 106.68 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "TMUXHS221FRSWR"
+      (at 243.84 106.68 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Texas Instruments"
+      (at 243.84 106.68 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tmuxhs221f.pdf"
+      (at 243.84 106.68 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "U17")
+          (unit 1))))
+    (pin "3"
+      (uuid "cd613533-e679-5885-acde-13ae712f154f"))
+    (pin "6"
+      (uuid "4571d1d7-04e3-5f88-bd38-33b8cc354593"))
+    (pin "7"
+      (uuid "00a0673c-9ea0-592f-84af-3d276985b7a2"))
+    (pin "8"
+      (uuid "4fa13025-3d17-52e9-b5e3-4fb918b92442"))
+    (pin "9"
+      (uuid "89616d10-7983-5628-bf66-aadfd5cac05b"))
+    (pin "10"
+      (uuid "4d45558e-751f-51a5-a511-70f9ce761af9"))
+    (pin "1"
+      (uuid "7fdb5e7a-cc1c-5357-9475-333fd34407ba"))
+    (pin "2"
+      (uuid "b9f36209-2c32-5883-8f63-4bba63e122e2"))
+    (pin "4"
+      (uuid "174e90bb-5331-506c-977e-664e560cb171"))
+    (pin "5"
+      (uuid "bd8482fd-c0a4-545b-a8f3-f6e2ac554d23")))
+  (wire
+    (pts
+      (xy 226.06 100.33)
+      (xy 218.44 100.33))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "cfd5c8fa-d0b2-5c13-b91f-6a1047dd5d67"))
+  (global_label "GND"
+    (shape passive)
+    (at 218.44 100.33 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c3a065ff-a31a-589f-8f04-9d44e4033b47")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 218.44 100.33 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 226.06 107.95)
+      (xy 213.36 107.95))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ddc5ddda-c6e8-59fc-a83c-030a860efe99"))
+  (global_label "USB_PRESENT_N"
+    (shape passive)
+    (at 213.36 107.95 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "eadc7e4a-0981-5723-8711-be954c8dfcf6")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 213.36 107.95 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 226.06 110.49)
+      (xy 215.9 110.49))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "472c3d13-18c4-57a3-84f5-8cfcf1c0d670"))
+  (global_label "USB_VBUS"
+    (shape passive)
+    (at 215.9 110.49 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "53b53e86-a3cc-58be-9860-c53c99b3636b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 215.9 110.49 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 226.06 113.03)
+      (xy 212.09 113.03))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "96d6f4d3-4a16-5c17-96e1-518bb541f8ce"))
+  (global_label "USB_READY_SELECT"
+    (shape passive)
+    (at 212.09 113.03 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a00538d8-5819-5524-8c3d-dec690cb580e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 212.09 113.03 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 312.42 144.78 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "3290c624-bfd9-5a36-acd3-e838f231f32f")
+    (property "Reference" "R37"
+      (at 317.5 143.51 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "1k"
+      (at 317.5 146.05 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 312.42 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-071KL"
+      (at 312.42 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 312.42 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-071KL"
+      (at 312.42 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R37")
+          (unit 1))))
+    (pin "1"
+      (uuid "dd4b6b72-5430-5542-b116-72d528680d68"))
+    (pin "2"
+      (uuid "2c73e0c1-a621-53e6-8ec8-2df9d2f65872")))
+  (wire
+    (pts
+      (xy 312.42 148.59)
+      (xy 312.42 156.21))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2b5091a6-080e-53db-92ad-82d11fb74355"))
+  (global_label "GND"
+    (shape passive)
+    (at 312.42 156.21 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0930da07-edb9-54e5-b4d2-006d9936b6ba")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 312.42 156.21 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 365.76 144.78 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "85e40a1f-38d9-5c38-9bbb-2d3a535ab18e")
+    (property "Reference" "R38"
+      (at 370.84 143.51 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "1k"
+      (at 370.84 146.05 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 365.76 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-071KL"
+      (at 365.76 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 365.76 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-071KL"
+      (at 365.76 144.78 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R38")
+          (unit 1))))
+    (pin "1"
+      (uuid "cabd295d-36bf-5b3f-bd63-0dbe8497494b"))
+    (pin "2"
+      (uuid "186e129c-40bc-5351-ad76-3f9b7dc41e38")))
+  (wire
+    (pts
+      (xy 365.76 148.59)
+      (xy 365.76 156.21))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "72de68cd-31fd-5040-bf41-e84b4751398f"))
+  (global_label "GND"
+    (shape passive)
+    (at 365.76 156.21 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2c0574be-f4dc-5de8-8fe9-e2f7de66c7ae")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 365.76 156.21 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 190.5 231.14 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "7396d001-1886-5f1c-97b7-da5b513c631e")
+    (property "Reference" "R39"
+      (at 195.58 229.87 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "33k"
+      (at 195.58 232.41 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 190.5 231.14 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0733KL"
+      (at 190.5 231.14 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 190.5 231.14 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0733KL"
+      (at 190.5 231.14 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R39")
+          (unit 1))))
+    (pin "1"
+      (uuid "62e87bbb-7c57-52f0-ac75-aff38e88ef18"))
+    (pin "2"
+      (uuid "e1bdf376-bb87-5215-b697-34518151681a")))
+  (wire
+    (pts
+      (xy 190.5 234.95)
+      (xy 190.5 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "222bb3df-3375-543f-8240-fd16bf34eb56"))
+  (global_label "GND"
+    (shape passive)
+    (at 190.5 242.57 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "fce6b264-31bc-5669-8dce-0d1524ea63a4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 190.5 242.57 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 132.08 157.48 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f6489260-a480-5133-962e-ff62883c21ec")
+    (property "Reference" "R40"
+      (at 137.16 156.21 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))
+        (justify left)))
+    (property "Value" "10k"
+      (at 137.16 158.75 0.0)
+      (effects
+        (font
+          (size 0.9 0.9))
+        (justify left)))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 132.08 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 132.08 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 132.08 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 132.08 157.48 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R40")
+          (unit 1))))
+    (pin "1"
+      (uuid "313c8d25-d165-5ac8-b161-a475b68a46d3"))
+    (pin "2"
+      (uuid "de2f0632-e451-5c01-8bae-0c5b97854fcc")))
+  (wire
+    (pts
+      (xy 132.08 153.67)
+      (xy 132.08 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4d15a79c-280f-5de5-8c01-8d8d4911ebf8"))
+  (global_label "USB_VBUS"
+    (shape passive)
+    (at 132.08 143.51 270.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "91f1bd23-db55-5040-9c5e-82ccf810e91c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 132.08 143.51 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 132.08 161.29)
+      (xy 132.08 168.91))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d52716d9-44fb-5bff-afb7-d63c5703e790"))
+  (global_label "GND"
+    (shape passive)
+    (at 132.08 168.91 90.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4121a48c-d927-589c-b96a-38d4b3f6d6f1")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 132.08 168.91 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Device:R")
+    (at 149.86 210.82 90)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "828627a0-9f3a-5db6-ab19-bb2111a7aa37")
+    (property "Reference" "R41"
+      (at 149.86 202.184 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "10k"
+      (at 149.86 204.724 90.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 149.86 210.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "MPN" "RC0603FR-0710KL"
+      (at 149.86 210.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Manufacturer" "Yageo"
+      (at 149.86 210.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL"
+      (at 149.86 210.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "engineered-lighting-rev-a"
+        (path "/964013ac-cca6-5de7-b648-d598a25a58e0/038f9e63-1f07-55f2-a4fe-996d4235f7ca"
+          (reference "R41")
+          (unit 1))))
+    (pin "1"
+      (uuid "23e8f047-30c4-5ae9-9bd0-b7a6d62991ea"))
+    (pin "2"
+      (uuid "ebdd4e02-265b-5c3d-9647-664a79fb1cb4")))
+  (wire
+    (pts
+      (xy 146.05 210.82)
+      (xy 135.89 210.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "dce252a4-37da-50dd-871d-130d6317d354"))
+  (global_label "READY_3V3"
+    (shape passive)
+    (at 135.89 210.82 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "950fc2b9-a684-51b8-8310-fd4c6c333cf3")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 135.89 210.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 76.2 96.52)
+      (xy 193.04 96.52))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "898ac65a-1378-5fa6-9ddb-f4b27a84ea6a"))
+  (wire
+    (pts
+      (xy 193.04 96.52)
+      (xy 193.04 105.41))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "45a7f3a5-1cdf-5a84-8cb4-96abb645132e"))
+  (wire
+    (pts
+      (xy 193.04 105.41)
+      (xy 226.06 105.41))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "643626d9-a344-51b9-8c77-650f8683c055"))
+  (global_label "USB_DP_HOST"
+    (shape passive)
+    (at 193.04 105.41 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "26a02069-d294-5b36-b823-05d0822e8286")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 193.04 105.41 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 76.2 91.44)
+      (xy 203.2 91.44))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c12ab97e-17ff-5c53-9fd3-960f4f326122"))
+  (wire
+    (pts
+      (xy 203.2 91.44)
+      (xy 203.2 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "72098de7-d89c-538e-889c-48fffa7cad4e"))
+  (wire
+    (pts
+      (xy 203.2 102.87)
+      (xy 226.06 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "37317618-b63d-503f-b1a8-7bdea49da530"))
+  (global_label "USB_DM_HOST"
+    (shape passive)
+    (at 203.2 102.87 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "295ee613-f5e3-5a89-afc4-034be868e4c8")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 203.2 102.87 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 261.62 100.33)
+      (xy 299.72 100.33))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "43cd512f-1c97-50c8-b978-ebcf84ffe095"))
+  (wire
+    (pts
+      (xy 299.72 100.33)
+      (xy 299.72 58.42))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "23200009-cda5-530b-aff2-b48356d1387a"))
+  (wire
+    (pts
+      (xy 299.72 58.42)
+      (xy 341.63 58.42))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f5cdf53a-c83f-5e38-b483-fdc9ba06192d"))
+  (global_label "USB_DP"
+    (shape passive)
+    (at 299.72 58.42 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "56ee52f2-9ef9-5da9-bc7d-56c3c41dd1f9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 299.72 58.42 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 261.62 102.87)
+      (xy 322.58 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5131ae07-e10c-5235-893f-eaa8de9032e3"))
+  (wire
+    (pts
+      (xy 322.58 102.87)
+      (xy 322.58 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "716fd1e7-ebe8-5fe2-886e-55301c41e0ff"))
+  (wire
+    (pts
+      (xy 322.58 78.74)
+      (xy 341.63 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0f6cdd5e-9d9b-5aff-9b82-78a9606f5468"))
+  (global_label "USB_DM"
+    (shape passive)
+    (at 322.58 78.74 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "422a3d6e-a082-5f20-b375-26144348a234")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 322.58 78.74 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 261.62 107.95)
+      (xy 312.42 107.95))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "91f5be3c-637e-5554-97fd-e98ee4f5b518"))
+  (wire
+    (pts
+      (xy 312.42 107.95)
+      (xy 312.42 140.97))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "addcf3b8-a982-5096-9ea3-3cf842dd9736"))
+  (global_label "USB_DP_PARK"
+    (shape passive)
+    (at 312.42 107.95 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "57ee28cc-dcb3-5c3c-91be-b10e1d259f3a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 312.42 107.95 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 261.62 105.41)
+      (xy 365.76 105.41))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "111c2eeb-e4c7-5ab7-a54d-5ea8362e6ba8"))
+  (wire
+    (pts
+      (xy 365.76 105.41)
+      (xy 365.76 140.97))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8fab6605-bb6a-5ab4-8d39-0da61501c868"))
+  (global_label "USB_DM_PARK"
+    (shape passive)
+    (at 365.76 105.41 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c532af8d-0041-5009-820e-9920f68c5240")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 365.76 105.41 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 101.6 39.37)
+      (xy 133.35 39.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d542537e-087f-5636-a2d4-32ba4a65396d"))
+  (wire
+    (pts
+      (xy 133.35 39.37)
+      (xy 133.35 43.18))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6bd82ba9-ed85-57e5-84e4-eafe94ad66a6"))
+  (global_label "USB_VBUS"
+    (shape passive)
+    (at 133.35 39.37 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d0ef5766-ab6d-54d6-aa37-21dbebcf3ce5")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 133.35 39.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 153.67 210.82)
+      (xy 190.5 210.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e3759105-8b3e-57fb-9c0b-9d432f093357"))
+  (wire
+    (pts
+      (xy 190.5 210.82)
+      (xy 190.5 227.33))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ac97bee0-8d8b-5af4-b23a-9c28de681515"))
+  (global_label "USB_READY_SELECT"
+    (shape passive)
+    (at 190.5 210.82 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2c34e2ba-c9c9-589f-9d32-18cd1bab7386")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 190.5 210.82 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 50.8 212.09)
+      (xy 50.8 242.57))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "37065a96-21bc-5085-95b5-c624423367ac"))
+  (global_label "USB_SENSE_BASE"
+    (shape passive)
+    (at 50.8 212.09 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0761c4a7-bf7e-5080-8b2d-511431c3d776")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 50.8 212.09 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 50.8 212.09)
+      (xy 119.38 212.09))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "39e0f277-5919-5b78-8be7-bab272149f32"))
+  (wire
+    (pts
+      (xy 119.38 212.09)
+      (xy 119.38 269.24))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "56089c5c-fb96-5cd2-9f68-63a61845602b"))
+  (wire
+    (pts
+      (xy 119.38 269.24)
+      (xy 266.7 269.24))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "7e05a8ca-6a94-5398-8b37-0771da97c1bb"))
+  (wire
+    (pts
+      (xy 266.7 269.24)
+      (xy 266.7 246.38))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1aba3bae-a899-5123-9a87-d03caaf98122"))
+  (wire
+    (pts
+      (xy 266.7 246.38)
+      (xy 284.48 246.38))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "449b3066-364a-59dd-9c6f-c19a87ae49ac"))
+  (wire
+    (pts
+      (xy 326.39 203.2)
+      (xy 326.39 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0e6fdff4-fbc3-5c32-b20d-3baf1df3b378"))
+  (wire
+    (pts
+      (xy 326.39 241.3)
+      (xy 292.1 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b443a28a-fd53-53e5-bd11-ec4365f371e3"))
+  (global_label "USB_PRESENT_N"
+    (shape passive)
+    (at 326.39 241.3 0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "774aea23-3a88-5b31-93fb-e95b6d44e2b2")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 326.39 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (text "USB"
+    (at 20.32 15.24 0)
+    (effects
+      (font
+        (size 2.54 2.54))
+      (justify left top))
+    (uuid "a7a5a28f-87d8-5ea3-8018-26c37deb8d11"))
+  (text "USB DATA / MAIN BOARD REQUIRES EXTERNAL 24 V"
+    (at 20.32 27.94 0)
+    (effects
+      (font
+        (size 1.8 1.8))
+      (justify left top))
+    (uuid "8bbe2e79-13e0-54c0-9031-cc0ef554b4a5"))
+  (text "U17 uses host VBUS for interface bias only.\nSEL=0: MCU pair parked through separate 1k resistors.\nSEL=1: host pair connected; OEn=1 isolates both."
+    (at 208.28 170.18 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left top))
+    (uuid "2cc10d02-d1e4-5613-89f9-b3da915cb762"))
+  (text "U15: GND-only data clamps, pins1/3 NC.\nD30: VBUS protection; R40: VBUS bleed.\nR41/R39: supervisor-to-SELECT divider."
+    (at 20.32 175.26 0)
+    (effects
+      (font
+        (size 1.1 1.1))
+      (justify left top))
+    (uuid "66a52845-8afd-59f2-9fff-8a00258c1333"))
+  (text "No VBUS connection to main +5V/+3V3.\nREADY source: power_sequence.\nPartial-supply switching remains a prototype check."
+    (at 208.28 260.35 0)
+    (effects
+      (font
+        (size 1.1 1.1))
+      (justify left top))
+    (uuid "49712808-8b2b-5a4b-88ba-7054e33a1cd0"))
+  (embedded_fonts no))

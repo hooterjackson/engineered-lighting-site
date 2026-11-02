@@ -1,0 +1,99 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="620" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4a · The IRM-90-24ST output block — six screws, four checkpoints, one split</text>
+  <text x="30" y="56" font-size="12" fill="#555">Prove the bare terminals cold (CP1–CP3), land four pigtails, fit the cover — then every powered reading is pigtail-to-pigtail (CP4).</text>
+
+  <!-- PSU body -->
+  <rect x="60" y="100" width="430" height="200" fill="#ffe9e6" stroke="#d62828" stroke-width="2" rx="8"/>
+  <text x="275" y="126" font-size="13" font-weight="bold" text-anchor="middle" fill="#8a1c1c">Mean Well IRM-90-24ST</text>
+  <text x="275" y="143" font-size="10" text-anchor="middle" fill="#8a1c1c">24 V · 3.75 A · potted · Class II — no earth screw, none needed</text>
+
+  <!-- screw strip -->
+  <rect x="85" y="225" width="385" height="50" fill="#fff" stroke="#666" stroke-width="1.5" rx="4"/>
+  <g font-size="10" font-weight="bold" text-anchor="middle" fill="#222">
+    <text x="115" y="219">L</text>
+    <text x="175" y="219">N</text>
+    <text x="255" y="219">+Vo</text>
+    <text x="315" y="219">+Vo</text>
+    <text x="380" y="219">−Vo</text>
+    <text x="440" y="219">−Vo</text>
+  </g>
+  <g fill="#ddd" stroke="#555" stroke-width="1.5">
+    <circle cx="115" cy="250" r="9"/><circle cx="175" cy="250" r="9"/>
+    <circle cx="255" cy="250" r="9"/><circle cx="315" cy="250" r="9"/>
+    <circle cx="380" cy="250" r="9"/><circle cx="440" cy="250" r="9"/>
+  </g>
+  <g stroke="#555" stroke-width="1.2">
+    <line x1="109" y1="244" x2="121" y2="256"/><line x1="169" y1="244" x2="181" y2="256"/>
+    <line x1="249" y1="244" x2="261" y2="256"/><line x1="309" y1="244" x2="321" y2="256"/>
+    <line x1="374" y1="244" x2="386" y2="256"/><line x1="434" y1="244" x2="446" y2="256"/>
+  </g>
+
+  <!-- mains cover -->
+  <rect x="92" y="202" width="118" height="82" fill="#fdecec" fill-opacity="0.85" stroke="#c33" stroke-width="2" rx="4"/>
+  <text x="151" y="196" font-size="10" font-weight="bold" text-anchor="middle" fill="#c22">MAINS — 120 V</text>
+  <text x="151" y="297" font-size="9" text-anchor="middle" fill="#8a1c1c">cover back ON before EVERY power-up</text>
+
+  <!-- CP arcs -->
+  <path d="M 255 232 Q 285 208 315 232" fill="none" stroke="#2a8a4a" stroke-width="2"/>
+  <text x="285" y="206" font-size="9" font-weight="bold" text-anchor="middle" fill="#2a8a4a">CP1 beeps</text>
+  <path d="M 380 232 Q 410 208 440 232" fill="none" stroke="#2a8a4a" stroke-width="2"/>
+  <text x="410" y="206" font-size="9" font-weight="bold" text-anchor="middle" fill="#2a8a4a">CP2 beeps</text>
+  <path d="M 315 236 Q 347 258 380 236" fill="none" stroke="#c9a227" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="347" y="270" font-size="9" font-weight="bold" text-anchor="middle" fill="#6b5200">CP3 Ω: chirp, then climbs</text>
+
+  <!-- pigtails: pair A -->
+  <path d="M 255 275 L 255 325 L 135 325 L 135 360" fill="none" stroke="#d62828" stroke-width="4"/>
+  <rect x="85" y="360" width="100" height="28" fill="#fff" stroke="#8a1c1c" stroke-width="1.5" rx="12"/>
+  <text x="135" y="378" font-size="9" font-weight="bold" text-anchor="middle" fill="#8a1c1c">T3.15AL250V</text>
+  <path d="M 135 388 L 135 420" fill="none" stroke="#d62828" stroke-width="4"/>
+  <rect x="60" y="420" width="150" height="56" fill="#ffe9e6" stroke="#d62828" stroke-width="2" rx="6"/>
+  <text x="135" y="443" font-size="11" font-weight="bold" text-anchor="middle" fill="#8a1c1c">+24 V BUS</text>
+  <text x="135" y="459" font-size="9" text-anchor="middle" fill="#b45">(stage-1 WAGO)</text>
+
+  <path d="M 380 275 L 380 340 L 305 340 L 305 420" fill="none" stroke="#222" stroke-width="4"/>
+  <rect x="240" y="420" width="150" height="56" fill="#ececec" stroke="#222" stroke-width="2" rx="6"/>
+  <text x="315" y="443" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">GND STAR</text>
+  <text x="315" y="459" font-size="9" text-anchor="middle" fill="#444">(stage-1 WAGO)</text>
+  <text x="120" y="342" font-size="10" font-weight="bold" fill="#8a1c1c">pair A → the ONE fuse → bus</text>
+
+  <!-- pigtails: pair B -->
+  <path d="M 315 275 L 315 355 L 620 355 L 620 420" fill="none" stroke="#d62828" stroke-width="4"/>
+  <path d="M 440 275 L 440 310 L 680 310 L 680 420" fill="none" stroke="#222" stroke-width="4"/>
+  <text x="500" y="348" font-size="10" font-weight="bold" fill="#8a1c1c">pair B → straight to the buck</text>
+  <rect x="560" y="420" width="230" height="70" fill="#eefaf1" stroke="#2a8a4a" stroke-width="2" rx="6"/>
+  <text x="675" y="444" font-size="11" font-weight="bold" text-anchor="middle" fill="#1c5c33">Pololu D24V22F5 buck</text>
+  <text x="675" y="460" font-size="9" text-anchor="middle" fill="#3f7c55">24 V → 5 V · feeds the C6's 5 V pin</text>
+  <g font-size="9" text-anchor="middle" fill="#1c5c33"><text x="620" y="477">VIN</text><text x="680" y="477">GND</text></g>
+
+  <!-- CP4 note -->
+  <text x="475" y="405" font-size="9" font-weight="bold" fill="#2a8a4a">CP4: powered, cover ON —</text>
+  <text x="475" y="417" font-size="9" fill="#2a8a4a">24 V ±5% on every pigtail pairing</text>
+
+  <!-- mains rules -->
+  <rect x="540" y="80" width="430" height="122" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="552" y="100" font-size="11" font-weight="bold" fill="#8a1c1c">MAINS RULES — non-negotiable</text>
+  <g font-size="9.5" fill="#7c2a2a">
+    <text x="552" y="118">· UNPLUGGED — not "switched off" — before a screwdriver nears the block</text>
+    <text x="552" y="134">· L and N land under their MARKED screws only — one screw over is 120 V on the 24 V side</text>
+    <text x="552" y="150">· terminal cover back on before EVERY power-up (a resting probe rolls)</text>
+    <text x="552" y="166">· strain-relieve the cord — one snag pulls L out of its screw</text>
+    <text x="552" y="182">· Class II: no earth terminal exists and none is needed</text>
+  </g>
+
+  <!-- cold-first ritual -->
+  <rect x="540" y="216" width="430" height="120" fill="#f2fbf4" stroke="#3f7c55" stroke-width="1.5" rx="6"/>
+  <text x="552" y="236" font-size="11" font-weight="bold" fill="#3f7c55">THE SEQUENCE (cold → pigtails → cover → power)</text>
+  <g font-size="9.5" fill="#2f5c40">
+    <text x="552" y="254">1 · unplugged: CP1 +Vo↔+Vo beeps · CP2 −Vo↔−Vo beeps · CP3 +↔− climbs</text>
+    <text x="552" y="270">2 · land four 18–20 AWG stranded pigtails, one per output screw — never tinned</text>
+    <text x="552" y="286">3 · fit the cover</text>
+    <text x="552" y="302">4 · CP4: every powered reading is pigtail-to-pigtail, cover on</text>
+    <text x="552" y="318">The meter never visits the block live again.</text>
+  </g>
+
+  <!-- single-pair rule -->
+  <rect x="60" y="530" width="910" height="62" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="74" y="552" font-size="11" font-weight="bold" fill="#6b5200">IF CP1 OR CP2 DOES NOT BEEP — the single-pair rule</text>
+  <text x="74" y="570" font-size="10" fill="#514000">Stop: your unit's doubled terminals are not common. Run one proven +/− pair (fuse → bus; the buck moves after the fuse), cap the second pair, and NEVER bridge unproven terminals yourself.</text>
+</svg>

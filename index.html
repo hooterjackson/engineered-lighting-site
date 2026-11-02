@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engineered Lighting · engineering</title>
+<meta name="description" content="Engineered Lighting treats light as an intelligent material. The hardware notebook and the software vision.">
+<link rel="icon" href="assets/el-favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site/site.css">
+<link rel="stylesheet" href="assets/site/home.css">
+<script>
+  // Decide before first paint whether the scroll-driven opening runs:
+  // ?intro=0 and reduced motion go straight to the den section.
+  (function () {
+    var on = true;
+    try { if (matchMedia("(prefers-reduced-motion: reduce)").matches) on = false; } catch (e) {}
+    try { if (new URLSearchParams(location.search).get("intro") === "0") on = false; } catch (e) {}
+    document.documentElement.setAttribute("data-intro", on ? "on" : "off");
+  })();
+</script>
+<script type="module" src="assets/site/js/home.js"></script>
+</head>
+<body>
+<main class="home">
+
+  <section id="opening" class="opening" aria-label="Opening: a room, the network around it, the wordmark">
+    <a class="skip-pill" href="#overview">Skip intro<span aria-hidden="true">↓</span></a>
+    <div class="opening__stage">
+      <div class="opening__backdrop"></div>
+      <div class="opening__scene" aria-hidden="true">
+        <div class="opening__canvas"></div>
+        <div class="opening__vignette"></div>
+        <div class="opening__labels"></div>
+      </div>
+      <div class="opening__overlay" aria-hidden="true"></div>
+      <span class="opening__note">Illustrative network · not a live feed</span>
+      <span class="opening__hint">Loading the apartment scan · 0%</span>
+    </div>
+  </section>
+
+  <div id="overview" class="overview">
+    <section id="den" class="den" aria-label="Engineered Lighting: hardware and software">
+      <div class="den__scene" aria-hidden="true"></div>
+      <div class="den__labels" aria-hidden="true"></div>
+
+      <header class="den__head">
+        <span class="hud"><span class="hud__dot"></span><span class="hud__beat">Empty · dusk</span><span class="hud__clock">0%</span></span>
+        <nav aria-label="Site" class="site-nav site-nav--pill">
+          <a href="vision/">Vision</a>
+          <a href="hardware/">Hardware</a>
+          <a href="software/">Software</a>
+        </nav>
+      </header>
+
+      <div class="den__mark">
+        <a class="wordmark" href="#top" aria-label="engineered lighting, back to the opening"></a>
+        <h1 class="vh">engineered lighting · engineering</h1>
+      </div>
+
+      <nav id="doors" class="doors" aria-label="Three ways in">
+        <a class="door" href="vision/">
+          <div class="door__top"><span class="door__label">Vision</span><span class="door__path">/vision/</span></div>
+          <div class="door__main">
+            <div class="door__copy">
+              <div class="door__headline">Light that becomes information.</div>
+              <p class="door__desc">Why contextual lighting comes first, how ambient computing follows, and the hardware plan behind it, with four Blender concept films.</p>
+              <div class="door__facts">9 sections · 4 concept films</div>
+            </div>
+          </div>
+          <div class="door__open"><span>Read the vision</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M8.75 3.75 13 8l-4.25 4.25" stroke="currentColor" stroke-width="1.5"></path></svg></div>
+        </a>
+        <a class="door" href="hardware/">
+          <div class="door__top"><span class="door__label">Hardware</span><span class="door__path">/hardware/</span></div>
+          <div class="door__main">
+            <div class="door__copy">
+              <div class="door__headline">A silent robotic spotlight.</div>
+              <p class="door__desc">The engineering notebook: ten documents from research to a hand-built fixture, the circuit board and flex circuits, an interactive parts list.</p>
+              <div class="door__facts">10 documents · bench bring-up</div>
+            </div>
+          </div>
+          <div class="door__open"><span>Open the hardware notebook</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M8.75 3.75 13 8l-4.25 4.25" stroke="currentColor" stroke-width="1.5"></path></svg></div>
+        </a>
+        <a class="door" href="software/">
+          <div class="door__top"><span class="door__label">Software</span><span class="door__path">/software/</span></div>
+          <div class="door__main">
+            <div class="door__copy">
+              <div class="door__headline">The perception and decision loop.</div>
+              <p class="door__desc">How the system is meant to see a room, decide on light and learn, what runs in the den today, and the build ladder in between.</p>
+              <div class="door__facts">Works today · partly built · not built yet</div>
+            </div>
+          </div>
+          <div class="door__open"><span>Open the software page</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M8.75 3.75 13 8l-4.25 4.25" stroke="currentColor" stroke-width="1.5"></path></svg></div>
+        </a>
+      </nav>
+    </section>
+
+    <section id="idea" class="idea" aria-labelledby="idea-h">
+      <div class="idea__head">
+        <h2 id="idea-h">The idea</h2>
+      </div>
+      <div class="idea__grid">
+        <div class="idea__item">
+          <span class="idea__n">01</span>
+          <h3>It sees the room.</h3>
+          <p>Cameras tell it where each person is and what they are doing, not who they are. People are A and B; naming someone is their choice.</p>
+        </div>
+        <div class="idea__item">
+          <span class="idea__n">02</span>
+          <h3>It decides on light for each person.</h3>
+          <p>A bright pool for someone chopping vegetables, a soft, steady glow for someone reading: at the same time, without one bothering the other, and with the room still looking good.</p>
+        </div>
+        <div class="idea__item">
+          <span class="idea__n">03</span>
+          <h3>It checks, and it learns.</h3>
+          <p>It checks that the light landed where it was meant to, and learns from the changes people make.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <span>Engineered lighting · engineering</span>
+      <span>Background: Victoria den scan, scripted evening, simplified virtual light · set in IBM Plex · 2026</span>
+    </footer>
+  </div>
+</main>
+</body>
+</html>

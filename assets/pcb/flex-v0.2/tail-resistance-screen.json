@@ -1,0 +1,408 @@
+{
+  "status": "PASS_RESISTANCE_SCREEN_NOT_THERMAL_PROOF",
+  "candidate_sha256": "0af25f8f72fb999db1bad16a8d59541a02c4eb95f838ada6dd6abadba8fe058d",
+  "copper_temp_C": 85,
+  "copper_thickness_mm": 0.03,
+  "trace_width_reduction_mm": 0.02,
+  "finger_width_mm": 0.5,
+  "copper_resistivity_20C_ohm_m": 1.724e-08,
+  "temperature_coefficient_per_C": 0.00393,
+  "new_tail_worst_loop_drop_V": 0.0563648750171684,
+  "connector_worst_loop_drop_V": 0.048,
+  "tail_plus_connector_worst_loop_drop_V": 0.1043648750171684,
+  "all_zone_new_tail_heat_W": 0.20091791830730288,
+  "all_zone_connector_heat_W": 0.1728,
+  "rows": [
+    {
+      "zone": 1,
+      "rail": "24V",
+      "current_A": 0.6,
+      "resistance_ohm": 0.05541360900501772,
+      "voltage_drop_V": 0.03324816540301063,
+      "heat_W": 0.019948899241806376,
+      "contact_path_cases": [
+        {
+          "pin": 16,
+          "R_ohm": 0.05541360900501772,
+          "track_length_mm": 26.526673835589676
+        },
+        {
+          "pin": 17,
+          "R_ohm": 0.05541360900501772,
+          "track_length_mm": 26.526673835589676
+        }
+      ]
+    },
+    {
+      "zone": 1,
+      "rail": "W",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11126709004142316,
+      "voltage_drop_V": 0.022253418008284634,
+      "heat_W": 0.004450683601656927,
+      "contact_path_cases": [
+        {
+          "pin": 18,
+          "R_ohm": 0.11126709004142316,
+          "track_length_mm": 26.500277774688204
+        }
+      ]
+    },
+    {
+      "zone": 1,
+      "rail": "N",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11141307017956517,
+      "voltage_drop_V": 0.022282614035913036,
+      "heat_W": 0.004456522807182607,
+      "contact_path_cases": [
+        {
+          "pin": 19,
+          "R_ohm": 0.11141307017956517,
+          "track_length_mm": 26.536698689290183
+        }
+      ]
+    },
+    {
+      "zone": 1,
+      "rail": "C",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11145389183021691,
+      "voltage_drop_V": 0.022290778366043384,
+      "heat_W": 0.004458155673208677,
+      "contact_path_cases": [
+        {
+          "pin": 20,
+          "R_ohm": 0.11145389183021691,
+          "track_length_mm": 26.54688337517432
+        }
+      ]
+    },
+    {
+      "zone": 2,
+      "rail": "24V",
+      "current_A": 0.6,
+      "resistance_ohm": 0.05545787655126568,
+      "voltage_drop_V": 0.033274725930759405,
+      "heat_W": 0.019964835558455647,
+      "contact_path_cases": [
+        {
+          "pin": 21,
+          "R_ohm": 0.05545787655126568,
+          "track_length_mm": 26.54998981260399
+        },
+        {
+          "pin": 22,
+          "R_ohm": 0.05545787655126568,
+          "track_length_mm": 26.54998981260399
+        }
+      ]
+    },
+    {
+      "zone": 2,
+      "rail": "W",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11130604693489887,
+      "voltage_drop_V": 0.022261209386979775,
+      "heat_W": 0.004452241877395955,
+      "contact_path_cases": [
+        {
+          "pin": 23,
+          "R_ohm": 0.11130604693489887,
+          "track_length_mm": 26.509997218089865
+        }
+      ]
+    },
+    {
+      "zone": 2,
+      "rail": "N",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11158702688634407,
+      "voltage_drop_V": 0.022317405377268815,
+      "heat_W": 0.004463481075453764,
+      "contact_path_cases": [
+        {
+          "pin": 24,
+          "R_ohm": 0.11158702688634407,
+          "track_length_mm": 26.580099541232613
+        }
+      ]
+    },
+    {
+      "zone": 2,
+      "rail": "C",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11210310769621096,
+      "voltage_drop_V": 0.022420621539242194,
+      "heat_W": 0.004484124307848439,
+      "contact_path_cases": [
+        {
+          "pin": 25,
+          "R_ohm": 0.11210310769621096,
+          "track_length_mm": 26.708857708906063
+        }
+      ]
+    },
+    {
+      "zone": 3,
+      "rail": "24V",
+      "current_A": 0.6,
+      "resistance_ohm": 0.05571274956560176,
+      "voltage_drop_V": 0.033427649739361055,
+      "heat_W": 0.02005658984361663,
+      "contact_path_cases": [
+        {
+          "pin": 26,
+          "R_ohm": 0.05571274956560176,
+          "track_length_mm": 26.68423292855493
+        },
+        {
+          "pin": 27,
+          "R_ohm": 0.05571274956560176,
+          "track_length_mm": 26.68423292855493
+        }
+      ]
+    },
+    {
+      "zone": 3,
+      "rail": "W",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11173236385648672,
+      "voltage_drop_V": 0.022346472771297345,
+      "heat_W": 0.0044692945542594694,
+      "contact_path_cases": [
+        {
+          "pin": 28,
+          "R_ohm": 0.11173236385648672,
+          "track_length_mm": 26.616359990396777
+        }
+      ]
+    },
+    {
+      "zone": 3,
+      "rail": "N",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11207311013385242,
+      "voltage_drop_V": 0.022414622026770484,
+      "heat_W": 0.004482924405354098,
+      "contact_path_cases": [
+        {
+          "pin": 29,
+          "R_ohm": 0.11207311013385242,
+          "track_length_mm": 26.701373549274262
+        }
+      ]
+    },
+    {
+      "zone": 3,
+      "rail": "C",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11281502663287454,
+      "voltage_drop_V": 0.02256300532657491,
+      "heat_W": 0.004512601065314982,
+      "contact_path_cases": [
+        {
+          "pin": 30,
+          "R_ohm": 0.11281502663287454,
+          "track_length_mm": 26.886475973457465
+        }
+      ]
+    },
+    {
+      "zone": 4,
+      "rail": "24V",
+      "current_A": 0.6,
+      "resistance_ohm": 0.056349986912772675,
+      "voltage_drop_V": 0.0338099921476636,
+      "heat_W": 0.020285995288598164,
+      "contact_path_cases": [
+        {
+          "pin": 1,
+          "R_ohm": 0.056349986912772675,
+          "track_length_mm": 27.019869587882603
+        },
+        {
+          "pin": 2,
+          "R_ohm": 0.056349986912772675,
+          "track_length_mm": 27.019869587882603
+        }
+      ]
+    },
+    {
+      "zone": 4,
+      "rail": "W",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11277441434752399,
+      "voltage_drop_V": 0.0225548828695048,
+      "heat_W": 0.0045109765739009605,
+      "contact_path_cases": [
+        {
+          "pin": 3,
+          "R_ohm": 0.11277441434752399,
+          "track_length_mm": 26.87634352259552
+        }
+      ]
+    },
+    {
+      "zone": 4,
+      "rail": "N",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11229436203768589,
+      "voltage_drop_V": 0.02245887240753718,
+      "heat_W": 0.004491774481507437,
+      "contact_path_cases": [
+        {
+          "pin": 4,
+          "R_ohm": 0.11229436203768589,
+          "track_length_mm": 26.756574186824043
+        }
+      ]
+    },
+    {
+      "zone": 4,
+      "rail": "C",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11219632438247978,
+      "voltage_drop_V": 0.02243926487649596,
+      "heat_W": 0.004487852975299193,
+      "contact_path_cases": [
+        {
+          "pin": 5,
+          "R_ohm": 0.11219632438247978,
+          "track_length_mm": 26.73211455064692
+        }
+      ]
+    },
+    {
+      "zone": 5,
+      "rail": "24V",
+      "current_A": 0.6,
+      "resistance_ohm": 0.055962897970012256,
+      "voltage_drop_V": 0.03357773878200735,
+      "heat_W": 0.02014664326920441,
+      "contact_path_cases": [
+        {
+          "pin": 6,
+          "R_ohm": 0.055962897970012256,
+          "track_length_mm": 26.81598756466537
+        },
+        {
+          "pin": 7,
+          "R_ohm": 0.055962897970012256,
+          "track_length_mm": 26.81598756466537
+        }
+      ]
+    },
+    {
+      "zone": 5,
+      "rail": "W",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11207311033639783,
+      "voltage_drop_V": 0.022414622067279566,
+      "heat_W": 0.004482924413455914,
+      "contact_path_cases": [
+        {
+          "pin": 8,
+          "R_ohm": 0.11207311033639783,
+          "track_length_mm": 26.701373599807773
+        }
+      ]
+    },
+    {
+      "zone": 5,
+      "rail": "N",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11155043926144631,
+      "voltage_drop_V": 0.022310087852289263,
+      "heat_W": 0.004462017570457853,
+      "contact_path_cases": [
+        {
+          "pin": 9,
+          "R_ohm": 0.11155043926144631,
+          "track_length_mm": 26.570971212003368
+        }
+      ]
+    },
+    {
+      "zone": 5,
+      "rail": "C",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11149968473640612,
+      "voltage_drop_V": 0.022299936947281225,
+      "heat_W": 0.004459987389456245,
+      "contact_path_cases": [
+        {
+          "pin": 10,
+          "R_ohm": 0.11149968473640612,
+          "track_length_mm": 26.55830835083828
+        }
+      ]
+    },
+    {
+      "zone": 6,
+      "rail": "24V",
+      "current_A": 0.6,
+      "resistance_ohm": 0.05558076132447274,
+      "voltage_drop_V": 0.033348456794683644,
+      "heat_W": 0.020009074076810185,
+      "contact_path_cases": [
+        {
+          "pin": 11,
+          "R_ohm": 0.05558076132447274,
+          "track_length_mm": 26.614713945526468
+        },
+        {
+          "pin": 12,
+          "R_ohm": 0.05558076132447274,
+          "track_length_mm": 26.614713945526468
+        }
+      ]
+    },
+    {
+      "zone": 6,
+      "rail": "W",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11177881045130388,
+      "voltage_drop_V": 0.022355762090260776,
+      "heat_W": 0.004471152418052156,
+      "contact_path_cases": [
+        {
+          "pin": 13,
+          "R_ohm": 0.11177881045130388,
+          "track_length_mm": 26.627948056313954
+        }
+      ]
+    },
+    {
+      "zone": 6,
+      "rail": "N",
+      "current_A": 0.2,
+      "resistance_ohm": 0.1114005692303518,
+      "voltage_drop_V": 0.02228011384607036,
+      "heat_W": 0.004456022769214073,
+      "contact_path_cases": [
+        {
+          "pin": 14,
+          "R_ohm": 0.1114005692303518,
+          "track_length_mm": 26.53357979921693
+        }
+      ]
+    },
+    {
+      "zone": 6,
+      "rail": "C",
+      "current_A": 0.2,
+      "resistance_ohm": 0.11132857674481823,
+      "voltage_drop_V": 0.022265715348963648,
+      "heat_W": 0.00445314306979273,
+      "contact_path_cases": [
+        {
+          "pin": 15,
+          "R_ohm": 0.11132857674481823,
+          "track_length_mm": 26.515618231287384
+        }
+      ]
+    }
+  ],
+  "scope": "New tail from full finger tip to native y35 only. Each positive contact is individually screened carrying full 0.60 A; its mate is not credited. Existing bands, main traces, strips, solder joints and wires are excluded. 85 C is an assumed conductor temperature, not a predicted enclosure temperature. Copper properties are standard bulk-copper engineering assumptions; etch width reduction is a sensitivity allowance, not vendor tolerance acceptance."
+}

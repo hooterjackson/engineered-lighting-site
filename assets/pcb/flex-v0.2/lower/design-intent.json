@@ -1,0 +1,3435 @@
+{
+  "name": "led-lower-v0.2",
+  "status": "ROUTED_DIGITALLY_VERIFIED_QUOTE_REVIEW_NOT_PRODUCTION_RELEASED",
+  "physical_copper_layers": 2,
+  "length_mm": 324.968556340659,
+  "band_width_mm": 6.4,
+  "overall_y_mm": 7.9,
+  "finished_flex_target_mm": 0.15,
+  "nominal_copper_um": 35,
+  "minimum_copper_requested_um": 30,
+  "adhesive": "3M VHB 4611, 1.1 mm nominal, assembly applied ONLY under band; fit validation required",
+  "neutral_radius_mm": 51.975,
+  "strip_neutral_radius_model_mm": 51.15,
+  "pitch_mm": 13.607023180860793,
+  "seam_gap_nominal_mm": 1.6,
+  "strip_pad_overlap_mm": 1.0,
+  "pad_copper_mm": [
+    0.9,
+    1.0
+  ],
+  "pad_exposed_coverlay_mm": [
+    0.8,
+    0.9
+  ],
+  "finger_width_mm": 1.4,
+  "finger_corner_radius_mm": 0.15,
+  "physical_strip_rail_sequence": [
+    "24V",
+    "W",
+    "N",
+    "C"
+  ],
+  "zone_order_flat": [
+    4,
+    5,
+    6,
+    1,
+    2,
+    3
+  ],
+  "xy": "X right, Y down, origin at band upper-left. Both boards are outside views; lower fingers point UP. Native CAD adds X20,Y40.",
+  "strip_data": [
+    {
+      "zone": 4,
+      "strip": 1,
+      "reference": "J41",
+      "center_x_mm": 6.003511590430397,
+      "pad_x_mm": [
+        1.1768986872045906,
+        3.209156751720719,
+        8.797866429140074,
+        10.830124493656204
+      ],
+      "nets": [
+        "Z4_B12_24V",
+        "Z4_B12_W",
+        "Z4_B12_N",
+        "Z4_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 4,
+      "strip": 2,
+      "reference": "J42",
+      "center_x_mm": 19.61053477129119,
+      "pad_x_mm": [
+        14.783921868065383,
+        16.816179932581512,
+        22.404889610000865,
+        24.437147674516993
+      ],
+      "nets": [
+        "Z4_B12_24V",
+        "Z4_B12_W",
+        "Z4_B12_N",
+        "Z4_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 4,
+      "strip": 3,
+      "reference": "J43",
+      "center_x_mm": 33.217557952151985,
+      "pad_x_mm": [
+        28.390945048926177,
+        30.42320311344231,
+        36.011912790861665,
+        38.04417085537779
+      ],
+      "nets": [
+        "Z4_B34_24V",
+        "Z4_B34_W",
+        "Z4_B34_N",
+        "Z4_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 4,
+      "strip": 4,
+      "reference": "J44",
+      "center_x_mm": 46.82458113301278,
+      "pad_x_mm": [
+        41.99796822978697,
+        44.0302262943031,
+        49.61893597172246,
+        51.651194036238586
+      ],
+      "nets": [
+        "Z4_B34_24V",
+        "Z4_B34_W",
+        "Z4_B34_N",
+        "Z4_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 5,
+      "strip": 1,
+      "reference": "J51",
+      "center_x_mm": 60.43160431387357,
+      "pad_x_mm": [
+        55.60499141064776,
+        57.63724947516389,
+        63.22595915258325,
+        65.25821721709937
+      ],
+      "nets": [
+        "Z5_B12_24V",
+        "Z5_B12_W",
+        "Z5_B12_N",
+        "Z5_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 5,
+      "strip": 2,
+      "reference": "J52",
+      "center_x_mm": 74.03862749473437,
+      "pad_x_mm": [
+        69.21201459150856,
+        71.24427265602469,
+        76.83298233344405,
+        78.86524039796018
+      ],
+      "nets": [
+        "Z5_B12_24V",
+        "Z5_B12_W",
+        "Z5_B12_N",
+        "Z5_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 5,
+      "strip": 3,
+      "reference": "J53",
+      "center_x_mm": 87.64565067559515,
+      "pad_x_mm": [
+        82.81903777236934,
+        84.85129583688547,
+        90.44000551430483,
+        92.47226357882096
+      ],
+      "nets": [
+        "Z5_B34_24V",
+        "Z5_B34_W",
+        "Z5_B34_N",
+        "Z5_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 5,
+      "strip": 4,
+      "reference": "J54",
+      "center_x_mm": 101.25267385645596,
+      "pad_x_mm": [
+        96.42606095323015,
+        98.45831901774628,
+        104.04702869516564,
+        106.07928675968176
+      ],
+      "nets": [
+        "Z5_B34_24V",
+        "Z5_B34_W",
+        "Z5_B34_N",
+        "Z5_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 6,
+      "strip": 1,
+      "reference": "J61",
+      "center_x_mm": 114.85969703731674,
+      "pad_x_mm": [
+        110.03308413409093,
+        112.06534219860706,
+        117.65405187602641,
+        119.68630994054254
+      ],
+      "nets": [
+        "Z6_B12_24V",
+        "Z6_B12_W",
+        "Z6_B12_N",
+        "Z6_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 6,
+      "strip": 2,
+      "reference": "J62",
+      "center_x_mm": 128.46672021817753,
+      "pad_x_mm": [
+        123.64010731495172,
+        125.67236537946785,
+        131.2610750568872,
+        133.29333312140332
+      ],
+      "nets": [
+        "Z6_B12_24V",
+        "Z6_B12_W",
+        "Z6_B12_N",
+        "Z6_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 6,
+      "strip": 3,
+      "reference": "J63",
+      "center_x_mm": 142.0737433990383,
+      "pad_x_mm": [
+        137.2471304958125,
+        139.27938856032864,
+        144.86809823774797,
+        146.9003563022641
+      ],
+      "nets": [
+        "Z6_B34_24V",
+        "Z6_B34_W",
+        "Z6_B34_N",
+        "Z6_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 6,
+      "strip": 4,
+      "reference": "J64",
+      "center_x_mm": 155.6807665798991,
+      "pad_x_mm": [
+        150.85415367667332,
+        152.88641174118945,
+        158.47512141860878,
+        160.5073794831249
+      ],
+      "nets": [
+        "Z6_B34_24V",
+        "Z6_B34_W",
+        "Z6_B34_N",
+        "Z6_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 1,
+      "strip": 1,
+      "reference": "J11",
+      "center_x_mm": 169.2877897607599,
+      "pad_x_mm": [
+        164.4611768575341,
+        166.49343492205023,
+        172.08214459946956,
+        174.1144026639857
+      ],
+      "nets": [
+        "Z1_B12_24V",
+        "Z1_B12_W",
+        "Z1_B12_N",
+        "Z1_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 1,
+      "strip": 2,
+      "reference": "J12",
+      "center_x_mm": 182.8948129416207,
+      "pad_x_mm": [
+        178.0682000383949,
+        180.10045810291103,
+        185.68916778033037,
+        187.7214258448465
+      ],
+      "nets": [
+        "Z1_B12_24V",
+        "Z1_B12_W",
+        "Z1_B12_N",
+        "Z1_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 1,
+      "strip": 3,
+      "reference": "J13",
+      "center_x_mm": 196.50183612248148,
+      "pad_x_mm": [
+        191.67522321925568,
+        193.7074812837718,
+        199.29619096119114,
+        201.32844902570727
+      ],
+      "nets": [
+        "Z1_B34_24V",
+        "Z1_B34_W",
+        "Z1_B34_N",
+        "Z1_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 1,
+      "strip": 4,
+      "reference": "J14",
+      "center_x_mm": 210.10885930334229,
+      "pad_x_mm": [
+        205.2822464001165,
+        207.31450446463262,
+        212.90321414205195,
+        214.93547220656808
+      ],
+      "nets": [
+        "Z1_B34_24V",
+        "Z1_B34_W",
+        "Z1_B34_N",
+        "Z1_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 2,
+      "strip": 1,
+      "reference": "J21",
+      "center_x_mm": 223.71588248420306,
+      "pad_x_mm": [
+        218.88926958097727,
+        220.9215276454934,
+        226.51023732291273,
+        228.54249538742886
+      ],
+      "nets": [
+        "Z2_B12_24V",
+        "Z2_B12_W",
+        "Z2_B12_N",
+        "Z2_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 2,
+      "strip": 2,
+      "reference": "J22",
+      "center_x_mm": 237.32290566506387,
+      "pad_x_mm": [
+        232.49629276183808,
+        234.5285508263542,
+        240.11726050377354,
+        242.14951856828966
+      ],
+      "nets": [
+        "Z2_B12_24V",
+        "Z2_B12_W",
+        "Z2_B12_N",
+        "Z2_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 2,
+      "strip": 3,
+      "reference": "J23",
+      "center_x_mm": 250.92992884592465,
+      "pad_x_mm": [
+        246.10331594269886,
+        248.13557400721498,
+        253.72428368463432,
+        255.75654174915044
+      ],
+      "nets": [
+        "Z2_B34_24V",
+        "Z2_B34_W",
+        "Z2_B34_N",
+        "Z2_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 2,
+      "strip": 4,
+      "reference": "J24",
+      "center_x_mm": 264.53695202678546,
+      "pad_x_mm": [
+        259.71033912355966,
+        261.74259718807576,
+        267.33130686549515,
+        269.36356493001125
+      ],
+      "nets": [
+        "Z2_B34_24V",
+        "Z2_B34_W",
+        "Z2_B34_N",
+        "Z2_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 3,
+      "strip": 1,
+      "reference": "J31",
+      "center_x_mm": 278.14397520764624,
+      "pad_x_mm": [
+        273.31736230442044,
+        275.34962036893654,
+        280.93833004635593,
+        282.97058811087203
+      ],
+      "nets": [
+        "Z3_B12_24V",
+        "Z3_B12_W",
+        "Z3_B12_N",
+        "Z3_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 3,
+      "strip": 2,
+      "reference": "J32",
+      "center_x_mm": 291.750998388507,
+      "pad_x_mm": [
+        286.9243854852812,
+        288.9566435497973,
+        294.5453532272167,
+        296.5776112917328
+      ],
+      "nets": [
+        "Z3_B12_24V",
+        "Z3_B12_W",
+        "Z3_B12_N",
+        "Z3_B12_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 3,
+      "strip": 3,
+      "reference": "J33",
+      "center_x_mm": 305.35802156936785,
+      "pad_x_mm": [
+        300.53140866614206,
+        302.56366673065816,
+        308.15237640807754,
+        310.18463447259364
+      ],
+      "nets": [
+        "Z3_B34_24V",
+        "Z3_B34_W",
+        "Z3_B34_N",
+        "Z3_B34_C"
+      ],
+      "feed": false
+    },
+    {
+      "zone": 3,
+      "strip": 4,
+      "reference": "J34",
+      "center_x_mm": 318.9650447502286,
+      "pad_x_mm": [
+        314.13843184700283,
+        316.17068991151893,
+        321.7593995889383,
+        323.7916576534544
+      ],
+      "nets": [
+        "Z3_B34_24V",
+        "Z3_B34_W",
+        "Z3_B34_N",
+        "Z3_B34_C"
+      ],
+      "feed": false
+    }
+  ],
+  "pads": [
+    {
+      "reference": "J41",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z4_B12_24V",
+      "x_mm": 1.1768986872045906,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 21.17689868720459,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J41",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z4_B12_W",
+      "x_mm": 3.209156751720719,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 23.20915675172072,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J41",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z4_B12_N",
+      "x_mm": 8.797866429140074,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 28.797866429140072,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J41",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z4_B12_C",
+      "x_mm": 10.830124493656204,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 30.830124493656204,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J42",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z4_B12_24V",
+      "x_mm": 14.783921868065383,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 34.783921868065384,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J42",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z4_B12_W",
+      "x_mm": 16.816179932581512,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 36.81617993258151,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J42",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z4_B12_N",
+      "x_mm": 22.404889610000865,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 42.404889610000865,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J42",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z4_B12_C",
+      "x_mm": 24.437147674516993,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 44.43714767451699,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J43",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z4_B34_24V",
+      "x_mm": 28.390945048926177,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 48.39094504892618,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J43",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z4_B34_W",
+      "x_mm": 30.42320311344231,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 50.42320311344231,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J43",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z4_B34_N",
+      "x_mm": 36.011912790861665,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 56.011912790861665,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J43",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z4_B34_C",
+      "x_mm": 38.04417085537779,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 58.04417085537779,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J44",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z4_B34_24V",
+      "x_mm": 41.99796822978697,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 61.99796822978697,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J44",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z4_B34_W",
+      "x_mm": 44.0302262943031,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 64.0302262943031,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J44",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z4_B34_N",
+      "x_mm": 49.61893597172246,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 69.61893597172246,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J44",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z4_B34_C",
+      "x_mm": 51.651194036238586,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 71.65119403623859,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J51",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z5_B12_24V",
+      "x_mm": 55.60499141064776,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 75.60499141064776,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J51",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z5_B12_W",
+      "x_mm": 57.63724947516389,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 77.63724947516388,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J51",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z5_B12_N",
+      "x_mm": 63.22595915258325,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 83.22595915258324,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J51",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z5_B12_C",
+      "x_mm": 65.25821721709937,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 85.25821721709937,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J52",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z5_B12_24V",
+      "x_mm": 69.21201459150856,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 89.21201459150856,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J52",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z5_B12_W",
+      "x_mm": 71.24427265602469,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 91.24427265602469,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J52",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z5_B12_N",
+      "x_mm": 76.83298233344405,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 96.83298233344405,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J52",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z5_B12_C",
+      "x_mm": 78.86524039796018,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 98.86524039796018,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J53",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z5_B34_24V",
+      "x_mm": 82.81903777236934,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 102.81903777236934,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J53",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z5_B34_W",
+      "x_mm": 84.85129583688547,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 104.85129583688547,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J53",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z5_B34_N",
+      "x_mm": 90.44000551430483,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 110.44000551430483,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J53",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z5_B34_C",
+      "x_mm": 92.47226357882096,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 112.47226357882096,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J54",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z5_B34_24V",
+      "x_mm": 96.42606095323015,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 116.42606095323015,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J54",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z5_B34_W",
+      "x_mm": 98.45831901774628,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 118.45831901774628,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J54",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z5_B34_N",
+      "x_mm": 104.04702869516564,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 124.04702869516564,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J54",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z5_B34_C",
+      "x_mm": 106.07928675968176,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 126.07928675968176,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J61",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z6_B12_24V",
+      "x_mm": 110.03308413409093,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 130.03308413409093,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J61",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z6_B12_W",
+      "x_mm": 112.06534219860706,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 132.06534219860706,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J61",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z6_B12_N",
+      "x_mm": 117.65405187602641,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 137.65405187602641,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J61",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z6_B12_C",
+      "x_mm": 119.68630994054254,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 139.68630994054254,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J62",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z6_B12_24V",
+      "x_mm": 123.64010731495172,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 143.6401073149517,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J62",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z6_B12_W",
+      "x_mm": 125.67236537946785,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 145.67236537946786,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J62",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z6_B12_N",
+      "x_mm": 131.2610750568872,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 151.2610750568872,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J62",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z6_B12_C",
+      "x_mm": 133.29333312140332,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 153.29333312140332,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J63",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z6_B34_24V",
+      "x_mm": 137.2471304958125,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 157.2471304958125,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J63",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z6_B34_W",
+      "x_mm": 139.27938856032864,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 159.27938856032864,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J63",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z6_B34_N",
+      "x_mm": 144.86809823774797,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 164.86809823774797,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J63",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z6_B34_C",
+      "x_mm": 146.9003563022641,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 166.9003563022641,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J64",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z6_B34_24V",
+      "x_mm": 150.85415367667332,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 170.85415367667332,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J64",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z6_B34_W",
+      "x_mm": 152.88641174118945,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 172.88641174118945,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J64",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z6_B34_N",
+      "x_mm": 158.47512141860878,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 178.47512141860878,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J64",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z6_B34_C",
+      "x_mm": 160.5073794831249,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 180.5073794831249,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J11",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z1_B12_24V",
+      "x_mm": 164.4611768575341,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 184.4611768575341,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J11",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z1_B12_W",
+      "x_mm": 166.49343492205023,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 186.49343492205023,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J11",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z1_B12_N",
+      "x_mm": 172.08214459946956,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 192.08214459946956,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J11",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z1_B12_C",
+      "x_mm": 174.1144026639857,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 194.1144026639857,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J12",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z1_B12_24V",
+      "x_mm": 178.0682000383949,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 198.0682000383949,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J12",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z1_B12_W",
+      "x_mm": 180.10045810291103,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 200.10045810291103,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J12",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z1_B12_N",
+      "x_mm": 185.68916778033037,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 205.68916778033037,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J12",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z1_B12_C",
+      "x_mm": 187.7214258448465,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 207.7214258448465,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J13",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z1_B34_24V",
+      "x_mm": 191.67522321925568,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 211.67522321925568,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J13",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z1_B34_W",
+      "x_mm": 193.7074812837718,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 213.7074812837718,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J13",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z1_B34_N",
+      "x_mm": 199.29619096119114,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 219.29619096119114,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J13",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z1_B34_C",
+      "x_mm": 201.32844902570727,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 221.32844902570727,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J14",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z1_B34_24V",
+      "x_mm": 205.2822464001165,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 225.2822464001165,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J14",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z1_B34_W",
+      "x_mm": 207.31450446463262,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 227.31450446463262,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J14",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z1_B34_N",
+      "x_mm": 212.90321414205195,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 232.90321414205195,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J14",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z1_B34_C",
+      "x_mm": 214.93547220656808,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 234.93547220656808,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J21",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z2_B12_24V",
+      "x_mm": 218.88926958097727,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 238.88926958097727,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J21",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z2_B12_W",
+      "x_mm": 220.9215276454934,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 240.9215276454934,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J21",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z2_B12_N",
+      "x_mm": 226.51023732291273,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 246.51023732291273,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J21",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z2_B12_C",
+      "x_mm": 228.54249538742886,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 248.54249538742886,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J22",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z2_B12_24V",
+      "x_mm": 232.49629276183808,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 252.49629276183808,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J22",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z2_B12_W",
+      "x_mm": 234.5285508263542,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 254.5285508263542,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J22",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z2_B12_N",
+      "x_mm": 240.11726050377354,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 260.11726050377354,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J22",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z2_B12_C",
+      "x_mm": 242.14951856828966,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 262.14951856828964,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J23",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z2_B34_24V",
+      "x_mm": 246.10331594269886,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 266.1033159426988,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J23",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z2_B34_W",
+      "x_mm": 248.13557400721498,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 268.135574007215,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J23",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z2_B34_N",
+      "x_mm": 253.72428368463432,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 273.7242836846343,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J23",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z2_B34_C",
+      "x_mm": 255.75654174915044,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 275.7565417491504,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J24",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z2_B34_24V",
+      "x_mm": 259.71033912355966,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 279.71033912355966,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J24",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z2_B34_W",
+      "x_mm": 261.74259718807576,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 281.74259718807576,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J24",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z2_B34_N",
+      "x_mm": 267.33130686549515,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 287.33130686549515,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J24",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z2_B34_C",
+      "x_mm": 269.36356493001125,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 289.36356493001125,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J31",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z3_B12_24V",
+      "x_mm": 273.31736230442044,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 293.31736230442044,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J31",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z3_B12_W",
+      "x_mm": 275.34962036893654,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 295.34962036893654,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J31",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z3_B12_N",
+      "x_mm": 280.93833004635593,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 300.93833004635593,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J31",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z3_B12_C",
+      "x_mm": 282.97058811087203,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 302.97058811087203,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J32",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z3_B12_24V",
+      "x_mm": 286.9243854852812,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 306.9243854852812,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J32",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z3_B12_W",
+      "x_mm": 288.9566435497973,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 308.9566435497973,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J32",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z3_B12_N",
+      "x_mm": 294.5453532272167,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 314.5453532272167,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J32",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z3_B12_C",
+      "x_mm": 296.5776112917328,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 316.5776112917328,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J33",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z3_B34_24V",
+      "x_mm": 300.53140866614206,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 320.53140866614206,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J33",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z3_B34_W",
+      "x_mm": 302.56366673065816,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 322.56366673065816,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J33",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z3_B34_N",
+      "x_mm": 308.15237640807754,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 328.15237640807754,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J33",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z3_B34_C",
+      "x_mm": 310.18463447259364,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 330.18463447259364,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J34",
+      "pin": "1",
+      "rail": "24V",
+      "net": "Z3_B34_24V",
+      "x_mm": 314.13843184700283,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 334.13843184700283,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J34",
+      "pin": "2",
+      "rail": "W",
+      "net": "Z3_B34_W",
+      "x_mm": 316.17068991151893,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 336.17068991151893,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J34",
+      "pin": "3",
+      "rail": "N",
+      "net": "Z3_B34_N",
+      "x_mm": 321.7593995889383,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 341.7593995889383,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    },
+    {
+      "reference": "J34",
+      "pin": "4",
+      "rail": "C",
+      "net": "Z3_B34_C",
+      "x_mm": 323.7916576534544,
+      "y_mm": -0.7999999999999998,
+      "native_x_mm": 343.7916576534544,
+      "native_y_mm": 39.2,
+      "role": "strip solder overlap"
+    }
+  ],
+  "tracks": [
+    {
+      "net": "Z1_B12_24V",
+      "a": [
+        164.4611768575341,
+        5.5
+      ],
+      "b": [
+        178.0682000383949,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B12_24V",
+      "a": [
+        164.4611768575341,
+        5.5
+      ],
+      "b": [
+        164.4611768575341,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B12_24V",
+      "a": [
+        178.0682000383949,
+        5.5
+      ],
+      "b": [
+        178.0682000383949,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B12_W",
+      "a": [
+        166.49343492205023,
+        4.2
+      ],
+      "b": [
+        180.10045810291103,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B12_W",
+      "a": [
+        166.49343492205023,
+        4.2
+      ],
+      "b": [
+        166.49343492205023,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B12_W",
+      "a": [
+        180.10045810291103,
+        4.2
+      ],
+      "b": [
+        180.10045810291103,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B12_N",
+      "a": [
+        172.08214459946956,
+        2.9000000000000004
+      ],
+      "b": [
+        185.68916778033037,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B12_N",
+      "a": [
+        172.08214459946956,
+        2.9000000000000004
+      ],
+      "b": [
+        172.08214459946956,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B12_N",
+      "a": [
+        185.68916778033037,
+        2.9000000000000004
+      ],
+      "b": [
+        185.68916778033037,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B12_C",
+      "a": [
+        174.1144026639857,
+        1.6000000000000005
+      ],
+      "b": [
+        187.7214258448465,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B12_C",
+      "a": [
+        174.1144026639857,
+        1.6000000000000005
+      ],
+      "b": [
+        174.1144026639857,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B12_C",
+      "a": [
+        187.7214258448465,
+        1.6000000000000005
+      ],
+      "b": [
+        187.7214258448465,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_24V",
+      "a": [
+        191.67522321925568,
+        5.5
+      ],
+      "b": [
+        205.2822464001165,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B34_24V",
+      "a": [
+        191.67522321925568,
+        5.5
+      ],
+      "b": [
+        191.67522321925568,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_24V",
+      "a": [
+        205.2822464001165,
+        5.5
+      ],
+      "b": [
+        205.2822464001165,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_W",
+      "a": [
+        193.7074812837718,
+        4.2
+      ],
+      "b": [
+        207.31450446463262,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B34_W",
+      "a": [
+        193.7074812837718,
+        4.2
+      ],
+      "b": [
+        193.7074812837718,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_W",
+      "a": [
+        207.31450446463262,
+        4.2
+      ],
+      "b": [
+        207.31450446463262,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_N",
+      "a": [
+        199.29619096119114,
+        2.9000000000000004
+      ],
+      "b": [
+        212.90321414205195,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B34_N",
+      "a": [
+        199.29619096119114,
+        2.9000000000000004
+      ],
+      "b": [
+        199.29619096119114,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_N",
+      "a": [
+        212.90321414205195,
+        2.9000000000000004
+      ],
+      "b": [
+        212.90321414205195,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_C",
+      "a": [
+        201.32844902570727,
+        1.6000000000000005
+      ],
+      "b": [
+        214.93547220656808,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z1_B34_C",
+      "a": [
+        201.32844902570727,
+        1.6000000000000005
+      ],
+      "b": [
+        201.32844902570727,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z1_B34_C",
+      "a": [
+        214.93547220656808,
+        1.6000000000000005
+      ],
+      "b": [
+        214.93547220656808,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_24V",
+      "a": [
+        218.88926958097727,
+        5.5
+      ],
+      "b": [
+        232.49629276183808,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B12_24V",
+      "a": [
+        218.88926958097727,
+        5.5
+      ],
+      "b": [
+        218.88926958097727,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_24V",
+      "a": [
+        232.49629276183808,
+        5.5
+      ],
+      "b": [
+        232.49629276183808,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_W",
+      "a": [
+        220.9215276454934,
+        4.2
+      ],
+      "b": [
+        234.5285508263542,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B12_W",
+      "a": [
+        220.9215276454934,
+        4.2
+      ],
+      "b": [
+        220.9215276454934,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_W",
+      "a": [
+        234.5285508263542,
+        4.2
+      ],
+      "b": [
+        234.5285508263542,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_N",
+      "a": [
+        226.51023732291273,
+        2.9000000000000004
+      ],
+      "b": [
+        240.11726050377354,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B12_N",
+      "a": [
+        226.51023732291273,
+        2.9000000000000004
+      ],
+      "b": [
+        226.51023732291273,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_N",
+      "a": [
+        240.11726050377354,
+        2.9000000000000004
+      ],
+      "b": [
+        240.11726050377354,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_C",
+      "a": [
+        228.54249538742886,
+        1.6000000000000005
+      ],
+      "b": [
+        242.14951856828966,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B12_C",
+      "a": [
+        228.54249538742886,
+        1.6000000000000005
+      ],
+      "b": [
+        228.54249538742886,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B12_C",
+      "a": [
+        242.14951856828966,
+        1.6000000000000005
+      ],
+      "b": [
+        242.14951856828966,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_24V",
+      "a": [
+        246.10331594269886,
+        5.5
+      ],
+      "b": [
+        259.71033912355966,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B34_24V",
+      "a": [
+        246.10331594269886,
+        5.5
+      ],
+      "b": [
+        246.10331594269886,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_24V",
+      "a": [
+        259.71033912355966,
+        5.5
+      ],
+      "b": [
+        259.71033912355966,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_W",
+      "a": [
+        248.13557400721498,
+        4.2
+      ],
+      "b": [
+        261.74259718807576,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B34_W",
+      "a": [
+        248.13557400721498,
+        4.2
+      ],
+      "b": [
+        248.13557400721498,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_W",
+      "a": [
+        261.74259718807576,
+        4.2
+      ],
+      "b": [
+        261.74259718807576,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_N",
+      "a": [
+        253.72428368463432,
+        2.9000000000000004
+      ],
+      "b": [
+        267.33130686549515,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B34_N",
+      "a": [
+        253.72428368463432,
+        2.9000000000000004
+      ],
+      "b": [
+        253.72428368463432,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_N",
+      "a": [
+        267.33130686549515,
+        2.9000000000000004
+      ],
+      "b": [
+        267.33130686549515,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_C",
+      "a": [
+        255.75654174915044,
+        1.6000000000000005
+      ],
+      "b": [
+        269.36356493001125,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z2_B34_C",
+      "a": [
+        255.75654174915044,
+        1.6000000000000005
+      ],
+      "b": [
+        255.75654174915044,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z2_B34_C",
+      "a": [
+        269.36356493001125,
+        1.6000000000000005
+      ],
+      "b": [
+        269.36356493001125,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_24V",
+      "a": [
+        273.31736230442044,
+        5.5
+      ],
+      "b": [
+        286.9243854852812,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B12_24V",
+      "a": [
+        273.31736230442044,
+        5.5
+      ],
+      "b": [
+        273.31736230442044,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_24V",
+      "a": [
+        286.9243854852812,
+        5.5
+      ],
+      "b": [
+        286.9243854852812,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_W",
+      "a": [
+        275.34962036893654,
+        4.2
+      ],
+      "b": [
+        288.9566435497973,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B12_W",
+      "a": [
+        275.34962036893654,
+        4.2
+      ],
+      "b": [
+        275.34962036893654,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_W",
+      "a": [
+        288.9566435497973,
+        4.2
+      ],
+      "b": [
+        288.9566435497973,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_N",
+      "a": [
+        280.93833004635593,
+        2.9000000000000004
+      ],
+      "b": [
+        294.5453532272167,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B12_N",
+      "a": [
+        280.93833004635593,
+        2.9000000000000004
+      ],
+      "b": [
+        280.93833004635593,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_N",
+      "a": [
+        294.5453532272167,
+        2.9000000000000004
+      ],
+      "b": [
+        294.5453532272167,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_C",
+      "a": [
+        282.97058811087203,
+        1.6000000000000005
+      ],
+      "b": [
+        296.5776112917328,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B12_C",
+      "a": [
+        282.97058811087203,
+        1.6000000000000005
+      ],
+      "b": [
+        282.97058811087203,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B12_C",
+      "a": [
+        296.5776112917328,
+        1.6000000000000005
+      ],
+      "b": [
+        296.5776112917328,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_24V",
+      "a": [
+        300.53140866614206,
+        5.5
+      ],
+      "b": [
+        314.13843184700283,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B34_24V",
+      "a": [
+        300.53140866614206,
+        5.5
+      ],
+      "b": [
+        300.53140866614206,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_24V",
+      "a": [
+        314.13843184700283,
+        5.5
+      ],
+      "b": [
+        314.13843184700283,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_W",
+      "a": [
+        302.56366673065816,
+        4.2
+      ],
+      "b": [
+        316.17068991151893,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B34_W",
+      "a": [
+        302.56366673065816,
+        4.2
+      ],
+      "b": [
+        302.56366673065816,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_W",
+      "a": [
+        316.17068991151893,
+        4.2
+      ],
+      "b": [
+        316.17068991151893,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_N",
+      "a": [
+        308.15237640807754,
+        2.9000000000000004
+      ],
+      "b": [
+        321.7593995889383,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B34_N",
+      "a": [
+        308.15237640807754,
+        2.9000000000000004
+      ],
+      "b": [
+        308.15237640807754,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_N",
+      "a": [
+        321.7593995889383,
+        2.9000000000000004
+      ],
+      "b": [
+        321.7593995889383,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_C",
+      "a": [
+        310.18463447259364,
+        1.6000000000000005
+      ],
+      "b": [
+        323.7916576534544,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z3_B34_C",
+      "a": [
+        310.18463447259364,
+        1.6000000000000005
+      ],
+      "b": [
+        310.18463447259364,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z3_B34_C",
+      "a": [
+        323.7916576534544,
+        1.6000000000000005
+      ],
+      "b": [
+        323.7916576534544,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_24V",
+      "a": [
+        1.1768986872045906,
+        5.5
+      ],
+      "b": [
+        14.783921868065383,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B12_24V",
+      "a": [
+        1.1768986872045906,
+        5.5
+      ],
+      "b": [
+        1.1768986872045906,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_24V",
+      "a": [
+        14.783921868065383,
+        5.5
+      ],
+      "b": [
+        14.783921868065383,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_W",
+      "a": [
+        3.209156751720719,
+        4.2
+      ],
+      "b": [
+        16.816179932581512,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B12_W",
+      "a": [
+        3.209156751720719,
+        4.2
+      ],
+      "b": [
+        3.209156751720719,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_W",
+      "a": [
+        16.816179932581512,
+        4.2
+      ],
+      "b": [
+        16.816179932581512,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_N",
+      "a": [
+        8.797866429140074,
+        2.9000000000000004
+      ],
+      "b": [
+        22.404889610000865,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B12_N",
+      "a": [
+        8.797866429140074,
+        2.9000000000000004
+      ],
+      "b": [
+        8.797866429140074,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_N",
+      "a": [
+        22.404889610000865,
+        2.9000000000000004
+      ],
+      "b": [
+        22.404889610000865,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_C",
+      "a": [
+        10.830124493656204,
+        1.6000000000000005
+      ],
+      "b": [
+        24.437147674516993,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B12_C",
+      "a": [
+        10.830124493656204,
+        1.6000000000000005
+      ],
+      "b": [
+        10.830124493656204,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B12_C",
+      "a": [
+        24.437147674516993,
+        1.6000000000000005
+      ],
+      "b": [
+        24.437147674516993,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_24V",
+      "a": [
+        28.390945048926177,
+        5.5
+      ],
+      "b": [
+        41.99796822978697,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B34_24V",
+      "a": [
+        28.390945048926177,
+        5.5
+      ],
+      "b": [
+        28.390945048926177,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_24V",
+      "a": [
+        41.99796822978697,
+        5.5
+      ],
+      "b": [
+        41.99796822978697,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_W",
+      "a": [
+        30.42320311344231,
+        4.2
+      ],
+      "b": [
+        44.0302262943031,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B34_W",
+      "a": [
+        30.42320311344231,
+        4.2
+      ],
+      "b": [
+        30.42320311344231,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_W",
+      "a": [
+        44.0302262943031,
+        4.2
+      ],
+      "b": [
+        44.0302262943031,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_N",
+      "a": [
+        36.011912790861665,
+        2.9000000000000004
+      ],
+      "b": [
+        49.61893597172246,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B34_N",
+      "a": [
+        36.011912790861665,
+        2.9000000000000004
+      ],
+      "b": [
+        36.011912790861665,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_N",
+      "a": [
+        49.61893597172246,
+        2.9000000000000004
+      ],
+      "b": [
+        49.61893597172246,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_C",
+      "a": [
+        38.04417085537779,
+        1.6000000000000005
+      ],
+      "b": [
+        51.651194036238586,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z4_B34_C",
+      "a": [
+        38.04417085537779,
+        1.6000000000000005
+      ],
+      "b": [
+        38.04417085537779,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z4_B34_C",
+      "a": [
+        51.651194036238586,
+        1.6000000000000005
+      ],
+      "b": [
+        51.651194036238586,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_24V",
+      "a": [
+        55.60499141064776,
+        5.5
+      ],
+      "b": [
+        69.21201459150856,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B12_24V",
+      "a": [
+        55.60499141064776,
+        5.5
+      ],
+      "b": [
+        55.60499141064776,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_24V",
+      "a": [
+        69.21201459150856,
+        5.5
+      ],
+      "b": [
+        69.21201459150856,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_W",
+      "a": [
+        57.63724947516389,
+        4.2
+      ],
+      "b": [
+        71.24427265602469,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B12_W",
+      "a": [
+        57.63724947516389,
+        4.2
+      ],
+      "b": [
+        57.63724947516389,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_W",
+      "a": [
+        71.24427265602469,
+        4.2
+      ],
+      "b": [
+        71.24427265602469,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_N",
+      "a": [
+        63.22595915258325,
+        2.9000000000000004
+      ],
+      "b": [
+        76.83298233344405,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B12_N",
+      "a": [
+        63.22595915258325,
+        2.9000000000000004
+      ],
+      "b": [
+        63.22595915258325,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_N",
+      "a": [
+        76.83298233344405,
+        2.9000000000000004
+      ],
+      "b": [
+        76.83298233344405,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_C",
+      "a": [
+        65.25821721709937,
+        1.6000000000000005
+      ],
+      "b": [
+        78.86524039796018,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B12_C",
+      "a": [
+        65.25821721709937,
+        1.6000000000000005
+      ],
+      "b": [
+        65.25821721709937,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B12_C",
+      "a": [
+        78.86524039796018,
+        1.6000000000000005
+      ],
+      "b": [
+        78.86524039796018,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_24V",
+      "a": [
+        82.81903777236934,
+        5.5
+      ],
+      "b": [
+        96.42606095323015,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B34_24V",
+      "a": [
+        82.81903777236934,
+        5.5
+      ],
+      "b": [
+        82.81903777236934,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_24V",
+      "a": [
+        96.42606095323015,
+        5.5
+      ],
+      "b": [
+        96.42606095323015,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_W",
+      "a": [
+        84.85129583688547,
+        4.2
+      ],
+      "b": [
+        98.45831901774628,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B34_W",
+      "a": [
+        84.85129583688547,
+        4.2
+      ],
+      "b": [
+        84.85129583688547,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_W",
+      "a": [
+        98.45831901774628,
+        4.2
+      ],
+      "b": [
+        98.45831901774628,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_N",
+      "a": [
+        90.44000551430483,
+        2.9000000000000004
+      ],
+      "b": [
+        104.04702869516564,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B34_N",
+      "a": [
+        90.44000551430483,
+        2.9000000000000004
+      ],
+      "b": [
+        90.44000551430483,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_N",
+      "a": [
+        104.04702869516564,
+        2.9000000000000004
+      ],
+      "b": [
+        104.04702869516564,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_C",
+      "a": [
+        92.47226357882096,
+        1.6000000000000005
+      ],
+      "b": [
+        106.07928675968176,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z5_B34_C",
+      "a": [
+        92.47226357882096,
+        1.6000000000000005
+      ],
+      "b": [
+        92.47226357882096,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z5_B34_C",
+      "a": [
+        106.07928675968176,
+        1.6000000000000005
+      ],
+      "b": [
+        106.07928675968176,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_24V",
+      "a": [
+        110.03308413409093,
+        5.5
+      ],
+      "b": [
+        123.64010731495172,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B12_24V",
+      "a": [
+        110.03308413409093,
+        5.5
+      ],
+      "b": [
+        110.03308413409093,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_24V",
+      "a": [
+        123.64010731495172,
+        5.5
+      ],
+      "b": [
+        123.64010731495172,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_W",
+      "a": [
+        112.06534219860706,
+        4.2
+      ],
+      "b": [
+        125.67236537946785,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B12_W",
+      "a": [
+        112.06534219860706,
+        4.2
+      ],
+      "b": [
+        112.06534219860706,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_W",
+      "a": [
+        125.67236537946785,
+        4.2
+      ],
+      "b": [
+        125.67236537946785,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_N",
+      "a": [
+        117.65405187602641,
+        2.9000000000000004
+      ],
+      "b": [
+        131.2610750568872,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B12_N",
+      "a": [
+        117.65405187602641,
+        2.9000000000000004
+      ],
+      "b": [
+        117.65405187602641,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_N",
+      "a": [
+        131.2610750568872,
+        2.9000000000000004
+      ],
+      "b": [
+        131.2610750568872,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_C",
+      "a": [
+        119.68630994054254,
+        1.6000000000000005
+      ],
+      "b": [
+        133.29333312140332,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B12_C",
+      "a": [
+        119.68630994054254,
+        1.6000000000000005
+      ],
+      "b": [
+        119.68630994054254,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B12_C",
+      "a": [
+        133.29333312140332,
+        1.6000000000000005
+      ],
+      "b": [
+        133.29333312140332,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_24V",
+      "a": [
+        137.2471304958125,
+        5.5
+      ],
+      "b": [
+        150.85415367667332,
+        5.5
+      ],
+      "width_mm": 0.6,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B34_24V",
+      "a": [
+        137.2471304958125,
+        5.5
+      ],
+      "b": [
+        137.2471304958125,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_24V",
+      "a": [
+        150.85415367667332,
+        5.5
+      ],
+      "b": [
+        150.85415367667332,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.6,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_W",
+      "a": [
+        139.27938856032864,
+        4.2
+      ],
+      "b": [
+        152.88641174118945,
+        4.2
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B34_W",
+      "a": [
+        139.27938856032864,
+        4.2
+      ],
+      "b": [
+        139.27938856032864,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_W",
+      "a": [
+        152.88641174118945,
+        4.2
+      ],
+      "b": [
+        152.88641174118945,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_N",
+      "a": [
+        144.86809823774797,
+        2.9000000000000004
+      ],
+      "b": [
+        158.47512141860878,
+        2.9000000000000004
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B34_N",
+      "a": [
+        144.86809823774797,
+        2.9000000000000004
+      ],
+      "b": [
+        144.86809823774797,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_N",
+      "a": [
+        158.47512141860878,
+        2.9000000000000004
+      ],
+      "b": [
+        158.47512141860878,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_C",
+      "a": [
+        146.9003563022641,
+        1.6000000000000005
+      ],
+      "b": [
+        160.5073794831249,
+        1.6000000000000005
+      ],
+      "width_mm": 0.35,
+      "layer": "F.Cu"
+    },
+    {
+      "net": "Z6_B34_C",
+      "a": [
+        146.9003563022641,
+        1.6000000000000005
+      ],
+      "b": [
+        146.9003563022641,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    },
+    {
+      "net": "Z6_B34_C",
+      "a": [
+        160.5073794831249,
+        1.6000000000000005
+      ],
+      "b": [
+        160.5073794831249,
+        -0.7999999999999998
+      ],
+      "width_mm": 0.35,
+      "layer": "B.Cu"
+    }
+  ],
+  "upper_tail_x_limits_mm": null,
+  "native_pcb_sha256": "21db9dba94c6b4fd992e7c361f79d360b84270ea8c3a89099156e5972f7d6379",
+  "current_source": "This folder supersedes flex-drafts for quote geometry; physical fit/factory acceptance remain pending."
+}

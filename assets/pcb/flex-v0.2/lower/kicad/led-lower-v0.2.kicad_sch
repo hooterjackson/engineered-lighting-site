@@ -1,0 +1,3193 @@
+(kicad_sch
+  (version 20250114)
+  (generator "engineered-lighting")
+  (generator_version "0.2")
+  (uuid "6204b8db-7d13-5ff0-a967-5bcea976704a")
+  (paper "A2")
+  (title_block
+    (title "led-lower-v0.2 / passive interconnect")
+    (date "2026-09-06")
+    (rev "0.2 QUOTE REVIEW")
+    (company "Engineered Lighting")
+    (comment 1 "ENGINEERING DRAFT - see release status before fabrication"))
+  (lib_symbols
+    (symbol "Connector_Generic:Conn_01x04"
+      (pin_names
+        (offset 1.016)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "J"
+        (at 0 5.08 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "Conn_01x04"
+        (at 0 -7.62 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Datasheet" ""
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_keywords" "connector"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "ki_fp_filters" "Connector*:*_1x??_*"
+        (at 0 0 0)
+        (show_name no)
+        (do_not_autoplace no)
+        (hide yes)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (symbol "Conn_01x04_1_1"
+        (rectangle
+          (start -1.27 3.81)
+          (end 1.27 -6.35)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background)))
+        (rectangle
+          (start -1.27 2.667)
+          (end 0 2.413)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 0.127)
+          (end 0 -0.127)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -2.413)
+          (end 0 -2.667)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (rectangle
+          (start -1.27 -4.953)
+          (end 0 -5.207)
+          (stroke
+            (width 0.1524)
+            (type default))
+          (fill
+            (type none)))
+        (pin passive line
+          (at -5.08 2.54 0)
+          (length 3.81)
+          (name "Pin_1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 0 0)
+          (length 3.81)
+          (name "Pin_2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -2.54 0)
+          (length 3.81)
+          (name "Pin_3"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at -5.08 -5.08 0)
+          (length 3.81)
+          (name "Pin_4"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "4"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no)))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 90.17 48.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "ffcb825f-6d7f-522f-b2f6-bf67a2007f18")
+    (property "Reference" "J11"
+      (at 90.17 35.56 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z1 S1 BOTTOM"
+      (at 90.17 38.1 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J11_Solder4"
+      (at 90.17 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J11")
+          (unit 1))))
+    (pin "1"
+      (uuid "b303172f-5fe7-55f1-89ff-79f1171c31bf"))
+    (pin "2"
+      (uuid "1da5002c-6b4e-51d9-bfc3-70254c450e57"))
+    (pin "3"
+      (uuid "7781c278-5cb7-5869-a905-d66e15f0b7a4"))
+    (pin "4"
+      (uuid "9855c80f-4696-5223-a170-3b76eebabb69")))
+  (wire
+    (pts
+      (xy 85.09 45.72)
+      (xy 73.66 45.72))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f2d6f694-4036-592e-8a64-e1e3030fbdb7"))
+  (global_label "Z1_B12_24V"
+    (shape passive)
+    (at 73.66 45.72 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4dd4b5d9-2951-567e-ab3e-2ff83668638d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 73.66 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 48.26)
+      (xy 74.93 48.26))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a4c69125-3304-5250-a9ef-74cadbee5128"))
+  (global_label "Z1_B12_W"
+    (shape passive)
+    (at 74.93 48.26 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "386a58d4-2302-5042-a9b2-3cc3087a2126")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 50.8)
+      (xy 74.93 50.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "12ffb5aa-0b2e-50ee-8273-90688d15dc6c"))
+  (global_label "Z1_B12_N"
+    (shape passive)
+    (at 74.93 50.8 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7eac19d9-2eaa-52ea-9eb8-f2eae7f5a227")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 53.34)
+      (xy 74.93 53.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c84ea497-1468-5502-b616-9b01ea48563c"))
+  (global_label "Z1_B12_C"
+    (shape passive)
+    (at 74.93 53.34 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "1c6787a5-4f7e-5ceb-ac9d-e91f4ae0e24e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 189.23 48.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "ad4a3d01-b77f-5515-a865-6eba3cb3484b")
+    (property "Reference" "J12"
+      (at 189.23 35.56 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z1 S2 BOTTOM"
+      (at 189.23 38.1 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J12_Solder4"
+      (at 189.23 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J12")
+          (unit 1))))
+    (pin "1"
+      (uuid "1e27c3a4-8910-50f0-ab8f-79eba82e5d8c"))
+    (pin "2"
+      (uuid "b1fe48c4-6279-5b01-920f-c42466cd0090"))
+    (pin "3"
+      (uuid "090c3dde-bd06-5ad7-92b8-a69694b1429e"))
+    (pin "4"
+      (uuid "add1fa5e-579e-54cf-ba90-2045f0aa4a71")))
+  (wire
+    (pts
+      (xy 184.15 45.72)
+      (xy 172.72 45.72))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "00f5bcff-f9f4-547c-93c0-ef3410fdbb5d"))
+  (global_label "Z1_B12_24V"
+    (shape passive)
+    (at 172.72 45.72 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4005e95a-5de4-53ff-a98c-6d91653da975")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 172.72 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 48.26)
+      (xy 173.99 48.26))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e03d2982-7c24-5846-8dae-7d221479cb6f"))
+  (global_label "Z1_B12_W"
+    (shape passive)
+    (at 173.99 48.26 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0c8d90cc-90e8-5d61-8ba6-efce59c09d82")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 50.8)
+      (xy 173.99 50.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "894debb8-551e-5cdb-b3e9-4157cdf95d36"))
+  (global_label "Z1_B12_N"
+    (shape passive)
+    (at 173.99 50.8 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b687a386-c6f4-5ee4-bc8d-04fe8473a423")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 53.34)
+      (xy 173.99 53.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e7a0f2d5-bcf8-5d8e-8e6e-bfc127004752"))
+  (global_label "Z1_B12_C"
+    (shape passive)
+    (at 173.99 53.34 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "753a6f6f-fa13-5bfd-9b47-a5314bd919fe")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 288.29 48.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "a499c377-76eb-5cc8-a052-69bf16e603a5")
+    (property "Reference" "J13"
+      (at 288.29 35.56 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z1 S3 BOTTOM"
+      (at 288.29 38.1 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J13_Solder4"
+      (at 288.29 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J13")
+          (unit 1))))
+    (pin "1"
+      (uuid "2d7a4dd7-720c-5002-8205-4c115e105384"))
+    (pin "2"
+      (uuid "0d68931d-1d04-540e-9f93-c80818549c01"))
+    (pin "3"
+      (uuid "6e3d9b56-611c-5642-8f06-af4a7b74a784"))
+    (pin "4"
+      (uuid "13238565-92ac-55ad-84ae-4bf99b4ca833")))
+  (wire
+    (pts
+      (xy 283.21 45.72)
+      (xy 271.78 45.72))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1702f276-1eb9-5d58-8e42-75a171c8d247"))
+  (global_label "Z1_B34_24V"
+    (shape passive)
+    (at 271.78 45.72 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "de2adad1-b702-5613-99e6-e9f98384da41")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 48.26)
+      (xy 273.05 48.26))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0b6c6c45-ec6e-53fd-81c6-db7052b4a356"))
+  (global_label "Z1_B34_W"
+    (shape passive)
+    (at 273.05 48.26 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "467bb04d-e830-5973-9bcb-9788d535dbb6")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 50.8)
+      (xy 273.05 50.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8b5ec0e4-fe57-50ca-af08-fa3a5ef291ac"))
+  (global_label "Z1_B34_N"
+    (shape passive)
+    (at 273.05 50.8 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "9e050a6d-8f09-58d5-88a5-f4a2ddab84cd")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 53.34)
+      (xy 273.05 53.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "31b22124-617f-5873-b0c8-e5d0fef5c0e5"))
+  (global_label "Z1_B34_C"
+    (shape passive)
+    (at 273.05 53.34 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f7e9e969-3902-59ad-ba8e-b702e327c2cb")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 387.35 48.26 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "442cc6ef-4a17-5c45-9134-c47ee66fb2a0")
+    (property "Reference" "J14"
+      (at 387.35 35.56 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z1 S4 BOTTOM"
+      (at 387.35 38.1 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J14_Solder4"
+      (at 387.35 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J14")
+          (unit 1))))
+    (pin "1"
+      (uuid "282c6489-85d2-5740-9fd6-5b00b8cda751"))
+    (pin "2"
+      (uuid "6843a91b-3d57-525d-af53-7200ce4e7862"))
+    (pin "3"
+      (uuid "9671da5e-cacd-59d1-9064-b43c9e9c8392"))
+    (pin "4"
+      (uuid "5c77233c-3341-546e-8c00-5036751071be")))
+  (wire
+    (pts
+      (xy 382.27 45.72)
+      (xy 370.84 45.72))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0daa9c1e-8b44-5a43-988e-5478c88849d1"))
+  (global_label "Z1_B34_24V"
+    (shape passive)
+    (at 370.84 45.72 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "ec239fda-6f44-5c44-899f-40360358e3e6")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 370.84 45.72 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 48.26)
+      (xy 372.11 48.26))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "41de317e-af82-5497-966f-0556e75ae5b4"))
+  (global_label "Z1_B34_W"
+    (shape passive)
+    (at 372.11 48.26 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a18d7c50-2842-54b9-9563-4b12a14d8b0d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 48.26 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 50.8)
+      (xy 372.11 50.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2e0a0bc1-0859-599f-9113-d7692cd20dd7"))
+  (global_label "Z1_B34_N"
+    (shape passive)
+    (at 372.11 50.8 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "431ea458-0a33-51db-9e15-4e2e90a65a46")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 50.8 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 53.34)
+      (xy 372.11 53.34))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0fb88295-3c45-521e-9dd1-76da7274cb52"))
+  (global_label "Z1_B34_C"
+    (shape passive)
+    (at 372.11 53.34 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "ab7ac527-1568-54c9-ac5b-1723ae433788")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 53.34 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 90.17 96.52 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "a9494084-db05-5917-a32d-e30fb65aee9f")
+    (property "Reference" "J21"
+      (at 90.17 83.82 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z2 S1 BOTTOM"
+      (at 90.17 86.36 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J21_Solder4"
+      (at 90.17 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J21")
+          (unit 1))))
+    (pin "1"
+      (uuid "3e855c2e-929f-5744-8bb3-bfe7556c933e"))
+    (pin "2"
+      (uuid "e64eca43-d345-5be4-a754-0eb532bf82dd"))
+    (pin "3"
+      (uuid "ccd06cdc-451c-5718-96e5-bcfd77d50bbf"))
+    (pin "4"
+      (uuid "5580d7ff-1edd-5c87-a5b8-005d86bab0bf")))
+  (wire
+    (pts
+      (xy 85.09 93.98)
+      (xy 73.66 93.98))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "39230626-fe4e-5dd1-a854-99c75b9f8ea8"))
+  (global_label "Z2_B12_24V"
+    (shape passive)
+    (at 73.66 93.98 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "1d16d655-fd14-5caf-bf05-de861ba3d12f")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 73.66 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 96.52)
+      (xy 74.93 96.52))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "21a6dffb-0e89-521a-9648-d8c406fcb4fb"))
+  (global_label "Z2_B12_W"
+    (shape passive)
+    (at 74.93 96.52 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4e142450-30a1-5dfa-867e-16623b202ee3")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 99.06)
+      (xy 74.93 99.06))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "aa6d373a-ba7e-5bc5-992a-151f6804a34d"))
+  (global_label "Z2_B12_N"
+    (shape passive)
+    (at 74.93 99.06 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "32217949-806b-5337-a87c-be47e0b0fa09")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 99.06 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 101.6)
+      (xy 74.93 101.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "11ee39b4-ea47-54ae-9a60-892d9960c6d8"))
+  (global_label "Z2_B12_C"
+    (shape passive)
+    (at 74.93 101.6 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e4724a87-501f-52da-98d3-854eb6dadb02")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 189.23 96.52 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "06ee5552-70db-5350-aeef-b0d1dbec0841")
+    (property "Reference" "J22"
+      (at 189.23 83.82 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z2 S2 BOTTOM"
+      (at 189.23 86.36 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J22_Solder4"
+      (at 189.23 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J22")
+          (unit 1))))
+    (pin "1"
+      (uuid "e296903e-a990-5282-af87-6170840c496e"))
+    (pin "2"
+      (uuid "da676fe7-0e2e-5799-9a6a-d8e94d46a888"))
+    (pin "3"
+      (uuid "478b623d-8905-53be-b8f1-ba010642daff"))
+    (pin "4"
+      (uuid "8ad2e68e-a4ee-5c8b-b69f-eb540a3ba429")))
+  (wire
+    (pts
+      (xy 184.15 93.98)
+      (xy 172.72 93.98))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2e40f4d0-941d-5544-af01-6776aa6dfb31"))
+  (global_label "Z2_B12_24V"
+    (shape passive)
+    (at 172.72 93.98 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f7603077-d874-5834-a547-baf0342f4bdb")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 172.72 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 96.52)
+      (xy 173.99 96.52))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "bbbe7383-dea6-5b24-8604-7733b7d26e09"))
+  (global_label "Z2_B12_W"
+    (shape passive)
+    (at 173.99 96.52 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c41b52aa-91cf-514c-8177-3ec608cd5ced")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 99.06)
+      (xy 173.99 99.06))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f62d1d7e-b26a-5a29-a71d-b3635c18f20d"))
+  (global_label "Z2_B12_N"
+    (shape passive)
+    (at 173.99 99.06 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "307f6817-018f-593d-aca0-1e82825d8052")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 99.06 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 101.6)
+      (xy 173.99 101.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a65f4a79-fd5f-523e-aeaf-3fed7ed5099c"))
+  (global_label "Z2_B12_C"
+    (shape passive)
+    (at 173.99 101.6 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "9dabd461-3fb9-55d7-8c4a-fbc4941c68b9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 288.29 96.52 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "26e994f0-1461-54be-86b5-97e33513a71b")
+    (property "Reference" "J23"
+      (at 288.29 83.82 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z2 S3 BOTTOM"
+      (at 288.29 86.36 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J23_Solder4"
+      (at 288.29 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J23")
+          (unit 1))))
+    (pin "1"
+      (uuid "16144e90-7261-590e-a800-2aa942387c16"))
+    (pin "2"
+      (uuid "aa0bb2fb-655f-5b38-9f28-1e6f4cd47ab8"))
+    (pin "3"
+      (uuid "5807de0e-ef25-5b45-b39d-c8a8d581f12e"))
+    (pin "4"
+      (uuid "bbb10263-4568-54a6-8c7f-63b8b6545510")))
+  (wire
+    (pts
+      (xy 283.21 93.98)
+      (xy 271.78 93.98))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "148a6c50-6fd1-5495-81a6-9d577e777c81"))
+  (global_label "Z2_B34_24V"
+    (shape passive)
+    (at 271.78 93.98 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "bd49942c-679c-516c-8258-01c4f44ecaf6")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 96.52)
+      (xy 273.05 96.52))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "27c30883-d097-5eea-8932-70484148df9f"))
+  (global_label "Z2_B34_W"
+    (shape passive)
+    (at 273.05 96.52 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "347aab9b-126d-5541-a3e6-69324cd8b4a8")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 99.06)
+      (xy 273.05 99.06))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9de5e97b-1a9f-56c0-a56f-a8c4386e3fa4"))
+  (global_label "Z2_B34_N"
+    (shape passive)
+    (at 273.05 99.06 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "5e7ef04f-8213-5d87-bc98-ea3bdbfc3513")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 99.06 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 101.6)
+      (xy 273.05 101.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fdd14a83-bb7d-54af-bc7f-9cb5e338aa08"))
+  (global_label "Z2_B34_C"
+    (shape passive)
+    (at 273.05 101.6 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4f1c18b1-8388-5d31-bf2e-226c863cb1d2")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 387.35 96.52 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "3e17a295-1e88-5935-89e7-91ec3c81c35c")
+    (property "Reference" "J24"
+      (at 387.35 83.82 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z2 S4 BOTTOM"
+      (at 387.35 86.36 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J24_Solder4"
+      (at 387.35 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J24")
+          (unit 1))))
+    (pin "1"
+      (uuid "13869f03-a689-52a4-97b1-59a0576a6926"))
+    (pin "2"
+      (uuid "00b89d12-197a-569a-913b-ac20a91f5ed2"))
+    (pin "3"
+      (uuid "1f037d04-c89a-5d68-9053-8fd0cde83f05"))
+    (pin "4"
+      (uuid "e2dbb98f-8236-56d6-913d-55e6d5c65b24")))
+  (wire
+    (pts
+      (xy 382.27 93.98)
+      (xy 370.84 93.98))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6c10cbaa-8292-582c-a5b7-138a57af12c5"))
+  (global_label "Z2_B34_24V"
+    (shape passive)
+    (at 370.84 93.98 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "05c35eac-01bd-51c0-9787-a868b947112c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 370.84 93.98 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 96.52)
+      (xy 372.11 96.52))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6dff246a-38e7-5c64-a458-4fda3a42e1c8"))
+  (global_label "Z2_B34_W"
+    (shape passive)
+    (at 372.11 96.52 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "3ee10fc3-02ae-59b5-8101-198235aacd6e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 96.52 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 99.06)
+      (xy 372.11 99.06))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6f67dfa3-7c75-5e29-a8bd-2ca2d3335d10"))
+  (global_label "Z2_B34_N"
+    (shape passive)
+    (at 372.11 99.06 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a5dc3308-19de-55b9-bc6a-2c433c21d1be")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 99.06 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 101.6)
+      (xy 372.11 101.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a9456a1b-8dd1-522d-8818-2370ad282ca0"))
+  (global_label "Z2_B34_C"
+    (shape passive)
+    (at 372.11 101.6 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "606184cb-9150-5a2b-81e4-b9a48033d868")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 101.6 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 90.17 146.05 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "38762475-979b-54fc-b880-3b821197f2d4")
+    (property "Reference" "J31"
+      (at 90.17 133.35 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z3 S1 BOTTOM"
+      (at 90.17 135.89 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J31_Solder4"
+      (at 90.17 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J31")
+          (unit 1))))
+    (pin "1"
+      (uuid "240c5b14-c9b3-56c6-a8c3-be6d3a618097"))
+    (pin "2"
+      (uuid "27dbe66c-dc03-5098-b080-2c40bad67f03"))
+    (pin "3"
+      (uuid "0ddb29aa-bcc4-5665-b43a-9f8c845efc62"))
+    (pin "4"
+      (uuid "6c9fa907-94d6-59f0-b7c0-d39fd5df92f0")))
+  (wire
+    (pts
+      (xy 85.09 143.51)
+      (xy 73.66 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e5e71d5a-9255-5972-a842-b6c9f15b501d"))
+  (global_label "Z3_B12_24V"
+    (shape passive)
+    (at 73.66 143.51 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d3775841-c478-5c24-8260-0c66185fdfb4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 73.66 143.51 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 146.05)
+      (xy 74.93 146.05))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c4587bdb-7b81-583c-a316-166d4f1f651a"))
+  (global_label "Z3_B12_W"
+    (shape passive)
+    (at 74.93 146.05 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "587ebe89-280c-5f27-9137-925c9c5727a4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 148.59)
+      (xy 74.93 148.59))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4ea99076-8602-5391-8b91-691b83eccfd1"))
+  (global_label "Z3_B12_N"
+    (shape passive)
+    (at 74.93 148.59 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c118efd8-89f5-503e-9e5e-4738c073694e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 148.59 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 151.13)
+      (xy 74.93 151.13))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f4ba9bce-22d6-5f28-8a12-ec818476acb9"))
+  (global_label "Z3_B12_C"
+    (shape passive)
+    (at 74.93 151.13 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "000df1ef-f6ef-52c5-b68e-dc48c86d859c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 151.13 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 189.23 146.05 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "e2736d71-d39f-5f14-812c-e59b443db199")
+    (property "Reference" "J32"
+      (at 189.23 133.35 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z3 S2 BOTTOM"
+      (at 189.23 135.89 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J32_Solder4"
+      (at 189.23 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J32")
+          (unit 1))))
+    (pin "1"
+      (uuid "718a7c3c-b3d2-508e-b1cb-560935851a9d"))
+    (pin "2"
+      (uuid "ad2ffe39-e13b-5625-9d83-14e2409d4911"))
+    (pin "3"
+      (uuid "8e5acdeb-73e4-5001-b995-554df73f42af"))
+    (pin "4"
+      (uuid "ae590457-37f0-5266-8ecb-7a96ea59e827")))
+  (wire
+    (pts
+      (xy 184.15 143.51)
+      (xy 172.72 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "57cfad7b-79c2-5cd2-8e29-a55edd2b9f1c"))
+  (global_label "Z3_B12_24V"
+    (shape passive)
+    (at 172.72 143.51 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f02383fd-dce4-59d8-9b1f-f435f6429d5a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 172.72 143.51 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 146.05)
+      (xy 173.99 146.05))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "088c283c-5639-5922-9000-882a12e34386"))
+  (global_label "Z3_B12_W"
+    (shape passive)
+    (at 173.99 146.05 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "5e709140-1b64-5033-b28c-740b43934bd1")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 148.59)
+      (xy 173.99 148.59))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "38a7327a-32b0-5f9a-b6a0-2564b8a41203"))
+  (global_label "Z3_B12_N"
+    (shape passive)
+    (at 173.99 148.59 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f8351078-a988-56e7-8eea-816331b06e2e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 148.59 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 151.13)
+      (xy 173.99 151.13))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a6df0db0-6134-5788-8cf7-5f78c522df02"))
+  (global_label "Z3_B12_C"
+    (shape passive)
+    (at 173.99 151.13 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "5a622b5d-5ae3-5cff-a4d0-4e7f33f89602")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 151.13 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 288.29 146.05 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "56ad297a-997b-51ca-8541-ac60730ceb0e")
+    (property "Reference" "J33"
+      (at 288.29 133.35 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z3 S3 BOTTOM"
+      (at 288.29 135.89 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J33_Solder4"
+      (at 288.29 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J33")
+          (unit 1))))
+    (pin "1"
+      (uuid "f8e4c32b-955f-51d3-b6e9-cbdeb7aba32e"))
+    (pin "2"
+      (uuid "ffd6cd11-2ae4-5b80-a376-4fc31f61ff7f"))
+    (pin "3"
+      (uuid "d731b647-f585-5ca2-b8b5-9c4169d59564"))
+    (pin "4"
+      (uuid "9deefc76-61c9-5817-a803-b32b1ee41f1f")))
+  (wire
+    (pts
+      (xy 283.21 143.51)
+      (xy 271.78 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ee253392-b749-5b6a-a6a5-47df36a97abe"))
+  (global_label "Z3_B34_24V"
+    (shape passive)
+    (at 271.78 143.51 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f7b28212-6bc4-5c89-8b48-b20e3cc965d1")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 143.51 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 146.05)
+      (xy 273.05 146.05))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "059b71a7-f8fd-5eea-8756-d04330368c9d"))
+  (global_label "Z3_B34_W"
+    (shape passive)
+    (at 273.05 146.05 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "964752e3-a402-557d-aa65-e1a3d0fde95e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 148.59)
+      (xy 273.05 148.59))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "7cc85882-92be-544b-a63c-117346a2c4a6"))
+  (global_label "Z3_B34_N"
+    (shape passive)
+    (at 273.05 148.59 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "88ac2c02-4acf-56c7-9612-95d8a1971f3f")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 148.59 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 151.13)
+      (xy 273.05 151.13))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "736ac2ea-7ba0-5849-8a64-2422feef1a1f"))
+  (global_label "Z3_B34_C"
+    (shape passive)
+    (at 273.05 151.13 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d6b09dc6-f11b-5434-bed6-dcaaa8338cb3")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 151.13 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 387.35 146.05 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "0f5d827a-74b8-57d5-a334-ba6c65858740")
+    (property "Reference" "J34"
+      (at 387.35 133.35 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z3 S4 BOTTOM"
+      (at 387.35 135.89 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J34_Solder4"
+      (at 387.35 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J34")
+          (unit 1))))
+    (pin "1"
+      (uuid "6765f39d-124d-5e3a-bc09-8d8c371e1b8e"))
+    (pin "2"
+      (uuid "0bcb3761-7979-57b8-a1bd-5d1a3f8da76f"))
+    (pin "3"
+      (uuid "b7759cee-032b-5a15-8eab-164b21296420"))
+    (pin "4"
+      (uuid "eb9552d0-de45-5feb-9d13-cd4a0e44548a")))
+  (wire
+    (pts
+      (xy 382.27 143.51)
+      (xy 370.84 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a80d05b2-5ac9-54ae-a8d3-4d88b829340b"))
+  (global_label "Z3_B34_24V"
+    (shape passive)
+    (at 370.84 143.51 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "fa3621eb-2e6f-5700-b276-cc6d252b106d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 370.84 143.51 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 146.05)
+      (xy 372.11 146.05))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "cbf416c1-2873-52f0-a1a4-5f2352695384"))
+  (global_label "Z3_B34_W"
+    (shape passive)
+    (at 372.11 146.05 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "6e9d35ef-094a-5d3f-9a99-5f4c10165d44")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 146.05 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 148.59)
+      (xy 372.11 148.59))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "528af2e0-20ad-5c3b-b240-2f6efb504269"))
+  (global_label "Z3_B34_N"
+    (shape passive)
+    (at 372.11 148.59 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "fd3c7fb3-110b-5c69-898c-cc01e213c82e")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 148.59 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 151.13)
+      (xy 372.11 151.13))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "06b8e024-2a62-5318-8759-dc97a383aa68"))
+  (global_label "Z3_B34_C"
+    (shape passive)
+    (at 372.11 151.13 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f4baefe6-a3ef-50d0-b2d8-493baac5dece")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 151.13 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 90.17 195.58 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "fa67e37c-b3be-5cca-9edc-9b957855383d")
+    (property "Reference" "J41"
+      (at 90.17 182.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z4 S1 BOTTOM"
+      (at 90.17 185.42 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J41_Solder4"
+      (at 90.17 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J41")
+          (unit 1))))
+    (pin "1"
+      (uuid "e6e0fe8a-1b79-5c81-9ac8-08b35fe11df4"))
+    (pin "2"
+      (uuid "e10a98e4-0715-5918-b429-4443581eeb49"))
+    (pin "3"
+      (uuid "2d2d57cd-489f-53a3-ab4a-4d518a705638"))
+    (pin "4"
+      (uuid "9c76fd74-8c71-5493-b70d-259a8001785e")))
+  (wire
+    (pts
+      (xy 85.09 193.04)
+      (xy 73.66 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "7b5e38ff-6337-5850-b0d6-5575f114036b"))
+  (global_label "Z4_B12_24V"
+    (shape passive)
+    (at 73.66 193.04 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a0afe73d-9aa0-508a-bf20-cd629607eb60")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 73.66 193.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 195.58)
+      (xy 74.93 195.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c960b9b4-ee4f-5c78-a406-dccc0746a8ea"))
+  (global_label "Z4_B12_W"
+    (shape passive)
+    (at 74.93 195.58 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8d97e16a-7392-58ae-a3b8-026ef721f507")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 198.12)
+      (xy 74.93 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e3e32919-af1a-52bf-a839-055c22d2d36d"))
+  (global_label "Z4_B12_N"
+    (shape passive)
+    (at 74.93 198.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "294fe283-e010-545e-b439-9695ca817f05")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 200.66)
+      (xy 74.93 200.66))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fa4cc9b6-7d64-5404-a535-6664a25363d1"))
+  (global_label "Z4_B12_C"
+    (shape passive)
+    (at 74.93 200.66 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c4fbc195-4d77-5de2-9d5c-884069657fd9")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 189.23 195.58 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "28c66336-448e-5241-ba5d-1d8f9faf6fae")
+    (property "Reference" "J42"
+      (at 189.23 182.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z4 S2 BOTTOM"
+      (at 189.23 185.42 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J42_Solder4"
+      (at 189.23 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J42")
+          (unit 1))))
+    (pin "1"
+      (uuid "fcef6a05-c4ea-593c-80e7-939ccc7932b6"))
+    (pin "2"
+      (uuid "485eaf44-8f18-5141-a68f-9481860a044f"))
+    (pin "3"
+      (uuid "f4e3ddcb-a39f-5955-b8cf-99ea2efb618c"))
+    (pin "4"
+      (uuid "d096426d-66ee-5a53-a24c-cf2cecea8d2b")))
+  (wire
+    (pts
+      (xy 184.15 193.04)
+      (xy 172.72 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "18004469-4f79-5d58-96dc-38269b5f6be8"))
+  (global_label "Z4_B12_24V"
+    (shape passive)
+    (at 172.72 193.04 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4d100c2f-002a-56ac-bae3-7e3b2bea2992")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 172.72 193.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 195.58)
+      (xy 173.99 195.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c72d9363-f4dd-5ecd-871d-db9dce4ab474"))
+  (global_label "Z4_B12_W"
+    (shape passive)
+    (at 173.99 195.58 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "a1ff8a0e-2dfb-5cbd-9c40-4da03816b022")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 198.12)
+      (xy 173.99 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6042bf31-5c37-5e29-bdd4-e649c77ed679"))
+  (global_label "Z4_B12_N"
+    (shape passive)
+    (at 173.99 198.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e4b91ece-946e-5bfd-b8b1-8622b519a6ba")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 200.66)
+      (xy 173.99 200.66))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "940436c0-ba87-501c-af4c-ac0789e0cbb6"))
+  (global_label "Z4_B12_C"
+    (shape passive)
+    (at 173.99 200.66 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7c7275a7-3417-5e4b-84f7-52deff1d0deb")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 288.29 195.58 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "070fb898-0652-5ba7-8361-e914c0057c20")
+    (property "Reference" "J43"
+      (at 288.29 182.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z4 S3 BOTTOM"
+      (at 288.29 185.42 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J43_Solder4"
+      (at 288.29 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J43")
+          (unit 1))))
+    (pin "1"
+      (uuid "193f5d57-0f3c-5dbd-a88d-d79d454cd632"))
+    (pin "2"
+      (uuid "41949c2d-37e2-5780-8f04-c0c8cfe29755"))
+    (pin "3"
+      (uuid "36b9d9e8-f3d9-51cd-b0fb-0b959dbd650d"))
+    (pin "4"
+      (uuid "f9d26bf9-6c7b-5b32-b1a8-f9beb9b184e6")))
+  (wire
+    (pts
+      (xy 283.21 193.04)
+      (xy 271.78 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "64389c47-3c8a-58fb-a040-ed375b38356c"))
+  (global_label "Z4_B34_24V"
+    (shape passive)
+    (at 271.78 193.04 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "ff7c9b02-3d46-58eb-b6cc-94a54ec9c164")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 193.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 195.58)
+      (xy 273.05 195.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b502712e-58a3-5181-8dac-8c508a8be764"))
+  (global_label "Z4_B34_W"
+    (shape passive)
+    (at 273.05 195.58 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e49b7a70-542f-54d2-8bc1-b0e07886c3ca")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 198.12)
+      (xy 273.05 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "397ea2d8-c1d9-5b0d-b750-b6b928ab5231"))
+  (global_label "Z4_B34_N"
+    (shape passive)
+    (at 273.05 198.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "55fb38fe-56b3-53f0-bcf3-ec2835d3b1c7")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 200.66)
+      (xy 273.05 200.66))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "944a04a2-04cd-50c2-b659-461cead119be"))
+  (global_label "Z4_B34_C"
+    (shape passive)
+    (at 273.05 200.66 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f4333318-78f0-5481-93c1-4e52b01bafad")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 387.35 195.58 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "9984675c-6cd9-5d1f-978a-7953ca2ebce1")
+    (property "Reference" "J44"
+      (at 387.35 182.88 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z4 S4 BOTTOM"
+      (at 387.35 185.42 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J44_Solder4"
+      (at 387.35 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J44")
+          (unit 1))))
+    (pin "1"
+      (uuid "33ced12e-b4bf-5c96-bc1e-a91cc0a39531"))
+    (pin "2"
+      (uuid "e37be80e-db4e-5b4d-855e-ff6766df3788"))
+    (pin "3"
+      (uuid "5b5070d6-1e48-5798-9bc1-45d18163d46e"))
+    (pin "4"
+      (uuid "ef183637-7b3c-5a1a-a612-40de91c4d05d")))
+  (wire
+    (pts
+      (xy 382.27 193.04)
+      (xy 370.84 193.04))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e5004038-4e3d-5412-85e7-c5689bbc7303"))
+  (global_label "Z4_B34_24V"
+    (shape passive)
+    (at 370.84 193.04 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "24cac0fd-cbb2-5ba4-b51d-1179559891eb")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 370.84 193.04 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 195.58)
+      (xy 372.11 195.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "dc00ebaf-9903-5600-bf84-0b2c8063f105"))
+  (global_label "Z4_B34_W"
+    (shape passive)
+    (at 372.11 195.58 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7888c97c-0b9a-59a9-a37c-584078b885ce")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 195.58 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 198.12)
+      (xy 372.11 198.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2cab3fa9-7d50-59c9-80f9-4e66552d1027"))
+  (global_label "Z4_B34_N"
+    (shape passive)
+    (at 372.11 198.12 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "3dccfbe2-bae4-5a16-a5f4-f1df887ebda5")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 198.12 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 200.66)
+      (xy 372.11 200.66))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "62398027-98b7-5cd1-821d-ea4a4c6894dc"))
+  (global_label "Z4_B34_C"
+    (shape passive)
+    (at 372.11 200.66 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2368cf50-2393-5daf-ac72-20020eede15d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 200.66 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 90.17 243.84 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "8501ba6b-57f5-50c5-858a-481ec62c185f")
+    (property "Reference" "J51"
+      (at 90.17 231.14 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z5 S1 BOTTOM"
+      (at 90.17 233.68 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J51_Solder4"
+      (at 90.17 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J51")
+          (unit 1))))
+    (pin "1"
+      (uuid "99f5ecd3-19d8-5072-8f8b-87a649cbc2ea"))
+    (pin "2"
+      (uuid "68788758-fe74-5a73-83d0-55b6352a1262"))
+    (pin "3"
+      (uuid "53b4a50f-c116-5d56-9a29-6746d4b2a9fa"))
+    (pin "4"
+      (uuid "9aa55d78-ac69-5af3-aa98-a94de8e208ed")))
+  (wire
+    (pts
+      (xy 85.09 241.3)
+      (xy 73.66 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "62779f39-286c-5b20-b14f-15f9a4c0c8a8"))
+  (global_label "Z5_B12_24V"
+    (shape passive)
+    (at 73.66 241.3 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "13feeea1-dc59-5c4d-9aaf-ff8d5709e835")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 73.66 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 243.84)
+      (xy 74.93 243.84))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c952092a-5c4a-510a-a80b-a4d0daba7a23"))
+  (global_label "Z5_B12_W"
+    (shape passive)
+    (at 74.93 243.84 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "6ad8115c-5140-51d6-8dc6-bcaffcd29503")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 246.38)
+      (xy 74.93 246.38))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8b459499-604b-56fd-bcc4-389e2d86b4c4"))
+  (global_label "Z5_B12_N"
+    (shape passive)
+    (at 74.93 246.38 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "aa491a72-ad1c-5d0c-affa-cf31f14a5bf3")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 248.92)
+      (xy 74.93 248.92))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "57145984-fb32-5903-9cb9-b46f97a357e2"))
+  (global_label "Z5_B12_C"
+    (shape passive)
+    (at 74.93 248.92 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "10667b8f-4e6f-51f3-bf31-cdb243367b09")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 248.92 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 189.23 243.84 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "c561d7b0-261d-5482-ad0e-15877e7c78d0")
+    (property "Reference" "J52"
+      (at 189.23 231.14 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z5 S2 BOTTOM"
+      (at 189.23 233.68 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J52_Solder4"
+      (at 189.23 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J52")
+          (unit 1))))
+    (pin "1"
+      (uuid "8460a344-0c4f-5242-9f19-7acd74187811"))
+    (pin "2"
+      (uuid "13bfca88-8eca-5e1e-8f25-cb626c0024c6"))
+    (pin "3"
+      (uuid "d8f7a6fe-fa25-5a93-a80d-c3495e3d6c44"))
+    (pin "4"
+      (uuid "8f2b2b6b-08f5-5b0b-bce1-5cc43a8741c2")))
+  (wire
+    (pts
+      (xy 184.15 241.3)
+      (xy 172.72 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "77d2e371-5259-5bbd-8243-0ccfd9cf0c96"))
+  (global_label "Z5_B12_24V"
+    (shape passive)
+    (at 172.72 241.3 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "e6951ac3-8199-5669-b4dd-b82537fb9f56")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 172.72 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 243.84)
+      (xy 173.99 243.84))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "75068562-9ba8-5b9d-ab40-fd1c3d191913"))
+  (global_label "Z5_B12_W"
+    (shape passive)
+    (at 173.99 243.84 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "df186db9-5a47-5105-9d58-13c5330a9299")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 246.38)
+      (xy 173.99 246.38))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4810e03f-6ae0-5eba-bfe5-337b4d9b9804"))
+  (global_label "Z5_B12_N"
+    (shape passive)
+    (at 173.99 246.38 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "18cd4214-0246-587f-8834-f8cd9323f429")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 248.92)
+      (xy 173.99 248.92))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9308e5ab-d9f5-53df-ba02-232489ab8347"))
+  (global_label "Z5_B12_C"
+    (shape passive)
+    (at 173.99 248.92 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "4bd6c61b-77b6-5fa6-a0c1-b20a5ca61f00")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 248.92 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 288.29 243.84 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "aa37d794-326d-51af-b4c5-77c75220c69b")
+    (property "Reference" "J53"
+      (at 288.29 231.14 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z5 S3 BOTTOM"
+      (at 288.29 233.68 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J53_Solder4"
+      (at 288.29 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J53")
+          (unit 1))))
+    (pin "1"
+      (uuid "48908199-232f-5098-99a4-3bc867c731fc"))
+    (pin "2"
+      (uuid "f3c7f458-5bbf-5ccb-9e31-18fe94798ec3"))
+    (pin "3"
+      (uuid "450483af-8d70-5db3-832f-a8d0178208c0"))
+    (pin "4"
+      (uuid "faafafe7-ce0a-5f1f-be21-ab1e6209e5c6")))
+  (wire
+    (pts
+      (xy 283.21 241.3)
+      (xy 271.78 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "de202ea2-17a0-5b31-9bb9-b2e6f6cef871"))
+  (global_label "Z5_B34_24V"
+    (shape passive)
+    (at 271.78 241.3 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "fba4c4b6-0b82-5792-8f2e-022c525b95f4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 243.84)
+      (xy 273.05 243.84))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c297f955-37b3-52a3-8dce-d056e281095f"))
+  (global_label "Z5_B34_W"
+    (shape passive)
+    (at 273.05 243.84 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "32fce652-c4d8-52ee-830c-be14465cbfea")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 246.38)
+      (xy 273.05 246.38))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5d0cab5e-1f5c-524d-bad1-addef92f6b9f"))
+  (global_label "Z5_B34_N"
+    (shape passive)
+    (at 273.05 246.38 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "dd9763b2-8902-5bc9-aac7-084e4a1a11e4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 248.92)
+      (xy 273.05 248.92))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8680f7de-5ee2-5e23-ba1a-890ea892f5dc"))
+  (global_label "Z5_B34_C"
+    (shape passive)
+    (at 273.05 248.92 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "691bcdcf-a8c2-5b92-916a-1b4b6a72fd6f")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 248.92 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 387.35 243.84 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "54f109ef-17ef-53a5-85cf-6790b725bcf5")
+    (property "Reference" "J54"
+      (at 387.35 231.14 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z5 S4 BOTTOM"
+      (at 387.35 233.68 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J54_Solder4"
+      (at 387.35 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J54")
+          (unit 1))))
+    (pin "1"
+      (uuid "4327310d-1b31-5d35-92af-fb6575021b15"))
+    (pin "2"
+      (uuid "332af67b-6df0-54d2-bed9-228b2001d8dd"))
+    (pin "3"
+      (uuid "bd1faf3e-dcc5-5c97-94c5-50f81c4e9e62"))
+    (pin "4"
+      (uuid "c5f57d3e-3eca-5f37-9e23-1e363fde46fc")))
+  (wire
+    (pts
+      (xy 382.27 241.3)
+      (xy 370.84 241.3))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "08b8a100-1198-5207-be9f-7ad66c25e6ac"))
+  (global_label "Z5_B34_24V"
+    (shape passive)
+    (at 370.84 241.3 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "df69cb13-58ab-5914-be18-ce2aa194da19")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 370.84 241.3 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 243.84)
+      (xy 372.11 243.84))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "81b5a169-d7ae-52c7-aeac-c42a3ac07c15"))
+  (global_label "Z5_B34_W"
+    (shape passive)
+    (at 372.11 243.84 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d1ae4850-4435-5c5c-8525-32199392179c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 243.84 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 246.38)
+      (xy 372.11 246.38))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "95a77a03-6161-5d33-8a98-6f4acc82b91e"))
+  (global_label "Z5_B34_N"
+    (shape passive)
+    (at 372.11 246.38 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "79f36fc0-a5ab-5a64-bfea-895d632d539b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 246.38 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 248.92)
+      (xy 372.11 248.92))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5a055c2a-bade-5eeb-8c35-5f12c7d54c65"))
+  (global_label "Z5_B34_C"
+    (shape passive)
+    (at 372.11 248.92 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "9996e319-a353-5da1-865e-eea795a05935")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 248.92 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 90.17 293.37 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "32a5c4e5-34d0-59ba-95d4-fa7a7adf90e9")
+    (property "Reference" "J61"
+      (at 90.17 280.67 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z6 S1 BOTTOM"
+      (at 90.17 283.21 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J61_Solder4"
+      (at 90.17 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J61")
+          (unit 1))))
+    (pin "1"
+      (uuid "b5d84f81-4e2f-572d-b9fd-482a48bcc3a0"))
+    (pin "2"
+      (uuid "997f4a77-8dd3-5df0-ab63-1d0582c844ce"))
+    (pin "3"
+      (uuid "e710a3d7-07e2-58fa-ab75-7efc1a241163"))
+    (pin "4"
+      (uuid "162e789d-9b66-589b-8821-93ab82e102d6")))
+  (wire
+    (pts
+      (xy 85.09 290.83)
+      (xy 73.66 290.83))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1186ef49-4de1-5420-b00d-4796bac910f6"))
+  (global_label "Z6_B12_24V"
+    (shape passive)
+    (at 73.66 290.83 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "35e8f412-8255-553f-9222-f583f00f1e1d")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 73.66 290.83 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 293.37)
+      (xy 74.93 293.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4709407e-8498-5279-a753-eb727af0eef0"))
+  (global_label "Z6_B12_W"
+    (shape passive)
+    (at 74.93 293.37 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "2052d42b-c46f-5668-9fb3-a3fdbe1e5461")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 295.91)
+      (xy 74.93 295.91))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "877c6d32-fe5c-5b8d-a705-8c0c011a13f5"))
+  (global_label "Z6_B12_N"
+    (shape passive)
+    (at 74.93 295.91 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "b44a521b-de40-5f1b-a7b9-aabd4e981504")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 295.91 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 85.09 298.45)
+      (xy 74.93 298.45))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "63309b34-bd2d-551a-9cbe-9f8b4c040a9b"))
+  (global_label "Z6_B12_C"
+    (shape passive)
+    (at 74.93 298.45 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "93f1450f-6bd8-51f1-95ac-108e7113e21b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 74.93 298.45 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 189.23 293.37 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "2d69f1c4-d0f4-5068-a872-ce4af17da08a")
+    (property "Reference" "J62"
+      (at 189.23 280.67 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z6 S2 BOTTOM"
+      (at 189.23 283.21 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J62_Solder4"
+      (at 189.23 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J62")
+          (unit 1))))
+    (pin "1"
+      (uuid "444ec87d-39ef-5067-bdcd-21b47ff756d0"))
+    (pin "2"
+      (uuid "bd3139da-df90-5cac-906a-afa7d985f46d"))
+    (pin "3"
+      (uuid "d20fc8bf-6a0a-5304-b3d6-b632d8752b90"))
+    (pin "4"
+      (uuid "3cc3e8d1-1d8e-5473-80db-920a780f1828")))
+  (wire
+    (pts
+      (xy 184.15 290.83)
+      (xy 172.72 290.83))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "506bd02f-cdb3-520f-951c-01036002fff3"))
+  (global_label "Z6_B12_24V"
+    (shape passive)
+    (at 172.72 290.83 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "62698c8b-a217-5ac7-9132-9e79a223a96c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 172.72 290.83 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 293.37)
+      (xy 173.99 293.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6956186a-2936-57ed-ba8a-d418fcaaba88"))
+  (global_label "Z6_B12_W"
+    (shape passive)
+    (at 173.99 293.37 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8d243a43-9e84-5577-8d9f-b4372e15e9da")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 295.91)
+      (xy 173.99 295.91))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0dc36184-093e-53cf-b9cf-77e8ac173087"))
+  (global_label "Z6_B12_N"
+    (shape passive)
+    (at 173.99 295.91 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "335afd67-c03b-5c23-98d9-1086b85ca897")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 295.91 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 184.15 298.45)
+      (xy 173.99 298.45))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "35a59f16-eabd-5b10-a289-5b7cb35dfd9c"))
+  (global_label "Z6_B12_C"
+    (shape passive)
+    (at 173.99 298.45 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "5a7c5fe4-bf85-51e2-bdc7-506beb4db0d6")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 173.99 298.45 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 288.29 293.37 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "297e859a-eec3-5362-a013-1c7293d0b86b")
+    (property "Reference" "J63"
+      (at 288.29 280.67 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z6 S3 BOTTOM"
+      (at 288.29 283.21 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J63_Solder4"
+      (at 288.29 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J63")
+          (unit 1))))
+    (pin "1"
+      (uuid "e2c859ba-b50a-5173-b7c0-5cc91c074834"))
+    (pin "2"
+      (uuid "8744c1c0-8d66-50f7-97f8-e9b4a3c53ca3"))
+    (pin "3"
+      (uuid "8d332863-ff1b-53b7-b60c-635ee41aaaa5"))
+    (pin "4"
+      (uuid "85f2e645-6565-55c3-953c-cc1669be2dd4")))
+  (wire
+    (pts
+      (xy 283.21 290.83)
+      (xy 271.78 290.83))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6dfae6e4-ef55-563e-a0fd-debf67191df9"))
+  (global_label "Z6_B34_24V"
+    (shape passive)
+    (at 271.78 290.83 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "8050b07e-6189-52c8-a955-396131daa038")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 271.78 290.83 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 293.37)
+      (xy 273.05 293.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "61b1eb7b-3359-54a3-a597-34a67766bb14"))
+  (global_label "Z6_B34_W"
+    (shape passive)
+    (at 273.05 293.37 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d5ab0905-ae67-5969-80b8-2929f3b50fb1")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 295.91)
+      (xy 273.05 295.91))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b0e97d55-d2d2-50d8-8630-097561410420"))
+  (global_label "Z6_B34_N"
+    (shape passive)
+    (at 273.05 295.91 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "f2380e71-02e5-553c-99bb-70a7bfa443a4")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 295.91 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 283.21 298.45)
+      (xy 273.05 298.45))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a1b107cf-d824-5635-a171-1b4e9bb22f6e"))
+  (global_label "Z6_B34_C"
+    (shape passive)
+    (at 273.05 298.45 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "0c7679ad-8662-5956-821a-d85e0dc196cb")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 273.05 298.45 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (symbol
+    (lib_id "Connector_Generic:Conn_01x04")
+    (at 387.35 293.37 0)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (uuid "d6300615-d069-5888-94ce-103647b48883")
+    (property "Reference" "J64"
+      (at 387.35 280.67 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Value" "Z6 S4 BOTTOM"
+      (at 387.35 283.21 0.0)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (property "Footprint" "ELFlex:J64_Solder4"
+      (at 387.35 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0))))
+    (instances
+      (project "led-lower-v0.2"
+        (path "/6204b8db-7d13-5ff0-a967-5bcea976704a"
+          (reference "J64")
+          (unit 1))))
+    (pin "1"
+      (uuid "b7db4a19-e60b-523b-a044-a5c705348296"))
+    (pin "2"
+      (uuid "acc42c71-fbee-50da-a2b6-3a2ea87d049a"))
+    (pin "3"
+      (uuid "9e1c7993-3022-5bd8-bc63-5076893d424d"))
+    (pin "4"
+      (uuid "e46d6ebf-55c7-5196-9a5b-b06040722005")))
+  (wire
+    (pts
+      (xy 382.27 290.83)
+      (xy 370.84 290.83))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "69f55bec-2776-5240-9e6b-9f4b2fda4000"))
+  (global_label "Z6_B34_24V"
+    (shape passive)
+    (at 370.84 290.83 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "c74f6d06-1135-5a3c-b773-bd3590d8913b")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 370.84 290.83 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 293.37)
+      (xy 372.11 293.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "931b1405-db46-55aa-b42d-d2b9ae12fc96"))
+  (global_label "Z6_B34_W"
+    (shape passive)
+    (at 372.11 293.37 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7901b7e3-146f-5fd3-9443-72ad97db662c")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 293.37 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 295.91)
+      (xy 372.11 295.91))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "76fd7292-a30a-595b-a619-734f366df709"))
+  (global_label "Z6_B34_N"
+    (shape passive)
+    (at 372.11 295.91 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "7d1cfbcf-e229-5a5d-b373-928bfbd13212")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 295.91 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (wire
+    (pts
+      (xy 382.27 298.45)
+      (xy 372.11 298.45))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a1d97581-35fd-518f-890d-fc640ba6ccbb"))
+  (global_label "Z6_B34_C"
+    (shape passive)
+    (at 372.11 298.45 0.0)
+    (effects
+      (font
+        (size 0.9 0.9))
+      (justify left))
+    (uuid "d9300d36-9ff1-51e8-b487-c25a5579176a")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 372.11 298.45 0.0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.0 1.0)))))
+  (text "Passive copper only. Pin 1=+24V, 2=W, 3=N, 4=C in the OUTSIDE installed view.\nSeparate net names denote isolation ON THIS FLEX, joined by LED-strip through rails only after assembly.\nUpper unused end pads have explicit no-connects: they are isolated probe/solder lands, not missing routes.\nNo zone boundary bridges; no commoning of the six fused +24V supplies. See wiring matrix and assembly instructions."
+    (at 30.0 355.0 0)
+    (effects
+      (font
+        (size 1.25 1.25))
+      (justify left top))
+    (uuid "5b00865f-15c6-5431-ad30-726ac2364619")))

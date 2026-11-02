@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18.975 18.975 154.45 11.25" data-layer="Edge_Cuts"><g transform="translate(0 49.2)">
+  <g transform="translate(18.975 -18.975) scale(1 -1) translate(-18.975 30.225)">
+    <path d="M 20.0 -20.0 L 172.4 -20.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.05"/>
+    <path d="M 20.0 -29.2 L 20.0 -20.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.05"/>
+    <path d="M 172.4 -20.0 L 172.4 -29.2 L 20.0 -29.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.05"/>
+  </g>
+</g></svg>

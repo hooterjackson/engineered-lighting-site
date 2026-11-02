@@ -1,0 +1,38 @@
+# Flex review snapshot - 8 September 2026
+
+Upper v0.3 replaces the old wire-solder tail with 30 B-side insertion contacts for
+main J2. There are 24 separate zone rails; each of the six positive rails has two
+contacts. The front carries the insertion support, and total mating thickness is
+0.30 +/-0.05 mm. Contact order is 4,5,6,1,2,3 zones; each group is +,+,W,N,C.
+No solder belongs on J100. Upper overall size is 324.968556 x 42.9 mm.
+
+Lower and static gimbal remain v0.2, byte-identical to their prior review.
+The 96 upper strip interfaces and retained band routing are unchanged according
+to the native preservation audit. Apparently isolated upper strip pads receive
+their intended feeds through the lower band and matching real strip through-rails.
+Those real rails have not been measured; the assembled topology is conditional.
+
+Fresh upper snapshot checks: zero ERC/DRC/parity/unconnected violations,
+independent endpoint-role oracle, 222 copper pad flashes, 252 tracks and 192
+drills checked against native geometry. Independent physical-CAM connectivity
+and mating audits are separate hash-bound records. Nothing is physically tested.
+
+The old A3 PDF is HISTORICAL: its upper-tail outline is obsolete. Use the current
+upper view/template-1-to-1.svg and view/insertion-drawing.svg for v0.3. The old
+PDF remains only for reference; do not use it to approve current insertion fit.
+The 0.3456 mm tape-tolerance alignment sensitivity still exceeds the nominal
+0.30 mm lateral margin. It is a computed fit risk, not a passed physical test.
+
+Full-loop electrical cases are explicitly historical (old upper v0.2 geometry).
+The current isolated tail/contact screen is separately bound to upper v0.3:
+at assumed 85 C copper, 30 um thickness and the stated width/contact allowances,
+the worst loop drop is 0.1044 V. This omits the rest of the strip circuit and
+does not predict temperature. Its 0.60 A positive / 0.20 A channel stress cases
+are NOT continuous operating ratings. Commissioning guidance remains <=0.50 A
+RMS per zone conditional on local fuse air <=85 C and measured strip/PWM loads.
+
+JLCPCB received these designs for engineering quotation; PCBWay flex formal
+inquiries remain pending a compatible custom-stack route. No procurement,
+payment or production release. Supplier finish, copper, coverlay, insertion
+stack and dimensional tolerances remain open, as do physical fit, joints,
+enclosure temperature, RF/EMI and system operation.

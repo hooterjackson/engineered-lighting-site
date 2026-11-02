@@ -1,0 +1,1183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18.985 3.985 326.999 44.93" data-layer="B_Cu"><g transform="translate(0 52.9)">
+  <g transform="translate(18.985 -3.985) scale(1 -1) translate(-18.985 48.915)">
+    <path d="M 48.0759 -47.565 L 48.7059 -47.565 L 48.7059 -46.835 L 48.0759 -46.835 L 48.0759 -47.565" fill="currentColor"/>
+    <circle cx="48.0759" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="48.7059" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="48.7059" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="48.0759" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="48.0759" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="48.3409" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 48.7059 -47.2)" fill="currentColor"/>
+    <rect x="48.0759" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 48.3909 -46.835)" fill="currentColor"/>
+    <rect x="47.7109" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 48.0759 -47.2)" fill="currentColor"/>
+    <path d="M 50.1082 -47.565 L 50.7382 -47.565 L 50.7382 -46.835 L 50.1082 -46.835 L 50.1082 -47.565" fill="currentColor"/>
+    <circle cx="50.1082" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="50.7382" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="50.7382" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="50.1082" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="50.1082" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="50.3732" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 50.7382 -47.2)" fill="currentColor"/>
+    <rect x="50.1082" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 50.4232 -46.835)" fill="currentColor"/>
+    <rect x="49.7432" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 50.1082 -47.2)" fill="currentColor"/>
+    <path d="M 55.6969 -47.565 L 56.3269 -47.565 L 56.3269 -46.835 L 55.6969 -46.835 L 55.6969 -47.565" fill="currentColor"/>
+    <circle cx="55.6969" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="56.3269" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="56.3269" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="55.6969" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="55.6969" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="55.9619" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 56.3269 -47.2)" fill="currentColor"/>
+    <rect x="55.6969" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 56.0119 -46.835)" fill="currentColor"/>
+    <rect x="55.3319" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 55.6969 -47.2)" fill="currentColor"/>
+    <path d="M 57.7292 -47.565 L 58.3592 -47.565 L 58.3592 -46.835 L 57.7292 -46.835 L 57.7292 -47.565" fill="currentColor"/>
+    <circle cx="57.7292" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="58.3592" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="58.3592" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="57.7292" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="57.7292" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="57.9942" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 58.3592 -47.2)" fill="currentColor"/>
+    <rect x="57.7292" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 58.0442 -46.835)" fill="currentColor"/>
+    <rect x="57.3642" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 57.7292 -47.2)" fill="currentColor"/>
+    <path d="M 170.539 -47.565 L 171.169 -47.565 L 171.169 -46.835 L 170.539 -46.835 L 170.539 -47.565" fill="currentColor"/>
+    <circle cx="170.539" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="171.169" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="171.169" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="170.539" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="170.539" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="170.804" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 171.169 -47.2)" fill="currentColor"/>
+    <rect x="170.539" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 170.854 -46.835)" fill="currentColor"/>
+    <rect x="170.174" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 170.539 -47.2)" fill="currentColor"/>
+    <path d="M 172.571 -47.565 L 173.201 -47.565 L 173.201 -46.835 L 172.571 -46.835 L 172.571 -47.565" fill="currentColor"/>
+    <circle cx="172.571" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="173.201" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="173.201" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="172.571" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="172.571" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="172.836" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 173.201 -47.2)" fill="currentColor"/>
+    <rect x="172.571" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 172.886 -46.835)" fill="currentColor"/>
+    <rect x="172.206" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 172.571 -47.2)" fill="currentColor"/>
+    <path d="M 178.16 -47.565 L 178.79 -47.565 L 178.79 -46.835 L 178.16 -46.835 L 178.16 -47.565" fill="currentColor"/>
+    <circle cx="178.16" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="178.79" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="178.79" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="178.16" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="178.16" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="178.425" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 178.79 -47.2)" fill="currentColor"/>
+    <rect x="178.16" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 178.475 -46.835)" fill="currentColor"/>
+    <rect x="177.795" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 178.16 -47.2)" fill="currentColor"/>
+    <path d="M 180.192 -47.565 L 180.822 -47.565 L 180.822 -46.835 L 180.192 -46.835 L 180.192 -47.565" fill="currentColor"/>
+    <circle cx="180.192" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="180.822" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="180.822" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="180.192" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="180.192" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="180.457" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 180.822 -47.2)" fill="currentColor"/>
+    <rect x="180.192" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 180.507 -46.835)" fill="currentColor"/>
+    <rect x="179.827" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 180.192 -47.2)" fill="currentColor"/>
+    <path d="M 20.8619 -47.565 L 21.4919 -47.565 L 21.4919 -46.835 L 20.8619 -46.835 L 20.8619 -47.565" fill="currentColor"/>
+    <circle cx="20.8619" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="21.4919" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="21.4919" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="20.8619" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="20.8619" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="21.1269" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 21.4919 -47.2)" fill="currentColor"/>
+    <rect x="20.8619" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 21.1769 -46.835)" fill="currentColor"/>
+    <rect x="20.4969" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 20.8619 -47.2)" fill="currentColor"/>
+    <path d="M 22.8942 -47.565 L 23.5242 -47.565 L 23.5242 -46.835 L 22.8942 -46.835 L 22.8942 -47.565" fill="currentColor"/>
+    <circle cx="22.8942" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="23.5242" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="23.5242" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="22.8942" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="22.8942" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="23.1592" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 23.5242 -47.2)" fill="currentColor"/>
+    <rect x="22.8942" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 23.2092 -46.835)" fill="currentColor"/>
+    <rect x="22.5292" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 22.8942 -47.2)" fill="currentColor"/>
+    <path d="M 28.4829 -47.565 L 29.1129 -47.565 L 29.1129 -46.835 L 28.4829 -46.835 L 28.4829 -47.565" fill="currentColor"/>
+    <circle cx="28.4829" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="29.1129" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="29.1129" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="28.4829" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="28.4829" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="28.7479" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 29.1129 -47.2)" fill="currentColor"/>
+    <rect x="28.4829" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 28.7979 -46.835)" fill="currentColor"/>
+    <rect x="28.1179" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 28.4829 -47.2)" fill="currentColor"/>
+    <path d="M 30.5151 -47.565 L 31.1451 -47.565 L 31.1451 -46.835 L 30.5151 -46.835 L 30.5151 -47.565" fill="currentColor"/>
+    <circle cx="30.5151" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="31.1451" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="31.1451" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="30.5151" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="30.5151" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="30.7801" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 31.1451 -47.2)" fill="currentColor"/>
+    <rect x="30.5151" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 30.8301 -46.835)" fill="currentColor"/>
+    <rect x="30.1501" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 30.5151 -47.2)" fill="currentColor"/>
+    <path d="M 197.753 -47.565 L 198.383 -47.565 L 198.383 -46.835 L 197.753 -46.835 L 197.753 -47.565" fill="currentColor"/>
+    <circle cx="197.753" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="198.383" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="198.383" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="197.753" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="197.753" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="198.018" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 198.383 -47.2)" fill="currentColor"/>
+    <rect x="197.753" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 198.068 -46.835)" fill="currentColor"/>
+    <rect x="197.388" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 197.753 -47.2)" fill="currentColor"/>
+    <path d="M 199.785 -47.565 L 200.415 -47.565 L 200.415 -46.835 L 199.785 -46.835 L 199.785 -47.565" fill="currentColor"/>
+    <circle cx="199.785" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="200.415" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="200.415" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="199.785" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="199.785" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="200.05" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 200.415 -47.2)" fill="currentColor"/>
+    <rect x="199.785" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 200.1 -46.835)" fill="currentColor"/>
+    <rect x="199.42" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 199.785 -47.2)" fill="currentColor"/>
+    <path d="M 205.374 -47.565 L 206.004 -47.565 L 206.004 -46.835 L 205.374 -46.835 L 205.374 -47.565" fill="currentColor"/>
+    <circle cx="205.374" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="206.004" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="206.004" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="205.374" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="205.374" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="205.639" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 206.004 -47.2)" fill="currentColor"/>
+    <rect x="205.374" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 205.689 -46.835)" fill="currentColor"/>
+    <rect x="205.009" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 205.374 -47.2)" fill="currentColor"/>
+    <path d="M 207.406 -47.565 L 208.036 -47.565 L 208.036 -46.835 L 207.406 -46.835 L 207.406 -47.565" fill="currentColor"/>
+    <circle cx="207.406" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="208.036" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="208.036" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="207.406" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="207.406" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="207.671" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 208.036 -47.2)" fill="currentColor"/>
+    <rect x="207.406" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 207.721 -46.835)" fill="currentColor"/>
+    <rect x="207.041" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 207.406 -47.2)" fill="currentColor"/>
+    <path d="M 224.967 -47.565 L 225.597 -47.565 L 225.597 -46.835 L 224.967 -46.835 L 224.967 -47.565" fill="currentColor"/>
+    <circle cx="224.967" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="225.597" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="225.597" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="224.967" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="224.967" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="225.232" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 225.597 -47.2)" fill="currentColor"/>
+    <rect x="224.967" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 225.282 -46.835)" fill="currentColor"/>
+    <rect x="224.602" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 224.967 -47.2)" fill="currentColor"/>
+    <path d="M 227.0 -47.565 L 227.63 -47.565 L 227.63 -46.835 L 227.0 -46.835 L 227.0 -47.565" fill="currentColor"/>
+    <circle cx="227.0" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="227.63" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="227.63" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="227.0" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="227.0" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="227.265" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 227.63 -47.2)" fill="currentColor"/>
+    <rect x="227.0" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 227.315 -46.835)" fill="currentColor"/>
+    <rect x="226.635" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 227.0 -47.2)" fill="currentColor"/>
+    <path d="M 232.588 -47.565 L 233.218 -47.565 L 233.218 -46.835 L 232.588 -46.835 L 232.588 -47.565" fill="currentColor"/>
+    <circle cx="232.588" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="233.218" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="233.218" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="232.588" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="232.588" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="232.853" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 233.218 -47.2)" fill="currentColor"/>
+    <rect x="232.588" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 232.903 -46.835)" fill="currentColor"/>
+    <rect x="232.223" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 232.588 -47.2)" fill="currentColor"/>
+    <path d="M 234.62 -47.565 L 235.25 -47.565 L 235.25 -46.835 L 234.62 -46.835 L 234.62 -47.565" fill="currentColor"/>
+    <circle cx="234.62" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="235.25" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="235.25" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="234.62" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="234.62" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="234.885" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 235.25 -47.2)" fill="currentColor"/>
+    <rect x="234.62" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 234.935 -46.835)" fill="currentColor"/>
+    <rect x="234.255" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 234.62 -47.2)" fill="currentColor"/>
+    <path d="M 238.574 -47.565 L 239.204 -47.565 L 239.204 -46.835 L 238.574 -46.835 L 238.574 -47.565" fill="currentColor"/>
+    <circle cx="238.574" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="239.204" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="239.204" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="238.574" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="238.574" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="238.839" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 239.204 -47.2)" fill="currentColor"/>
+    <rect x="238.574" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 238.889 -46.835)" fill="currentColor"/>
+    <rect x="238.209" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 238.574 -47.2)" fill="currentColor"/>
+    <path d="M 240.607 -47.565 L 241.237 -47.565 L 241.237 -46.835 L 240.607 -46.835 L 240.607 -47.565" fill="currentColor"/>
+    <circle cx="240.607" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="241.237" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="241.237" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="240.607" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="240.607" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="240.872" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 241.237 -47.2)" fill="currentColor"/>
+    <rect x="240.607" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 240.922 -46.835)" fill="currentColor"/>
+    <rect x="240.242" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 240.607 -47.2)" fill="currentColor"/>
+    <path d="M 246.195 -47.565 L 246.825 -47.565 L 246.825 -46.835 L 246.195 -46.835 L 246.195 -47.565" fill="currentColor"/>
+    <circle cx="246.195" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="246.825" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="246.825" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="246.195" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="246.195" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="246.46" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 246.825 -47.2)" fill="currentColor"/>
+    <rect x="246.195" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 246.51 -46.835)" fill="currentColor"/>
+    <rect x="245.83" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 246.195 -47.2)" fill="currentColor"/>
+    <path d="M 248.227 -47.565 L 248.857 -47.565 L 248.857 -46.835 L 248.227 -46.835 L 248.227 -47.565" fill="currentColor"/>
+    <circle cx="248.227" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="248.857" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="248.857" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="248.227" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="248.227" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="248.492" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 248.857 -47.2)" fill="currentColor"/>
+    <rect x="248.227" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 248.542 -46.835)" fill="currentColor"/>
+    <rect x="247.862" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 248.227 -47.2)" fill="currentColor"/>
+    <path d="M 75.29 -47.565 L 75.92 -47.565 L 75.92 -46.835 L 75.29 -46.835 L 75.29 -47.565" fill="currentColor"/>
+    <circle cx="75.29" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="75.92" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="75.92" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="75.29" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="75.29" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="75.555" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 75.92 -47.2)" fill="currentColor"/>
+    <rect x="75.29" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 75.605 -46.835)" fill="currentColor"/>
+    <rect x="74.925" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 75.29 -47.2)" fill="currentColor"/>
+    <path d="M 77.3222 -47.565 L 77.9522 -47.565 L 77.9522 -46.835 L 77.3222 -46.835 L 77.3222 -47.565" fill="currentColor"/>
+    <circle cx="77.3222" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="77.9522" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="77.9522" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="77.3222" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="77.3222" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="77.5872" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 77.9522 -47.2)" fill="currentColor"/>
+    <rect x="77.3222" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 77.6372 -46.835)" fill="currentColor"/>
+    <rect x="76.9572" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 77.3222 -47.2)" fill="currentColor"/>
+    <path d="M 82.911 -47.565 L 83.541 -47.565 L 83.541 -46.835 L 82.911 -46.835 L 82.911 -47.565" fill="currentColor"/>
+    <circle cx="82.911" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="83.541" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="83.541" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="82.911" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="82.911" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="83.176" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 83.541 -47.2)" fill="currentColor"/>
+    <rect x="82.911" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 83.226 -46.835)" fill="currentColor"/>
+    <rect x="82.546" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 82.911 -47.2)" fill="currentColor"/>
+    <path d="M 84.9432 -47.565 L 85.5732 -47.565 L 85.5732 -46.835 L 84.9432 -46.835 L 84.9432 -47.565" fill="currentColor"/>
+    <circle cx="84.9432" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="85.5732" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="85.5732" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="84.9432" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="84.9432" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="85.2082" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 85.5732 -47.2)" fill="currentColor"/>
+    <rect x="84.9432" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 85.2582 -46.835)" fill="currentColor"/>
+    <rect x="84.5782" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 84.9432 -47.2)" fill="currentColor"/>
+    <path d="M 88.897 -47.565 L 89.527 -47.565 L 89.527 -46.835 L 88.897 -46.835 L 88.897 -47.565" fill="currentColor"/>
+    <circle cx="88.897" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="89.527" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="89.527" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="88.897" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="88.897" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="89.162" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 89.527 -47.2)" fill="currentColor"/>
+    <rect x="88.897" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 89.212 -46.835)" fill="currentColor"/>
+    <rect x="88.532" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 88.897 -47.2)" fill="currentColor"/>
+    <path d="M 90.9293 -47.565 L 91.5593 -47.565 L 91.5593 -46.835 L 90.9293 -46.835 L 90.9293 -47.565" fill="currentColor"/>
+    <circle cx="90.9293" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="91.5593" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="91.5593" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="90.9293" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="90.9293" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="91.1943" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 91.5593 -47.2)" fill="currentColor"/>
+    <rect x="90.9293" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 91.2443 -46.835)" fill="currentColor"/>
+    <rect x="90.5643" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 90.9293 -47.2)" fill="currentColor"/>
+    <path d="M 96.518 -47.565 L 97.148 -47.565 L 97.148 -46.835 L 96.518 -46.835 L 96.518 -47.565" fill="currentColor"/>
+    <circle cx="96.518" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="97.148" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="97.148" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="96.518" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="96.518" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="96.783" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 97.148 -47.2)" fill="currentColor"/>
+    <rect x="96.518" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 96.833 -46.835)" fill="currentColor"/>
+    <rect x="96.153" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 96.518 -47.2)" fill="currentColor"/>
+    <path d="M 98.5502 -47.565 L 99.1802 -47.565 L 99.1802 -46.835 L 98.5502 -46.835 L 98.5502 -47.565" fill="currentColor"/>
+    <circle cx="98.5502" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="99.1802" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="99.1802" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="98.5502" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="98.5502" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="98.8152" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 99.1802 -47.2)" fill="currentColor"/>
+    <rect x="98.5502" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 98.8652 -46.835)" fill="currentColor"/>
+    <rect x="98.1852" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 98.5502 -47.2)" fill="currentColor"/>
+    <path d="M 184.146 -47.565 L 184.776 -47.565 L 184.776 -46.835 L 184.146 -46.835 L 184.146 -47.565" fill="currentColor"/>
+    <circle cx="184.146" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="184.776" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="184.776" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="184.146" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="184.146" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="184.411" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 184.776 -47.2)" fill="currentColor"/>
+    <rect x="184.146" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 184.461 -46.835)" fill="currentColor"/>
+    <rect x="183.781" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 184.146 -47.2)" fill="currentColor"/>
+    <path d="M 186.178 -47.565 L 186.808 -47.565 L 186.808 -46.835 L 186.178 -46.835 L 186.178 -47.565" fill="currentColor"/>
+    <circle cx="186.178" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="186.808" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="186.808" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="186.178" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="186.178" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="186.443" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 186.808 -47.2)" fill="currentColor"/>
+    <rect x="186.178" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 186.493 -46.835)" fill="currentColor"/>
+    <rect x="185.813" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 186.178 -47.2)" fill="currentColor"/>
+    <path d="M 191.767 -47.565 L 192.397 -47.565 L 192.397 -46.835 L 191.767 -46.835 L 191.767 -47.565" fill="currentColor"/>
+    <circle cx="191.767" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="192.397" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="192.397" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="191.767" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="191.767" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="192.032" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 192.397 -47.2)" fill="currentColor"/>
+    <rect x="191.767" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 192.082 -46.835)" fill="currentColor"/>
+    <rect x="191.402" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 191.767 -47.2)" fill="currentColor"/>
+    <path d="M 193.799 -47.565 L 194.429 -47.565 L 194.429 -46.835 L 193.799 -46.835 L 193.799 -47.565" fill="currentColor"/>
+    <circle cx="193.799" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="194.429" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="194.429" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="193.799" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="193.799" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="194.064" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 194.429 -47.2)" fill="currentColor"/>
+    <rect x="193.799" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 194.114 -46.835)" fill="currentColor"/>
+    <rect x="193.434" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 193.799 -47.2)" fill="currentColor"/>
+    <path d="M 116.111 -47.565 L 116.741 -47.565 L 116.741 -46.835 L 116.111 -46.835 L 116.111 -47.565" fill="currentColor"/>
+    <circle cx="116.111" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="116.741" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="116.741" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="116.111" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="116.111" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="116.376" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 116.741 -47.2)" fill="currentColor"/>
+    <rect x="116.111" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 116.426 -46.835)" fill="currentColor"/>
+    <rect x="115.746" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 116.111 -47.2)" fill="currentColor"/>
+    <path d="M 118.143 -47.565 L 118.773 -47.565 L 118.773 -46.835 L 118.143 -46.835 L 118.143 -47.565" fill="currentColor"/>
+    <circle cx="118.143" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="118.773" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="118.773" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="118.143" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="118.143" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="118.408" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 118.773 -47.2)" fill="currentColor"/>
+    <rect x="118.143" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 118.458 -46.835)" fill="currentColor"/>
+    <rect x="117.778" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 118.143 -47.2)" fill="currentColor"/>
+    <path d="M 123.732 -47.565 L 124.362 -47.565 L 124.362 -46.835 L 123.732 -46.835 L 123.732 -47.565" fill="currentColor"/>
+    <circle cx="123.732" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="124.362" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="124.362" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="123.732" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="123.732" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="123.997" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 124.362 -47.2)" fill="currentColor"/>
+    <rect x="123.732" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 124.047 -46.835)" fill="currentColor"/>
+    <rect x="123.367" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 123.732 -47.2)" fill="currentColor"/>
+    <path d="M 125.764 -47.565 L 126.394 -47.565 L 126.394 -46.835 L 125.764 -46.835 L 125.764 -47.565" fill="currentColor"/>
+    <circle cx="125.764" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="126.394" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="126.394" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="125.764" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="125.764" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="126.029" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 126.394 -47.2)" fill="currentColor"/>
+    <rect x="125.764" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 126.079 -46.835)" fill="currentColor"/>
+    <rect x="125.399" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 125.764 -47.2)" fill="currentColor"/>
+    <path d="M 34.4689 -47.565 L 35.0989 -47.565 L 35.0989 -46.835 L 34.4689 -46.835 L 34.4689 -47.565" fill="currentColor"/>
+    <circle cx="34.4689" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="35.0989" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="35.0989" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="34.4689" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="34.4689" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="34.7339" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 35.0989 -47.2)" fill="currentColor"/>
+    <rect x="34.4689" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 34.7839 -46.835)" fill="currentColor"/>
+    <rect x="34.1039" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 34.4689 -47.2)" fill="currentColor"/>
+    <path d="M 36.5012 -47.565 L 37.1312 -47.565 L 37.1312 -46.835 L 36.5012 -46.835 L 36.5012 -47.565" fill="currentColor"/>
+    <circle cx="36.5012" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="37.1312" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="37.1312" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="36.5012" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="36.5012" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="36.7662" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 37.1312 -47.2)" fill="currentColor"/>
+    <rect x="36.5012" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 36.8162 -46.835)" fill="currentColor"/>
+    <rect x="36.1362" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 36.5012 -47.2)" fill="currentColor"/>
+    <path d="M 42.0899 -47.565 L 42.7199 -47.565 L 42.7199 -46.835 L 42.0899 -46.835 L 42.0899 -47.565" fill="currentColor"/>
+    <circle cx="42.0899" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="42.7199" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="42.7199" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="42.0899" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="42.0899" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="42.3549" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 42.7199 -47.2)" fill="currentColor"/>
+    <rect x="42.0899" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 42.4049 -46.835)" fill="currentColor"/>
+    <rect x="41.7249" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 42.0899 -47.2)" fill="currentColor"/>
+    <path d="M 44.1221 -47.565 L 44.7521 -47.565 L 44.7521 -46.835 L 44.1221 -46.835 L 44.1221 -47.565" fill="currentColor"/>
+    <circle cx="44.1221" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="44.7521" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="44.7521" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="44.1221" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="44.1221" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="44.3871" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 44.7521 -47.2)" fill="currentColor"/>
+    <rect x="44.1221" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 44.4371 -46.835)" fill="currentColor"/>
+    <rect x="43.7571" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 44.1221 -47.2)" fill="currentColor"/>
+    <rect x="167.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="168.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="169.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="170.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="171.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="172.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="173.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="174.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="175.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="176.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="177.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="178.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="179.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="180.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="181.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="182.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="183.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="184.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="185.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="186.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="187.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="188.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="189.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="190.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="191.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="192.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="193.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="194.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="195.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <rect x="196.709" y="-8.5" width="0.55" height="3.5" fill="currentColor"/>
+    <path d="M 252.181 -47.565 L 252.811 -47.565 L 252.811 -46.835 L 252.181 -46.835 L 252.181 -47.565" fill="currentColor"/>
+    <circle cx="252.181" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="252.811" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="252.811" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="252.181" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="252.181" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="252.446" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 252.811 -47.2)" fill="currentColor"/>
+    <rect x="252.181" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 252.496 -46.835)" fill="currentColor"/>
+    <rect x="251.816" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 252.181 -47.2)" fill="currentColor"/>
+    <path d="M 254.214 -47.565 L 254.844 -47.565 L 254.844 -46.835 L 254.214 -46.835 L 254.214 -47.565" fill="currentColor"/>
+    <circle cx="254.214" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="254.844" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="254.844" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="254.214" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="254.214" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="254.479" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 254.844 -47.2)" fill="currentColor"/>
+    <rect x="254.214" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 254.529 -46.835)" fill="currentColor"/>
+    <rect x="253.849" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 254.214 -47.2)" fill="currentColor"/>
+    <path d="M 259.802 -47.565 L 260.432 -47.565 L 260.432 -46.835 L 259.802 -46.835 L 259.802 -47.565" fill="currentColor"/>
+    <circle cx="259.802" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="260.432" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="260.432" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="259.802" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="259.802" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="260.067" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 260.432 -47.2)" fill="currentColor"/>
+    <rect x="259.802" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 260.117 -46.835)" fill="currentColor"/>
+    <rect x="259.437" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 259.802 -47.2)" fill="currentColor"/>
+    <path d="M 261.835 -47.565 L 262.465 -47.565 L 262.465 -46.835 L 261.835 -46.835 L 261.835 -47.565" fill="currentColor"/>
+    <circle cx="261.835" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="262.465" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="262.465" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="261.835" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="261.835" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="262.1" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 262.465 -47.2)" fill="currentColor"/>
+    <rect x="261.835" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 262.15 -46.835)" fill="currentColor"/>
+    <rect x="261.47" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 261.835 -47.2)" fill="currentColor"/>
+    <path d="M 333.823 -47.565 L 334.453 -47.565 L 334.453 -46.835 L 333.823 -46.835 L 333.823 -47.565" fill="currentColor"/>
+    <circle cx="333.823" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="334.453" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="334.453" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="333.823" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="333.823" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="334.088" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 334.453 -47.2)" fill="currentColor"/>
+    <rect x="333.823" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 334.138 -46.835)" fill="currentColor"/>
+    <rect x="333.458" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 333.823 -47.2)" fill="currentColor"/>
+    <path d="M 335.856 -47.565 L 336.486 -47.565 L 336.486 -46.835 L 335.856 -46.835 L 335.856 -47.565" fill="currentColor"/>
+    <circle cx="335.856" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="336.486" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="336.486" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="335.856" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="335.856" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="336.121" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 336.486 -47.2)" fill="currentColor"/>
+    <rect x="335.856" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 336.171 -46.835)" fill="currentColor"/>
+    <rect x="335.491" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 335.856 -47.2)" fill="currentColor"/>
+    <path d="M 341.444 -47.565 L 342.074 -47.565 L 342.074 -46.835 L 341.444 -46.835 L 341.444 -47.565" fill="currentColor"/>
+    <circle cx="341.444" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="342.074" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="342.074" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="341.444" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="341.444" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="341.709" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 342.074 -47.2)" fill="currentColor"/>
+    <rect x="341.444" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 341.759 -46.835)" fill="currentColor"/>
+    <rect x="341.079" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 341.444 -47.2)" fill="currentColor"/>
+    <path d="M 343.477 -47.565 L 344.107 -47.565 L 344.107 -46.835 L 343.477 -46.835 L 343.477 -47.565" fill="currentColor"/>
+    <circle cx="343.477" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="344.107" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="344.107" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="343.477" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="343.477" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="343.742" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 344.107 -47.2)" fill="currentColor"/>
+    <rect x="343.477" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 343.792 -46.835)" fill="currentColor"/>
+    <rect x="343.112" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 343.477 -47.2)" fill="currentColor"/>
+    <path d="M 61.683 -47.565 L 62.313 -47.565 L 62.313 -46.835 L 61.683 -46.835 L 61.683 -47.565" fill="currentColor"/>
+    <circle cx="61.683" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="62.313" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="62.313" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="61.683" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="61.683" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="61.948" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 62.313 -47.2)" fill="currentColor"/>
+    <rect x="61.683" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 61.998 -46.835)" fill="currentColor"/>
+    <rect x="61.318" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 61.683 -47.2)" fill="currentColor"/>
+    <path d="M 63.7152 -47.565 L 64.3452 -47.565 L 64.3452 -46.835 L 63.7152 -46.835 L 63.7152 -47.565" fill="currentColor"/>
+    <circle cx="63.7152" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="64.3452" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="64.3452" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="63.7152" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="63.7152" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="63.9802" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 64.3452 -47.2)" fill="currentColor"/>
+    <rect x="63.7152" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 64.0302 -46.835)" fill="currentColor"/>
+    <rect x="63.3502" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 63.7152 -47.2)" fill="currentColor"/>
+    <path d="M 69.3039 -47.565 L 69.9339 -47.565 L 69.9339 -46.835 L 69.3039 -46.835 L 69.3039 -47.565" fill="currentColor"/>
+    <circle cx="69.3039" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="69.9339" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="69.9339" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="69.3039" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="69.3039" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="69.5689" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 69.9339 -47.2)" fill="currentColor"/>
+    <rect x="69.3039" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 69.6189 -46.835)" fill="currentColor"/>
+    <rect x="68.9389" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 69.3039 -47.2)" fill="currentColor"/>
+    <path d="M 71.3362 -47.565 L 71.9662 -47.565 L 71.9662 -46.835 L 71.3362 -46.835 L 71.3362 -47.565" fill="currentColor"/>
+    <circle cx="71.3362" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="71.9662" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="71.9662" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="71.3362" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="71.3362" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="71.6012" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 71.9662 -47.2)" fill="currentColor"/>
+    <rect x="71.3362" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 71.6512 -46.835)" fill="currentColor"/>
+    <rect x="70.9712" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 71.3362 -47.2)" fill="currentColor"/>
+    <path d="M 306.609 -47.565 L 307.239 -47.565 L 307.239 -46.835 L 306.609 -46.835 L 306.609 -47.565" fill="currentColor"/>
+    <circle cx="306.609" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="307.239" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="307.239" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="306.609" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="306.609" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="306.874" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 307.239 -47.2)" fill="currentColor"/>
+    <rect x="306.609" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 306.924 -46.835)" fill="currentColor"/>
+    <rect x="306.244" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 306.609 -47.2)" fill="currentColor"/>
+    <path d="M 308.642 -47.565 L 309.272 -47.565 L 309.272 -46.835 L 308.642 -46.835 L 308.642 -47.565" fill="currentColor"/>
+    <circle cx="308.642" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="309.272" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="309.272" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="308.642" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="308.642" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="308.907" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 309.272 -47.2)" fill="currentColor"/>
+    <rect x="308.642" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 308.957 -46.835)" fill="currentColor"/>
+    <rect x="308.277" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 308.642 -47.2)" fill="currentColor"/>
+    <path d="M 314.23 -47.565 L 314.86 -47.565 L 314.86 -46.835 L 314.23 -46.835 L 314.23 -47.565" fill="currentColor"/>
+    <circle cx="314.23" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="314.86" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="314.86" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="314.23" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="314.23" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="314.495" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 314.86 -47.2)" fill="currentColor"/>
+    <rect x="314.23" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 314.545 -46.835)" fill="currentColor"/>
+    <rect x="313.865" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 314.23 -47.2)" fill="currentColor"/>
+    <path d="M 316.263 -47.565 L 316.893 -47.565 L 316.893 -46.835 L 316.263 -46.835 L 316.263 -47.565" fill="currentColor"/>
+    <circle cx="316.263" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="316.893" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="316.893" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="316.263" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="316.263" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="316.528" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 316.893 -47.2)" fill="currentColor"/>
+    <rect x="316.263" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 316.578 -46.835)" fill="currentColor"/>
+    <rect x="315.898" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 316.263 -47.2)" fill="currentColor"/>
+    <path d="M 102.504 -47.565 L 103.134 -47.565 L 103.134 -46.835 L 102.504 -46.835 L 102.504 -47.565" fill="currentColor"/>
+    <circle cx="102.504" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="103.134" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="103.134" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="102.504" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="102.504" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="102.769" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 103.134 -47.2)" fill="currentColor"/>
+    <rect x="102.504" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 102.819 -46.835)" fill="currentColor"/>
+    <rect x="102.139" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 102.504 -47.2)" fill="currentColor"/>
+    <path d="M 104.536 -47.565 L 105.166 -47.565 L 105.166 -46.835 L 104.536 -46.835 L 104.536 -47.565" fill="currentColor"/>
+    <circle cx="104.536" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="105.166" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="105.166" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="104.536" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="104.536" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="104.801" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 105.166 -47.2)" fill="currentColor"/>
+    <rect x="104.536" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 104.851 -46.835)" fill="currentColor"/>
+    <rect x="104.171" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 104.536 -47.2)" fill="currentColor"/>
+    <path d="M 110.125 -47.565 L 110.755 -47.565 L 110.755 -46.835 L 110.125 -46.835 L 110.125 -47.565" fill="currentColor"/>
+    <circle cx="110.125" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="110.755" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="110.755" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="110.125" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="110.125" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="110.39" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 110.755 -47.2)" fill="currentColor"/>
+    <rect x="110.125" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 110.44 -46.835)" fill="currentColor"/>
+    <rect x="109.76" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 110.125 -47.2)" fill="currentColor"/>
+    <path d="M 112.157 -47.565 L 112.787 -47.565 L 112.787 -46.835 L 112.157 -46.835 L 112.157 -47.565" fill="currentColor"/>
+    <circle cx="112.157" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="112.787" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="112.787" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="112.157" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="112.157" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="112.422" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 112.787 -47.2)" fill="currentColor"/>
+    <rect x="112.157" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 112.472 -46.835)" fill="currentColor"/>
+    <rect x="111.792" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 112.157 -47.2)" fill="currentColor"/>
+    <path d="M 265.788 -47.565 L 266.418 -47.565 L 266.418 -46.835 L 265.788 -46.835 L 265.788 -47.565" fill="currentColor"/>
+    <circle cx="265.788" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="266.418" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="266.418" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="265.788" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="265.788" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="266.053" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 266.418 -47.2)" fill="currentColor"/>
+    <rect x="265.788" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 266.103 -46.835)" fill="currentColor"/>
+    <rect x="265.423" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 265.788 -47.2)" fill="currentColor"/>
+    <path d="M 267.821 -47.565 L 268.451 -47.565 L 268.451 -46.835 L 267.821 -46.835 L 267.821 -47.565" fill="currentColor"/>
+    <circle cx="267.821" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="268.451" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="268.451" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="267.821" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="267.821" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="268.086" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 268.451 -47.2)" fill="currentColor"/>
+    <rect x="267.821" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 268.136 -46.835)" fill="currentColor"/>
+    <rect x="267.456" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 267.821 -47.2)" fill="currentColor"/>
+    <path d="M 273.409 -47.565 L 274.039 -47.565 L 274.039 -46.835 L 273.409 -46.835 L 273.409 -47.565" fill="currentColor"/>
+    <circle cx="273.409" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="274.039" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="274.039" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="273.409" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="273.409" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="273.674" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 274.039 -47.2)" fill="currentColor"/>
+    <rect x="273.409" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 273.724 -46.835)" fill="currentColor"/>
+    <rect x="273.044" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 273.409 -47.2)" fill="currentColor"/>
+    <path d="M 275.442 -47.565 L 276.072 -47.565 L 276.072 -46.835 L 275.442 -46.835 L 275.442 -47.565" fill="currentColor"/>
+    <circle cx="275.442" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="276.072" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="276.072" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="275.442" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="275.442" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="275.707" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 276.072 -47.2)" fill="currentColor"/>
+    <rect x="275.442" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 275.757 -46.835)" fill="currentColor"/>
+    <rect x="275.077" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 275.442 -47.2)" fill="currentColor"/>
+    <path d="M 143.325 -47.565 L 143.955 -47.565 L 143.955 -46.835 L 143.325 -46.835 L 143.325 -47.565" fill="currentColor"/>
+    <circle cx="143.325" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="143.955" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="143.955" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="143.325" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="143.325" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="143.59" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 143.955 -47.2)" fill="currentColor"/>
+    <rect x="143.325" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 143.64 -46.835)" fill="currentColor"/>
+    <rect x="142.96" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 143.325 -47.2)" fill="currentColor"/>
+    <path d="M 145.357 -47.565 L 145.987 -47.565 L 145.987 -46.835 L 145.357 -46.835 L 145.357 -47.565" fill="currentColor"/>
+    <circle cx="145.357" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="145.987" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="145.987" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="145.357" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="145.357" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="145.622" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 145.987 -47.2)" fill="currentColor"/>
+    <rect x="145.357" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 145.672 -46.835)" fill="currentColor"/>
+    <rect x="144.992" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 145.357 -47.2)" fill="currentColor"/>
+    <path d="M 150.946 -47.565 L 151.576 -47.565 L 151.576 -46.835 L 150.946 -46.835 L 150.946 -47.565" fill="currentColor"/>
+    <circle cx="150.946" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="151.576" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="151.576" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="150.946" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="150.946" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="151.211" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 151.576 -47.2)" fill="currentColor"/>
+    <rect x="150.946" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 151.261 -46.835)" fill="currentColor"/>
+    <rect x="150.581" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 150.946 -47.2)" fill="currentColor"/>
+    <path d="M 152.978 -47.565 L 153.608 -47.565 L 153.608 -46.835 L 152.978 -46.835 L 152.978 -47.565" fill="currentColor"/>
+    <circle cx="152.978" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="153.608" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="153.608" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="152.978" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="152.978" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="153.243" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 153.608 -47.2)" fill="currentColor"/>
+    <rect x="152.978" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 153.293 -46.835)" fill="currentColor"/>
+    <rect x="152.613" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 152.978 -47.2)" fill="currentColor"/>
+    <path d="M 279.395 -47.565 L 280.025 -47.565 L 280.025 -46.835 L 279.395 -46.835 L 279.395 -47.565" fill="currentColor"/>
+    <circle cx="279.395" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="280.025" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="280.025" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="279.395" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="279.395" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="279.66" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 280.025 -47.2)" fill="currentColor"/>
+    <rect x="279.395" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 279.71 -46.835)" fill="currentColor"/>
+    <rect x="279.03" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 279.395 -47.2)" fill="currentColor"/>
+    <path d="M 281.428 -47.565 L 282.058 -47.565 L 282.058 -46.835 L 281.428 -46.835 L 281.428 -47.565" fill="currentColor"/>
+    <circle cx="281.428" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="282.058" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="282.058" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="281.428" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="281.428" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="281.693" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 282.058 -47.2)" fill="currentColor"/>
+    <rect x="281.428" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 281.743 -46.835)" fill="currentColor"/>
+    <rect x="281.063" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 281.428 -47.2)" fill="currentColor"/>
+    <path d="M 287.016 -47.565 L 287.646 -47.565 L 287.646 -46.835 L 287.016 -46.835 L 287.016 -47.565" fill="currentColor"/>
+    <circle cx="287.016" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="287.646" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="287.646" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="287.016" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="287.016" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="287.281" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 287.646 -47.2)" fill="currentColor"/>
+    <rect x="287.016" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 287.331 -46.835)" fill="currentColor"/>
+    <rect x="286.651" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 287.016 -47.2)" fill="currentColor"/>
+    <path d="M 289.049 -47.565 L 289.679 -47.565 L 289.679 -46.835 L 289.049 -46.835 L 289.049 -47.565" fill="currentColor"/>
+    <circle cx="289.049" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="289.679" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="289.679" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="289.049" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="289.049" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="289.314" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 289.679 -47.2)" fill="currentColor"/>
+    <rect x="289.049" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 289.364 -46.835)" fill="currentColor"/>
+    <rect x="288.684" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 289.049 -47.2)" fill="currentColor"/>
+    <path d="M 156.932 -47.565 L 157.562 -47.565 L 157.562 -46.835 L 156.932 -46.835 L 156.932 -47.565" fill="currentColor"/>
+    <circle cx="156.932" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="157.562" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="157.562" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="156.932" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="156.932" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="157.197" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 157.562 -47.2)" fill="currentColor"/>
+    <rect x="156.932" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 157.247 -46.835)" fill="currentColor"/>
+    <rect x="156.567" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 156.932 -47.2)" fill="currentColor"/>
+    <path d="M 158.964 -47.565 L 159.594 -47.565 L 159.594 -46.835 L 158.964 -46.835 L 158.964 -47.565" fill="currentColor"/>
+    <circle cx="158.964" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="159.594" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="159.594" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="158.964" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="158.964" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="159.229" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 159.594 -47.2)" fill="currentColor"/>
+    <rect x="158.964" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 159.279 -46.835)" fill="currentColor"/>
+    <rect x="158.599" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 158.964 -47.2)" fill="currentColor"/>
+    <path d="M 164.553 -47.565 L 165.183 -47.565 L 165.183 -46.835 L 164.553 -46.835 L 164.553 -47.565" fill="currentColor"/>
+    <circle cx="164.553" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="165.183" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="165.183" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="164.553" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="164.553" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="164.818" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 165.183 -47.2)" fill="currentColor"/>
+    <rect x="164.553" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 164.868 -46.835)" fill="currentColor"/>
+    <rect x="164.188" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 164.553 -47.2)" fill="currentColor"/>
+    <path d="M 166.585 -47.565 L 167.215 -47.565 L 167.215 -46.835 L 166.585 -46.835 L 166.585 -47.565" fill="currentColor"/>
+    <circle cx="166.585" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="167.215" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="167.215" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="166.585" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="166.585" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="166.85" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 167.215 -47.2)" fill="currentColor"/>
+    <rect x="166.585" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 166.9 -46.835)" fill="currentColor"/>
+    <rect x="166.22" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 166.585 -47.2)" fill="currentColor"/>
+    <path d="M 320.216 -47.565 L 320.846 -47.565 L 320.846 -46.835 L 320.216 -46.835 L 320.216 -47.565" fill="currentColor"/>
+    <circle cx="320.216" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="320.846" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="320.846" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="320.216" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="320.216" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="320.481" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 320.846 -47.2)" fill="currentColor"/>
+    <rect x="320.216" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 320.531 -46.835)" fill="currentColor"/>
+    <rect x="319.851" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 320.216 -47.2)" fill="currentColor"/>
+    <path d="M 322.249 -47.565 L 322.879 -47.565 L 322.879 -46.835 L 322.249 -46.835 L 322.249 -47.565" fill="currentColor"/>
+    <circle cx="322.249" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="322.879" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="322.879" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="322.249" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="322.249" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="322.514" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 322.879 -47.2)" fill="currentColor"/>
+    <rect x="322.249" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 322.564 -46.835)" fill="currentColor"/>
+    <rect x="321.884" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 322.249 -47.2)" fill="currentColor"/>
+    <path d="M 327.837 -47.565 L 328.467 -47.565 L 328.467 -46.835 L 327.837 -46.835 L 327.837 -47.565" fill="currentColor"/>
+    <circle cx="327.837" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="328.467" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="328.467" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="327.837" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="327.837" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="328.102" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 328.467 -47.2)" fill="currentColor"/>
+    <rect x="327.837" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 328.152 -46.835)" fill="currentColor"/>
+    <rect x="327.472" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 327.837 -47.2)" fill="currentColor"/>
+    <path d="M 329.87 -47.565 L 330.5 -47.565 L 330.5 -46.835 L 329.87 -46.835 L 329.87 -47.565" fill="currentColor"/>
+    <circle cx="329.87" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="330.5" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="330.5" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="329.87" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="329.87" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="330.135" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 330.5 -47.2)" fill="currentColor"/>
+    <rect x="329.87" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 330.185 -46.835)" fill="currentColor"/>
+    <rect x="329.505" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 329.87 -47.2)" fill="currentColor"/>
+    <path d="M 211.36 -47.565 L 211.99 -47.565 L 211.99 -46.835 L 211.36 -46.835 L 211.36 -47.565" fill="currentColor"/>
+    <circle cx="211.36" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="211.99" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="211.99" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="211.36" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="211.36" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="211.625" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 211.99 -47.2)" fill="currentColor"/>
+    <rect x="211.36" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 211.675 -46.835)" fill="currentColor"/>
+    <rect x="210.995" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 211.36 -47.2)" fill="currentColor"/>
+    <path d="M 213.392 -47.565 L 214.022 -47.565 L 214.022 -46.835 L 213.392 -46.835 L 213.392 -47.565" fill="currentColor"/>
+    <circle cx="213.392" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="214.022" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="214.022" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="213.392" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="213.392" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="213.657" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 214.022 -47.2)" fill="currentColor"/>
+    <rect x="213.392" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 213.707 -46.835)" fill="currentColor"/>
+    <rect x="213.027" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 213.392 -47.2)" fill="currentColor"/>
+    <path d="M 218.981 -47.565 L 219.611 -47.565 L 219.611 -46.835 L 218.981 -46.835 L 218.981 -47.565" fill="currentColor"/>
+    <circle cx="218.981" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="219.611" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="219.611" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="218.981" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="218.981" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="219.246" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 219.611 -47.2)" fill="currentColor"/>
+    <rect x="218.981" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 219.296 -46.835)" fill="currentColor"/>
+    <rect x="218.616" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 218.981 -47.2)" fill="currentColor"/>
+    <path d="M 221.013 -47.565 L 221.643 -47.565 L 221.643 -46.835 L 221.013 -46.835 L 221.013 -47.565" fill="currentColor"/>
+    <circle cx="221.013" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="221.643" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="221.643" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="221.013" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="221.013" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="221.278" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 221.643 -47.2)" fill="currentColor"/>
+    <rect x="221.013" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 221.328 -46.835)" fill="currentColor"/>
+    <rect x="220.648" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 221.013 -47.2)" fill="currentColor"/>
+    <path d="M 293.002 -47.565 L 293.632 -47.565 L 293.632 -46.835 L 293.002 -46.835 L 293.002 -47.565" fill="currentColor"/>
+    <circle cx="293.002" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="293.632" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="293.632" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="293.002" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="293.002" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="293.267" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 293.632 -47.2)" fill="currentColor"/>
+    <rect x="293.002" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 293.317 -46.835)" fill="currentColor"/>
+    <rect x="292.637" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 293.002 -47.2)" fill="currentColor"/>
+    <path d="M 295.035 -47.565 L 295.665 -47.565 L 295.665 -46.835 L 295.035 -46.835 L 295.035 -47.565" fill="currentColor"/>
+    <circle cx="295.035" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="295.665" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="295.665" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="295.035" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="295.035" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="295.3" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 295.665 -47.2)" fill="currentColor"/>
+    <rect x="295.035" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 295.35 -46.835)" fill="currentColor"/>
+    <rect x="294.67" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 295.035 -47.2)" fill="currentColor"/>
+    <path d="M 300.623 -47.565 L 301.253 -47.565 L 301.253 -46.835 L 300.623 -46.835 L 300.623 -47.565" fill="currentColor"/>
+    <circle cx="300.623" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="301.253" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="301.253" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="300.623" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="300.623" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="300.888" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 301.253 -47.2)" fill="currentColor"/>
+    <rect x="300.623" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 300.938 -46.835)" fill="currentColor"/>
+    <rect x="300.258" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 300.623 -47.2)" fill="currentColor"/>
+    <path d="M 302.656 -47.565 L 303.286 -47.565 L 303.286 -46.835 L 302.656 -46.835 L 302.656 -47.565" fill="currentColor"/>
+    <circle cx="302.656" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="303.286" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="303.286" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="302.656" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="302.656" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="302.921" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 303.286 -47.2)" fill="currentColor"/>
+    <rect x="302.656" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 302.971 -46.835)" fill="currentColor"/>
+    <rect x="302.291" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 302.656 -47.2)" fill="currentColor"/>
+    <path d="M 129.718 -47.565 L 130.348 -47.565 L 130.348 -46.835 L 129.718 -46.835 L 129.718 -47.565" fill="currentColor"/>
+    <circle cx="129.718" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="130.348" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="130.348" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="129.718" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="129.718" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="129.983" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 130.348 -47.2)" fill="currentColor"/>
+    <rect x="129.718" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 130.033 -46.835)" fill="currentColor"/>
+    <rect x="129.353" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 129.718 -47.2)" fill="currentColor"/>
+    <path d="M 131.75 -47.565 L 132.38 -47.565 L 132.38 -46.835 L 131.75 -46.835 L 131.75 -47.565" fill="currentColor"/>
+    <circle cx="131.75" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="132.38" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="132.38" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="131.75" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="131.75" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="132.015" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 132.38 -47.2)" fill="currentColor"/>
+    <rect x="131.75" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 132.065 -46.835)" fill="currentColor"/>
+    <rect x="131.385" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 131.75 -47.2)" fill="currentColor"/>
+    <path d="M 137.339 -47.565 L 137.969 -47.565 L 137.969 -46.835 L 137.339 -46.835 L 137.339 -47.565" fill="currentColor"/>
+    <circle cx="137.339" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="137.969" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="137.969" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="137.339" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="137.339" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="137.604" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 137.969 -47.2)" fill="currentColor"/>
+    <rect x="137.339" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 137.654 -46.835)" fill="currentColor"/>
+    <rect x="136.974" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 137.339 -47.2)" fill="currentColor"/>
+    <path d="M 139.371 -47.565 L 140.001 -47.565 L 140.001 -46.835 L 139.371 -46.835 L 139.371 -47.565" fill="currentColor"/>
+    <circle cx="139.371" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="140.001" cy="-47.565" r="0.135" fill="currentColor"/>
+    <circle cx="140.001" cy="-46.835" r="0.135" fill="currentColor"/>
+    <circle cx="139.371" cy="-46.835" r="0.135" fill="currentColor"/>
+    <rect x="139.371" y="-47.7" width="0.63" height="0.27" fill="currentColor"/>
+    <rect x="139.636" y="-47.335" width="0.73" height="0.27" transform="rotate(90.0 140.001 -47.2)" fill="currentColor"/>
+    <rect x="139.371" y="-46.97" width="0.63" height="0.27" transform="rotate(180.0 139.686 -46.835)" fill="currentColor"/>
+    <rect x="139.006" y="-47.335" width="0.73" height="0.27" transform="rotate(-90.0 139.371 -47.2)" fill="currentColor"/>
+    <circle cx="48.3909" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="34.7839" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="50.4232" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="36.8162" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="56.0119" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="42.4049" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="44.4371" cy="-45.975" r="0.2" fill="currentColor"/>
+    <circle cx="58.0442" cy="-45.975" r="0.2" fill="currentColor"/>
+    <circle cx="176.684" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="170.854" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="172.886" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="177.834" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="178.475" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="179.884" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="180.507" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="181.234" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="198.068" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="211.675" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="200.1" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="213.707" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="205.689" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="219.296" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="207.721" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="221.328" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="164.234" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="61.998" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="166.284" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="64.0302" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="69.6189" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="167.934" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="169.084" cy="-45.975" r="0.2" fill="currentColor"/>
+    <circle cx="71.6512" cy="-45.975" r="0.2" fill="currentColor"/>
+    <circle cx="238.889" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="189.434" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="240.922" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="190.584" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="192.684" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="246.51" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="194.734" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="248.542" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="89.212" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="102.819" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="91.2443" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="104.851" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="110.44" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="96.833" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="112.472" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="98.8652" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="183.734" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="184.461" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="186.493" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="185.084" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="187.134" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="192.082" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="188.284" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="194.114" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="170.234" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="116.426" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="118.458" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="172.284" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="174.384" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="124.047" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="126.079" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="175.534" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="252.496" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="266.103" cy="-42.525" r="0.2" fill="currentColor"/>
+    <circle cx="268.136" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="254.529" cy="-43.075" r="0.2" fill="currentColor"/>
+    <circle cx="273.724" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="260.117" cy="-43.525" r="0.2" fill="currentColor"/>
+    <circle cx="262.15" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="275.757" cy="-43.975" r="0.2" fill="currentColor"/>
+    <circle cx="320.531" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="306.924" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="322.564" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="308.957" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="314.545" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="328.152" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="316.578" cy="-45.975" r="0.2" fill="currentColor"/>
+    <circle cx="330.185" cy="-45.975" r="0.2" fill="currentColor"/>
+    <circle cx="157.247" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="143.64" cy="-40.525" r="0.2" fill="currentColor"/>
+    <circle cx="145.672" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="159.279" cy="-41.075" r="0.2" fill="currentColor"/>
+    <circle cx="151.261" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="164.868" cy="-41.525" r="0.2" fill="currentColor"/>
+    <circle cx="153.293" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="166.9" cy="-41.975" r="0.2" fill="currentColor"/>
+    <circle cx="195.884" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="293.317" cy="-44.525" r="0.2" fill="currentColor"/>
+    <circle cx="197.034" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="295.35" cy="-45.075" r="0.2" fill="currentColor"/>
+    <circle cx="300.938" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="198.684" cy="-45.525" r="0.2" fill="currentColor"/>
+    <circle cx="302.971" cy="-45.975" r="0.2" fill="currentColor"/>
+    <circle cx="200.734" cy="-45.975" r="0.2" fill="currentColor"/>
+    <path d="M 34.7839 -44.525 L 34.7839 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 48.3909 -44.525 L 48.3909 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 36.8162 -45.075 L 36.8162 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 50.4232 -45.075 L 50.4232 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 42.4049 -45.525 L 42.4049 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 56.0119 -45.525 L 56.0119 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 58.0442 -45.975 L 58.0442 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 44.4371 -45.975 L 44.4371 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 177.984 -8.5 L 177.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 178.984 -8.5 L 178.984 -11.0 L 178.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 177.984 -11.0 L 178.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 176.684 -35.0 L 176.684 -40.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 176.684 -34.0 L 176.684 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 170.854 -40.525 L 170.854 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 178.484 -16.0 L 176.684 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 177.834 -35.0 L 177.834 -41.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 179.984 -8.5 L 179.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 179.984 -16.0 L 177.834 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 179.984 -11.0 L 179.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 172.886 -41.075 L 172.886 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 177.834 -34.0 L 177.834 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 180.984 -11.0 L 180.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 180.984 -8.5 L 180.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 179.884 -35.0 L 179.884 -41.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 179.884 -34.0 L 179.884 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 178.475 -41.525 L 178.475 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 180.984 -16.0 L 179.884 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 181.984 -11.0 L 181.984 -16.0 L 181.234 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 181.984 -8.5 L 181.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 181.234 -34.0 L 181.234 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 180.507 -41.975 L 180.507 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 181.234 -35.0 L 181.234 -41.975" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 198.068 -40.525 L 198.068 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 211.675 -40.525 L 211.675 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 213.707 -41.075 L 213.707 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 200.1 -41.075 L 200.1 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 219.296 -41.525 L 219.296 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 205.689 -41.525 L 205.689 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 207.721 -41.975 L 207.721 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 221.328 -41.975 L 221.328 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 167.984 -8.5 L 167.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 164.234 -34.0 L 164.234 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 167.984 -11.0 L 168.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 168.984 -11.0 L 168.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 168.984 -8.5 L 168.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 61.998 -44.525 L 61.998 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 164.234 -35.0 L 164.234 -44.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 168.484 -16.0 L 164.234 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 166.284 -35.0 L 166.284 -45.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 166.284 -34.0 L 166.284 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 169.984 -16.0 L 166.284 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 64.0302 -45.075 L 64.0302 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 169.984 -8.5 L 169.984 -11.0 L 169.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 167.934 -35.0 L 167.934 -45.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 170.984 -11.0 L 170.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 69.6189 -45.525 L 69.6189 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 167.934 -34.0 L 167.934 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 170.984 -8.5 L 170.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 170.984 -16.0 L 167.934 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 169.084 -35.0 L 169.084 -45.975" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 171.984 -16.0 L 169.084 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 171.984 -8.5 L 171.984 -11.0 L 171.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 71.6512 -45.975 L 71.6512 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 169.084 -34.0 L 169.084 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 188.484 -16.0 L 189.434 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 188.984 -8.5 L 188.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 189.434 -34.0 L 189.434 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 238.889 -42.525 L 238.889 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 188.984 -11.0 L 188.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 187.984 -11.0 L 188.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 189.434 -35.0 L 189.434 -42.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 187.984 -8.5 L 187.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 189.984 -11.0 L 189.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 240.922 -43.075 L 240.922 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 190.584 -34.0 L 190.584 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 189.984 -16.0 L 190.584 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 190.584 -35.0 L 190.584 -43.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 189.984 -8.5 L 189.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 190.984 -11.0 L 190.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 190.984 -8.5 L 190.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 190.984 -16.0 L 192.684 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 246.51 -43.525 L 246.51 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 192.684 -34.0 L 192.684 -35.0 L 192.684 -43.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 191.984 -16.0 L 194.734 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 194.734 -35.0 L 194.734 -43.975" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 194.734 -34.0 L 194.734 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 191.984 -11.0 L 191.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 191.984 -8.5 L 191.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 248.542 -43.975 L 248.542 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 102.819 -42.525 L 102.819 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 89.212 -42.525 L 89.212 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 104.851 -43.075 L 104.851 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 91.2443 -43.075 L 91.2443 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 96.833 -43.525 L 96.833 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 110.44 -43.525 L 110.44 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 98.8652 -43.975 L 98.8652 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 112.472 -43.975 L 112.472 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 183.734 -34.0 L 183.734 -35.0 L 183.734 -40.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 183.484 -16.0 L 183.734 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 182.984 -8.5 L 182.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 183.984 -8.5 L 183.984 -11.0 L 183.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 182.984 -11.0 L 183.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 184.461 -40.525 L 184.461 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 185.084 -35.0 L 185.084 -41.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 186.493 -41.075 L 186.493 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 184.984 -16.0 L 185.084 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 184.984 -8.5 L 184.984 -11.0 L 184.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 185.084 -34.0 L 185.084 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 192.082 -41.525 L 192.082 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 185.984 -11.0 L 185.984 -16.0 L 187.134 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 185.984 -8.5 L 185.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 187.134 -35.0 L 187.134 -41.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 187.134 -34.0 L 187.134 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 188.284 -34.0 L 188.284 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 186.984 -11.0 L 186.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 188.284 -35.0 L 188.284 -41.975" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 194.114 -41.975 L 194.114 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 186.984 -16.0 L 188.284 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 186.984 -8.5 L 186.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 173.984 -8.5 L 173.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 116.426 -42.525 L 116.426 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 172.984 -8.5 L 172.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 170.234 -34.0 L 170.234 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 173.984 -11.0 L 173.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 172.984 -11.0 L 173.484 -16.0 L 170.234 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 170.234 -35.0 L 170.234 -42.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 118.458 -43.075 L 118.458 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 174.984 -11.0 L 174.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 172.284 -35.0 L 172.284 -43.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 174.984 -16.0 L 172.284 -34.0 L 172.284 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 174.984 -8.5 L 174.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 124.047 -43.525 L 124.047 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 174.384 -34.0 L 174.384 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 175.984 -8.5 L 175.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 175.984 -16.0 L 174.384 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 175.984 -11.0 L 175.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 174.384 -35.0 L 174.384 -43.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 126.079 -43.975 L 126.079 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 176.984 -16.0 L 175.534 -34.0 L 175.534 -35.0 L 175.534 -43.975" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 176.984 -11.0 L 176.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 176.984 -8.5 L 176.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 266.103 -42.525 L 266.103 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 252.496 -42.525 L 252.496 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 268.136 -43.075 L 268.136 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 254.529 -43.075 L 254.529 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 260.117 -43.525 L 260.117 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 273.724 -43.525 L 273.724 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 262.15 -43.975 L 262.15 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 275.757 -43.975 L 275.757 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 306.924 -44.525 L 306.924 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 320.531 -44.525 L 320.531 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 308.957 -45.075 L 308.957 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 322.564 -45.075 L 322.564 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 328.152 -45.525 L 328.152 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 314.545 -45.525 L 314.545 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 330.185 -45.975 L 330.185 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 316.578 -45.975 L 316.578 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 157.247 -40.525 L 157.247 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 143.64 -40.525 L 143.64 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 159.279 -41.075 L 159.279 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 145.672 -41.075 L 145.672 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 164.868 -41.525 L 164.868 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 151.261 -41.525 L 151.261 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 166.9 -41.975 L 166.9 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 153.293 -41.975 L 153.293 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 192.984 -8.5 L 192.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 293.317 -44.525 L 293.317 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 195.884 -35.0 L 195.884 -44.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 193.984 -11.0 L 193.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 193.984 -8.5 L 193.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 193.484 -16.0 L 195.884 -34.0 L 195.884 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 192.984 -11.0 L 193.484 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4"/>
+    <path d="M 194.984 -11.0 L 194.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 194.984 -8.5 L 194.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 197.034 -35.0 L 197.034 -45.075" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 194.984 -16.0 L 197.034 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 295.35 -45.075 L 295.35 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 197.034 -34.0 L 197.034 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 198.684 -35.0 L 198.684 -45.525" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 300.938 -45.525 L 300.938 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 195.984 -11.0 L 195.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 198.684 -34.0 L 198.684 -35.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 195.984 -8.5 L 195.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 195.984 -16.0 L 198.684 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 302.971 -45.975 L 302.971 -47.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 196.984 -11.0 L 196.984 -16.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 200.734 -34.0 L 200.734 -35.0 L 200.734 -45.975" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 196.984 -16.0 L 200.734 -34.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+    <path d="M 196.984 -8.5 L 196.984 -11.0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.2"/>
+  </g>
+</g></svg>

@@ -1,0 +1,163 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="720" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 4b · The spotlight hookup — three signals in, three currents out</text>
+  <text x="30" y="57" font-size="12" fill="#555">One color per driver channel. The 24 V feed meets the driver's VIN and nothing else — the star only ever sees its three regulated pairs.</text>
+
+  <!-- legend -->
+  <circle cx="756" cy="88" r="4.5" fill="#222"/>
+  <text x="768" y="92" font-size="9.5" fill="#555">= joined</text>
+  <line x1="842" y1="80" x2="862" y2="96" stroke="#888" stroke-width="2"/>
+  <line x1="862" y1="80" x2="842" y2="96" stroke="#888" stroke-width="2"/>
+  <text x="872" y="92" font-size="9.5" fill="#555">= a crossing, not a join</text>
+
+  <!-- ESP32 -->
+  <rect x="40" y="110" width="150" height="210" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="115" y="138" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">ESP32-C6</text>
+  <text x="115" y="156" font-size="9" text-anchor="middle" fill="#556">native LEDC pins,</text>
+  <text x="115" y="169" font-size="9" text-anchor="middle" fill="#556">500 Hz — the ledger</text>
+  <g font-size="9.5" font-weight="bold" fill="#223" text-anchor="end">
+    <text x="182" y="204">GPIO10</text>
+    <text x="182" y="244">GPIO11</text>
+    <text x="182" y="284">GPIO18</text>
+  </g>
+  <text x="115" y="310" font-size="9" text-anchor="middle" fill="#556">GND → the star point</text>
+
+  <!-- breadboard: pulldowns -->
+  <rect x="250" y="110" width="180" height="210" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="8"/>
+  <text x="340" y="134" font-size="11" font-weight="bold" text-anchor="middle" fill="#333">breadboard — signals only</text>
+  <g fill="#d9a441" stroke="#8a6a2f" stroke-width="1">
+    <rect x="322" y="212" width="36" height="12"/>
+    <rect x="322" y="252" width="36" height="12"/>
+    <rect x="322" y="292" width="36" height="12"/>
+  </g>
+  <g font-size="8.5" fill="#6b4c12" text-anchor="middle">
+    <text x="340" y="209">10 kΩ</text>
+    <text x="340" y="249">10 kΩ</text>
+    <text x="340" y="289">10 kΩ</text>
+  </g>
+  <!-- pulldown drops to ground rail -->
+  <g stroke="#222" stroke-width="2.5">
+    <line x1="358" y1="218" x2="382" y2="218"/><line x1="382" y1="218" x2="382" y2="308"/>
+    <line x1="358" y1="258" x2="370" y2="258"/><line x1="370" y1="258" x2="370" y2="308"/>
+    <line x1="358" y1="298" x2="364" y2="298"/><line x1="364" y1="298" x2="364" y2="308"/>
+    <line x1="300" y1="308" x2="400" y2="308"/>
+  </g>
+  <text x="340" y="163" font-size="8.5" fill="#8a1c1c" text-anchor="middle">the INs float ON —</text>
+  <text x="340" y="174" font-size="8.5" fill="#8a1c1c" text-anchor="middle">these hold boot dark (S7)</text>
+
+  <!-- driver -->
+  <rect x="490" y="100" width="220" height="360" fill="#fdf1f0" stroke="#a33" stroke-width="1.5" rx="8"/>
+  <text x="600" y="126" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">3-ch CC driver</text>
+  <text x="600" y="142" font-size="9" text-anchor="middle" fill="#556">the PicoBuck · ~330 mA as shipped</text>
+  <g font-size="9.5" font-weight="bold" fill="#223">
+    <text x="500" y="204">IN1</text>
+    <text x="500" y="244">IN2</text>
+    <text x="500" y="284">IN3</text>
+    <text x="500" y="324">GND</text>
+  </g>
+  <text x="534" y="324" font-size="8.5" fill="#556">— beeps to VIN− · one net (S3)</text>
+  <g font-size="9.5" font-weight="bold" fill="#223" text-anchor="end">
+    <text x="700" y="184">OUT1 +</text>
+    <text x="700" y="214">OUT1 −</text>
+    <text x="700" y="264">OUT2 +</text>
+    <text x="700" y="294">OUT2 −</text>
+    <text x="700" y="344">OUT3 +</text>
+    <text x="700" y="374">OUT3 −</text>
+  </g>
+  <g font-size="9.5" font-weight="bold" fill="#223" text-anchor="middle">
+    <text x="540" y="448">VIN +</text>
+    <text x="640" y="448">VIN −</text>
+  </g>
+
+  <!-- star -->
+  <rect x="800" y="100" width="160" height="360" fill="#f4f4f0" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="880" y="126" font-size="13" font-weight="bold" text-anchor="middle" fill="#223">the star</text>
+  <text x="880" y="142" font-size="9" text-anchor="middle" fill="#556">on its heatsink (S1)</text>
+  <g font-size="9.5" fill="#223">
+    <text x="812" y="204">die pair 1 ±</text>
+    <text x="812" y="284">die pair 2 ±</text>
+    <text x="812" y="364">die pair 3 ±</text>
+  </g>
+  <text x="880" y="404" font-size="8.5" text-anchor="middle" fill="#556">which die is warm / cool /</text>
+  <text x="880" y="416" font-size="8.5" text-anchor="middle" fill="#556">amber: named by light (S8)</text>
+  <text x="880" y="440" font-size="8.5" text-anchor="middle" fill="#8a1c1c" font-weight="bold">the 24 V bus never lands here</text>
+
+  <!-- signal wires: GPIO -> breadboard row -> IN -->
+  <g stroke-width="3" fill="none">
+    <line x1="190" y1="200" x2="490" y2="200" stroke="#c47a00"/>
+    <line x1="190" y1="240" x2="490" y2="240" stroke="#7a7a7a"/>
+    <line x1="190" y1="280" x2="490" y2="280" stroke="#2e86c1"/>
+  </g>
+  <g fill="#222">
+    <circle cx="322" cy="218" r="0"/>
+  </g>
+  <!-- join dots where pulldown meets signal row -->
+  <g>
+    <circle cx="322" cy="200" r="4.5" fill="#c47a00"/>
+    <circle cx="322" cy="240" r="4.5" fill="#7a7a7a"/>
+    <circle cx="322" cy="280" r="4.5" fill="#2e86c1"/>
+  </g>
+  <g stroke-width="2" >
+    <line x1="322" y1="200" x2="322" y2="212" stroke="#c47a00"/>
+    <line x1="322" y1="240" x2="322" y2="252" stroke="#7a7a7a"/>
+    <line x1="322" y1="280" x2="322" y2="292" stroke="#2e86c1"/>
+  </g>
+
+  <!-- output pairs -->
+  <g stroke-width="3" fill="none">
+    <line x1="710" y1="180" x2="800" y2="180" stroke="#c47a00"/>
+    <line x1="710" y1="210" x2="800" y2="210" stroke="#c47a00"/>
+    <line x1="710" y1="260" x2="800" y2="260" stroke="#7a7a7a"/>
+    <line x1="710" y1="290" x2="800" y2="290" stroke="#7a7a7a"/>
+    <line x1="710" y1="340" x2="800" y2="340" stroke="#2e86c1"/>
+    <line x1="710" y1="370" x2="800" y2="370" stroke="#2e86c1"/>
+  </g>
+  <g font-size="8.5" fill="#555" text-anchor="middle">
+    <text x="755" y="174">+</text><text x="755" y="226">−</text>
+    <text x="755" y="254">+</text><text x="755" y="306">−</text>
+    <text x="755" y="334">+</text><text x="755" y="386">−</text>
+  </g>
+
+  <!-- power lanes -->
+  <line x1="60" y1="520" x2="540" y2="520" stroke="#d62828" stroke-width="4"/>
+  <line x1="540" y1="520" x2="540" y2="456" stroke="#d62828" stroke-width="4"/>
+  <text x="60" y="512" font-size="10" font-weight="bold" fill="#8a1c1c">fused +24 V bus (WAGO) — T3.15AL250V</text>
+
+  <line x1="60" y1="560" x2="640" y2="560" stroke="#222" stroke-width="4"/>
+  <line x1="640" y1="560" x2="640" y2="456" stroke="#222" stroke-width="4"/>
+  <line x1="115" y1="320" x2="115" y2="560" stroke="#222" stroke-width="3"/>
+  <line x1="382" y1="308" x2="382" y2="560" stroke="#222" stroke-width="3"/>
+  <g fill="#222">
+    <circle cx="115" cy="560" r="4.5"/>
+    <circle cx="382" cy="560" r="4.5"/>
+  </g>
+  <text x="60" y="580" font-size="10" font-weight="bold" fill="#222">ground star (WAGO) — C6, pulldown rail, and VIN− all meet here</text>
+
+  <!-- notes -->
+  <rect x="40" y="600" width="296" height="104" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="52" y="621" font-size="10" font-weight="bold" fill="#6b5200">DIM BY THE INs, NEVER BY THE RAIL</text>
+  <g font-size="9.5" fill="#514000">
+    <text x="52" y="640">The twin R300s fix the current. Brightness</text>
+    <text x="52" y="655">is PWM on IN1/2/3 at 500 Hz — CC dim</text>
+    <text x="52" y="670">inputs want ~1 kHz or less, which is why</text>
+    <text x="52" y="685">these are native pins, not PCA channels.</text>
+  </g>
+
+  <rect x="352" y="600" width="296" height="104" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="364" y="621" font-size="10" font-weight="bold" fill="#8a1c1c">SIX CONDUCTORS, RETURNS NEVER SHARED</text>
+  <g font-size="9.5" fill="#7c2a2a">
+    <text x="364" y="640">Each OUT− is that channel's own regulation</text>
+    <text x="364" y="655">loop through its sense resistor. Merge two</text>
+    <text x="364" y="670">returns and the chips read each other's</text>
+    <text x="364" y="685">current — and regulate garbage.</text>
+  </g>
+
+  <rect x="664" y="600" width="296" height="104" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="6"/>
+  <text x="676" y="621" font-size="10" font-weight="bold" fill="#333">TWO WORLDS, ONE BENCH</text>
+  <g font-size="9.5" fill="#444">
+    <text x="676" y="640">The tape chain and this corner never touch:</text>
+    <text x="676" y="655">the tape never meets this driver, and the</text>
+    <text x="676" y="670">star never meets the 24 V bus. The driver</text>
+    <text x="676" y="685">stands between the bus and the star, always.</text>
+  </g>
+</svg>

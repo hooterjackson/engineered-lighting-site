@@ -1,0 +1,40 @@
+/* Product-first purchasing surface, extending the notebook's dark theme. */
+.md-grid:has(#pcb-shopping) { max-width: 78rem; }
+#pcb-shopping { font-size: .8rem; }
+#pcb-shopping .pcb-order-toolbar { border-block: 1px solid var(--el-line-2); padding: 1rem 0; margin: 1rem 0 1.5rem; }
+#pcb-shopping .pcb-order-meter { display: flex; align-items: center; flex-wrap: wrap; gap: .65rem; }
+#pcb-shopping progress { accent-color: var(--el-amber); width: min(15rem, 100%); height: .55rem; }
+#pcb-shopping .pcb-save-message { color: var(--el-ink-2); font-size: .7rem; max-width: none; }
+#pcb-shopping .pcb-purchase-section { margin: 1.3rem 0 2rem; }
+#pcb-shopping h2 { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
+#pcb-shopping .pcb-section-progress { font: .7rem var(--el-mono); color: var(--el-ink-3); letter-spacing: normal; }
+#pcb-shopping table { display: table; width: 100%; margin: .6rem 0; table-layout: fixed; }
+#pcb-shopping th, #pcb-shopping td { font-size: .75rem; line-height: 1.55; overflow-wrap: anywhere; padding: .8rem .6rem; vertical-align: top; }
+#pcb-shopping th:nth-child(1) { width: 29%; }
+#pcb-shopping th:nth-child(2) { width: 13%; }
+#pcb-shopping th:nth-child(3) { width: 16%; }
+#pcb-shopping th:nth-child(4) { width: 42%; }
+#pcb-shopping .pcb-product-label { display: grid; grid-template-columns: 1.05rem 1fr; gap: .45rem; cursor: pointer; font-weight: 600; }
+#pcb-shopping .pcb-order-box { position: static; opacity: 1; appearance: auto; width: 1rem; height: 1rem; margin: .12rem 0 0; accent-color: var(--el-amber); cursor: pointer; }
+#pcb-shopping .pcb-product-source { display: block; margin: .25rem 0 0 1.5rem; font-size: .7rem; }
+#pcb-shopping .pcb-selection { display: inline-block; border-left: 2px solid var(--el-line-2); padding-left: .5rem; color: var(--el-ink-2); }
+#pcb-shopping .pcb-selection[data-status="resolve"] { border-color: var(--el-amber); }
+#pcb-shopping tr.is-ordered .pcb-product-label span { text-decoration: line-through; color: var(--el-ink-3); }
+#pcb-shopping tr.is-ordered { background: var(--el-bg-1); }
+#pcb-shopping button { font-size: .7rem; }
+#pcb-shopping input:focus-visible, #pcb-shopping button:focus-visible { outline: 2px solid var(--el-ice); outline-offset: 4px; }
+#pcb-copy-fallback { width: 100%; min-height: 12rem; color: var(--el-ink); background: var(--el-bg-1); border: 1px solid var(--el-line-2); font-size: .75rem; }
+#pcb-shopping .md-typeset__scrollwrap { margin: 0; overflow: visible; }
+#pcb-shopping .md-typeset__table { display: block; width: 100%; padding: 0; }
+@media (max-width: 700px) {
+  #pcb-shopping table, #pcb-shopping tbody { display: block; }
+  #pcb-shopping thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  #pcb-shopping tr { display: grid; grid-template-columns: 1fr 1fr; padding: .65rem 0; border-bottom: 1px solid var(--el-line-2); }
+  #pcb-shopping td { display: block; padding: .35rem .5rem; border: 0; min-width: 0; }
+  #pcb-shopping td:first-child, #pcb-shopping td:last-child { grid-column: 1 / -1; }
+  #pcb-shopping td[data-field="quantity"]::before { content: "FOR TWO FIXTURES"; display: block; font-size: .65rem; color: var(--el-ink-3); margin-bottom: .2rem; }
+}
+@media print {
+  #pcb-shopping .pcb-order-toolbar button, #pcb-copy-fallback, #pcb-copy-message { display: none; }
+  #pcb-shopping tr { break-inside: avoid; }
+}

@@ -1,0 +1,100 @@
+{
+  "status": "PASS_DIGITAL_QUOTE_CHECKS",
+  "pcb_sha256": "7136c5c343da3194c0ada81330edd99336b3078152bb8f1ce47f5da158f2287d",
+  "ERC_violations": 0,
+  "DRC_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "independent_pin_oracle": "PASS",
+  "pads": 70,
+  "CAM_pad_flashes": 70,
+  "CAM_native_tracks": 10,
+  "CAM_drills": 0,
+  "CAM_outline_endpoint_degree_2_within_0p1um": true,
+  "CAM_outline_max_endpoint_gap_mm": 0.0,
+  "cut_checks": [
+    {
+      "length_mm": 25.4,
+      "result": "PASS"
+    },
+    {
+      "length_mm": 50.8,
+      "result": "PASS"
+    },
+    {
+      "length_mm": 76.2,
+      "result": "PASS"
+    },
+    {
+      "length_mm": 101.6,
+      "result": "PASS"
+    },
+    {
+      "length_mm": 127.0,
+      "result": "PASS"
+    },
+    {
+      "length_mm": 152.4,
+      "result": "PASS"
+    }
+  ],
+  "fabrication_layers": {
+    "gimbal-static-v0.2-Edge_Cuts.gbr": {
+      "objects": 4,
+      "bounds_mm": [
+        [
+          19.975,
+          -29.224999999999998
+        ],
+        [
+          172.425,
+          -19.975
+        ]
+      ]
+    },
+    "gimbal-static-v0.2-F_Cu.gbr": {
+      "objects": 80,
+      "bounds_mm": [
+        [
+          21.5,
+          -28.849999999999998
+        ],
+        [
+          171.499999,
+          -20.349999999999998
+        ]
+      ]
+    },
+    "gimbal-static-v0.2-F_Mask.gbr": {
+      "objects": 70,
+      "bounds_mm": [
+        [
+          21.55,
+          -28.8
+        ],
+        [
+          171.449999,
+          -20.4
+        ]
+      ]
+    },
+    "gimbal-static-v0.2-F_Silkscreen.gbr": {
+      "objects": 461,
+      "bounds_mm": [
+        [
+          33.254284999999996,
+          -27.899999
+        ],
+        [
+          166.850477,
+          -20.75
+        ]
+      ]
+    }
+  },
+  "physical_copper_layers": 1,
+  "limitations": [
+    "Factory stackup, coverlay registration, pad process and tolerances require review.",
+    "Physical fit, solderability, temperature, CAN/motor behavior and assembled insulation are not proven by CAD."
+  ]
+}

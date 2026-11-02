@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hardware · Engineered Lighting</title>
+<meta name="description" content="LIGHT v0.2, the integrated fixture board: an interactive viewer of the real eight-layer PCB, and the build runbooks.">
+<link rel="icon" href="../assets/el-favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site/site.css">
+<link rel="stylesheet" href="../stylesheets/pcb.css">
+<link rel="stylesheet" href="../assets/site/hardware.css">
+<script src="../js/pcb-viewer.js" defer></script>
+<script src="../assets/site/js/hardware.js" defer></script>
+</head>
+<body>
+<main class="el-hw is-minimal">
+
+  <section class="hw-hero" aria-label="The LIGHT v0.2 board">
+    <div class="hw-board">
+      <div class="md-typeset">
+        <!-- The repo's own Doc 9 viewer and data (docs/js/pcb-viewer.js), shown board-only. -->
+        <div id="el-pcb" class="el-pcb" data-base="../assets/pcb/light-v0.1/" data-state="nojs" data-face="F" data-preset="components" data-selected="">
+          <div class="el-pcb-fallback">
+            <p>The board viewer needs JavaScript. The <a href="../09-understand-the-pcb/">full PCB chapter</a> explains every part without it, and the <a href="../assets/pcb/light-v0.1/downloads/schematic.pdf">schematic PDF</a> has every sheet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header class="page-head hw-head">
+      <a href="../#den" class="back-link"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 8H3M7.25 3.75 3 8l4.25 4.25" stroke="currentColor" stroke-width="1.5"></path></svg>Engineering</a>
+      <nav aria-label="Site" class="site-nav">
+        <a href="../vision/">Vision</a>
+        <a href="./" aria-current="page">Hardware</a>
+        <a href="../software/">Software</a>
+      </nav>
+    </header>
+
+    <div class="hw-copy">
+      <h1>The whole fixture on one board.</h1>
+      <div class="hw-unlocks">
+        <span class="label label--meta">What it unlocks</span>
+        <ul class="hw-list">
+          <li><span class="hw-list__n">01</span><span class="hw-list__text"><span class="hw-list__name">Zigbee</span><span class="hw-list__desc">The ESP32-C6 radio joins the home network directly.</span></span><span class="hw-list__refs"><span class="el-pcb-ref" data-pcb-ref="U1">U1</span></span></li>
+          <li><span class="hw-list__n">02</span><span class="hw-list__text"><span class="hw-list__name">Six radial zones</span><span class="hw-list__desc">Tunable white around the fixture, warm, neutral and cool in each.</span></span><span class="hw-list__refs"><span class="el-pcb-ref" data-pcb-ref="J2">J2</span></span></li>
+          <li><span class="hw-list__n">03</span><span class="hw-list__text"><span class="hw-list__name">One downward zone</span><span class="hw-list__desc">Its own ring of light below the fixture.</span></span><span class="hw-list__refs"><span class="el-pcb-ref" data-pcb-ref="J8">J8</span></span></li>
+          <li><span class="hw-list__n">04</span><span class="hw-list__text"><span class="hw-list__name">A three-LED spotlight</span><span class="hw-list__desc">Each LED on its own constant-current driver.</span></span><span class="hw-list__refs"><span class="el-pcb-ref" data-pcb-ref="J9">J9</span></span></li>
+          <li><span class="hw-list__n">05</span><span class="hw-list__text"><span class="hw-list__name">Two CAN motor outputs</span><span class="hw-list__desc">Pan and tilt for the gimbal.</span></span><span class="hw-list__refs"><span class="el-pcb-ref" data-pcb-ref="J12">J12</span><span class="el-pcb-ref" data-pcb-ref="J13">J13</span></span></li>
+        </ul>
+        <p class="hw-closing">Together, a single fixture that can compose nearly infinite light scenes.</p>
+      </div>
+      <nav aria-label="Next" class="hw-cta">
+        <a href="#runbooks" class="btn btn--primary" data-scroll-to="runbooks"><span>Runbooks</span><span aria-hidden="true">↓</span></a>
+        <a href="../09-understand-the-pcb/" class="btn btn--ghost"><span>Full PCB chapter</span><span aria-hidden="true" class="btn__arrow">→</span></a>
+      </nav>
+    </div>
+
+    <div class="hw-ctrl">
+      <button type="button" class="hw-ctrl__btn" data-board="flip">Show back</button>
+      <button type="button" class="hw-ctrl__btn" data-board="fit">Fit</button>
+    </div>
+  </section>
+
+  <section id="runbooks" class="runbooks" aria-labelledby="runbooks-h">
+    <div class="runbooks__head">
+      <h2 id="runbooks-h">Runbooks</h2>
+      <span class="label label--meta">In build order · bench bring-up</span>
+    </div>
+    <div class="runbooks__grid">
+      <div class="runbooks__group">
+        <h3>Build the gimbal</h3>
+        <a class="runbook" href="../03-build-the-gimbal/"><span class="runbook__n">03</span><span class="runbook__text"><span class="runbook__title">Build the gimbal</span><span class="runbook__desc">Ten bench stages: motors answering on CAN by stage 4, a balanced aimed head by stage 8.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../03a-wire-the-bench/"><span class="runbook__n">3a</span><span class="runbook__text"><span class="runbook__title">Wire the bench</span><span class="runbook__desc">Connector-level wiring for the gimbal bench.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../03b-print-the-frame/"><span class="runbook__n">3b</span><span class="runbook__text"><span class="runbook__title">Print the frame</span><span class="runbook__desc">The printed frame that carries the motors and payload.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../03c-prove-the-bus/"><span class="runbook__n">3c</span><span class="runbook__text"><span class="runbook__title">Prove the bus</span><span class="runbook__desc">Bring up CAN and confirm both motors answer.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="runbooks__group">
+        <h3>Build the fixture</h3>
+        <a class="runbook" href="../04-full-fixture-bench/"><span class="runbook__n">04</span><span class="runbook__text"><span class="runbook__title">Full fixture bench</span><span class="runbook__desc">One ESP32-C6 running 21 tunable-white channels, the spotlight and the gimbal in ESPHome.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../04a-wire-the-zones/"><span class="runbook__n">4a</span><span class="runbook__text"><span class="runbook__title">Wire the zones</span><span class="runbook__desc">The ambient zones, connector by connector.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../04b-wire-the-spotlight/"><span class="runbook__n">4b</span><span class="runbook__text"><span class="runbook__title">Wire the spotlight</span><span class="runbook__desc">The constant-current spotlight driver and its wiring.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../08-build-the-fixture/"><span class="runbook__n">08</span><span class="runbook__text"><span class="runbook__title">Build the fixture</span><span class="runbook__desc">Six steps from breadboard to a hand-soldered fixture that screws into a lamp socket.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="runbooks__group">
+        <h3>Board, wiring and parts</h3>
+        <a class="runbook" href="../09-understand-the-pcb/"><span class="runbook__n">09</span><span class="runbook__text"><span class="runbook__title">Understand the PCB</span><span class="runbook__desc">The full chapter: 262 features, the 20-sheet schematic, the parts list and KiCad sources.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../09a-pcb-build-bom/"><span class="runbook__n">9a</span><span class="runbook__text"><span class="runbook__title">PCB build shopping list</span><span class="runbook__desc">Parts for two complete fixtures alongside the assembled boards.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../10-the-flex-circuits/"><span class="runbook__n">10</span><span class="runbook__text"><span class="runbook__title">The flex circuits</span><span class="runbook__desc">Three passive flexible circuits that replace the hand-cut wiring.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+        <a class="runbook" href="../bom-checklist/"><span class="runbook__n">BoM</span><span class="runbook__text"><span class="runbook__title">BoM checklist</span><span class="runbook__desc">Everything the series tells you to buy, with progress saved in your browser.</span></span><span class="runbook__arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <span>Engineered lighting · hardware notebook</span>
+    <span>Board viewer and data from Doc 9 · not an as-built photo</span>
+  </footer>
+</main>
+</body>
+</html>

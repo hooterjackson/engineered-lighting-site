@@ -1,0 +1,117 @@
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="660" fill="#ffffff"/>
+  <text x="30" y="36" font-size="20" font-weight="bold" fill="#111">Doc 8 · The three 10 kΩ — the spotlight's default-to-dark</text>
+  <text x="30" y="57" font-size="12" fill="#555">One resistor per PicoBuck input, soldered on the driver's side of the wire — so "off" stays true even when nothing else is saying anything.</text>
+
+  <rect x="756" y="70" width="214" height="26" fill="#eefaf1" stroke="#3f7c55" stroke-width="1.5" rx="13"/>
+  <text x="863" y="87" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#3f7c55">POLARITY: NONE — either way round</text>
+
+  <text x="420" y="96" font-size="11" font-weight="bold" text-anchor="middle" fill="#333">Three things meet at each input: the wire from the brain · the 10 kΩ to ground · the pin. One node.</text>
+
+  <!-- B3 logic -->
+  <rect x="40" y="130" width="180" height="190" fill="#eef3fb" stroke="#334" stroke-width="1.5" rx="8"/>
+  <text x="130" y="158" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#223">B3 · LOGIC</text>
+  <text x="130" y="174" font-size="9" text-anchor="middle" fill="#556">the C6 — and it says</text>
+  <text x="130" y="186" font-size="9" text-anchor="middle" fill="#556">nothing while it boots</text>
+  <g font-size="9.5" font-weight="bold" fill="#223" text-anchor="end">
+    <text x="212" y="224">GPIO10</text>
+    <text x="212" y="264">GPIO11</text>
+    <text x="212" y="304">GPIO18</text>
+  </g>
+
+  <!-- inter-board wires -->
+  <g stroke-width="3" fill="none">
+    <line x1="220" y1="220" x2="560" y2="220" stroke="#c47a00"/>
+    <line x1="220" y1="260" x2="560" y2="260" stroke="#7a7a7a"/>
+    <line x1="220" y1="300" x2="560" y2="300" stroke="#2e86c1"/>
+  </g>
+  <rect x="300" y="196" width="120" height="124" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="6 4" rx="6"/>
+  <text x="360" y="188" font-size="9" text-anchor="middle" fill="#555">these can be absent —</text>
+  <text x="360" y="336" font-size="9" text-anchor="middle" fill="#555">the resistors still hold "dark"</text>
+
+  <!-- nodes + resistor drops -->
+  <g>
+    <circle cx="470" cy="220" r="5" fill="#c47a00"/>
+    <circle cx="500" cy="260" r="5" fill="#7a7a7a"/>
+    <circle cx="530" cy="300" r="5" fill="#2e86c1"/>
+  </g>
+  <g stroke-width="2.5">
+    <line x1="470" y1="220" x2="470" y2="368" stroke="#c47a00"/>
+    <line x1="500" y1="260" x2="500" y2="368" stroke="#7a7a7a"/>
+    <line x1="530" y1="300" x2="530" y2="368" stroke="#2e86c1"/>
+    <line x1="470" y1="404" x2="470" y2="470" stroke="#222"/>
+    <line x1="500" y1="404" x2="500" y2="470" stroke="#222"/>
+    <line x1="530" y1="404" x2="530" y2="470" stroke="#222"/>
+  </g>
+  <g fill="#d9a441" stroke="#8a6a2f" stroke-width="1">
+    <rect x="462" y="368" width="16" height="36"/>
+    <rect x="492" y="368" width="16" height="36"/>
+    <rect x="522" y="368" width="16" height="36"/>
+  </g>
+  <text x="448" y="384" font-size="10" font-weight="bold" text-anchor="end" fill="#6b4c12">10 kΩ ×3 — soldered</text>
+  <text x="448" y="398" font-size="10" font-weight="bold" text-anchor="end" fill="#6b4c12">AT these pads, on B1</text>
+
+  <!-- PicoBuck -->
+  <rect x="560" y="140" width="290" height="230" fill="#fdf1f0" stroke="#a33" stroke-width="1.5" rx="8"/>
+  <text x="705" y="168" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#223">PicoBuck — lives on B1 · POWER</text>
+  <text x="705" y="184" font-size="9" text-anchor="middle" fill="#556">socketed, per Doc 8's module rule</text>
+  <g font-size="9.5" font-weight="bold" fill="#223">
+    <text x="570" y="224">IN1</text>
+    <text x="570" y="264">IN2</text>
+    <text x="570" y="304">IN3</text>
+    <text x="570" y="344">GND</text>
+  </g>
+  <text x="838" y="264" font-size="9.5" text-anchor="end" fill="#8a8a8a">OUT pairs → the star</text>
+  <text x="838" y="344" font-size="9.5" text-anchor="end" fill="#8a8a8a">VIN ← 24 V trunk</text>
+
+  <!-- ground trunk -->
+  <line x1="60" y1="470" x2="940" y2="470" stroke="#222" stroke-width="4"/>
+  <g fill="#222">
+    <circle cx="470" cy="470" r="4.5"/><circle cx="500" cy="470" r="4.5"/><circle cx="530" cy="470" r="4.5"/>
+  </g>
+  <text x="60" y="462" font-size="10" font-weight="bold" fill="#222">ground trunk (B1)</text>
+  <line x1="620" y1="370" x2="620" y2="470" stroke="#222" stroke-width="2.5"/>
+  <circle cx="620" cy="470" r="4.5" fill="#222"/>
+  <text x="628" y="440" font-size="8.5" fill="#556">PicoBuck GND</text>
+
+  <!-- notes -->
+  <rect x="40" y="510" width="296" height="128" fill="#fdecec" stroke="#c33" rx="6"/>
+  <text x="52" y="531" font-size="10" font-weight="bold" fill="#8a1c1c">WHY: THE INPUTS FLOAT ON</text>
+  <g font-size="9.5" fill="#7c2a2a">
+    <text x="52" y="550">Left unconnected, each input runs its lamp at</text>
+    <text x="52" y="565">full current — and the C6's pins say nothing</text>
+    <text x="52" y="580">while it boots. These three resistors are why</text>
+    <text x="52" y="595">the spotlight wakes up dark instead of blazing.</text>
+  </g>
+  <text x="52" y="616" font-size="9.5" font-weight="bold" fill="#8a1c1c">The boot-stays-dark test is these, being proven.</text>
+
+  <rect x="352" y="510" width="296" height="128" fill="#fffbe8" stroke="#c9a227" rx="6"/>
+  <text x="364" y="531" font-size="10" font-weight="bold" fill="#6b5200">THE SIDE OF THE WIRE MATTERS</text>
+  <g font-size="9.5" fill="#514000">
+    <text x="364" y="550">Solder them at the PicoBuck's pads, not at</text>
+    <text x="364" y="565">the C6's. The promise they make — "dark unless</text>
+    <text x="364" y="580">told otherwise" — must hold even when B3 is</text>
+    <text x="364" y="595">unplugged, swapped, or mid-flash. A pulldown</text>
+    <text x="364" y="610">on the brain's side leaves with the brain.</text>
+  </g>
+
+  <rect x="664" y="510" width="296" height="128" fill="#fbfbf7" stroke="#888" stroke-width="1.2" rx="6"/>
+  <text x="676" y="531" font-size="10" font-weight="bold" fill="#333">PICK THE RIGHT ONE FROM THE KIT</text>
+  <g font-size="9.5" fill="#444">
+    <text x="676" y="550">A 10 kΩ body reads, band by band:</text>
+    <text x="676" y="565">brown · black · orange (· gold)</text>
+  </g>
+  <g>
+    <rect x="700" y="576" width="110" height="16" fill="#e6d3b3" stroke="#8a6a2f" rx="6"/>
+    <line x1="676" y1="584" x2="700" y2="584" stroke="#555" stroke-width="2"/>
+    <line x1="810" y1="584" x2="834" y2="584" stroke="#555" stroke-width="2"/>
+    <rect x="714" y="576" width="9" height="16" fill="#6b3a1f"/>
+    <rect x="736" y="576" width="9" height="16" fill="#111111"/>
+    <rect x="758" y="576" width="9" height="16" fill="#d97a1f"/>
+    <rect x="786" y="576" width="9" height="16" fill="#cdaa3d"/>
+  </g>
+  <g font-size="9.5" fill="#444">
+    <text x="676" y="614">No direction — either leg, either way.</text>
+    <text x="676" y="629">Three used; the rest of the pack are spares.</text>
+  </g>
+</svg>

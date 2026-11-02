@@ -1,0 +1,1 @@
+(fp_lib_table (lib (name "ELFlex")(type "KiCad")(uri "${KIPRJMOD}/ELFlex.pretty")(options "")(descr "Passive flex solder features")))
