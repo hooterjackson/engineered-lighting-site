@@ -652,7 +652,9 @@ unchanged. Shared assets live in `docs/assets/site/` (see README, "The front pag
   backend development paused since 2026-10-25; the sofa look test is written on an
   unmerged Home branch and not yet run; none of the 29 owner decisions is applied
   (ten answered in a first pass, the rest parked). Every part carries Works today /
-  Partly built / Not built yet.
+  Partly built / Not built yet. The three Home-tool screenshot slots under "Running
+  today" were removed later on 2026-11-02 at the owner's request: no screenshots
+  were supplied.
 
 **Binaries (owner's go-ahead 2026-11-02).** Apartment clouds and the four films with
 posters come from the landing-demo-site `public/` folder (hash-checked; the joined
@@ -676,7 +678,7 @@ image files. No claude.ai link anywhere; a test guards that too.
 motion, no console errors, no sideways scroll, chapter URLs intact, fallbacks, film
 laziness, sweep inversion, board controls, Software's honesty rules, and guards.
 
-**Open, for the owner:** Home-tool screenshots to supply; whether to host the full
+**Open, for the owner:** whether to host the full
 architecture page (it would need the same place-name pass); whether the films are
 the v3 renders; whether the rebuilt den scan is fine to publish; first-load size on a
 phone (~42 MB desktop cloud + 11.5 MB den). Push, PR and deploy wait for the owner's
