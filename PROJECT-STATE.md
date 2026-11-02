@@ -664,11 +664,11 @@ den-hero's fixtures and paths. About 73 MB of repo growth, in two separate commi
 (people, faces blurred) and AI edits, so neither is hosted and `/software/architecture/`
 does not exist. Every place a drawing would go is a slot with `data-privacy`
 (`private` or `public-candidate`). No claude.ai link anywhere; a test guards it.
-The one drawing published is the A14 build-ladder drawing, a people-free export made
-by the architecture session on request (`software-ladder-drawing-dark.png`, no
-camera frames). Its title-block export is held back because its photo note names the
-owner's apartment's neighbourhood; the Simple view and A1 have no people-free
-variant yet. A people-free build of the whole architecture page is feasible (a
+Two drawings are published, both people-free exports made by the architecture
+session on request: the A14 build-ladder drawing (`software-ladder-drawing-dark.png`)
+and the title block with its key (`software-titleblock-nophotos-dark.png`),
+re-exported at the owner's request without its photo note, which named the owner's
+neighbourhood. The Simple view and A1 have no people-free variant yet. A people-free build of the whole architecture page is feasible (a
 build flag swapping photos for placeholders, plus a prose pass) but not built.
 
 **Checks.** Two `mkdocs build --strict` runs clean. `pytest tests/e2e` adds
@@ -676,7 +676,7 @@ build flag swapping photos for placeholders, plus a prose pass) but not built.
 motion, no console errors, no sideways scroll, chapter URLs intact, fallbacks, film
 laziness, sweep inversion, board controls, Software's honesty rules, and guards.
 
-**Open, for the owner:** Home-tool screenshots to supply; whether the title block
-may go public and whether to commission the people-free architecture build; whether
+**Open, for the owner:** Home-tool screenshots to supply; whether to commission the
+people-free architecture build; whether
 the films are the v3 renders; whether the rebuilt den scan is fine to publish; first-load size on a phone (~42 MB desktop cloud + 11.5 MB
 den). Push, PR and deploy wait for the owner's word.

@@ -69,7 +69,11 @@
 .diagram { margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .diagram a { display: block; }
 .diagram a:hover { opacity: 1; }
-.diagram img { display: block; width: 100%; height: auto; background: #000000; border: 1px solid var(--edge); }
+/* The exports run to their own edges, so the frame keeps a black margin inside. */
+.diagram img {
+  display: block; box-sizing: border-box; width: 100%; height: auto;
+  padding: clamp(10px, 2vw, 32px); background: #000000; border: 1px solid var(--edge);
+}
 .slot--diagram { flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; gap: 6px 16px; }
 
 /* Build ladder */
