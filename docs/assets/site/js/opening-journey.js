@@ -140,19 +140,35 @@ function networkVisibility(pixelSpan, finalPixelSpan) {
 }
 
 // ── points-material.ts ─────────────────────────────────────────────────────
-function pointsMaterial({ pointSize = 0.04, pixelRatio = 1, opacity = 0.15, twinkle = 0.15, aliveDrift = 0 }) {
+// Desktop apartment cloud only (not in the design's original): once the room is
+// small on screen, points of a dense grid cell pile onto the same pixels and only
+// re-paint them at full white. Past THIN_PER_PX points per pixel, keep an even
+// share of the cell and boost it so the additive sum holds; sparse cells, the
+// room's soft haze, keep every point until the room is a few pixels wide.
+const THIN_CELL = 0.2, THIN_PER_PX = 64, THIN_FLOOR = 0.05;
+function pointsMaterial({ pointSize = 0.04, pixelRatio = 1, opacity = 0.15, twinkle = 0.15, aliveDrift = 0, thinning = false }) {
+  const thin = thinning ? {
+    decl: 'attribute float aCellCount; uniform float uCellPx;',
+    test: `
+        float cellPx = uCellPx / max(-mv.z, 0.3);
+        float keep = clamp(${THIN_PER_PX.toFixed(1)} * cellPx * cellPx / aCellCount, ${THIN_FLOOR.toFixed(2)}, 1.0);
+        if (fract(aSeed * 0.7548777) >= keep) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; vBrightness = 0.0; return; }`,
+    boost: ' / keep',
+  } : { decl: '', test: '', boost: '' };
   return new THREE.ShaderMaterial({
     uniforms: {
       uTime: { value: 0 }, uPointSize: { value: pointSize }, uPixelRatio: { value: pixelRatio },
       uOpacity: { value: opacity }, uTwinkle: { value: twinkle }, uDioramaEnabled: { value: 0 },
       uDioramaCamPos: { value: new THREE.Vector3() }, uDioramaViewDir: { value: new THREE.Vector3(0, 0, 1) },
       uDioramaOffset: { value: 0 }, uZoomNoise: { value: 0 }, uAliveDrift: { value: aliveDrift },
+      ...(thinning ? { uCellPx: { value: 0 } } : {}),
     },
     transparent: true, depthWrite: false, depthTest: true, blending: THREE.AdditiveBlending,
     vertexShader: `
       uniform float uTime, uPointSize, uPixelRatio, uTwinkle, uDioramaEnabled, uDioramaOffset, uZoomNoise, uAliveDrift;
       uniform vec3 uDioramaCamPos, uDioramaViewDir;
       attribute float aBrightness; attribute float aSeed;
+      ${thin.decl}
       varying float vBrightness;
       float hash1(float n) { return fract(sin(n) * 43758.5453123); }
       void main() {
@@ -171,13 +187,13 @@ function pointsMaterial({ pointSize = 0.04, pixelRatio = 1, opacity = 0.15, twin
           float d = dot(wp4.xyz - uDioramaCamPos, uDioramaViewDir);
           if (d < uDioramaOffset) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; vBrightness = 0.0; return; }
         }
-        vec4 mv = viewMatrix * wp4;
+        vec4 mv = viewMatrix * wp4;${thin.test}
         gl_Position = projectionMatrix * mv;
         float size = uPointSize * uPixelRatio * (320.0 / max(-mv.z, 0.3));
         gl_PointSize = clamp(size, 1.0, 12.0);
         float phase = hash1(aSeed) * 6.2831;
         float t = sin(uTime * 0.08 + phase) * 0.5 + 0.5;
-        vBrightness = aBrightness * mix(1.0, t, uTwinkle);
+        vBrightness = aBrightness * mix(1.0, t, uTwinkle)${thin.boost};
       }`,
     fragmentShader: `
       precision highp float;
@@ -196,6 +212,7 @@ function makePoints(data, opts) {
   const n = data.positions.length / 3, seeds = new Float32Array(n);
   for (let i = 0; i < n; i++) seeds[i] = Math.random() * 1000;
   g.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1));
+  if (data.cellCount) g.setAttribute('aCellCount', new THREE.BufferAttribute(data.cellCount, 1));
   const m = pointsMaterial(opts);
   const pts = new THREE.Points(g, m);
   pts.frustumCulled = false;
@@ -401,6 +418,19 @@ function parseCloud(buf, targetRadius) {
   for (let i = 0; i < N * 3; i++) positions[i] *= scale;
   return { positions, brightness };
 }
+// Points per THIN_CELL grid cell, for each point (the shader's thinning input).
+function cellCounts(positions, cell) {
+  const n = positions.length / 3, lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+  for (let i = 0; i < n * 3; i++) { const a = i % 3; lo[a] = Math.min(lo[a], positions[i]); hi[a] = Math.max(hi[a], positions[i]); }
+  const dim = lo.map((l, a) => Math.floor((hi[a] - l) / cell) + 1);
+  const key = new Uint32Array(n), grid = new Uint32Array(dim[0] * dim[1] * dim[2]), out = new Uint16Array(n);
+  for (let i = 0; i < n; i++) {
+    const x = Math.floor((positions[i * 3] - lo[0]) / cell), y = Math.floor((positions[i * 3 + 1] - lo[1]) / cell), z = Math.floor((positions[i * 3 + 2] - lo[2]) / cell);
+    key[i] = (x * dim[1] + y) * dim[2] + z; grid[key[i]]++;
+  }
+  for (let i = 0; i < n; i++) out[i] = Math.min(65535, grid[key[i]]);
+  return out;
+}
 
 // ── wordmark (IBM Plex Sans Regular outlines, data/wordmark-plex.json) ──────
 let wmPromise;
@@ -491,11 +521,15 @@ export async function mountOpening(o) {
       .then(buf => {
         if (!alive) return;
         const cloud = parseCloud(buf, mobile ? 3.2 : 4);
-        const m = add(makePoints(cloud, { pointSize: mobile ? 0.024 : 0.035, pixelRatio: pr, opacity: 0.08, twinkle: 0.12, aliveDrift: 0.006 }), (z, m) => {
+        if (!mobile) cloud.cellCount = cellCounts(cloud.positions, THIN_CELL);
+        const m = add(makePoints(cloud, { pointSize: mobile ? 0.024 : 0.035, pixelRatio: pr, opacity: 0.08, twinkle: 0.12, aliveDrift: 0.006, thinning: !mobile }), (z, m) => {
           m.u.uDioramaOffset.value = THREE.MathUtils.lerp(1.8, -100, sstep(0, .35, z));
           if (mobile) {
             m.pts.geometry.setDrawRange(0, Math.floor(m.count * THREE.MathUtils.lerp(1, 0.2, sstep(.05, .55, z))));
             m.u.uPointSize.value = 0.024 * THREE.MathUtils.lerp(1, 3.5, sstep(.02, .2, z));
+          } else {
+            // A grid cell's width in drawn pixels is uCellPx / view depth.
+            m.u.uCellPx.value = THIN_CELL * renderer.domElement.height / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
           }
         });
         diorama(m.u);
