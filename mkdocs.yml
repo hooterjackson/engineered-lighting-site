@@ -24,6 +24,12 @@ theme:
     - search.highlight
     - content.code.copy
 
+# The site root is the standalone front page (docs/index.html), not a Material
+# page, so the header logo is pointed at it explicitly. The notebook landing
+# lives at /notebook/.
+extra:
+  homepage: /
+
 extra_css:
   - stylesheets/extra.css
   - stylesheets/pcb.css

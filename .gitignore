@@ -18,8 +18,9 @@
 !/ref/
 !/tools/
 
-# Belt and braces (also excluded by /* above)
-site/
+# Belt and braces (also excluded by /* above). The build output is anchored to
+# the root: docs/assets/site/ holds the front pages' shared assets.
+/site/
 test-artifacts/
 .venv/
 .env

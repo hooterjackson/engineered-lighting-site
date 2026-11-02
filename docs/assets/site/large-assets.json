@@ -1,0 +1,26 @@
+{
+  "about": "Large binaries for the front pages, published separately from the code. Paths are relative to docs/assets/site/. A file marked present:false is never requested: the page shows its load-error copy instead. tests/e2e/test_front_pages.py checks these flags against the files on disk.",
+  "clouds": {
+    "desktop": {
+      "present": false,
+      "parts": [
+        { "path": "scans/cloud-parts/cloud-0.bin", "bytes": 16777216 },
+        { "path": "scans/cloud-parts/cloud-1.bin", "bytes": 16777216 },
+        { "path": "scans/cloud-parts/cloud-2.bin", "bytes": 8173316 }
+      ]
+    },
+    "mobile": {
+      "present": false,
+      "parts": [
+        { "path": "scans/cloud-mobile.bin", "bytes": 6954628 }
+      ]
+    }
+  },
+  "den": { "present": false, "path": "scans/victoria-den.bin", "bytes": 11494964 },
+  "films": [
+    { "id": "carpet", "present": false, "video": "films/carpet-web-60.mp4", "poster": "films/carpet-poster.jpg" },
+    { "id": "wall", "present": false, "video": "films/wall-web-60.mp4", "poster": "films/wall-poster.jpg" },
+    { "id": "steel", "present": false, "video": "films/steel-web-60.mp4", "poster": "films/steel-poster.jpg" },
+    { "id": "wood", "present": false, "video": "films/wood-web-60.mp4", "poster": "films/wood-poster.jpg" }
+  ]
+}
