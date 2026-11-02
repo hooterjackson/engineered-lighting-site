@@ -23,7 +23,9 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest became 26.04, where the pinned Playwright (1.60)
+    # refuses to install Chromium. Move together with a Playwright upgrade.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -77,7 +79,8 @@ jobs:
     needs: test
     # Never from a pull request: publishing is a push to main or a manual run.
     if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    # Same image as the test job, so the build that deploys is the build that passed.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Configure git identity for gh-deploy
