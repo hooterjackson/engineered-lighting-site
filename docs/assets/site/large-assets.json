@@ -16,7 +16,7 @@
       ]
     }
   },
-  "den": { "present": false, "path": "scans/victoria-den.bin", "bytes": 11494964 },
+  "den": { "present": true, "path": "scans/victoria-den.bin", "bytes": 11494964 },
   "films": [
     { "id": "carpet", "present": true, "video": "films/carpet-web-60.mp4", "poster": "films/carpet-poster.jpg" },
     { "id": "wall", "present": true, "video": "films/wall-web-60.mp4", "poster": "films/wall-poster.jpg" },
